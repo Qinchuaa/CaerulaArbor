@@ -1,0 +1,17 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "caerula_arbor:sea_trail_mor"
+    }
+  },
+  "result": {
+    "item": "caerula_arbor:sea_trail_grown",
+    "count": 1
+  }
+}

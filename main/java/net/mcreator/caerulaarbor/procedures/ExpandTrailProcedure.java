@@ -1,0 +1,185 @@
+package net.mcreator.caerulaarbor.procedures;
+
+import net.minecraftforge.registries.ForgeRegistries;
+
+import net.minecraft.world.phys.Vec3;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.level.block.state.properties.IntegerProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.util.RandomSource;
+import net.minecraft.util.Mth;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.core.Direction;
+import net.minecraft.core.BlockPos;
+
+import net.mcreator.caerulaarbor.init.CaerulaArborModBlocks;
+
+import java.util.List;
+import java.util.Comparator;
+
+public class ExpandTrailProcedure {
+	public static void execute(LevelAccessor world, double x, double y, double z, BlockState blockstate) {
+		double direc = 0;
+		double dx = 0;
+		double dz = 0;
+		boolean valid = false;
+		if ((blockstate.getBlock().getStateDefinition().getProperty("grow_age") instanceof IntegerProperty _getip1 ? blockstate.getValue(_getip1) : -1) < 64) {
+			if (world.getLevelData().isThundering()) {
+				{
+					int _value = (int) ((blockstate.getBlock().getStateDefinition().getProperty("grow_age") instanceof IntegerProperty _getip4 ? blockstate.getValue(_getip4) : -1) + 2);
+					BlockPos _pos = BlockPos.containing(x, y, z);
+					BlockState _bs = world.getBlockState(_pos);
+					if (_bs.getBlock().getStateDefinition().getProperty("grow_age") instanceof IntegerProperty _integerProp && _integerProp.getPossibleValues().contains(_value))
+						world.setBlock(_pos, _bs.setValue(_integerProp, _value), 3);
+				}
+			} else {
+				{
+					int _value = (int) ((blockstate.getBlock().getStateDefinition().getProperty("grow_age") instanceof IntegerProperty _getip7 ? blockstate.getValue(_getip7) : -1) + 1);
+					BlockPos _pos = BlockPos.containing(x, y, z);
+					BlockState _bs = world.getBlockState(_pos);
+					if (_bs.getBlock().getStateDefinition().getProperty("grow_age") instanceof IntegerProperty _integerProp && _integerProp.getPossibleValues().contains(_value))
+						world.setBlock(_pos, _bs.setValue(_integerProp, _value), 3);
+				}
+			}
+			valid = true;
+			{
+				final Vec3 _center = new Vec3((x + 0.5), (y + 0.5), (z + 0.5));
+				List<Entity> _entfound = world.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(0.6 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList();
+				for (Entity entityiterator : _entfound) {
+					if ((entityiterator instanceof LivingEntity _livEnt ? _livEnt.getMaxHealth() : -1) > 5) {
+						valid = false;
+						break;
+					}
+				}
+			}
+			if (valid && (blockstate.getBlock().getStateDefinition().getProperty("grow_age") instanceof IntegerProperty _getip12 ? blockstate.getValue(_getip12) : -1) > 29) {
+				if (Math.random() < 0.2) {
+					dx = 0;
+					dx = 1;
+					direc = Mth.nextInt(RandomSource.create(), 0, 3);
+					if (direc == 0) {
+						dx = 0;
+						dz = 1;
+					} else if (direc == 1) {
+						dx = 0;
+						dz = -1;
+					} else if (direc == 2) {
+						dx = 1;
+						dz = 0;
+					} else {
+						dx = -1;
+						dz = 0;
+					}
+					if ((world.getBlockState(BlockPos.containing(x + dx, y, z + dz))).canBeReplaced() && CaerulaArborModBlocks.SEA_TRAIL_INIT.get().defaultBlockState().canSurvive(world, BlockPos.containing(x + dx, y, z + dz))) {
+						world.setBlock(BlockPos.containing(x + dx, y, z + dz), (new Object() {
+							public BlockState with(BlockState _bs, Direction newValue) {
+								Property<?> _prop = _bs.getBlock().getStateDefinition().getProperty("facing");
+								if (_prop instanceof DirectionProperty _dp && _dp.getPossibleValues().contains(newValue))
+									return _bs.setValue(_dp, newValue);
+								_prop = _bs.getBlock().getStateDefinition().getProperty("axis");
+								return _prop instanceof EnumProperty _ep && _ep.getPossibleValues().contains(newValue.getAxis()) ? _bs.setValue(_ep, newValue.getAxis()) : _bs;
+							}
+						}.with(CaerulaArborModBlocks.SEA_TRAIL_INIT.get().defaultBlockState(), new Object() {
+							public Direction getValue() {
+								Direction _dir = Direction.NORTH;
+								int _num = Mth.nextInt(RandomSource.create(), 1, 4);
+								if (_num == 1) {
+									_dir = Direction.EAST;
+								} else if (_num == 2) {
+									_dir = Direction.SOUTH;
+								} else if (_num == 3) {
+									_dir = Direction.WEST;
+								}
+								return _dir;
+							}
+						}.getValue())), 3);
+						world.levelEvent(2001, BlockPos.containing(x + dx, y, z + dz), Block.getId(CaerulaArborModBlocks.SEA_TRAIL_INIT.get().defaultBlockState()));
+						if (world instanceof Level _level) {
+							if (!_level.isClientSide()) {
+								_level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.sculk_vein.place")), SoundSource.NEUTRAL, 1, 1);
+							} else {
+								_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.sculk_vein.place")), SoundSource.NEUTRAL, 1, 1, false);
+							}
+						}
+					} else if ((world.getBlockState(BlockPos.containing(x + dx, y - 1, z + dz))).canBeReplaced()
+							&& ((world.getBlockState(BlockPos.containing(x + dx, y, z + dz))).getBlock() == Blocks.AIR || (world.getBlockState(BlockPos.containing(x + dx, y, z + dz))).getBlock() == Blocks.CAVE_AIR)
+							&& CaerulaArborModBlocks.SEA_TRAIL_INIT.get().defaultBlockState().canSurvive(world, BlockPos.containing(x + dx, y - 1, z + dz))) {
+						world.setBlock(BlockPos.containing(x + dx, y - 1, z + dz), (new Object() {
+							public BlockState with(BlockState _bs, Direction newValue) {
+								Property<?> _prop = _bs.getBlock().getStateDefinition().getProperty("facing");
+								if (_prop instanceof DirectionProperty _dp && _dp.getPossibleValues().contains(newValue))
+									return _bs.setValue(_dp, newValue);
+								_prop = _bs.getBlock().getStateDefinition().getProperty("axis");
+								return _prop instanceof EnumProperty _ep && _ep.getPossibleValues().contains(newValue.getAxis()) ? _bs.setValue(_ep, newValue.getAxis()) : _bs;
+							}
+						}.with(CaerulaArborModBlocks.SEA_TRAIL_INIT.get().defaultBlockState(), new Object() {
+							public Direction getValue() {
+								Direction _dir = Direction.NORTH;
+								int _num = Mth.nextInt(RandomSource.create(), 1, 4);
+								if (_num == 1) {
+									_dir = Direction.EAST;
+								} else if (_num == 2) {
+									_dir = Direction.SOUTH;
+								} else if (_num == 3) {
+									_dir = Direction.WEST;
+								}
+								return _dir;
+							}
+						}.getValue())), 3);
+						world.levelEvent(2001, BlockPos.containing(x + dx, y - 1, z + dz), Block.getId(CaerulaArborModBlocks.SEA_TRAIL_INIT.get().defaultBlockState()));
+						if (world instanceof Level _level) {
+							if (!_level.isClientSide()) {
+								_level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.sculk_vein.place")), SoundSource.NEUTRAL, 1, 1);
+							} else {
+								_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.sculk_vein.place")), SoundSource.NEUTRAL, 1, 1, false);
+							}
+						}
+					} else if ((world.getBlockState(BlockPos.containing(x + dx, y + 1, z + dz))).canBeReplaced()
+							&& ((world.getBlockState(BlockPos.containing(x, y + 1, z))).getBlock() == Blocks.AIR || (world.getBlockState(BlockPos.containing(x, y + 1, z))).getBlock() == Blocks.CAVE_AIR)
+							&& CaerulaArborModBlocks.SEA_TRAIL_INIT.get().defaultBlockState().canSurvive(world, BlockPos.containing(x + dx, y + 1, z + dz))) {
+						world.setBlock(BlockPos.containing(x + dx, y + 1, z + dz), (new Object() {
+							public BlockState with(BlockState _bs, Direction newValue) {
+								Property<?> _prop = _bs.getBlock().getStateDefinition().getProperty("facing");
+								if (_prop instanceof DirectionProperty _dp && _dp.getPossibleValues().contains(newValue))
+									return _bs.setValue(_dp, newValue);
+								_prop = _bs.getBlock().getStateDefinition().getProperty("axis");
+								return _prop instanceof EnumProperty _ep && _ep.getPossibleValues().contains(newValue.getAxis()) ? _bs.setValue(_ep, newValue.getAxis()) : _bs;
+							}
+						}.with(CaerulaArborModBlocks.SEA_TRAIL_INIT.get().defaultBlockState(), new Object() {
+							public Direction getValue() {
+								Direction _dir = Direction.NORTH;
+								int _num = Mth.nextInt(RandomSource.create(), 1, 4);
+								if (_num == 1) {
+									_dir = Direction.EAST;
+								} else if (_num == 2) {
+									_dir = Direction.SOUTH;
+								} else if (_num == 3) {
+									_dir = Direction.WEST;
+								}
+								return _dir;
+							}
+						}.getValue())), 3);
+						world.levelEvent(2001, BlockPos.containing(x + dx, y + 1, z + dz), Block.getId(CaerulaArborModBlocks.SEA_TRAIL_INIT.get().defaultBlockState()));
+						if (world instanceof Level _level) {
+							if (!_level.isClientSide()) {
+								_level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.sculk_vein.place")), SoundSource.NEUTRAL, 1, 1);
+							} else {
+								_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.sculk_vein.place")), SoundSource.NEUTRAL, 1, 1, false);
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+}

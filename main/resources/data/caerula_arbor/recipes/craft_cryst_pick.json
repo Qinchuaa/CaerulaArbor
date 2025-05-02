@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa",
+    " b ",
+    " b "
+  ],
+  "key": {
+    "a": {
+      "item": "caerula_arbor:ocean_crystal"
+    },
+    "b": {
+      "item": "caerula_arbor:cutin_stick"
+    }
+  },
+  "result": {
+    "item": "caerula_arbor:pickaxe_ocean_crystal",
+    "count": 1
+  }
+}

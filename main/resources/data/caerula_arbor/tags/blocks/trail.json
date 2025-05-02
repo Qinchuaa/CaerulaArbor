@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "caerula_arbor:sea_trail_init",
+    "caerula_arbor:sea_trail_growing",
+    "caerula_arbor:sea_trail_grown"
+  ]
+}

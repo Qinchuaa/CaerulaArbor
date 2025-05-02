@@ -1,0 +1,19 @@
+{
+  "replace": false,
+  "values": [
+    "caerula_arbor:baselayer_abyssal",
+    "caerula_arbor:creeper_fish",
+    "caerula_arbor:fish_shoot",
+    "caerula_arbor:fly_fish",
+    "caerula_arbor:puncture_fish",
+    "caerula_arbor:reaper_fish",
+    "caerula_arbor:run_fish",
+    "caerula_arbor:shooter_fish",
+    "caerula_arbor:slider_fish",
+    "caerula_arbor:super_slider",
+    "caerula_arbor:predator_abyssal",
+    "caerula_arbor:guide_abyssal",
+    "caerula_arbor:splasher_abyssal",
+    "caerula_arbor:umbrella_abyssal"
+  ]
+}
