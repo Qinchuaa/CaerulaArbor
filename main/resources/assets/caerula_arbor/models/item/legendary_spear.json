@@ -1,6 +1,0 @@
-{
-  "parent": "caerula_arbor:displaysettings/lengdendaryspear",
-  "textures": {
-    "layer0": "caerula_arbor:item/superchitinspear"
-  }
-}

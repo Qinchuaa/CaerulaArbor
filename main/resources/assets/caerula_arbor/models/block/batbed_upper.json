@@ -1,9 +1,0 @@
-{
-  "parent": "caerula_arbor:custom/batbedupper",
-  "textures": {
-    "all": "caerula_arbor:block/batbed",
-    "particle": "caerula_arbor:block/batbed",
-    "0": "caerula_arbor:block/batbed"
-  },
-  "render_type": "solid"
-}
