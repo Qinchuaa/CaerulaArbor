@@ -171,7 +171,6 @@ public class ModTabs {
 //				tabData.accept(CaerulaArborModItems.HAND_OF_FIREWORK.get());
 //				tabData.accept(CaerulaArborModItems.HAND_OF_ENGRAVE.get());
 //				tabData.accept(CaerulaArborModItems.HAND_SWORD.get());
-//				tabData.accept(CaerulaArborModItems.MEAT_CAN.get());
 //				tabData.accept(CaerulaArborModItems.BOWL_SEAGRASS.get());
 //				tabData.accept(CaerulaArborModItems.GOLDEN_STORM.get());
 //				tabData.accept(CaerulaArborModItems.CANNED_CHERRY.get());

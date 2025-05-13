@@ -18,7 +18,7 @@ import java.util.List;
 public class HotWaterKettleItem extends RelicItem {
 
     public HotWaterKettleItem() {
-        super(new Item.Properties());
+        super(new Item.Properties().stacksTo(1));
     }
 
     @Override

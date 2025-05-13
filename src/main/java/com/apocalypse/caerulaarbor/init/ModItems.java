@@ -78,7 +78,7 @@ import com.apocalypse.caerulaarbor.item.OceanCellItem;
 import com.apocalypse.caerulaarbor.item.OceanArrowItem;
 import com.apocalypse.caerulaarbor.item.ObisidianBallItem;
 import com.apocalypse.caerulaarbor.item.MusicBoxFixedItem;
-import com.apocalypse.caerulaarbor.item.MeatCanItem;
+import com.apocalypse.caerulaarbor.item.FeaturedCannedMeatItem;
 import com.apocalypse.caerulaarbor.item.LegendarySpearItem;
 import com.apocalypse.caerulaarbor.item.LanguageKeyItem;
 import com.apocalypse.caerulaarbor.item.KingsSpearItem;
@@ -189,7 +189,7 @@ public class ModItems {
     public static final RegistryObject<Item> ROYAL_FATE = ITEMS.register("royal_fate", () -> new RoyalFateItem());
     public static final RegistryObject<Item> BLOCK_FATE = block(CaerulaArborModBlocks.BLOCK_FATE);
     public static final RegistryObject<Item> CRIMSON_TREATY = ITEMS.register("crimson_treaty", () -> new CrimsonTreatyItem());
-    public static final RegistryObject<Item> MEAT_CAN = ITEMS.register("meat_can", () -> new MeatCanItem());
+    public static final RegistryObject<Item> MEAT_CAN = ITEMS.register("meat_can", () -> new FeaturedCannedMeatItem());
     public static final RegistryObject<Item> EMPTY_CAN = ITEMS.register("empty_can", () -> new EmptyCanItem());
     public static final RegistryObject<Item> BOWL_SEAGRASS = ITEMS.register("bowl_seagrass", () -> new BowlSeagrassItem());
     public static final RegistryObject<Item> GOLDEN_STORM = ITEMS.register("golden_storm", () -> new GoldenStormItem());
@@ -353,6 +353,7 @@ public class ModItems {
 
     public static final RegistryObject<Item> HOT_WATER_KETTLE = RELICS.register("hot_water_kettle", HotWaterKettleItem::new);
     public static final RegistryObject<Item> VAMPIRES_BED = RELICS.register("vampires_bed", VampiresBedItem::new);
+    public static final RegistryObject<Item> FEATURED_CANNED_MEAT = RELICS.register("featured_canned_meat", FeaturedCannedMeatItem::new);
 
     /**
      * Spawn Eggs

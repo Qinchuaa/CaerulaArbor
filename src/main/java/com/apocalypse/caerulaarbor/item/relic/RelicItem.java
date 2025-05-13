@@ -21,11 +21,15 @@ import org.jetbrains.annotations.NotNull;
 public class RelicItem extends Item {
 
     public RelicItem(Properties pProperties) {
-        super(pProperties.stacksTo(1));
+        super(pProperties);
     }
 
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
+        if (!this.isInstantUse()) {
+            return super.use(pLevel, pPlayer, pUsedHand);
+        }
+
         ItemStack stack = pPlayer.getItemInHand(pUsedHand);
 
         if (pLevel instanceof ServerLevel serverLevel) {
@@ -63,8 +67,14 @@ public class RelicItem extends Item {
         if (!this.getRewardItemStack().isEmpty()) {
             ItemHandlerHelper.giveItemToPlayer(pPlayer, this.getRewardItemStack());
         }
+        return InteractionResultHolder.consume(stack);
+    }
 
-        return super.use(pLevel, pPlayer, pUsedHand);
+    /**
+     * 是否是右键就立刻使用的，如果不是则走原版使用流程
+     */
+    public boolean isInstantUse() {
+        return true;
     }
 
     public int getAddedLives() {
