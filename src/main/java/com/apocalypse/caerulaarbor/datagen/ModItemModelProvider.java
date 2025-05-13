@@ -22,7 +22,6 @@ public class ModItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
 
-        // TODO 为什么不生效
         // relics
         simpleItem(ModItems.HOT_WATER_KETTLE);
     }

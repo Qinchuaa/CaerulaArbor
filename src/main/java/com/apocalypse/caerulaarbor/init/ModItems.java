@@ -352,7 +352,7 @@ public class ModItems {
      */
     public static final DeferredRegister<Item> RELICS = DeferredRegister.create(ForgeRegistries.ITEMS, CaerulaArborMod.MODID);
 
-    public static final RegistryObject<Item> HOT_WATER_KETTLE = ITEMS.register("hot_water_kettle", HotWaterKettleItem::new);
+    public static final RegistryObject<Item> HOT_WATER_KETTLE = RELICS.register("hot_water_kettle", HotWaterKettleItem::new);
 
     /**
      * Spawn Eggs
