@@ -1,0 +1,12 @@
+package com.apocalypse.caerulaarbor.procedures;
+
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.network.chat.Component;
+
+import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
+
+public class GetDescrSubsisProcedure {
+	public static String execute(LevelAccessor world) {
+		return Component.translatable(("item.caerula_arbor.sample_subsisting.description_" + Math.round(CaerulaArborModVariables.MapVariables.get(world).strategy_subsisting))).getString();
+	}
+}

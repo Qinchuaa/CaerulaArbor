@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "com.apocalypse.caerulaarbor.mixins",
+  "compatibilityLevel": "JAVA_17",
+  "refmap": "mixins.caerulaarbor.refmap.json",
+  "mixins": [
+  ],
+  "client": [
+  ],
+  "minVersion": "0.8",
+  "injectors": {
+    "defaultRequire": 1
+  }
+}
