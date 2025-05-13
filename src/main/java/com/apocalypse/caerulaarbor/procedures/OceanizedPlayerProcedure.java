@@ -1,32 +1,19 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import net.minecraft.world.phys.Vec3;
-import net.minecraft.world.phys.AABB;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.Entity;
-
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
-
-import java.util.List;
-import java.util.Comparator;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 
 public class OceanizedPlayerProcedure {
-	public static boolean execute(LevelAccessor world, double x, double y, double z) {
-		boolean valid = false;
-		valid = true;
-		{
-			final Vec3 _center = new Vec3(x, y, z);
-			List<Entity> _entfound = world.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(32 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList();
-			for (Entity entityiterator : _entfound) {
-				if (entityiterator instanceof Player) {
-					if ((entityiterator.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).player_oceanization == 3) {
-						valid = false;
-						break;
-					}
-				}
-			}
-		}
-		return valid;
-	}
+    public static boolean execute(LevelAccessor world, double x, double y, double z) {
+        final Vec3 center = new Vec3(x, y, z);
+        return world.getEntitiesOfClass(Player.class, new AABB(center, center).inflate(32 / 2d), e -> true)
+                .stream()
+                .noneMatch(player -> player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                        .map(cap -> cap.player_oceanization == 3)
+                        .orElse(false)
+                );
+    }
 }

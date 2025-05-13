@@ -51,7 +51,7 @@ public class PhloemBowItem extends Item implements GeoItem {
 		});
 	}
 
-	private PlayState idlePredicate(AnimationState event) {
+	private PlayState idlePredicate(AnimationState<?> event) {
 		if (this.animationprocedure.equals("empty")) {
 			event.getController().setAnimation(RawAnimation.begin().thenLoop("animation.bluebow.idle"));
 			return PlayState.CONTINUE;
@@ -61,7 +61,7 @@ public class PhloemBowItem extends Item implements GeoItem {
 
 	String prevAnim = "empty";
 
-	private PlayState procedurePredicate(AnimationState event) {
+	private PlayState procedurePredicate(AnimationState<?> event) {
 		if (!this.animationprocedure.equals("empty") && event.getController().getAnimationState() == AnimationController.State.STOPPED || (!this.animationprocedure.equals(prevAnim) && !this.animationprocedure.equals("empty"))) {
 			if (!this.animationprocedure.equals(prevAnim))
 				event.getController().forceAnimationReset();

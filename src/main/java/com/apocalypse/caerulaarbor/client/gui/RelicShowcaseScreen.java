@@ -272,15 +272,17 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
 
         var cap = entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables());
 
-        if (cap.relic_hand_ENGRAVE >= 0)
-            guiGraphics.drawString(this.font, GetlayerEnraveProcedure.execute(entity), 157, 36, -16777165, false);
-        if (cap.relic_hand_ENGRAVE >= 0)
-            guiGraphics.drawString(this.font, GetlayerEnraveProcedure.execute(entity), 156, 36, -1, false);
-        if (cap.relic_SURVIVOR >= 0)
-            guiGraphics.drawString(this.font, GetlayerSurvcontaProcedure.execute(entity), 37, 60, -12829636, false);
+        if (cap.relic_hand_ENGRAVE >= 0) {
+            String msg = "" + Math.round((((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_hand_ENGRAVE);
 
-        if (cap.relic_SURVIVOR >= 0)
-            guiGraphics.drawString(this.font, GetlayerSurvcontaProcedure.execute(entity), 36, 60, -1, false);
+            guiGraphics.drawString(this.font, msg, 157, 36, -16777165, false);
+            guiGraphics.drawString(this.font, msg, 156, 36, -1, false);
+        }
+        if (cap.relic_SURVIVOR >= 0) {
+            String msg = "" + Math.round((((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_SURVIVOR);
+            guiGraphics.drawString(this.font, msg, 37, 60, -12829636, false);
+            guiGraphics.drawString(this.font, msg, 36, 60, -1, false);
+        }
     }
 
     @Override
