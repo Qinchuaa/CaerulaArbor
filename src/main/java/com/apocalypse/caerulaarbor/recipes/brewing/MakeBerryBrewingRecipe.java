@@ -37,7 +37,7 @@ public class MakeBerryBrewingRecipe implements IBrewingRecipe {
 	@Override
 	public ItemStack getOutput(ItemStack input, ItemStack ingredient) {
 		if (isInput(input) && isIngredient(ingredient)) {
-			return new ItemStack(ModItems.CANNED_CHERRY.get());
+			return new ItemStack(ModItems.SCREAMING_CHERRY.get());
 		}
 		return ItemStack.EMPTY;
 	}

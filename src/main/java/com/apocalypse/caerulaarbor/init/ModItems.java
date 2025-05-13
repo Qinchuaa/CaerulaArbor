@@ -132,7 +132,7 @@ import com.apocalypse.caerulaarbor.item.CaramelCakePieceItem;
 import com.apocalypse.caerulaarbor.item.CannedWaterItem;
 import com.apocalypse.caerulaarbor.item.CannedNoodleItem;
 import com.apocalypse.caerulaarbor.item.CannedLavaItem;
-import com.apocalypse.caerulaarbor.item.CannedCherryItem;
+import com.apocalypse.caerulaarbor.item.relic.rare.ScreamingCherryItem;
 import com.apocalypse.caerulaarbor.item.CannedBoiledWaterItem;
 import com.apocalypse.caerulaarbor.item.CaffeineItem;
 import com.apocalypse.caerulaarbor.item.CaerulaRecorderItem;
@@ -196,8 +196,6 @@ public class ModItems {
     public static final RegistryObject<Item> PAPER_BAG = ITEMS.register("paper_bag", () -> new PaperBagItem());
     public static final RegistryObject<Item> COFFEE_CANDY = ITEMS.register("coffee_candy", () -> new CoffeeCandyItem());
     public static final RegistryObject<Item> CAFFEINE = ITEMS.register("caffeine", () -> new CaffeineItem());
-    public static final RegistryObject<Item> CANNED_CHERRY = ITEMS.register("canned_cherry", () -> new CannedCherryItem());
-    public static final RegistryObject<Item> BERRY_CAN = block(CaerulaArborModBlocks.BERRY_CAN);
     public static final RegistryObject<Item> AROMATIC_COFFEE = ITEMS.register("aromatic_coffee", () -> new AromaticCoffeeItem());
     public static final RegistryObject<Item> SOLO_MUSIC_BOX = ITEMS.register("solo_music_box", () -> new SoloMusicBoxItem());
     public static final RegistryObject<Item> MUSIC_BOX_FIXED = ITEMS.register("music_box_fixed", () -> new MusicBoxFixedItem());
@@ -354,6 +352,7 @@ public class ModItems {
     public static final RegistryObject<Item> FEATURED_CANNED_MEAT = RELICS.register("featured_canned_meat", FeaturedCannedMeatItem::new);
     public static final RegistryObject<Item> PURE_GOLD_EXPEDITION = RELICS.register("pure_gold_expedition", PureGoldExpeditionItem::new);
     public static final RegistryObject<Item> PITTS_ASSORTED_FRUITS = RELICS.register("pitts_assorted_fruits", PittsAssortedFruitsItem::new);
+    public static final RegistryObject<Item> SCREAMING_CHERRY = RELICS.register("screaming_cherry", ScreamingCherryItem::new);
 
     /**
      * Spawn Eggs

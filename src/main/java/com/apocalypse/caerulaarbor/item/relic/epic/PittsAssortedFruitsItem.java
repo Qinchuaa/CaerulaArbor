@@ -44,11 +44,6 @@ public class PittsAssortedFruitsItem extends RelicItem {
     }
 
     @Override
-    public boolean isInstantUse() {
-        return false;
-    }
-
-    @Override
     public void appendHoverText(ItemStack itemstack, Level level, List<Component> list, TooltipFlag flag) {
         list.add(Component.translatable("item.caerula_arbor.pitts_assorted_fruits.des_1").withStyle(ChatFormatting.AQUA));
         list.add(Component.translatable("item.caerula_arbor.pitts_assorted_fruits.des_2").withStyle(ChatFormatting.GRAY));

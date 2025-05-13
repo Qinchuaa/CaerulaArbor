@@ -74,7 +74,7 @@ public class ModTabs {
                 tabData.accept(CaerulaArborModBlocks.BLOCK_EXTENSION.get().asItem());
                 tabData.accept(CaerulaArborModBlocks.BLOCK_CRYSTAL.get().asItem());
                 tabData.accept(CaerulaArborModBlocks.BLOCK_FATE.get().asItem());
-                tabData.accept(CaerulaArborModBlocks.BERRY_CAN.get().asItem());
+                tabData.accept(CaerulaArborModBlocks.SCREAMING_CHERRY.get().asItem());
                 tabData.accept(CaerulaArborModBlocks.BLOCK_RECORDER.get().asItem());
                 tabData.accept(CaerulaArborModBlocks.TIDE_OBSERVATION.get().asItem());
                 tabData.accept(CaerulaArborModBlocks.BOMB_TRAILER.get().asItem());
@@ -173,7 +173,6 @@ public class ModTabs {
 //				tabData.accept(CaerulaArborModItems.HAND_SWORD.get());
 //				tabData.accept(CaerulaArborModItems.BOWL_SEAGRASS.get());
 //				tabData.accept(CaerulaArborModItems.GOLDEN_STORM.get());
-//				tabData.accept(CaerulaArborModItems.CANNED_CHERRY.get());
 //				tabData.accept(CaerulaArborModItems.AROMATIC_COFFEE.get());
 //				tabData.accept(CaerulaArborModItems.COFFEE_CANDY.get());
 //				tabData.accept(CaerulaArborModItems.SOLO_MUSIC_BOX.get());

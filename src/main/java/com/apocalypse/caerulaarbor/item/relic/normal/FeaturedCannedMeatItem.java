@@ -28,11 +28,6 @@ public class FeaturedCannedMeatItem extends RelicItem {
     }
 
     @Override
-    public boolean isInstantUse() {
-        return false;
-    }
-
-    @Override
     public int getUseDuration(ItemStack itemstack) {
         return 40;
     }

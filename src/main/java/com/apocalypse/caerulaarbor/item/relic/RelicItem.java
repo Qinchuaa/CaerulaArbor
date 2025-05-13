@@ -24,7 +24,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class RelicItem extends Item {
+public class RelicItem extends Item implements IRelic {
 
     public RelicItem(Properties pProperties) {
         super(pProperties);
@@ -86,7 +86,7 @@ public class RelicItem extends Item {
      * 是否是右键就立刻使用的，如果不是则走原版使用流程
      */
     public boolean isInstantUse() {
-        return true;
+        return !this.isEdible();
     }
 
     public int getAddedLives() {

@@ -59,7 +59,7 @@ public class CaerulaArborModBlocks {
 	public static final RegistryObject<Block> BLOCK_EXTENSION = REGISTRY.register("block_extension", () -> new BlockExtensionBlock());
 	public static final RegistryObject<Block> BLOCK_CRYSTAL = REGISTRY.register("block_crystal", () -> new BlockCrystalBlock());
 	public static final RegistryObject<Block> BLOCK_FATE = REGISTRY.register("block_fate", () -> new BlockFateBlock());
-	public static final RegistryObject<Block> BERRY_CAN = REGISTRY.register("berry_can", () -> new BerryCanBlock());
+	public static final RegistryObject<Block> SCREAMING_CHERRY = REGISTRY.register("screaming_cherry", BerryCanBlock::new);
 	public static final RegistryObject<Block> REDSTONE_IRIS = REGISTRY.register("redstone_iris", () -> new ResdtoneIrisBlock());
 	public static final RegistryObject<Block> REDSTONEIRIS_SEEDING = REGISTRY.register("redstoneiris_seeding", () -> new RedstoneirisSeedingBlock());
 	public static final RegistryObject<Block> SEA_TRAIL_INIT = REGISTRY.register("sea_trail_init", () -> new SeaTrailInitBlock());

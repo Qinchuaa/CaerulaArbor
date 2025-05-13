@@ -34,7 +34,7 @@ public class CaerulaArborModBrewingRecipes implements IModPlugin {
 		List<ItemStack> inputStack = new ArrayList<>();
 		ingredientStack.add(new ItemStack(Items.SWEET_BERRIES));
 		PotionUtils.setPotion(potion, Potions.AWKWARD);
-		brewingRecipes.add(factory.createBrewingRecipe(List.copyOf(ingredientStack), potion.copy(), new ItemStack(ModItems.CANNED_CHERRY.get())));
+		brewingRecipes.add(factory.createBrewingRecipe(List.copyOf(ingredientStack), potion.copy(), new ItemStack(ModItems.SCREAMING_CHERRY.get())));
 		ingredientStack.clear();
 		ingredientStack.add(new ItemStack(ModItems.FERMENTED_OCEAN_EYE.get()));
 		PotionUtils.setPotion(potion, Potions.AWKWARD);
