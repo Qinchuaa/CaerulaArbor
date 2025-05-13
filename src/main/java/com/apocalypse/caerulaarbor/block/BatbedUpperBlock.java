@@ -29,7 +29,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModBlocks;
+import com.apocalypse.caerulaarbor.init.ModBlocks;
 
 public class BatbedUpperBlock extends Block {
 	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
@@ -101,7 +101,7 @@ public class BatbedUpperBlock extends Block {
 
 	@Override
 	public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter world, BlockPos pos, Player player) {
-		return new ItemStack(CaerulaArborModBlocks.BLOCK_BATBED.get());
+		return new ItemStack(ModBlocks.BLOCK_BATBED.get());
 	}
 
 	@Override

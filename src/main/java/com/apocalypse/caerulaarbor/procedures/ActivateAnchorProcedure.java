@@ -21,7 +21,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModBlocks;
+import com.apocalypse.caerulaarbor.init.ModBlocks;
 
 public class ActivateAnchorProcedure {
 	public static InteractionResult execute(LevelAccessor world, double x, double y, double z, BlockState blockstate, Direction direction, Entity entity) {
@@ -62,7 +62,7 @@ public class ActivateAnchorProcedure {
 				}
 				return InteractionResult.SUCCESS;
 			} else {
-				if ((world.getBlockState(BlockPos.containing(x, y + 1, z))).getBlock() == CaerulaArborModBlocks.ANCHOR_UPPER.get() && (new Object() {
+				if ((world.getBlockState(BlockPos.containing(x, y + 1, z))).getBlock() == ModBlocks.ANCHOR_UPPER.get() && (new Object() {
 					public Direction getDirection(BlockPos pos) {
 						BlockState _bs = world.getBlockState(pos);
 						Property<?> property = _bs.getBlock().getStateDefinition().getProperty("facing");
@@ -84,7 +84,7 @@ public class ActivateAnchorProcedure {
 								? Direction.fromAxisAndDirection((Direction.Axis) _bs.getValue(_ep), Direction.AxisDirection.POSITIVE)
 								: Direction.NORTH;
 					}
-				}.getDirection(blockstate)) && (world.getBlockState(BlockPos.containing(x, y - 1, z))).getBlock() == CaerulaArborModBlocks.ANCHOR_LOWER.get() && (new Object() {
+				}.getDirection(blockstate)) && (world.getBlockState(BlockPos.containing(x, y - 1, z))).getBlock() == ModBlocks.ANCHOR_LOWER.get() && (new Object() {
 					public Direction getDirection(BlockPos pos) {
 						BlockState _bs = world.getBlockState(pos);
 						Property<?> property = _bs.getBlock().getStateDefinition().getProperty("facing");

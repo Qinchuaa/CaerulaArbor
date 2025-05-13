@@ -18,16 +18,16 @@ import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 import net.minecraft.client.Minecraft;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModBlocks;
+import com.apocalypse.caerulaarbor.init.ModBlocks;
 
 public class PlaceLamternProcedure {
 	public static InteractionResult execute(LevelAccessor world, double x, double y, double z, Direction direction, Entity entity, ItemStack itemstack) {
 		if (direction == null || entity == null)
 			return InteractionResult.PASS;
-		if (CaerulaArborModBlocks.EMERGENCY_LIGHT.get().defaultBlockState().canSurvive(world, BlockPos.containing(x + direction.getStepX(), y + direction.getStepY(), z + direction.getStepZ()))) {
+		if (ModBlocks.EMERGENCY_LIGHT.get().defaultBlockState().canSurvive(world, BlockPos.containing(x + direction.getStepX(), y + direction.getStepY(), z + direction.getStepZ()))) {
 			if (world.getBlockState(BlockPos.containing(x + direction.getStepX(), y + direction.getStepY() + 1, z + direction.getStepZ())).isFaceSturdy(world,
 					BlockPos.containing(x + direction.getStepX(), y + direction.getStepY() + 1, z + direction.getStepZ()), Direction.DOWN)) {
-				world.setBlock(BlockPos.containing(x + direction.getStepX(), y + direction.getStepY(), z + direction.getStepZ()), CaerulaArborModBlocks.EMERGENCY_LIGHT.get().defaultBlockState(), 3);
+				world.setBlock(BlockPos.containing(x + direction.getStepX(), y + direction.getStepY(), z + direction.getStepZ()), ModBlocks.EMERGENCY_LIGHT.get().defaultBlockState(), 3);
 				{
 					int _value = 2;
 					BlockPos _pos = BlockPos.containing(x + direction.getStepX(), y + direction.getStepY(), z + direction.getStepZ());
@@ -36,7 +36,7 @@ public class PlaceLamternProcedure {
 						world.setBlock(_pos, _bs.setValue(_integerProp, _value), 3);
 				}
 			} else {
-				world.setBlock(BlockPos.containing(x + direction.getStepX(), y + direction.getStepY(), z + direction.getStepZ()), CaerulaArborModBlocks.EMERGENCY_LIGHT.get().defaultBlockState(), 3);
+				world.setBlock(BlockPos.containing(x + direction.getStepX(), y + direction.getStepY(), z + direction.getStepZ()), ModBlocks.EMERGENCY_LIGHT.get().defaultBlockState(), 3);
 				{
 					int _value = 1;
 					BlockPos _pos = BlockPos.containing(x + direction.getStepX(), y + direction.getStepY(), z + direction.getStepZ());

@@ -27,7 +27,7 @@ import com.apocalypse.caerulaarbor.init.CaerulaArborModMenus;
 import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
 import com.apocalypse.caerulaarbor.init.CaerulaArborModEnchantments;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModBlocks;
+import com.apocalypse.caerulaarbor.init.ModBlocks;
 import com.apocalypse.caerulaarbor.init.CaerulaArborModAttributes;
 
 import java.util.function.Supplier;
@@ -49,7 +49,7 @@ public class CaerulaArborMod {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
         CaerulaArborModSounds.REGISTRY.register(bus);
-        CaerulaArborModBlocks.REGISTRY.register(bus);
+        ModBlocks.BLOCKS.register(bus);
 
         ModItems.register(bus);
         CaerulaArborModEntities.REGISTRY.register(bus);

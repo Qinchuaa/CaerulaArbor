@@ -16,7 +16,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.client.Minecraft;
 
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModBlocks;
+import com.apocalypse.caerulaarbor.init.ModBlocks;
 
 public class GainRelicALLEYProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity, ItemStack itemstack) {
@@ -56,7 +56,7 @@ public class GainRelicALLEYProcedure {
 			Minecraft.getInstance().gameRenderer.displayItemActivation(itemstack);
 		itemstack.shrink(1);
 		if (entity instanceof Player _player) {
-			ItemStack _setstack = new ItemStack(CaerulaArborModBlocks.ALLAY_BLOCK.get()).copy();
+			ItemStack _setstack = new ItemStack(ModBlocks.ALLAY_BLOCK.get()).copy();
 			_setstack.setCount(1);
 			ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 		}

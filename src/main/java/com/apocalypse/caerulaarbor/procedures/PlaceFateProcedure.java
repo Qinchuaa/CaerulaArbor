@@ -12,14 +12,14 @@ import net.minecraft.world.InteractionResult;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModBlocks;
+import com.apocalypse.caerulaarbor.init.ModBlocks;
 
 public class PlaceFateProcedure {
 	public static InteractionResult execute(LevelAccessor world, double x, double y, double z, BlockState blockstate, Entity entity, ItemStack itemstack) {
 		if (entity == null)
 			return InteractionResult.PASS;
 		if (blockstate.getBlock() == Blocks.DEEPSLATE_BRICK_SLAB) {
-			world.setBlock(BlockPos.containing(x, y, z), CaerulaArborModBlocks.BLOCK_FATE.get().defaultBlockState(), 3);
+			world.setBlock(BlockPos.containing(x, y, z), ModBlocks.BLOCK_FATE.get().defaultBlockState(), 3);
 			{
 				Direction _dir = ((entity.getDirection()).getOpposite());
 				BlockPos _pos = BlockPos.containing(x, y, z);

@@ -1,6 +1,6 @@
 package com.apocalypse.caerulaarbor.item.relic.rare;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModBlocks;
+import com.apocalypse.caerulaarbor.init.ModBlocks;
 import com.apocalypse.caerulaarbor.item.relic.IRelic;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.ChatFormatting;
@@ -22,7 +22,7 @@ import java.util.List;
 public class ScreamingCherryItem extends BlockItem implements IRelic {
 
     public ScreamingCherryItem() {
-        super(CaerulaArborModBlocks.SCREAMING_CHERRY.get(), new Item.Properties().stacksTo(64).rarity(Rarity.UNCOMMON)
+        super(ModBlocks.SCREAMING_CHERRY.get(), new Item.Properties().stacksTo(64).rarity(Rarity.UNCOMMON)
                 .food((new FoodProperties.Builder()).nutrition(6).saturationMod(0.1f)
                         .effect(() -> new MobEffectInstance(MobEffects.DAMAGE_BOOST, 240, 1), 1.0f)
                         .alwaysEat().build())

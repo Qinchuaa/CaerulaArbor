@@ -8,7 +8,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.core.BlockPos;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModBlocks;
+import com.apocalypse.caerulaarbor.init.ModBlocks;
 
 import java.util.Map;
 
@@ -19,7 +19,7 @@ public class AdvancedFarmProcedure {
 		if (entity.isShiftKeyDown() && blockstate.getBlock() == Blocks.FARMLAND) {
 			{
 				BlockPos _bp = BlockPos.containing(x, y, z);
-				BlockState _bs = CaerulaArborModBlocks.OCEAN_FARMLAND.get().defaultBlockState();
+				BlockState _bs = ModBlocks.OCEAN_FARMLAND.get().defaultBlockState();
 				BlockState _bso = world.getBlockState(_bp);
 				for (Map.Entry<Property<?>, Comparable<?>> entry : _bso.getValues().entrySet()) {
 					Property _property = _bs.getBlock().getStateDefinition().getProperty(entry.getKey().getName());

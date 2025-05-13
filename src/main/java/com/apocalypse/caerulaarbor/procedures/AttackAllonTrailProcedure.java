@@ -20,7 +20,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.BlockPos;
 
 import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModBlocks;
+import com.apocalypse.caerulaarbor.init.ModBlocks;
 import com.apocalypse.caerulaarbor.entity.FishSplashEntity;
 
 public class AttackAllonTrailProcedure {
@@ -41,7 +41,7 @@ public class AttackAllonTrailProcedure {
 				continue;
 			}
 			rand = Mth.nextDouble(RandomSource.create(), 7, 11);
-			if ((world.getBlockState(BlockPos.containing(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ()))).getBlock() == CaerulaArborModBlocks.SEA_TRAIL_GROWN.get()) {
+			if ((world.getBlockState(BlockPos.containing(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ()))).getBlock() == ModBlocks.SEA_TRAIL_GROWN.get()) {
 				if (world instanceof ServerLevel projectileLevel) {
 					Projectile _entityToSpawn = new Object() {
 						public Projectile getArrow(Level level, Entity shooter, float damage, int knockback) {

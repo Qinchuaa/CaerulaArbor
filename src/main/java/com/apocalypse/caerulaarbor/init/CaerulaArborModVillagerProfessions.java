@@ -32,7 +32,7 @@ import com.google.common.collect.ImmutableSet;
 public class CaerulaArborModVillagerProfessions {
 	private static final Map<String, ProfessionPoiType> POI_TYPES = new HashMap<>();
 	public static final DeferredRegister<VillagerProfession> PROFESSIONS = DeferredRegister.create(ForgeRegistries.VILLAGER_PROFESSIONS, CaerulaArborMod.MODID);
-	public static final RegistryObject<VillagerProfession> CANNOT_GOODENOUGH = registerProfession("cannot_goodenough", () -> CaerulaArborModBlocks.BLOCK_RECORDER.get(),
+	public static final RegistryObject<VillagerProfession> CANNOT_GOODENOUGH = registerProfession("cannot_goodenough", () -> ModBlocks.BLOCK_RECORDER.get(),
 			() -> ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.villager.work_cleric")));
 
 	private static RegistryObject<VillagerProfession> registerProfession(String name, Supplier<Block> block, Supplier<SoundEvent> soundEvent) {

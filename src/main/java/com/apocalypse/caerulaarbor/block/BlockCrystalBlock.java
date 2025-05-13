@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.block;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModBlocks;
+import com.apocalypse.caerulaarbor.init.ModBlocks;
 import com.apocalypse.caerulaarbor.init.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -119,7 +119,7 @@ public class BlockCrystalBlock extends Block implements SimpleWaterloggedBlock {
             entityToSpawn.setPickUpDelay(10);
             serverLevel.addFreshEntity(entityToSpawn);
         }
-        world.levelEvent(2001, BlockPos.containing(x, y, z), Block.getId(CaerulaArborModBlocks.BLOCK_CRYSTAL.get().defaultBlockState()));
+        world.levelEvent(2001, BlockPos.containing(x, y, z), Block.getId(ModBlocks.BLOCK_CRYSTAL.get().defaultBlockState()));
         world.setBlock(BlockPos.containing(x, y, z), Blocks.DEEPSLATE_BRICK_SLAB.defaultBlockState(), 3);
         return InteractionResult.SUCCESS;
     }

@@ -1,6 +1,6 @@
 package com.apocalypse.caerulaarbor.item.relic.rare;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModBlocks;
+import com.apocalypse.caerulaarbor.init.ModBlocks;
 import com.apocalypse.caerulaarbor.item.relic.RelicItem;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.ChatFormatting;
@@ -65,6 +65,6 @@ public class VampiresBedItem extends RelicItem {
 
     @Override
     public ItemStack getRewardItemStack() {
-        return new ItemStack(CaerulaArborModBlocks.BLOCK_BATBED.get());
+        return new ItemStack(ModBlocks.BLOCK_BATBED.get());
     }
 }

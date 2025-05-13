@@ -1,6 +1,6 @@
 package com.apocalypse.caerulaarbor.item.relic.normal;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModBlocks;
+import com.apocalypse.caerulaarbor.init.ModBlocks;
 import com.apocalypse.caerulaarbor.item.relic.RelicItem;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.ChatFormatting;
@@ -41,7 +41,7 @@ public class HotWaterKettleItem extends RelicItem {
 
     @Override
     public ItemStack getRewardItemStack() {
-        return new ItemStack(CaerulaArborModBlocks.BLOCK_KETTLE.get());
+        return new ItemStack(ModBlocks.BLOCK_KETTLE.get());
     }
 
     @Override

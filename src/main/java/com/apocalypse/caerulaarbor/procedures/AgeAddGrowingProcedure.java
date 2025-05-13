@@ -16,7 +16,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModBlocks;
+import com.apocalypse.caerulaarbor.init.ModBlocks;
 
 public class AgeAddGrowingProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, BlockState blockstate) {
@@ -49,7 +49,7 @@ public class AgeAddGrowingProcedure {
 					_prop = _bs.getBlock().getStateDefinition().getProperty("axis");
 					return _prop instanceof EnumProperty _ep && _ep.getPossibleValues().contains(newValue.getAxis()) ? _bs.setValue(_ep, newValue.getAxis()) : _bs;
 				}
-			}.with(CaerulaArborModBlocks.SEA_TRAIL_GROWN.get().defaultBlockState(), new Object() {
+			}.with(ModBlocks.SEA_TRAIL_GROWN.get().defaultBlockState(), new Object() {
 				public Direction getValue() {
 					Direction _dir = Direction.NORTH;
 					int _num = Mth.nextInt(RandomSource.create(), 1, 4);

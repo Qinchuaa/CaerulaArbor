@@ -23,7 +23,7 @@ import net.minecraft.core.BlockPos;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import com.apocalypse.caerulaarbor.init.CaerulaArborModParticleTypes;
 import com.apocalypse.caerulaarbor.init.CaerulaArborModGameRules;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModBlocks;
+import com.apocalypse.caerulaarbor.init.ModBlocks;
 import com.apocalypse.caerulaarbor.init.CaerulaArborModAttributes;
 
 import javax.annotation.Nullable;
@@ -154,8 +154,8 @@ public class PlayerDiedFuncProcedure {
 		for (int index0 = 0; index0 < 3; index0++) {
 			dz = -1;
 			for (int index1 = 0; index1 < 3; index1++) {
-				if ((world.getBlockState(BlockPos.containing(x + dx, y, z + dz))).getBlock() == CaerulaArborModBlocks.SEA_TRAIL_INIT.get()
-						|| (world.getBlockState(BlockPos.containing(x + dx, y, z + dz))).getBlock() == CaerulaArborModBlocks.SEA_TRAIL_GROWING.get()) {
+				if ((world.getBlockState(BlockPos.containing(x + dx, y, z + dz))).getBlock() == ModBlocks.SEA_TRAIL_INIT.get()
+						|| (world.getBlockState(BlockPos.containing(x + dx, y, z + dz))).getBlock() == ModBlocks.SEA_TRAIL_GROWING.get()) {
 					{
 						int _value = (int) (((world.getBlockState(BlockPos.containing(x + dx, y, z + dz))).getBlock().getStateDefinition().getProperty("grow_age") instanceof IntegerProperty _getip36
 								? (world.getBlockState(BlockPos.containing(x + dx, y, z + dz))).getValue(_getip36)
@@ -166,8 +166,8 @@ public class PlayerDiedFuncProcedure {
 							world.setBlock(_pos, _bs.setValue(_integerProp, _value), 3);
 					}
 				}
-				if ((world.getBlockState(BlockPos.containing(x + dx, y - 1, z + dz))).getBlock() == CaerulaArborModBlocks.SEA_TRAIL_INIT.get()
-						|| (world.getBlockState(BlockPos.containing(x + dx, y - 1, z + dz))).getBlock() == CaerulaArborModBlocks.SEA_TRAIL_GROWING.get()) {
+				if ((world.getBlockState(BlockPos.containing(x + dx, y - 1, z + dz))).getBlock() == ModBlocks.SEA_TRAIL_INIT.get()
+						|| (world.getBlockState(BlockPos.containing(x + dx, y - 1, z + dz))).getBlock() == ModBlocks.SEA_TRAIL_GROWING.get()) {
 					{
 						int _value = (int) (((world.getBlockState(BlockPos.containing(x + dx, y, z + dz))).getBlock().getStateDefinition().getProperty("grow_age") instanceof IntegerProperty _getip43
 								? (world.getBlockState(BlockPos.containing(x + dx, y, z + dz))).getValue(_getip43)

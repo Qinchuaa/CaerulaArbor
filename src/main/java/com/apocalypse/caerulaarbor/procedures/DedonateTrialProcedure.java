@@ -15,7 +15,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.BlockPos;
 
 import com.apocalypse.caerulaarbor.init.ModItems;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModBlocks;
+import com.apocalypse.caerulaarbor.init.ModBlocks;
 
 public class DedonateTrialProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z) {
@@ -53,7 +53,7 @@ public class DedonateTrialProcedure {
 				dy = -2;
 				for (int index3 = 0; index3 < 5; index3++) {
 					target = (world.getBlockState(BlockPos.containing(x + dx, y + dy, z + dz)));
-					if (CaerulaArborModBlocks.SEA_TRAIL_GROWN.get() == target.getBlock()) {
+					if (ModBlocks.SEA_TRAIL_GROWN.get() == target.getBlock()) {
 						world.destroyBlock(BlockPos.containing(x + dx, y + dy, z + dz), false);
 						for (int index4 = 0; index4 < 3; index4++) {
 							if (world instanceof ServerLevel _level) {
@@ -64,7 +64,7 @@ public class DedonateTrialProcedure {
 						}
 						if (world instanceof ServerLevel _level)
 							_level.sendParticles(ParticleTypes.EXPLOSION_EMITTER, (x + dx), (y + dy), (z + dz), 6, 0.5, 0.5, 0.5, 0.1);
-					} else if (CaerulaArborModBlocks.SEA_TRAIL_GROWING.get() == target.getBlock() || CaerulaArborModBlocks.SEA_TRAIL_INIT.get() == target.getBlock()) {
+					} else if (ModBlocks.SEA_TRAIL_GROWING.get() == target.getBlock() || ModBlocks.SEA_TRAIL_INIT.get() == target.getBlock()) {
 						world.destroyBlock(BlockPos.containing(x + dx, y + dy, z + dz), false);
 						if (world instanceof ServerLevel _level)
 							_level.sendParticles(ParticleTypes.EXPLOSION_EMITTER, (x + dx), (y + dy), (z + dz), 6, 0.5, 0.5, 0.5, 0.1);
@@ -77,7 +77,7 @@ public class DedonateTrialProcedure {
 						}
 						if (world instanceof ServerLevel _level)
 							_level.sendParticles(ParticleTypes.EXPLOSION_EMITTER, (x + dx), (y + dy), (z + dz), 6, 0.5, 0.5, 0.5, 0.1);
-					} else if (CaerulaArborModBlocks.SEA_TRAIL_SOLID.get() == target.getBlock()) {
+					} else if (ModBlocks.SEA_TRAIL_SOLID.get() == target.getBlock()) {
 						world.destroyBlock(BlockPos.containing(x + dx, y + dy, z + dz), false);
 						if (world instanceof ServerLevel _level)
 							_level.sendParticles(ParticleTypes.EXPLOSION_EMITTER, (x + dx), (y + dy), (z + dz), 6, 0.5, 0.5, 0.5, 0.1);

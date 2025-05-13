@@ -5,7 +5,7 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.core.BlockPos;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModBlocks;
+import com.apocalypse.caerulaarbor.init.ModBlocks;
 
 import java.util.Map;
 
@@ -14,7 +14,7 @@ public class IrisGrowProcedure {
 		if (Math.random() < 0.05) {
 			{
 				BlockPos _bp = BlockPos.containing(x, y, z);
-				BlockState _bs = CaerulaArborModBlocks.REDSTONE_IRIS.get().defaultBlockState();
+				BlockState _bs = ModBlocks.REDSTONE_IRIS.get().defaultBlockState();
 				BlockState _bso = world.getBlockState(_bp);
 				for (Map.Entry<Property<?>, Comparable<?>> entry : _bso.getValues().entrySet()) {
 					Property _property = _bs.getBlock().getStateDefinition().getProperty(entry.getKey().getName());

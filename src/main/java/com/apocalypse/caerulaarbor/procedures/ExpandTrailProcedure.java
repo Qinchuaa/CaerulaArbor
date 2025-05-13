@@ -23,7 +23,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModBlocks;
+import com.apocalypse.caerulaarbor.init.ModBlocks;
 
 import java.util.List;
 import java.util.Comparator;
@@ -99,7 +99,7 @@ public class ExpandTrailProcedure {
 							_prop = _bs.getBlock().getStateDefinition().getProperty("axis");
 							return _prop instanceof EnumProperty _ep && _ep.getPossibleValues().contains(newValue.getAxis()) ? _bs.setValue(_ep, newValue.getAxis()) : _bs;
 						}
-					}.with(CaerulaArborModBlocks.SEA_TRAIL_INIT.get().defaultBlockState(), new Object() {
+					}.with(ModBlocks.SEA_TRAIL_INIT.get().defaultBlockState(), new Object() {
 						public Direction getValue() {
 							Direction _dir = Direction.NORTH;
 							int _num = Mth.nextInt(RandomSource.create(), 1, 4);
@@ -113,9 +113,9 @@ public class ExpandTrailProcedure {
 							return _dir;
 						}
 					}.getValue())), "longevity", (int) longev));
-					if ((world.getBlockState(BlockPos.containing(x + dx, y, z + dz))).canBeReplaced() && CaerulaArborModBlocks.SEA_TRAIL_INIT.get().defaultBlockState().canSurvive(world, BlockPos.containing(x + dx, y, z + dz))) {
+					if ((world.getBlockState(BlockPos.containing(x + dx, y, z + dz))).canBeReplaced() && ModBlocks.SEA_TRAIL_INIT.get().defaultBlockState().canSurvive(world, BlockPos.containing(x + dx, y, z + dz))) {
 						world.setBlock(BlockPos.containing(x + dx, y, z + dz), blocktoplace, 3);
-						world.levelEvent(2001, BlockPos.containing(x + dx, y, z + dz), Block.getId(CaerulaArborModBlocks.SEA_TRAIL_INIT.get().defaultBlockState()));
+						world.levelEvent(2001, BlockPos.containing(x + dx, y, z + dz), Block.getId(ModBlocks.SEA_TRAIL_INIT.get().defaultBlockState()));
 						if (world instanceof Level _level) {
 							if (!_level.isClientSide()) {
 								_level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.sculk_vein.place")), SoundSource.NEUTRAL, 1, 1);
@@ -125,9 +125,9 @@ public class ExpandTrailProcedure {
 						}
 					} else if ((world.getBlockState(BlockPos.containing(x + dx, y - 1, z + dz))).canBeReplaced()
 							&& ((world.getBlockState(BlockPos.containing(x + dx, y, z + dz))).getBlock() == Blocks.AIR || (world.getBlockState(BlockPos.containing(x + dx, y, z + dz))).getBlock() == Blocks.CAVE_AIR)
-							&& CaerulaArborModBlocks.SEA_TRAIL_INIT.get().defaultBlockState().canSurvive(world, BlockPos.containing(x + dx, y - 1, z + dz))) {
+							&& ModBlocks.SEA_TRAIL_INIT.get().defaultBlockState().canSurvive(world, BlockPos.containing(x + dx, y - 1, z + dz))) {
 						world.setBlock(BlockPos.containing(x + dx, y - 1, z + dz), blocktoplace, 3);
-						world.levelEvent(2001, BlockPos.containing(x + dx, y - 1, z + dz), Block.getId(CaerulaArborModBlocks.SEA_TRAIL_INIT.get().defaultBlockState()));
+						world.levelEvent(2001, BlockPos.containing(x + dx, y - 1, z + dz), Block.getId(ModBlocks.SEA_TRAIL_INIT.get().defaultBlockState()));
 						if (world instanceof Level _level) {
 							if (!_level.isClientSide()) {
 								_level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.sculk_vein.place")), SoundSource.NEUTRAL, 1, 1);
@@ -137,9 +137,9 @@ public class ExpandTrailProcedure {
 						}
 					} else if ((world.getBlockState(BlockPos.containing(x + dx, y + 1, z + dz))).canBeReplaced()
 							&& ((world.getBlockState(BlockPos.containing(x, y + 1, z))).getBlock() == Blocks.AIR || (world.getBlockState(BlockPos.containing(x, y + 1, z))).getBlock() == Blocks.CAVE_AIR)
-							&& CaerulaArborModBlocks.SEA_TRAIL_INIT.get().defaultBlockState().canSurvive(world, BlockPos.containing(x + dx, y + 1, z + dz))) {
+							&& ModBlocks.SEA_TRAIL_INIT.get().defaultBlockState().canSurvive(world, BlockPos.containing(x + dx, y + 1, z + dz))) {
 						world.setBlock(BlockPos.containing(x + dx, y + 1, z + dz), blocktoplace, 3);
-						world.levelEvent(2001, BlockPos.containing(x + dx, y + 1, z + dz), Block.getId(CaerulaArborModBlocks.SEA_TRAIL_INIT.get().defaultBlockState()));
+						world.levelEvent(2001, BlockPos.containing(x + dx, y + 1, z + dz), Block.getId(ModBlocks.SEA_TRAIL_INIT.get().defaultBlockState()));
 						if (world instanceof Level _level) {
 							if (!_level.isClientSide()) {
 								_level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.sculk_vein.place")), SoundSource.NEUTRAL, 1, 1);
@@ -161,7 +161,7 @@ public class ExpandTrailProcedure {
 						_prop = _bs.getBlock().getStateDefinition().getProperty("axis");
 						return _prop instanceof EnumProperty _ep && _ep.getPossibleValues().contains(newValue.getAxis()) ? _bs.setValue(_ep, newValue.getAxis()) : _bs;
 					}
-				}.with(CaerulaArborModBlocks.SEA_TRAIL_SOLID.get().defaultBlockState(), new Object() {
+				}.with(ModBlocks.SEA_TRAIL_SOLID.get().defaultBlockState(), new Object() {
 					public Direction getValue() {
 						Direction _dir = Direction.NORTH;
 						int _num = Mth.nextInt(RandomSource.create(), 1, 4);

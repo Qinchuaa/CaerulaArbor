@@ -8,7 +8,7 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModBlocks;
+import com.apocalypse.caerulaarbor.init.ModBlocks;
 
 public class BatbedPlacableProcedure {
 	public static boolean execute(LevelAccessor world, double x, double y, double z, BlockState blockstate) {
@@ -44,6 +44,6 @@ public class BatbedPlacableProcedure {
 				_prop = _bs.getBlock().getStateDefinition().getProperty("axis");
 				return _prop instanceof EnumProperty _ep && _ep.getPossibleValues().toArray()[0] instanceof Direction.Axis ? Direction.fromAxisAndDirection((Direction.Axis) _bs.getValue(_ep), Direction.AxisDirection.POSITIVE) : Direction.NORTH;
 			}
-		}.getDirection(blockstate)).getOpposite()).getStepZ()))).getBlock() == CaerulaArborModBlocks.BATBED_UPPER.get();
+		}.getDirection(blockstate)).getOpposite()).getStepZ()))).getBlock() == ModBlocks.BATBED_UPPER.get();
 	}
 }
