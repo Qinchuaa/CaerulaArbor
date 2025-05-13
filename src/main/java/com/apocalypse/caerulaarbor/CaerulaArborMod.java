@@ -18,7 +18,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.FriendlyByteBuf;
 
 import com.apocalypse.caerulaarbor.init.CaerulaArborModVillagerProfessions;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModTabs;
+import com.apocalypse.caerulaarbor.init.ModTabs;
 import com.apocalypse.caerulaarbor.init.CaerulaArborModSounds;
 import com.apocalypse.caerulaarbor.init.CaerulaArborModPotions;
 import com.apocalypse.caerulaarbor.init.CaerulaArborModParticleTypes;
@@ -54,7 +54,7 @@ public class CaerulaArborMod {
         ModItems.register(bus);
         CaerulaArborModEntities.REGISTRY.register(bus);
         CaerulaArborModEnchantments.REGISTRY.register(bus);
-        CaerulaArborModTabs.REGISTRY.register(bus);
+        ModTabs.REGISTRY.register(bus);
 
         CaerulaArborModMobEffects.REGISTRY.register(bus);
         CaerulaArborModPotions.REGISTRY.register(bus);

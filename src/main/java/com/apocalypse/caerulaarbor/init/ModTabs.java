@@ -14,7 +14,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.core.registries.Registries;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
-public class CaerulaArborModTabs {
+public class ModTabs {
 
     public static final DeferredRegister<CreativeModeTab> REGISTRY = DeferredRegister.create(Registries.CREATIVE_MODE_TAB, CaerulaArborMod.MODID);
 
@@ -144,6 +144,53 @@ public class CaerulaArborModTabs {
                     .icon(() -> new ItemStack(ModItems.HOT_WATER_KETTLE.get()))
                     .displayItems((param, output) -> ModItems.RELICS.getEntries().forEach(registryObject -> output.accept(registryObject.get())))
                     .withTabsBefore(CAERULA_ITEMS.getId()).build());
+
+    // 这一堆是藏品，放这看一下
+//    tabData.accept(CaerulaArborModItems.RELIC_CURSE_EMELIGHT.get());
+//				tabData.accept(CaerulaArborModItems.RELIC_CURSED_GLOWBODY.get());
+//				tabData.accept(CaerulaArborModItems.RELIC_CURSED_RESEARCH.get());
+//				tabData.accept(CaerulaArborModItems.CAERULA_HEART.get());
+//				tabData.accept(CaerulaArborModItems.RELIC_CROWN.get());
+//				tabData.accept(CaerulaArborModItems.KINGS_ARMOUR.get());
+//				tabData.accept(CaerulaArborModItems.KINGS_SPEAR.get());
+//				tabData.accept(CaerulaArborModItems.KINGS_EXTENSION.get());
+//				tabData.accept(CaerulaArborModItems.KINGS_CRYSTAL.get());
+//				tabData.accept(CaerulaArborModItems.ARCHFIENDS_ARTIFACT.get());
+//				tabData.accept(CaerulaArborModItems.ARCHFIENDS_FLAG.get());
+//				tabData.accept(CaerulaArborModItems.ARCHFIENDS_BED.get());
+//				tabData.accept(CaerulaArborModItems.ROYAL_FATE.get());
+//				tabData.accept(CaerulaArborModItems.SURVIVOR_CONTRACT.get());
+//				tabData.accept(CaerulaArborModItems.CRIMSON_TREATY.get());
+//				tabData.accept(CaerulaArborModItems.CHITIN_KNIFE.get());
+//				tabData.accept(CaerulaArborModItems.HAND_OF_THORNS.get());
+//				tabData.accept(CaerulaArborModItems.HAND_OF_STRANGLE.get());
+//				tabData.accept(CaerulaArborModItems.HAND_OF_FERTILIY.get());
+//				tabData.accept(CaerulaArborModItems.HAND_OF_SPEED.get());
+//				tabData.accept(CaerulaArborModItems.HAND_OF_BARREN.get());
+//				tabData.accept(CaerulaArborModItems.HAND_OF_SPOTLESS.get());
+//				tabData.accept(CaerulaArborModItems.HAND_OF_FIREWORK.get());
+//				tabData.accept(CaerulaArborModItems.HAND_OF_ENGRAVE.get());
+//				tabData.accept(CaerulaArborModItems.HAND_SWORD.get());
+//				tabData.accept(CaerulaArborModItems.MEAT_CAN.get());
+//				tabData.accept(CaerulaArborModItems.BOWL_SEAGRASS.get());
+//				tabData.accept(CaerulaArborModItems.GOLDEN_STORM.get());
+//				tabData.accept(CaerulaArborModItems.CANNED_CHERRY.get());
+//				tabData.accept(CaerulaArborModItems.AROMATIC_COFFEE.get());
+//				tabData.accept(CaerulaArborModItems.COFFEE_CANDY.get());
+//				tabData.accept(CaerulaArborModItems.RAINBOW_CANDY.get());
+//				tabData.accept(CaerulaArborModItems.SOLO_MUSIC_BOX.get());
+//				tabData.accept(CaerulaArborModItems.ODD_FLUTE.get());
+//				tabData.accept(CaerulaArborModItems.REDSTONE_IRIS_FLOWER.get());
+//				tabData.accept(CaerulaArborModItems.RESCISSION.get());
+//				tabData.accept(CaerulaArborModItems.SCORE.get());
+//				tabData.accept(CaerulaArborModItems.OMNI_KEY.get());
+//				tabData.accept(CaerulaArborModItems.GUARDIAN_STARE.get());
+//				tabData.accept(CaerulaArborModItems.VOYAGE_OF_GOLD.get());
+//				tabData.accept(CaerulaArborModItems.PIGLIN_DIARY.get());
+//				tabData.accept(CaerulaArborModItems.TOPONYM_TEXTOLOGY.get());
+//				tabData.accept(CaerulaArborModItems.ALLAY_SCULPTURE.get());
+//				tabData.accept(CaerulaArborModItems.BAT_BED.get());
+//				tabData.accept(CaerulaArborModItems.PROOF_OF_LONGEVITY.get());
 
     public static final RegistryObject<CreativeModeTab> CAERULA_LIVINGS = REGISTRY.register("caerula_livings",
             () -> CreativeModeTab.builder().title(Component.translatable("item_group.caerula_arbor.caerula_livings")).icon(() -> new ItemStack(ModItems.RELIC_CURSED_GLOWBODY.get())).displayItems((parameters, tabData) -> {

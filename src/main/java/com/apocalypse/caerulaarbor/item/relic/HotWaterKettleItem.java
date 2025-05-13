@@ -1,6 +1,8 @@
 package com.apocalypse.caerulaarbor.item.relic;
 
-import com.apocalypse.caerulaarbor.procedures.GainRelicKETTLEProcedure;
+import com.apocalypse.caerulaarbor.init.CaerulaArborModBlocks;
+import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -9,6 +11,7 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.items.ItemHandlerHelper;
 
 import java.util.List;
 
@@ -20,15 +23,36 @@ public class HotWaterKettleItem extends RelicItem {
 
     @Override
     public void appendHoverText(ItemStack itemstack, Level level, List<Component> list, TooltipFlag flag) {
-        super.appendHoverText(itemstack, level, list, flag);
-        list.add(Component.translatable("item.caerula_arbor.kettle.description_0"));
-        list.add(Component.translatable("item.caerula_arbor.kettle.description_1"));
+        list.add(Component.translatable("item.caerula_arbor.hot_water_kettle.des_1").withStyle(ChatFormatting.AQUA));
+        list.add(Component.translatable("item.caerula_arbor.hot_water_kettle.des_2").withStyle(ChatFormatting.GRAY));
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level world, Player entity, InteractionHand hand) {
-        InteractionResultHolder<ItemStack> ar = super.use(world, entity, hand);
-        GainRelicKETTLEProcedure.execute(world, entity.getX(), entity.getY(), entity.getZ(), entity, ar.getObject());
-        return ar;
+    public InteractionResultHolder<ItemStack> use(Level pLevel, Player player, InteractionHand pUsedHand) {
+        InteractionResultHolder<ItemStack> resultHolder = super.use(pLevel, player, pUsedHand);
+
+        player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+            capability.relic_util_KETTLE = true;
+            capability.syncPlayerVariables(player);
+        });
+
+        ItemHandlerHelper.giveItemToPlayer(player, new ItemStack(CaerulaArborModBlocks.BLOCK_KETTLE.get(), 1));
+
+        return resultHolder;
+    }
+
+    @Override
+    public int getAddedLives() {
+        return 1;
+    }
+
+    @Override
+    public int getAddedMaxLives() {
+        return 1;
+    }
+
+    @Override
+    public int getAddedExperience() {
+        return 8;
     }
 }
