@@ -7,10 +7,10 @@ import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.EquipmentSlot;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModItems;
+import com.apocalypse.caerulaarbor.init.ModItems;
 
 public class SynesthesiaEnchantment extends Enchantment {
-	private static final EnchantmentCategory ENCHANTMENT_CATEGORY = EnchantmentCategory.create("caerula_arbor_synesthesia", item -> Ingredient.of(new ItemStack(CaerulaArborModItems.LEGENDARY_SPEAR.get())).test(new ItemStack(item)));
+	private static final EnchantmentCategory ENCHANTMENT_CATEGORY = EnchantmentCategory.create("caerula_arbor_synesthesia", item -> Ingredient.of(new ItemStack(ModItems.LEGENDARY_SPEAR.get())).test(new ItemStack(item)));
 
 	public SynesthesiaEnchantment() {
 		super(Enchantment.Rarity.COMMON, ENCHANTMENT_CATEGORY, EquipmentSlot.values());

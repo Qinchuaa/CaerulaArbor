@@ -12,7 +12,7 @@ import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.network.chat.Component;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModItems;
+import com.apocalypse.caerulaarbor.init.ModItems;
 
 import java.util.List;
 
@@ -40,7 +40,7 @@ public class ComplexChitinAxeItem extends AxeItem {
 			}
 
 			public Ingredient getRepairIngredient() {
-				return Ingredient.of(new ItemStack(CaerulaArborModItems.COMPLEX_CHITIN.get()));
+				return Ingredient.of(new ItemStack(ModItems.COMPLEX_CHITIN.get()));
 			}
 		}, 1, -3f, new Item.Properties().fireResistant());
 	}

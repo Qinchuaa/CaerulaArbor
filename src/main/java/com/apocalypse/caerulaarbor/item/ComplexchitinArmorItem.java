@@ -16,7 +16,7 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.chat.Component;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModItems;
+import com.apocalypse.caerulaarbor.init.ModItems;
 
 import java.util.List;
 
@@ -45,7 +45,7 @@ public abstract class ComplexchitinArmorItem extends ArmorItem {
 
 			@Override
 			public Ingredient getRepairIngredient() {
-				return Ingredient.of(new ItemStack(CaerulaArborModItems.COMPLEX_CHITIN.get()));
+				return Ingredient.of(new ItemStack(ModItems.COMPLEX_CHITIN.get()));
 			}
 
 			@Override

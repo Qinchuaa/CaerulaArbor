@@ -14,7 +14,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Item;
 
 import com.apocalypse.caerulaarbor.init.CaerulaArborModPotions;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModItems;
+import com.apocalypse.caerulaarbor.init.ModItems;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class BrewSanityCureBrewingRecipe implements IBrewingRecipe {
@@ -31,7 +31,7 @@ public class BrewSanityCureBrewingRecipe implements IBrewingRecipe {
 
 	@Override
 	public boolean isIngredient(ItemStack ingredient) {
-		return Ingredient.of(new ItemStack(CaerulaArborModItems.CARAMEL_MOR.get())).test(ingredient);
+		return Ingredient.of(new ItemStack(ModItems.CARAMEL_MOR.get())).test(ingredient);
 	}
 
 	@Override

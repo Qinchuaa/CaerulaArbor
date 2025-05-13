@@ -15,7 +15,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Item;
 
 import com.apocalypse.caerulaarbor.init.CaerulaArborModPotions;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModItems;
+import com.apocalypse.caerulaarbor.init.ModItems;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class BrewInsSanityBrewingRecipe implements IBrewingRecipe {
@@ -32,7 +32,7 @@ public class BrewInsSanityBrewingRecipe implements IBrewingRecipe {
 
 	@Override
 	public boolean isIngredient(ItemStack ingredient) {
-		return Ingredient.of(new ItemStack(CaerulaArborModItems.FERMENTED_OCEAN_EYE.get())).test(ingredient);
+		return Ingredient.of(new ItemStack(ModItems.FERMENTED_OCEAN_EYE.get())).test(ingredient);
 	}
 
 	@Override

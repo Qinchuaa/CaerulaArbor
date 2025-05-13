@@ -11,7 +11,7 @@ import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.core.registries.Registries;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModItems;
+import com.apocalypse.caerulaarbor.init.ModItems;
 
 public class DrinkHotwaterProcedure {
 	public static void execute(LevelAccessor world, Entity entity, ItemStack itemstack) {
@@ -19,7 +19,7 @@ public class DrinkHotwaterProcedure {
 			return;
 		itemstack.shrink(1);
 		if (entity instanceof Player _player) {
-			ItemStack _setstack = new ItemStack(CaerulaArborModItems.EMPTY_CAN.get()).copy();
+			ItemStack _setstack = new ItemStack(ModItems.EMPTY_CAN.get()).copy();
 			_setstack.setCount(1);
 			ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 		}

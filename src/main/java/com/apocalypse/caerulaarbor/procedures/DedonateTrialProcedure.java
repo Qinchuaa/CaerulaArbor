@@ -14,7 +14,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.BlockPos;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModItems;
+import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.init.CaerulaArborModBlocks;
 
 public class DedonateTrialProcedure {
@@ -57,7 +57,7 @@ public class DedonateTrialProcedure {
 						world.destroyBlock(BlockPos.containing(x + dx, y + dy, z + dz), false);
 						for (int index4 = 0; index4 < 3; index4++) {
 							if (world instanceof ServerLevel _level) {
-								ItemEntity entityToSpawn = new ItemEntity(_level, (x + dx + 0.5), (y + dy + 0.5), (z + dz + 0.5), new ItemStack(CaerulaArborModItems.SEA_TRAIL_MOR.get()));
+								ItemEntity entityToSpawn = new ItemEntity(_level, (x + dx + 0.5), (y + dy + 0.5), (z + dz + 0.5), new ItemStack(ModItems.SEA_TRAIL_MOR.get()));
 								entityToSpawn.setPickUpDelay(10);
 								_level.addFreshEntity(entityToSpawn);
 							}
@@ -70,7 +70,7 @@ public class DedonateTrialProcedure {
 							_level.sendParticles(ParticleTypes.EXPLOSION_EMITTER, (x + dx), (y + dy), (z + dz), 6, 0.5, 0.5, 0.5, 0.1);
 						for (int index5 = 0; index5 < 9; index5++) {
 							if (world instanceof ServerLevel _level) {
-								ItemEntity entityToSpawn = new ItemEntity(_level, (x + dx + 0.5), (y + dy + 0.5), (z + dz + 0.5), new ItemStack(CaerulaArborModItems.SEA_TRAIL_MOR.get()));
+								ItemEntity entityToSpawn = new ItemEntity(_level, (x + dx + 0.5), (y + dy + 0.5), (z + dz + 0.5), new ItemStack(ModItems.SEA_TRAIL_MOR.get()));
 								entityToSpawn.setPickUpDelay(10);
 								_level.addFreshEntity(entityToSpawn);
 							}

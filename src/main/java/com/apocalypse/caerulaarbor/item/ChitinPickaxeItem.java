@@ -7,7 +7,7 @@ import net.minecraft.world.item.PickaxeItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Item;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModItems;
+import com.apocalypse.caerulaarbor.init.ModItems;
 
 public class ChitinPickaxeItem extends PickaxeItem {
 	public ChitinPickaxeItem() {
@@ -33,7 +33,7 @@ public class ChitinPickaxeItem extends PickaxeItem {
 			}
 
 			public Ingredient getRepairIngredient() {
-				return Ingredient.of(new ItemStack(CaerulaArborModItems.OCEAN_CHITIN.get()));
+				return Ingredient.of(new ItemStack(ModItems.OCEAN_CHITIN.get()));
 			}
 		}, 1, -2.8f, new Item.Properties());
 	}

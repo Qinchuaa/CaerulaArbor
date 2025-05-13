@@ -14,7 +14,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Item;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModItems;
+import com.apocalypse.caerulaarbor.init.ModItems;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class MakeBerryBrewingRecipe implements IBrewingRecipe {
@@ -37,7 +37,7 @@ public class MakeBerryBrewingRecipe implements IBrewingRecipe {
 	@Override
 	public ItemStack getOutput(ItemStack input, ItemStack ingredient) {
 		if (isInput(input) && isIngredient(ingredient)) {
-			return new ItemStack(CaerulaArborModItems.CANNED_CHERRY.get());
+			return new ItemStack(ModItems.CANNED_CHERRY.get());
 		}
 		return ItemStack.EMPTY;
 	}

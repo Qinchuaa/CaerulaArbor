@@ -18,13 +18,13 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModItems;
+import com.apocalypse.caerulaarbor.init.ModItems;
 
 public class OpenBoilProcedure {
 	public static InteractionResult execute(LevelAccessor world, double x, double y, double z, BlockState blockstate, Entity entity) {
 		if (entity == null)
 			return InteractionResult.PASS;
-		if ((entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == CaerulaArborModItems.CANNED_WATER.get()
+		if ((entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == ModItems.CANNED_WATER.get()
 				&& !(blockstate.getBlock().getStateDefinition().getProperty("watered") instanceof BooleanProperty _getbp3 && blockstate.getValue(_getbp3))) {
 			{
 				BlockPos _pos = BlockPos.containing(x, y, z);
@@ -33,7 +33,7 @@ public class OpenBoilProcedure {
 					world.setBlock(_pos, _bs.setValue(_booleanProp, true), 3);
 			}
 			if (entity instanceof LivingEntity _entity) {
-				ItemStack _setstack = new ItemStack(CaerulaArborModItems.EMPTY_CAN.get()).copy();
+				ItemStack _setstack = new ItemStack(ModItems.EMPTY_CAN.get()).copy();
 				_setstack.setCount((entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getCount());
 				_entity.setItemInHand(InteractionHand.MAIN_HAND, _setstack);
 				if (_entity instanceof Player _player)
@@ -50,7 +50,7 @@ public class OpenBoilProcedure {
 		}
 		if (blockstate.getBlock().getStateDefinition().getProperty("watered") instanceof BooleanProperty _getbp11 && blockstate.getValue(_getbp11)
 				&& blockstate.getBlock().getStateDefinition().getProperty("boiling") instanceof BooleanProperty _getbp13 && blockstate.getValue(_getbp13)) {
-			if ((entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == CaerulaArborModItems.EMPTY_CAN.get()
+			if ((entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == ModItems.EMPTY_CAN.get()
 					&& blockstate.getBlock().getStateDefinition().getProperty("noodled") instanceof BooleanProperty _getbp17 && blockstate.getValue(_getbp17)) {
 				{
 					BlockPos _pos = BlockPos.containing(x, y, z);
@@ -66,12 +66,12 @@ public class OpenBoilProcedure {
 				}
 				(entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).shrink(1);
 				if (entity instanceof Player _player) {
-					ItemStack _setstack = new ItemStack(CaerulaArborModItems.CANNED_NOODLE.get()).copy();
+					ItemStack _setstack = new ItemStack(ModItems.CANNED_NOODLE.get()).copy();
 					_setstack.setCount(1);
 					ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 				}
 				return InteractionResult.SUCCESS;
-			} else if ((entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == CaerulaArborModItems.EMPTY_CAN.get()
+			} else if ((entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == ModItems.EMPTY_CAN.get()
 					&& !(blockstate.getBlock().getStateDefinition().getProperty("noodled") instanceof BooleanProperty _getbp27 && blockstate.getValue(_getbp27))) {
 				{
 					BlockPos _pos = BlockPos.containing(x, y, z);
@@ -81,13 +81,13 @@ public class OpenBoilProcedure {
 				}
 				(entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).shrink(1);
 				if (entity instanceof Player _player) {
-					ItemStack _setstack = new ItemStack(CaerulaArborModItems.CANNED_BOILED_WATER.get()).copy();
+					ItemStack _setstack = new ItemStack(ModItems.CANNED_BOILED_WATER.get()).copy();
 					_setstack.setCount(1);
 					ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 				}
 				return InteractionResult.SUCCESS;
 			}
-			if ((entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == CaerulaArborModItems.INSTANT_NOODLE.get()) {
+			if ((entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == ModItems.INSTANT_NOODLE.get()) {
 				{
 					BlockPos _pos = BlockPos.containing(x, y, z);
 					BlockState _bs = world.getBlockState(_pos);
@@ -107,10 +107,10 @@ public class OpenBoilProcedure {
 		}
 		if (blockstate.getBlock().getStateDefinition().getProperty("watered") instanceof BooleanProperty _getbp41 && blockstate.getValue(_getbp41)
 				&& !(blockstate.getBlock().getStateDefinition().getProperty("boiling") instanceof BooleanProperty _getbp43 && blockstate.getValue(_getbp43))) {
-			if ((entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == CaerulaArborModItems.EMPTY_CAN.get()) {
+			if ((entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == ModItems.EMPTY_CAN.get()) {
 				(entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).shrink(1);
 				if (entity instanceof Player _player) {
-					ItemStack _setstack = new ItemStack(CaerulaArborModItems.CANNED_WATER.get()).copy();
+					ItemStack _setstack = new ItemStack(ModItems.CANNED_WATER.get()).copy();
 					_setstack.setCount(1);
 					ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 				}
@@ -153,7 +153,7 @@ public class OpenBoilProcedure {
 					}
 				}
 				return InteractionResult.SUCCESS;
-			} else if ((entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == CaerulaArborModItems.CANNED_LAVA.get()) {
+			} else if ((entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == ModItems.CANNED_LAVA.get()) {
 				(entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).shrink(1);
 				{
 					BlockPos _pos = BlockPos.containing(x, y, z);
@@ -162,12 +162,12 @@ public class OpenBoilProcedure {
 						world.setBlock(_pos, _bs.setValue(_booleanProp, false), 3);
 				}
 				if (entity instanceof Player _player) {
-					ItemStack _setstack = new ItemStack(CaerulaArborModItems.OBISIDIAN_BALL.get()).copy();
+					ItemStack _setstack = new ItemStack(ModItems.OBISIDIAN_BALL.get()).copy();
 					_setstack.setCount(1);
 					ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 				}
 				if (entity instanceof Player _player) {
-					ItemStack _setstack = new ItemStack(CaerulaArborModItems.EMPTY_CAN.get()).copy();
+					ItemStack _setstack = new ItemStack(ModItems.EMPTY_CAN.get()).copy();
 					_setstack.setCount(1);
 					ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 				}

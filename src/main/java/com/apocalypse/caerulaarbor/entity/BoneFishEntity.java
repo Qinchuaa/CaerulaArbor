@@ -58,7 +58,7 @@ import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.nbt.CompoundTag;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModItems;
+import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
 
 public class BoneFishEntity extends Monster implements GeoEntity {
@@ -187,7 +187,7 @@ public class BoneFishEntity extends Monster implements GeoEntity {
 
 	protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
 		super.dropCustomDeathLoot(source, looting, recentlyHitIn);
-		this.spawnAtLocation(new ItemStack(CaerulaArborModItems.BONE_SHARD.get()));
+		this.spawnAtLocation(new ItemStack(ModItems.BONE_SHARD.get()));
 	}
 
 	@Override

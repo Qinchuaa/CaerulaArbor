@@ -13,7 +13,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.resources.ResourceLocation;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModItems;
+import com.apocalypse.caerulaarbor.init.ModItems;
 
 public abstract class ChitinArmorItem extends ArmorItem {
 	public ChitinArmorItem(ArmorItem.Type type, Item.Properties properties) {
@@ -40,7 +40,7 @@ public abstract class ChitinArmorItem extends ArmorItem {
 
 			@Override
 			public Ingredient getRepairIngredient() {
-				return Ingredient.of(new ItemStack(CaerulaArborModItems.OCEAN_CHITIN.get()));
+				return Ingredient.of(new ItemStack(ModItems.OCEAN_CHITIN.get()));
 			}
 
 			@Override

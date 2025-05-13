@@ -7,7 +7,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.effect.MobEffectInstance;
 
 import com.apocalypse.caerulaarbor.init.CaerulaArborModMobEffects;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModItems;
+import com.apocalypse.caerulaarbor.init.ModItems;
 
 public class EquipComplexChitinProcedure {
 	public static void execute(Entity entity) {
@@ -15,16 +15,16 @@ public class EquipComplexChitinProcedure {
 			return;
 		double suit = 0;
 		suit = 0;
-		if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.FEET) : ItemStack.EMPTY).getItem() == CaerulaArborModItems.COMPLEXCHITIN_ARMOR_BOOTS.get()) {
+		if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.FEET) : ItemStack.EMPTY).getItem() == ModItems.COMPLEXCHITIN_ARMOR_BOOTS.get()) {
 			suit = suit + 1;
 		}
-		if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY).getItem() == CaerulaArborModItems.COMPLEXCHITIN_ARMOR_LEGGINGS.get()) {
+		if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY).getItem() == ModItems.COMPLEXCHITIN_ARMOR_LEGGINGS.get()) {
 			suit = suit + 1;
 		}
-		if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY).getItem() == CaerulaArborModItems.COMPLEXCHITIN_ARMOR_CHESTPLATE.get()) {
+		if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY).getItem() == ModItems.COMPLEXCHITIN_ARMOR_CHESTPLATE.get()) {
 			suit = suit + 1;
 		}
-		if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY).getItem() == CaerulaArborModItems.COMPLEXCHITIN_ARMOR_HELMET.get()) {
+		if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY).getItem() == ModItems.COMPLEXCHITIN_ARMOR_HELMET.get()) {
 			suit = suit + 1;
 		}
 		if (suit > 0 && !(entity instanceof LivingEntity _livEnt8 && _livEnt8.hasEffect(CaerulaArborModMobEffects.SANITY_PROTECT.get()))) {

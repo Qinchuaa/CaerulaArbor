@@ -7,7 +7,7 @@ import net.minecraft.world.item.SwordItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Item;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModItems;
+import com.apocalypse.caerulaarbor.init.ModItems;
 
 public class SwordOceanCrystalItem extends SwordItem {
 	public SwordOceanCrystalItem() {
@@ -33,7 +33,7 @@ public class SwordOceanCrystalItem extends SwordItem {
 			}
 
 			public Ingredient getRepairIngredient() {
-				return Ingredient.of(new ItemStack(CaerulaArborModItems.OCEAN_CRYSTAL.get()));
+				return Ingredient.of(new ItemStack(ModItems.OCEAN_CRYSTAL.get()));
 			}
 		}, 3, -2.4f, new Item.Properties());
 	}

@@ -15,7 +15,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModItems;
+import com.apocalypse.caerulaarbor.init.ModItems;
 
 public class GatherLiquidProcedure {
 	public static InteractionResult execute(LevelAccessor world, double x, double y, double z, Direction direction, Entity entity, ItemStack itemstack) {
@@ -24,7 +24,7 @@ public class GatherLiquidProcedure {
 		if (Blocks.WATER == (world.getFluidState(BlockPos.containing(x + direction.getStepX(), y + direction.getStepY(), z + direction.getStepZ())).createLegacyBlock()).getBlock()) {
 			itemstack.shrink(1);
 			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(CaerulaArborModItems.CANNED_WATER.get()).copy();
+				ItemStack _setstack = new ItemStack(ModItems.CANNED_WATER.get()).copy();
 				_setstack.setCount(1);
 				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}
@@ -39,7 +39,7 @@ public class GatherLiquidProcedure {
 		} else if (Blocks.LAVA == (world.getFluidState(BlockPos.containing(x + direction.getStepX(), y + direction.getStepY(), z + direction.getStepZ())).createLegacyBlock()).getBlock()) {
 			itemstack.shrink(1);
 			if (entity instanceof Player _player) {
-				ItemStack _setstack = new ItemStack(CaerulaArborModItems.CANNED_LAVA.get()).copy();
+				ItemStack _setstack = new ItemStack(ModItems.CANNED_LAVA.get()).copy();
 				_setstack.setCount(1);
 				ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 			}

@@ -34,14 +34,14 @@ public class CaerulaArborModBrewingRecipes implements IModPlugin {
 		List<ItemStack> inputStack = new ArrayList<>();
 		ingredientStack.add(new ItemStack(Items.SWEET_BERRIES));
 		PotionUtils.setPotion(potion, Potions.AWKWARD);
-		brewingRecipes.add(factory.createBrewingRecipe(List.copyOf(ingredientStack), potion.copy(), new ItemStack(CaerulaArborModItems.CANNED_CHERRY.get())));
+		brewingRecipes.add(factory.createBrewingRecipe(List.copyOf(ingredientStack), potion.copy(), new ItemStack(ModItems.CANNED_CHERRY.get())));
 		ingredientStack.clear();
-		ingredientStack.add(new ItemStack(CaerulaArborModItems.FERMENTED_OCEAN_EYE.get()));
+		ingredientStack.add(new ItemStack(ModItems.FERMENTED_OCEAN_EYE.get()));
 		PotionUtils.setPotion(potion, Potions.AWKWARD);
 		PotionUtils.setPotion(potion2, CaerulaArborModPotions.INST_SANITY.get());
 		brewingRecipes.add(factory.createBrewingRecipe(List.copyOf(ingredientStack), potion.copy(), potion2.copy()));
 		ingredientStack.clear();
-		ingredientStack.add(new ItemStack(CaerulaArborModItems.CARAMEL_MOR.get()));
+		ingredientStack.add(new ItemStack(ModItems.CARAMEL_MOR.get()));
 		PotionUtils.setPotion(potion, CaerulaArborModPotions.INST_SANITY.get());
 		PotionUtils.setPotion(potion2, CaerulaArborModPotions.SANITY_CURE.get());
 		brewingRecipes.add(factory.createBrewingRecipe(List.copyOf(ingredientStack), potion.copy(), potion2.copy()));

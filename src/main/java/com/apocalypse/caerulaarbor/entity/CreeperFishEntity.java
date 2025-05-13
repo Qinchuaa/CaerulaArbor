@@ -51,7 +51,7 @@ import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.nbt.CompoundTag;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModItems;
+import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
 
 public class CreeperFishEntity extends Monster implements GeoEntity {
@@ -127,7 +127,7 @@ public class CreeperFishEntity extends Monster implements GeoEntity {
 
 	protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
 		super.dropCustomDeathLoot(source, looting, recentlyHitIn);
-		this.spawnAtLocation(new ItemStack(CaerulaArborModItems.OCEAN_CRYSTAL.get()));
+		this.spawnAtLocation(new ItemStack(ModItems.OCEAN_CRYSTAL.get()));
 	}
 
 	@Override

@@ -59,7 +59,7 @@ import net.minecraft.network.protocol.Packet;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.core.BlockPos;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModItems;
+import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
 
 import javax.annotation.Nullable;
@@ -246,7 +246,7 @@ public class ShooterFishEntity extends Monster implements RangedAttackMob, GeoEn
 
 	protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
 		super.dropCustomDeathLoot(source, looting, recentlyHitIn);
-		this.spawnAtLocation(new ItemStack(CaerulaArborModItems.OCEAN_FIBRE.get()));
+		this.spawnAtLocation(new ItemStack(ModItems.OCEAN_FIBRE.get()));
 	}
 
 	@Override

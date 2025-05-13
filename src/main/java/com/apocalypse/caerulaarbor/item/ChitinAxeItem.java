@@ -7,7 +7,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.AxeItem;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModItems;
+import com.apocalypse.caerulaarbor.init.ModItems;
 
 public class ChitinAxeItem extends AxeItem {
 	public ChitinAxeItem() {
@@ -33,7 +33,7 @@ public class ChitinAxeItem extends AxeItem {
 			}
 
 			public Ingredient getRepairIngredient() {
-				return Ingredient.of(new ItemStack(CaerulaArborModItems.OCEAN_CHITIN.get()));
+				return Ingredient.of(new ItemStack(ModItems.OCEAN_CHITIN.get()));
 			}
 		}, 1, -3f, new Item.Properties());
 	}

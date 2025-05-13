@@ -22,7 +22,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.BlockPos;
 import net.minecraft.client.Minecraft;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModItems;
+import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.init.CaerulaArborModEnchantments;
 
 public class ShootarrowProcedure {
@@ -31,7 +31,7 @@ public class ShootarrowProcedure {
 			return;
 		double dam = 0;
 		CaerulaArborMod.queueServerWork(24, () -> {
-			if (((entity instanceof Player _playerHasItem ? _playerHasItem.getInventory().contains(new ItemStack(CaerulaArborModItems.OCEAN_ARROW.get())) : false) || new Object() {
+			if (((entity instanceof Player _playerHasItem ? _playerHasItem.getInventory().contains(new ItemStack(ModItems.OCEAN_ARROW.get())) : false) || new Object() {
 				public boolean checkGamemode(Entity _ent) {
 					if (_ent instanceof ServerPlayer _serverPlayer) {
 						return _serverPlayer.gameMode.getGameModeForPlayer() == GameType.CREATIVE;
@@ -93,7 +93,7 @@ public class ShootarrowProcedure {
 						}
 					}.checkGamemode(entity))) {
 						if (entity instanceof Player _player) {
-							ItemStack _stktoremove = new ItemStack(CaerulaArborModItems.OCEAN_ARROW.get());
+							ItemStack _stktoremove = new ItemStack(ModItems.OCEAN_ARROW.get());
 							_player.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), 1, _player.inventoryMenu.getCraftSlots());
 						}
 						{

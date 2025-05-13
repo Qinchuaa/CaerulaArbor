@@ -10,7 +10,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.item.ItemEntity;
 import net.minecraft.server.level.ServerLevel;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModItems;
+import com.apocalypse.caerulaarbor.init.ModItems;
 
 import javax.annotation.Nullable;
 
@@ -26,33 +26,33 @@ public class ItembreakFuncProcedure {
 	}
 
 	private static void execute(@Nullable Event event, LevelAccessor world, double x, double y, double z, ItemStack itemstack) {
-		if (itemstack.getItem() == CaerulaArborModItems.THE_SPEAR.get()) {
+		if (itemstack.getItem() == ModItems.THE_SPEAR.get()) {
 			if (world instanceof ServerLevel _level) {
-				ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack(CaerulaArborModItems.KINGS_SPEAR.get()));
+				ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack(ModItems.KINGS_SPEAR.get()));
 				entityToSpawn.setPickUpDelay(10);
 				entityToSpawn.setUnlimitedLifetime();
 				_level.addFreshEntity(entityToSpawn);
 			}
 		}
-		if (itemstack.getItem() == CaerulaArborModItems.WEARABLE_CHEST_CHESTPLATE.get()) {
+		if (itemstack.getItem() == ModItems.WEARABLE_CHEST_CHESTPLATE.get()) {
 			if (world instanceof ServerLevel _level) {
-				ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack(CaerulaArborModItems.KINGS_ARMOUR.get()));
+				ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack(ModItems.KINGS_ARMOUR.get()));
 				entityToSpawn.setPickUpDelay(10);
 				entityToSpawn.setUnlimitedLifetime();
 				_level.addFreshEntity(entityToSpawn);
 			}
 		}
-		if (itemstack.getItem() == CaerulaArborModItems.WEARABLE_CROWN_HELMET.get()) {
+		if (itemstack.getItem() == ModItems.WEARABLE_CROWN_HELMET.get()) {
 			if (world instanceof ServerLevel _level) {
-				ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack(CaerulaArborModItems.RELIC_CROWN.get()));
+				ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack(ModItems.RELIC_CROWN.get()));
 				entityToSpawn.setPickUpDelay(10);
 				entityToSpawn.setUnlimitedLifetime();
 				_level.addFreshEntity(entityToSpawn);
 			}
 		}
-		if (itemstack.getItem() == CaerulaArborModItems.LEGENDARY_SPEAR.get()) {
+		if (itemstack.getItem() == ModItems.LEGENDARY_SPEAR.get()) {
 			if (world instanceof ServerLevel _level) {
-				ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack(CaerulaArborModItems.CHITIN_KNIFE.get()));
+				ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack(ModItems.CHITIN_KNIFE.get()));
 				entityToSpawn.setPickUpDelay(10);
 				entityToSpawn.setUnlimitedLifetime();
 				_level.addFreshEntity(entityToSpawn);

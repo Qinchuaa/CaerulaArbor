@@ -23,12 +23,12 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.Packet;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModItems;
+import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
 
 @OnlyIn(value = Dist.CLIENT, _interface = ItemSupplier.class)
 public class FakerggShootEntity extends AbstractArrow implements ItemSupplier {
-	public static final ItemStack PROJECTILE_ITEM = new ItemStack(CaerulaArborModItems.FAKE_EGG.get());
+	public static final ItemStack PROJECTILE_ITEM = new ItemStack(ModItems.FAKE_EGG.get());
 
 	public FakerggShootEntity(PlayMessages.SpawnEntity packet, Level world) {
 		super(CaerulaArborModEntities.FAKERGG_SHOOT.get(), world);

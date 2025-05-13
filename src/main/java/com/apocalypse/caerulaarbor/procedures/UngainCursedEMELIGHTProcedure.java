@@ -15,14 +15,14 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.client.Minecraft;
 
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModItems;
+import com.apocalypse.caerulaarbor.init.ModItems;
 
 public class UngainCursedEMELIGHTProcedure {
 	public static void execute(Entity entity) {
 		if (entity == null)
 			return;
 		ItemStack togive = ItemStack.EMPTY;
-		if (entity instanceof Player _playerHasItem ? _playerHasItem.getInventory().contains(new ItemStack(CaerulaArborModItems.COIN_OF_TRADE.get())) : false) {
+		if (entity instanceof Player _playerHasItem ? _playerHasItem.getInventory().contains(new ItemStack(ModItems.COIN_OF_TRADE.get())) : false) {
 			if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_cursed_EMELIGHT) {
 				{
 					boolean _setval = false;
@@ -32,7 +32,7 @@ public class UngainCursedEMELIGHTProcedure {
 					});
 				}
 				if (entity instanceof Player _player) {
-					ItemStack _stktoremove = new ItemStack(CaerulaArborModItems.COIN_OF_TRADE.get());
+					ItemStack _stktoremove = new ItemStack(ModItems.COIN_OF_TRADE.get());
 					_player.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), 1, _player.inventoryMenu.getCraftSlots());
 				}
 				for (int index0 = 0; index0 < 64; index0++) {

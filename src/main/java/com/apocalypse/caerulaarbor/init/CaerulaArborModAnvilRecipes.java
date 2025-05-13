@@ -27,15 +27,15 @@ public class CaerulaArborModAnvilRecipes implements IModPlugin {
 		IVanillaRecipeFactory factory = registration.getVanillaRecipeFactory();
 		List<IJeiAnvilRecipe> anvilRecipes = new ArrayList<>();
 		ItemStack rightItem = ItemStack.EMPTY;
-		rightItem = new ItemStack(CaerulaArborModItems.RELIC_CROWN.get());
+		rightItem = new ItemStack(ModItems.RELIC_CROWN.get());
 		rightItem.setCount(1);
-		anvilRecipes.add(factory.createAnvilRecipe(new ItemStack(Items.IRON_HELMET), List.of(rightItem.copy()), List.of(new ItemStack(CaerulaArborModItems.WEARABLE_CROWN_HELMET.get()))));
-		rightItem = new ItemStack(CaerulaArborModItems.KINGS_ARMOUR.get());
+		anvilRecipes.add(factory.createAnvilRecipe(new ItemStack(Items.IRON_HELMET), List.of(rightItem.copy()), List.of(new ItemStack(ModItems.WEARABLE_CROWN_HELMET.get()))));
+		rightItem = new ItemStack(ModItems.KINGS_ARMOUR.get());
 		rightItem.setCount(1);
-		anvilRecipes.add(factory.createAnvilRecipe(new ItemStack(Items.IRON_CHESTPLATE), List.of(rightItem.copy()), List.of(new ItemStack(CaerulaArborModItems.WEARABLE_CHEST_CHESTPLATE.get()))));
+		anvilRecipes.add(factory.createAnvilRecipe(new ItemStack(Items.IRON_CHESTPLATE), List.of(rightItem.copy()), List.of(new ItemStack(ModItems.WEARABLE_CHEST_CHESTPLATE.get()))));
 		rightItem = new ItemStack(Items.COPPER_INGOT);
 		rightItem.setCount(1);
-		anvilRecipes.add(factory.createAnvilRecipe(new ItemStack(CaerulaArborModItems.SOLO_MUSIC_BOX.get()), List.of(rightItem.copy()), List.of(new ItemStack(CaerulaArborModItems.MUSIC_BOX_FIXED.get()))));
+		anvilRecipes.add(factory.createAnvilRecipe(new ItemStack(ModItems.SOLO_MUSIC_BOX.get()), List.of(rightItem.copy()), List.of(new ItemStack(ModItems.MUSIC_BOX_FIXED.get()))));
 		registration.addRecipes(RecipeTypes.ANVIL, anvilRecipes);
 	}
 }

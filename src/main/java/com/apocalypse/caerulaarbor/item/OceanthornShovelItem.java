@@ -7,7 +7,7 @@ import net.minecraft.world.item.ShovelItem;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Item;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModItems;
+import com.apocalypse.caerulaarbor.init.ModItems;
 
 public class OceanthornShovelItem extends ShovelItem {
 	public OceanthornShovelItem() {
@@ -33,7 +33,7 @@ public class OceanthornShovelItem extends ShovelItem {
 			}
 
 			public Ingredient getRepairIngredient() {
-				return Ingredient.of(new ItemStack(CaerulaArborModItems.OCEAN_CRYSTAL.get()));
+				return Ingredient.of(new ItemStack(ModItems.OCEAN_CRYSTAL.get()));
 			}
 		}, 1, -3f, new Item.Properties());
 	}

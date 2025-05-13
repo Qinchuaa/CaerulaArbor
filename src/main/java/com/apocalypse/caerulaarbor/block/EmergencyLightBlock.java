@@ -33,7 +33,7 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.core.Direction;
 import net.minecraft.core.BlockPos;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModItems;
+import com.apocalypse.caerulaarbor.init.ModItems;
 
 import java.util.List;
 
@@ -124,7 +124,7 @@ public class EmergencyLightBlock extends Block implements SimpleWaterloggedBlock
 
 	@Override
 	public ItemStack getCloneItemStack(BlockState state, HitResult target, BlockGetter world, BlockPos pos, Player player) {
-		return new ItemStack(CaerulaArborModItems.RELIC_CURSE_EMELIGHT.get());
+		return new ItemStack(ModItems.RELIC_CURSE_EMELIGHT.get());
 	}
 
 	@Override
