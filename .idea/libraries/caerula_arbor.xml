@@ -1,9 +1,0 @@
-<component name="libraryTable">
-  <library name="caerula_arbor">
-    <CLASSES>
-      <root url="jar://$PROJECT_DIR$/caerula_arbor.jar!/" />
-    </CLASSES>
-    <JAVADOC />
-    <SOURCES />
-  </library>
-</component>
