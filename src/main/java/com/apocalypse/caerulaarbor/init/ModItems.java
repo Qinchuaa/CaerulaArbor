@@ -22,7 +22,7 @@ import net.minecraft.client.renderer.item.ItemProperties;
 
 import com.apocalypse.caerulaarbor.item.WearableCrownItem;
 import com.apocalypse.caerulaarbor.item.WearableChestItem;
-import com.apocalypse.caerulaarbor.item.VoyageOfGoldItem;
+import com.apocalypse.caerulaarbor.item.relic.epic.PureGoldExpeditionItem;
 import com.apocalypse.caerulaarbor.item.TransformCellItem;
 import com.apocalypse.caerulaarbor.item.TrailedWoodenSwordItem;
 import com.apocalypse.caerulaarbor.item.TrailedStoneSwordItem;
@@ -206,7 +206,6 @@ public class ModItems {
     public static final RegistryObject<Item> REDSTONE_IRIS_FLOWER = ITEMS.register("redstone_iris_flower", () -> new RedstoneIrisFlowerItem());
     public static final RegistryObject<Item> REDSTONEIRIS_SEEDING = block(CaerulaArborModBlocks.REDSTONEIRIS_SEEDING);
     public static final RegistryObject<Item> ODD_FLUTE = ITEMS.register("odd_flute", () -> new OddFluteItem());
-    public static final RegistryObject<Item> VOYAGE_OF_GOLD = ITEMS.register("voyage_of_gold", () -> new VoyageOfGoldItem());
     public static final RegistryObject<Item> THERMOGRAPH = ITEMS.register("thermograph", () -> new ThermographItem());
     public static final RegistryObject<Item> PIGLIN_DIARY = ITEMS.register("piglin_diary", () -> new PiglinDiaryItem());
     public static final RegistryObject<Item> TOPONYM_TEXTOLOGY = ITEMS.register("toponym_textology", () -> new ToponymTextologyItem());
@@ -354,6 +353,7 @@ public class ModItems {
     public static final RegistryObject<Item> HOT_WATER_KETTLE = RELICS.register("hot_water_kettle", HotWaterKettleItem::new);
     public static final RegistryObject<Item> VAMPIRES_BED = RELICS.register("vampires_bed", VampiresBedItem::new);
     public static final RegistryObject<Item> FEATURED_CANNED_MEAT = RELICS.register("featured_canned_meat", FeaturedCannedMeatItem::new);
+    public static final RegistryObject<Item> PURE_GOLD_EXPEDITION = RELICS.register("pure_gold_expedition", PureGoldExpeditionItem::new);
 
     /**
      * Spawn Eggs

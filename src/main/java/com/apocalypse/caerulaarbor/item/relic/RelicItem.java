@@ -62,10 +62,9 @@ public class RelicItem extends Item {
             }
         }
 
-        stack.shrink(1);
-
         if (!this.getRewardItemStack().isEmpty()) {
             ItemHandlerHelper.giveItemToPlayer(pPlayer, this.getRewardItemStack());
+            stack.shrink(1);
         }
         return InteractionResultHolder.consume(stack);
     }

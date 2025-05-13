@@ -26,6 +26,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.HOT_WATER_KETTLE);
         simpleItem(ModItems.VAMPIRES_BED);
         simpleItem(ModItems.FEATURED_CANNED_MEAT);
+        simpleItem(ModItems.PURE_GOLD_EXPEDITION);
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
