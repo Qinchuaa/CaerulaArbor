@@ -1,0 +1,27 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "cdc",
+    "aba"
+  ],
+  "key": {
+    "a": {
+      "item": "caerula_arbor:ocean_crystal"
+    },
+    "b": {
+      "item": "minecraft:redstone"
+    },
+    "c": {
+      "item": "caerula_arbor:ocean_chitin"
+    },
+    "d": {
+      "item": "caerula_arbor:ocean_eye"
+    }
+  },
+  "result": {
+    "item": "caerula_arbor:ocean_machine",
+    "count": 1
+  }
+}

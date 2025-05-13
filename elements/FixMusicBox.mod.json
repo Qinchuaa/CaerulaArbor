@@ -1,0 +1,17 @@
+{
+  "_fv": 73,
+  "_type": "anvilrecipe",
+  "definition": {
+    "leftitem": {
+      "value": "CUSTOM:SoloMusicBox"
+    },
+    "rightitem": {
+      "value": "Items.COPPER_INGOT"
+    },
+    "rightcost": 1,
+    "xpcost": 4,
+    "output": {
+      "value": "CUSTOM:MusicBoxFixed"
+    }
+  }
+}

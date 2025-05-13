@@ -1,0 +1,16 @@
+{
+  "_fv": 73,
+  "_type": "villagerprofession",
+  "definition": {
+    "displayName": "Rouge Trader",
+    "pointOfInterest": {
+      "value": "CUSTOM:BlockRecorder"
+    },
+    "actionSound": {
+      "value": "entity.villager.work_cleric"
+    },
+    "hat": "None",
+    "professionTextureFile": "trader.png",
+    "zombifiedProfessionTextureFile": "trader.png"
+  }
+}

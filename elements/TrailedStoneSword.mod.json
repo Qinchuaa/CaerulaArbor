@@ -1,0 +1,45 @@
+{
+  "_fv": 73,
+  "_type": "tool",
+  "definition": {
+    "toolType": "Sword",
+    "renderType": 0,
+    "blockingRenderType": 0,
+    "texture": "trailed_stone",
+    "customModelName": "Normal",
+    "blockingModelName": "Normal blocking",
+    "name": "Trailed Wooden Sword",
+    "specialInformation": {
+      "fixedValue": [
+        "§7Deals additional Sanity Damage",
+        "§7Self-mend when kill"
+      ]
+    },
+    "creativeTabs": [
+      {
+        "value": "CUSTOM:CaerulaItems"
+      }
+    ],
+    "efficiency": 4.0,
+    "attackSpeed": 1.6,
+    "enchantability": 7,
+    "damageVsEntity": 5.0,
+    "usageCount": 131,
+    "glowCondition": {
+      "fixedValue": false
+    },
+    "repairItems": [
+      {
+        "value": "Blocks.STONE"
+      }
+    ],
+    "immuneToFire": false,
+    "blockDropsTier": "STONE",
+    "blocksAffected": [],
+    "stayInGridWhenCrafting": true,
+    "damageOnCrafting": true,
+    "onEntityHitWith": {
+      "name": "StoneSwordAttack"
+    }
+  }
+}

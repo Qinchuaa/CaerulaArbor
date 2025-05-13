@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "item": "caerula_arbor:ocean_cutin"
+    },
+    "title": {
+      "translate": "advancements.sparkling_shell.title"
+    },
+    "description": {
+      "translate": "advancements.sparkling_shell.descr"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "sparkling_shell_0": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "caerula_arbor:ocean_cutin"
+            ],
+            "count": {
+              "min": 1,
+              "max": 999
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "caerula_arbor:encounter_from_the_ocean"
+}

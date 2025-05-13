@@ -1,0 +1,208 @@
+{
+  "_fv": 73,
+  "_type": "gui",
+  "definition": {
+    "type": 0,
+    "width": 256,
+    "height": 168,
+    "inventoryOffsetX": 0,
+    "inventoryOffsetY": 0,
+    "renderBgLayer": false,
+    "doesPauseGame": false,
+    "components": [
+      {
+        "type": "image",
+        "data": {
+          "image": "wetplayer.png",
+          "use1Xscale": false,
+          "x": 86,
+          "y": 36,
+          "locked": true
+        }
+      },
+      {
+        "type": "imagebutton",
+        "data": {
+          "name": "imagebutton_breed_lit",
+          "image": "breed_dim.png",
+          "hoveredImage": "breed_lit.png",
+          "onClick": {
+            "name": "OpenStraBreed"
+          },
+          "x": 139,
+          "y": 116,
+          "locked": false
+        }
+      },
+      {
+        "type": "imagebutton",
+        "data": {
+          "name": "imagebutton_grow_lit",
+          "image": "grow_dim.png",
+          "hoveredImage": "grow_lit.png",
+          "onClick": {
+            "name": "OpenStraGrow"
+          },
+          "x": 118,
+          "y": 36,
+          "locked": false
+        }
+      },
+      {
+        "type": "imagebutton",
+        "data": {
+          "name": "imagebutton_mig_lit",
+          "image": "mig_dim.png",
+          "hoveredImage": "mig_lit.png",
+          "onClick": {
+            "name": "OpenStraMigra"
+          },
+          "x": 250,
+          "y": 122,
+          "locked": false
+        }
+      },
+      {
+        "type": "imagebutton",
+        "data": {
+          "name": "imagebutton_subs_lit",
+          "image": "subs_dim.png",
+          "hoveredImage": "subs_lit.png",
+          "onClick": {
+            "name": "OpenStraSubsis"
+          },
+          "x": 229,
+          "y": 48,
+          "locked": false
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "name": "label_tide_observation",
+          "text": {
+            "fixedValue": "Tide Observation"
+          },
+          "color": {
+            "value": -11801895,
+            "falpha": 0.0
+          },
+          "x": 98,
+          "y": 26,
+          "locked": false
+        }
+      },
+      {
+        "type": "tooltip",
+        "data": {
+          "name": "tooltip_grow",
+          "text": {
+            "fixedValue": "Strategy - Grow"
+          },
+          "width": 58,
+          "height": 44,
+          "x": 123,
+          "y": 36,
+          "locked": false
+        }
+      },
+      {
+        "type": "tooltip",
+        "data": {
+          "name": "tooltip_subs",
+          "text": {
+            "fixedValue": "Strategy - Subsisting"
+          },
+          "width": 50,
+          "height": 52,
+          "x": 235,
+          "y": 56,
+          "locked": false
+        }
+      },
+      {
+        "type": "tooltip",
+        "data": {
+          "name": "tooltip_breed",
+          "text": {
+            "fixedValue": "Strategy - Breed"
+          },
+          "width": 50,
+          "height": 54,
+          "x": 150,
+          "y": 123,
+          "locked": false
+        }
+      },
+      {
+        "type": "tooltip",
+        "data": {
+          "name": "tooltip_mig",
+          "text": {
+            "fixedValue": "Strategy - Migration"
+          },
+          "width": 55,
+          "height": 63,
+          "x": 265,
+          "y": 137,
+          "locked": false
+        }
+      },
+      {
+        "type": "sprite",
+        "data": {
+          "sprite": "silence.png",
+          "spritesCount": 5,
+          "spriteIndex": {
+            "fixedValue": 0.0,
+            "name": "GetStraSilence"
+          },
+          "x": 69,
+          "y": 18,
+          "locked": false
+        }
+      },
+      {
+        "type": "tooltip",
+        "data": {
+          "name": "tooltip_proc_get_point_silence",
+          "text": {
+            "fixedValue": "",
+            "name": "GetPointSilence"
+          },
+          "displayCondition": {
+            "name": "IfCanSilence"
+          },
+          "width": 24,
+          "height": 24,
+          "x": 72,
+          "y": 24,
+          "locked": false
+        }
+      },
+      {
+        "type": "button",
+        "data": {
+          "name": "button_evolution_tree",
+          "text": "Evolution tree",
+          "isUndecorated": true,
+          "onClick": {
+            "name": "OpenEvoTree"
+          },
+          "width": 76,
+          "height": 20,
+          "x": 86,
+          "y": 205,
+          "locked": false
+        }
+      }
+    ],
+    "gridSettings": {
+      "sx": 18,
+      "sy": 18,
+      "ox": 11,
+      "oy": 15,
+      "snapOnGrid": false
+    }
+  }
+}

@@ -1,0 +1,23 @@
+{
+  "display": {
+    "background": "caerula_arbor:textures/screens/adv_bg.png",
+    "icon": {
+      "item": "caerula_arbor:relic_cursed_glowbody"
+    },
+    "title": {
+      "translate": "advancements.encounter_from_the_ocean.title"
+    },
+    "description": {
+      "translate": "advancements.encounter_from_the_ocean.descr"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "encounter_from_the_ocean_0": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

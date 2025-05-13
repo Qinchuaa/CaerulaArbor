@@ -1,0 +1,26 @@
+{
+  "_fv": 73,
+  "_type": "achievement",
+  "definition": {
+    "achievementName": "To Terminate Evolution",
+    "achievementDescription": "Witness the end of any strayegy of evolution",
+    "achievementIcon": {
+      "value": "CUSTOM:SampleSubsisting"
+    },
+    "background": "Default",
+    "disableDisplay": false,
+    "showPopup": true,
+    "announceToChat": true,
+    "hideIfNotCompleted": false,
+    "rewardLoot": [
+      "TerminalRelics"
+    ],
+    "rewardRecipes": [],
+    "rewardXP": 32,
+    "achievementType": "goal",
+    "parent": {
+      "value": "CUSTOM:ToExperienceEvolution"
+    },
+    "triggerxml": "<xml xmlns=\"https://developers.google.com/blockly/xml\"><block type=\"advancement_trigger\" deletable=\"false\" x=\"40\" y=\"80\"><next><block type=\"custom_trigger\"></block></next></block></xml>"
+  }
+}

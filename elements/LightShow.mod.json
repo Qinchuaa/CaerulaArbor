@@ -1,0 +1,258 @@
+{
+  "_fv": 73,
+  "_type": "overlay",
+  "definition": {
+    "priority": "HIGHEST",
+    "components": [
+      {
+        "type": "image",
+        "data": {
+          "image": "light_extinguish.png",
+          "use1Xscale": false,
+          "displayCondition": {
+            "name": "LightIsCeased"
+          },
+          "anchorPoint": "TOP_CENTER",
+          "x": 181,
+          "y": 0,
+          "locked": false
+        }
+      },
+      {
+        "type": "image",
+        "data": {
+          "image": "light_dim.png",
+          "use1Xscale": false,
+          "displayCondition": {
+            "name": "LightIsDim"
+          },
+          "anchorPoint": "TOP_CENTER",
+          "x": 181,
+          "y": 0,
+          "locked": false
+        }
+      },
+      {
+        "type": "image",
+        "data": {
+          "image": "light_waving.png",
+          "use1Xscale": false,
+          "displayCondition": {
+            "name": "LightIsWaving"
+          },
+          "anchorPoint": "TOP_CENTER",
+          "x": 181,
+          "y": 0,
+          "locked": false
+        }
+      },
+      {
+        "type": "image",
+        "data": {
+          "image": "light.png",
+          "use1Xscale": false,
+          "displayCondition": {
+            "name": "LightIsBright"
+          },
+          "anchorPoint": "TOP_CENTER",
+          "x": 181,
+          "y": 0,
+          "locked": false
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "name": "label_light1",
+          "text": {
+            "fixedValue": "100",
+            "name": "GetLight"
+          },
+          "color": {
+            "value": -13421773,
+            "falpha": 0.0
+          },
+          "anchorPoint": "TOP_CENTER",
+          "x": 208,
+          "y": 26,
+          "locked": false
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "name": "label_light",
+          "text": {
+            "fixedValue": "100",
+            "name": "GetLight"
+          },
+          "color": {
+            "value": -1,
+            "falpha": 0.0
+          },
+          "anchorPoint": "TOP_CENTER",
+          "x": 207,
+          "y": 26,
+          "locked": false
+        }
+      },
+      {
+        "type": "sprite",
+        "data": {
+          "sprite": "target_health.png",
+          "spritesCount": 1,
+          "spriteIndex": {
+            "fixedValue": 0.0
+          },
+          "anchorPoint": "BOTTOM_LEFT",
+          "x": 6,
+          "y": 216,
+          "locked": false
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "name": "label_proc_get_live_max_shown1",
+          "text": {
+            "fixedValue": "",
+            "name": "GetLiveMaxShown"
+          },
+          "color": {
+            "value": -16764109,
+            "falpha": 0.0
+          },
+          "anchorPoint": "BOTTOM_LEFT",
+          "x": 37,
+          "y": 219,
+          "locked": false
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "name": "label_proc_get_live_max_shown",
+          "text": {
+            "fixedValue": "AmxLive",
+            "name": "GetLiveMaxShown"
+          },
+          "color": {
+            "value": -10040065,
+            "falpha": 0.0
+          },
+          "anchorPoint": "BOTTOM_LEFT",
+          "x": 36,
+          "y": 219,
+          "locked": false
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "name": "label_proc_get_lives",
+          "text": {
+            "fixedValue": "lives",
+            "name": "GetLives"
+          },
+          "color": {
+            "value": -16764109,
+            "falpha": 0.0
+          },
+          "anchorPoint": "BOTTOM_LEFT",
+          "x": 21,
+          "y": 219,
+          "locked": false
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "name": "label_lives",
+          "text": {
+            "fixedValue": "lives",
+            "name": "GetLives"
+          },
+          "color": {
+            "value": -1,
+            "falpha": 0.0
+          },
+          "anchorPoint": "BOTTOM_LEFT",
+          "x": 20,
+          "y": 219,
+          "locked": false
+        }
+      },
+      {
+        "type": "sprite",
+        "data": {
+          "sprite": "target_shield.png",
+          "spritesCount": 1,
+          "displayCondition": {
+            "name": "HaveShield"
+          },
+          "spriteIndex": {
+            "fixedValue": 0.0
+          },
+          "anchorPoint": "BOTTOM_LEFT",
+          "x": 6,
+          "y": 200,
+          "locked": false
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "name": "label_proc_get_shield1",
+          "text": {
+            "fixedValue": "",
+            "name": "GetShield"
+          },
+          "color": {
+            "value": -16777216,
+            "falpha": 0.0
+          },
+          "displayCondition": {
+            "name": "HaveShield"
+          },
+          "anchorPoint": "BOTTOM_LEFT",
+          "x": 21,
+          "y": 204,
+          "locked": false
+        }
+      },
+      {
+        "type": "label",
+        "data": {
+          "name": "label_proc_get_shield",
+          "text": {
+            "fixedValue": "",
+            "name": "GetShield"
+          },
+          "color": {
+            "value": -1,
+            "falpha": 0.0
+          },
+          "displayCondition": {
+            "name": "HaveShield"
+          },
+          "anchorPoint": "BOTTOM_LEFT",
+          "x": 20,
+          "y": 204,
+          "locked": false
+        }
+      }
+    ],
+    "baseTexture": "",
+    "overlayTarget": "Ingame",
+    "displayCondition": {
+      "name": "IfShow"
+    },
+    "gridSettings": {
+      "sx": 16,
+      "sy": 16,
+      "ox": 11,
+      "oy": 15,
+      "snapOnGrid": false
+    }
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "_fv": 73,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Crafting",
+    "recipeRetstackSize": 3,
+    "group": "",
+    "cookingBookCategory": "MISC",
+    "xpReward": 0.0,
+    "cookingTime": 200,
+    "craftingBookCategory": "MISC",
+    "recipeShapeless": true,
+    "recipeSlots": [
+      {
+        "value": "TAG:minecraft:fruits"
+      },
+      {
+        "value": "TAG:minecraft:fruits"
+      },
+      {
+        "value": "TAG:minecraft:fruits"
+      },
+      {
+        "value": "CUSTOM:PaperBag"
+      },
+      {
+        "value": "CUSTOM:PaperBag"
+      },
+      {
+        "value": "CUSTOM:PaperBag"
+      },
+      {
+        "value": "Items.GOLD_NUGGET"
+      },
+      {
+        "value": "Items.GOLD_NUGGET"
+      },
+      {
+        "value": "Items.GOLD_NUGGET"
+      }
+    ],
+    "recipeReturnStack": {
+      "value": "CUSTOM:RainbowCandy"
+    },
+    "name": "craft_rainbow_candy",
+    "namespace": "mod"
+  }
+}

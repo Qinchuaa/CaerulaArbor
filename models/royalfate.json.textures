@@ -1,0 +1,11 @@
+{
+  "mappings": {
+    "default": {
+      "map": {
+        "0": "royalfate0",
+        "missing": "royalfate0"
+      },
+      "name": "default"
+    }
+  }
+}

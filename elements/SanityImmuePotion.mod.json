@@ -1,0 +1,22 @@
+{
+  "_fv": 73,
+  "_type": "potion",
+  "definition": {
+    "potionName": "Potion of Sanity Immue",
+    "splashName": "Splash Potion of Sanity Immue",
+    "lingeringName": "Lingering Potion of Sanity Immue",
+    "arrowName": "Arrow of Sanity Immue",
+    "effects": [
+      {
+        "effect": {
+          "value": "CUSTOM:SanityImmue"
+        },
+        "duration": 3600,
+        "infinite": false,
+        "amplifier": 0,
+        "ambient": false,
+        "showParticles": true
+      }
+    ]
+  }
+}

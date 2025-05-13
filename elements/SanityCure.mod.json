@@ -1,0 +1,22 @@
+{
+  "_fv": 73,
+  "_type": "potion",
+  "definition": {
+    "potionName": "Potion of Sanity Cure",
+    "splashName": "Splash Potion of Sanity Cure",
+    "lingeringName": "Lingering Potion of Sanity Cure",
+    "arrowName": "Arrow of Sanity Cure",
+    "effects": [
+      {
+        "effect": {
+          "value": "CUSTOM:SanityHeal"
+        },
+        "duration": 1,
+        "infinite": false,
+        "amplifier": 0,
+        "ambient": false,
+        "showParticles": true
+      }
+    ]
+  }
+}

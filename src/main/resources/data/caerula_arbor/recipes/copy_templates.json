@@ -1,0 +1,24 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aba",
+    "aca",
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "caerula_arbor:complex_chitin"
+    },
+    "b": {
+      "item": "caerula_arbor:fake_egg"
+    },
+    "c": {
+      "item": "caerula_arbor:ocean_trim_template"
+    }
+  },
+  "result": {
+    "item": "caerula_arbor:ocean_trim_template",
+    "count": 2
+  }
+}

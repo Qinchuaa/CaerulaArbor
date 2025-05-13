@@ -1,0 +1,103 @@
+{
+  "_fv": 73,
+  "_type": "overlay",
+  "definition": {
+    "priority": "NORMAL",
+    "components": [
+      {
+        "type": "image",
+        "data": {
+          "image": "disoclution_bg.png",
+          "use1Xscale": false,
+          "displayCondition": {
+            "name": "HasDiso"
+          },
+          "anchorPoint": "BOTTOM_RIGHT",
+          "x": 363,
+          "y": 112,
+          "locked": true
+        }
+      },
+      {
+        "type": "sprite",
+        "data": {
+          "sprite": "disoclution_attention.png",
+          "spritesCount": 1,
+          "displayCondition": {
+            "name": "HasDisoAttention"
+          },
+          "spriteIndex": {
+            "fixedValue": 0.0
+          },
+          "anchorPoint": "BOTTOM_RIGHT",
+          "x": 358,
+          "y": 168,
+          "locked": false
+        }
+      },
+      {
+        "type": "sprite",
+        "data": {
+          "sprite": "disoclution_blood.png",
+          "spritesCount": 1,
+          "displayCondition": {
+            "name": "HasDisoBlood"
+          },
+          "spriteIndex": {
+            "fixedValue": 0.0
+          },
+          "anchorPoint": "BOTTOM_RIGHT",
+          "x": 358,
+          "y": 168,
+          "locked": false
+        }
+      },
+      {
+        "type": "sprite",
+        "data": {
+          "sprite": "disoclution_neuro.png",
+          "spritesCount": 1,
+          "displayCondition": {
+            "name": "HasDisoNeuro"
+          },
+          "spriteIndex": {
+            "fixedValue": 0.0
+          },
+          "anchorPoint": "BOTTOM_RIGHT",
+          "x": 358,
+          "y": 168,
+          "locked": false
+        }
+      },
+      {
+        "type": "sprite",
+        "data": {
+          "sprite": "disoclution_flesh.png",
+          "spritesCount": 1,
+          "displayCondition": {
+            "name": "HasDisoFlesh"
+          },
+          "spriteIndex": {
+            "fixedValue": 0.0
+          },
+          "anchorPoint": "BOTTOM_RIGHT",
+          "x": 358,
+          "y": 168,
+          "locked": false
+        }
+      }
+    ],
+    "baseTexture": "",
+    "overlayTarget": "Ingame",
+    "displayCondition": {
+      "name": "HasDiso"
+    },
+    "gridSettings": {
+      "sx": 16,
+      "sy": 16,
+      "ox": 11,
+      "oy": 15,
+      "snapOnGrid": true
+    }
+  }
+}

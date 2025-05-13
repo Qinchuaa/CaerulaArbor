@@ -1,0 +1,34 @@
+{
+  "mappings": {
+    "default": {
+      "map": {
+        "0": "tracelow"
+      },
+      "name": "default"
+    },
+    "init": {
+      "map": {
+        "0": "trace_init"
+      },
+      "name": "init"
+    },
+    "growing": {
+      "map": {
+        "0": "trace_growing"
+      },
+      "name": "growing"
+    },
+    "exhaust": {
+      "map": {
+        "0": "trace_dim"
+      },
+      "name": "exhaust"
+    },
+    "motion": {
+      "map": {
+        "0": "trailmove"
+      },
+      "name": "motion"
+    }
+  }
+}

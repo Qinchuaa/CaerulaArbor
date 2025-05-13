@@ -1,0 +1,21 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a",
+    "a",
+    "b"
+  ],
+  "key": {
+    "a": {
+      "item": "caerula_arbor:ocean_chitin"
+    },
+    "b": {
+      "item": "caerula_arbor:cutin_stick"
+    }
+  },
+  "result": {
+    "item": "caerula_arbor:chitin_sword",
+    "count": 1
+  }
+}

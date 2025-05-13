@@ -1,0 +1,13 @@
+{
+  "_fv": 73,
+  "_type": "attribute",
+  "definition": {
+    "name": "Sanity",
+    "minValue": -1.0,
+    "maxValue": 1000.0,
+    "defaultValue": 1000.0,
+    "addToAllEntities": true,
+    "addToPlayers": true,
+    "entities": []
+  }
+}

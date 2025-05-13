@@ -1,0 +1,39 @@
+{
+  "_fv": 73,
+  "_type": "tool",
+  "definition": {
+    "toolType": "Hoe",
+    "renderType": 0,
+    "blockingRenderType": 0,
+    "texture": "chitinhoe",
+    "customModelName": "Normal",
+    "blockingModelName": "Normal blocking",
+    "name": "Chitin Hoe",
+    "specialInformation": {
+      "fixedValue": []
+    },
+    "creativeTabs": [
+      {
+        "value": "CUSTOM:CaerulaItems"
+      }
+    ],
+    "efficiency": 6.0,
+    "attackSpeed": 3.5,
+    "enchantability": 11,
+    "damageVsEntity": 1.0,
+    "usageCount": 1220,
+    "glowCondition": {
+      "fixedValue": false
+    },
+    "repairItems": [
+      {
+        "value": "CUSTOM:OceanChitin"
+      }
+    ],
+    "immuneToFire": false,
+    "blockDropsTier": "DIAMOND",
+    "blocksAffected": [],
+    "stayInGridWhenCrafting": true,
+    "damageOnCrafting": true
+  }
+}

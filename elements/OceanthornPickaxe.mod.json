@@ -1,0 +1,39 @@
+{
+  "_fv": 73,
+  "_type": "tool",
+  "definition": {
+    "toolType": "Pickaxe",
+    "renderType": 0,
+    "blockingRenderType": 0,
+    "texture": "thornpick",
+    "customModelName": "Normal",
+    "blockingModelName": "Normal blocking",
+    "name": "Pickaxe Ocean Crystal",
+    "specialInformation": {
+      "fixedValue": []
+    },
+    "creativeTabs": [
+      {
+        "value": "CUSTOM:CaerulaItems"
+      }
+    ],
+    "efficiency": 5.5,
+    "attackSpeed": 1.6,
+    "enchantability": 18,
+    "damageVsEntity": 7.0,
+    "usageCount": 325,
+    "glowCondition": {
+      "fixedValue": false
+    },
+    "repairItems": [
+      {
+        "value": "CUSTOM:OceanCrystal"
+      }
+    ],
+    "immuneToFire": false,
+    "blockDropsTier": "IRON",
+    "blocksAffected": [],
+    "stayInGridWhenCrafting": true,
+    "damageOnCrafting": true
+  }
+}

@@ -1,0 +1,48 @@
+{
+  "_fv": 73,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Crafting",
+    "recipeRetstackSize": 3,
+    "group": "",
+    "cookingBookCategory": "MISC",
+    "xpReward": 0.0,
+    "cookingTime": 200,
+    "craftingBookCategory": "MISC",
+    "recipeShapeless": false,
+    "recipeSlots": [
+      {
+        "value": "Items.BLAZE_POWDER"
+      },
+      {
+        "value": "Items.PRISMARINE_CRYSTALS"
+      },
+      {
+        "value": "Items.BLAZE_POWDER"
+      },
+      {
+        "value": "CUSTOM:FluoreBerries"
+      },
+      {
+        "value": "CUSTOM:FluoreBerries"
+      },
+      {
+        "value": "CUSTOM:FluoreBerries"
+      },
+      {
+        "value": "Items.PRISMARINE_CRYSTALS"
+      },
+      {
+        "value": "Items.NETHER_STAR"
+      },
+      {
+        "value": "Items.PRISMARINE_CRYSTALS"
+      }
+    ],
+    "recipeReturnStack": {
+      "value": "CUSTOM:RadiantBerries"
+    },
+    "name": "craft_radiant_berry",
+    "namespace": "mod"
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "a"
+  ],
+  "key": {
+    "a": {
+      "item": "caerula_arbor:sea_trail_solid"
+    }
+  },
+  "result": {
+    "item": "caerula_arbor:trail_button",
+    "count": 1
+  }
+}

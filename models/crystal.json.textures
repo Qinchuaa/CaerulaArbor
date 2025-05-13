@@ -1,0 +1,11 @@
+{
+  "mappings": {
+    "default": {
+      "map": {
+        "0": "crystalblock",
+        "1": "crystalblock"
+      },
+      "name": "default"
+    }
+  }
+}

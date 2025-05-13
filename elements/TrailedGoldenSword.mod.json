@@ -1,0 +1,45 @@
+{
+  "_fv": 73,
+  "_type": "tool",
+  "definition": {
+    "toolType": "Sword",
+    "renderType": 0,
+    "blockingRenderType": 0,
+    "texture": "trailed_gold",
+    "customModelName": "Normal",
+    "blockingModelName": "Normal blocking",
+    "name": "Trailed Wooden Sword",
+    "specialInformation": {
+      "fixedValue": [
+        "§7Deals additional Sanity Damage",
+        "§7Self-mend when kill"
+      ]
+    },
+    "creativeTabs": [
+      {
+        "value": "CUSTOM:CaerulaItems"
+      }
+    ],
+    "efficiency": 12.0,
+    "attackSpeed": 1.6,
+    "enchantability": 28,
+    "damageVsEntity": 4.0,
+    "usageCount": 32,
+    "glowCondition": {
+      "fixedValue": false
+    },
+    "repairItems": [
+      {
+        "value": "Items.GOLD_INGOT"
+      }
+    ],
+    "immuneToFire": false,
+    "blockDropsTier": "GOLD",
+    "blocksAffected": [],
+    "stayInGridWhenCrafting": true,
+    "damageOnCrafting": true,
+    "onEntityHitWith": {
+      "name": "GoldSwordAttack"
+    }
+  }
+}

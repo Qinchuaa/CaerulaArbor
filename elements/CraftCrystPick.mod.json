@@ -1,0 +1,48 @@
+{
+  "_fv": 73,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Crafting",
+    "recipeRetstackSize": 1,
+    "group": "",
+    "cookingBookCategory": "MISC",
+    "xpReward": 0.0,
+    "cookingTime": 200,
+    "craftingBookCategory": "MISC",
+    "recipeShapeless": false,
+    "recipeSlots": [
+      {
+        "value": "CUSTOM:OceanCrystal"
+      },
+      {
+        "value": "CUSTOM:OceanCrystal"
+      },
+      {
+        "value": "CUSTOM:OceanCrystal"
+      },
+      {
+        "value": ""
+      },
+      {
+        "value": "CUSTOM:CutinStick"
+      },
+      {
+        "value": ""
+      },
+      {
+        "value": ""
+      },
+      {
+        "value": "CUSTOM:CutinStick"
+      },
+      {
+        "value": ""
+      }
+    ],
+    "recipeReturnStack": {
+      "value": "CUSTOM:OceanthornPickaxe"
+    },
+    "name": "craft_cryst_pick",
+    "namespace": "mod"
+  }
+}

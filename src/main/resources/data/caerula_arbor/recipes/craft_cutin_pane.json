@@ -1,0 +1,16 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "category": "misc",
+  "pattern": [
+    "aaa"
+  ],
+  "key": {
+    "a": {
+      "item": "caerula_arbor:ocean_cutin"
+    }
+  },
+  "result": {
+    "item": "caerula_arbor:ocean_glasspane",
+    "count": 2
+  }
+}

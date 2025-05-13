@@ -1,0 +1,36 @@
+{
+  "_fv": 73,
+  "_type": "overlay",
+  "definition": {
+    "priority": "HIGHEST",
+    "components": [
+      {
+        "type": "sprite",
+        "data": {
+          "sprite": "sanity.png",
+          "spritesCount": 20,
+          "displayCondition": {
+            "name": "ShowSanity"
+          },
+          "spriteIndex": {
+            "fixedValue": 0.0,
+            "name": "GetSanityIndex"
+          },
+          "anchorPoint": "BOTTOM_CENTER",
+          "x": 305,
+          "y": 221,
+          "locked": false
+        }
+      }
+    ],
+    "baseTexture": "",
+    "overlayTarget": "Ingame",
+    "gridSettings": {
+      "sx": 18,
+      "sy": 18,
+      "ox": 11,
+      "oy": 15,
+      "snapOnGrid": false
+    }
+  }
+}

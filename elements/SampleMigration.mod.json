@@ -1,0 +1,70 @@
+{
+  "_fv": 73,
+  "_type": "item",
+  "definition": {
+    "renderType": 0,
+    "texture": "minecraft:coast_armor_trim_smithing_template",
+    "customModelName": "Normal",
+    "customProperties": {},
+    "states": [],
+    "name": "Sample Migration",
+    "rarity": "COMMON",
+    "creativeTabs": [],
+    "stackSize": 64,
+    "enchantability": 0,
+    "useDuration": 0,
+    "toolType": 1.0,
+    "damageCount": 0,
+    "recipeRemainder": {
+      "value": ""
+    },
+    "destroyAnyBlock": false,
+    "immuneToFire": false,
+    "stayInGridWhenCrafting": false,
+    "damageOnCrafting": false,
+    "enableMeleeDamage": false,
+    "damageVsEntity": 0.0,
+    "specialInformation": {
+      "fixedValue": [
+        "Nothing changes",
+        "Oceanoffspring call all near oceanosprs to asist when attacked by player",
+        "Oceanoffspring call all surrounding oceanosprs to asist when attacked by player",
+        "Oceanoffspring call all far oceanosprs to asist when attacked by player",
+        "Oceanoffspring call all farther oceanosprs to asist when attacked by player",
+        "Crowd's Strategy of MIGRATION has evolved into phase",
+        "[Silence] Oceanoffspring get speed II when aggresive",
+        "[Silence] Oceanoffspring get speed III when aggresive",
+        "[Silence] Oceanoffspring get speed IV when aggresive, attack +5% with each fellow around(10 limited)",
+        "[Silence] Oceanoffspring get speed V when aggresive, attack +10% with each fellow around(15 limited)"
+      ]
+    },
+    "glowCondition": {
+      "fixedValue": false
+    },
+    "inventorySize": 9,
+    "inventoryStackSize": 64,
+    "enableRanged": false,
+    "shootConstantly": false,
+    "rangedItemChargesPower": false,
+    "projectile": {
+      "value": "CUSTOM:FishShoot"
+    },
+    "projectileDisableAmmoCheck": false,
+    "isFood": false,
+    "nutritionalValue": 4,
+    "saturation": 0.3,
+    "eatResultItem": {
+      "value": ""
+    },
+    "isMeat": false,
+    "isAlwaysEdible": false,
+    "animation": "none",
+    "isMusicDisc": false,
+    "musicDiscMusic": {
+      "value": ""
+    },
+    "musicDiscDescription": "",
+    "musicDiscLengthInTicks": 100,
+    "musicDiscAnalogOutput": 0
+  }
+}

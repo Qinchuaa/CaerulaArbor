@@ -1,0 +1,36 @@
+{
+  "display": {
+    "icon": {
+      "item": "caerula_arbor:complex_chitin"
+    },
+    "title": {
+      "translate": "advancements.enthusiast_of_chitin.title"
+    },
+    "description": {
+      "translate": "advancements.enthusiast_of_chitin.descr"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "enthusiast_of_chitin_0": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "caerula_arbor:complex_chitin"
+            ],
+            "count": {
+              "min": 1,
+              "max": 999
+            }
+          }
+        ]
+      }
+    }
+  },
+  "parent": "caerula_arbor:to_burden_catastrophy"
+}

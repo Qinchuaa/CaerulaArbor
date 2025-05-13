@@ -1,0 +1,24 @@
+{
+  "_fv": 73,
+  "_type": "projectile",
+  "definition": {
+    "projectileItem": {
+      "value": "Items.MAGMA_CREAM"
+    },
+    "showParticles": false,
+    "actionSound": {
+      "value": "entity.squid.squirt"
+    },
+    "igniteFire": false,
+    "power": 1.2,
+    "damage": 4.5,
+    "knockback": 1,
+    "entityModel": "Modelfleefish",
+    "customModelTexture": "fleefishbullet.png",
+    "modelWidth": 0.4,
+    "modelHeight": 0.4,
+    "onHitsEntity": {
+      "name": "FleeBulletHit"
+    }
+  }
+}

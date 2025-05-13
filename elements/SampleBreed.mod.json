@@ -1,0 +1,70 @@
+{
+  "_fv": 73,
+  "_type": "item",
+  "definition": {
+    "renderType": 0,
+    "texture": "minecraft:coast_armor_trim_smithing_template",
+    "customModelName": "Normal",
+    "customProperties": {},
+    "states": [],
+    "name": "Sample Breed",
+    "rarity": "COMMON",
+    "creativeTabs": [],
+    "stackSize": 64,
+    "enchantability": 0,
+    "useDuration": 0,
+    "toolType": 1.0,
+    "damageCount": 0,
+    "recipeRemainder": {
+      "value": ""
+    },
+    "destroyAnyBlock": false,
+    "immuneToFire": false,
+    "stayInGridWhenCrafting": false,
+    "damageOnCrafting": false,
+    "enableMeleeDamage": false,
+    "damageVsEntity": 0.0,
+    "specialInformation": {
+      "fixedValue": [
+        "Nothing changes",
+        "Oceanoffspring born with 10% chance to summon a fellow",
+        "Oceanoffspring born with 15% chance to summon a fellow",
+        "Oceanoffspring born with 20% chance to summon a fellow, extra 5% chance to summon two",
+        "Oceanoffspring born with 25% chance to summon a fellow, extra 10% chance to summon two",
+        "Crowd's Strategy of BREED has evolved into phase",
+        "[Silence] Oceanoffspring got 5% chance to summon a fellow when hit",
+        "[Silence] Oceanoffspring got 7% chance to summon a fellow when hit",
+        "[Silence] Oceanoffspring got 9% chance to summon a fellow and an elite fellowwhen hit",
+        "[Silence] Oceanoffspring got 11% chance to summon a fellow and an elite fellowwhen hit"
+      ]
+    },
+    "glowCondition": {
+      "fixedValue": true
+    },
+    "inventorySize": 9,
+    "inventoryStackSize": 64,
+    "enableRanged": false,
+    "shootConstantly": false,
+    "rangedItemChargesPower": false,
+    "projectile": {
+      "value": "CUSTOM:FishShoot"
+    },
+    "projectileDisableAmmoCheck": false,
+    "isFood": false,
+    "nutritionalValue": 4,
+    "saturation": 0.3,
+    "eatResultItem": {
+      "value": ""
+    },
+    "isMeat": false,
+    "isAlwaysEdible": false,
+    "animation": "none",
+    "isMusicDisc": false,
+    "musicDiscMusic": {
+      "value": ""
+    },
+    "musicDiscDescription": "",
+    "musicDiscLengthInTicks": 100,
+    "musicDiscAnalogOutput": 0
+  }
+}

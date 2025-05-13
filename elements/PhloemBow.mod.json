@@ -1,0 +1,57 @@
+{
+  "_fv": 73,
+  "_type": "animateditem",
+  "definition": {
+    "renderType": 0,
+    "texture": "combinedarrow",
+    "name": "Phloem Bow",
+    "idle": "animation.bluebow.idle",
+    "rarity": "COMMON",
+    "displaySettings": "bluebow.json",
+    "leftArm": "",
+    "rightArm": "",
+    "creativeTabs": [
+      {
+        "value": "CUSTOM:CaerulaItems"
+      }
+    ],
+    "firstPersonArms": false,
+    "stackSize": 1,
+    "enchantability": 16,
+    "useDuration": 72000,
+    "toolType": 1.0,
+    "damageCount": 768,
+    "recipeRemainder": {
+      "value": ""
+    },
+    "destroyAnyBlock": false,
+    "immuneToFire": false,
+    "stayInGridWhenCrafting": true,
+    "enableArmPose": false,
+    "damageOnCrafting": true,
+    "enableMeleeDamage": false,
+    "damageVsEntity": 0.0,
+    "specialInformation": {
+      "fixedValue": []
+    },
+    "hasGlow": false,
+    "guiBoundTo": "<NONE>",
+    "inventorySize": 9,
+    "inventoryStackSize": 64,
+    "onRightClickedInAir": {
+      "name": "BowUse"
+    },
+    "isFood": false,
+    "nutritionalValue": 4,
+    "saturation": 0.3,
+    "eatResultItem": {
+      "value": ""
+    },
+    "isMeat": false,
+    "isAlwaysEdible": false,
+    "animation": "bow",
+    "normal": "bluebow.geo.json",
+    "armPoseList": [],
+    "disableSwing": false
+  }
+}

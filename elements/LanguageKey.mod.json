@@ -1,0 +1,75 @@
+{
+  "_fv": 73,
+  "_type": "item",
+  "definition": {
+    "renderType": 0,
+    "texture": "minecraft:axolotl_bucket",
+    "customModelName": "Normal",
+    "customProperties": {},
+    "states": [],
+    "name": "Language Key",
+    "rarity": "COMMON",
+    "creativeTabs": [],
+    "stackSize": 64,
+    "enchantability": 0,
+    "useDuration": 0,
+    "toolType": 1.0,
+    "damageCount": 0,
+    "recipeRemainder": {
+      "value": ""
+    },
+    "destroyAnyBlock": false,
+    "immuneToFire": false,
+    "stayInGridWhenCrafting": false,
+    "damageOnCrafting": false,
+    "enableMeleeDamage": false,
+    "damageVsEntity": 0.0,
+    "specialInformation": {
+      "fixedValue": [
+        "Are you sure to unbind with ",
+        "? If so, please right click him/she with Rescission again in 15s.",
+        " I now untamed, wish you all good luck.",
+        "However, a mere paper won't sway his loyalty",
+        "Crowd's strategy of SILENCE has evolved into phase",
+        "Not time yet......",
+        "じゃあ、この遠海の歌に耳を傾けて……",
+        "私についてきて。永遠の故郷に還りましょう。",
+        "歌声が、あなたたちの心に染み込んでいくわ。",
+        "怖がらないで、同胞たち……すぐに着くから。",
+        "state 0 [innocent]",
+        "§bstate 1 [Enlighten]",
+        "§bstate 2 [Epiphany]",
+        "§astate 3 [Embrace]",
+        "§cSILENCE's coming,"
+      ]
+    },
+    "glowCondition": {
+      "fixedValue": false
+    },
+    "inventorySize": 9,
+    "inventoryStackSize": 64,
+    "enableRanged": false,
+    "shootConstantly": false,
+    "rangedItemChargesPower": false,
+    "projectile": {
+      "value": "CUSTOM:FishShoot"
+    },
+    "projectileDisableAmmoCheck": false,
+    "isFood": false,
+    "nutritionalValue": 4,
+    "saturation": 0.3,
+    "eatResultItem": {
+      "value": ""
+    },
+    "isMeat": false,
+    "isAlwaysEdible": false,
+    "animation": "none",
+    "isMusicDisc": false,
+    "musicDiscMusic": {
+      "value": ""
+    },
+    "musicDiscDescription": "",
+    "musicDiscLengthInTicks": 100,
+    "musicDiscAnalogOutput": 0
+  }
+}

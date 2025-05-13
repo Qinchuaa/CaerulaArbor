@@ -1,0 +1,48 @@
+{
+  "_fv": 73,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Crafting",
+    "recipeRetstackSize": 1,
+    "group": "",
+    "cookingBookCategory": "MISC",
+    "xpReward": 0.0,
+    "cookingTime": 200,
+    "craftingBookCategory": "MISC",
+    "recipeShapeless": false,
+    "recipeSlots": [
+      {
+        "value": ""
+      },
+      {
+        "value": "CUSTOM:OceanPhloem"
+      },
+      {
+        "value": "CUSTOM:OceanFibre"
+      },
+      {
+        "value": "CUSTOM:OceanPhloem"
+      },
+      {
+        "value": "CUSTOM:OceanEye"
+      },
+      {
+        "value": "CUSTOM:OceanFibre"
+      },
+      {
+        "value": ""
+      },
+      {
+        "value": "CUSTOM:OceanPhloem"
+      },
+      {
+        "value": "CUSTOM:OceanFibre"
+      }
+    ],
+    "recipeReturnStack": {
+      "value": "CUSTOM:PhloemBow"
+    },
+    "name": "pholem_bow_made",
+    "namespace": "mod"
+  }
+}

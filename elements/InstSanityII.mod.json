@@ -1,0 +1,22 @@
+{
+  "_fv": 73,
+  "_type": "potion",
+  "definition": {
+    "potionName": "Potion of Inst Sanity",
+    "splashName": "Splash Potion of Inst Sanity",
+    "lingeringName": "Lingering Potion of Inst Sanity",
+    "arrowName": "Arrow of Inst Sanity",
+    "effects": [
+      {
+        "effect": {
+          "value": "CUSTOM:InstantSanity"
+        },
+        "duration": 1,
+        "infinite": false,
+        "amplifier": 1,
+        "ambient": false,
+        "showParticles": true
+      }
+    ]
+  }
+}

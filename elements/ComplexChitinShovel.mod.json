@@ -1,0 +1,44 @@
+{
+  "_fv": 73,
+  "_type": "tool",
+  "definition": {
+    "toolType": "Spade",
+    "renderType": 0,
+    "blockingRenderType": 0,
+    "texture": "superchitinshovel",
+    "customModelName": "Normal",
+    "blockingModelName": "Normal blocking",
+    "name": "Complex Chitin Shovel",
+    "specialInformation": {
+      "fixedValue": [
+        "§7Cause Sanity damage"
+      ]
+    },
+    "creativeTabs": [
+      {
+        "value": "CUSTOM:CaerulaItems"
+      }
+    ],
+    "efficiency": 15.0,
+    "attackSpeed": 1.0,
+    "enchantability": 18,
+    "damageVsEntity": 9.0,
+    "usageCount": 3374,
+    "glowCondition": {
+      "fixedValue": false
+    },
+    "repairItems": [
+      {
+        "value": "CUSTOM:ComplexChitin"
+      }
+    ],
+    "immuneToFire": true,
+    "blockDropsTier": "DIAMOND",
+    "blocksAffected": [],
+    "stayInGridWhenCrafting": true,
+    "damageOnCrafting": true,
+    "onEntityHitWith": {
+      "name": "CauseLessSanity"
+    }
+  }
+}

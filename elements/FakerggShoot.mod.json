@@ -1,0 +1,27 @@
+{
+  "_fv": 73,
+  "_type": "projectile",
+  "definition": {
+    "projectileItem": {
+      "value": "CUSTOM:FakeEgg"
+    },
+    "showParticles": false,
+    "actionSound": {
+      "value": "entity.puffer_fish.blow_out"
+    },
+    "igniteFire": false,
+    "power": 0.8,
+    "damage": 4.5,
+    "knockback": 0,
+    "entityModel": "Modelfakebullet",
+    "customModelTexture": "fakebullet.png",
+    "modelWidth": 0.4,
+    "modelHeight": 0.4,
+    "onHitsBlock": {
+      "name": "SummonFakeggOnblock"
+    },
+    "onHitsEntity": {
+      "name": "SummonFakeEgg"
+    }
+  }
+}

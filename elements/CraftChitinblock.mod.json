@@ -1,0 +1,48 @@
+{
+  "_fv": 73,
+  "_type": "recipe",
+  "definition": {
+    "recipeType": "Crafting",
+    "recipeRetstackSize": 1,
+    "group": "",
+    "cookingBookCategory": "MISC",
+    "xpReward": 0.0,
+    "cookingTime": 200,
+    "craftingBookCategory": "MISC",
+    "recipeShapeless": false,
+    "recipeSlots": [
+      {
+        "value": "CUSTOM:OceanChitin"
+      },
+      {
+        "value": "CUSTOM:OceanChitin"
+      },
+      {
+        "value": "CUSTOM:OceanChitin"
+      },
+      {
+        "value": "CUSTOM:OceanChitin"
+      },
+      {
+        "value": "CUSTOM:OceanChitin"
+      },
+      {
+        "value": "CUSTOM:OceanChitin"
+      },
+      {
+        "value": "CUSTOM:OceanChitin"
+      },
+      {
+        "value": "CUSTOM:OceanChitin"
+      },
+      {
+        "value": "CUSTOM:OceanChitin"
+      }
+    ],
+    "recipeReturnStack": {
+      "value": "CUSTOM:ChitinBlock"
+    },
+    "name": "craft_chitinblock",
+    "namespace": "mod"
+  }
+}

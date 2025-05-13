@@ -1,0 +1,47 @@
+{
+  "_fv": 73,
+  "_type": "tool",
+  "definition": {
+    "toolType": "Hoe",
+    "renderType": 0,
+    "blockingRenderType": 0,
+    "texture": "superchitinhoe",
+    "customModelName": "Normal",
+    "blockingModelName": "Normal blocking",
+    "name": "Complex Chitin Shovel",
+    "specialInformation": {
+      "fixedValue": [
+        "§7Cause Sanity damage"
+      ]
+    },
+    "creativeTabs": [
+      {
+        "value": "CUSTOM:CaerulaItems"
+      }
+    ],
+    "efficiency": 15.0,
+    "attackSpeed": 4.0,
+    "enchantability": 18,
+    "damageVsEntity": 1.5,
+    "usageCount": 3374,
+    "glowCondition": {
+      "fixedValue": false
+    },
+    "repairItems": [
+      {
+        "value": "CUSTOM:ComplexChitin"
+      }
+    ],
+    "immuneToFire": true,
+    "blockDropsTier": "DIAMOND",
+    "blocksAffected": [],
+    "stayInGridWhenCrafting": true,
+    "damageOnCrafting": true,
+    "onRightClickedOnBlock": {
+      "name": "AdvancedFarm"
+    },
+    "onEntityHitWith": {
+      "name": "CauseLessSanity"
+    }
+  }
+}

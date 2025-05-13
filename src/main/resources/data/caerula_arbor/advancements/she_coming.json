@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "item": "caerula_arbor:caerula_heart"
+    },
+    "title": {
+      "translate": "advancements.she_coming.title"
+    },
+    "description": {
+      "translate": "advancements.she_coming.descr"
+    },
+    "frame": "task",
+    "show_toast": true,
+    "announce_to_chat": true,
+    "hidden": false
+  },
+  "criteria": {
+    "she_coming_0": {
+      "trigger": "minecraft:impossible"
+    }
+  },
+  "parent": "caerula_arbor:to_terminate_evolution"
+}
