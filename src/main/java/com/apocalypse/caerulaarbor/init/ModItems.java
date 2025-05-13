@@ -1,7 +1,7 @@
 package com.apocalypse.caerulaarbor.init;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
-import com.apocalypse.caerulaarbor.item.relic.HotWaterKettleItem;
+import com.apocalypse.caerulaarbor.item.relic.normal.HotWaterKettleItem;
 import com.apocalypse.caerulaarbor.procedures.GetMusicboxPlayerProcedure;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.RegistryObject;
@@ -141,7 +141,7 @@ import com.apocalypse.caerulaarbor.item.BrokenOceanCellItem;
 import com.apocalypse.caerulaarbor.item.BrokenCellClusterItem;
 import com.apocalypse.caerulaarbor.item.BowlSeagrassItem;
 import com.apocalypse.caerulaarbor.item.BoneShardItem;
-import com.apocalypse.caerulaarbor.item.BatBedItem;
+import com.apocalypse.caerulaarbor.item.relic.rare.VampiresBedItem;
 import com.apocalypse.caerulaarbor.item.AromaticCoffeeItem;
 import com.apocalypse.caerulaarbor.item.ArchfiendsFlagItem;
 import com.apocalypse.caerulaarbor.item.ArchfiendsBedItem;
@@ -276,7 +276,6 @@ public class ModItems {
     public static final RegistryObject<Item> LEGENDARY_SPEAR = ITEMS.register("legendary_spear", () -> new LegendarySpearItem());
     public static final RegistryObject<Item> ALLAY_SCULPTURE = ITEMS.register("allay_sculpture", () -> new AlleySculptureItem());
     public static final RegistryObject<Item> ALLAY_BLOCK = block(CaerulaArborModBlocks.ALLAY_BLOCK);
-    public static final RegistryObject<Item> BAT_BED = ITEMS.register("bat_bed", () -> new BatBedItem());
     public static final RegistryObject<Item> BLOCK_BATBED = block(CaerulaArborModBlocks.BLOCK_BATBED);
     public static final RegistryObject<Item> BATBED_UPPER = block(CaerulaArborModBlocks.BATBED_UPPER);
     public static final RegistryObject<Item> PROOF_OF_LONGEVITY = ITEMS.register("proof_of_longevity", () -> new ProofOfLongevityItem());
@@ -353,6 +352,7 @@ public class ModItems {
     public static final DeferredRegister<Item> RELICS = DeferredRegister.create(ForgeRegistries.ITEMS, CaerulaArborMod.MODID);
 
     public static final RegistryObject<Item> HOT_WATER_KETTLE = RELICS.register("hot_water_kettle", HotWaterKettleItem::new);
+    public static final RegistryObject<Item> VAMPIRES_BED = RELICS.register("vampires_bed", VampiresBedItem::new);
 
     /**
      * Spawn Eggs

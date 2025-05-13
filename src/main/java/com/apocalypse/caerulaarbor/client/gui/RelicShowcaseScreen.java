@@ -237,7 +237,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
             guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/stonealley.png"), this.leftPos + 28, this.topPos + 100, 0, 0, 16, 16, 16, 16);
         }
         if (cap.relic_util_BATBED) {
-            guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/itembatbed.png"), this.leftPos + 52, this.topPos + 100, 0, 0, 16, 16, 16, 16);
+            guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/vampires_bed.png"), this.leftPos + 52, this.topPos + 100, 0, 0, 16, 16, 16, 16);
         }
         if (cap.relic_util_OMNIKEY) {
             guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/omnikey.png"), this.leftPos + 124, this.topPos + 100, 0, 0, 16, 16, 16, 16);

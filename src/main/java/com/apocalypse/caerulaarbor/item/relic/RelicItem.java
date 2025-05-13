@@ -2,8 +2,10 @@ package com.apocalypse.caerulaarbor.item.relic;
 
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.client.Minecraft;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
@@ -13,11 +15,13 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.items.ItemHandlerHelper;
+import org.jetbrains.annotations.NotNull;
 
 public class RelicItem extends Item {
 
     public RelicItem(Properties pProperties) {
-        super(pProperties);
+        super(pProperties.stacksTo(1));
     }
 
     @Override
@@ -25,8 +29,8 @@ public class RelicItem extends Item {
         ItemStack stack = pPlayer.getItemInHand(pUsedHand);
 
         if (pLevel instanceof ServerLevel serverLevel) {
-            pLevel.playSound(null, pPlayer.getOnPos(), SoundEvents.PLAYER_LEVELUP, SoundSource.NEUTRAL, 2, 1);
-            serverLevel.sendParticles(ParticleTypes.HAPPY_VILLAGER, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), 24, 0.75, 1, 0.75, 1);
+            pLevel.playSound(null, pPlayer.getOnPos(), this.getGainSound(), SoundSource.NEUTRAL, 2, 1);
+            serverLevel.sendParticles(this.getGainParticle(), pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), 24, 0.75, 1, 0.75, 1);
 
             if (this.getAddedExperience() > 0) {
                 serverLevel.addFreshEntity(new ExperienceOrb(serverLevel, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), this.getAddedExperience()));
@@ -34,7 +38,7 @@ public class RelicItem extends Item {
         } else {
             Minecraft.getInstance().gameRenderer.displayItemActivation(stack);
 
-            pLevel.playLocalSound(pPlayer.getOnPos(), SoundEvents.PLAYER_LEVELUP, SoundSource.NEUTRAL, 2, 1, false);
+            pLevel.playLocalSound(pPlayer.getOnPos(), this.getGainSound(), SoundSource.NEUTRAL, 2, 1, false);
 
             if (this.getAddedLives() != 0) {
                 double lives = (pPlayer.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null)
@@ -56,6 +60,10 @@ public class RelicItem extends Item {
 
         stack.shrink(1);
 
+        if (!this.getRewardItemStack().isEmpty()) {
+            ItemHandlerHelper.giveItemToPlayer(pPlayer, this.getRewardItemStack());
+        }
+
         return super.use(pLevel, pPlayer, pUsedHand);
     }
 
@@ -69,5 +77,19 @@ public class RelicItem extends Item {
 
     public int getAddedExperience() {
         return 0;
+    }
+
+    @NotNull
+    public SoundEvent getGainSound() {
+        return SoundEvents.PLAYER_LEVELUP;
+    }
+
+    @NotNull
+    public ParticleOptions getGainParticle() {
+        return ParticleTypes.HAPPY_VILLAGER;
+    }
+
+    public ItemStack getRewardItemStack() {
+        return ItemStack.EMPTY;
     }
 }

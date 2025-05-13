@@ -189,7 +189,6 @@ public class ModTabs {
 //				tabData.accept(CaerulaArborModItems.PIGLIN_DIARY.get());
 //				tabData.accept(CaerulaArborModItems.TOPONYM_TEXTOLOGY.get());
 //				tabData.accept(CaerulaArborModItems.ALLAY_SCULPTURE.get());
-//				tabData.accept(CaerulaArborModItems.BAT_BED.get());
 //				tabData.accept(CaerulaArborModItems.PROOF_OF_LONGEVITY.get());
 
     public static final RegistryObject<CreativeModeTab> CAERULA_LIVINGS = REGISTRY.register("caerula_livings",
