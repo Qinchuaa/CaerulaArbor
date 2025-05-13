@@ -25,6 +25,7 @@ public class PureGoldExpeditionItem extends RelicItem {
 
     @Override
     public void appendHoverText(ItemStack itemstack, Level level, List<Component> list, TooltipFlag flag) {
+        super.appendHoverText(itemstack, level, list, flag);
         list.add(Component.translatable("item.caerula_arbor.pure_gold_expedition.des_1").withStyle(ChatFormatting.AQUA));
         list.add(Component.translatable("item.caerula_arbor.pure_gold_expedition.des_2").withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
         list.add(Component.translatable("item.caerula_arbor.pure_gold_expedition.des_3").withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
@@ -35,8 +36,8 @@ public class PureGoldExpeditionItem extends RelicItem {
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         ItemStack stack = pPlayer.getItemInHand(pUsedHand);
-        if (!stack.getOrCreateTag().getBoolean("used")) {
-            stack.getOrCreateTag().putBoolean("used", true);
+        if (!stack.getOrCreateTag().getBoolean("Used")) {
+            stack.getOrCreateTag().putBoolean("Used", true);
             if (!pLevel.isClientSide) {
                 pPlayer.addEffect(new MobEffectInstance(CaerulaArborModMobEffects.ADD_REACH.get(), 400, 1, false, false));
             }

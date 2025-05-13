@@ -3,6 +3,7 @@
   "item_group.caerula_arbor.caerula_relics": "生物制品陈设",
   "item_group.caerula_arbor.caerula_livings": "进化信息池",
 
+  "item.caerula_arbor.relics.used": "已使用",
   "item.caerula_arbor.hot_water_kettle": "热水壶",
   "item.caerula_arbor.hot_water_kettle.des_1": "使用后目标生命上限+1，获得8经验值",
   "item.caerula_arbor.hot_water_kettle.des_2": "不应用沸水直接在嘴里加热速食食品！",

@@ -3,6 +3,7 @@
   "item_group.caerula_arbor.caerula_relics": "Caerula Relics",
   "item_group.caerula_arbor.caerula_livings": "Caerula Livings",
 
+  "item.caerula_arbor.relics.used": "Already Used",
   "item.caerula_arbor.hot_water_kettle": "Hot Water Kettle",
   "item.caerula_arbor.hot_water_kettle.des_1": "Player Max Health +1 and gain 8 exp when used",
   "item.caerula_arbor.hot_water_kettle.des_2": "You shouldn't boil your instant noodle straightly in your mouth!",

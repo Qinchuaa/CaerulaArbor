@@ -1,9 +1,11 @@
 package com.apocalypse.caerulaarbor.item.relic;
 
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -14,14 +16,25 @@ import net.minecraft.world.entity.ExperienceOrb;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.items.ItemHandlerHelper;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class RelicItem extends Item {
 
     public RelicItem(Properties pProperties) {
         super(pProperties);
+    }
+
+    @Override
+    public void appendHoverText(ItemStack pStack, @Nullable Level pLevel, List<Component> pTooltipComponents, TooltipFlag pIsAdvanced) {
+        if (pStack.getTag() != null && pStack.getTag().getBoolean("Used")) {
+            pTooltipComponents.add(Component.translatable("item.caerula_arbor.relics.used").withStyle(ChatFormatting.ITALIC));
+        }
     }
 
     @Override
