@@ -5,9 +5,12 @@ import com.apocalypse.caerulaarbor.item.relic.RelicItem;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.animal.Sheep;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
@@ -28,6 +31,16 @@ public class PittsAssortedFruitsItem extends RelicItem {
                         .effect(() -> new MobEffectInstance(MobEffects.HEALTH_BOOST, 560, 1), 1.0f)
                         .alwaysEat().build())
         );
+    }
+
+    @Override
+    public InteractionResult interactLivingEntity(ItemStack pStack, Player pPlayer, LivingEntity pInteractionTarget, InteractionHand pUsedHand) {
+        if (pInteractionTarget instanceof Sheep) {
+            pInteractionTarget.setCustomName(Component.literal("jeb_"));
+            pStack.shrink(1);
+            return InteractionResult.SUCCESS;
+        }
+        return super.interactLivingEntity(pStack, pPlayer, pInteractionTarget, pUsedHand);
     }
 
     @Override
