@@ -1,5 +1,5 @@
 # User-specific stuff
-.idea/
+/.idea/
 .vscode/
 
 *.iml
@@ -103,8 +103,8 @@ $RECYCLE.BIN/
 # Windows shortcuts
 *.lnk
 
-.gradle
-build/
+/.gradle
+/build/
 
 # Ignore Gradle GUI config
 gradle-app.setting
@@ -122,5 +122,4 @@ run/
 
 .mcreator
 *.bbmodel
-/.gradle/
 /run/
