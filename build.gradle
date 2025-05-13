@@ -70,7 +70,7 @@ minecraft {
             property 'mixin.env.remapRefMap', 'true'
             property 'mixin.env.refMapRemappingFile', "${projectDir}/build/createSrgToMcp/output.srg"
 
-            args '--mod', 'caerulaarbor', '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
+            args '--mod', mod_id, '--all', '--output', file('src/generated/resources/'), '--existing', file('src/main/resources/')
         }
     }
 }
@@ -124,7 +124,7 @@ dependencies {
 }
 
 mixin {
-    add sourceSets.main, 'mixins.caerulaarbor.refmap.json'
+    add sourceSets.main, 'mixins.caerula_arbor.refmap.json'
 
     config 'mixins.caerulaarbor.json'
 
