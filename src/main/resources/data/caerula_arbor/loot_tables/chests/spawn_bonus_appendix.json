@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "caerula_arbor:kettle",
+          "name": "caerula_arbor:hot_water_kettle",
           "weight": 99,
           "functions": [
             {

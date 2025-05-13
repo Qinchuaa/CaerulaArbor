@@ -1,4 +1,4 @@
-// 1.20.1	2025-05-14T00:47:33.5225478	Loot Tables
+// 1.20.1	2025-05-14T01:13:34.0235909	Loot Tables
 2252ff23cbe6b6417de999c9abe10ceaf4fb256a data/caerula_arbor/loot_tables/blocks/allay_block.json
 5ac71ffb3f5a7e6ec9ba95243040c1e43de26a66 data/caerula_arbor/loot_tables/blocks/anchor_lower.json
 6b445a533a4a0420ce19f4befd00206d15bd1914 data/caerula_arbor/loot_tables/blocks/anchor_medium.json
@@ -34,6 +34,6 @@ ffb7f304481de72bd59a70af01a90515e2a6b9c8 data/caerula_arbor/loot_tables/blocks/r
 a38ace0a599d2f934b53eed0296823e4408a6924 data/caerula_arbor/loot_tables/blocks/trail_button.json
 72d37e79367ab2dfc6e00b33581890125962cb37 data/caerula_arbor/loot_tables/blocks/trail_cake.json
 24f501e60b260900a3a8507d3d08abec417e8172 data/caerula_arbor/loot_tables/blocks/trail_pressure_plate.json
-b7e7e964da0a7d6867e02c29b0430e88d22c6945 data/caerula_arbor/loot_tables/blocks/trail_slab.json
+6023417fea6f25ef3035bcd60f0ecb0887ed4b26 data/caerula_arbor/loot_tables/blocks/trail_slab.json
 59f68420b07b3f1035e09b650255a866b1b1d75f data/caerula_arbor/loot_tables/blocks/trail_stair.json
 3f696a7a68529bf9b08ba2eb68849653245b928a data/caerula_arbor/loot_tables/blocks/trail_tile.json

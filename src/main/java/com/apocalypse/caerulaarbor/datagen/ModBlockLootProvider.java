@@ -61,7 +61,7 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
         this.add(ModBlocks.BATBED_UPPER.get(), noDrop());
         this.add(ModBlocks.CARAMEL_CAKE.get(), noDrop());
         this.add(ModBlocks.TRAIL_CAKE.get(), noDrop());
-        this.add(ModBlocks.TRAIL_SLAB.get(), block -> createSlabItemTable(ModBlocks.TRAIL_TILE.get()));
+        this.add(ModBlocks.TRAIL_SLAB.get(), block -> createSlabItemTable(ModBlocks.TRAIL_SLAB.get()));
         this.add(ModBlocks.SEA_TRAIL_INIT.get(), noDrop());
         this.add(ModBlocks.SEA_TRAIL_GROWING.get(), block ->
                 LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))

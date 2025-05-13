@@ -55,7 +55,7 @@ import com.apocalypse.caerulaarbor.item.RedstoneIngotItem;
 import com.apocalypse.caerulaarbor.item.RealEggItem;
 import com.apocalypse.caerulaarbor.item.relic.epic.PittsAssortedFruitsItem;
 import com.apocalypse.caerulaarbor.item.RadiantBerriesItem;
-import com.apocalypse.caerulaarbor.item.ProofOfLongevityItem;
+import com.apocalypse.caerulaarbor.item.relic.epic.ProofOfLongevityItem;
 import com.apocalypse.caerulaarbor.item.PiglinDiaryItem;
 import com.apocalypse.caerulaarbor.item.PhloemBowItem;
 import com.apocalypse.caerulaarbor.item.PaperBagItem;
@@ -274,7 +274,6 @@ public class ModItems {
     public static final RegistryObject<Item> ALLAY_BLOCK = block(ModBlocks.ALLAY_BLOCK);
     public static final RegistryObject<Item> BLOCK_BATBED = block(ModBlocks.BLOCK_BATBED);
     public static final RegistryObject<Item> BATBED_UPPER = block(ModBlocks.BATBED_UPPER);
-    public static final RegistryObject<Item> PROOF_OF_LONGEVITY = ITEMS.register("proof_of_longevity", () -> new ProofOfLongevityItem());
     public static final RegistryObject<Item> OMNI_KEY = ITEMS.register("omni_key", () -> new OmniKeyItem());
     public static final RegistryObject<Item> SCORE = ITEMS.register("score", () -> new ScoreItem());
     public static final RegistryObject<Item> RESCISSION = ITEMS.register("rescission", () -> new RescissionItem());
@@ -353,6 +352,7 @@ public class ModItems {
     public static final RegistryObject<Item> PURE_GOLD_EXPEDITION = RELICS.register("pure_gold_expedition", PureGoldExpeditionItem::new);
     public static final RegistryObject<Item> PITTS_ASSORTED_FRUITS = RELICS.register("pitts_assorted_fruits", PittsAssortedFruitsItem::new);
     public static final RegistryObject<Item> SCREAMING_CHERRY = RELICS.register("screaming_cherry", ScreamingCherryItem::new);
+    public static final RegistryObject<Item> PROOF_OF_LONGEVITY = RELICS.register("proof_of_longevity", ProofOfLongevityItem::new);
 
     /**
      * Spawn Eggs

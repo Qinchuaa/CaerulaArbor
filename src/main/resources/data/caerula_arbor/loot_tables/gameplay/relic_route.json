@@ -30,7 +30,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "caerula_arbor:voyage_of_gold",
+          "name": "caerula_arbor:pure_gold_expedition",
           "weight": 20,
           "functions": [
             {
