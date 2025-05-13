@@ -1,4 +1,4 @@
-package com.apocalypse.caerulaarbor.item;
+package com.apocalypse.caerulaarbor.item.relic.normal;
 
 import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.item.relic.RelicItem;
@@ -45,8 +45,6 @@ public class FeaturedCannedMeatItem extends RelicItem {
 
     @Override
     public ItemStack finishUsingItem(ItemStack itemstack, Level world, LivingEntity entity) {
-        super.finishUsingItem(itemstack, world, entity);
-
         entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
             capability.relic_util_MEATCAN = true;
             capability.syncPlayerVariables(entity);
@@ -58,6 +56,6 @@ public class FeaturedCannedMeatItem extends RelicItem {
                 player.drop(stack, false);
             }
         }
-        return itemstack;
+        return super.finishUsingItem(itemstack, world, entity);
     }
 }

@@ -31,11 +31,11 @@ public class FeedCandyProcedure {
 	private static void execute(@Nullable Event event, Entity entity, Entity sourceentity) {
 		if (entity == null || sourceentity == null)
 			return;
-		if (entity instanceof Sheep && (sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == ModItems.RAINBOW_CANDY.get()) {
+		if (entity instanceof Sheep && (sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == ModItems.PITTS_ASSORTED_FRUITS.get()) {
 			(sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).shrink(1);
 			entity.setCustomName(Component.literal("jeb_"));
 		}
-		if (entity instanceof Sheep && (sourceentity instanceof LivingEntity _livEnt ? _livEnt.getOffhandItem() : ItemStack.EMPTY).getItem() == ModItems.RAINBOW_CANDY.get()) {
+		if (entity instanceof Sheep && (sourceentity instanceof LivingEntity _livEnt ? _livEnt.getOffhandItem() : ItemStack.EMPTY).getItem() == ModItems.PITTS_ASSORTED_FRUITS.get()) {
 			(sourceentity instanceof LivingEntity _livEnt ? _livEnt.getOffhandItem() : ItemStack.EMPTY).shrink(1);
 			entity.setCustomName(Component.literal("jeb_"));
 		}

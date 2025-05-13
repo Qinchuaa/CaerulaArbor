@@ -53,7 +53,7 @@ import com.apocalypse.caerulaarbor.item.RelicCROWNItem;
 import com.apocalypse.caerulaarbor.item.RedstoneIrisFlowerItem;
 import com.apocalypse.caerulaarbor.item.RedstoneIngotItem;
 import com.apocalypse.caerulaarbor.item.RealEggItem;
-import com.apocalypse.caerulaarbor.item.RainbowCandyItem;
+import com.apocalypse.caerulaarbor.item.relic.epic.PittsAssortedFruitsItem;
 import com.apocalypse.caerulaarbor.item.RadiantBerriesItem;
 import com.apocalypse.caerulaarbor.item.ProofOfLongevityItem;
 import com.apocalypse.caerulaarbor.item.PiglinDiaryItem;
@@ -78,7 +78,7 @@ import com.apocalypse.caerulaarbor.item.OceanCellItem;
 import com.apocalypse.caerulaarbor.item.OceanArrowItem;
 import com.apocalypse.caerulaarbor.item.ObisidianBallItem;
 import com.apocalypse.caerulaarbor.item.MusicBoxFixedItem;
-import com.apocalypse.caerulaarbor.item.FeaturedCannedMeatItem;
+import com.apocalypse.caerulaarbor.item.relic.normal.FeaturedCannedMeatItem;
 import com.apocalypse.caerulaarbor.item.LegendarySpearItem;
 import com.apocalypse.caerulaarbor.item.LanguageKeyItem;
 import com.apocalypse.caerulaarbor.item.KingsSpearItem;
@@ -198,7 +198,6 @@ public class ModItems {
     public static final RegistryObject<Item> CAFFEINE = ITEMS.register("caffeine", () -> new CaffeineItem());
     public static final RegistryObject<Item> CANNED_CHERRY = ITEMS.register("canned_cherry", () -> new CannedCherryItem());
     public static final RegistryObject<Item> BERRY_CAN = block(CaerulaArborModBlocks.BERRY_CAN);
-    public static final RegistryObject<Item> RAINBOW_CANDY = ITEMS.register("rainbow_candy", () -> new RainbowCandyItem());
     public static final RegistryObject<Item> AROMATIC_COFFEE = ITEMS.register("aromatic_coffee", () -> new AromaticCoffeeItem());
     public static final RegistryObject<Item> SOLO_MUSIC_BOX = ITEMS.register("solo_music_box", () -> new SoloMusicBoxItem());
     public static final RegistryObject<Item> MUSIC_BOX_FIXED = ITEMS.register("music_box_fixed", () -> new MusicBoxFixedItem());
@@ -354,6 +353,7 @@ public class ModItems {
     public static final RegistryObject<Item> VAMPIRES_BED = RELICS.register("vampires_bed", VampiresBedItem::new);
     public static final RegistryObject<Item> FEATURED_CANNED_MEAT = RELICS.register("featured_canned_meat", FeaturedCannedMeatItem::new);
     public static final RegistryObject<Item> PURE_GOLD_EXPEDITION = RELICS.register("pure_gold_expedition", PureGoldExpeditionItem::new);
+    public static final RegistryObject<Item> PITTS_ASSORTED_FRUITS = RELICS.register("pitts_assorted_fruits", PittsAssortedFruitsItem::new);
 
     /**
      * Spawn Eggs

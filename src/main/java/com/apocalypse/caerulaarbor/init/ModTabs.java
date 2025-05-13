@@ -176,7 +176,6 @@ public class ModTabs {
 //				tabData.accept(CaerulaArborModItems.CANNED_CHERRY.get());
 //				tabData.accept(CaerulaArborModItems.AROMATIC_COFFEE.get());
 //				tabData.accept(CaerulaArborModItems.COFFEE_CANDY.get());
-//				tabData.accept(CaerulaArborModItems.RAINBOW_CANDY.get());
 //				tabData.accept(CaerulaArborModItems.SOLO_MUSIC_BOX.get());
 //				tabData.accept(CaerulaArborModItems.ODD_FLUTE.get());
 //				tabData.accept(CaerulaArborModItems.REDSTONE_IRIS_FLOWER.get());
