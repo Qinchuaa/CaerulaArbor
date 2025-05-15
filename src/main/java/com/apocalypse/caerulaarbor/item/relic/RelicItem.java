@@ -13,6 +13,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.ExperienceOrb;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -42,44 +43,54 @@ public class RelicItem extends Item implements IRelic {
         if (!this.isInstantUse()) {
             return super.use(pLevel, pPlayer, pUsedHand);
         }
-
         ItemStack stack = pPlayer.getItemInHand(pUsedHand);
+        this.afterUse(stack, pLevel, pPlayer);
 
+        return InteractionResultHolder.consume(stack);
+    }
+
+    public void afterUse(ItemStack stack, Level pLevel, LivingEntity entity) {
         if (pLevel instanceof ServerLevel serverLevel) {
-            pLevel.playSound(null, pPlayer.getOnPos(), this.getGainSound(), SoundSource.NEUTRAL, 2, 1);
-            serverLevel.sendParticles(this.getGainParticle(), pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), 72, 0.75, 1, 0.75, 1);
+            serverLevel.sendParticles(this.getGainParticle(), entity.getX(), entity.getY(), entity.getZ(), 72, 0.75, 1, 0.75, 1);
 
             if (this.getAddedExperience() > 0) {
-                serverLevel.addFreshEntity(new ExperienceOrb(serverLevel, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), this.getAddedExperience()));
+                serverLevel.addFreshEntity(new ExperienceOrb(serverLevel, entity.getX(), entity.getY(), entity.getZ(), this.getAddedExperience()));
             }
         } else {
             Minecraft.getInstance().gameRenderer.displayItemActivation(stack);
 
-            pLevel.playLocalSound(pPlayer.getOnPos(), this.getGainSound(), SoundSource.NEUTRAL, 2, 1, false);
-
             if (this.getAddedLives() != 0) {
-                double lives = (pPlayer.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+                double lives = (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null)
                         .orElse(new CaerulaArborModVariables.PlayerVariables())).player_maxlive + this.getAddedLives();
-                pPlayer.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+                entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
                     capability.player_maxlive = lives;
-                    capability.syncPlayerVariables(pPlayer);
+                    capability.syncPlayerVariables(entity);
                 });
             }
             if (this.getAddedMaxLives() != 0) {
-                double maxLives = (pPlayer.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+                double maxLives = (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null)
                         .orElse(new CaerulaArborModVariables.PlayerVariables())).player_lives + this.getAddedMaxLives();
-                pPlayer.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+                entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
                     capability.player_lives = maxLives;
-                    capability.syncPlayerVariables(pPlayer);
+                    capability.syncPlayerVariables(entity);
                 });
             }
         }
 
-        if (!this.getRewardItemStack().isEmpty()) {
-            ItemHandlerHelper.giveItemToPlayer(pPlayer, this.getRewardItemStack());
+        this.playGainSound(pLevel, entity);
+
+        if (!this.getRewardItemStack().isEmpty() && entity instanceof Player player) {
+            ItemHandlerHelper.giveItemToPlayer(player, this.getRewardItemStack());
             stack.shrink(1);
         }
-        return InteractionResultHolder.consume(stack);
+    }
+
+    public void playGainSound(Level pLevel, LivingEntity entity) {
+        if (!pLevel.isClientSide) {
+            pLevel.playSound(null, entity.getOnPos(), this.getGainSound(), SoundSource.NEUTRAL, 2, 1);
+        } else {
+            pLevel.playLocalSound(entity.getOnPos(), this.getGainSound(), SoundSource.NEUTRAL, 2, 1, false);
+        }
     }
 
     /**

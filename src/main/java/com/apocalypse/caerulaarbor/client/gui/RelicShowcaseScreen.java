@@ -178,7 +178,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.redstone_iris_flower").getString() + ": " + Component.translatable("item.caerula_arbor.redstone_iris_flower.description_0").getString()), mouseX, mouseY);
         if (cap.relic_util_FLUTE)
             if (mouseX > leftPos + 196 && mouseX < leftPos + 212 && mouseY > topPos + 76 && mouseY < topPos + 92)
-                guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.odd_flute").getString() + ": " + Component.translatable("item.caerula_arbor.odd_flute.description_0").getString()), mouseX, mouseY);
+                guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.odd_flute").getString() + ": " + Component.translatable("item.caerula_arbor.weird_flute.des_1").getString()), mouseX, mouseY);
         if (cap.relic_util_VOYGOLD)
             if (mouseX > leftPos + 244 && mouseX < leftPos + 260 && mouseY > topPos + 76 && mouseY < topPos + 92)
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.pure_gold_expedition").getString() + ": " + Component.translatable("item.caerula_arbor.voyage_of_gold.description_0").getString()), mouseX, mouseY);

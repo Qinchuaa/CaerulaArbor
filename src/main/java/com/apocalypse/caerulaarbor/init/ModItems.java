@@ -60,7 +60,7 @@ import com.apocalypse.caerulaarbor.item.PiglinDiaryItem;
 import com.apocalypse.caerulaarbor.item.PhloemBowItem;
 import com.apocalypse.caerulaarbor.item.PaperBagItem;
 import com.apocalypse.caerulaarbor.item.OmniKeyItem;
-import com.apocalypse.caerulaarbor.item.OddFluteItem;
+import com.apocalypse.caerulaarbor.item.relic.rare.WeirdFluteItem;
 import com.apocalypse.caerulaarbor.item.OceanthornShovelItem;
 import com.apocalypse.caerulaarbor.item.OceanthornPickaxeItem;
 import com.apocalypse.caerulaarbor.item.OceanthornHoeItem;
@@ -201,7 +201,6 @@ public class ModItems {
     public static final RegistryObject<Item> REDSTONE_IRIS = block(ModBlocks.REDSTONE_IRIS);
     public static final RegistryObject<Item> REDSTONE_IRIS_FLOWER = ITEMS.register("redstone_iris_flower", () -> new RedstoneIrisFlowerItem());
     public static final RegistryObject<Item> REDSTONEIRIS_SEEDING = block(ModBlocks.REDSTONEIRIS_SEEDING);
-    public static final RegistryObject<Item> ODD_FLUTE = ITEMS.register("odd_flute", () -> new OddFluteItem());
     public static final RegistryObject<Item> THERMOGRAPH = ITEMS.register("thermograph", () -> new ThermographItem());
     public static final RegistryObject<Item> PIGLIN_DIARY = ITEMS.register("piglin_diary", () -> new PiglinDiaryItem());
     public static final RegistryObject<Item> TOPONYM_TEXTOLOGY = ITEMS.register("toponym_textology", () -> new ToponymTextologyItem());
@@ -352,6 +351,7 @@ public class ModItems {
     public static final RegistryObject<Item> PITTS_ASSORTED_FRUITS = RELICS.register("pitts_assorted_fruits", PittsAssortedFruitsItem::new);
     public static final RegistryObject<Item> SCREAMING_CHERRY = RELICS.register("screaming_cherry", ScreamingCherryItem::new);
     public static final RegistryObject<Item> PROOF_OF_LONGEVITY = RELICS.register("proof_of_longevity", ProofOfLongevityItem::new);
+    public static final RegistryObject<Item> WEIRD_FLUTE = RELICS.register("weird_flute", WeirdFluteItem::new);
 
     public static final RegistryObject<Item> SURVIVOR_CONTRACT = RELICS.register("survivor_contract", SurvivorContractItem::new);
 

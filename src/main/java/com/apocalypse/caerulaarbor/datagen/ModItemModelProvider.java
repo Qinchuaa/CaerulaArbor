@@ -30,6 +30,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.PITTS_ASSORTED_FRUITS);
         simpleItem(ModItems.SCREAMING_CHERRY);
         simpleItem(ModItems.PROOF_OF_LONGEVITY);
+        simpleItem(ModItems.WEIRD_FLUTE);
 
         simpleItem(ModItems.SURVIVOR_CONTRACT);
     }
