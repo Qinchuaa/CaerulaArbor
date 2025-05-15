@@ -19,11 +19,11 @@ import net.minecraft.network.FriendlyByteBuf;
 
 import com.apocalypse.caerulaarbor.init.CaerulaArborModVillagerProfessions;
 import com.apocalypse.caerulaarbor.init.ModTabs;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModSounds;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModPotions;
+import com.apocalypse.caerulaarbor.init.ModSounds;
+import com.apocalypse.caerulaarbor.init.ModPotions;
 import com.apocalypse.caerulaarbor.init.CaerulaArborModParticleTypes;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModMobEffects;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModMenus;
+import com.apocalypse.caerulaarbor.init.ModMobEffects;
+import com.apocalypse.caerulaarbor.init.ModMenus;
 import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
 import com.apocalypse.caerulaarbor.init.CaerulaArborModEnchantments;
@@ -48,7 +48,7 @@ public class CaerulaArborMod {
     public CaerulaArborMod() {
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
-        CaerulaArborModSounds.REGISTRY.register(bus);
+        ModSounds.REGISTRY.register(bus);
         ModBlocks.BLOCKS.register(bus);
 
         ModItems.register(bus);
@@ -56,12 +56,12 @@ public class CaerulaArborMod {
         CaerulaArborModEnchantments.REGISTRY.register(bus);
         ModTabs.REGISTRY.register(bus);
 
-        CaerulaArborModMobEffects.REGISTRY.register(bus);
-        CaerulaArborModPotions.REGISTRY.register(bus);
+        ModMobEffects.REGISTRY.register(bus);
+        ModPotions.REGISTRY.register(bus);
 
         CaerulaArborModParticleTypes.REGISTRY.register(bus);
         CaerulaArborModVillagerProfessions.PROFESSIONS.register(bus);
-        CaerulaArborModMenus.REGISTRY.register(bus);
+        ModMenus.REGISTRY.register(bus);
         CaerulaArborModAttributes.REGISTRY.register(bus);
 
         MinecraftForge.EVENT_BUS.register(this);

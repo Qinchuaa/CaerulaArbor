@@ -20,7 +20,7 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.core.BlockPos;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModMobEffects;
+import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.entity.CrackerAbyssalEntity;
 
 import java.util.List;
@@ -31,7 +31,7 @@ public class RangedPalmProcedure {
 		if (entity == null)
 			return;
 		double num = 0;
-		if (!(entity instanceof LivingEntity _livEnt0 && _livEnt0.hasEffect(CaerulaArborModMobEffects.COOLDOWN_SINAL.get()))) {
+		if (!(entity instanceof LivingEntity _livEnt0 && _livEnt0.hasEffect(ModMobEffects.COOLDOWN_SINAL.get()))) {
 			num = 0;
 			{
 				final Vec3 _center = new Vec3(x, y, z);
@@ -47,7 +47,7 @@ public class RangedPalmProcedure {
 					((CrackerAbyssalEntity) entity).setAnimation("animation.reefcracker.spin");
 				}
 				if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-					_entity.addEffect(new MobEffectInstance(CaerulaArborModMobEffects.COOLDOWN_SINAL.get(), 40, 0, false, false));
+					_entity.addEffect(new MobEffectInstance(ModMobEffects.COOLDOWN_SINAL.get(), 40, 0, false, false));
 				CaerulaArborMod.queueServerWork(10, () -> {
 					if (world instanceof Level _level) {
 						if (!_level.isClientSide()) {

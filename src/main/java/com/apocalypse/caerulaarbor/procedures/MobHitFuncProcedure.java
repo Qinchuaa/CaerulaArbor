@@ -37,7 +37,7 @@ import net.minecraft.advancements.Advancement;
 
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import com.apocalypse.caerulaarbor.init.CaerulaArborModParticleTypes;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModMobEffects;
+import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.init.CaerulaArborModGameRules;
 import com.apocalypse.caerulaarbor.init.CaerulaArborModAttributes;
 import com.apocalypse.caerulaarbor.entity.RouteShaperEntity;
@@ -75,7 +75,7 @@ public class MobHitFuncProcedure {
 		double dy = 0;
 		double rate = 0;
 		double sklp = 0;
-		if (entity instanceof LivingEntity _livEnt0 && _livEnt0.hasEffect(CaerulaArborModMobEffects.INVULNERABLE.get())) {
+		if (entity instanceof LivingEntity _livEnt0 && _livEnt0.hasEffect(ModMobEffects.INVULNERABLE.get())) {
 			if (event != null && event.isCancelable()) {
 				event.setCanceled(true);
 			}
@@ -85,7 +85,7 @@ public class MobHitFuncProcedure {
 			if (CaerulaArborModVariables.MapVariables.get(world).strategy_subsisting >= 3) {
 				rate = 0.9;
 			}
-			if (!(entity instanceof LivingEntity _livEnt2 && _livEnt2.hasEffect(CaerulaArborModMobEffects.DIZZY.get()) || entity instanceof LivingEntity _livEnt3 && _livEnt3.hasEffect(CaerulaArborModMobEffects.FROZEN.get())
+			if (!(entity instanceof LivingEntity _livEnt2 && _livEnt2.hasEffect(ModMobEffects.DIZZY.get()) || entity instanceof LivingEntity _livEnt3 && _livEnt3.hasEffect(ModMobEffects.FROZEN.get())
 					|| entity instanceof LivingEntity _livEnt4 && _livEnt4.hasEffect(MobEffects.MOVEMENT_SLOWDOWN) || entity instanceof LivingEntity _livEnt5 && _livEnt5.hasEffect(MobEffects.SLOW_FALLING))
 					&& !(damagesource.is(DamageTypes.GENERIC_KILL) || damagesource.is(DamageTypes.FELL_OUT_OF_WORLD) || damagesource.is(DamageTypes.SONIC_BOOM) || damagesource.is(DamageTypes.WITHER))) {
 				if (Math.random() < rate) {
@@ -235,18 +235,18 @@ public class MobHitFuncProcedure {
 				_livingEntity60.getAttribute(CaerulaArborModAttributes.EVOLVED.get()).setBaseValue(1);
 		}
 		if (sourceentity instanceof CrackerAbyssalEntity) {
-			amplifi = sourceentity instanceof LivingEntity _livEnt && _livEnt.hasEffect(CaerulaArborModMobEffects.REEF_CRACKER.get()) ? _livEnt.getEffect(CaerulaArborModMobEffects.REEF_CRACKER.get()).getAmplifier() : 0;
-			if (sourceentity instanceof LivingEntity _livEnt63 && _livEnt63.hasEffect(CaerulaArborModMobEffects.REEF_CRACKER.get())) {
+			amplifi = sourceentity instanceof LivingEntity _livEnt && _livEnt.hasEffect(ModMobEffects.REEF_CRACKER.get()) ? _livEnt.getEffect(ModMobEffects.REEF_CRACKER.get()).getAmplifier() : 0;
+			if (sourceentity instanceof LivingEntity _livEnt63 && _livEnt63.hasEffect(ModMobEffects.REEF_CRACKER.get())) {
 				if (amplifi < 14) {
 					if (sourceentity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-						_entity.addEffect(new MobEffectInstance(CaerulaArborModMobEffects.REEF_CRACKER.get(), 120, (int) (amplifi + 1), false, false));
+						_entity.addEffect(new MobEffectInstance(ModMobEffects.REEF_CRACKER.get(), 120, (int) (amplifi + 1), false, false));
 				} else {
 					if (sourceentity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-						_entity.addEffect(new MobEffectInstance(CaerulaArborModMobEffects.REEF_CRACKER.get(), 120, 14, false, false));
+						_entity.addEffect(new MobEffectInstance(ModMobEffects.REEF_CRACKER.get(), 120, 14, false, false));
 				}
 			} else {
 				if (sourceentity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-					_entity.addEffect(new MobEffectInstance(CaerulaArborModMobEffects.REEF_CRACKER.get(), 120, 0, false, false));
+					_entity.addEffect(new MobEffectInstance(ModMobEffects.REEF_CRACKER.get(), 120, 0, false, false));
 			}
 		}
 		if (entity instanceof ReaperFishEntity) {

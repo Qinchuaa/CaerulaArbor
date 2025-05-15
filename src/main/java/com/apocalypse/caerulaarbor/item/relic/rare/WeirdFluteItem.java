@@ -1,7 +1,7 @@
 package com.apocalypse.caerulaarbor.item.relic.rare;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModMobEffects;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModSounds;
+import com.apocalypse.caerulaarbor.init.ModMobEffects;
+import com.apocalypse.caerulaarbor.init.ModSounds;
 import com.apocalypse.caerulaarbor.item.relic.RelicItem;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.ChatFormatting;
@@ -67,7 +67,7 @@ public class WeirdFluteItem extends RelicItem {
             });
 
             if (!pLevel.isClientSide) {
-                entity.addEffect(new MobEffectInstance(CaerulaArborModMobEffects.ADD_REACH.get(), 300, 0, false, false));
+                entity.addEffect(new MobEffectInstance(ModMobEffects.ADD_REACH.get(), 300, 0, false, false));
             }
 
             pStack.getOrCreateTag().putBoolean("Used", true);
@@ -89,7 +89,7 @@ public class WeirdFluteItem extends RelicItem {
 
     @Override
     public @NotNull SoundEvent getGainSound() {
-        return CaerulaArborModSounds.FLUTESONG.get();
+        return ModSounds.FLUTESONG.get();
     }
 
     @Override

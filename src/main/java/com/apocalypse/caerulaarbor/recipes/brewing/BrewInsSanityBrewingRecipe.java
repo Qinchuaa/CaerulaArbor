@@ -14,7 +14,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Item;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModPotions;
+import com.apocalypse.caerulaarbor.init.ModPotions;
 import com.apocalypse.caerulaarbor.init.ModItems;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -38,7 +38,7 @@ public class BrewInsSanityBrewingRecipe implements IBrewingRecipe {
 	@Override
 	public ItemStack getOutput(ItemStack input, ItemStack ingredient) {
 		if (isInput(input) && isIngredient(ingredient)) {
-			return PotionUtils.setPotion(new ItemStack(input.getItem()), CaerulaArborModPotions.INST_SANITY.get());
+			return PotionUtils.setPotion(new ItemStack(input.getItem()), ModPotions.INST_SANITY.get());
 		}
 		return ItemStack.EMPTY;
 	}

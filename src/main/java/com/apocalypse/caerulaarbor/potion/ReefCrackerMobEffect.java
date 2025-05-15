@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.potion;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModMobEffects;
+import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.init.CaerulaArborModParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffect;
@@ -51,7 +51,7 @@ public class ReefCrackerMobEffect extends MobEffect {
         super.removeAttributeModifiers(entity, attributeMap, amplifier);
 
         if (amplifier >= 2 && !entity.level().isClientSide()) {
-            entity.addEffect(new MobEffectInstance(CaerulaArborModMobEffects.REEF_CRACKER.get(), 60, amplifier - 2, false, false));
+            entity.addEffect(new MobEffectInstance(ModMobEffects.REEF_CRACKER.get(), 60, amplifier - 2, false, false));
         }
     }
 

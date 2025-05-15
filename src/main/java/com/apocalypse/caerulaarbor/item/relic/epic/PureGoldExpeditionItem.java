@@ -1,6 +1,6 @@
 package com.apocalypse.caerulaarbor.item.relic.epic;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModMobEffects;
+import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.item.relic.RelicItem;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.ChatFormatting;
@@ -39,7 +39,7 @@ public class PureGoldExpeditionItem extends RelicItem {
         if (!stack.getOrCreateTag().getBoolean("Used")) {
             stack.getOrCreateTag().putBoolean("Used", true);
             if (!pLevel.isClientSide) {
-                pPlayer.addEffect(new MobEffectInstance(CaerulaArborModMobEffects.ADD_REACH.get(), 400, 1, false, false));
+                pPlayer.addEffect(new MobEffectInstance(ModMobEffects.ADD_REACH.get(), 400, 1, false, false));
             }
             pPlayer.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
                 capability.relic_util_VOYGOLD = true;

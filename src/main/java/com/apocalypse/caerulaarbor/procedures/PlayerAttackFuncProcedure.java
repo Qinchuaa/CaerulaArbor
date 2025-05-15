@@ -15,7 +15,7 @@ import net.minecraft.tags.ItemTags;
 import net.minecraft.resources.ResourceLocation;
 
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModMobEffects;
+import com.apocalypse.caerulaarbor.init.ModMobEffects;
 
 import javax.annotation.Nullable;
 
@@ -56,20 +56,20 @@ public class PlayerAttackFuncProcedure {
 			}
 			if ((sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_hand_BARREN
 					&& (sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).is(ItemTags.create(new ResourceLocation("minecraft:axes")))) {
-				if (sourceentity instanceof LivingEntity _livEnt9 && _livEnt9.hasEffect(CaerulaArborModMobEffects.BUTCHERS_POWER.get())) {
-					if ((sourceentity instanceof LivingEntity _livEnt && _livEnt.hasEffect(CaerulaArborModMobEffects.BUTCHERS_POWER.get()) ? _livEnt.getEffect(CaerulaArborModMobEffects.BUTCHERS_POWER.get()).getAmplifier() : 0) < 7) {
+				if (sourceentity instanceof LivingEntity _livEnt9 && _livEnt9.hasEffect(ModMobEffects.BUTCHERS_POWER.get())) {
+					if ((sourceentity instanceof LivingEntity _livEnt && _livEnt.hasEffect(ModMobEffects.BUTCHERS_POWER.get()) ? _livEnt.getEffect(ModMobEffects.BUTCHERS_POWER.get()).getAmplifier() : 0) < 7) {
 						if (sourceentity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-							_entity.addEffect(new MobEffectInstance(CaerulaArborModMobEffects.BUTCHERS_POWER.get(), 160,
-									(int) ((sourceentity instanceof LivingEntity _livEnt && _livEnt.hasEffect(CaerulaArborModMobEffects.BUTCHERS_POWER.get()) ? _livEnt.getEffect(CaerulaArborModMobEffects.BUTCHERS_POWER.get()).getAmplifier() : 0)
+							_entity.addEffect(new MobEffectInstance(ModMobEffects.BUTCHERS_POWER.get(), 160,
+									(int) ((sourceentity instanceof LivingEntity _livEnt && _livEnt.hasEffect(ModMobEffects.BUTCHERS_POWER.get()) ? _livEnt.getEffect(ModMobEffects.BUTCHERS_POWER.get()).getAmplifier() : 0)
 											+ 1),
 									false, false));
 					} else {
 						if (sourceentity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-							_entity.addEffect(new MobEffectInstance(CaerulaArborModMobEffects.BUTCHERS_POWER.get(), 160, 7, false, false));
+							_entity.addEffect(new MobEffectInstance(ModMobEffects.BUTCHERS_POWER.get(), 160, 7, false, false));
 					}
 				} else {
 					if (sourceentity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-						_entity.addEffect(new MobEffectInstance(CaerulaArborModMobEffects.BUTCHERS_POWER.get(), 160, 0, false, false));
+						_entity.addEffect(new MobEffectInstance(ModMobEffects.BUTCHERS_POWER.get(), 160, 0, false, false));
 				}
 			}
 		}

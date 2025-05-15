@@ -5,7 +5,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.effect.MobEffectInstance;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModMobEffects;
+import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.entity.RouteShaperEntity;
 
 public class BossRouterInitProcedure {
@@ -15,7 +15,7 @@ public class BossRouterInitProcedure {
 		if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
 			_entity.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 2, 0, false, false));
 		if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-			_entity.addEffect(new MobEffectInstance(CaerulaArborModMobEffects.INVULNERABLE.get(), 10, 0, false, false));
+			_entity.addEffect(new MobEffectInstance(ModMobEffects.INVULNERABLE.get(), 10, 0, false, false));
 		if (entity instanceof RouteShaperEntity) {
 			((RouteShaperEntity) entity).setAnimation("animation.routeshaper.start");
 		}

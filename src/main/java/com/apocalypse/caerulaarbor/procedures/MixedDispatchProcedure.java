@@ -10,7 +10,7 @@ import net.minecraft.tags.TagKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.registries.Registries;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModMobEffects;
+import com.apocalypse.caerulaarbor.init.ModMobEffects;
 
 import java.util.List;
 import java.util.Comparator;
@@ -23,7 +23,7 @@ public class MixedDispatchProcedure {
 			for (Entity entityiterator : _entfound) {
 				if (entityiterator.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanoffspring")))) {
 					if (entityiterator instanceof LivingEntity _entity && !_entity.level().isClientSide())
-						_entity.addEffect(new MobEffectInstance(CaerulaArborModMobEffects.ANGER_OF_TIDE.get(), 131072, 0, false, true));
+						_entity.addEffect(new MobEffectInstance(ModMobEffects.ANGER_OF_TIDE.get(), 131072, 0, false, true));
 				}
 			}
 		}

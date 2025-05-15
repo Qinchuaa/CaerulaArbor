@@ -24,7 +24,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.BlockPos;
 
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModMobEffects;
+import com.apocalypse.caerulaarbor.init.ModMobEffects;
 
 import java.util.List;
 import java.util.Comparator;
@@ -67,14 +67,14 @@ public class GainRelicRESCISSIONProcedure {
 						owner = entityiterator instanceof TamableAnimal _tamEnt ? (Entity) _tamEnt.getOwner() : null;
 					}
 					if (owner == entity) {
-						if (entityiterator instanceof LivingEntity _livEnt11 && _livEnt11.hasEffect(CaerulaArborModMobEffects.UNTAME_CONFIRM.get())) {
+						if (entityiterator instanceof LivingEntity _livEnt11 && _livEnt11.hasEffect(ModMobEffects.UNTAME_CONFIRM.get())) {
 							if (entityiterator instanceof TamableAnimal _ent) {
 								_ent.setTame(false);
 							}
 							if (entity instanceof Player _player && !_player.level().isClientSide())
 								_player.displayClientMessage(Component.literal((entityiterator.getDisplayName().getString() + "" + Component.translatable("item.caerula_arbor.language_key.description_2").getString())), false);
 							if (entityiterator instanceof LivingEntity _entity)
-								_entity.removeEffect(CaerulaArborModMobEffects.UNTAME_CONFIRM.get());
+								_entity.removeEffect(ModMobEffects.UNTAME_CONFIRM.get());
 							if (world instanceof ServerLevel _level)
 								_level.sendParticles(ParticleTypes.ASH, (entityiterator.getX()), (entityiterator.getY()), (entityiterator.getZ()), 72, 1, 1, 1, 0.5);
 							itemstack.shrink(1);
@@ -89,7 +89,7 @@ public class GainRelicRESCISSIONProcedure {
 								_player.displayClientMessage(Component.literal(("\u00A7c" + Component.translatable("item.caerula_arbor.language_key.description_0").getString() + entityiterator.getDisplayName().getString()
 										+ Component.translatable("item.caerula_arbor.language_key.description_1").getString())), false);
 							if (entityiterator instanceof LivingEntity _entity && !_entity.level().isClientSide())
-								_entity.addEffect(new MobEffectInstance(CaerulaArborModMobEffects.UNTAME_CONFIRM.get(), 300, 0, false, false));
+								_entity.addEffect(new MobEffectInstance(ModMobEffects.UNTAME_CONFIRM.get(), 300, 0, false, false));
 						}
 						break;
 					}

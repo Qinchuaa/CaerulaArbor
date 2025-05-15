@@ -13,7 +13,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Item;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModPotions;
+import com.apocalypse.caerulaarbor.init.ModPotions;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class UpgradeSanityCureBrewingRecipe implements IBrewingRecipe {
@@ -25,7 +25,7 @@ public class UpgradeSanityCureBrewingRecipe implements IBrewingRecipe {
 	@Override
 	public boolean isInput(ItemStack input) {
 		Item inputItem = input.getItem();
-		return (inputItem == Items.POTION || inputItem == Items.SPLASH_POTION || inputItem == Items.LINGERING_POTION) && PotionUtils.getPotion(input) == CaerulaArborModPotions.SANITY_CURE.get();
+		return (inputItem == Items.POTION || inputItem == Items.SPLASH_POTION || inputItem == Items.LINGERING_POTION) && PotionUtils.getPotion(input) == ModPotions.SANITY_CURE.get();
 	}
 
 	@Override
@@ -36,7 +36,7 @@ public class UpgradeSanityCureBrewingRecipe implements IBrewingRecipe {
 	@Override
 	public ItemStack getOutput(ItemStack input, ItemStack ingredient) {
 		if (isInput(input) && isIngredient(ingredient)) {
-			return PotionUtils.setPotion(new ItemStack(input.getItem()), CaerulaArborModPotions.SANITY_CURE_II.get());
+			return PotionUtils.setPotion(new ItemStack(input.getItem()), ModPotions.SANITY_CURE_II.get());
 		}
 		return ItemStack.EMPTY;
 	}

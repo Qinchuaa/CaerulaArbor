@@ -35,7 +35,7 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.BlockPos;
 
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModMobEffects;
+import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.init.CaerulaArborModEnchantments;
 import com.apocalypse.caerulaarbor.init.CaerulaArborModAttributes;
@@ -101,7 +101,7 @@ public class PlayerHitFuncProcedure {
 				}
 				if (Math.random() < rate) {
 					if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-						_entity.addEffect(new MobEffectInstance(CaerulaArborModMobEffects.FROZEN.get(), (int) time, 0, false, false));
+						_entity.addEffect(new MobEffectInstance(ModMobEffects.FROZEN.get(), (int) time, 0, false, false));
 				}
 			}
 			if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_hand_THORNS) {
@@ -211,15 +211,15 @@ public class PlayerHitFuncProcedure {
 			}
 			if ((immediatesourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).is(ItemTags.create(new ResourceLocation("minecraft:swords")))) {
 				if ((immediatesourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_hand_SWORD) {
-					if (!(entity instanceof LivingEntity _livEnt59 && _livEnt59.hasEffect(CaerulaArborModMobEffects.ROCK_BREAK.get()))
-							&& !!(entity instanceof LivingEntity _entity ? _entity.canBeAffected(new MobEffectInstance(CaerulaArborModMobEffects.ROCK_BREAK.get())) : true)) {
+					if (!(entity instanceof LivingEntity _livEnt59 && _livEnt59.hasEffect(ModMobEffects.ROCK_BREAK.get()))
+							&& !!(entity instanceof LivingEntity _entity ? _entity.canBeAffected(new MobEffectInstance(ModMobEffects.ROCK_BREAK.get())) : true)) {
 						if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-							_entity.addEffect(new MobEffectInstance(CaerulaArborModMobEffects.ROCK_BREAK.get(), 120, 0));
+							_entity.addEffect(new MobEffectInstance(ModMobEffects.ROCK_BREAK.get(), 120, 0));
 					}
 					if (immediatesourceentity instanceof LivingEntity _entity)
 						_entity.setHealth((float) ((immediatesourceentity instanceof LivingEntity _livEnt ? _livEnt.getHealth() : -1) + (immediatesourceentity instanceof LivingEntity _livEnt ? _livEnt.getMaxHealth() : -1) * 0.1));
 					if (immediatesourceentity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-						_entity.addEffect(new MobEffectInstance(CaerulaArborModMobEffects.ADD_REACH.get(), 120, 3, false, false));
+						_entity.addEffect(new MobEffectInstance(ModMobEffects.ADD_REACH.get(), 120, 3, false, false));
 				}
 			}
 		}
@@ -315,7 +315,7 @@ public class PlayerHitFuncProcedure {
 						});
 					}
 					if (sourceentity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-						_entity.addEffect(new MobEffectInstance(CaerulaArborModMobEffects.TIDE_OF_CHITIN.get(), 500, 0, false, false));
+						_entity.addEffect(new MobEffectInstance(ModMobEffects.TIDE_OF_CHITIN.get(), 500, 0, false, false));
 					if (world instanceof Level _level) {
 						if (_level.isClientSide()) {
 							_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.beacon.activate")), SoundSource.NEUTRAL, (float) 3.2, 1, false);

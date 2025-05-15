@@ -20,7 +20,7 @@ import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.core.BlockPos;
 
 import com.apocalypse.caerulaarbor.procedures.SwitchStatsShowProcedure;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModMenus;
+import com.apocalypse.caerulaarbor.init.ModMenus;
 
 import java.util.function.Supplier;
 import java.util.Map;
@@ -41,7 +41,7 @@ public class CaerulaRecordGUIMenu extends AbstractContainerMenu implements Suppl
 	private BlockEntity boundBlockEntity = null;
 
 	public CaerulaRecordGUIMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
-		super(CaerulaArborModMenus.CAERULA_RECORD_GUI.get(), id);
+		super(ModMenus.CAERULA_RECORD_GUI.get(), id);
 		this.entity = inv.player;
 		this.world = inv.player.level();
 		this.internal = new ItemStackHandler(0);

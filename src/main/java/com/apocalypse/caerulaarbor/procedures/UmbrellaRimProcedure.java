@@ -11,7 +11,7 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.core.particles.ParticleTypes;
 
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModMobEffects;
+import com.apocalypse.caerulaarbor.init.ModMobEffects;
 
 public class UmbrellaRimProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
@@ -38,9 +38,9 @@ public class UmbrellaRimProcedure {
 					_level.sendParticles(ParticleTypes.ELECTRIC_SPARK, (x + 6.9 * Math.sin(angle)), (y + 0.4), (z + 6.9 * Math.cos(angle)), 2, 0.15, 0.15, 0.15, 0.1);
 			}
 		}
-		if (!(entity instanceof LivingEntity _livEnt9 && _livEnt9.hasEffect(CaerulaArborModMobEffects.UMBRELLA_SETTLE.get()))) {
+		if (!(entity instanceof LivingEntity _livEnt9 && _livEnt9.hasEffect(ModMobEffects.UMBRELLA_SETTLE.get()))) {
 			if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-				_entity.addEffect(new MobEffectInstance(CaerulaArborModMobEffects.UMBRELLA_SETTLE.get(), 120, 0, false, false));
+				_entity.addEffect(new MobEffectInstance(ModMobEffects.UMBRELLA_SETTLE.get(), 120, 0, false, false));
 		}
 	}
 }

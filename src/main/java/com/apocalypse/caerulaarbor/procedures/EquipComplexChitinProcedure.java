@@ -6,7 +6,7 @@ import net.minecraft.world.entity.EquipmentSlot;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.effect.MobEffectInstance;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModMobEffects;
+import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.init.ModItems;
 
 public class EquipComplexChitinProcedure {
@@ -27,9 +27,9 @@ public class EquipComplexChitinProcedure {
 		if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY).getItem() == ModItems.COMPLEXCHITIN_ARMOR_HELMET.get()) {
 			suit = suit + 1;
 		}
-		if (suit > 0 && !(entity instanceof LivingEntity _livEnt8 && _livEnt8.hasEffect(CaerulaArborModMobEffects.SANITY_PROTECT.get()))) {
+		if (suit > 0 && !(entity instanceof LivingEntity _livEnt8 && _livEnt8.hasEffect(ModMobEffects.SANITY_PROTECT.get()))) {
 			if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-				_entity.addEffect(new MobEffectInstance(CaerulaArborModMobEffects.SANITY_PROTECT.get(), 40, (int) (suit - 1), false, false));
+				_entity.addEffect(new MobEffectInstance(ModMobEffects.SANITY_PROTECT.get(), 40, (int) (suit - 1), false, false));
 		}
 	}
 }

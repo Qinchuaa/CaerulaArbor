@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.client.screens;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModMobEffects;
+import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import com.apocalypse.caerulaarbor.procedures.GetDemonIconProcedure;
 import com.apocalypse.caerulaarbor.procedures.GetKingiconProcedure;
@@ -29,7 +29,7 @@ public class RelicFuncShowOverlay {
         event.getGuiGraphics().blit(new ResourceLocation("caerula_arbor:textures/screens/icon_king.png"), 6, 8, Mth.clamp((int) GetKingiconProcedure.execute(player) * 16, 0, 32), 0, 16, 16, 48, 16);
         event.getGuiGraphics().blit(new ResourceLocation("caerula_arbor:textures/screens/icon_artifi.png"), 22, 8, Mth.clamp((int) GetDemonIconProcedure.execute(player) * 16, 0, 32), 0, 16, 16, 48, 16);
 
-        if (player.hasEffect(CaerulaArborModMobEffects.TIDE_OF_CHITIN.get())) {
+        if (player.hasEffect(ModMobEffects.TIDE_OF_CHITIN.get())) {
             event.getGuiGraphics().blit(new ResourceLocation("caerula_arbor:textures/screens/icon_chitin.png"), 38, 8, 0, 0, 16, 16, 16, 16);
         }
     }

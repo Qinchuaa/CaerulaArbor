@@ -1,7 +1,3 @@
-
-/*
- *	MCreator note: This file will be REGENERATED on each build.
- */
 package com.apocalypse.caerulaarbor.init;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
@@ -52,19 +48,21 @@ import com.apocalypse.caerulaarbor.potion.AngerOfTideMobEffect;
 import com.apocalypse.caerulaarbor.potion.AddReachMobEffect;
 import com.apocalypse.caerulaarbor.potion.AddAttackPerclyMobEffect;
 
-public class CaerulaArborModMobEffects {
+public class ModMobEffects {
+
 	public static final DeferredRegister<MobEffect> REGISTRY = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, CaerulaArborMod.MODID);
-	public static final RegistryObject<MobEffect> HAEMOPHILIA = REGISTRY.register("haemophilia", () -> new HaemophiliaMobEffect());
-	public static final RegistryObject<MobEffect> SANITY_IMMUE = REGISTRY.register("sanity_immue", () -> new SanityImmueMobEffect());
-	public static final RegistryObject<MobEffect> DIZZY = REGISTRY.register("dizzy", () -> new DizzyMobEffect());
-	public static final RegistryObject<MobEffect> KINGS_BREATH = REGISTRY.register("kings_breath", () -> new KingsBreathMobEffect());
-	public static final RegistryObject<MobEffect> KINGS_BOOST = REGISTRY.register("kings_boost", () -> new KingsBoostMobEffect());
-	public static final RegistryObject<MobEffect> SPEAR_FIGHT = REGISTRY.register("spear_fight", () -> new SpearFightMobEffect());
-	public static final RegistryObject<MobEffect> HANDS_SPEED = REGISTRY.register("hands_speed", () -> new HandsSpeedMobEffect());
-	public static final RegistryObject<MobEffect> BUTCHERS_POWER = REGISTRY.register("butchers_power", () -> new ButchersPowerMobEffect());
-	public static final RegistryObject<MobEffect> WIPE_DUSTS = REGISTRY.register("wipe_dusts", () -> new WipeDustsMobEffect());
-	public static final RegistryObject<MobEffect> SACREFICE = REGISTRY.register("sacrefice", () -> new SacreficeMobEffect());
-	public static final RegistryObject<MobEffect> ENGRAVED_TRIUMPH = REGISTRY.register("engraved_triumph", () -> new EngravedTriumphMobEffect());
+
+	public static final RegistryObject<MobEffect> HAEMOPHILIA = REGISTRY.register("haemophilia", HaemophiliaMobEffect::new);
+	public static final RegistryObject<MobEffect> SANITY_IMMUE = REGISTRY.register("sanity_immue", SanityImmueMobEffect::new);
+	public static final RegistryObject<MobEffect> DIZZY = REGISTRY.register("dizzy", DizzyMobEffect::new);
+	public static final RegistryObject<MobEffect> KINGS_BREATH = REGISTRY.register("kings_breath", KingsBreathMobEffect::new);
+	public static final RegistryObject<MobEffect> KINGS_BOOST = REGISTRY.register("kings_boost", KingsBoostMobEffect::new);
+	public static final RegistryObject<MobEffect> SPEAR_FIGHT = REGISTRY.register("spear_fight", SpearFightMobEffect::new);
+	public static final RegistryObject<MobEffect> HANDS_SPEED = REGISTRY.register("hands_speed", HandsSpeedMobEffect::new);
+	public static final RegistryObject<MobEffect> BUTCHERS_POWER = REGISTRY.register("butchers_power", ButchersPowerMobEffect::new);
+	public static final RegistryObject<MobEffect> WIPE_DUSTS = REGISTRY.register("wipe_dusts", WipeDustsMobEffect::new);
+	public static final RegistryObject<MobEffect> SACREFICE = REGISTRY.register("sacrefice", SacreficeMobEffect::new);
+	public static final RegistryObject<MobEffect> ENGRAVED_TRIUMPH = REGISTRY.register("engraved_triumph", EngravedTriumphMobEffect::new);
 	public static final RegistryObject<MobEffect> FLAG_SWINGS = REGISTRY.register("flag_swings", () -> new FlagSwingsMobEffect());
 	public static final RegistryObject<MobEffect> KEEP_BEDDING = REGISTRY.register("keep_bedding", () -> new KeepBeddingMobEffect());
 	public static final RegistryObject<MobEffect> SURVIVORS_GUIDE = REGISTRY.register("survivors_guide", () -> new SurvivorsGuideMobEffect());

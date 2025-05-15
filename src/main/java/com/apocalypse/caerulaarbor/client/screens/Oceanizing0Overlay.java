@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.client.screens;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModMobEffects;
+import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
@@ -29,8 +29,8 @@ public class Oceanizing0Overlay {
         RenderSystem.setShaderColor(1, 1, 1, 1);
 
         if (entity != null
-                && entity.hasEffect(CaerulaArborModMobEffects.INFESTED.get())
-                && (entity.hasEffect(CaerulaArborModMobEffects.INFESTED.get()) ? entity.getEffect(CaerulaArborModMobEffects.INFESTED.get()).getAmplifier() : 0) == 0
+                && entity.hasEffect(ModMobEffects.INFESTED.get())
+                && (entity.hasEffect(ModMobEffects.INFESTED.get()) ? entity.getEffect(ModMobEffects.INFESTED.get()).getAmplifier() : 0) == 0
         ) {
             event.getGuiGraphics().blit(new ResourceLocation("caerula_arbor:textures/screens/transforming0.png"), 0, 0, 0, 0, w, h, w, h);
         }

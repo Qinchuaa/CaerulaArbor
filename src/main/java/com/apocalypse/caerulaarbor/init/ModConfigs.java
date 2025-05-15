@@ -8,12 +8,11 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 
+// TODO 挪走 更正文件名
 @Mod.EventBusSubscriber(modid = CaerulaArborMod.MODID, bus = Mod.EventBusSubscriber.Bus.MOD)
-public class CaerulaArborModConfigs {
-	@SubscribeEvent
-	public static void register(FMLConstructModEvent event) {
-		event.enqueueWork(() -> {
-			ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CaerulaConfigsConfiguration.SPEC, "caerular_configs.toml");
-		});
-	}
+public class ModConfigs {
+    @SubscribeEvent
+    public static void register(FMLConstructModEvent event) {
+        event.enqueueWork(() -> ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CaerulaConfigsConfiguration.SPEC, "caerular_configs.toml"));
+    }
 }

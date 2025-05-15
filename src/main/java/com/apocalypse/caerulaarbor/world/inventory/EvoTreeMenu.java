@@ -16,7 +16,7 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.core.BlockPos;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModMenus;
+import com.apocalypse.caerulaarbor.init.ModMenus;
 
 import java.util.function.Supplier;
 import java.util.Map;
@@ -36,7 +36,7 @@ public class EvoTreeMenu extends AbstractContainerMenu implements Supplier<Map<I
 	private BlockEntity boundBlockEntity = null;
 
 	public EvoTreeMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
-		super(CaerulaArborModMenus.EVO_TREE.get(), id);
+		super(ModMenus.EVO_TREE.get(), id);
 		this.entity = inv.player;
 		this.world = inv.player.level();
 		this.internal = new ItemStackHandler(0);

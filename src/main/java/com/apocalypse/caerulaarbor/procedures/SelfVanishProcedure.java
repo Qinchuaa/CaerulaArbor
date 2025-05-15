@@ -15,7 +15,7 @@ import net.minecraft.core.particles.SimpleParticleType;
 
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import com.apocalypse.caerulaarbor.init.CaerulaArborModParticleTypes;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModMobEffects;
+import com.apocalypse.caerulaarbor.init.ModMobEffects;
 
 public class SelfVanishProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
@@ -29,7 +29,7 @@ public class SelfVanishProcedure {
 				}
 			}
 			if (entity instanceof LivingEntity _entity)
-				_entity.removeEffect(CaerulaArborModMobEffects.TIDE_OF_CHITIN.get());
+				_entity.removeEffect(ModMobEffects.TIDE_OF_CHITIN.get());
 		}
 		if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).kingShowPtc) {
 			world.addParticle((SimpleParticleType) (CaerulaArborModParticleTypes.KNIFEPTC.get()), (x + Mth.nextDouble(RandomSource.create(), -0.45, 0.45)), (y + Mth.nextDouble(RandomSource.create(), 0, entity.getBbHeight() * 0.8)),
