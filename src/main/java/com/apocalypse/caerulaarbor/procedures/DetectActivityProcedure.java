@@ -2,7 +2,7 @@ package com.apocalypse.caerulaarbor.procedures;
 
 // TODO 为什么这个会报错？这是干啥的？
 public class DetectActivityProcedure {
-//    public static void execute(LevelAccessor world, double x, double y, double z, BlockState blockstate) {
+//    public static void onAnvilUpdate(LevelAccessor world, double x, double y, double z, BlockState blockstate) {
 //        double dx;
 //        double dy;
 //        double dz;

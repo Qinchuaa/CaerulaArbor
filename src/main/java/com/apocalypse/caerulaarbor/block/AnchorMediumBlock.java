@@ -101,7 +101,7 @@ public class AnchorMediumBlock extends Block {
 		int y = pos.getY();
 		int z = pos.getZ();
 		// TODO 这是什么玩意 为什么会报错 还没有标红
-//		DetectActivityProcedure.execute(world, x, y, z, blockstate);
+//		DetectActivityProcedure.onAnvilUpdate(world, x, y, z, blockstate);
 		world.scheduleTick(pos, this, 10);
 	}
 
