@@ -15,7 +15,7 @@ public class SetShieldProcedure {
 		{
 			double _setval = DoubleArgumentType.getDouble(arguments, "shield");
 			entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-				capability.player_shield = _setval;
+				capability.shield = _setval;
 				capability.syncPlayerVariables(entity);
 			});
 		}

@@ -61,25 +61,25 @@ public class RelicItem extends Item implements IRelic {
 
             if (this.getAddedLives() != 0) {
                 double lives = (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-                        .orElse(new CaerulaArborModVariables.PlayerVariables())).player_maxlive + this.getAddedLives();
+                        .orElse(new CaerulaArborModVariables.PlayerVariables())).maxLive + this.getAddedLives();
                 entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-                    capability.player_maxlive = lives;
+                    capability.maxLive = lives;
                     capability.syncPlayerVariables(entity);
                 });
             }
             if (this.getAddedMaxLives() != 0) {
                 double maxLives = (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-                        .orElse(new CaerulaArborModVariables.PlayerVariables())).player_lives + this.getAddedMaxLives();
+                        .orElse(new CaerulaArborModVariables.PlayerVariables())).lives + this.getAddedMaxLives();
                 entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-                    capability.player_lives = maxLives;
+                    capability.lives = maxLives;
                     capability.syncPlayerVariables(entity);
                 });
             }
             if (this.getAddedShield() != 0) {
                 double shield = (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null)
-                        .orElse(new CaerulaArborModVariables.PlayerVariables())).player_shield + this.getAddedShield();
+                        .orElse(new CaerulaArborModVariables.PlayerVariables())).shield + this.getAddedShield();
                 entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-                    capability.player_shield = shield;
+                    capability.shield = shield;
                     capability.syncPlayerVariables(entity);
                 });
             }

@@ -17,7 +17,7 @@ public class SetLightProcedure {
 				{
 					double _setval = DoubleArgumentType.getDouble(arguments, "light");
 					entityiterator.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-						capability.player_light = _setval;
+						capability.light = _setval;
 						capability.syncPlayerVariables(entityiterator);
 					});
 				}

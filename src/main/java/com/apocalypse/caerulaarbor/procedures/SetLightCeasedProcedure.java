@@ -16,7 +16,7 @@ public class SetLightCeasedProcedure {
 				{
 					double _setval = 0;
 					entityiterator.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-						capability.player_light = _setval;
+						capability.light = _setval;
 						capability.syncPlayerVariables(entityiterator);
 					});
 				}

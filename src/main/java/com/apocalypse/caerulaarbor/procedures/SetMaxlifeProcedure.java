@@ -24,7 +24,7 @@ public class SetMaxlifeProcedure {
 					}
 				}
 			}.getEntity()).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-				capability.player_maxlive = _setval;
+				capability.maxLive = _setval;
 				capability.syncPlayerVariables((new Object() {
 					public Entity getEntity() {
 						try {

@@ -16,7 +16,7 @@ public class SetLightVawingProcedure {
 				{
 					double _setval = 80;
 					entityiterator.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-						capability.player_light = _setval;
+						capability.light = _setval;
 						capability.syncPlayerVariables(entityiterator);
 					});
 				}

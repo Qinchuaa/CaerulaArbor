@@ -21,7 +21,7 @@ public class SetLiveProcedure {
 					return null;
 				}
 			}
-		}.getEntity()).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).player_maxlive) {
+		}.getEntity()).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).maxLive) {
 			{
 				double _setval = DoubleArgumentType.getDouble(arguments, "life");
 				(new Object() {
@@ -34,7 +34,7 @@ public class SetLiveProcedure {
 						}
 					}
 				}.getEntity()).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-					capability.player_lives = _setval;
+					capability.lives = _setval;
 					capability.syncPlayerVariables((new Object() {
 						public Entity getEntity() {
 							try {
@@ -58,7 +58,7 @@ public class SetLiveProcedure {
 							return null;
 						}
 					}
-				}.getEntity()).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).player_maxlive;
+				}.getEntity()).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).maxLive;
 				(new Object() {
 					public Entity getEntity() {
 						try {
@@ -69,7 +69,7 @@ public class SetLiveProcedure {
 						}
 					}
 				}.getEntity()).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-					capability.player_lives = _setval;
+					capability.lives = _setval;
 					capability.syncPlayerVariables((new Object() {
 						public Entity getEntity() {
 							try {

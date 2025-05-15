@@ -16,7 +16,7 @@ public class SetLightDimProcedure {
 				{
 					double _setval = 40;
 					entityiterator.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-						capability.player_light = _setval;
+						capability.light = _setval;
 						capability.syncPlayerVariables(entityiterator);
 					});
 				}

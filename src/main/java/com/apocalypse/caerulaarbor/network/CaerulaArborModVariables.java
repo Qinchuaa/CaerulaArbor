@@ -56,30 +56,30 @@ public class CaerulaArborModVariables {
 		@SubscribeEvent
 		public static void onPlayerLoggedInSyncPlayerVariables(PlayerEvent.PlayerLoggedInEvent event) {
 			if (!event.getEntity().level().isClientSide())
-				((PlayerVariables) event.getEntity().getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables())).syncPlayerVariables(event.getEntity());
+				event.getEntity().getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()).syncPlayerVariables(event.getEntity());
 		}
 
 		@SubscribeEvent
 		public static void onPlayerRespawnedSyncPlayerVariables(PlayerEvent.PlayerRespawnEvent event) {
 			if (!event.getEntity().level().isClientSide())
-				((PlayerVariables) event.getEntity().getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables())).syncPlayerVariables(event.getEntity());
+				event.getEntity().getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()).syncPlayerVariables(event.getEntity());
 		}
 
 		@SubscribeEvent
 		public static void onPlayerChangedDimensionSyncPlayerVariables(PlayerEvent.PlayerChangedDimensionEvent event) {
 			if (!event.getEntity().level().isClientSide())
-				((PlayerVariables) event.getEntity().getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables())).syncPlayerVariables(event.getEntity());
+				event.getEntity().getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()).syncPlayerVariables(event.getEntity());
 		}
 
 		@SubscribeEvent
 		public static void clonePlayer(PlayerEvent.Clone event) {
 			event.getOriginal().revive();
-			PlayerVariables original = ((PlayerVariables) event.getOriginal().getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()));
-			PlayerVariables clone = ((PlayerVariables) event.getEntity().getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()));
-			clone.player_light = original.player_light;
-			clone.player_lives = original.player_lives;
-			clone.player_maxlive = original.player_maxlive;
-			clone.player_shield = original.player_shield;
+			PlayerVariables original = event.getOriginal().getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables());
+			PlayerVariables clone = event.getEntity().getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables());
+			clone.light = original.light;
+			clone.lives = original.lives;
+			clone.maxLive = original.maxLive;
+			clone.shield = original.shield;
 			clone.disoclusion = original.disoclusion;
 			clone.show_stats = original.show_stats;
 			clone.relic_cursed_EMELIGHT = original.relic_cursed_EMELIGHT;
@@ -186,7 +186,7 @@ public class CaerulaArborModVariables {
 
 		public static WorldVariables get(LevelAccessor world) {
 			if (world instanceof ServerLevel level) {
-				return level.getDataStorage().computeIfAbsent(e -> WorldVariables.load(e), WorldVariables::new, DATA_NAME);
+				return level.getDataStorage().computeIfAbsent(WorldVariables::load, WorldVariables::new, DATA_NAME);
 			} else {
 				return clientSide;
 			}
@@ -331,11 +331,12 @@ public class CaerulaArborModVariables {
 		}
 	}
 
+	// TODO 把这坨清理了
 	public static class PlayerVariables {
-		public double player_light = 100.0;
-		public double player_lives = 6.0;
-		public double player_maxlive = 6.0;
-		public double player_shield = 0;
+		public double light = 100.0;
+		public double lives = 6.0;
+		public double maxLive = 6.0;
+		public double shield = 0;
 		public double disoclusion = 0;
 		public boolean show_stats = false;
 		public boolean relic_cursed_EMELIGHT = false;
@@ -397,10 +398,10 @@ public class CaerulaArborModVariables {
 
 		public Tag writeNBT() {
 			CompoundTag nbt = new CompoundTag();
-			nbt.putDouble("player_light", player_light);
-			nbt.putDouble("player_lives", player_lives);
-			nbt.putDouble("player_maxlive", player_maxlive);
-			nbt.putDouble("player_shield", player_shield);
+			nbt.putDouble("player_light", light);
+			nbt.putDouble("player_lives", lives);
+			nbt.putDouble("player_maxlive", maxLive);
+			nbt.putDouble("player_shield", shield);
 			nbt.putDouble("disoclusion", disoclusion);
 			nbt.putBoolean("show_stats", show_stats);
 			nbt.putBoolean("relic_cursed_EMELIGHT", relic_cursed_EMELIGHT);
@@ -459,10 +460,10 @@ public class CaerulaArborModVariables {
 
 		public void readNBT(Tag tag) {
 			CompoundTag nbt = (CompoundTag) tag;
-			player_light = nbt.getDouble("player_light");
-			player_lives = nbt.getDouble("player_lives");
-			player_maxlive = nbt.getDouble("player_maxlive");
-			player_shield = nbt.getDouble("player_shield");
+			light = nbt.getDouble("player_light");
+			lives = nbt.getDouble("player_lives");
+			maxLive = nbt.getDouble("player_maxlive");
+			shield = nbt.getDouble("player_shield");
 			disoclusion = nbt.getDouble("disoclusion");
 			show_stats = nbt.getBoolean("show_stats");
 			relic_cursed_EMELIGHT = nbt.getBoolean("relic_cursed_EMELIGHT");
@@ -540,10 +541,10 @@ public class CaerulaArborModVariables {
 			context.enqueueWork(() -> {
 				if (!context.getDirection().getReceptionSide().isServer()) {
 					PlayerVariables variables = ((PlayerVariables) Minecraft.getInstance().player.getCapability(PLAYER_VARIABLES_CAPABILITY, null).orElse(new PlayerVariables()));
-					variables.player_light = message.data.player_light;
-					variables.player_lives = message.data.player_lives;
-					variables.player_maxlive = message.data.player_maxlive;
-					variables.player_shield = message.data.player_shield;
+					variables.light = message.data.light;
+					variables.lives = message.data.lives;
+					variables.maxLive = message.data.maxLive;
+					variables.shield = message.data.shield;
 					variables.disoclusion = message.data.disoclusion;
 					variables.show_stats = message.data.show_stats;
 					variables.relic_cursed_EMELIGHT = message.data.relic_cursed_EMELIGHT;

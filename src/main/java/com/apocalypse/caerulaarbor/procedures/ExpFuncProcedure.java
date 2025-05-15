@@ -35,7 +35,7 @@ public class ExpFuncProcedure {
 			return;
 		double exp_left = 0;
 		if (sourceentity instanceof Player && (sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_king_EXTENSION) {
-			if ((sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).player_lives <= 1) {
+			if ((sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).lives <= 1) {
 				exp_left = originalexperience;
 				while (exp_left >= 11) {
 					if (world instanceof ServerLevel _level)
