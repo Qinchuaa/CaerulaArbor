@@ -36,7 +36,7 @@ import com.apocalypse.caerulaarbor.item.ToponymTextologyItem;
 import com.apocalypse.caerulaarbor.item.ThermographItem;
 import com.apocalypse.caerulaarbor.item.TheSpearItem;
 import com.apocalypse.caerulaarbor.item.SwordOceanCrystalItem;
-import com.apocalypse.caerulaarbor.item.SurvivorContractItem;
+import com.apocalypse.caerulaarbor.item.relic.epic.SurvivorContractItem;
 import com.apocalypse.caerulaarbor.item.SoloMusicBoxItem;
 import com.apocalypse.caerulaarbor.item.SeaTrailMorItem;
 import com.apocalypse.caerulaarbor.item.ScoreItem;
@@ -185,7 +185,6 @@ public class ModItems {
     public static final RegistryObject<Item> ARCHFIENDS_FLAG = ITEMS.register("archfiends_flag", () -> new ArchfiendsFlagItem());
     public static final RegistryObject<Item> HAND_OF_ENGRAVE = ITEMS.register("hand_of_engrave", () -> new HandOfEngraveItem());
     public static final RegistryObject<Item> ARCHFIENDS_BED = ITEMS.register("archfiends_bed", () -> new ArchfiendsBedItem());
-    public static final RegistryObject<Item> SURVIVOR_CONTRACT = ITEMS.register("survivor_contract", () -> new SurvivorContractItem());
     public static final RegistryObject<Item> ROYAL_FATE = ITEMS.register("royal_fate", () -> new RoyalFateItem());
     public static final RegistryObject<Item> BLOCK_FATE = block(ModBlocks.BLOCK_FATE);
     public static final RegistryObject<Item> CRIMSON_TREATY = ITEMS.register("crimson_treaty", () -> new CrimsonTreatyItem());
@@ -353,6 +352,8 @@ public class ModItems {
     public static final RegistryObject<Item> PITTS_ASSORTED_FRUITS = RELICS.register("pitts_assorted_fruits", PittsAssortedFruitsItem::new);
     public static final RegistryObject<Item> SCREAMING_CHERRY = RELICS.register("screaming_cherry", ScreamingCherryItem::new);
     public static final RegistryObject<Item> PROOF_OF_LONGEVITY = RELICS.register("proof_of_longevity", ProofOfLongevityItem::new);
+
+    public static final RegistryObject<Item> SURVIVOR_CONTRACT = RELICS.register("survivor_contract", SurvivorContractItem::new);
 
     /**
      * Spawn Eggs

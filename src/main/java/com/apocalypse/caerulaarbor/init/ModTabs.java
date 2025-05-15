@@ -159,7 +159,6 @@ public class ModTabs {
 //				tabData.accept(CaerulaArborModItems.ARCHFIENDS_FLAG.get());
 //				tabData.accept(CaerulaArborModItems.ARCHFIENDS_BED.get());
 //				tabData.accept(CaerulaArborModItems.ROYAL_FATE.get());
-//				tabData.accept(CaerulaArborModItems.SURVIVOR_CONTRACT.get());
 //				tabData.accept(CaerulaArborModItems.CRIMSON_TREATY.get());
 //				tabData.accept(CaerulaArborModItems.CHITIN_KNIFE.get());
 //				tabData.accept(CaerulaArborModItems.HAND_OF_THORNS.get());

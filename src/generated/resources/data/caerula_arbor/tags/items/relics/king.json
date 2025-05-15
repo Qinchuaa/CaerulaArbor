@@ -1,3 +1,9 @@
 {
-  "values": []
+  "values": [
+    "caerula_arbor:kings_armor",
+    "caerula_arbor:kings_spear",
+    "caerula_arbor:kings_crystal",
+    "caerula_arbor:kings_extension",
+    "caerula_arbor:relic_crown"
+  ]
 }

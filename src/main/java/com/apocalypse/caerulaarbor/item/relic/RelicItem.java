@@ -47,7 +47,7 @@ public class RelicItem extends Item implements IRelic {
 
         if (pLevel instanceof ServerLevel serverLevel) {
             pLevel.playSound(null, pPlayer.getOnPos(), this.getGainSound(), SoundSource.NEUTRAL, 2, 1);
-            serverLevel.sendParticles(this.getGainParticle(), pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), 24, 0.75, 1, 0.75, 1);
+            serverLevel.sendParticles(this.getGainParticle(), pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), 72, 0.75, 1, 0.75, 1);
 
             if (this.getAddedExperience() > 0) {
                 serverLevel.addFreshEntity(new ExperienceOrb(serverLevel, pPlayer.getX(), pPlayer.getY(), pPlayer.getZ(), this.getAddedExperience()));

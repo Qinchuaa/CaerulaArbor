@@ -35,9 +35,14 @@ public class ModItemTagProvider extends ItemTagsProvider {
         this.tag(ModTags.Items.HAND_RELICS)
                 .add(ModItems.HAND_OF_BARREN.get(), ModItems.HAND_OF_ENGRAVE.get(), ModItems.HAND_OF_FERTILIY.get(), ModItems.HAND_OF_SPEED.get(),
                         ModItems.HAND_OF_FIREWORK.get(), ModItems.HAND_OF_SPOTLESS.get(), ModItems.HAND_OF_STRANGLE.get(), ModItems.HAND_OF_THORNS.get());
-        this.tag(ModTags.Items.KING_RELICS);
-        this.tag(ModTags.Items.ARCHFIEND_RELICS);
-        this.tag(ModTags.Items.SELF_MENDABLE);
+        this.tag(ModTags.Items.KING_RELICS).add(ModItems.KINGS_ARMOR.get(), ModItems.KINGS_SPEAR.get(), ModItems.KINGS_CRYSTAL.get(),
+                ModItems.KINGS_EXTENSION.get(), ModItems.RELIC_CROWN.get());
+        this.tag(ModTags.Items.ARCHFIEND_RELICS).add(ModItems.ARCHFIENDS_ARTIFACT.get(), ModItems.HAND_OF_FIREWORK.get(), ModItems.ARCHFIENDS_FLAG.get(),
+                ModItems.ARCHFIENDS_BED.get(), ModItems.ROYAL_FATE.get());
+        this.tag(ModTags.Items.SELF_MENDABLE).add(ModItems.COMPLEX_CHITIN_AXE.get(), ModItems.COMPLEX_CHITIN_HOE.get(), ModItems.COMPLEX_CHITIN_PICKAXE.get(),
+                ModItems.COMPLEX_CHITIN_SHOVEL.get(), ModItems.COMPLEX_CHITIN_SWORD.get(), ModItems.LEGENDARY_SPEAR.get(), ModItems.TRAILED_WOODEN_SWORD.get(),
+                ModItems.TRAILED_STONE_SWORD.get(), ModItems.TRAILED_IRON_SWORD.get(), ModItems.TRAILED_DIAMOND_SWORD.get(), ModItems.TRAILED_NETHERITE_SWORD.get(),
+                ModItems.TRAILED_GOLDEN_SWORD.get(), ModItems.PHLOEM_BOW.get());
     }
 
     public static TagKey<Item> forgeTag(String name) {
