@@ -180,7 +180,6 @@ public class ModTabs {
 //				tabData.accept(CaerulaArborModItems.SCORE.get());
 //				tabData.accept(CaerulaArborModItems.OMNI_KEY.get());
 //				tabData.accept(CaerulaArborModItems.GUARDIAN_STARE.get());
-//				tabData.accept(CaerulaArborModItems.PIGLIN_DIARY.get());
 //				tabData.accept(CaerulaArborModItems.TOPONYM_TEXTOLOGY.get());
 //				tabData.accept(CaerulaArborModItems.ALLAY_SCULPTURE.get());
 //				tabData.accept(CaerulaArborModItems.PROOF_OF_LONGEVITY.get());

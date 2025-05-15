@@ -75,6 +75,14 @@ public class RelicItem extends Item implements IRelic {
                     capability.syncPlayerVariables(entity);
                 });
             }
+            if (this.getAddedShield() != 0) {
+                double shield = (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+                        .orElse(new CaerulaArborModVariables.PlayerVariables())).player_shield + this.getAddedShield();
+                entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+                    capability.player_shield = shield;
+                    capability.syncPlayerVariables(entity);
+                });
+            }
         }
 
         this.playGainSound(pLevel, entity);
@@ -105,6 +113,10 @@ public class RelicItem extends Item implements IRelic {
     }
 
     public int getAddedMaxLives() {
+        return 0;
+    }
+
+    public int getAddedShield() {
         return 0;
     }
 

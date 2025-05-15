@@ -56,7 +56,7 @@ import com.apocalypse.caerulaarbor.item.RealEggItem;
 import com.apocalypse.caerulaarbor.item.relic.epic.PittsAssortedFruitsItem;
 import com.apocalypse.caerulaarbor.item.RadiantBerriesItem;
 import com.apocalypse.caerulaarbor.item.relic.epic.ProofOfLongevityItem;
-import com.apocalypse.caerulaarbor.item.PiglinDiaryItem;
+import com.apocalypse.caerulaarbor.item.DurinOvergroundOdysseyItem;
 import com.apocalypse.caerulaarbor.item.PhloemBowItem;
 import com.apocalypse.caerulaarbor.item.PaperBagItem;
 import com.apocalypse.caerulaarbor.item.OmniKeyItem;
@@ -202,7 +202,6 @@ public class ModItems {
     public static final RegistryObject<Item> REDSTONE_IRIS_FLOWER = ITEMS.register("redstone_iris_flower", () -> new RedstoneIrisFlowerItem());
     public static final RegistryObject<Item> REDSTONEIRIS_SEEDING = block(ModBlocks.REDSTONEIRIS_SEEDING);
     public static final RegistryObject<Item> THERMOGRAPH = ITEMS.register("thermograph", () -> new ThermographItem());
-    public static final RegistryObject<Item> PIGLIN_DIARY = ITEMS.register("piglin_diary", () -> new PiglinDiaryItem());
     public static final RegistryObject<Item> TOPONYM_TEXTOLOGY = ITEMS.register("toponym_textology", () -> new ToponymTextologyItem());
     public static final RegistryObject<Item> RUN_FISH_SPAWN_EGG = ITEMS.register("run_fish_spawn_egg", () -> new ForgeSpawnEggItem(CaerulaArborModEntities.RUN_FISH, -16777012, -3355444, new Item.Properties()));
     public static final RegistryObject<Item> SLIDER_FISH_SPAWN_EGG = ITEMS.register("slider_fish_spawn_egg", () -> new ForgeSpawnEggItem(CaerulaArborModEntities.SLIDER_FISH, -13421569, -3355444, new Item.Properties()));
@@ -352,6 +351,7 @@ public class ModItems {
     public static final RegistryObject<Item> SCREAMING_CHERRY = RELICS.register("screaming_cherry", ScreamingCherryItem::new);
     public static final RegistryObject<Item> PROOF_OF_LONGEVITY = RELICS.register("proof_of_longevity", ProofOfLongevityItem::new);
     public static final RegistryObject<Item> WEIRD_FLUTE = RELICS.register("weird_flute", WeirdFluteItem::new);
+    public static final RegistryObject<Item> DURIN_OVERGROUND_ODYSSEY = RELICS.register("durin_overground_odyssey", DurinOvergroundOdysseyItem::new);
 
     public static final RegistryObject<Item> SURVIVOR_CONTRACT = RELICS.register("survivor_contract", SurvivorContractItem::new);
 

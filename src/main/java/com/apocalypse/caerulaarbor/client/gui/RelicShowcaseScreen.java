@@ -184,7 +184,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.pure_gold_expedition").getString() + ": " + Component.translatable("item.caerula_arbor.voyage_of_gold.description_0").getString()), mouseX, mouseY);
         if (cap.relic_util_DURIN)
             if (mouseX > leftPos + 268 && mouseX < leftPos + 284 && mouseY > topPos + 76 && mouseY < topPos + 92)
-                guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.piglin_diary").getString() + ": " + Component.translatable("item.caerula_arbor.piglin_diary.description_0").getString()), mouseX, mouseY);
+                guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.piglin_diary").getString() + ": " + Component.translatable("item.caerula_arbor.durin_overground_odyssey.des_1").getString()), mouseX, mouseY);
         if (cap.relic_util_TOPONYM)
             if (mouseX > leftPos + 292 && mouseX < leftPos + 308 && mouseY > topPos + 76 && mouseY < topPos + 92)
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.toponym_textology").getString() + ": " + Component.translatable("item.caerula_arbor.toponym_textology.description_0").getString()), mouseX, mouseY);
@@ -231,7 +231,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/relic_bg.png"), this.leftPos, this.topPos, 0, 0, 328, 216, 328, 216);
 
         if (cap.relic_util_DURIN) {
-            guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/durin_diary.png"), this.leftPos + 268, this.topPos + 76, 0, 0, 16, 16, 16, 16);
+            guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/durin_overground_odyssey.png"), this.leftPos + 268, this.topPos + 76, 0, 0, 16, 16, 16, 16);
         }
         if (cap.relic_util_ALLEY) {
             guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/stonealley.png"), this.leftPos + 28, this.topPos + 100, 0, 0, 16, 16, 16, 16);
