@@ -1,4 +1,4 @@
-package com.apocalypse.caerulaarbor.item;
+package com.apocalypse.caerulaarbor.item.relic.rare;
 
 import com.apocalypse.caerulaarbor.item.relic.RelicItem;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;

@@ -36,19 +36,23 @@ public class ScreamingCherryItem extends BlockItem implements IRelic {
     }
 
     @Override
-    public ItemStack finishUsingItem(ItemStack itemstack, Level world, LivingEntity entity) {
+    public ItemStack finishUsingItem(ItemStack pStack, Level world, LivingEntity entity) {
         entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
             capability.relic_util_BERRIES = true;
             capability.syncPlayerVariables(entity);
         });
 
-        ItemStack stack = new ItemStack(Items.GLASS_BOTTLE);
-        if (entity instanceof Player player && !player.getAbilities().instabuild) {
-            if (!player.getInventory().add(stack)) {
-                player.drop(stack, false);
+        ItemStack rt = new ItemStack(Items.GLASS_BOTTLE);
+        if (super.finishUsingItem(pStack, world, entity).isEmpty()) {
+            return rt;
+        } else {
+            if (entity instanceof Player player && !player.getAbilities().instabuild) {
+                if (!player.getInventory().add(rt)) {
+                    player.drop(rt, false);
+                }
             }
+            return pStack;
         }
-        return super.finishUsingItem(itemstack, world, entity);
     }
 
     @Override

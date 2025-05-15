@@ -1,4 +1,4 @@
-package com.apocalypse.caerulaarbor.item.relic.normal;
+package com.apocalypse.caerulaarbor.item.relic.rare;
 
 import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.item.relic.RelicItem;
@@ -12,41 +12,41 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 
 import java.util.List;
 
-public class FeaturedCannedMeatItem extends RelicItem {
+public class CoffeePlainsCoffeeCandyItem extends RelicItem {
 
-    public FeaturedCannedMeatItem() {
-        super(new Item.Properties().stacksTo(64)
-                .food((new FoodProperties.Builder()).nutrition(14).saturationMod(1.1f).meat()
-                        .effect(() -> new MobEffectInstance(MobEffects.HEAL, 1, 0), 1.0f)
-                        .alwaysEat().build())
-        );
+    public CoffeePlainsCoffeeCandyItem() {
+        super(new Item.Properties().stacksTo(64).rarity(Rarity.UNCOMMON)
+                .food((new FoodProperties.Builder()).nutrition(2).saturationMod(2f)
+                        .effect(() -> new MobEffectInstance(MobEffects.DIG_SPEED, 240, 1), 1.0f)
+                        .alwaysEat().build()));
     }
 
     @Override
     public int getUseDuration(ItemStack itemstack) {
-        return 40;
+        return 30;
     }
 
     @Override
     public void appendHoverText(ItemStack itemstack, Level level, List<Component> list, TooltipFlag flag) {
-        list.add(Component.translatable("item.caerula_arbor.featured_canned_meat.des_1").withStyle(ChatFormatting.AQUA));
-        list.add(Component.translatable("item.caerula_arbor.featured_canned_meat.des_2").withStyle(ChatFormatting.GRAY));
+        list.add(Component.translatable("item.caerula_arbor.coffee_plains_coffee_candy.des_1").withStyle(ChatFormatting.AQUA));
+        list.add(Component.translatable("item.caerula_arbor.coffee_plains_coffee_candy.des_2").withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
     }
 
     @Override
-    public ItemStack finishUsingItem(ItemStack pStack, Level world, LivingEntity entity) {
+    public ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity entity) {
         entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-            capability.relic_util_MEATCAN = true;
+            capability.relic_util_COFFEE = true;
             capability.syncPlayerVariables(entity);
         });
 
-        ItemStack rt = new ItemStack(ModItems.EMPTY_CAN.get());
-        if (super.finishUsingItem(pStack, world, entity).isEmpty()) {
+        ItemStack rt = new ItemStack(ModItems.PAPER_BAG.get());
+        if (super.finishUsingItem(stack, world, entity).isEmpty()) {
             return rt;
         } else {
             if (entity instanceof Player player && !player.getAbilities().instabuild) {
@@ -54,7 +54,7 @@ public class FeaturedCannedMeatItem extends RelicItem {
                     player.drop(rt, false);
                 }
             }
-            return pStack;
+            return stack;
         }
     }
 }

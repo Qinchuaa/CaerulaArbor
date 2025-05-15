@@ -32,6 +32,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.PROOF_OF_LONGEVITY);
         simpleItem(ModItems.WEIRD_FLUTE);
         simpleItem(ModItems.DURIN_OVERGROUND_ODYSSEY);
+        simpleItem(ModItems.COFFEE_PLAINS_COFFEE_CANDY);
 
         simpleItem(ModItems.SURVIVOR_CONTRACT);
     }

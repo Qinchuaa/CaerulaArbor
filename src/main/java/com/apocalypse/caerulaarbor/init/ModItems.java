@@ -56,7 +56,7 @@ import com.apocalypse.caerulaarbor.item.RealEggItem;
 import com.apocalypse.caerulaarbor.item.relic.epic.PittsAssortedFruitsItem;
 import com.apocalypse.caerulaarbor.item.RadiantBerriesItem;
 import com.apocalypse.caerulaarbor.item.relic.epic.ProofOfLongevityItem;
-import com.apocalypse.caerulaarbor.item.DurinOvergroundOdysseyItem;
+import com.apocalypse.caerulaarbor.item.relic.rare.DurinOvergroundOdysseyItem;
 import com.apocalypse.caerulaarbor.item.PhloemBowItem;
 import com.apocalypse.caerulaarbor.item.PaperBagItem;
 import com.apocalypse.caerulaarbor.item.OmniKeyItem;
@@ -118,7 +118,7 @@ import com.apocalypse.caerulaarbor.item.ComplexChitinItem;
 import com.apocalypse.caerulaarbor.item.ComplexChitinHoeItem;
 import com.apocalypse.caerulaarbor.item.ComplexChitinAxeItem;
 import com.apocalypse.caerulaarbor.item.CoinOfTradeItem;
-import com.apocalypse.caerulaarbor.item.CoffeeCandyItem;
+import com.apocalypse.caerulaarbor.item.relic.rare.CoffeePlainsCoffeeCandyItem;
 import com.apocalypse.caerulaarbor.item.ChitinSwordItem;
 import com.apocalypse.caerulaarbor.item.ChitinShovelItem;
 import com.apocalypse.caerulaarbor.item.ChitinPickaxeItem;
@@ -193,7 +193,6 @@ public class ModItems {
     public static final RegistryObject<Item> BOWL_SEAGRASS = ITEMS.register("bowl_seagrass", () -> new BowlSeagrassItem());
     public static final RegistryObject<Item> GOLDEN_STORM = ITEMS.register("golden_storm", () -> new GoldenStormItem());
     public static final RegistryObject<Item> PAPER_BAG = ITEMS.register("paper_bag", () -> new PaperBagItem());
-    public static final RegistryObject<Item> COFFEE_CANDY = ITEMS.register("coffee_candy", () -> new CoffeeCandyItem());
     public static final RegistryObject<Item> CAFFEINE = ITEMS.register("caffeine", () -> new CaffeineItem());
     public static final RegistryObject<Item> AROMATIC_COFFEE = ITEMS.register("aromatic_coffee", () -> new AromaticCoffeeItem());
     public static final RegistryObject<Item> SOLO_MUSIC_BOX = ITEMS.register("solo_music_box", () -> new SoloMusicBoxItem());
@@ -352,6 +351,7 @@ public class ModItems {
     public static final RegistryObject<Item> PROOF_OF_LONGEVITY = RELICS.register("proof_of_longevity", ProofOfLongevityItem::new);
     public static final RegistryObject<Item> WEIRD_FLUTE = RELICS.register("weird_flute", WeirdFluteItem::new);
     public static final RegistryObject<Item> DURIN_OVERGROUND_ODYSSEY = RELICS.register("durin_overground_odyssey", DurinOvergroundOdysseyItem::new);
+    public static final RegistryObject<Item> COFFEE_PLAINS_COFFEE_CANDY = RELICS.register("coffee_plains_coffee_candy", CoffeePlainsCoffeeCandyItem::new);
 
     public static final RegistryObject<Item> SURVIVOR_CONTRACT = RELICS.register("survivor_contract", SurvivorContractItem::new);
 

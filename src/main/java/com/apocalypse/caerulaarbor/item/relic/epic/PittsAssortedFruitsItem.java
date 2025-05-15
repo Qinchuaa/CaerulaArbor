@@ -50,18 +50,22 @@ public class PittsAssortedFruitsItem extends RelicItem {
     }
 
     @Override
-    public ItemStack finishUsingItem(ItemStack itemstack, Level world, LivingEntity entity) {
+    public ItemStack finishUsingItem(ItemStack pStack, Level world, LivingEntity entity) {
 		entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
 			capability.player_util_RAINBOW = true;
 			capability.syncPlayerVariables(entity);
 		});
 
-		ItemStack stack = new ItemStack(ModItems.PAPER_BAG.get());
-        if (entity instanceof Player player && !player.getAbilities().instabuild) {
-            if (!player.getInventory().add(stack)) {
-				player.drop(stack, false);
-			}
+        ItemStack rt = new ItemStack(ModItems.PAPER_BAG.get());
+        if (super.finishUsingItem(pStack, world, entity).isEmpty()) {
+            return rt;
+        } else {
+            if (entity instanceof Player player && !player.getAbilities().instabuild) {
+                if (!player.getInventory().add(rt)) {
+                    player.drop(rt, false);
+                }
+            }
+            return pStack;
         }
-        return super.finishUsingItem(itemstack, world, entity);
     }
 }
