@@ -5,44 +5,17 @@
 package com.apocalypse.caerulaarbor.init;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
-import net.minecraftforge.registries.RegistryObject;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
-
-import net.minecraft.world.entity.MobCategory;
-import net.minecraft.world.entity.EntityType;
+import com.apocalypse.caerulaarbor.entity.*;
 import net.minecraft.world.entity.Entity;
-
-import com.apocalypse.caerulaarbor.entity.UmbrellaAbyssalEntity;
-import com.apocalypse.caerulaarbor.entity.SuperSliderEntity;
-import com.apocalypse.caerulaarbor.entity.SplasherAbyssalEntity;
-import com.apocalypse.caerulaarbor.entity.SliderFishEntity;
-import com.apocalypse.caerulaarbor.entity.ShooterFishEntity;
-import com.apocalypse.caerulaarbor.entity.RunFishEntity;
-import com.apocalypse.caerulaarbor.entity.RouteShaperEntity;
-import com.apocalypse.caerulaarbor.entity.RouteFractalEntity;
-import com.apocalypse.caerulaarbor.entity.ReaperFishEntity;
-import com.apocalypse.caerulaarbor.entity.PunctureFishEntity;
-import com.apocalypse.caerulaarbor.entity.PregnantFishEntity;
-import com.apocalypse.caerulaarbor.entity.PredatorAbyssalEntity;
-import com.apocalypse.caerulaarbor.entity.GuideAbyssalEntity;
-import com.apocalypse.caerulaarbor.entity.FlyFishEntity;
-import com.apocalypse.caerulaarbor.entity.FleefishBulletEntity;
-import com.apocalypse.caerulaarbor.entity.FleeFishEntity;
-import com.apocalypse.caerulaarbor.entity.FishSplashEntity;
-import com.apocalypse.caerulaarbor.entity.FishShootEntity;
-import com.apocalypse.caerulaarbor.entity.FakerggShootEntity;
-import com.apocalypse.caerulaarbor.entity.FakeOffspringEntity;
-import com.apocalypse.caerulaarbor.entity.CreeperFishEntity;
-import com.apocalypse.caerulaarbor.entity.CrackerAbyssalEntity;
-import com.apocalypse.caerulaarbor.entity.CollectorProkaryoteEntity;
-import com.apocalypse.caerulaarbor.entity.ChiselerFishEntity;
-import com.apocalypse.caerulaarbor.entity.BoneFishEntity;
-import com.apocalypse.caerulaarbor.entity.BaselayerAbyssalEntity;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.MobCategory;
+import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class CaerulaArborModEntities {

@@ -1,11 +1,10 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.effect.MobEffectInstance;
-
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 
 public class ReviveLightsProcedure {
 	public static void execute(Entity entity) {

@@ -1,21 +1,12 @@
 package com.apocalypse.caerulaarbor.init;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
-import net.minecraftforge.registries.RegistryObject;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.common.extensions.IForgeMenuType;
-
+import com.apocalypse.caerulaarbor.world.inventory.*;
 import net.minecraft.world.inventory.MenuType;
-
-import com.apocalypse.caerulaarbor.world.inventory.RelicShowcaseMenu;
-import com.apocalypse.caerulaarbor.world.inventory.InfoStrategySubsisMenu;
-import com.apocalypse.caerulaarbor.world.inventory.InfoStrategyMigrationMenu;
-import com.apocalypse.caerulaarbor.world.inventory.InfoStrategyGrowMenu;
-import com.apocalypse.caerulaarbor.world.inventory.InfoStrategyBreedMenu;
-import com.apocalypse.caerulaarbor.world.inventory.InfoStrategyAllMenu;
-import com.apocalypse.caerulaarbor.world.inventory.EvoTreeMenu;
-import com.apocalypse.caerulaarbor.world.inventory.CaerulaRecordGUIMenu;
+import net.minecraftforge.common.extensions.IForgeMenuType;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class ModMenus {
 

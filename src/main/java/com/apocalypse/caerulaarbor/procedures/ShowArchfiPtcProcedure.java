@@ -1,13 +1,12 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.util.RandomSource;
-import net.minecraft.util.Mth;
-import net.minecraft.core.particles.SimpleParticleType;
-
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import com.apocalypse.caerulaarbor.init.CaerulaArborModParticleTypes;
+import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.LevelAccessor;
 
 public class ShowArchfiPtcProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity, double amplifier) {

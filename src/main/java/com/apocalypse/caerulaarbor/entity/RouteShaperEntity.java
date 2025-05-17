@@ -2,9 +2,9 @@
 package com.apocalypse.caerulaarbor.entity;
 
 import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
-import com.apocalypse.caerulaarbor.procedures.EraceFactalsProcedure;
 import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
-import com.apocalypse.caerulaarbor.procedures.RouteSkilladdProcedure;
+import com.apocalypse.caerulaarbor.procedures.SummonFractalProcedure;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -16,6 +16,7 @@ import net.minecraft.server.level.ServerBossEvent;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -37,12 +38,16 @@ import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
@@ -59,7 +64,6 @@ public class RouteShaperEntity extends Monster implements GeoEntity {
     public static final EntityDataAccessor<Integer> DATA_skillp = SynchedEntityData.defineId(RouteShaperEntity.class, EntityDataSerializers.INT);
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private boolean swinging;
-    private boolean lastloop;
     private long lastSwing;
     public String animationprocedure = "empty";
     private final ServerBossEvent bossInfo = new ServerBossEvent(this.getDisplayName(), ServerBossEvent.BossBarColor.BLUE, ServerBossEvent.BossBarOverlay.PROGRESS);
@@ -94,7 +98,7 @@ public class RouteShaperEntity extends Monster implements GeoEntity {
     }
 
     @Override
-    public Packet<ClientGamePacketListener> getAddEntityPacket() {
+    public @NotNull Packet<ClientGamePacketListener> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
@@ -104,27 +108,26 @@ public class RouteShaperEntity extends Monster implements GeoEntity {
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 0.4, false) {
             @Override
-            protected double getAttackReachSqr(LivingEntity entity) {
+            protected double getAttackReachSqr(@NotNull LivingEntity entity) {
                 return 16;
             }
         });
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal(this, IronGolem.class, false, false));
-        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal(this, SnowGolem.class, false, false));
-        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, Villager.class, false, false));
-        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, Illusioner.class, false, false));
-        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, Pillager.class, false, false));
-        this.targetSelector.addGoal(8, new NearestAttackableTargetGoal(this, Vindicator.class, false, false));
-        this.targetSelector.addGoal(9, new NearestAttackableTargetGoal(this, Witch.class, false, false));
-        this.targetSelector.addGoal(10, new NearestAttackableTargetGoal(this, Piglin.class, false, false));
-        this.targetSelector.addGoal(11, new NearestAttackableTargetGoal(this, PiglinBrute.class, false, false));
-        this.targetSelector.addGoal(12, new NearestAttackableTargetGoal(this, ZombifiedPiglin.class, false, false));
-        this.targetSelector.addGoal(13, new NearestAttackableTargetGoal(this, Player.class, false, false) {
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, false, false));
+        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, SnowGolem.class, false, false));
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Villager.class, false, false));
+        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, Illusioner.class, false, false));
+        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, Pillager.class, false, false));
+        this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, Vindicator.class, false, false));
+        this.targetSelector.addGoal(9, new NearestAttackableTargetGoal<>(this, Witch.class, false, false));
+        this.targetSelector.addGoal(10, new NearestAttackableTargetGoal<>(this, Piglin.class, false, false));
+        this.targetSelector.addGoal(11, new NearestAttackableTargetGoal<>(this, PiglinBrute.class, false, false));
+        this.targetSelector.addGoal(12, new NearestAttackableTargetGoal<>(this, ZombifiedPiglin.class, false, false));
+        this.targetSelector.addGoal(13, new NearestAttackableTargetGoal<>(this, Player.class, false, false) {
             @Override
             public boolean canUse() {
                 double x = RouteShaperEntity.this.getX();
                 double y = RouteShaperEntity.this.getY();
                 double z = RouteShaperEntity.this.getZ();
-                Entity entity = RouteShaperEntity.this;
                 Level world = RouteShaperEntity.this.level();
                 return super.canUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
             }
@@ -134,7 +137,6 @@ public class RouteShaperEntity extends Monster implements GeoEntity {
                 double x = RouteShaperEntity.this.getX();
                 double y = RouteShaperEntity.this.getY();
                 double z = RouteShaperEntity.this.getZ();
-                Entity entity = RouteShaperEntity.this;
                 Level world = RouteShaperEntity.this.level();
                 return super.canContinueToUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
             }
@@ -144,7 +146,7 @@ public class RouteShaperEntity extends Monster implements GeoEntity {
     }
 
     @Override
-    public MobType getMobType() {
+    public @NotNull MobType getMobType() {
         return MobType.WATER;
     }
 
@@ -159,18 +161,26 @@ public class RouteShaperEntity extends Monster implements GeoEntity {
     }
 
     @Override
-    public SoundEvent getHurtSound(DamageSource ds) {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.ravager.hurt"));
+    public SoundEvent getHurtSound(@NotNull DamageSource source) {
+        return SoundEvents.RAVAGER_HURT;
     }
 
     @Override
     public SoundEvent getDeathSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.ravager.death"));
+        return SoundEvents.RAVAGER_DEATH;
     }
 
     @Override
-    public boolean hurt(DamageSource source, float amount) {
-        RouteSkilladdProcedure.execute(this.level(), this.getX(), this.getY(), this.getZ(), this);
+    public boolean hurt(@NotNull DamageSource source, float amount) {
+        LevelAccessor world = this.level();
+        double skillP = this.getEntityData().get(DATA_skillp);
+        this.getEntityData().set(DATA_skillp, (int) (skillP + 1));
+
+        if (skillP >= 7) {
+            SummonFractalProcedure.execute(world, this.getX(), this.getY(), this.getZ());
+            this.getEntityData().set(DATA_skillp, 0);
+        }
+
         if (source.is(DamageTypes.FALL))
             return false;
         if (source.is(DamageTypes.DROWN))
@@ -179,20 +189,24 @@ public class RouteShaperEntity extends Monster implements GeoEntity {
     }
 
     @Override
-    public void die(DamageSource source) {
+    public void die(@NotNull DamageSource source) {
         super.die(source);
-        EraceFactalsProcedure.execute(this.level(), this.getX(), this.getY(), this.getZ());
+
+        final Vec3 center = new Vec3(this.getX(), this.getY(), this.getZ());
+        for (var entity : this.level().getEntitiesOfClass(RouteFractalEntity.class, new AABB(center, center).inflate(32), e -> true)) {
+            entity.hurt(new DamageSource(this.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.FELL_OUT_OF_WORLD)), 999999);
+        }
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundTag compound) {
+    public void addAdditionalSaveData(@NotNull CompoundTag compound) {
         super.addAdditionalSaveData(compound);
         compound.putString("Texture", this.getTexture());
         compound.putInt("Dataskillp", this.entityData.get(DATA_skillp));
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundTag compound) {
+    public void readAdditionalSaveData(@NotNull CompoundTag compound) {
         super.readAdditionalSaveData(compound);
         if (compound.contains("Texture"))
             this.setTexture(compound.getString("Texture"));
@@ -207,8 +221,8 @@ public class RouteShaperEntity extends Monster implements GeoEntity {
     }
 
     @Override
-    public EntityDimensions getDimensions(Pose p_33597_) {
-        return super.getDimensions(p_33597_).scale((float) 1);
+    public @NotNull EntityDimensions getDimensions(@NotNull Pose pose) {
+        return super.getDimensions(pose).scale((float) 1);
     }
 
     @Override
@@ -217,13 +231,13 @@ public class RouteShaperEntity extends Monster implements GeoEntity {
     }
 
     @Override
-    public void startSeenByPlayer(ServerPlayer player) {
+    public void startSeenByPlayer(@NotNull ServerPlayer player) {
         super.startSeenByPlayer(player);
         this.bossInfo.addPlayer(player);
     }
 
     @Override
-    public void stopSeenByPlayer(ServerPlayer player) {
+    public void stopSeenByPlayer(@NotNull ServerPlayer player) {
         super.stopSeenByPlayer(player);
         this.bossInfo.removePlayer(player);
     }
@@ -235,7 +249,9 @@ public class RouteShaperEntity extends Monster implements GeoEntity {
     }
 
     public static void init() {
-        SpawnPlacements.register(CaerulaArborModEntities.ROUTE_SHAPER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+        SpawnPlacements.register(CaerulaArborModEntities.ROUTE_SHAPER.get(),
+                SpawnPlacements.Type.ON_GROUND,
+                Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 (entityType, world, reason, pos, random) -> (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
     }
 
@@ -273,9 +289,6 @@ public class RouteShaperEntity extends Monster implements GeoEntity {
     }
 
     private PlayState attackingPredicate(AnimationState<?> event) {
-        double d1 = this.getX() - this.xOld;
-        double d0 = this.getZ() - this.zOld;
-        float velocity = (float) Math.sqrt(d1 * d1 + d0 * d0);
         if (getAttackAnim(event.getPartialTick()) > 0f && !this.swinging) {
             this.swinging = true;
             this.lastSwing = level().getGameTime();

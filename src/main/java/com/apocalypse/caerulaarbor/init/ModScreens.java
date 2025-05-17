@@ -1,20 +1,11 @@
 package com.apocalypse.caerulaarbor.init;
 
-import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.api.distmarker.Dist;
-
+import com.apocalypse.caerulaarbor.client.gui.*;
 import net.minecraft.client.gui.screens.MenuScreens;
-
-import com.apocalypse.caerulaarbor.client.gui.RelicShowcaseScreen;
-import com.apocalypse.caerulaarbor.client.gui.InfoStrategySubsisScreen;
-import com.apocalypse.caerulaarbor.client.gui.InfoStrategyMigrationScreen;
-import com.apocalypse.caerulaarbor.client.gui.InfoStrategyGrowScreen;
-import com.apocalypse.caerulaarbor.client.gui.InfoStrategyBreedScreen;
-import com.apocalypse.caerulaarbor.client.gui.InfoStrategyAllScreen;
-import com.apocalypse.caerulaarbor.client.gui.EvoTreeScreen;
-import com.apocalypse.caerulaarbor.client.gui.CaerulaRecordGUIScreen;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLClientSetupEvent;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ModScreens {

@@ -1,9 +1,10 @@
 package com.apocalypse.caerulaarbor.client.gui;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
+import com.apocalypse.caerulaarbor.entity.ReaperFishEntity;
+import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import com.apocalypse.caerulaarbor.network.InfoStrategyGrowButtonMessage;
-import com.apocalypse.caerulaarbor.procedures.EntityReaperFishProcedure;
 import com.apocalypse.caerulaarbor.procedures.GetBarGrowProcedure;
 import com.apocalypse.caerulaarbor.procedures.GetPointGrowProcedure;
 import com.apocalypse.caerulaarbor.world.inventory.InfoStrategyGrowMenu;
@@ -16,6 +17,7 @@ import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
@@ -46,7 +48,7 @@ public class InfoStrategyGrowScreen extends AbstractContainerScreen<InfoStrategy
     public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         this.renderBackground(guiGraphics);
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
-        if (EntityReaperFishProcedure.execute(world) instanceof LivingEntity livingEntity) {
+        if ((Entity) new ReaperFishEntity(CaerulaArborModEntities.REAPER_FISH.get(), world) instanceof LivingEntity livingEntity) {
             InventoryScreen.renderEntityInInventoryFollowsAngle(guiGraphics, this.leftPos + 29, this.topPos + 96, 20, 0f + (float) Math.atan((this.leftPos + 29 - mouseX) / 40.0), (float) Math.atan((this.topPos + 47 - mouseY) / 40.0), livingEntity);
         }
         this.renderTooltip(guiGraphics, mouseX, mouseY);

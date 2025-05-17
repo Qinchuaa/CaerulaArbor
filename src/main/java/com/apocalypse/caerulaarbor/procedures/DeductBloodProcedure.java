@@ -1,13 +1,12 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.util.RandomSource;
-import net.minecraft.util.Mth;
-import net.minecraft.core.particles.SimpleParticleType;
-
 import com.apocalypse.caerulaarbor.init.CaerulaArborModParticleTypes;
+import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.level.LevelAccessor;
 
 public class DeductBloodProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {

@@ -1,22 +1,19 @@
 package com.apocalypse.caerulaarbor.item.renderer;
 
-import software.bernie.geckolib.renderer.GeoItemRenderer;
-import software.bernie.geckolib.cache.object.BakedGeoModel;
-
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.ItemDisplayContext;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.MultiBufferSource;
-
-import com.apocalypse.caerulaarbor.item.model.LegendarySpearItemModel;
 import com.apocalypse.caerulaarbor.item.LegendarySpearItem;
-
-import java.util.Set;
-import java.util.HashSet;
-
-import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.apocalypse.caerulaarbor.item.model.LegendarySpearItemModel;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemDisplayContext;
+import net.minecraft.world.item.ItemStack;
+import software.bernie.geckolib.cache.object.BakedGeoModel;
+import software.bernie.geckolib.renderer.GeoItemRenderer;
+
+import java.util.HashSet;
+import java.util.Set;
 
 public class LegendarySpearItemRenderer extends GeoItemRenderer<LegendarySpearItem> {
 	public LegendarySpearItemRenderer() {

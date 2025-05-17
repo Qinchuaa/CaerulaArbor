@@ -108,24 +108,23 @@ public class PunctureFishEntity extends Monster implements GeoEntity {
             }
 
         });
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal(this, IronGolem.class, false, false));
-        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal(this, SnowGolem.class, false, false));
-        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, Villager.class, false, false));
-        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, Player.class, false, false));
-        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, Illusioner.class, false, false));
-        this.targetSelector.addGoal(8, new NearestAttackableTargetGoal(this, Pillager.class, false, false));
-        this.targetSelector.addGoal(9, new NearestAttackableTargetGoal(this, Vindicator.class, false, false));
-        this.targetSelector.addGoal(10, new NearestAttackableTargetGoal(this, Witch.class, false, false));
-        this.targetSelector.addGoal(11, new NearestAttackableTargetGoal(this, Piglin.class, false, false));
-        this.targetSelector.addGoal(12, new NearestAttackableTargetGoal(this, PiglinBrute.class, false, false));
-        this.targetSelector.addGoal(13, new NearestAttackableTargetGoal(this, ZombifiedPiglin.class, false, false));
-        this.targetSelector.addGoal(14, new NearestAttackableTargetGoal(this, Player.class, false, false) {
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, IronGolem.class, false, false));
+        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, SnowGolem.class, false, false));
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Villager.class, false, false));
+        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, Player.class, false, false));
+        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, Illusioner.class, false, false));
+        this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, Pillager.class, false, false));
+        this.targetSelector.addGoal(9, new NearestAttackableTargetGoal<>(this, Vindicator.class, false, false));
+        this.targetSelector.addGoal(10, new NearestAttackableTargetGoal<>(this, Witch.class, false, false));
+        this.targetSelector.addGoal(11, new NearestAttackableTargetGoal<>(this, Piglin.class, false, false));
+        this.targetSelector.addGoal(12, new NearestAttackableTargetGoal<>(this, PiglinBrute.class, false, false));
+        this.targetSelector.addGoal(13, new NearestAttackableTargetGoal<>(this, ZombifiedPiglin.class, false, false));
+        this.targetSelector.addGoal(14, new NearestAttackableTargetGoal<>(this, Player.class, false, false) {
             @Override
             public boolean canUse() {
                 double x = PunctureFishEntity.this.getX();
                 double y = PunctureFishEntity.this.getY();
                 double z = PunctureFishEntity.this.getZ();
-                Entity entity = PunctureFishEntity.this;
                 Level world = PunctureFishEntity.this.level();
                 return super.canUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
             }
@@ -135,7 +134,6 @@ public class PunctureFishEntity extends Monster implements GeoEntity {
                 double x = PunctureFishEntity.this.getX();
                 double y = PunctureFishEntity.this.getY();
                 double z = PunctureFishEntity.this.getZ();
-                Entity entity = PunctureFishEntity.this;
                 Level world = PunctureFishEntity.this.level();
                 return super.canContinueToUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
             }
@@ -160,12 +158,12 @@ public class PunctureFishEntity extends Monster implements GeoEntity {
     }
 
     @Override
-    public void playStepSound(BlockPos pos, BlockState blockIn) {
+    public void playStepSound(@NotNull BlockPos pos, @NotNull BlockState blockIn) {
         this.playSound(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.silverfish.step")), 0.15f, 1);
     }
 
     @Override
-    public SoundEvent getHurtSound(DamageSource ds) {
+    public SoundEvent getHurtSound(@NotNull DamageSource ds) {
         return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.puffer_fish.hurt"));
     }
 
@@ -204,7 +202,7 @@ public class PunctureFishEntity extends Monster implements GeoEntity {
     }
 
     @Override
-    public EntityDimensions getDimensions(Pose p_33597_) {
+    public @NotNull EntityDimensions getDimensions(@NotNull Pose p_33597_) {
         return super.getDimensions(p_33597_).scale((float) 1);
     }
 

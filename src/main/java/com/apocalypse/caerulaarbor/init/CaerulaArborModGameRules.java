@@ -4,9 +4,8 @@
  */
 package com.apocalypse.caerulaarbor.init;
 
-import net.minecraftforge.fml.common.Mod;
-
 import net.minecraft.world.level.GameRules;
+import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class CaerulaArborModGameRules {

@@ -1,12 +1,10 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import net.minecraft.world.entity.Entity;
-import net.minecraft.commands.CommandSourceStack;
-
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
-
-import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.arguments.DoubleArgumentType;
+import com.mojang.brigadier.context.CommandContext;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.world.entity.Entity;
 
 public class SetShieldProcedure {
 	public static void execute(CommandContext<CommandSourceStack> arguments, Entity entity) {

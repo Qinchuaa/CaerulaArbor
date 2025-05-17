@@ -1,10 +1,8 @@
 package com.apocalypse.caerulaarbor.entity.model;
 
-import software.bernie.geckolib.model.GeoModel;
-
-import net.minecraft.resources.ResourceLocation;
-
 import com.apocalypse.caerulaarbor.entity.GuideAbyssalEntity;
+import net.minecraft.resources.ResourceLocation;
+import software.bernie.geckolib.model.GeoModel;
 
 public class GuideAbyssalModel extends GeoModel<GuideAbyssalEntity> {
 	@Override

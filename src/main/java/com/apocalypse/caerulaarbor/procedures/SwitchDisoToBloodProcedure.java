@@ -1,13 +1,11 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import net.minecraft.world.entity.Entity;
-import net.minecraft.commands.arguments.EntityArgument;
-import net.minecraft.commands.CommandSourceStack;
-
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
-
-import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import com.mojang.brigadier.context.CommandContext;
+import com.mojang.brigadier.exceptions.CommandSyntaxException;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.commands.arguments.EntityArgument;
+import net.minecraft.world.entity.Entity;
 
 public class SwitchDisoToBloodProcedure {
 	public static void execute(CommandContext<CommandSourceStack> arguments) {

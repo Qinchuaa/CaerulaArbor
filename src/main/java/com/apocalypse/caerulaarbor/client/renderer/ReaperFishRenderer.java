@@ -1,20 +1,17 @@
 
 package com.apocalypse.caerulaarbor.client.renderer;
 
-import com.apocalypse.caerulaarbor.entity.model.ReaperFishModel;
-import software.bernie.geckolib.renderer.GeoEntityRenderer;
-import software.bernie.geckolib.cache.object.BakedGeoModel;
-
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.MultiBufferSource;
-
-import com.apocalypse.caerulaarbor.entity.layer.ReaperFishLayer;
 import com.apocalypse.caerulaarbor.entity.ReaperFishEntity;
-
-import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.apocalypse.caerulaarbor.entity.layer.ReaperFishLayer;
+import com.apocalypse.caerulaarbor.entity.model.ReaperFishModel;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.resources.ResourceLocation;
+import software.bernie.geckolib.cache.object.BakedGeoModel;
+import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
 public class ReaperFishRenderer extends GeoEntityRenderer<ReaperFishEntity> {
 	public ReaperFishRenderer(EntityRendererProvider.Context renderManager) {

@@ -1,10 +1,8 @@
 package com.apocalypse.caerulaarbor.entity.model;
 
-import software.bernie.geckolib.model.GeoModel;
-
-import net.minecraft.resources.ResourceLocation;
-
 import com.apocalypse.caerulaarbor.entity.ReaperFishEntity;
+import net.minecraft.resources.ResourceLocation;
+import software.bernie.geckolib.model.GeoModel;
 
 public class ReaperFishModel extends GeoModel<ReaperFishEntity> {
 	@Override

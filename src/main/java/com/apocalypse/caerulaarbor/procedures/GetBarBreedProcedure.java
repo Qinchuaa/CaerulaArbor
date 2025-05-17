@@ -1,9 +1,8 @@
 package com.apocalypse.caerulaarbor.procedures;
 
 import com.apocalypse.caerulaarbor.configuration.CaerulaConfigsConfiguration;
-import net.minecraft.world.level.LevelAccessor;
-
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
+import net.minecraft.world.level.LevelAccessor;
 
 public class GetBarBreedProcedure {
 	public static double execute(LevelAccessor world) {

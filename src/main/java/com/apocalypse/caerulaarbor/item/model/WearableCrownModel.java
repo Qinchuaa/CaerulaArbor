@@ -1,10 +1,8 @@
 package com.apocalypse.caerulaarbor.item.model;
 
-import software.bernie.geckolib.model.GeoModel;
-
-import net.minecraft.resources.ResourceLocation;
-
 import com.apocalypse.caerulaarbor.item.WearableCrownItem;
+import net.minecraft.resources.ResourceLocation;
+import software.bernie.geckolib.model.GeoModel;
 
 public class WearableCrownModel extends GeoModel<WearableCrownItem> {
 	@Override

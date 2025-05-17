@@ -1,9 +1,8 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import net.minecraft.world.entity.Entity;
-import net.minecraft.client.gui.components.Checkbox;
-
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
+import net.minecraft.client.gui.components.Checkbox;
+import net.minecraft.world.entity.Entity;
 
 import java.util.HashMap;
 

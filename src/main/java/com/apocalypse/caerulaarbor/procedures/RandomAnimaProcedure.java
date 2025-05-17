@@ -1,9 +1,8 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.Entity;
-
 import com.apocalypse.caerulaarbor.entity.PregnantFishEntity;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.Mob;
 
 public class RandomAnimaProcedure {
 	public static void execute(Entity entity) {

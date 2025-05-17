@@ -1,17 +1,16 @@
 package com.apocalypse.caerulaarbor.init;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
-import net.minecraftforge.registries.RegistryObject;
-import net.minecraftforge.registries.DeferredRegister;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
-
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.item.CreativeModeTabs;
-import net.minecraft.world.item.CreativeModeTab;
-import net.minecraft.network.chat.Component;
 import net.minecraft.core.registries.Registries;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.item.CreativeModeTab;
+import net.minecraft.world.item.CreativeModeTabs;
+import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.event.BuildCreativeModeTabContentsEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.RegistryObject;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModTabs {
@@ -54,7 +53,7 @@ public class ModTabs {
                 tabData.accept(ModBlocks.CARAMEL_CAKE.get().asItem());
                 tabData.accept(ModItems.CARAMEL_CAKE_PIECE.get());
                 tabData.accept(ModBlocks.REDSTONE_IRIS.get().asItem());
-                tabData.accept(ModBlocks.REDSTONEIRIS_SEEDING.get().asItem());
+                tabData.accept(ModBlocks.REDSTONE_IRIS_SEEDING.get().asItem());
                 tabData.accept(ModBlocks.SEA_TRAIL_INIT.get().asItem());
                 tabData.accept(ModBlocks.SEA_TRAIL_GROWING.get().asItem());
                 tabData.accept(ModBlocks.SEA_TRAIL_GROWN.get().asItem());

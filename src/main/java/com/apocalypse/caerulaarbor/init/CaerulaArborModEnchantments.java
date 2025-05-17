@@ -5,18 +5,11 @@
 package com.apocalypse.caerulaarbor.init;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
-import net.minecraftforge.registries.RegistryObject;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.DeferredRegister;
-
+import com.apocalypse.caerulaarbor.enchantment.*;
 import net.minecraft.world.item.enchantment.Enchantment;
-
-import com.apocalypse.caerulaarbor.enchantment.SynesthesiaEnchantment;
-import com.apocalypse.caerulaarbor.enchantment.SanityReaperEnchantment;
-import com.apocalypse.caerulaarbor.enchantment.SanityDefendEnchantment;
-import com.apocalypse.caerulaarbor.enchantment.ReflectionEnchantment;
-import com.apocalypse.caerulaarbor.enchantment.OceanosprKillerEnchantment;
-import com.apocalypse.caerulaarbor.enchantment.MetabolismEnchantment;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class CaerulaArborModEnchantments {
 	public static final DeferredRegister<Enchantment> REGISTRY = DeferredRegister.create(ForgeRegistries.ENCHANTMENTS, CaerulaArborMod.MODID);

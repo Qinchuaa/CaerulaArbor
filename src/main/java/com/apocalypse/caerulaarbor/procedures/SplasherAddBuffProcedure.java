@@ -1,10 +1,9 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.effect.MobEffectInstance;
-
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 
 public class SplasherAddBuffProcedure {
 	public static void execute(Entity entity) {

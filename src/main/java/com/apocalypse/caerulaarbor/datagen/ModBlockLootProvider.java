@@ -17,6 +17,7 @@ import net.minecraft.world.level.storage.loot.providers.nbt.ContextNbtProvider;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.registries.RegistryObject;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 import java.util.Set;
@@ -49,7 +50,7 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.OCEAN_GLASS.get());
         this.dropSelf(ModBlocks.OCEAN_GLASSPANE.get());
         this.dropSelf(ModBlocks.REDSTONE_IRIS.get());
-        this.dropSelf(ModBlocks.REDSTONEIRIS_SEEDING.get());
+        this.dropSelf(ModBlocks.REDSTONE_IRIS_SEEDING.get());
         this.dropSelf(ModBlocks.TIDE_OBSERVATION.get());
         this.dropSelf(ModBlocks.TRAIL_BRICK.get());
         this.dropSelf(ModBlocks.TRAIL_BUTTON.get());
@@ -80,7 +81,7 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
     }
 
     @Override
-    protected Iterable<Block> getKnownBlocks() {
+    protected @NotNull Iterable<Block> getKnownBlocks() {
         return ModBlocks.BLOCKS.getEntries().stream().map(RegistryObject::get)::iterator;
     }
 

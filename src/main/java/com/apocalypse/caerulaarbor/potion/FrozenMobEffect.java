@@ -1,16 +1,15 @@
 
 package com.apocalypse.caerulaarbor.potion;
 
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectCategory;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.ForgeMod;
 
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.attributes.AttributeModifier;
-import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraft.world.effect.MobEffect;
-
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 public class FrozenMobEffect extends MobEffect {
 	public FrozenMobEffect() {
@@ -27,8 +26,7 @@ public class FrozenMobEffect extends MobEffect {
 
 	@Override
 	public List<ItemStack> getCurativeItems() {
-		ArrayList<ItemStack> cures = new ArrayList<ItemStack>();
-		return cures;
+        return new ArrayList<>();
 	}
 
 	@Override

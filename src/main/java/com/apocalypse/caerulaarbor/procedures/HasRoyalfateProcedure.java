@@ -1,8 +1,7 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import net.minecraft.world.entity.Entity;
-
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
+import net.minecraft.world.entity.Entity;
 
 public class HasRoyalfateProcedure {
 	public static boolean execute(Entity entity) {

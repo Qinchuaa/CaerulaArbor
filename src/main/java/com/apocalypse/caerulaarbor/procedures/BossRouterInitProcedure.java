@@ -1,12 +1,11 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.effect.MobEffectInstance;
-
-import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.entity.RouteShaperEntity;
+import com.apocalypse.caerulaarbor.init.ModMobEffects;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 
 public class BossRouterInitProcedure {
 	public static void execute(Entity entity) {

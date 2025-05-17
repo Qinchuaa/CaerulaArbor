@@ -4,37 +4,11 @@
  */
 package com.apocalypse.caerulaarbor.init;
 
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.client.event.EntityRenderersEvent;
+import com.apocalypse.caerulaarbor.client.renderer.*;
 import net.minecraftforge.api.distmarker.Dist;
-
-import com.apocalypse.caerulaarbor.client.renderer.UmbrellaAbyssalRenderer;
-import com.apocalypse.caerulaarbor.client.renderer.SuperSliderRenderer;
-import com.apocalypse.caerulaarbor.client.renderer.SplasherAbyssalRenderer;
-import com.apocalypse.caerulaarbor.client.renderer.SliderFishRenderer;
-import com.apocalypse.caerulaarbor.client.renderer.ShooterFishRenderer;
-import com.apocalypse.caerulaarbor.client.renderer.RunFishRenderer;
-import com.apocalypse.caerulaarbor.client.renderer.RouteShaperRenderer;
-import com.apocalypse.caerulaarbor.client.renderer.RouteFractalRenderer;
-import com.apocalypse.caerulaarbor.client.renderer.ReaperFishRenderer;
-import com.apocalypse.caerulaarbor.client.renderer.PunctureFishRenderer;
-import com.apocalypse.caerulaarbor.client.renderer.PregnantFishRenderer;
-import com.apocalypse.caerulaarbor.client.renderer.PredatorAbyssalRenderer;
-import com.apocalypse.caerulaarbor.client.renderer.GuideAbyssalRenderer;
-import com.apocalypse.caerulaarbor.client.renderer.FlyFishRenderer;
-import com.apocalypse.caerulaarbor.client.renderer.FleefishBulletRenderer;
-import com.apocalypse.caerulaarbor.client.renderer.FleeFishRenderer;
-import com.apocalypse.caerulaarbor.client.renderer.FishSplashRenderer;
-import com.apocalypse.caerulaarbor.client.renderer.FishShootRenderer;
-import com.apocalypse.caerulaarbor.client.renderer.FakerggShootRenderer;
-import com.apocalypse.caerulaarbor.client.renderer.FakeOffspringRenderer;
-import com.apocalypse.caerulaarbor.client.renderer.CreeperFishRenderer;
-import com.apocalypse.caerulaarbor.client.renderer.CrackerAbyssalRenderer;
-import com.apocalypse.caerulaarbor.client.renderer.CollectorProkaryoteRenderer;
-import com.apocalypse.caerulaarbor.client.renderer.ChiselerFishRenderer;
-import com.apocalypse.caerulaarbor.client.renderer.BoneFishRenderer;
-import com.apocalypse.caerulaarbor.client.renderer.BaselayerAbyssalRenderer;
+import net.minecraftforge.client.event.EntityRenderersEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class CaerulaArborModEntityRenderers {

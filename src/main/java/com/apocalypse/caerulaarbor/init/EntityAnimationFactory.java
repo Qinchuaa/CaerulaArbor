@@ -1,31 +1,9 @@
 package com.apocalypse.caerulaarbor.init;
 
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
+import com.apocalypse.caerulaarbor.entity.*;
 import net.minecraftforge.event.entity.living.LivingEvent;
-
-import com.apocalypse.caerulaarbor.entity.UmbrellaAbyssalEntity;
-import com.apocalypse.caerulaarbor.entity.SuperSliderEntity;
-import com.apocalypse.caerulaarbor.entity.SplasherAbyssalEntity;
-import com.apocalypse.caerulaarbor.entity.SliderFishEntity;
-import com.apocalypse.caerulaarbor.entity.ShooterFishEntity;
-import com.apocalypse.caerulaarbor.entity.RunFishEntity;
-import com.apocalypse.caerulaarbor.entity.RouteShaperEntity;
-import com.apocalypse.caerulaarbor.entity.RouteFractalEntity;
-import com.apocalypse.caerulaarbor.entity.ReaperFishEntity;
-import com.apocalypse.caerulaarbor.entity.PunctureFishEntity;
-import com.apocalypse.caerulaarbor.entity.PregnantFishEntity;
-import com.apocalypse.caerulaarbor.entity.PredatorAbyssalEntity;
-import com.apocalypse.caerulaarbor.entity.GuideAbyssalEntity;
-import com.apocalypse.caerulaarbor.entity.FlyFishEntity;
-import com.apocalypse.caerulaarbor.entity.FleeFishEntity;
-import com.apocalypse.caerulaarbor.entity.FakeOffspringEntity;
-import com.apocalypse.caerulaarbor.entity.CreeperFishEntity;
-import com.apocalypse.caerulaarbor.entity.CrackerAbyssalEntity;
-import com.apocalypse.caerulaarbor.entity.CollectorProkaryoteEntity;
-import com.apocalypse.caerulaarbor.entity.ChiselerFishEntity;
-import com.apocalypse.caerulaarbor.entity.BoneFishEntity;
-import com.apocalypse.caerulaarbor.entity.BaselayerAbyssalEntity;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber
 public class EntityAnimationFactory {

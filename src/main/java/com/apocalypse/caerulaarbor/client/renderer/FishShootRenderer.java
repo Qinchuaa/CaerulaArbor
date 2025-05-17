@@ -1,19 +1,17 @@
 package com.apocalypse.caerulaarbor.client.renderer;
 
-import net.minecraft.util.Mth;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.client.renderer.texture.OverlayTexture;
-import net.minecraft.client.renderer.entity.EntityRendererProvider;
-import net.minecraft.client.renderer.entity.EntityRenderer;
-import net.minecraft.client.renderer.RenderType;
-import net.minecraft.client.renderer.MultiBufferSource;
-
-import com.apocalypse.caerulaarbor.entity.FishShootEntity;
 import com.apocalypse.caerulaarbor.client.model.Modelfishbullet_Converted;
-
-import com.mojang.math.Axis;
-import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.apocalypse.caerulaarbor.entity.FishShootEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
+import com.mojang.blaze3d.vertex.VertexConsumer;
+import com.mojang.math.Axis;
+import net.minecraft.client.renderer.MultiBufferSource;
+import net.minecraft.client.renderer.RenderType;
+import net.minecraft.client.renderer.entity.EntityRenderer;
+import net.minecraft.client.renderer.entity.EntityRendererProvider;
+import net.minecraft.client.renderer.texture.OverlayTexture;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.util.Mth;
 
 public class FishShootRenderer extends EntityRenderer<FishShootEntity> {
 	private static final ResourceLocation texture = new ResourceLocation("caerula_arbor:textures/entities/fishbullet.png");

@@ -1,23 +1,17 @@
 
 package com.apocalypse.caerulaarbor.command;
 
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.event.RegisterCommandsEvent;
-import net.minecraftforge.common.util.FakePlayerFactory;
-
-import net.minecraft.world.level.Level;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.core.Direction;
-import net.minecraft.commands.arguments.EntityArgument;
+import com.apocalypse.caerulaarbor.procedures.*;
 import net.minecraft.commands.Commands;
-
-import com.apocalypse.caerulaarbor.procedures.SwitchDisoToNeuroProcedure;
-import com.apocalypse.caerulaarbor.procedures.SwitchDisoToBloodProcedure;
-import com.apocalypse.caerulaarbor.procedures.SwitchDisoToAttentionProcedure;
-import com.apocalypse.caerulaarbor.procedures.SwitchDesoToDeformProcedure;
-import com.apocalypse.caerulaarbor.procedures.ClearDisoProcedure;
+import net.minecraft.commands.arguments.EntityArgument;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.common.util.FakePlayerFactory;
+import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber
 public class DisoclutionCommand {

@@ -1,9 +1,8 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Entity;
-
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
 
 public class HasOceanize1Procedure {
 	public static boolean execute(Entity entity) {

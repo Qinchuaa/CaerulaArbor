@@ -2,13 +2,11 @@ package com.apocalypse.caerulaarbor.init;
 
 import com.apocalypse.caerulaarbor.item.LegendarySpearItem;
 import com.apocalypse.caerulaarbor.item.PhloemBowItem;
-import software.bernie.geckolib.animatable.GeoItem;
-
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.event.TickEvent;
-
 import net.minecraft.world.item.ItemStack;
+import net.minecraftforge.event.TickEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import software.bernie.geckolib.animatable.GeoItem;
 
 @Mod.EventBusSubscriber
 public class ItemAnimationFactory {

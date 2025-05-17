@@ -3,22 +3,21 @@ package com.apocalypse.caerulaarbor.compat.jei;
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.init.ModPotions;
-import mezz.jei.api.recipe.vanilla.IJeiBrewingRecipe;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.resources.ResourceLocation;
-
-import mezz.jei.api.registration.IRecipeRegistration;
-import mezz.jei.api.recipe.vanilla.IVanillaRecipeFactory;
-import mezz.jei.api.recipe.vanilla.IJeiAnvilRecipe;
-import mezz.jei.api.constants.RecipeTypes;
-import mezz.jei.api.JeiPlugin;
 import mezz.jei.api.IModPlugin;
+import mezz.jei.api.JeiPlugin;
+import mezz.jei.api.constants.RecipeTypes;
+import mezz.jei.api.recipe.vanilla.IJeiAnvilRecipe;
+import mezz.jei.api.recipe.vanilla.IJeiBrewingRecipe;
+import mezz.jei.api.recipe.vanilla.IVanillaRecipeFactory;
+import mezz.jei.api.registration.IRecipeRegistration;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
 @JeiPlugin
 public class CAJeiPlugin implements IModPlugin {

@@ -3,7 +3,7 @@ package com.apocalypse.caerulaarbor.entity;
 
 import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
 import com.apocalypse.caerulaarbor.init.ModItems;
-import com.apocalypse.caerulaarbor.procedures.FakeeggInitProcedure;
+import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import com.apocalypse.caerulaarbor.procedures.StickToEnemyProcedure;
 import net.minecraft.nbt.CompoundTag;
@@ -15,9 +15,12 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -60,7 +63,6 @@ public class FakeOffspringEntity extends Monster implements GeoEntity {
     public static final EntityDataAccessor<Integer> DATA_dz = SynchedEntityData.defineId(FakeOffspringEntity.class, EntityDataSerializers.INT);
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private boolean swinging;
-    private boolean lastloop;
     private long lastSwing;
     public String animationprocedure = "empty";
 
@@ -172,9 +174,14 @@ public class FakeOffspringEntity extends Monster implements GeoEntity {
     @Override
     @ParametersAreNonnullByDefault
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
-        SpawnGroupData retval = super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
-        FakeeggInitProcedure.execute(this);
-        return retval;
+        if (!this.level().isClientSide()) {
+            this.addEffect(new MobEffectInstance(ModMobEffects.SELF_KILL.get(), 9999, 0, false, false));
+        }
+
+        this.getEntityData().set(DATA_dx, Mth.nextInt(RandomSource.create(), -50, 50));
+        this.getEntityData().set(DATA_dz, Mth.nextInt(RandomSource.create(), -50, 50));
+
+        return super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
     }
 
     @Override
@@ -247,7 +254,6 @@ public class FakeOffspringEntity extends Monster implements GeoEntity {
     private PlayState attackingPredicate(AnimationState<?> event) {
         double d1 = this.getX() - this.xOld;
         double d0 = this.getZ() - this.zOld;
-        float velocity = (float) Math.sqrt(d1 * d1 + d0 * d0);
         if (getAttackAnim(event.getPartialTick()) > 0f && !this.swinging) {
             this.swinging = true;
             this.lastSwing = level().getGameTime();

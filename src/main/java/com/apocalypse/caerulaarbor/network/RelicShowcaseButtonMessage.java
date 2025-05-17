@@ -2,35 +2,19 @@
 package com.apocalypse.caerulaarbor.network;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
+import com.apocalypse.caerulaarbor.procedures.*;
 import com.apocalypse.caerulaarbor.world.inventory.RelicShowcaseMenu;
-import net.minecraftforge.network.NetworkEvent;
-import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-
-import net.minecraft.world.level.Level;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
+import net.minecraftforge.network.NetworkEvent;
 
-import com.apocalypse.caerulaarbor.procedures.UngainRelicSPEARProcedure;
-import com.apocalypse.caerulaarbor.procedures.UngainRelicEXTENProcedure;
-import com.apocalypse.caerulaarbor.procedures.UngainRelicCrownProcedure;
-import com.apocalypse.caerulaarbor.procedures.UngainRelicCRYSTALProcedure;
-import com.apocalypse.caerulaarbor.procedures.UngainRelicARMORProcedure;
-import com.apocalypse.caerulaarbor.procedures.UngainHandThornsProcedure;
-import com.apocalypse.caerulaarbor.procedures.UngainHandStrangleProcedure;
-import com.apocalypse.caerulaarbor.procedures.UngainHandSpeedProcedure;
-import com.apocalypse.caerulaarbor.procedures.UngainHandSWIPEProcedure;
-import com.apocalypse.caerulaarbor.procedures.UngainHandFERTILITYProcedure;
-import com.apocalypse.caerulaarbor.procedures.UngainHandBARRENProcedure;
-import com.apocalypse.caerulaarbor.procedures.UngainCursedResearchProcedure;
-import com.apocalypse.caerulaarbor.procedures.UngainCursedGlowbodyProcedure;
-import com.apocalypse.caerulaarbor.procedures.UngainCursedEMELIGHTProcedure;
-import com.apocalypse.caerulaarbor.procedures.InnerOpenCaerulaProcedure;
-
-import java.util.function.Supplier;
 import java.util.HashMap;
+import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class RelicShowcaseButtonMessage {

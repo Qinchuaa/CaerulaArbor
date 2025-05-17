@@ -1,25 +1,18 @@
 
 package com.apocalypse.caerulaarbor.command;
 
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.event.RegisterCommandsEvent;
-import net.minecraftforge.common.util.FakePlayerFactory;
-
-import net.minecraft.world.level.Level;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.core.Direction;
-import net.minecraft.commands.arguments.EntityArgument;
-import net.minecraft.commands.Commands;
-
-import com.apocalypse.caerulaarbor.procedures.SetlightAblazeProcedure;
-import com.apocalypse.caerulaarbor.procedures.SetLightVawingProcedure;
-import com.apocalypse.caerulaarbor.procedures.SetLightProcedure;
-import com.apocalypse.caerulaarbor.procedures.SetLightDimProcedure;
-import com.apocalypse.caerulaarbor.procedures.SetLightCeasedProcedure;
-
+import com.apocalypse.caerulaarbor.procedures.*;
 import com.mojang.brigadier.arguments.DoubleArgumentType;
+import net.minecraft.commands.Commands;
+import net.minecraft.commands.arguments.EntityArgument;
+import net.minecraft.core.Direction;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.Level;
+import net.minecraftforge.common.util.FakePlayerFactory;
+import net.minecraftforge.event.RegisterCommandsEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber
 public class LightSetCommand {

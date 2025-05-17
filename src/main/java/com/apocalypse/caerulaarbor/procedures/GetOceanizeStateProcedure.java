@@ -1,9 +1,8 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import net.minecraft.world.entity.Entity;
-import net.minecraft.network.chat.Component;
-
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.entity.Entity;
 
 public class GetOceanizeStateProcedure {
 	public static String execute(Entity entity) {

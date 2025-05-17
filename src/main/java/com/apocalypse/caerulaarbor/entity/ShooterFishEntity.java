@@ -1,69 +1,54 @@
 
 package com.apocalypse.caerulaarbor.entity;
 
-import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
-import software.bernie.geckolib.util.GeckoLibUtil;
-import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-import software.bernie.geckolib.animatable.GeoEntity;
-
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.network.PlayMessages;
-import net.minecraftforge.network.NetworkHooks;
-
-import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.item.ItemStack;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.npc.Villager;
-import net.minecraft.world.entity.monster.Witch;
-import net.minecraft.world.entity.monster.Vindicator;
-import net.minecraft.world.entity.monster.RangedAttackMob;
-import net.minecraft.world.entity.monster.Pillager;
-import net.minecraft.world.entity.monster.Monster;
-import net.minecraft.world.entity.monster.Illusioner;
-import net.minecraft.world.entity.animal.SnowGolem;
-import net.minecraft.world.entity.animal.IronGolem;
-import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
-import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
-import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
-import net.minecraft.world.entity.ai.goal.Goal;
-import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-import net.minecraft.world.entity.SpawnPlacements;
-import net.minecraft.world.entity.Pose;
-import net.minecraft.world.entity.MobType;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EntityDimensions;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.damagesource.DamageTypes;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.Difficulty;
-import net.minecraft.util.Mth;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.core.BlockPos;
-
-import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
+import com.apocalypse.caerulaarbor.init.ModItems;
+import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
+import net.minecraft.core.BlockPos;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.util.Mth;
+import net.minecraft.world.Difficulty;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.Goal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.RandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.animal.IronGolem;
+import net.minecraft.world.entity.animal.SnowGolem;
+import net.minecraft.world.entity.monster.*;
+import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraftforge.network.NetworkHooks;
+import net.minecraftforge.network.PlayMessages;
+import net.minecraftforge.registries.ForgeRegistries;
+import org.jetbrains.annotations.NotNull;
+import software.bernie.geckolib.animatable.GeoEntity;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
-
 import java.util.EnumSet;
 
 public class ShooterFishEntity extends Monster implements RangedAttackMob, GeoEntity {
@@ -104,14 +89,14 @@ public class ShooterFishEntity extends Monster implements RangedAttackMob, GeoEn
 	}
 
 	@Override
-	public Packet<ClientGamePacketListener> getAddEntityPacket() {
+	public @NotNull Packet<ClientGamePacketListener> getAddEntityPacket() {
 		return NetworkHooks.getEntitySpawningPacket(this);
 	}
 
 	@Override
 	protected void registerGoals() {
 		super.registerGoals();
-		this.targetSelector.addGoal(1, new NearestAttackableTargetGoal(this, Player.class, false, false) {
+        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, false, false) {
 			@Override
 			public boolean canUse() {
 				double x = ShooterFishEntity.this.getX();
@@ -127,18 +112,17 @@ public class ShooterFishEntity extends Monster implements RangedAttackMob, GeoEn
 				double x = ShooterFishEntity.this.getX();
 				double y = ShooterFishEntity.this.getY();
 				double z = ShooterFishEntity.this.getZ();
-				Entity entity = ShooterFishEntity.this;
 				Level world = ShooterFishEntity.this.level();
 				return super.canContinueToUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
 			}
 		});
-		this.targetSelector.addGoal(2, new NearestAttackableTargetGoal(this, IronGolem.class, false, false));
-		this.targetSelector.addGoal(3, new NearestAttackableTargetGoal(this, SnowGolem.class, false, false));
-		this.targetSelector.addGoal(4, new NearestAttackableTargetGoal(this, Villager.class, false, false));
-		this.targetSelector.addGoal(5, new NearestAttackableTargetGoal(this, Illusioner.class, false, false));
-		this.targetSelector.addGoal(6, new NearestAttackableTargetGoal(this, Pillager.class, false, false));
-		this.targetSelector.addGoal(7, new NearestAttackableTargetGoal(this, Vindicator.class, false, false));
-		this.targetSelector.addGoal(8, new NearestAttackableTargetGoal(this, Witch.class, false, false));
+        this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, IronGolem.class, false, false));
+        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, SnowGolem.class, false, false));
+        this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Villager.class, false, false));
+        this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, Illusioner.class, false, false));
+        this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, Pillager.class, false, false));
+        this.targetSelector.addGoal(7, new NearestAttackableTargetGoal<>(this, Vindicator.class, false, false));
+        this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, Witch.class, false, false));
 		this.targetSelector.addGoal(9, new HurtByTargetGoal(this).setAlertOthers());
 		this.goalSelector.addGoal(10, new RandomStrollGoal(this, 0.4));
 		this.goalSelector.addGoal(11, new RandomLookAroundGoal(this));
@@ -151,7 +135,7 @@ public class ShooterFishEntity extends Monster implements RangedAttackMob, GeoEn
 		});
 	}
 
-	public class RangedAttackGoal extends Goal {
+	public static class RangedAttackGoal extends Goal {
 		private final Mob mob;
 		private final RangedAttackMob rangedAttackMob;
 		@Nullable
@@ -244,7 +228,7 @@ public class ShooterFishEntity extends Monster implements RangedAttackMob, GeoEn
 		return MobType.WATER;
 	}
 
-	protected void dropCustomDeathLoot(DamageSource source, int looting, boolean recentlyHitIn) {
+	protected void dropCustomDeathLoot(@NotNull DamageSource source, int looting, boolean recentlyHitIn) {
 		super.dropCustomDeathLoot(source, looting, recentlyHitIn);
 		this.spawnAtLocation(new ItemStack(ModItems.OCEAN_FIBRE.get()));
 	}
@@ -255,12 +239,12 @@ public class ShooterFishEntity extends Monster implements RangedAttackMob, GeoEn
 	}
 
 	@Override
-	public void playStepSound(BlockPos pos, BlockState blockIn) {
+	public void playStepSound(@NotNull BlockPos pos, @NotNull BlockState blockIn) {
 		this.playSound(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.silverfish.step")), 0.15f, 1);
 	}
 
 	@Override
-	public SoundEvent getHurtSound(DamageSource ds) {
+	public SoundEvent getHurtSound(@NotNull DamageSource ds) {
 		return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.puffer_fish.hurt"));
 	}
 
@@ -277,13 +261,13 @@ public class ShooterFishEntity extends Monster implements RangedAttackMob, GeoEn
 	}
 
 	@Override
-	public void addAdditionalSaveData(CompoundTag compound) {
+	public void addAdditionalSaveData(@NotNull CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
 		compound.putString("Texture", this.getTexture());
 	}
 
 	@Override
-	public void readAdditionalSaveData(CompoundTag compound) {
+	public void readAdditionalSaveData(@NotNull CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
 		if (compound.contains("Texture"))
 			this.setTexture(compound.getString("Texture"));
@@ -296,12 +280,12 @@ public class ShooterFishEntity extends Monster implements RangedAttackMob, GeoEn
 	}
 
 	@Override
-	public EntityDimensions getDimensions(Pose p_33597_) {
+	public @NotNull EntityDimensions getDimensions(@NotNull Pose p_33597_) {
 		return super.getDimensions(p_33597_).scale((float) 1);
 	}
 
 	@Override
-	public void performRangedAttack(LivingEntity target, float flval) {
+	public void performRangedAttack(@NotNull LivingEntity target, float flval) {
 		FishShootEntity.shoot(this, target);
 	}
 
@@ -335,7 +319,6 @@ public class ShooterFishEntity extends Monster implements RangedAttackMob, GeoEn
 	private PlayState attackingPredicate(AnimationState<?> event) {
 		double d1 = this.getX() - this.xOld;
 		double d0 = this.getZ() - this.zOld;
-		float velocity = (float) Math.sqrt(d1 * d1 + d0 * d0);
 		if (getAttackAnim(event.getPartialTick()) > 0f && !this.swinging) {
 			this.swinging = true;
 			this.lastSwing = level().getGameTime();

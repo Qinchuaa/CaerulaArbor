@@ -1,52 +1,11 @@
 package com.apocalypse.caerulaarbor.init;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
-import net.minecraftforge.registries.RegistryObject;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.registries.DeferredRegister;
-
+import com.apocalypse.caerulaarbor.potion.*;
 import net.minecraft.world.effect.MobEffect;
-
-import com.apocalypse.caerulaarbor.potion.WipeDustsMobEffect;
-import com.apocalypse.caerulaarbor.potion.UntameConfirmMobEffect;
-import com.apocalypse.caerulaarbor.potion.UmbrellaSettleMobEffect;
-import com.apocalypse.caerulaarbor.potion.TrailBuffMobEffect;
-import com.apocalypse.caerulaarbor.potion.TideOfChitinMobEffect;
-import com.apocalypse.caerulaarbor.potion.SurvivorsGuideMobEffect;
-import com.apocalypse.caerulaarbor.potion.StrengthOfCrowdMobEffect;
-import com.apocalypse.caerulaarbor.potion.SplasherAttackMobEffect;
-import com.apocalypse.caerulaarbor.potion.SpearFightMobEffect;
-import com.apocalypse.caerulaarbor.potion.SelfKillMobEffect;
-import com.apocalypse.caerulaarbor.potion.SanityProtectMobEffect;
-import com.apocalypse.caerulaarbor.potion.SanityImmueMobEffect;
-import com.apocalypse.caerulaarbor.potion.SanityHealMobEffect;
-import com.apocalypse.caerulaarbor.potion.SanidyDefenderMobEffect;
-import com.apocalypse.caerulaarbor.potion.SacreficeMobEffect;
-import com.apocalypse.caerulaarbor.potion.RockBreakMobEffect;
-import com.apocalypse.caerulaarbor.potion.ReefCrackerMobEffect;
-import com.apocalypse.caerulaarbor.potion.PowerOfAnchorMobEffect;
-import com.apocalypse.caerulaarbor.potion.LessArmorMobEffect;
-import com.apocalypse.caerulaarbor.potion.KingsBreathMobEffect;
-import com.apocalypse.caerulaarbor.potion.KingsBoostMobEffect;
-import com.apocalypse.caerulaarbor.potion.KeepBeddingMobEffect;
-import com.apocalypse.caerulaarbor.potion.InvulnerableMobEffect;
-import com.apocalypse.caerulaarbor.potion.InstantSanityMobEffect;
-import com.apocalypse.caerulaarbor.potion.InfestedMobEffect;
-import com.apocalypse.caerulaarbor.potion.HandsSpeedMobEffect;
-import com.apocalypse.caerulaarbor.potion.HaemophiliaMobEffect;
-import com.apocalypse.caerulaarbor.potion.FrozenMobEffect;
-import com.apocalypse.caerulaarbor.potion.FleshdeformityMobEffect;
-import com.apocalypse.caerulaarbor.potion.FlagSwingsMobEffect;
-import com.apocalypse.caerulaarbor.potion.FishReapMobEffect;
-import com.apocalypse.caerulaarbor.potion.EngravedTriumphMobEffect;
-import com.apocalypse.caerulaarbor.potion.DizzyMobEffect;
-import com.apocalypse.caerulaarbor.potion.DeductOneSanityMobEffect;
-import com.apocalypse.caerulaarbor.potion.CooldownSinalMobEffect;
-import com.apocalypse.caerulaarbor.potion.ButchersPowerMobEffect;
-import com.apocalypse.caerulaarbor.potion.BoostOfSilenceMobEffect;
-import com.apocalypse.caerulaarbor.potion.AngerOfTideMobEffect;
-import com.apocalypse.caerulaarbor.potion.AddReachMobEffect;
-import com.apocalypse.caerulaarbor.potion.AddAttackPerclyMobEffect;
+import net.minecraftforge.registries.DeferredRegister;
+import net.minecraftforge.registries.ForgeRegistries;
+import net.minecraftforge.registries.RegistryObject;
 
 public class ModMobEffects {
 

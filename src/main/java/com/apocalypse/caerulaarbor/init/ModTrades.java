@@ -1,14 +1,13 @@
 package com.apocalypse.caerulaarbor.init;
 
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.event.village.VillagerTradesEvent;
-import net.minecraftforge.common.BasicItemListing;
-
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.item.Items;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.entity.npc.VillagerProfession;
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraftforge.common.BasicItemListing;
+import net.minecraftforge.event.village.VillagerTradesEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class ModTrades {
@@ -27,7 +26,7 @@ public class ModTrades {
             event.getTrades().get(4).add(new BasicItemListing(new ItemStack(ModItems.REDSTONE_INGOT.get(), 16), new ItemStack(Items.GOLD_INGOT, 8), new ItemStack(ModItems.KINGS_EXTENSION.get()), 1, 8, 0.04f));
             event.getTrades().get(5).add(new BasicItemListing(new ItemStack(ModItems.REDSTONE_INGOT.get(), 24), new ItemStack(Items.NETHERITE_SCRAP), new ItemStack(ModItems.KINGS_SPEAR.get()), 10, 5, 0.04f));
             event.getTrades().get(1).add(new BasicItemListing(new ItemStack(ModItems.REDSTONE_INGOT.get(), 12), new ItemStack(Items.PRISMARINE_SHARD, 16), new ItemStack(ModItems.WEIRD_FLUTE.get()), 10, 5, 0.04f));
-            event.getTrades().get(2).add(new BasicItemListing(new ItemStack(ModItems.REDSTONE_INGOT.get(), 16), new ItemStack(Blocks.GRASS_BLOCK, 32), new ItemStack(ModBlocks.REDSTONEIRIS_SEEDING.get()), 4, 8, 0.04f));
+            event.getTrades().get(2).add(new BasicItemListing(new ItemStack(ModItems.REDSTONE_INGOT.get(), 16), new ItemStack(Blocks.GRASS_BLOCK, 32), new ItemStack(ModBlocks.REDSTONE_IRIS_SEEDING.get()), 4, 8, 0.04f));
         }
     }
 }

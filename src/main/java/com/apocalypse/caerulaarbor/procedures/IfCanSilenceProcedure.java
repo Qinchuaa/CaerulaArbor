@@ -1,8 +1,7 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import net.minecraft.world.level.LevelAccessor;
-
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
+import net.minecraft.world.level.LevelAccessor;
 
 public class IfCanSilenceProcedure {
 	public static boolean execute(LevelAccessor world) {

@@ -1,11 +1,10 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.core.BlockPos;
-
 import com.apocalypse.caerulaarbor.init.ModBlocks;
+import net.minecraft.core.BlockPos;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
 
 public class DetectForTrailProcedure {
 	public static boolean execute(LevelAccessor world, double x, double y, double z) {

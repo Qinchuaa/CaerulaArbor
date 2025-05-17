@@ -1,8 +1,8 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.network.chat.Component;
 import net.minecraft.core.BlockPos;
+import net.minecraft.network.chat.Component;
+import net.minecraft.world.level.LevelAccessor;
 
 public class ShowThermoProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z) {

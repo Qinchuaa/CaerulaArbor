@@ -4,23 +4,11 @@
  */
 package com.apocalypse.caerulaarbor.init;
 
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
+import com.apocalypse.caerulaarbor.client.particle.*;
 import net.minecraftforge.api.distmarker.Dist;
-
-import com.apocalypse.caerulaarbor.client.particle.ShieldlossParticle;
-import com.apocalypse.caerulaarbor.client.particle.MissParticle;
-import com.apocalypse.caerulaarbor.client.particle.LifelossParticle;
-import com.apocalypse.caerulaarbor.client.particle.KnifeptcParticle;
-import com.apocalypse.caerulaarbor.client.particle.KingSlayRedParticle;
-import com.apocalypse.caerulaarbor.client.particle.KingSlayParticle;
-import com.apocalypse.caerulaarbor.client.particle.DizzinessParticle;
-import com.apocalypse.caerulaarbor.client.particle.CrackerBuff1Particle;
-import com.apocalypse.caerulaarbor.client.particle.CrackerBuff0Particle;
-import com.apocalypse.caerulaarbor.client.particle.BloodoozeParticle;
-import com.apocalypse.caerulaarbor.client.particle.ArchfiendResevParticle;
-import com.apocalypse.caerulaarbor.client.particle.ArchfiendKeepParticle;
+import net.minecraftforge.client.event.RegisterParticleProvidersEvent;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class CaerulaArborModParticles {
