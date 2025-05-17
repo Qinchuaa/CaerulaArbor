@@ -1,5 +1,12 @@
 package com.apocalypse.caerulaarbor;
 
+import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.PotionUtils;
+import net.minecraft.world.item.alchemy.Potions;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
+import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import org.apache.logging.log4j.Logger;
 import org.apache.logging.log4j.LogManager;
 
@@ -64,6 +71,8 @@ public class CaerulaArborMod {
         ModMenus.REGISTRY.register(bus);
         CaerulaArborModAttributes.REGISTRY.register(bus);
 
+        bus.addListener(this::onCommonSetup);
+
         MinecraftForge.EVENT_BUS.register(this);
     }
 
@@ -99,5 +108,18 @@ public class CaerulaArborMod {
 
     public static ResourceLocation loc(String path) {
         return new ResourceLocation(MODID, path);
+    }
+
+    public void onCommonSetup(final FMLCommonSetupEvent event) {
+        event.enqueueWork(() -> BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),
+                Ingredient.of(ModItems.FERMENTED_OCEAN_EYE.get()), PotionUtils.setPotion(new ItemStack(Items.POTION), ModPotions.INST_SANITY.get())));
+        event.enqueueWork(() -> BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), ModPotions.INST_SANITY.get())),
+                Ingredient.of(ModItems.CARAMEL_MOR.get()), PotionUtils.setPotion(new ItemStack(Items.POTION), ModPotions.SANITY_CURE.get())));
+        event.enqueueWork(() -> BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), Potions.AWKWARD)),
+                Ingredient.of(Items.SWEET_BERRIES), new ItemStack(ModItems.SCREAMING_CHERRY.get())));
+        event.enqueueWork(() -> BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), ModPotions.INST_SANITY.get())),
+                Ingredient.of(Items.GLOWSTONE_DUST), PotionUtils.setPotion(new ItemStack(Items.POTION), ModPotions.INST_SANITY_II.get())));
+        event.enqueueWork(() -> BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), ModPotions.SANITY_CURE.get())),
+                Ingredient.of(Items.GLOWSTONE_DUST), PotionUtils.setPotion(new ItemStack(Items.POTION), ModPotions.SANITY_CURE_II.get())));
     }
 }
