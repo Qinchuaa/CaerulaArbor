@@ -20,7 +20,7 @@ public class SwitchDisoToBloodProcedure {
 						return null;
 					}
 				}
-			}.getEntity()).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+			}.getEntity()).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
 				capability.disoclusion = _setval;
 				capability.syncPlayerVariables((new Object() {
 					public Entity getEntity() {

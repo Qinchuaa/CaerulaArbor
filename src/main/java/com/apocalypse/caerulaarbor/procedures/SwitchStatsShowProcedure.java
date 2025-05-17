@@ -12,14 +12,14 @@ public class SwitchStatsShowProcedure {
 			return;
 		{
 			boolean _setval = guistate.containsKey("checkbox:show_hud") && ((Checkbox) guistate.get("checkbox:show_hud")).selected();
-			entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+			entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
 				capability.show_stats = _setval;
 				capability.syncPlayerVariables(entity);
 			});
 		}
 		{
 			boolean _setval = guistate.containsKey("checkbox:show_ptc") && ((Checkbox) guistate.get("checkbox:show_ptc")).selected();
-			entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+			entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
 				capability.kingShowPtc = _setval;
 				capability.syncPlayerVariables(entity);
 			});

@@ -19,7 +19,7 @@ public class DamageByInfestedProcedure {
 		if (entity == null)
 			return;
 		double dam = 0;
-		if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).player_oceanization < 3) {
+		if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).player_oceanization < 3) {
 			dam = (entity instanceof LivingEntity _livEnt ? _livEnt.getMaxHealth() : -1) * Mth.nextDouble(RandomSource.create(), 0.1, 0.25) * (amplifier + 1);
 			if (entity instanceof LivingEntity _livEnt2 && _livEnt2.hasEffect(ModMobEffects.POWER_OF_ANCHOR.get())) {
 				dam = dam * 0.1;

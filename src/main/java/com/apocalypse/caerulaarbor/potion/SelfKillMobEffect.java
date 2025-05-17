@@ -1,7 +1,9 @@
 
 package com.apocalypse.caerulaarbor.potion;
 
-import com.apocalypse.caerulaarbor.procedures.SelfDamageProcedure;
+import net.minecraft.core.registries.Registries;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -25,7 +27,11 @@ public class SelfKillMobEffect extends MobEffect {
 
     @Override
     public void applyEffectTick(@NotNull LivingEntity entity, int amplifier) {
-        SelfDamageProcedure.execute(entity.level(), entity);
+        if (entity.getHealth() >= 1) {
+            entity.setHealth(entity.getHealth() - 1);
+        } else {
+            entity.hurt(new DamageSource(entity.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.DRY_OUT)), 1);
+        }
     }
 
     @Override

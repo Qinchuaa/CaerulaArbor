@@ -39,7 +39,7 @@ public class DurinOvergroundOdysseyItem extends RelicItem {
         if (!stack.getOrCreateTag().getBoolean("Used")) {
             stack.getOrCreateTag().putBoolean("Used", true);
 
-            pPlayer.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+            pPlayer.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
                 capability.relic_util_DURIN = true;
                 capability.syncPlayerVariables(pPlayer);
             });

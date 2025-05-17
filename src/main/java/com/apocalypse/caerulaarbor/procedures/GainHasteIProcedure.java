@@ -14,7 +14,7 @@ public class GainHasteIProcedure {
 			_entity.addEffect(new MobEffectInstance(MobEffects.DIG_SPEED, 200, 0));
 		{
 			boolean _setval = true;
-			entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+            entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
 				capability.relic_util_SEAGRASS = _setval;
 				capability.syncPlayerVariables(entity);
 			});

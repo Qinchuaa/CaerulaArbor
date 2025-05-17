@@ -20,7 +20,7 @@ public class GainRelicToponymProcedure {
 		if (!itemstack.getOrCreateTag().getBoolean("used")) {
 			{
 				boolean _setval = true;
-				entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+				entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
 					capability.relic_util_TOPONYM = _setval;
 					capability.syncPlayerVariables(entity);
 				});
@@ -38,8 +38,8 @@ public class GainRelicToponymProcedure {
 			if (world.isClientSide())
 				Minecraft.getInstance().gameRenderer.displayItemActivation(itemstack);
 			{
-				double _setval = (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).shield + 6;
-				entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+				double _setval = (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).shield + 6;
+				entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
 					capability.shield = _setval;
 					capability.syncPlayerVariables(entity);
 				});

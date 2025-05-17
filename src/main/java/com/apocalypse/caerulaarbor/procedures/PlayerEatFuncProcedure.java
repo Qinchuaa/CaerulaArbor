@@ -59,16 +59,16 @@ public class PlayerEatFuncProcedure {
 					}
 				}.convert(str.substring((int) (index + 1)));
 				{
-					double _setval = (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).light + Mth.nextInt(RandomSource.create(), (int) least, (int) most);
-					entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+					double _setval = (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).light + Mth.nextInt(RandomSource.create(), (int) least, (int) most);
+					entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
 						capability.light = _setval;
 						capability.syncPlayerVariables(entity);
 					});
 				}
-				if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).light > 100) {
+				if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).light > 100) {
 					{
 						double _setval = 100;
-						entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+						entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
 							capability.light = _setval;
 							capability.syncPlayerVariables(entity);
 						});

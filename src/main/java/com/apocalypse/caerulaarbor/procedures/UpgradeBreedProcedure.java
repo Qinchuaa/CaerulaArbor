@@ -18,7 +18,7 @@ import java.util.ArrayList;
 
 public class UpgradeBreedProcedure {
 	public static void execute(LevelAccessor world) {
-		double stra = 0;
+		double stra;
 		String num = "";
 		String prefix = "";
 		stra = CaerulaArborModVariables.MapVariables.get(world).strategy_breed;

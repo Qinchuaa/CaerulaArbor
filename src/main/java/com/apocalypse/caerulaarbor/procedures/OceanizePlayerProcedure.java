@@ -11,30 +11,28 @@ import net.minecraft.world.level.LevelAccessor;
 import net.minecraftforge.registries.ForgeRegistries;
 
 public class OceanizePlayerProcedure {
-	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity, double amplifier) {
-		if (entity == null)
-			return;
-		double ampli = 0;
-		if (entity instanceof Player) {
-			ampli = amplifier;
-			if (amplifier > 2) {
-				ampli = 2;
-			}
-			{
-				double _setval = ampli + 1;
-				entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
-					capability.player_oceanization = _setval;
-					capability.syncPlayerVariables(entity);
-				});
-			}
-			DeductPlayerSanityProcedure.execute(entity, 750 * (amplifier + 1));
-			if (world instanceof Level _level) {
-				if (!_level.isClientSide()) {
-					_level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.zombie.infect")), SoundSource.PLAYERS, 2, 1);
-				} else {
-					_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.zombie.infect")), SoundSource.PLAYERS, 2, 1, false);
-				}
-			}
-		}
-	}
+    public static void execute(LevelAccessor world, double x, double y, double z, Entity entity, double amplifier) {
+        if (entity == null)
+            return;
+        double ampli;
+        if (entity instanceof Player) {
+            ampli = amplifier;
+            if (amplifier > 2) {
+                ampli = 2;
+            }
+            double finalAmpli = ampli;
+            entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+                capability.player_oceanization = finalAmpli + 1;
+                capability.syncPlayerVariables(entity);
+            });
+            DeductPlayerSanityProcedure.execute(entity, 750 * (amplifier + 1));
+            if (world instanceof Level _level) {
+                if (!_level.isClientSide()) {
+                    _level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.zombie.infect")), SoundSource.PLAYERS, 2, 1);
+                } else {
+                    _level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.zombie.infect")), SoundSource.PLAYERS, 2, 1, false);
+                }
+            }
+        }
+    }
 }

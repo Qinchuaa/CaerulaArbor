@@ -18,8 +18,7 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 public class AgeAddGrowingProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, BlockState blockstate) {
-		double expand = 0;
-		expand = 1;
+		double expand = 1;
 		if (world.getLevelData().isThundering()) {
 			expand = 2;
 		}

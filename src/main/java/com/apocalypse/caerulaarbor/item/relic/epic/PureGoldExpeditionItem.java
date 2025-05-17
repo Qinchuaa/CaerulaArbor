@@ -41,7 +41,7 @@ public class PureGoldExpeditionItem extends RelicItem {
             if (!pLevel.isClientSide) {
                 pPlayer.addEffect(new MobEffectInstance(ModMobEffects.ADD_REACH.get(), 400, 1, false, false));
             }
-            pPlayer.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+            pPlayer.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
                 capability.relic_util_VOYGOLD = true;
                 capability.syncPlayerVariables(pPlayer);
             });

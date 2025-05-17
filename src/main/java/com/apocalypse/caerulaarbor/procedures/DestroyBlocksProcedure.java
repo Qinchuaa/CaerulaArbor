@@ -1,11 +1,13 @@
 package com.apocalypse.caerulaarbor.procedures;
 
+import com.apocalypse.caerulaarbor.configuration.CaerulaConfigsConfiguration;
 import com.apocalypse.caerulaarbor.entity.ReaperFishEntity;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Block;
@@ -28,7 +30,7 @@ public class DestroyBlocksProcedure {
 			} else if (CaerulaArborModVariables.MapVariables.get(world).strategy_migration >= 4) {
 				limithard = 5;
 			}
-			if (ModGriefSettingsProcedure.execute(world) && limithard > 0) {
+			if (CaerulaConfigsConfiguration.BREAKABLE.get() && world.getLevelData().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING) && limithard > 0) {
 				if (Math.random() < 0.5) {
 					once = false;
 					dx = -1;

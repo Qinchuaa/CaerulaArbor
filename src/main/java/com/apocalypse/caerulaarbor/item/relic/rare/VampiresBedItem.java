@@ -36,7 +36,7 @@ public class VampiresBedItem extends RelicItem {
     @Override
     public InteractionResultHolder<ItemStack> use(Level world, Player entity, InteractionHand hand) {
         InteractionResultHolder<ItemStack> resultHolder = super.use(world, entity, hand);
-        entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+        entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
             capability.relic_util_BATBED = true;
             capability.syncPlayerVariables(entity);
         });

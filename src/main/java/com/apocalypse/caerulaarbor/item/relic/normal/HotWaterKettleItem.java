@@ -31,7 +31,7 @@ public class HotWaterKettleItem extends RelicItem {
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player player, InteractionHand pUsedHand) {
         InteractionResultHolder<ItemStack> resultHolder = super.use(pLevel, player, pUsedHand);
 
-        player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+        player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
             capability.relic_util_KETTLE = true;
             capability.syncPlayerVariables(player);
         });

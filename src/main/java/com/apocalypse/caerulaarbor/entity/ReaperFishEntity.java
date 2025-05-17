@@ -1,10 +1,10 @@
 
 package com.apocalypse.caerulaarbor.entity;
 
+import com.apocalypse.caerulaarbor.init.CaerulaArborModAttributes;
 import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
+import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.procedures.DestroyBlocksProcedure;
-import com.apocalypse.caerulaarbor.procedures.GiveReaperBuffProcedure;
-import com.apocalypse.caerulaarbor.procedures.InitReaperSanityProcedure;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
@@ -18,6 +18,7 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -168,9 +169,11 @@ public class ReaperFishEntity extends Monster implements GeoEntity {
     @Override
     @ParametersAreNonnullByDefault
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
-        SpawnGroupData retval = super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
-        InitReaperSanityProcedure.execute(this);
-        return retval;
+        var san = this.getAttribute(CaerulaArborModAttributes.SANITY_RATE.get());
+        if (san != null) {
+            san.setBaseValue(6);
+        }
+        return super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
     }
 
     @Override
@@ -192,7 +195,14 @@ public class ReaperFishEntity extends Monster implements GeoEntity {
     @Override
     public void baseTick() {
         super.baseTick();
-        GiveReaperBuffProcedure.execute(this);
+
+        if (this.isAggressive()
+                && !this.hasEffect(ModMobEffects.FISH_REAP.get())
+                && !this.level().isClientSide()
+        ) {
+            this.addEffect(new MobEffectInstance(ModMobEffects.FISH_REAP.get(), 100, 0, false, false));
+        }
+
         this.refreshDimensions();
     }
 

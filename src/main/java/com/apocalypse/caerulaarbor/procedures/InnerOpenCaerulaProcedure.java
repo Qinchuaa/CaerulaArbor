@@ -13,6 +13,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraftforge.network.NetworkHooks;
+import org.jetbrains.annotations.NotNull;
 
 public class InnerOpenCaerulaProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
@@ -22,9 +23,9 @@ public class InnerOpenCaerulaProcedure {
 			_player.closeContainer();
 		if (entity instanceof ServerPlayer _ent) {
 			BlockPos _bpos = BlockPos.containing(x, y, z);
-			NetworkHooks.openScreen((ServerPlayer) _ent, new MenuProvider() {
+			NetworkHooks.openScreen(_ent, new MenuProvider() {
 				@Override
-				public Component getDisplayName() {
+				public @NotNull Component getDisplayName() {
 					return Component.literal("CaerulaRecordGUI");
 				}
 

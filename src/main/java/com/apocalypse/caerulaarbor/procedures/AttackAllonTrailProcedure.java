@@ -36,8 +36,10 @@ public class AttackAllonTrailProcedure {
 			if (entityiterator.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanoffspring")))) {
 				continue;
 			}
-			if (entityiterator instanceof Player && (entityiterator.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).player_oceanization >= 3) {
-				continue;
+			if (entityiterator instanceof Player) {
+				if ((entityiterator.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).player_oceanization >= 3) {
+					continue;
+				}
 			}
 			rand = Mth.nextDouble(RandomSource.create(), 7, 11);
 			if ((world.getBlockState(BlockPos.containing(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ()))).getBlock() == ModBlocks.SEA_TRAIL_GROWN.get()) {

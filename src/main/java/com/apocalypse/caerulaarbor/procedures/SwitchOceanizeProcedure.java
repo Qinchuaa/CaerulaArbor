@@ -21,7 +21,7 @@ public class SwitchOceanizeProcedure {
 						return null;
 					}
 				}
-			}.getEntity()).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+			}.getEntity()).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
 				capability.player_oceanization = _setval;
 				capability.syncPlayerVariables((new Object() {
 					public Entity getEntity() {

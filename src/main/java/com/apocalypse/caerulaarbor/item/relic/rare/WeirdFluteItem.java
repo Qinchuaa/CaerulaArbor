@@ -61,7 +61,7 @@ public class WeirdFluteItem extends RelicItem {
         if (!pStack.getOrCreateTag().getBoolean("Used")) {
             this.afterUse(pStack, pLevel, entity);
 
-            entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+            entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
                 capability.relic_util_FLUTE = true;
                 capability.syncPlayerVariables(entity);
             });

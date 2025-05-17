@@ -1,13 +1,14 @@
 
 package com.apocalypse.caerulaarbor.item;
 
-import com.apocalypse.caerulaarbor.procedures.MixedDispatchProcedure;
+import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.player.Player;
@@ -38,9 +39,17 @@ public class DispatchStickItem extends Item {
     @Override
     @ParametersAreNonnullByDefault
     public @NotNull InteractionResultHolder<ItemStack> use(Level world, Player entity, InteractionHand hand) {
-        InteractionResultHolder<ItemStack> ar = super.use(world, entity, hand);
-        MixedDispatchProcedure.execute(world, entity.getX(), entity.getY(), entity.getZ());
-        return ar;
+        final Vec3 center = new Vec3(entity.getX(), entity.getY(), entity.getZ());
+        for (var entityiterator : world.getEntitiesOfClass(LivingEntity.class,
+                new AABB(center, center).inflate(32), e -> true)
+        ) {
+            if (entityiterator.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanoffspring")))
+                    && !entityiterator.level().isClientSide()
+            ) {
+                entityiterator.addEffect(new MobEffectInstance(ModMobEffects.ANGER_OF_TIDE.get(), 131072, 0, false, true));
+            }
+        }
+        return super.use(world, entity, hand);
     }
 
     @Override

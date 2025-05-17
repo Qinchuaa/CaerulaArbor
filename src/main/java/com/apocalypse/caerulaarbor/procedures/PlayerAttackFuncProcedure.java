@@ -33,9 +33,9 @@ public class PlayerAttackFuncProcedure {
 	private static void execute(@Nullable Event event, Entity sourceentity, boolean isvanillacritical) {
 		if (sourceentity == null)
 			return;
-		ItemStack item_temp = ItemStack.EMPTY;
+		ItemStack item_temp;
 		if (isvanillacritical) {
-			if ((sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).disoclusion == 1) {
+			if ((sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).disoclusion == 1) {
 				if (Math.random() < 0.15) {
 					item_temp = (sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).copy();
 					if (sourceentity instanceof LivingEntity _entity) {
@@ -54,7 +54,7 @@ public class PlayerAttackFuncProcedure {
 					}
 				}
 			}
-			if ((sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_hand_BARREN
+			if ((sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_hand_BARREN
 					&& (sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).is(ItemTags.create(new ResourceLocation("minecraft:axes")))) {
 				if (sourceentity instanceof LivingEntity _livEnt9 && _livEnt9.hasEffect(ModMobEffects.BUTCHERS_POWER.get())) {
 					if ((sourceentity instanceof LivingEntity _livEnt && _livEnt.hasEffect(ModMobEffects.BUTCHERS_POWER.get()) ? _livEnt.getEffect(ModMobEffects.BUTCHERS_POWER.get()).getAmplifier() : 0) < 7) {

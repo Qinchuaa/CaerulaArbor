@@ -83,7 +83,7 @@ public class RelicCursedGLOWBODYItem extends Item {
         double y = entity.getY();
         double z = entity.getZ();
 
-        if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+        if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
                 .map(c -> c.relic_cursed_GLOWBODY)
                 .orElse(false)
         ) return;

@@ -2,9 +2,9 @@
 package com.apocalypse.caerulaarbor.entity;
 
 import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
-import com.apocalypse.caerulaarbor.procedures.NotimeLeftProcedure;
 import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -208,7 +208,11 @@ public class RouteFractalEntity extends Monster implements GeoEntity {
     @Override
     public void baseTick() {
         super.baseTick();
-        NotimeLeftProcedure.execute(this.level(), this);
+
+        if (this.getEntityData().get(DATA_time_left) <= 0) {
+            this.hurt(new DamageSource(this.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.FELL_OUT_OF_WORLD)), 999999);
+        }
+        this.getEntityData().set(DATA_time_left, (int) ((double) this.getEntityData().get(DATA_time_left) - 1));
         this.refreshDimensions();
     }
 

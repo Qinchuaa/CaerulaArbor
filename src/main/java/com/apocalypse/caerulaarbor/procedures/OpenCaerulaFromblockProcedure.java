@@ -17,6 +17,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraftforge.network.NetworkHooks;
+import org.jetbrains.annotations.NotNull;
 
 public class OpenCaerulaFromblockProcedure {
 	public static InteractionResult execute(LevelAccessor world, double x, double y, double z, Entity entity) {
@@ -26,9 +27,9 @@ public class OpenCaerulaFromblockProcedure {
 				&& (entity instanceof LivingEntity _livEnt ? _livEnt.getOffhandItem() : ItemStack.EMPTY).getItem() == Blocks.AIR.asItem()) {
 			if (entity instanceof ServerPlayer _ent) {
 				BlockPos _bpos = BlockPos.containing(x, y, z);
-				NetworkHooks.openScreen((ServerPlayer) _ent, new MenuProvider() {
+				NetworkHooks.openScreen(_ent, new MenuProvider() {
 					@Override
-					public Component getDisplayName() {
+					public @NotNull Component getDisplayName() {
 						return Component.literal("CaerulaRecordGUI");
 					}
 

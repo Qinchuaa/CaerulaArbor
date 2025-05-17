@@ -5,7 +5,6 @@ import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
 import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
-import com.apocalypse.caerulaarbor.procedures.StickToEnemyProcedure;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -206,7 +205,16 @@ public class FakeOffspringEntity extends Monster implements GeoEntity {
     @Override
     public void baseTick() {
         super.baseTick();
-        StickToEnemyProcedure.execute(this);
+
+        if (this.isAggressive()) {
+            var target = this.getTarget();
+            if (target != null && distanceTo(target) <= 4) {
+                teleportTo(target.getX() + target.getBbWidth() * this.getEntityData().get(DATA_dx) * 0.01,
+                        target.getY(),
+                        target.getZ() + target.getBbWidth() * this.getEntityData().get(DATA_dz) * 0.01
+                );
+            }
+        }
         this.refreshDimensions();
     }
 

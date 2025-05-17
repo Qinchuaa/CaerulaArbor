@@ -45,7 +45,7 @@ public class GoldenStormItem extends Item {
             entity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 100, 0));
         }
 
-        entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(cap -> {
+        entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(cap -> {
             cap.relic_util_ORANGE = true;
             cap.syncPlayerVariables(entity);
         });

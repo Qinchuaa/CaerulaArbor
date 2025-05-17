@@ -30,9 +30,9 @@ public class MobInitProcedure {
 	private static void execute(@Nullable Event event, Entity entity) {
 		if (entity == null)
 			return;
-		if (entity instanceof IronGolem) {
-			if (entity instanceof LivingEntity _livingEntity1 && _livingEntity1.getAttributes().hasAttribute(CaerulaArborModAttributes.SANITY_MODIFIER.get()))
-				_livingEntity1.getAttribute(CaerulaArborModAttributes.SANITY_MODIFIER.get()).setBaseValue(0.1);
+		if (entity instanceof IronGolem livingEntity1) {
+			if (livingEntity1.getAttributes().hasAttribute(CaerulaArborModAttributes.SANITY_MODIFIER.get()))
+				livingEntity1.getAttribute(CaerulaArborModAttributes.SANITY_MODIFIER.get()).setBaseValue(0.1);
 		}
 		if (entity.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanoffspring")))) {
 			if (entity instanceof LivingEntity _livingEntity3 && _livingEntity3.getAttributes().hasAttribute(CaerulaArborModAttributes.SANITY_MODIFIER.get()))

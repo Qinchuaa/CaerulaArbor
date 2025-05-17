@@ -60,25 +60,25 @@ public class RelicItem extends Item implements IRelic {
             Minecraft.getInstance().gameRenderer.displayItemActivation(stack);
 
             if (this.getAddedLives() != 0) {
-                double lives = (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+                double lives = (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
                         .orElse(new CaerulaArborModVariables.PlayerVariables())).maxLive + this.getAddedLives();
-                entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+                entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
                     capability.maxLive = lives;
                     capability.syncPlayerVariables(entity);
                 });
             }
             if (this.getAddedMaxLives() != 0) {
-                double maxLives = (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+                double maxLives = (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
                         .orElse(new CaerulaArborModVariables.PlayerVariables())).lives + this.getAddedMaxLives();
-                entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+                entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
                     capability.lives = maxLives;
                     capability.syncPlayerVariables(entity);
                 });
             }
             if (this.getAddedShield() != 0) {
-                double shield = (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null)
+                double shield = (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
                         .orElse(new CaerulaArborModVariables.PlayerVariables())).shield + this.getAddedShield();
-                entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+                entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
                     capability.shield = shield;
                     capability.syncPlayerVariables(entity);
                 });

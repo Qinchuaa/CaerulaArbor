@@ -5,7 +5,11 @@ import net.minecraft.world.level.LevelAccessor;
 
 public class IfCanSilenceProcedure {
 	public static boolean execute(LevelAccessor world) {
-		return CaerulaArborModVariables.MapVariables.get(world).strategy_grow >= 4 && CaerulaArborModVariables.MapVariables.get(world).strategy_subsisting >= 4 && CaerulaArborModVariables.MapVariables.get(world).strategy_breed >= 4
-				&& CaerulaArborModVariables.MapVariables.get(world).strategy_migration >= 4 && CaerulaArborModVariables.MapVariables.get(world).silence_enabled;
+		var mapVariables = CaerulaArborModVariables.MapVariables.get(world);
+		return mapVariables.strategy_grow >= 4
+				&& mapVariables.strategy_subsisting >= 4
+				&& mapVariables.strategy_breed >= 4
+				&& mapVariables.strategy_migration >= 4
+				&& mapVariables.silence_enabled;
 	}
 }

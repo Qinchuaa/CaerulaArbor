@@ -37,7 +37,7 @@ public class ScreamingCherryItem extends BlockItem implements IRelic {
 
     @Override
     public ItemStack finishUsingItem(ItemStack pStack, Level world, LivingEntity entity) {
-        entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+        entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
             capability.relic_util_BERRIES = true;
             capability.syncPlayerVariables(entity);
         });

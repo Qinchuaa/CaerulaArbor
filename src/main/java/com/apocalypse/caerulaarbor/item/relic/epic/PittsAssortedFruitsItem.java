@@ -51,7 +51,7 @@ public class PittsAssortedFruitsItem extends RelicItem {
 
     @Override
     public ItemStack finishUsingItem(ItemStack pStack, Level world, LivingEntity entity) {
-		entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+        entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
 			capability.player_util_RAINBOW = true;
 			capability.syncPlayerVariables(entity);
 		});

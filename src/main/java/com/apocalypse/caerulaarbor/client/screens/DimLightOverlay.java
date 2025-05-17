@@ -1,12 +1,13 @@
 
 package com.apocalypse.caerulaarbor.client.screens;
 
-import com.apocalypse.caerulaarbor.procedures.ShowLightDimProcedure;
+import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.api.distmarker.Dist;
@@ -38,7 +39,10 @@ public class DimLightOverlay {
 		RenderSystem.setShader(GameRenderer::getPositionTexShader);
 		RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
 		RenderSystem.setShaderColor(1, 1, 1, 1);
-		if (ShowLightDimProcedure.execute(entity)) {
+		var cap = ((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
+		if (1 <= cap.light
+				&& cap.light < 50
+				&& cap.show_stats) {
 			event.getGuiGraphics().blit(new ResourceLocation("caerula_arbor:textures/screens/light_cover.png"), 0, 0, 0, 0, w, h, w, h);
 		}
 		RenderSystem.depthMask(true);

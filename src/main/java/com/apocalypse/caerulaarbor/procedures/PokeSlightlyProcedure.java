@@ -12,7 +12,7 @@ public class PokeSlightlyProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
 		if (entity == null)
 			return;
-		if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).player_oceanization < 3) {
+		if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).player_oceanization < 3) {
 			DeductPlayerSanityProcedure.execute(entity, Mth.nextInt(RandomSource.create(), 16, 32));
 		}
 		if (world instanceof ServerLevel _level)

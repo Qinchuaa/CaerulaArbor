@@ -1,8 +1,8 @@
 
 package com.apocalypse.caerulaarbor.entity;
 
+import com.apocalypse.caerulaarbor.init.CaerulaArborModAttributes;
 import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
-import com.apocalypse.caerulaarbor.procedures.InitSliderSanityProcedure;
 import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -176,7 +176,10 @@ public class SliderFishEntity extends Monster implements GeoEntity {
 	@Override
 	public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor world, @NotNull DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
 		SpawnGroupData retval = super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
-		InitSliderSanityProcedure.execute(this);
+		var san = getAttribute(CaerulaArborModAttributes.SANITY_RATE.get());
+		if (san != null) {
+			san.setBaseValue(10);
+		}
 		return retval;
 	}
 

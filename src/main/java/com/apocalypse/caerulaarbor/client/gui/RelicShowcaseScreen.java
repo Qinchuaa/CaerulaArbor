@@ -17,6 +17,9 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
+import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 
 import java.util.HashMap;
@@ -81,7 +84,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         this.renderBackground(guiGraphics);
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
         this.renderTooltip(guiGraphics, mouseX, mouseY);
-        var cap = entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables());
+        var cap = entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
 
         if (cap.relic_king_CROWN)
             if (mouseX > leftPos + 4 && mouseX < leftPos + 20 && mouseY > topPos + 4 && mouseY < topPos + 20)
@@ -226,7 +229,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         RenderSystem.enableBlend();
         RenderSystem.defaultBlendFunc();
 
-        var cap = entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables());
+        var cap = entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
 
         guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/relic_bg.png"), this.leftPos, this.topPos, 0, 0, 328, 216, 328, 216);
 
@@ -270,16 +273,16 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
     protected void renderLabels(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY) {
         guiGraphics.drawString(this.font, Component.translatable("gui.caerula_arbor.relic_showcase.label_relic_showcase"), 4, -12, -1, false);
 
-        var cap = entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables());
+        var cap = entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
 
         if (cap.relic_hand_ENGRAVE >= 0) {
-            String msg = "" + Math.round((((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_hand_ENGRAVE);
+            String msg = "" + Math.round((((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_hand_ENGRAVE);
 
             guiGraphics.drawString(this.font, msg, 157, 36, -16777165, false);
             guiGraphics.drawString(this.font, msg, 156, 36, -1, false);
         }
         if (cap.relic_SURVIVOR >= 0) {
-            String msg = "" + Math.round((((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_SURVIVOR);
+            String msg = "" + Math.round((((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_SURVIVOR);
             guiGraphics.drawString(this.font, msg, 37, 60, -12829636, false);
             guiGraphics.drawString(this.font, msg, 36, 60, -1, false);
         }
@@ -297,7 +300,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         imagebutton_relic_crown = new ImageButton(this.leftPos + 4, this.topPos + 4, 16, 16, 0, 0, 16, new ResourceLocation("caerula_arbor:textures/screens/atlas/imagebutton_relic_crown.png"), 16, 32, e -> {
             boolean result = false;
             if (entity != null) {
-                result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_king_CROWN;
+                result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_king_CROWN;
             }
             if (result) {
                 CaerulaArborMod.PACKET_HANDLER.sendToServer(new RelicShowcaseButtonMessage(1, x, y, z));
@@ -308,7 +311,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
                 boolean result = false;
                 if (entity != null) {
-                    result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_king_CROWN;
+                    result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_king_CROWN;
                 }
                 this.visible = result;
                 super.renderWidget(guiGraphics, gx, gy, ticks);
@@ -331,14 +334,18 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         guistate.put("button:imagebutton_relic_spear", imagebutton_relic_spear);
         this.addRenderableWidget(imagebutton_relic_spear);
         imagebutton_kingsarmor = new ImageButton(this.leftPos + 100, this.topPos + 4, 16, 16, 0, 0, 16, new ResourceLocation("caerula_arbor:textures/screens/atlas/imagebutton_kingsarmor.png"), 16, 32, e -> {
-            if (HasArmorProcedure.execute(entity)) {
+            if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                    .map(c -> c.relic_king_ARMOR)
+                    .orElse(false)) {
                 CaerulaArborMod.PACKET_HANDLER.sendToServer(new RelicShowcaseButtonMessage(3, x, y, z));
                 RelicShowcaseButtonMessage.handleButtonAction(entity, 3, x, y, z);
             }
         }) {
             @Override
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
-                this.visible = HasArmorProcedure.execute(entity);
+                this.visible = entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                        .map(c -> c.relic_king_ARMOR)
+                        .orElse(false);
                 super.renderWidget(guiGraphics, gx, gy, ticks);
             }
         };
@@ -413,14 +420,18 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         guistate.put("button:imagebutton_royalfate", imagebutton_royalfate);
         this.addRenderableWidget(imagebutton_royalfate);
         imagebutton_hand_spike = new ImageButton(this.leftPos + 4, this.topPos + 28, 16, 16, 0, 0, 16, new ResourceLocation("caerula_arbor:textures/screens/atlas/imagebutton_hand_spike.png"), 16, 32, e -> {
-            if (HanshandSpikeProcedure.execute(entity)) {
+            if (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                    .map(c -> c.relic_hand_THORNS)
+                    .orElse(false)) {
                 CaerulaArborMod.PACKET_HANDLER.sendToServer(new RelicShowcaseButtonMessage(10, x, y, z));
                 RelicShowcaseButtonMessage.handleButtonAction(entity, 10, x, y, z);
             }
         }) {
             @Override
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
-                this.visible = HanshandSpikeProcedure.execute(entity);
+                this.visible = ((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                        .map(c -> c.relic_hand_THORNS)
+                        .orElse(false);
                 super.renderWidget(guiGraphics, gx, gy, ticks);
             }
         };
@@ -488,7 +499,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
                 boolean result = false;
                 if (entity != null) {
-                    result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_hand_ENGRAVE >= 0;
+                    result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_hand_ENGRAVE >= 0;
                 }
                 this.visible = result;
                 super.renderWidget(guiGraphics, gx, gy, ticks);
@@ -522,7 +533,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
                 boolean result = false;
                 if (entity != null) {
-                    result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_SURVIVOR >= 0;
+                    result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_SURVIVOR >= 0;
                 }
                 this.visible = result;
                 super.renderWidget(guiGraphics, gx, gy, ticks);
@@ -588,7 +599,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
                 boolean result = false;
                 if (entity != null) {
-                    result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_util_SEAGRASS;
+                    result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_util_SEAGRASS;
                 }
                 this.visible = result;
                 super.renderWidget(guiGraphics, gx, gy, ticks);
@@ -602,7 +613,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
                 boolean result = false;
                 if (entity != null) {
-                    result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_util_ORANGE;
+                    result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_util_ORANGE;
                 }
                 this.visible = result;
                 super.renderWidget(guiGraphics, gx, gy, ticks);
@@ -616,7 +627,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
                 boolean result = false;
                 if (entity != null) {
-                    result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_util_COFFEE;
+                    result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_util_COFFEE;
                 }
                 this.visible = result;
                 super.renderWidget(guiGraphics, gx, gy, ticks);
@@ -630,7 +641,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
                 boolean result = false;
                 if (entity != null) {
-                    result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_util_BERRIES;
+                    result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_util_BERRIES;
                 }
                 this.visible = result;
                 super.renderWidget(guiGraphics, gx, gy, ticks);
@@ -644,7 +655,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
                 boolean result = false;
                 if (entity != null) {
-                    result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).player_util_RAINBOW;
+                    result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).player_util_RAINBOW;
                 }
                 this.visible = result;
                 super.renderWidget(guiGraphics, gx, gy, ticks);
@@ -658,7 +669,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
                 boolean result = false;
                 if (entity != null) {
-                    result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).player_util_AROMATIC;
+                    result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).player_util_AROMATIC;
                 }
                 this.visible = result;
                 super.renderWidget(guiGraphics, gx, gy, ticks);
@@ -672,7 +683,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
                 boolean result = false;
                 if (entity != null) {
-                    result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_util_MUSICBOX;
+                    result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_util_MUSICBOX;
                 }
                 this.visible = result;
                 super.renderWidget(guiGraphics, gx, gy, ticks);
@@ -686,7 +697,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
                 boolean result = false;
                 if (entity != null) {
-                    result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_util_IRIS;
+                    result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_util_IRIS;
                 }
                 this.visible = result;
                 super.renderWidget(guiGraphics, gx, gy, ticks);
@@ -700,7 +711,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
                 boolean result = false;
                 if (entity != null) {
-                    result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_util_FLUTE;
+                    result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_util_FLUTE;
                 }
                 this.visible = result;
                 super.renderWidget(guiGraphics, gx, gy, ticks);
@@ -714,7 +725,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
                 boolean result = false;
                 if (entity != null) {
-                    result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_util_VOYGOLD;
+                    result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_util_VOYGOLD;
                 }
                 this.visible = result;
                 super.renderWidget(guiGraphics, gx, gy, ticks);
@@ -728,7 +739,11 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
                 boolean result = false;
                 if (entity != null) {
-                    result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_util_TOPONYM;
+                    @NotNull LazyOptional<CaerulaArborModVariables.PlayerVariables> result1;
+                    ICapabilityProvider iCapabilityProvider = ((Entity) entity);
+                    final @NotNull Capability<com.apocalypse.caerulaarbor.network.CaerulaArborModVariables.PlayerVariables> cap = CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY;
+                    result1 = getCapability(cap, null);
+                    result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_util_TOPONYM;
                 }
                 this.visible = result;
                 super.renderWidget(guiGraphics, gx, gy, ticks);

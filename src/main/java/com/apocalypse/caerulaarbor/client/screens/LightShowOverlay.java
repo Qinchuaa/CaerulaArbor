@@ -32,25 +32,35 @@ public class LightShowOverlay {
         RenderSystem.setShaderColor(1, 1, 1, 1);
         boolean result = false;
         if (entity != null) {
-            result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).show_stats;
+            result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).show_stats;
         }
         if (result) {
-            if (LightIsCeasedProcedure.execute(entity)) {
+            if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                    .map(c2 -> c2.light < 1)
+                    .orElse(false)) {
                 event.getGuiGraphics().blit(new ResourceLocation("caerula_arbor:textures/screens/light_extinguish.png"), w / 2 - 32, 0, 0, 0, 64, 32, 64, 32);
             }
-            if (LightIsDimProcedure.execute(entity)) {
+            if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                    .map(c1 -> c1.light >= 1 && c1.light < 50)
+                    .orElse(false)) {
                 event.getGuiGraphics().blit(new ResourceLocation("caerula_arbor:textures/screens/light_dim.png"), w / 2 - 32, 0, 0, 0, 64, 32, 64, 32);
             }
-            if (LightIsWavingProcedure.execute(entity)) {
+            if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                    .map(c -> c.light < 85 && c.light >= 50)
+                    .orElse(false)) {
                 event.getGuiGraphics().blit(new ResourceLocation("caerula_arbor:textures/screens/light_waving.png"), w / 2 - 32, 0, 0, 0, 64, 32, 64, 32);
             }
-            if (LightIsBrightProcedure.execute(entity)) {
+            if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                    .map(cap -> cap.light >= 85)
+                    .orElse(false)) {
                 event.getGuiGraphics().blit(new ResourceLocation("caerula_arbor:textures/screens/light.png"), w / 2 - 32, 0, 0, 0, 64, 32, 64, 32);
             }
 
             event.getGuiGraphics().blit(new ResourceLocation("caerula_arbor:textures/screens/target_health.png"), 6, h - 24, 0, 0, 24, 16, 24, 16);
 
-            if (HaveShieldProcedure.execute(entity)) {
+            if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                    .map(c2 -> c2.shield > 0)
+                    .orElse(false)) {
                 event.getGuiGraphics().blit(new ResourceLocation("caerula_arbor:textures/screens/target_shield.png"), 6, h - 40, 0, 0, 24, 16, 24, 16);
             }
             event.getGuiGraphics().drawString(Minecraft.getInstance().font,
@@ -71,11 +81,15 @@ public class LightShowOverlay {
             event.getGuiGraphics().drawString(Minecraft.getInstance().font,
 
                     GetLivesProcedure.execute(entity), 20, h - 21, -1, false);
-            if (HaveShieldProcedure.execute(entity))
+            if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                    .map(c1 -> c1.shield > 0)
+                    .orElse(false))
                 event.getGuiGraphics().drawString(Minecraft.getInstance().font,
 
                         GetShieldProcedure.execute(entity), 21, h - 36, -16777216, false);
-            if (HaveShieldProcedure.execute(entity))
+            if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                    .map(c -> c.shield > 0)
+                    .orElse(false))
                 event.getGuiGraphics().drawString(Minecraft.getInstance().font,
 
                         GetShieldProcedure.execute(entity), 20, h - 36, -1, false);

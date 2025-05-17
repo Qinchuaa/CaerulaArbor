@@ -33,7 +33,7 @@ public class ProofOfLongevityItem extends RelicItem {
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand hand) {
         ItemStack stack = pPlayer.getItemInHand(hand);
-        pPlayer.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+        pPlayer.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
             capability.relic_util_LONGEVITY = true;
             capability.syncPlayerVariables(pPlayer);
         });

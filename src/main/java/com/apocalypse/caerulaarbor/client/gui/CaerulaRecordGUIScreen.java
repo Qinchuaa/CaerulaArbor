@@ -44,8 +44,8 @@ public class CaerulaRecordGUIScreen extends AbstractContainerScreen<CaerulaRecor
     public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         this.renderBackground(guiGraphics);
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
-        if (GetPlayerEntityProcedure.execute(entity) instanceof LivingEntity livingEntity) {
-            InventoryScreen.renderEntityInInventoryFollowsAngle(guiGraphics, this.leftPos + 86, this.topPos + 67, 30, 0f + (float) Math.atan((this.leftPos + 86 - mouseX) / 40.0), (float) Math.atan((this.topPos + 18 - mouseY) / 40.0), livingEntity);
+        if (entity != null) {
+            InventoryScreen.renderEntityInInventoryFollowsAngle(guiGraphics, this.leftPos + 86, this.topPos + 67, 30, 0f + (float) Math.atan((this.leftPos + 86 - mouseX) / 40.0), (float) Math.atan((this.topPos + 18 - mouseY) / 40.0), (LivingEntity) CaerulaRecordGUIScreen.this.entity);
         }
         this.renderTooltip(guiGraphics, mouseX, mouseY);
         if (mouseX > leftPos + 2 && mouseX < leftPos + 26 && mouseY > topPos + 118 && mouseY < topPos + 142)
@@ -90,16 +90,24 @@ public class CaerulaRecordGUIScreen extends AbstractContainerScreen<CaerulaRecor
         if (HasDisoBloodProcedure.execute(entity)) {
             guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/disoclution_blood.png"), this.leftPos + 101, this.topPos + 90, 0, 0, 64, 64, 64, 64);
         }
-        if (LightIsBrightProcedure.execute(entity)) {
+        if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                .map(cap -> cap.light >= 85)
+                .orElse(false)) {
             guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/light.png"), this.leftPos + 36, this.topPos - 37, 0, 0, 64, 32, 64, 32);
         }
-        if (LightIsWavingProcedure.execute(entity)) {
+        if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                .map(c -> c.light < 85 && c.light >= 50)
+                .orElse(false)) {
             guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/light_waving.png"), this.leftPos + 36, this.topPos - 37, 0, 0, 64, 32, 64, 32);
         }
-        if (LightIsDimProcedure.execute(entity)) {
+        if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                .map(c -> c.light >= 1 && c.light < 50)
+                .orElse(false)) {
             guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/light_dim.png"), this.leftPos + 36, this.topPos - 37, 0, 0, 64, 32, 64, 32);
         }
-        if (LightIsCeasedProcedure.execute(entity)) {
+        if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                .map(c -> c.light < 1)
+                .orElse(false)) {
             guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/light_extinguish.png"), this.leftPos + 36, this.topPos - 37, 0, 0, 64, 32, 64, 32);
         }
 
@@ -159,13 +167,21 @@ public class CaerulaRecordGUIScreen extends AbstractContainerScreen<CaerulaRecor
         guiGraphics.drawString(this.font,
 
                 GetLightFloatProcedure.execute(entity), 100, -13, -1, false);
-        if (LightIsBrightProcedure.execute(entity))
+        if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                .map(cap -> cap.light >= 85)
+                .orElse(false))
             guiGraphics.drawString(this.font, Component.translatable("gui.caerula_arbor.caerula_record_gui.label_lightsablaze"), 100, -29, -3342337, false);
-        if (LightIsWavingProcedure.execute(entity))
+        if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                .map(c -> c.light < 85 && c.light >= 50)
+                .orElse(false))
             guiGraphics.drawString(this.font, Component.translatable("gui.caerula_arbor.caerula_record_gui.label_lightsflickering"), 100, -29, -3342388, false);
-        if (LightIsDimProcedure.execute(entity))
+        if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                .map(c -> c.light >= 1 && c.light < 50)
+                .orElse(false))
             guiGraphics.drawString(this.font, Component.translatable("gui.caerula_arbor.caerula_record_gui.label_lightsdim"), 100, -29, -13159, false);
-        if (LightIsCeasedProcedure.execute(entity))
+        if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                .map(c -> c.light < 1)
+                .orElse(false))
             guiGraphics.drawString(this.font, Component.translatable("gui.caerula_arbor.caerula_record_gui.label_lightstranquil"), 100, -29, -26215, false);
         if (HasDisoAttentionProcedure.execute(entity))
             guiGraphics.drawString(this.font, Component.translatable("gui.caerula_arbor.caerula_record_gui.label_disconcentration"), 101, 147, -3368449, false);
@@ -196,12 +212,14 @@ public class CaerulaRecordGUIScreen extends AbstractContainerScreen<CaerulaRecor
         this.addRenderableWidget(imagebutton_relic_icon);
         boolean result = false;
         if (entity != null) {
-            result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).show_stats;
+            result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).show_stats;
         }
         show_hud = new Checkbox(this.leftPos + 4, this.topPos + 120, 20, 20, Component.translatable("gui.caerula_arbor.caerula_record_gui.show_hud"), result);
         guistate.put("checkbox:show_hud", show_hud);
         this.addRenderableWidget(show_hud);
-        show_ptc = new Checkbox(this.leftPos + 4, this.topPos + 142, 20, 20, Component.translatable("gui.caerula_arbor.caerula_record_gui.show_ptc"), GetShowPtcProcedure.execute(entity));
+        show_ptc = new Checkbox(this.leftPos + 4, this.topPos + 142, 20, 20, Component.translatable("gui.caerula_arbor.caerula_record_gui.show_ptc"), ((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                .map(c -> c.kingShowPtc)
+                .orElse(false));
         guistate.put("checkbox:show_ptc", show_ptc);
         this.addRenderableWidget(show_ptc);
     }

@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.potion;
 
-import com.apocalypse.caerulaarbor.procedures.InsSanityProcedure;
+import com.apocalypse.caerulaarbor.procedures.DeductPlayerSanityProcedure;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.EffectRenderingInventoryScreen;
 import net.minecraft.world.effect.MobEffect;
@@ -32,7 +32,7 @@ public class InstantSanityMobEffect extends MobEffect {
 
 	@Override
 	public void applyInstantenousEffect(Entity source, Entity indirectSource, LivingEntity entity, int amplifier, double health) {
-		InsSanityProcedure.execute(entity, amplifier);
+		DeductPlayerSanityProcedure.execute(entity, 125 * ((double) amplifier + 1));
 	}
 
 	@Override

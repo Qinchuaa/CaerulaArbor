@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.item;
 
-import com.apocalypse.caerulaarbor.procedures.Revive15SanityProcedure;
+import com.apocalypse.caerulaarbor.init.CaerulaArborModAttributes;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
@@ -20,7 +20,10 @@ public class CaramelMorItem extends Item {
 		double x = entity.getX();
 		double y = entity.getY();
 		double z = entity.getZ();
-		Revive15SanityProcedure.execute(entity);
+		var san = entity.getAttribute(CaerulaArborModAttributes.SANITY.get());
+		if (san != null) {
+			san.setBaseValue(san.getBaseValue() + 15);
+		}
 		return retval;
 	}
 }

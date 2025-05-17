@@ -60,14 +60,14 @@ public class PlayerHitFuncProcedure {
 	private static void execute(@Nullable Event event, LevelAccessor world, double x, double y, double z, DamageSource damagesource, Entity entity, Entity immediatesourceentity, Entity sourceentity, double amount) {
 		if (damagesource == null || entity == null || immediatesourceentity == null || sourceentity == null)
 			return;
-		ItemStack item_temp = ItemStack.EMPTY;
-		boolean validItem = false;
-		double light_cost = 0;
-		double rate = 0;
-		double time = 0;
+        ItemStack item_temp;
+        boolean validItem;
+        double light_cost;
+        double rate;
+        double time;
 		if (entity instanceof Player) {
 			light_cost = amount * 0.01;
-			if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).disoclusion == 1) {
+            if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).disoclusion == 1) {
 				if (Math.random() < 0.1) {
 					item_temp = (entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).copy();
 					if (entity instanceof LivingEntity _entity) {
@@ -86,7 +86,7 @@ public class PlayerHitFuncProcedure {
 					}
 				}
 			}
-			if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).disoclusion == 3) {
+            if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).disoclusion == 3) {
 				rate = 0.08;
 				time = 160;
 				if (world.getBiome(BlockPos.containing(x, y, z)).value().getBaseTemperature() * 100f >= 180) {
@@ -101,7 +101,7 @@ public class PlayerHitFuncProcedure {
 						_entity.addEffect(new MobEffectInstance(ModMobEffects.FROZEN.get(), (int) time, 0, false, false));
 				}
 			}
-			if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_hand_THORNS) {
+            if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_hand_THORNS) {
 				CaerulaArborMod.queueServerWork(10, () -> {
 					if (world instanceof Level _level) {
 						if (!_level.isClientSide()) {
@@ -115,7 +115,7 @@ public class PlayerHitFuncProcedure {
 					sourceentity.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.THORNS)), entity instanceof LivingEntity _livEnt ? _livEnt.getArmorValue() : 0);
 				});
 			}
-			if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_TREATY) {
+            if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_TREATY) {
 				validItem = false;
 				if (sourceentity.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("forge:nether_mobs")))) {
 					validItem = true;
@@ -141,7 +141,7 @@ public class PlayerHitFuncProcedure {
 					}
 					if (world instanceof ServerLevel _level)
 						_level.sendParticles(ParticleTypes.ASH, x, y, z, 64, 0.5, 0.75, 0.5, 1);
-					if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_hand_THORNS) {
+                    if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_hand_THORNS) {
 						CaerulaArborMod.queueServerWork(10, () -> {
 							if (world instanceof Level _level) {
 								if (!_level.isClientSide()) {
@@ -163,16 +163,16 @@ public class PlayerHitFuncProcedure {
 				}
 			}
 			{
-				double _setval = (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).light - light_cost;
-				entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+                double _setval = (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).light - light_cost;
+                entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
 					capability.light = _setval;
 					capability.syncPlayerVariables(entity);
 				});
 			}
-			if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).light < 0) {
+            if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).light < 0) {
 				{
 					double _setval = 0;
-					entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+                    entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
 						capability.light = _setval;
 						capability.syncPlayerVariables(entity);
 					});
@@ -180,7 +180,7 @@ public class PlayerHitFuncProcedure {
 			}
 		}
 		if (immediatesourceentity instanceof Player) {
-			if ((immediatesourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).disoclusion == 1) {
+            if ((immediatesourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).disoclusion == 1) {
 				if (Math.random() < 0.1) {
 					item_temp = (immediatesourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).copy();
 					if (immediatesourceentity instanceof LivingEntity _entity) {
@@ -200,14 +200,14 @@ public class PlayerHitFuncProcedure {
 				}
 			}
 			if ((immediatesourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).is(ItemTags.create(new ResourceLocation("minecraft:hoes")))) {
-				if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_hand_FERTILITY) {
+                if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_hand_FERTILITY) {
 					entity.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.MAGIC)), (float) ((entity instanceof LivingEntity _livEnt ? _livEnt.getHealth() : -1) * 0.1));
 					if (world instanceof ServerLevel _level)
 						_level.sendParticles(ParticleTypes.SQUID_INK, x, y, z, 8, 0.75, 0.9, 0.75, 0.1);
 				}
 			}
 			if ((immediatesourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).is(ItemTags.create(new ResourceLocation("minecraft:swords")))) {
-				if ((immediatesourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_hand_SWORD) {
+                if ((immediatesourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_hand_SWORD) {
 					if (!(entity instanceof LivingEntity _livEnt59 && _livEnt59.hasEffect(ModMobEffects.ROCK_BREAK.get()))
 							&& !!(entity instanceof LivingEntity _entity ? _entity.canBeAffected(new MobEffectInstance(ModMobEffects.ROCK_BREAK.get())) : true)) {
 						if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
@@ -222,7 +222,7 @@ public class PlayerHitFuncProcedure {
 		}
 		if (sourceentity instanceof Player) {
 			if (immediatesourceentity instanceof Arrow) {
-				if ((sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_hand_STRANGLE) {
+                if ((sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_hand_STRANGLE) {
 					validItem = false;
 					if ((sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == Items.CROSSBOW) {
 						validItem = true;
@@ -252,7 +252,7 @@ public class PlayerHitFuncProcedure {
 						});
 					}
 				}
-				if ((sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_hand_FIREWORK) {
+                if ((sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_hand_FIREWORK) {
 					validItem = false;
 					if ((sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == Items.BOW) {
 						validItem = true;
@@ -302,11 +302,11 @@ public class PlayerHitFuncProcedure {
 					}
 				}
 			}
-			if ((sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_legend_CHITIN) {
+            if ((sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_legend_CHITIN) {
 				if (Math.random() < 0.05) {
 					{
 						ItemStack _setval = (sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY);
-						sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+                        sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
 							capability.chitin_knife_selected = _setval.copy();
 							capability.syncPlayerVariables(sourceentity);
 						});

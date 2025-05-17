@@ -21,7 +21,7 @@ public class UngainCursedGlowbodyProcedure {
 			return;
 		ItemStack togive = ItemStack.EMPTY;
 		if (entity instanceof Player _playerHasItem ? _playerHasItem.getInventory().contains(new ItemStack(ModItems.COIN_OF_TRADE.get())) : false) {
-			if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_cursed_GLOWBODY) {
+			if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_cursed_GLOWBODY) {
 				if (entity instanceof Player _player) {
 					ItemStack _stktoremove = new ItemStack(ModItems.COIN_OF_TRADE.get());
 					_player.getInventory().clearOrCountMatchingItems(p -> _stktoremove.getItem() == p.getItem(), 1, _player.inventoryMenu.getCraftSlots());
@@ -39,7 +39,7 @@ public class UngainCursedGlowbodyProcedure {
 				}
 				{
 					boolean _setval = false;
-					entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+					entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
 						capability.relic_cursed_GLOWBODY = _setval;
 						capability.syncPlayerVariables(entity);
 					});
@@ -57,10 +57,10 @@ public class UngainCursedGlowbodyProcedure {
 					return false;
 				}
 			}.checkGamemode(entity)) {
-				if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_cursed_GLOWBODY) {
+				if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_cursed_GLOWBODY) {
 					{
 						boolean _setval = false;
-						entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+						entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
 							capability.relic_cursed_GLOWBODY = _setval;
 							capability.syncPlayerVariables(entity);
 						});

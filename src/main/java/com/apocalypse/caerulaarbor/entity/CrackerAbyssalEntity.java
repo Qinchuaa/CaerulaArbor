@@ -1,12 +1,13 @@
 
 package com.apocalypse.caerulaarbor.entity;
 
+import com.apocalypse.caerulaarbor.configuration.CaerulaConfigsConfiguration;
 import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
-import com.apocalypse.caerulaarbor.procedures.ModGriefSettingsProcedure;
+import com.apocalypse.caerulaarbor.init.ModBlocks;
 import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import com.apocalypse.caerulaarbor.procedures.RangedPalmProcedure;
-import com.apocalypse.caerulaarbor.procedures.StandingofTrailProcedure;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -14,10 +15,13 @@ import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -34,7 +38,9 @@ import net.minecraft.world.entity.monster.piglin.Piglin;
 import net.minecraft.world.entity.monster.piglin.PiglinBrute;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.network.NetworkHooks;
@@ -51,69 +57,71 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 public class CrackerAbyssalEntity extends Monster implements GeoEntity {
-	public static final EntityDataAccessor<Boolean> SHOOT = SynchedEntityData.defineId(CrackerAbyssalEntity.class, EntityDataSerializers.BOOLEAN);
-	public static final EntityDataAccessor<String> ANIMATION = SynchedEntityData.defineId(CrackerAbyssalEntity.class, EntityDataSerializers.STRING);
-	public static final EntityDataAccessor<String> TEXTURE = SynchedEntityData.defineId(CrackerAbyssalEntity.class, EntityDataSerializers.STRING);
-	private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
-	private boolean swinging;
-	private long lastSwing;
-	public String animationprocedure = "empty";
+    public static final EntityDataAccessor<Boolean> SHOOT = SynchedEntityData.defineId(CrackerAbyssalEntity.class, EntityDataSerializers.BOOLEAN);
+    public static final EntityDataAccessor<String> ANIMATION = SynchedEntityData.defineId(CrackerAbyssalEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<String> TEXTURE = SynchedEntityData.defineId(CrackerAbyssalEntity.class, EntityDataSerializers.STRING);
+    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+    private boolean swinging;
+    private long lastSwing;
+    public String animationprocedure = "empty";
 
-	public CrackerAbyssalEntity(PlayMessages.SpawnEntity packet, Level world) {
-		this(CaerulaArborModEntities.CRACKER_ABYSSAL.get(), world);
-	}
+    public CrackerAbyssalEntity(PlayMessages.SpawnEntity packet, Level world) {
+        this(CaerulaArborModEntities.CRACKER_ABYSSAL.get(), world);
+    }
 
-	public CrackerAbyssalEntity(EntityType<CrackerAbyssalEntity> type, Level world) {
-		super(type, world);
-		xpReward = 0;
-		setNoAi(false);
-		setMaxUpStep(1.2f);
-	}
+    public CrackerAbyssalEntity(EntityType<CrackerAbyssalEntity> type, Level world) {
+        super(type, world);
+        xpReward = 0;
+        setNoAi(false);
+        setMaxUpStep(1.2f);
+    }
 
-	@Override
-	protected void defineSynchedData() {
-		super.defineSynchedData();
-		this.entityData.define(SHOOT, false);
-		this.entityData.define(ANIMATION, "undefined");
-		this.entityData.define(TEXTURE, "abyssal4");
-	}
+    @Override
+    protected void defineSynchedData() {
+        super.defineSynchedData();
+        this.entityData.define(SHOOT, false);
+        this.entityData.define(ANIMATION, "undefined");
+        this.entityData.define(TEXTURE, "abyssal4");
+    }
 
-	public void setTexture(String texture) {
-		this.entityData.set(TEXTURE, texture);
-	}
+    public void setTexture(String texture) {
+        this.entityData.set(TEXTURE, texture);
+    }
 
-	public String getTexture() {
-		return this.entityData.get(TEXTURE);
-	}
+    public String getTexture() {
+        return this.entityData.get(TEXTURE);
+    }
 
-	@Override
-	public @NotNull Packet<ClientGamePacketListener> getAddEntityPacket() {
-		return NetworkHooks.getEntitySpawningPacket(this);
-	}
+    @Override
+    public @NotNull Packet<ClientGamePacketListener> getAddEntityPacket() {
+        return NetworkHooks.getEntitySpawningPacket(this);
+    }
 
-	@Override
-	protected void registerGoals() {
-		super.registerGoals();
-		this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
-		this.goalSelector.addGoal(2, new BreakDoorGoal(this, e -> true) {
-			@Override
-			public boolean canUse() {
-				Level world = CrackerAbyssalEntity.this.level();
-				return super.canUse() && ModGriefSettingsProcedure.execute(world);
-			}
+    @Override
+    protected void registerGoals() {
+        super.registerGoals();
+        this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
+        this.goalSelector.addGoal(2, new BreakDoorGoal(this, e -> true) {
+            @Override
+            public boolean canUse() {
+                Level world = CrackerAbyssalEntity.this.level();
+                if (!super.canUse()) return false;
+                return CaerulaConfigsConfiguration.BREAKABLE.get() && ((LevelAccessor) world).getLevelData().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING);
+            }
 
-			@Override
-			public boolean canContinueToUse() {
-				Level world = CrackerAbyssalEntity.this.level();
-				return super.canContinueToUse() && ModGriefSettingsProcedure.execute(world);
-			}
-		});
-		this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 0.4, true) {
-			@Override
-			protected double getAttackReachSqr(LivingEntity entity) {
-				return 12.25;
-			}
-		});
+            @Override
+            public boolean canContinueToUse() {
+                Level world = CrackerAbyssalEntity.this.level();
+                if (!super.canContinueToUse()) return false;
+                return CaerulaConfigsConfiguration.BREAKABLE.get() && ((LevelAccessor) world).getLevelData().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING);
+            }
+        });
+        this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 0.4, true) {
+            @Override
+            protected double getAttackReachSqr(LivingEntity entity) {
+                return 12.25;
+            }
+        });
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, IronGolem.class, false, false));
         this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, SnowGolem.class, false, false));
         this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, Villager.class, false, false));
@@ -125,176 +133,187 @@ public class CrackerAbyssalEntity extends Monster implements GeoEntity {
         this.targetSelector.addGoal(12, new NearestAttackableTargetGoal<>(this, PiglinBrute.class, false, false));
         this.targetSelector.addGoal(13, new NearestAttackableTargetGoal<>(this, ZombifiedPiglin.class, false, false));
         this.targetSelector.addGoal(14, new NearestAttackableTargetGoal<>(this, Player.class, false, false) {
-			@Override
-			public boolean canUse() {
-				double x = CrackerAbyssalEntity.this.getX();
-				double y = CrackerAbyssalEntity.this.getY();
-				double z = CrackerAbyssalEntity.this.getZ();
-				Level world = CrackerAbyssalEntity.this.level();
-				return super.canUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
-			}
+            @Override
+            public boolean canUse() {
+                double x = CrackerAbyssalEntity.this.getX();
+                double y = CrackerAbyssalEntity.this.getY();
+                double z = CrackerAbyssalEntity.this.getZ();
+                Level world = CrackerAbyssalEntity.this.level();
+                return super.canUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
+            }
 
-			@Override
-			public boolean canContinueToUse() {
-				double x = CrackerAbyssalEntity.this.getX();
-				double y = CrackerAbyssalEntity.this.getY();
-				double z = CrackerAbyssalEntity.this.getZ();
-				Level world = CrackerAbyssalEntity.this.level();
-				return super.canContinueToUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
-			}
-		});
-		this.goalSelector.addGoal(15, new RandomStrollGoal(this, 0.4));
-		this.goalSelector.addGoal(16, new RandomLookAroundGoal(this));
-	}
+            @Override
+            public boolean canContinueToUse() {
+                double x = CrackerAbyssalEntity.this.getX();
+                double y = CrackerAbyssalEntity.this.getY();
+                double z = CrackerAbyssalEntity.this.getZ();
+                Level world = CrackerAbyssalEntity.this.level();
+                return super.canContinueToUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
+            }
+        });
+        this.goalSelector.addGoal(15, new RandomStrollGoal(this, 0.4));
+        this.goalSelector.addGoal(16, new RandomLookAroundGoal(this));
+    }
 
-	@Override
-	public @NotNull MobType getMobType() {
-		return MobType.WATER;
-	}
+    @Override
+    public @NotNull MobType getMobType() {
+        return MobType.WATER;
+    }
 
-	@Override
-	public SoundEvent getAmbientSound() {
-		return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.parrot.imitate.silverfish"));
-	}
+    @Override
+    public SoundEvent getAmbientSound() {
+        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.parrot.imitate.silverfish"));
+    }
 
-	@Override
-	public void playStepSound(@NotNull BlockPos pos, @NotNull BlockState blockIn) {
-		this.playSound(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.silverfish.step")), 0.15f, 1);
-	}
+    @Override
+    public void playStepSound(@NotNull BlockPos pos, @NotNull BlockState blockIn) {
+        this.playSound(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.silverfish.step")), 0.15f, 1);
+    }
 
-	@Override
-	public SoundEvent getHurtSound(@NotNull DamageSource ds) {
-		return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.puffer_fish.hurt"));
-	}
+    @Override
+    public SoundEvent getHurtSound(@NotNull DamageSource ds) {
+        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.puffer_fish.hurt"));
+    }
 
-	@Override
-	public SoundEvent getDeathSound() {
-		return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.puffer_fish.death"));
-	}
+    @Override
+    public SoundEvent getDeathSound() {
+        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.puffer_fish.death"));
+    }
 
-	@Override
-	public boolean hurt(DamageSource source, float amount) {
-		RangedPalmProcedure.execute(this.level(), this.getX(), this.getY(), this.getZ(), this);
-		if (source.is(DamageTypes.DROWN))
-			return false;
-		return super.hurt(source, amount);
-	}
+    @Override
+    public boolean hurt(DamageSource source, float amount) {
+        RangedPalmProcedure.execute(this.level(), this.getX(), this.getY(), this.getZ(), this);
+        if (source.is(DamageTypes.DROWN))
+            return false;
+        return super.hurt(source, amount);
+    }
 
-	@Override
-	public void addAdditionalSaveData(@NotNull CompoundTag compound) {
-		super.addAdditionalSaveData(compound);
-		compound.putString("Texture", this.getTexture());
-	}
+    @Override
+    public void addAdditionalSaveData(@NotNull CompoundTag compound) {
+        super.addAdditionalSaveData(compound);
+        compound.putString("Texture", this.getTexture());
+    }
 
-	@Override
-	public void readAdditionalSaveData(@NotNull CompoundTag compound) {
-		super.readAdditionalSaveData(compound);
-		if (compound.contains("Texture"))
-			this.setTexture(compound.getString("Texture"));
-	}
+    @Override
+    public void readAdditionalSaveData(@NotNull CompoundTag compound) {
+        super.readAdditionalSaveData(compound);
+        if (compound.contains("Texture"))
+            this.setTexture(compound.getString("Texture"));
+    }
 
-	@Override
-	public void baseTick() {
-		super.baseTick();
-		StandingofTrailProcedure.execute(this.level(), this.getX(), this.getY(), this.getZ(), this);
-		this.refreshDimensions();
-	}
+    @Override
+    public void baseTick() {
+        super.baseTick();
+        LevelAccessor world = this.level();
+        double x = this.getX();
+        double y = this.getY();
+        double z = this.getZ();
 
-	@Override
-	public @NotNull EntityDimensions getDimensions(@NotNull Pose p_33597_) {
-		return super.getDimensions(p_33597_).scale((float) 1);
-	}
+        if (world.getBlockState(this.blockPosition()).getBlock() == ModBlocks.SEA_TRAIL_GROWN.get() && world instanceof ServerLevel server) {
+            var effect = this.getEffect(MobEffects.INVISIBILITY);
+            if (effect != null && effect.getDuration() <= 5) {
+                this.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 20, 0));
+            }
+            server.sendParticles(ParticleTypes.SMOKE, x, y + 1, z, 4, 0.4, 2, 0.4, 0.01);
+        }
+        this.refreshDimensions();
+    }
 
-	public static void init() {
-		SpawnPlacements.register(CaerulaArborModEntities.CRACKER_ABYSSAL.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-				(entityType, world, reason, pos, random) -> (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
-	}
+    @Override
+    public @NotNull EntityDimensions getDimensions(@NotNull Pose p_33597_) {
+        return super.getDimensions(p_33597_).scale((float) 1);
+    }
 
-	public static AttributeSupplier.Builder createAttributes() {
-		AttributeSupplier.Builder builder = Mob.createMobAttributes();
-		builder = builder.add(Attributes.MOVEMENT_SPEED, 0.5);
-		builder = builder.add(Attributes.MAX_HEALTH, 85);
-		builder = builder.add(Attributes.ARMOR, 10);
-		builder = builder.add(Attributes.ATTACK_DAMAGE, 13);
-		builder = builder.add(Attributes.FOLLOW_RANGE, 48);
-		builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 0.85);
-		return builder;
-	}
+    public static void init() {
+        SpawnPlacements.register(CaerulaArborModEntities.CRACKER_ABYSSAL.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                (entityType, world, reason, pos, random) -> (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
+    }
 
-	private PlayState movementPredicate(AnimationState<?> event) {
-		if (this.animationprocedure.equals("empty")) {
-			if ((event.isMoving() || !(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F))
+    public static AttributeSupplier.Builder createAttributes() {
+        AttributeSupplier.Builder builder = Mob.createMobAttributes();
+        builder = builder.add(Attributes.MOVEMENT_SPEED, 0.5);
+        builder = builder.add(Attributes.MAX_HEALTH, 85);
+        builder = builder.add(Attributes.ARMOR, 10);
+        builder = builder.add(Attributes.ATTACK_DAMAGE, 13);
+        builder = builder.add(Attributes.FOLLOW_RANGE, 48);
+        builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 0.85);
+        return builder;
+    }
 
-			) {
-				return event.setAndContinue(RawAnimation.begin().thenLoop("animation.reefcracker.idle"));
-			}
-			return event.setAndContinue(RawAnimation.begin().thenLoop("animation.reefcracker.move"));
-		}
-		return PlayState.STOP;
-	}
+    private PlayState movementPredicate(AnimationState<?> event) {
+        if (this.animationprocedure.equals("empty")) {
+            if ((event.isMoving() || !(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F))
 
-	private PlayState attackingPredicate(AnimationState<?> event) {
-		double d1 = this.getX() - this.xOld;
-		double d0 = this.getZ() - this.zOld;
-		if (getAttackAnim(event.getPartialTick()) > 0f && !this.swinging) {
-			this.swinging = true;
-			this.lastSwing = level().getGameTime();
-		}
-		if (this.swinging && this.lastSwing + 20L <= level().getGameTime()) {
-			this.swinging = false;
-		}
-		if (this.swinging && event.getController().getAnimationState() == AnimationController.State.STOPPED) {
-			event.getController().forceAnimationReset();
-			return event.setAndContinue(RawAnimation.begin().thenPlay("animation.reefcracker.attack"));
-		}
-		return PlayState.CONTINUE;
-	}
+            ) {
+                return event.setAndContinue(RawAnimation.begin().thenLoop("animation.reefcracker.idle"));
+            }
+            return event.setAndContinue(RawAnimation.begin().thenLoop("animation.reefcracker.move"));
+        }
+        return PlayState.STOP;
+    }
 
-	String prevAnim = "empty";
+    private PlayState attackingPredicate(AnimationState<?> event) {
+        double d1 = this.getX() - this.xOld;
+        double d0 = this.getZ() - this.zOld;
+        if (getAttackAnim(event.getPartialTick()) > 0f && !this.swinging) {
+            this.swinging = true;
+            this.lastSwing = level().getGameTime();
+        }
+        if (this.swinging && this.lastSwing + 20L <= level().getGameTime()) {
+            this.swinging = false;
+        }
+        if (this.swinging && event.getController().getAnimationState() == AnimationController.State.STOPPED) {
+            event.getController().forceAnimationReset();
+            return event.setAndContinue(RawAnimation.begin().thenPlay("animation.reefcracker.attack"));
+        }
+        return PlayState.CONTINUE;
+    }
 
-	private PlayState procedurePredicate(AnimationState<?> event) {
-		if (!animationprocedure.equals("empty") && event.getController().getAnimationState() == AnimationController.State.STOPPED || (!this.animationprocedure.equals(prevAnim) && !this.animationprocedure.equals("empty"))) {
-			if (!this.animationprocedure.equals(prevAnim))
-				event.getController().forceAnimationReset();
-			event.getController().setAnimation(RawAnimation.begin().thenPlay(this.animationprocedure));
-			if (event.getController().getAnimationState() == AnimationController.State.STOPPED) {
-				this.animationprocedure = "empty";
-				event.getController().forceAnimationReset();
-			}
-		} else if (animationprocedure.equals("empty")) {
-			prevAnim = "empty";
-			return PlayState.STOP;
-		}
-		prevAnim = this.animationprocedure;
-		return PlayState.CONTINUE;
-	}
+    String prevAnim = "empty";
 
-	@Override
-	protected void tickDeath() {
-		++this.deathTime;
-		if (this.deathTime == 20) {
-			this.remove(CrackerAbyssalEntity.RemovalReason.KILLED);
-			this.dropExperience();
-		}
-	}
+    private PlayState procedurePredicate(AnimationState<?> event) {
+        if (!animationprocedure.equals("empty") && event.getController().getAnimationState() == AnimationController.State.STOPPED || (!this.animationprocedure.equals(prevAnim) && !this.animationprocedure.equals("empty"))) {
+            if (!this.animationprocedure.equals(prevAnim))
+                event.getController().forceAnimationReset();
+            event.getController().setAnimation(RawAnimation.begin().thenPlay(this.animationprocedure));
+            if (event.getController().getAnimationState() == AnimationController.State.STOPPED) {
+                this.animationprocedure = "empty";
+                event.getController().forceAnimationReset();
+            }
+        } else if (animationprocedure.equals("empty")) {
+            prevAnim = "empty";
+            return PlayState.STOP;
+        }
+        prevAnim = this.animationprocedure;
+        return PlayState.CONTINUE;
+    }
 
-	public String getSyncedAnimation() {
-		return this.entityData.get(ANIMATION);
-	}
+    @Override
+    protected void tickDeath() {
+        ++this.deathTime;
+        if (this.deathTime == 20) {
+            this.remove(CrackerAbyssalEntity.RemovalReason.KILLED);
+            this.dropExperience();
+        }
+    }
 
-	public void setAnimation(String animation) {
-		this.entityData.set(ANIMATION, animation);
-	}
+    public String getSyncedAnimation() {
+        return this.entityData.get(ANIMATION);
+    }
 
-	@Override
-	public void registerControllers(AnimatableManager.ControllerRegistrar data) {
-		data.add(new AnimationController<>(this, "movement", 0, this::movementPredicate));
-		data.add(new AnimationController<>(this, "attacking", 0, this::attackingPredicate));
-		data.add(new AnimationController<>(this, "procedure", 0, this::procedurePredicate));
-	}
+    public void setAnimation(String animation) {
+        this.entityData.set(ANIMATION, animation);
+    }
 
-	@Override
-	public AnimatableInstanceCache getAnimatableInstanceCache() {
-		return this.cache;
-	}
+    @Override
+    public void registerControllers(AnimatableManager.ControllerRegistrar data) {
+        data.add(new AnimationController<>(this, "movement", 0, this::movementPredicate));
+        data.add(new AnimationController<>(this, "attacking", 0, this::attackingPredicate));
+        data.add(new AnimationController<>(this, "procedure", 0, this::procedurePredicate));
+    }
+
+    @Override
+    public AnimatableInstanceCache getAnimatableInstanceCache() {
+        return this.cache;
+    }
 }

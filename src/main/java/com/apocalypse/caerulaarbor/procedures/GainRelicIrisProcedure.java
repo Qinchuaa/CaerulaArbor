@@ -25,7 +25,7 @@ public class GainRelicIrisProcedure {
 		}
 		{
 			boolean _setval = true;
-			entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+			entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
 				capability.relic_util_IRIS = _setval;
 				capability.syncPlayerVariables(entity);
 			});

@@ -7,6 +7,6 @@ public class GetLightFloatProcedure {
 	public static String execute(Entity entity) {
 		if (entity == null)
 			return "";
-		return new java.text.DecimalFormat("##.##").format((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).orElse(new CaerulaArborModVariables.PlayerVariables())).light);
+		return new java.text.DecimalFormat("##.##").format((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).light);
 	}
 }

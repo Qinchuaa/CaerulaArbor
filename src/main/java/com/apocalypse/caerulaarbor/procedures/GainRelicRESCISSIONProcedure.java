@@ -35,7 +35,7 @@ public class GainRelicRESCISSIONProcedure {
 		if (!itemstack.getOrCreateTag().getBoolean("used")) {
 			{
 				boolean _setval = true;
-				entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(capability -> {
+				entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
 					capability.relic_util_RESCISSION = _setval;
 					capability.syncPlayerVariables(entity);
 				});

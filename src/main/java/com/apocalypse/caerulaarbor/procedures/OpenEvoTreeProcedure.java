@@ -13,6 +13,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraftforge.network.NetworkHooks;
+import org.jetbrains.annotations.NotNull;
 
 public class OpenEvoTreeProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity) {
@@ -21,18 +22,17 @@ public class OpenEvoTreeProcedure {
 		if (entity instanceof Player _player)
 			_player.closeContainer();
 		if (entity instanceof ServerPlayer _ent) {
-			BlockPos _bpos = BlockPos.containing(x, y, z);
-			NetworkHooks.openScreen((ServerPlayer) _ent, new MenuProvider() {
+			NetworkHooks.openScreen(_ent, new MenuProvider() {
 				@Override
-				public Component getDisplayName() {
+				public @NotNull Component getDisplayName() {
 					return Component.literal("EvoTree");
 				}
 
 				@Override
-				public AbstractContainerMenu createMenu(int id, Inventory inventory, Player player) {
-					return new EvoTreeMenu(id, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(_bpos));
+				public AbstractContainerMenu createMenu(int id, @NotNull Inventory inventory, @NotNull Player player) {
+					return new EvoTreeMenu(id, inventory, new FriendlyByteBuf(Unpooled.buffer()).writeBlockPos(BlockPos.containing(x, y, z)));
 				}
-			}, _bpos);
+			}, BlockPos.containing(x, y, z));
 		}
 	}
 }

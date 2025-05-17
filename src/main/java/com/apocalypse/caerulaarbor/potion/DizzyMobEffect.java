@@ -1,7 +1,8 @@
 
 package com.apocalypse.caerulaarbor.potion;
 
-import com.apocalypse.caerulaarbor.procedures.ShowDizptcProcedure;
+import com.apocalypse.caerulaarbor.init.CaerulaArborModParticleTypes;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
@@ -9,6 +10,7 @@ import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.level.LevelAccessor;
 import net.minecraftforge.common.ForgeMod;
 
 import java.util.ArrayList;
@@ -36,7 +38,14 @@ public class DizzyMobEffect extends MobEffect {
 
 	@Override
 	public void applyEffectTick(LivingEntity entity, int amplifier) {
-		ShowDizptcProcedure.execute(entity.level(), entity.getX(), entity.getY(), entity.getZ());
+		LevelAccessor world = entity.level();
+		double x = entity.getX();
+		double y = entity.getY();
+		double z = entity.getZ();
+		if (world instanceof ServerLevel server) {
+			server.sendParticles(CaerulaArborModParticleTypes.DIZZINESS.get(), x, y, z, 2, 1, 1, 1, 0.1);
+		}
+		world.addParticle(CaerulaArborModParticleTypes.DIZZINESS.get(), x, y, z, 0.5 - Math.random(), 0.1, 0.5 - Math.random());
 	}
 
 	@Override

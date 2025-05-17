@@ -42,7 +42,7 @@ public class AromaticCoffeeItem extends Item {
             entity.addEffect(new MobEffectInstance(MobEffects.JUMP, 240, 0));
         }
 
-        entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY, null).ifPresent(cap -> {
+        entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(cap -> {
             cap.shield = cap.shield + 1;
             cap.player_util_AROMATIC = true;
             cap.syncPlayerVariables(entity);
