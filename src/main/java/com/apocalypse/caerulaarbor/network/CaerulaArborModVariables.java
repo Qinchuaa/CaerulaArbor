@@ -26,6 +26,7 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.PacketDistributor;
+import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
 import java.util.function.Supplier;
@@ -310,7 +311,7 @@ public class CaerulaArborModVariables {
 		private final LazyOptional<PlayerVariables> instance = LazyOptional.of(() -> playerVariables);
 
 		@Override
-		public <T> LazyOptional<T> getCapability(Capability<T> cap, Direction side) {
+		public <T> @NotNull LazyOptional<T> getCapability(Capability<T> cap, Direction side) {
 			return cap == PLAYER_VARIABLES_CAPABILITY ? instance.cast() : LazyOptional.empty();
 		}
 
@@ -331,7 +332,7 @@ public class CaerulaArborModVariables {
 		public double lives = 6.0;
 		public double maxLive = 6.0;
 		public double shield = 0;
-		public double disoclusion = 0;
+		public int disoclusion = 0;
 		public boolean show_stats = false;
 		public boolean relic_cursed_EMELIGHT = false;
 		public boolean relic_cursed_GLOWBODY = false;
@@ -396,7 +397,7 @@ public class CaerulaArborModVariables {
 			nbt.putDouble("player_lives", lives);
 			nbt.putDouble("player_maxlive", maxLive);
 			nbt.putDouble("player_shield", shield);
-			nbt.putDouble("disoclusion", disoclusion);
+			nbt.putInt("disoclusion", disoclusion);
 			nbt.putBoolean("show_stats", show_stats);
 			nbt.putBoolean("relic_cursed_EMELIGHT", relic_cursed_EMELIGHT);
 			nbt.putBoolean("relic_cursed_GLOWBODY", relic_cursed_GLOWBODY);
@@ -458,7 +459,7 @@ public class CaerulaArborModVariables {
 			lives = nbt.getDouble("player_lives");
 			maxLive = nbt.getDouble("player_maxlive");
 			shield = nbt.getDouble("player_shield");
-			disoclusion = nbt.getDouble("disoclusion");
+			disoclusion = nbt.getInt("disoclusion");
 			show_stats = nbt.getBoolean("show_stats");
 			relic_cursed_EMELIGHT = nbt.getBoolean("relic_cursed_EMELIGHT");
 			relic_cursed_GLOWBODY = nbt.getBoolean("relic_cursed_GLOWBODY");

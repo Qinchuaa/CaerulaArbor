@@ -50,15 +50,14 @@ public class MobTickFuncProcedure {
             return;
         double amplifi;
         double pnt;
-        if ((entity instanceof LivingEntity _livingEntity0 && _livingEntity0.getAttributes().hasAttribute(CaerulaArborModAttributes.SANITY.get()) ? _livingEntity0.getAttribute(CaerulaArborModAttributes.SANITY.get()).getBaseValue() : 0) < 0) {
+        if ((entity instanceof LivingEntity living && living.getAttributes().hasAttribute(CaerulaArborModAttributes.SANITY.get()) ? living.getAttribute(CaerulaArborModAttributes.SANITY.get()).getBaseValue() : 0) < 0) {
             if (entity instanceof LivingEntity _livingEntity1 && _livingEntity1.getAttributes().hasAttribute(CaerulaArborModAttributes.SANITY.get()))
                 _livingEntity1.getAttribute(CaerulaArborModAttributes.SANITY.get()).setBaseValue(0);
-            if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-                _entity.addEffect(new MobEffectInstance(ModMobEffects.SANITY_IMMUE.get(), 200, 0, false, false));
-            if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-                _entity.addEffect(new MobEffectInstance(ModMobEffects.DIZZY.get(), 200, 0, false, false));
-            if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-                _entity.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 200, 0, false, true));
+            if (entity instanceof LivingEntity living && !living.level().isClientSide()) {
+                living.addEffect(new MobEffectInstance(ModMobEffects.SANITY_IMMUE.get(), 200, 0, false, false));
+                living.addEffect(new MobEffectInstance(ModMobEffects.DIZZY.get(), 200, 0, false, false));
+                living.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 200, 0, false, true));
+            }
             entity.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.FELL_OUT_OF_WORLD)), 12);
             if (world instanceof Level _level) {
                 if (!_level.isClientSide()) {

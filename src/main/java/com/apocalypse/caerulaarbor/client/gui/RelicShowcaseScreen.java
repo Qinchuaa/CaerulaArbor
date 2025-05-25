@@ -18,7 +18,6 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.common.capabilities.Capability;
-import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.util.LazyOptional;
 import org.jetbrains.annotations.NotNull;
 
@@ -366,14 +365,18 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         guistate.put("button:imagebutton_extension", imagebutton_extension);
         this.addRenderableWidget(imagebutton_extension);
         imagebutton_kingcrystal = new ImageButton(this.leftPos + 76, this.topPos + 4, 16, 16, 0, 0, 16, new ResourceLocation("caerula_arbor:textures/screens/atlas/imagebutton_kingcrystal.png"), 16, 32, e -> {
-            if (HasXrystalProcedure.execute(entity)) {
+            if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                    .map(c -> c.relic_king_CRYSTAL)
+                    .orElse(false)) {
                 CaerulaArborMod.PACKET_HANDLER.sendToServer(new RelicShowcaseButtonMessage(5, x, y, z));
                 RelicShowcaseButtonMessage.handleButtonAction(entity, 5, x, y, z);
             }
         }) {
             @Override
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
-                this.visible = HasXrystalProcedure.execute(entity);
+                this.visible = entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                        .map(c -> c.relic_king_CRYSTAL)
+                        .orElse(false);
                 super.renderWidget(guiGraphics, gx, gy, ticks);
             }
         };
@@ -383,7 +386,9 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         }) {
             @Override
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
-                this.visible = HasArtifactProcedure.execute(entity);
+                this.visible = entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                        .map(cap -> cap.relic_archfi_ARTIFACT)
+                        .orElse(false);
                 super.renderWidget(guiGraphics, gx, gy, ticks);
             }
         };
@@ -403,7 +408,9 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         }) {
             @Override
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
-                this.visible = HasBedProcedure.execute(entity);
+                this.visible = entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                        .map(c -> c.relic_archfi_BED)
+                        .orElse(false);
                 super.renderWidget(guiGraphics, gx, gy, ticks);
             }
         };
@@ -480,14 +487,18 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         guistate.put("button:imagebutton_hand_smash", imagebutton_hand_smash);
         this.addRenderableWidget(imagebutton_hand_smash);
         imagebutton_hand_swipe = new ImageButton(this.leftPos + 124, this.topPos + 28, 16, 16, 0, 0, 16, new ResourceLocation("caerula_arbor:textures/screens/atlas/imagebutton_hand_swipe.png"), 16, 32, e -> {
-            if (HasAhndSwipeProcedure.execute(entity)) {
+            if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                    .map(c -> c.relic_hand_SWIPE)
+                    .orElse(false)) {
                 CaerulaArborMod.PACKET_HANDLER.sendToServer(new RelicShowcaseButtonMessage(14, x, y, z));
                 RelicShowcaseButtonMessage.handleButtonAction(entity, 14, x, y, z);
             }
         }) {
             @Override
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
-                this.visible = HasAhndSwipeProcedure.execute(entity);
+                this.visible = entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                        .map(c -> c.relic_hand_SWIPE)
+                        .orElse(false);
                 super.renderWidget(guiGraphics, gx, gy, ticks);
             }
         };
@@ -521,7 +532,9 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         }) {
             @Override
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
-                this.visible = HasCrimcontraProcedure.execute(entity);
+                this.visible = entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                        .map(c -> c.relic_TREATY)
+                        .orElse(false);
                 super.renderWidget(guiGraphics, gx, gy, ticks);
             }
         };
@@ -542,14 +555,18 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         guistate.put("button:imagebutton_survivor_contarct", imagebutton_survivor_contarct);
         this.addRenderableWidget(imagebutton_survivor_contarct);
         imagebutton_cursed_emelight_0 = new ImageButton(this.leftPos + 4, this.topPos + 196, 16, 16, 0, 0, 16, new ResourceLocation("caerula_arbor:textures/screens/atlas/imagebutton_cursed_emelight_0.png"), 16, 32, e -> {
-            if (HasEmelightProcedure.execute(entity)) {
+            if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                    .map(c -> c.relic_cursed_EMELIGHT)
+                    .orElse(false)) {
                 CaerulaArborMod.PACKET_HANDLER.sendToServer(new RelicShowcaseButtonMessage(19, x, y, z));
                 RelicShowcaseButtonMessage.handleButtonAction(entity, 19, x, y, z);
             }
         }) {
             @Override
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
-                this.visible = HasEmelightProcedure.execute(entity);
+                this.visible = entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                        .map(c -> c.relic_cursed_EMELIGHT)
+                        .orElse(false);
                 super.renderWidget(guiGraphics, gx, gy, ticks);
             }
         };
@@ -570,14 +587,18 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         guistate.put("button:imagebutton_cursed_glowbody_0", imagebutton_cursed_glowbody_0);
         this.addRenderableWidget(imagebutton_cursed_glowbody_0);
         imagebutton_cursed_research_0 = new ImageButton(this.leftPos + 52, this.topPos + 196, 16, 16, 0, 0, 16, new ResourceLocation("caerula_arbor:textures/screens/atlas/imagebutton_cursed_research_0.png"), 16, 32, e -> {
-            if (HasResearvhProcedure.execute(entity)) {
+            if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                    .map(c -> c.relic_cursed_RESEARCH)
+                    .orElse(false)) {
                 CaerulaArborMod.PACKET_HANDLER.sendToServer(new RelicShowcaseButtonMessage(21, x, y, z));
                 RelicShowcaseButtonMessage.handleButtonAction(entity, 21, x, y, z);
             }
         }) {
             @Override
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
-                this.visible = HasResearvhProcedure.execute(entity);
+                this.visible = entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                        .map(c -> c.relic_cursed_RESEARCH)
+                        .orElse(false);
                 super.renderWidget(guiGraphics, gx, gy, ticks);
             }
         };
@@ -587,7 +608,9 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         }) {
             @Override
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
-                this.visible = HasMeatcanProcedure.execute(entity);
+                this.visible = entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                        .map(c -> c.relic_util_MEATCAN)
+                        .orElse(false);
                 super.renderWidget(guiGraphics, gx, gy, ticks);
             }
         };
@@ -740,10 +763,8 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
                 boolean result = false;
                 if (entity != null) {
                     @NotNull LazyOptional<CaerulaArborModVariables.PlayerVariables> result1;
-                    ICapabilityProvider iCapabilityProvider = ((Entity) entity);
                     final @NotNull Capability<com.apocalypse.caerulaarbor.network.CaerulaArborModVariables.PlayerVariables> cap = CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY;
-                    result1 = getCapability(cap, null);
-                    result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_util_TOPONYM;
+                    result = (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_util_TOPONYM;
                 }
                 this.visible = result;
                 super.renderWidget(guiGraphics, gx, gy, ticks);
@@ -794,14 +815,18 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         guistate.put("button:imagebutton_chitinknife", imagebutton_chitinknife);
         this.addRenderableWidget(imagebutton_chitinknife);
         imagebutton_hand_speed = new ImageButton(this.leftPos + 76, this.topPos + 28, 16, 16, 0, 0, 16, new ResourceLocation("caerula_arbor:textures/screens/atlas/imagebutton_hand_speed.png"), 16, 32, e -> {
-            if (HansHandSpeedProcedure.execute(entity)) {
+            if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                    .map(c -> c.relic_hand_SPEED)
+                    .orElse(false)) {
                 CaerulaArborMod.PACKET_HANDLER.sendToServer(new RelicShowcaseButtonMessage(37, x, y, z));
                 RelicShowcaseButtonMessage.handleButtonAction(entity, 37, x, y, z);
             }
         }) {
             @Override
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
-                this.visible = HansHandSpeedProcedure.execute(entity);
+                this.visible = entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                        .map(c -> c.relic_hand_SPEED)
+                        .orElse(false);
                 super.renderWidget(guiGraphics, gx, gy, ticks);
             }
         };

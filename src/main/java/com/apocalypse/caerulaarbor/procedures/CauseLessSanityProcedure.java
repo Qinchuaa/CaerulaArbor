@@ -11,17 +11,13 @@ public class CauseLessSanityProcedure {
 		if (entity == null)
 			return;
 		DeductPlayerSanityProcedure.execute(entity, 80);
-		new Object() {
-			void timedLoop(int timedloopiterator, int timedlooptotal, int ticks) {
-				if (world instanceof ServerLevel _level)
-					_level.sendParticles(ParticleTypes.ELECTRIC_SPARK, x, (y + 0.5 * entity.getBbHeight()), z, 16, 0.86, 1.2, 0.86, 0.1);
-				final int tick2 = ticks;
-				CaerulaArborMod.queueServerWork(tick2, () -> {
-					if (timedlooptotal > timedloopiterator + 1) {
-						timedLoop(timedloopiterator + 1, timedlooptotal, tick2);
-					}
-				});
-			}
-		}.timedLoop(0, 3, 5);
+
+		for (int i = 0; i < 3; i++) {
+			CaerulaArborMod.queueServerWork(i * 5, () -> {
+				if (world instanceof ServerLevel server) {
+					server.sendParticles(ParticleTypes.ELECTRIC_SPARK, x, (y + 0.5 * entity.getBbHeight()), z, 16, 0.86, 1.2, 0.86, 0.1);
+				}
+			});
+		}
 	}
 }

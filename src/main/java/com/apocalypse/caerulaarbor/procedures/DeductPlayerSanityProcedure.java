@@ -2,27 +2,22 @@ package com.apocalypse.caerulaarbor.procedures;
 
 import com.apocalypse.caerulaarbor.init.CaerulaArborModAttributes;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.player.Player;
 
 public class DeductPlayerSanityProcedure {
-	public static void execute(Entity player, double num) {
-		if (player == null)
-			return;
-		double snt;
-		if (!(player instanceof LivingEntity _livEnt0 && _livEnt0.hasEffect(ModMobEffects.SANITY_IMMUE.get()))) {
-			snt = (player instanceof LivingEntity _livingEntity1 && _livingEntity1.getAttributes().hasAttribute(CaerulaArborModAttributes.SANITY.get()) ? _livingEntity1.getAttribute(CaerulaArborModAttributes.SANITY.get()).getBaseValue() : 0)
-					- num * (player instanceof LivingEntity _livingEntity2 && _livingEntity2.getAttributes().hasAttribute(CaerulaArborModAttributes.SANITY_MODIFIER.get())
-							? _livingEntity2.getAttribute(CaerulaArborModAttributes.SANITY_MODIFIER.get()).getValue()
-							: 0);
-			if (snt < -1) {
-				snt = -1;
-			}
-			if (snt > 1000) {
-				snt = 1000;
-			}
-			if (player instanceof LivingEntity _livingEntity3 && _livingEntity3.getAttributes().hasAttribute(CaerulaArborModAttributes.SANITY.get()))
-				_livingEntity3.getAttribute(CaerulaArborModAttributes.SANITY.get()).setBaseValue(snt);
-		}
-	}
+    public static void execute(Entity entity, double value) {
+        if (!(entity instanceof Player player) || player.hasEffect(ModMobEffects.SANITY_IMMUE.get())) return;
+
+        var sanAttribute = player.getAttribute(CaerulaArborModAttributes.SANITY.get());
+        var sanModifierAttribute = player.getAttribute(CaerulaArborModAttributes.SANITY_MODIFIER.get());
+
+        var san = sanAttribute == null ? 0 : sanAttribute.getValue();
+        var sanModifier = sanModifierAttribute == null ? 0 : sanModifierAttribute.getValue();
+
+        if (sanAttribute != null) {
+            sanAttribute.setBaseValue(Mth.clamp(san - value * sanModifier, -1, 1000));
+        }
+    }
 }

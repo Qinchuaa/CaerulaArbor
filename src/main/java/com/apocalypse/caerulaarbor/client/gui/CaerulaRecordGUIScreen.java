@@ -140,10 +140,12 @@ public class CaerulaRecordGUIScreen extends AbstractContainerScreen<CaerulaRecor
         guiGraphics.drawString(this.font, Component.translatable("gui.caerula_arbor.caerula_record_gui.label_health"), 44, 71, -1, false);
         guiGraphics.drawString(this.font,
 
-                GetHealthProcedure.execute(entity), 82, 71, -10092442, false);
+                new java.text.DecimalFormat("##.##").format(entity.getHealth()) + "/"
+                        + new java.text.DecimalFormat("##.#").format(entity.getMaxHealth()), 82, 71, -10092442, false);
         guiGraphics.drawString(this.font,
 
-                GetHealthProcedure.execute(entity), 81, 71, -1, false);
+                new java.text.DecimalFormat("##.##").format(entity.getHealth()) + "/"
+                        + new java.text.DecimalFormat("##.#").format(entity.getMaxHealth()), 81, 71, -1, false);
         guiGraphics.drawString(this.font,
 
                 GetLivesProcedure.execute(entity), 18, 33, -16764058, false);
@@ -166,7 +168,7 @@ public class CaerulaRecordGUIScreen extends AbstractContainerScreen<CaerulaRecor
         guiGraphics.drawString(this.font, Component.translatable("gui.caerula_arbor.caerula_record_gui.label_disoclution"), 101, 86, -3368449, false);
         guiGraphics.drawString(this.font,
 
-                GetLightFloatProcedure.execute(entity), 100, -13, -1, false);
+                new java.text.DecimalFormat("##.##").format(entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables()).light), 100, -13, -1, false);
         if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
                 .map(cap -> cap.light >= 85)
                 .orElse(false))

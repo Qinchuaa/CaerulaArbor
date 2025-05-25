@@ -11,11 +11,9 @@ public class OceanizedPlayerProcedure {
         final Vec3 center = new Vec3(x, y, z);
         return world.getEntitiesOfClass(Player.class, new AABB(center, center).inflate(32 / 2d), e -> true)
                 .stream()
-                .noneMatch(player -> {
-                            return player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
-                                    .map(cap -> cap.player_oceanization == 3)
-                                    .orElse(false);
-                        }
+                .noneMatch(player -> player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                        .map(cap -> cap.player_oceanization == 3)
+                        .orElse(false)
                 );
     }
 }
