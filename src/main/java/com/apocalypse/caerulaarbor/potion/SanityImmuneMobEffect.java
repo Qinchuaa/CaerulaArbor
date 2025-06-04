@@ -12,9 +12,9 @@ import org.jetbrains.annotations.NotNull;
 import java.util.ArrayList;
 import java.util.List;
 
-public class SanityImmueMobEffect extends MobEffect {
+public class SanityImmuneMobEffect extends MobEffect {
 
-    public SanityImmueMobEffect() {
+    public SanityImmuneMobEffect() {
         super(MobEffectCategory.BENEFICIAL, -3342337);
     }
 

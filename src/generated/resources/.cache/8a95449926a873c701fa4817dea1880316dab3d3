@@ -1,0 +1,7 @@
+// 1.20.1	2025-06-04T21:14:54.0248471	Tags for minecraft:damage_type mod id caerula_arbor
+49ddd3fd2ddfd692092c4fd4759441459205a91f data/minecraft/tags/damage_type/bypasses_armor.json
+49ddd3fd2ddfd692092c4fd4759441459205a91f data/minecraft/tags/damage_type/bypasses_cooldown.json
+49ddd3fd2ddfd692092c4fd4759441459205a91f data/minecraft/tags/damage_type/bypasses_effects.json
+49ddd3fd2ddfd692092c4fd4759441459205a91f data/minecraft/tags/damage_type/bypasses_enchantments.json
+49ddd3fd2ddfd692092c4fd4759441459205a91f data/minecraft/tags/damage_type/bypasses_resistance.json
+49ddd3fd2ddfd692092c4fd4759441459205a91f data/minecraft/tags/damage_type/bypasses_shield.json

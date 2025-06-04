@@ -12,7 +12,7 @@ public class ModMobEffects {
 	public static final DeferredRegister<MobEffect> REGISTRY = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, CaerulaArborMod.MODID);
 
 	public static final RegistryObject<MobEffect> HAEMOPHILIA = REGISTRY.register("haemophilia", HaemophiliaMobEffect::new);
-	public static final RegistryObject<MobEffect> SANITY_IMMUNE = REGISTRY.register("sanity_immune", SanityImmueMobEffect::new);
+	public static final RegistryObject<MobEffect> SANITY_IMMUNE = REGISTRY.register("sanity_immune", SanityImmuneMobEffect::new);
 	public static final RegistryObject<MobEffect> DIZZY = REGISTRY.register("dizzy", DizzyMobEffect::new);
 	public static final RegistryObject<MobEffect> KINGS_BREATH = REGISTRY.register("kings_breath", KingsBreathMobEffect::new);
 	public static final RegistryObject<MobEffect> KINGS_BOOST = REGISTRY.register("kings_boost", KingsBoostMobEffect::new);
