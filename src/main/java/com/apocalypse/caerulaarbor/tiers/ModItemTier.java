@@ -9,6 +9,7 @@ import java.util.function.Supplier;
 
 public enum ModItemTier implements Tier {
     CHITIN(3, 1220, 6.0f, 4.0f, 11, () -> Ingredient.of(ModItems.OCEAN_CHITIN.get())),
+    COMPLEX_CHITIN(3, 3374, 15f, 8.0f, 18, () -> Ingredient.of(ModItems.COMPLEX_CHITIN.get())),
     ;
 
     private final int level;

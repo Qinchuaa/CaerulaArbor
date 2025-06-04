@@ -28,8 +28,8 @@ public class SIHelper {
 
     public static void causeSanityInjuryWithParticles(LivingEntity living, double value) {
         if (!causeSanityInjury(living, value)) return;
-        for (int i = 0; i < 3; i++) {
-            CaerulaArborMod.queueServerWork(i * 5, () -> {
+        for (int i = 1; i < 4; i++) {
+            CaerulaArborMod.queueServerWork(i * 3, () -> {
                 if (living.level() instanceof ServerLevel server) {
                     server.sendParticles(ParticleTypes.ELECTRIC_SPARK,
                             living.getX(), (living.getY() + 0.5 * living.getBbHeight()), living.getZ(),
