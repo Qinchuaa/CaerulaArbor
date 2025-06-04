@@ -82,7 +82,8 @@ public class RedstoneIrisSeedingBlock extends FlowerBlock implements Bonemealabl
 
             redstoneIrisState.getValue(property);
             try {
-                redstoneIrisState = redstoneIrisState.setValue(property, (Comparable) entry.getValue());
+                // TODO 什么b类型
+//                redstoneIrisState = redstoneIrisState.setValue(property, (Comparable) entry.getValue());
             } catch (Exception ignored) {
             }
         }

@@ -1,6 +1,7 @@
 package com.apocalypse.caerulaarbor.network;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
+import com.apocalypse.caerulaarbor.capability.Relic;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.CompoundTag;
@@ -29,6 +30,7 @@ import net.minecraftforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.File;
+import java.util.HashMap;
 import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -386,6 +388,8 @@ public class CaerulaArborModVariables {
 		public double player_oceanization = 0;
 		public boolean relic_cursed_HEART = false;
 
+		public HashMap<Relic, Integer> relics = new HashMap<>();
+
 		public void syncPlayerVariables(Entity entity) {
 			if (entity instanceof ServerPlayer serverPlayer)
 				CaerulaArborMod.PACKET_HANDLER.send(PacketDistributor.PLAYER.with(() -> serverPlayer), new PlayerVariablesSyncMessage(this));
@@ -399,6 +403,16 @@ public class CaerulaArborModVariables {
 			nbt.putDouble("player_shield", shield);
 			nbt.putInt("disoclusion", disoclusion);
 			nbt.putBoolean("show_stats", show_stats);
+			nbt.putBoolean("kingShowPtc", kingShowPtc);
+			nbt.putBoolean("player_util_RAINBOW", player_util_RAINBOW);
+			nbt.putBoolean("player_util_AROMATIC", player_util_AROMATIC);
+
+			for (var relic : Relic.values()) {
+				if (relic.gained(this)) {
+					nbt.putInt(relic.name(), relic.get(this));
+				}
+			}
+
 			nbt.putBoolean("relic_cursed_EMELIGHT", relic_cursed_EMELIGHT);
 			nbt.putBoolean("relic_cursed_GLOWBODY", relic_cursed_GLOWBODY);
 			nbt.putBoolean("relic_cursed_RESEARCH", relic_cursed_RESEARCH);
@@ -406,7 +420,6 @@ public class CaerulaArborModVariables {
 			nbt.putBoolean("relic_king_ARMOR", relic_king_ARMOR);
 			nbt.putBoolean("relic_king_SPEAR", relic_king_SPEAR);
 			nbt.putBoolean("relic_king_EXTENSION", relic_king_EXTENSION);
-			nbt.putBoolean("kingShowPtc", kingShowPtc);
 			nbt.putBoolean("relic_king_CRYSTAL", relic_king_CRYSTAL);
 			nbt.putBoolean("relic_hand_THORNS", relic_hand_THORNS);
 			nbt.putBoolean("relic_hand_STRANGLE", relic_hand_STRANGLE);
@@ -427,8 +440,6 @@ public class CaerulaArborModVariables {
 			nbt.putBoolean("relic_util_ORANGE", relic_util_ORANGE);
 			nbt.putBoolean("relic_util_COFFEE", relic_util_COFFEE);
 			nbt.putBoolean("relic_util_BERRIES", relic_util_BERRIES);
-			nbt.putBoolean("player_util_RAINBOW", player_util_RAINBOW);
-			nbt.putBoolean("player_util_AROMATIC", player_util_AROMATIC);
 			nbt.putBoolean("relic_util_MUSICBOX", relic_util_MUSICBOX);
 			nbt.putBoolean("relic_util_IRIS", relic_util_IRIS);
 			nbt.putBoolean("relic_util_FLUTE", relic_util_FLUTE);
@@ -437,7 +448,6 @@ public class CaerulaArborModVariables {
 			nbt.putBoolean("relic_util_TOPONYM", relic_util_TOPONYM);
 			nbt.putBoolean("relic_util_KETTLE", relic_util_KETTLE);
 			nbt.putBoolean("relic_legend_CHITIN", relic_legend_CHITIN);
-			nbt.put("chitin_knife_selected", chitin_knife_selected.save(new CompoundTag()));
 			nbt.putBoolean("relic_util_ALLEY", relic_util_ALLEY);
 			nbt.putBoolean("relic_util_BATBED", relic_util_BATBED);
 			nbt.putBoolean("relic_util_LONGEVITY", relic_util_LONGEVITY);
@@ -446,10 +456,13 @@ public class CaerulaArborModVariables {
 			nbt.putBoolean("relic_util_RESCISSION", relic_util_RESCISSION);
 			nbt.putBoolean("relic_util_STARE", relic_util_STARE);
 			nbt.putBoolean("relic_hand_SWORD", relic_hand_SWORD);
+			nbt.putBoolean("relic_cursed_HEART", relic_cursed_HEART);
+
+
+			nbt.put("chitin_knife_selected", chitin_knife_selected.save(new CompoundTag()));
 			nbt.putDouble("player_king_suit", player_king_suit);
 			nbt.putDouble("player_demon_suit", player_demon_suit);
 			nbt.putDouble("player_oceanization", player_oceanization);
-			nbt.putBoolean("relic_cursed_HEART", relic_cursed_HEART);
 			return nbt;
 		}
 
@@ -461,6 +474,16 @@ public class CaerulaArborModVariables {
 			shield = nbt.getDouble("player_shield");
 			disoclusion = nbt.getInt("disoclusion");
 			show_stats = nbt.getBoolean("show_stats");
+			kingShowPtc = nbt.getBoolean("kingShowPtc");
+			player_util_RAINBOW = nbt.getBoolean("player_util_RAINBOW");
+			player_util_AROMATIC = nbt.getBoolean("player_util_AROMATIC");
+
+			for (var relic : Relic.values()) {
+				if (nbt.contains(relic.name())) {
+					relic.set(this, nbt.getInt(relic.name()));
+				}
+			}
+
 			relic_cursed_EMELIGHT = nbt.getBoolean("relic_cursed_EMELIGHT");
 			relic_cursed_GLOWBODY = nbt.getBoolean("relic_cursed_GLOWBODY");
 			relic_cursed_RESEARCH = nbt.getBoolean("relic_cursed_RESEARCH");
@@ -468,7 +491,6 @@ public class CaerulaArborModVariables {
 			relic_king_ARMOR = nbt.getBoolean("relic_king_ARMOR");
 			relic_king_SPEAR = nbt.getBoolean("relic_king_SPEAR");
 			relic_king_EXTENSION = nbt.getBoolean("relic_king_EXTENSION");
-			kingShowPtc = nbt.getBoolean("kingShowPtc");
 			relic_king_CRYSTAL = nbt.getBoolean("relic_king_CRYSTAL");
 			relic_hand_THORNS = nbt.getBoolean("relic_hand_THORNS");
 			relic_hand_STRANGLE = nbt.getBoolean("relic_hand_STRANGLE");
@@ -489,8 +511,6 @@ public class CaerulaArborModVariables {
 			relic_util_ORANGE = nbt.getBoolean("relic_util_ORANGE");
 			relic_util_COFFEE = nbt.getBoolean("relic_util_COFFEE");
 			relic_util_BERRIES = nbt.getBoolean("relic_util_BERRIES");
-			player_util_RAINBOW = nbt.getBoolean("player_util_RAINBOW");
-			player_util_AROMATIC = nbt.getBoolean("player_util_AROMATIC");
 			relic_util_MUSICBOX = nbt.getBoolean("relic_util_MUSICBOX");
 			relic_util_IRIS = nbt.getBoolean("relic_util_IRIS");
 			relic_util_FLUTE = nbt.getBoolean("relic_util_FLUTE");
@@ -499,7 +519,6 @@ public class CaerulaArborModVariables {
 			relic_util_TOPONYM = nbt.getBoolean("relic_util_TOPONYM");
 			relic_util_KETTLE = nbt.getBoolean("relic_util_KETTLE");
 			relic_legend_CHITIN = nbt.getBoolean("relic_legend_CHITIN");
-			chitin_knife_selected = ItemStack.of(nbt.getCompound("chitin_knife_selected"));
 			relic_util_ALLEY = nbt.getBoolean("relic_util_ALLEY");
 			relic_util_BATBED = nbt.getBoolean("relic_util_BATBED");
 			relic_util_LONGEVITY = nbt.getBoolean("relic_util_LONGEVITY");
@@ -508,10 +527,13 @@ public class CaerulaArborModVariables {
 			relic_util_RESCISSION = nbt.getBoolean("relic_util_RESCISSION");
 			relic_util_STARE = nbt.getBoolean("relic_util_STARE");
 			relic_hand_SWORD = nbt.getBoolean("relic_hand_SWORD");
+			relic_cursed_HEART = nbt.getBoolean("relic_cursed_HEART");
+
+
+			chitin_knife_selected = ItemStack.of(nbt.getCompound("chitin_knife_selected"));
 			player_king_suit = nbt.getDouble("player_king_suit");
 			player_demon_suit = nbt.getDouble("player_demon_suit");
 			player_oceanization = nbt.getDouble("player_oceanization");
-			relic_cursed_HEART = nbt.getBoolean("relic_cursed_HEART");
 		}
 	}
 
