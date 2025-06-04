@@ -1,17 +1,17 @@
 {
   "type": "minecraft:crafting_shaped",
   "category": "equipment",
-  "pattern": [
-    "aaa",
-    "a a"
-  ],
   "key": {
-    "a": {
+    "S": {
       "item": "caerula_arbor:ocean_chitin"
     }
   },
+  "pattern": [
+    "S S",
+    "S S"
+  ],
   "result": {
-    "item": "caerula_arbor:chitin_armor_helmet",
-    "count": 1
-  }
+    "item": "caerula_arbor:chitin_boots"
+  },
+  "show_notification": true
 }
