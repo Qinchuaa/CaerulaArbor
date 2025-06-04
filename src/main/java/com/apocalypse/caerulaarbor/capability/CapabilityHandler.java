@@ -2,6 +2,7 @@ package com.apocalypse.caerulaarbor.capability;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.capability.sanity.SanityInjuryProvider;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.AttachCapabilitiesEvent;
@@ -9,12 +10,14 @@ import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
-@Mod.EventBusSubscriber()
+@Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = CaerulaArborMod.MODID)
 public class CapabilityHandler {
 
     @SubscribeEvent
-    public static void registerCapabilities(AttachCapabilitiesEvent<LivingEntity> event) {
-        event.addCapability(CaerulaArborMod.loc("sanity_injury"), new SanityInjuryProvider());
+    public static void registerCapabilities(AttachCapabilitiesEvent<Entity> event) {
+        if (event.getObject() instanceof LivingEntity) {
+            event.addCapability(CaerulaArborMod.loc("sanity_injury"), new SanityInjuryProvider());
+        }
     }
 
     @SubscribeEvent

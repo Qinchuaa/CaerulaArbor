@@ -92,8 +92,8 @@ public class PlayerTickFuncProcedure {
             modifi = 0.33;
         }
 
-        if (entity instanceof LivingEntity _livingEntity8 && _livingEntity8.getAttributes().hasAttribute(ModAttributes.SANITY_MODIFIER.get()))
-            _livingEntity8.getAttribute(ModAttributes.SANITY_MODIFIER.get()).setBaseValue(modifi);
+        if (entity instanceof LivingEntity _livingEntity8 && _livingEntity8.getAttributes().hasAttribute(ModAttributes.SANITY_INJURY_RESISTANCE.get()))
+            _livingEntity8.getAttribute(ModAttributes.SANITY_INJURY_RESISTANCE.get()).setBaseValue(modifi);
         if (cap.lives <= 1) {
             suitKing = 0;
             if (Relic.KING_SPEAR.gained(cap)) {
