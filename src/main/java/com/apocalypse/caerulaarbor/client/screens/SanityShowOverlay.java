@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.client.screens;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModAttributes;
+import com.apocalypse.caerulaarbor.init.ModAttributes;
 import com.apocalypse.caerulaarbor.procedures.GetSanityIndexProcedure;
 import net.minecraft.client.Minecraft;
 import net.minecraft.resources.ResourceLocation;
@@ -21,7 +21,7 @@ public class SanityShowOverlay {
         int h = event.getWindow().getGuiScaledHeight();
 
         Player entity = Minecraft.getInstance().player;
-        if ((entity.getAttributes().hasAttribute(CaerulaArborModAttributes.SANITY.get()) ? entity.getAttribute(CaerulaArborModAttributes.SANITY.get()).getBaseValue() : 0) < 1000) {
+        if ((entity.getAttributes().hasAttribute(ModAttributes.SANITY.get()) ? entity.getAttribute(ModAttributes.SANITY.get()).getBaseValue() : 0) < 1000) {
             event.getGuiGraphics().blit(new ResourceLocation("caerula_arbor:textures/screens/sanity.png"), w / 2 + 92, h - 19, Mth.clamp((int) GetSanityIndexProcedure.execute(entity) * 16, 0, 304), 0, 16, 16, 320, 16);
         }
     }

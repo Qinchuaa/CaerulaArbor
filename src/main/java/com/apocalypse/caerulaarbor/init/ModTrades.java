@@ -20,7 +20,7 @@ public class ModTrades {
         if (event.getType() == VillagerProfession.TOOLSMITH) {
             event.getTrades().get(3).add(new BasicItemListing(new ItemStack(ModItems.REDSTONE_INGOT.get(), 12), new ItemStack(Items.EMERALD, 8), new ItemStack(ModItems.OMNI_KEY.get()), 2, 8, 0.05f));
         }
-        if (event.getType() == CaerulaArborModVillagerProfessions.CANNOT_GOODENOUGH.get()) {
+        if (event.getType() == ModVillagers.CANNOT_GOODENOUGH.get()) {
             event.getTrades().get(5).add(new BasicItemListing(new ItemStack(ModItems.REDSTONE_INGOT.get(), 24), new ItemStack(Blocks.RED_WOOL, 16), new ItemStack(ModItems.ARCHFIENDS_FLAG.get()), 1, 12, 0.04f));
             event.getTrades().get(4).add(new BasicItemListing(new ItemStack(ModItems.REDSTONE_INGOT.get(), 16), new ItemStack(Items.WHITE_BED), new ItemStack(ModItems.ARCHFIENDS_BED.get()), 1, 8, 0.04f));
             event.getTrades().get(4).add(new BasicItemListing(new ItemStack(ModItems.REDSTONE_INGOT.get(), 16), new ItemStack(Items.GOLD_INGOT, 8), new ItemStack(ModItems.KINGS_EXTENSION.get()), 1, 8, 0.04f));

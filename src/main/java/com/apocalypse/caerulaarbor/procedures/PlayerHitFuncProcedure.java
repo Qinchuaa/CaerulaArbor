@@ -3,8 +3,8 @@ package com.apocalypse.caerulaarbor.procedures;
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.configuration.CaerulaConfigsConfiguration;
 import com.apocalypse.caerulaarbor.entity.CreeperFishEntity;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModAttributes;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModEnchantments;
+import com.apocalypse.caerulaarbor.init.ModAttributes;
+import com.apocalypse.caerulaarbor.init.ModEnchantments;
 import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
@@ -330,19 +330,19 @@ public class PlayerHitFuncProcedure {
 					_datEntSetI.getEntityData().set(CreeperFishEntity.DATA_deal, 0);
 			}
 		}
-		if ((sourceentity instanceof LivingEntity _livingEntity122 && _livingEntity122.getAttributes().hasAttribute(CaerulaArborModAttributes.SANITY_RATE.get())
-				? _livingEntity122.getAttribute(CaerulaArborModAttributes.SANITY_RATE.get()).getValue()
+		if ((sourceentity instanceof LivingEntity _livingEntity122 && _livingEntity122.getAttributes().hasAttribute(ModAttributes.SANITY_RATE.get())
+				? _livingEntity122.getAttribute(ModAttributes.SANITY_RATE.get()).getValue()
 				: 0) > 0) {
 			DeductPlayerSanityProcedure.execute(entity,
-					amount * (sourceentity instanceof LivingEntity _livingEntity123 && _livingEntity123.getAttributes().hasAttribute(CaerulaArborModAttributes.SANITY_RATE.get())
-							? _livingEntity123.getAttribute(CaerulaArborModAttributes.SANITY_RATE.get()).getValue()
+					amount * (sourceentity instanceof LivingEntity _livingEntity123 && _livingEntity123.getAttributes().hasAttribute(ModAttributes.SANITY_RATE.get())
+							? _livingEntity123.getAttribute(ModAttributes.SANITY_RATE.get()).getValue()
 							: 0));
 			new Object() {
 				void timedLoop(int timedloopiterator, int timedlooptotal, int ticks) {
 					if (world instanceof ServerLevel _level)
 						_level.sendParticles(ParticleTypes.ELECTRIC_SPARK, x, (y + entity.getBbHeight() * 0.5), z,
-								(int) (4 * (sourceentity instanceof LivingEntity _livingEntity125 && _livingEntity125.getAttributes().hasAttribute(CaerulaArborModAttributes.SANITY_RATE.get())
-										? _livingEntity125.getAttribute(CaerulaArborModAttributes.SANITY_RATE.get()).getValue()
+								(int) (4 * (sourceentity instanceof LivingEntity _livingEntity125 && _livingEntity125.getAttributes().hasAttribute(ModAttributes.SANITY_RATE.get())
+										? _livingEntity125.getAttribute(ModAttributes.SANITY_RATE.get()).getValue()
 										: 0)),
 								1.2, 1.5, 1.2, 0.1);
 					final int tick2 = ticks;
@@ -355,21 +355,21 @@ public class PlayerHitFuncProcedure {
 			}.timedLoop(0, 5, 1);
 		}
 		if (entity.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanoffspring")))) {
-			if (EnchantmentHelper.getItemEnchantmentLevel(CaerulaArborModEnchantments.OCEANOSPR_KILLER.get(), (sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY)) != 0
+			if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.OCEANOSPR_KILLER.get(), (sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY)) != 0
 					&& !damagesource.is(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation("caerula_arbor:oceankiller_damage")))) {
 				entity.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation("caerula_arbor:oceankiller_damage"))), sourceentity),
-						(float) (3 * (sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getEnchantmentLevel(CaerulaArborModEnchantments.OCEANOSPR_KILLER.get())));
+						(float) (3 * (sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getEnchantmentLevel(ModEnchantments.OCEANOSPR_KILLER.get())));
 				if (world instanceof ServerLevel _level)
 					_level.sendParticles(ParticleTypes.ENCHANTED_HIT, x, (y + entity.getBbHeight() * 0.5), z, 32, 0.75, 1, 0.75, 0.1);
 			}
 		}
-		if (EnchantmentHelper.getItemEnchantmentLevel(CaerulaArborModEnchantments.SANITY_REAPER.get(), (sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY)) != 0) {
-			DeductPlayerSanityProcedure.execute(entity, amount * 2 * (sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getEnchantmentLevel(CaerulaArborModEnchantments.SANITY_REAPER.get()));
+		if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.SANITY_REAPER.get(), (sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY)) != 0) {
+			DeductPlayerSanityProcedure.execute(entity, amount * 2 * (sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getEnchantmentLevel(ModEnchantments.SANITY_REAPER.get()));
 			new Object() {
 				void timedLoop(int timedloopiterator, int timedlooptotal, int ticks) {
 					if (world instanceof ServerLevel _level)
 						_level.sendParticles(ParticleTypes.ELECTRIC_SPARK, x, (y + entity.getBbHeight() * 0.5), z,
-								(int) (8 * (sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getEnchantmentLevel(CaerulaArborModEnchantments.SANITY_REAPER.get())), 1.2, 1.5, 1.2, 0.1);
+								(int) (8 * (sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getEnchantmentLevel(ModEnchantments.SANITY_REAPER.get())), 1.2, 1.5, 1.2, 0.1);
 					final int tick2 = ticks;
 					CaerulaArborMod.queueServerWork(tick2, () -> {
 						if (timedlooptotal > timedloopiterator + 1) {

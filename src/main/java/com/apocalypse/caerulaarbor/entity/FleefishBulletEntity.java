@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.entity;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
+import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.procedures.GiveLessArmorProcedure;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -29,7 +29,7 @@ public class FleefishBulletEntity extends AbstractArrow implements ItemSupplier 
     public static final ItemStack PROJECTILE_ITEM = new ItemStack(Items.MAGMA_CREAM);
 
     public FleefishBulletEntity(PlayMessages.SpawnEntity packet, Level world) {
-        super(CaerulaArborModEntities.FLEEFISH_BULLET.get(), world);
+        super(ModEntities.FLEEFISH_BULLET.get(), world);
     }
 
     public FleefishBulletEntity(EntityType<? extends FleefishBulletEntity> type, Level world) {
@@ -94,7 +94,7 @@ public class FleefishBulletEntity extends AbstractArrow implements ItemSupplier 
     }
 
     public static FleefishBulletEntity shoot(Level world, LivingEntity entity, RandomSource random, float power, double damage, int knockback) {
-        FleefishBulletEntity entityarrow = new FleefishBulletEntity(CaerulaArborModEntities.FLEEFISH_BULLET.get(), entity, world);
+        FleefishBulletEntity entityarrow = new FleefishBulletEntity(ModEntities.FLEEFISH_BULLET.get(), entity, world);
         entityarrow.shoot(entity.getViewVector(1).x, entity.getViewVector(1).y, entity.getViewVector(1).z, power * 2, 0);
         entityarrow.setSilent(true);
         entityarrow.setCritArrow(false);
@@ -106,7 +106,7 @@ public class FleefishBulletEntity extends AbstractArrow implements ItemSupplier 
     }
 
     public static FleefishBulletEntity shoot(LivingEntity entity, LivingEntity target) {
-        FleefishBulletEntity entityarrow = new FleefishBulletEntity(CaerulaArborModEntities.FLEEFISH_BULLET.get(), entity, entity.level());
+        FleefishBulletEntity entityarrow = new FleefishBulletEntity(ModEntities.FLEEFISH_BULLET.get(), entity, entity.level());
         double dx = target.getX() - entity.getX();
         double dy = target.getY() + target.getEyeHeight() - 1.1;
         double dz = target.getZ() - entity.getZ();

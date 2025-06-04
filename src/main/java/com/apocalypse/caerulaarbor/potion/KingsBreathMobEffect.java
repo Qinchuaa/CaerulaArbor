@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.potion;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModParticleTypes;
+import com.apocalypse.caerulaarbor.init.ModParticleTypes;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.EffectRenderingInventoryScreen;
@@ -40,7 +40,7 @@ public class KingsBreathMobEffect extends MobEffect {
 		double z = entity.getZ();
 		if (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables()).kingShowPtc) {
 			if ((double) amplifier < 1) {
-				world.addParticle(CaerulaArborModParticleTypes.KING_SLAY.get(),
+				world.addParticle(ModParticleTypes.KING_SLAY.get(),
 						x + Mth.nextDouble(RandomSource.create(), -0.55, 0.55),
 						y + Mth.nextDouble(RandomSource.create(), 0, entity.getBbHeight() * 0.6),
 						z + Mth.nextDouble(RandomSource.create(), -0.55, 0.55),
@@ -49,7 +49,7 @@ public class KingsBreathMobEffect extends MobEffect {
 						Math.cos(Mth.nextDouble(RandomSource.create(), 0, 6.283))
 				);
 			} else {
-				world.addParticle(CaerulaArborModParticleTypes.KING_SLAY_RED.get(),
+				world.addParticle(ModParticleTypes.KING_SLAY_RED.get(),
 						x + Mth.nextDouble(RandomSource.create(), -0.55, 0.55),
 						y + Mth.nextDouble(RandomSource.create(), 0, entity.getBbHeight() * 0.6),
 						z + Mth.nextDouble(RandomSource.create(), -0.55, 0.55),

@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.potion;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModParticleTypes;
+import com.apocalypse.caerulaarbor.init.ModParticleTypes;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.EffectRenderingInventoryScreen;
@@ -40,7 +40,7 @@ public class SacreficeMobEffect extends MobEffect {
 
         if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables()).kingShowPtc) {
             if (amplifier < 1) {
-                world.addParticle(CaerulaArborModParticleTypes.ARCHFIEND_KEEP.get(),
+                world.addParticle(ModParticleTypes.ARCHFIEND_KEEP.get(),
                         x + Mth.nextDouble(RandomSource.create(), -0.55, 0.55),
                         y + Mth.nextDouble(RandomSource.create(), 0, entity.getBbHeight() * 0.6),
                         z + Mth.nextDouble(RandomSource.create(), -0.55, 0.55),
@@ -49,7 +49,7 @@ public class SacreficeMobEffect extends MobEffect {
                         Math.cos(Mth.nextDouble(RandomSource.create(), 0, 6.283))
                 );
             } else {
-                world.addParticle(CaerulaArborModParticleTypes.ARCHFIEND_RESEV.get(),
+                world.addParticle(ModParticleTypes.ARCHFIEND_RESEV.get(),
                         x + Mth.nextDouble(RandomSource.create(), -0.55, 0.55),
                         y + Mth.nextDouble(RandomSource.create(), 0, entity.getBbHeight() * 0.6),
                         z + Mth.nextDouble(RandomSource.create(), -0.55, 0.55),

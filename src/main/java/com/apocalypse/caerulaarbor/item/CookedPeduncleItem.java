@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.item;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModAttributes;
+import com.apocalypse.caerulaarbor.init.ModAttributes;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.ItemStack;
@@ -20,7 +20,7 @@ public class CookedPeduncleItem extends Item {
 		double x = entity.getX();
 		double y = entity.getY();
 		double z = entity.getZ();
-		var san = entity.getAttribute(CaerulaArborModAttributes.SANITY.get());
+		var san = entity.getAttribute(ModAttributes.SANITY.get());
 		if (san != null) {
 			san.setBaseValue(san.getBaseValue() + 15);
 		}

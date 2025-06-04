@@ -1,8 +1,8 @@
 
 package com.apocalypse.caerulaarbor.entity;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModAttributes;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
+import com.apocalypse.caerulaarbor.init.ModAttributes;
+import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.procedures.LayTrailProcedure;
 import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import net.minecraft.nbt.CompoundTag;
@@ -62,7 +62,7 @@ public class BaselayerAbyssalEntity extends Monster implements GeoEntity {
     public String animationprocedure = "empty";
 
     public BaselayerAbyssalEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(CaerulaArborModEntities.BASELAYER_ABYSSAL.get(), world);
+        this(ModEntities.BASELAYER_ABYSSAL.get(), world);
     }
 
     public BaselayerAbyssalEntity(EntityType<BaselayerAbyssalEntity> type, Level world) {
@@ -168,7 +168,7 @@ public class BaselayerAbyssalEntity extends Monster implements GeoEntity {
     @Override
     @ParametersAreNonnullByDefault
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
-        var san = this.getAttribute(CaerulaArborModAttributes.SANITY_RATE.get());
+        var san = this.getAttribute(ModAttributes.SANITY_RATE.get());
         if (san != null) {
             san.setBaseValue(9);
         }
@@ -201,9 +201,9 @@ public class BaselayerAbyssalEntity extends Monster implements GeoEntity {
     }
 
     public static void init() {
-        SpawnPlacements.register(CaerulaArborModEntities.BASELAYER_ABYSSAL.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+        SpawnPlacements.register(ModEntities.BASELAYER_ABYSSAL.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 (entityType, world, reason, pos, random) -> (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
-        DungeonHooks.addDungeonMob(CaerulaArborModEntities.BASELAYER_ABYSSAL.get(), 180);
+        DungeonHooks.addDungeonMob(ModEntities.BASELAYER_ABYSSAL.get(), 180);
     }
 
     public static AttributeSupplier.Builder createAttributes() {

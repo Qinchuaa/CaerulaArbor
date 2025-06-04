@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.entity;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
+import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.init.ModItems;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.protocol.Packet;
@@ -34,7 +34,7 @@ public class FakerggShootEntity extends AbstractArrow implements ItemSupplier {
     public static final ItemStack PROJECTILE_ITEM = new ItemStack(ModItems.FAKE_EGG.get());
 
     public FakerggShootEntity(PlayMessages.SpawnEntity packet, Level world) {
-        super(CaerulaArborModEntities.FAKERGG_SHOOT.get(), world);
+        super(ModEntities.FAKERGG_SHOOT.get(), world);
     }
 
     public FakerggShootEntity(EntityType<? extends FakerggShootEntity> type, Level world) {
@@ -81,7 +81,7 @@ public class FakerggShootEntity extends AbstractArrow implements ItemSupplier {
         if (sourceentity == null) return;
 
         if (entity != sourceentity && world instanceof ServerLevel server) {
-            Entity entityToSpawn = CaerulaArborModEntities.FAKE_OFFSPRING.get().spawn(server, BlockPos.containing(this.getX() + Mth.nextDouble(RandomSource.create(), -0.5, 0.5), this.getY(), this.getZ() + Mth.nextDouble(RandomSource.create(), -0.5, 0.5)),
+            Entity entityToSpawn = ModEntities.FAKE_OFFSPRING.get().spawn(server, BlockPos.containing(this.getX() + Mth.nextDouble(RandomSource.create(), -0.5, 0.5), this.getY(), this.getZ() + Mth.nextDouble(RandomSource.create(), -0.5, 0.5)),
                     MobSpawnType.MOB_SUMMONED);
             if (entityToSpawn != null) {
                 entityToSpawn.setYRot(world.getRandom().nextFloat() * 360F);
@@ -97,7 +97,7 @@ public class FakerggShootEntity extends AbstractArrow implements ItemSupplier {
         double z = blockHitResult.getBlockPos().getZ();
 
         if (this.level() instanceof ServerLevel server) {
-            Entity entityToSpawn = CaerulaArborModEntities.FAKE_OFFSPRING.get().spawn(server, BlockPos.containing(x + Mth.nextDouble(RandomSource.create(), 0, 1), y + 1, z + Mth.nextDouble(RandomSource.create(), 0, 1)), MobSpawnType.MOB_SUMMONED);
+            Entity entityToSpawn = ModEntities.FAKE_OFFSPRING.get().spawn(server, BlockPos.containing(x + Mth.nextDouble(RandomSource.create(), 0, 1), y + 1, z + Mth.nextDouble(RandomSource.create(), 0, 1)), MobSpawnType.MOB_SUMMONED);
             if (entityToSpawn != null) {
                 entityToSpawn.setYRot(this.level().getRandom().nextFloat() * 360F);
             }
@@ -120,7 +120,7 @@ public class FakerggShootEntity extends AbstractArrow implements ItemSupplier {
     }
 
     public static FakerggShootEntity shoot(Level world, LivingEntity entity, RandomSource random, float power, double damage, int knockback) {
-        FakerggShootEntity entityarrow = new FakerggShootEntity(CaerulaArborModEntities.FAKERGG_SHOOT.get(), entity, world);
+        FakerggShootEntity entityarrow = new FakerggShootEntity(ModEntities.FAKERGG_SHOOT.get(), entity, world);
         entityarrow.shoot(entity.getViewVector(1).x, entity.getViewVector(1).y, entity.getViewVector(1).z, power * 2, 0);
         entityarrow.setSilent(true);
         entityarrow.setCritArrow(false);
@@ -132,7 +132,7 @@ public class FakerggShootEntity extends AbstractArrow implements ItemSupplier {
     }
 
     public static FakerggShootEntity shoot(LivingEntity entity, LivingEntity target) {
-        FakerggShootEntity entityarrow = new FakerggShootEntity(CaerulaArborModEntities.FAKERGG_SHOOT.get(), entity, entity.level());
+        FakerggShootEntity entityarrow = new FakerggShootEntity(ModEntities.FAKERGG_SHOOT.get(), entity, entity.level());
         double dx = target.getX() - entity.getX();
         double dy = target.getY() + target.getEyeHeight() - 1.1;
         double dz = target.getZ() - entity.getZ();

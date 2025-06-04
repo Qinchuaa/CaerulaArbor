@@ -2,7 +2,7 @@
 package com.apocalypse.caerulaarbor.entity;
 
 import com.apocalypse.caerulaarbor.configuration.CaerulaConfigsConfiguration;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
+import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.init.ModBlocks;
 import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import com.apocalypse.caerulaarbor.procedures.RangedPalmProcedure;
@@ -66,7 +66,7 @@ public class CrackerAbyssalEntity extends Monster implements GeoEntity {
     public String animationprocedure = "empty";
 
     public CrackerAbyssalEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(CaerulaArborModEntities.CRACKER_ABYSSAL.get(), world);
+        this(ModEntities.CRACKER_ABYSSAL.get(), world);
     }
 
     public CrackerAbyssalEntity(EntityType<CrackerAbyssalEntity> type, Level world) {
@@ -225,7 +225,7 @@ public class CrackerAbyssalEntity extends Monster implements GeoEntity {
     }
 
     public static void init() {
-        SpawnPlacements.register(CaerulaArborModEntities.CRACKER_ABYSSAL.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+        SpawnPlacements.register(ModEntities.CRACKER_ABYSSAL.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 (entityType, world, reason, pos, random) -> (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
     }
 

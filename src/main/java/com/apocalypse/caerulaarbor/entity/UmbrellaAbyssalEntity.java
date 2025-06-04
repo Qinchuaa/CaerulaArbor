@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.entity;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
+import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import com.apocalypse.caerulaarbor.procedures.UmbrellaRimProcedure;
 import net.minecraft.core.BlockPos;
@@ -56,7 +56,7 @@ public class UmbrellaAbyssalEntity extends Monster implements GeoEntity {
 	public String animationprocedure = "empty";
 
 	public UmbrellaAbyssalEntity(PlayMessages.SpawnEntity packet, Level world) {
-		this(CaerulaArborModEntities.UMBRELLA_ABYSSAL.get(), world);
+		this(ModEntities.UMBRELLA_ABYSSAL.get(), world);
 	}
 
 	public UmbrellaAbyssalEntity(EntityType<UmbrellaAbyssalEntity> type, Level world) {
@@ -188,9 +188,9 @@ public class UmbrellaAbyssalEntity extends Monster implements GeoEntity {
 	}
 
 	public static void init() {
-		SpawnPlacements.register(CaerulaArborModEntities.UMBRELLA_ABYSSAL.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+		SpawnPlacements.register(ModEntities.UMBRELLA_ABYSSAL.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
 				(entityType, world, reason, pos, random) -> (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
-		DungeonHooks.addDungeonMob(CaerulaArborModEntities.UMBRELLA_ABYSSAL.get(), 180);
+		DungeonHooks.addDungeonMob(ModEntities.UMBRELLA_ABYSSAL.get(), 180);
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {

@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.entity;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
+import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.procedures.LayTrialProcedure;
 import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import net.minecraft.core.BlockPos;
@@ -62,7 +62,7 @@ public class GuideAbyssalEntity extends Monster implements GeoEntity {
     public String animationprocedure = "empty";
 
     public GuideAbyssalEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(CaerulaArborModEntities.GUIDE_ABYSSAL.get(), world);
+        this(ModEntities.GUIDE_ABYSSAL.get(), world);
     }
 
     public GuideAbyssalEntity(EntityType<GuideAbyssalEntity> type, Level world) {
@@ -243,7 +243,7 @@ public class GuideAbyssalEntity extends Monster implements GeoEntity {
     }
 
     public static void init() {
-        SpawnPlacements.register(CaerulaArborModEntities.GUIDE_ABYSSAL.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+        SpawnPlacements.register(ModEntities.GUIDE_ABYSSAL.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 (entityType, world, reason, pos, random) -> (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
     }
 

@@ -77,7 +77,7 @@ public class MobHitFuncProcedure {
                         ((PredatorAbyssalEntity) entity).setAnimation("animation.predator.miss");
                     }
                     if (world instanceof ServerLevel _level)
-                        _level.sendParticles(CaerulaArborModParticleTypes.MISS.get(), x, y, z, 16, 1, 1, 1, 0.1);
+                        _level.sendParticles(ModParticleTypes.MISS.get(), x, y, z, 16, 1, 1, 1, 0.1);
                     if (event != null && event.isCancelable()) {
                         event.setCanceled(true);
                     }
@@ -135,7 +135,7 @@ public class MobHitFuncProcedure {
             }
         }
         if (sourceentity.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanoffspring")))) {
-            if (world.getLevelData().getGameRules().getBoolean(CaerulaArborModGameRules.NATURAL_EVOLUTION)) {
+            if (world.getLevelData().getGameRules().getBoolean(ModGameRules.NATURAL_EVOLUTION)) {
                 CaerulaArborModVariables.MapVariables.get(world).evo_point_grow = CaerulaArborModVariables.MapVariables.get(world).evo_point_grow + amount * 0.025;
                 CaerulaArborModVariables.MapVariables.get(world).syncData(world);
                 UpgradeGrowProcedure.execute(world);
@@ -151,7 +151,7 @@ public class MobHitFuncProcedure {
                         _player.getAdvancements().award(_adv, criteria);
                 }
             }
-            if (world.getLevelData().getGameRules().getBoolean(CaerulaArborModGameRules.NATURAL_EVOLUTION)) {
+            if (world.getLevelData().getGameRules().getBoolean(ModGameRules.NATURAL_EVOLUTION)) {
                 CaerulaArborModVariables.MapVariables.get(world).evo_point_subsisting = CaerulaArborModVariables.MapVariables.get(world).evo_point_subsisting + amount * 0.025;
                 CaerulaArborModVariables.MapVariables.get(world).syncData(world);
                 UpgradeSubsisProcedure.execute(world);
@@ -188,8 +188,8 @@ public class MobHitFuncProcedure {
             if (CaerulaArborModVariables.MapVariables.get(world).strategy_silence > 0) {
                 if (!entity.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:bossoffspring"))) && !entity.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanspawn")))) {
                     if (Math.random() < -0.01 + 0.02 * CaerulaArborModVariables.MapVariables.get(world).strategy_silence && !(sourceentity == entity)) {
-                        if ((entity instanceof LivingEntity _livingEntity50 && _livingEntity50.getAttributes().hasAttribute(CaerulaArborModAttributes.SUMMONABLE.get())
-                                ? _livingEntity50.getAttribute(CaerulaArborModAttributes.SUMMONABLE.get()).getBaseValue()
+                        if ((entity instanceof LivingEntity _livingEntity50 && _livingEntity50.getAttributes().hasAttribute(ModAttributes.SUMMONABLE.get())
+                                ? _livingEntity50.getAttribute(ModAttributes.SUMMONABLE.get()).getBaseValue()
                                 : 0) == 1) {
                             {
                                 Entity _ent = entity;
@@ -206,15 +206,15 @@ public class MobHitFuncProcedure {
                                 if (Math.random() < 0.5) {
                                     if (world instanceof ServerLevel server) {
                                         var type = switch (Mth.nextInt(RandomSource.create(), 0, 8)) {
-                                            case 0 -> CaerulaArborModEntities.BASELAYER_ABYSSAL;
-                                            case 1 -> CaerulaArborModEntities.CRACKER_ABYSSAL;
-                                            case 2 -> CaerulaArborModEntities.CREEPER_FISH;
-                                            case 3 -> CaerulaArborModEntities.GUIDE_ABYSSAL;
-                                            case 4 -> CaerulaArborModEntities.PUNCTURE_FISH;
-                                            case 5 -> CaerulaArborModEntities.REAPER_FISH;
-                                            case 6 -> CaerulaArborModEntities.UMBRELLA_ABYSSAL;
-                                            case 7 -> CaerulaArborModEntities.PREGNANT_FISH;
-                                            case 8 -> CaerulaArborModEntities.FLEE_FISH;
+                                            case 0 -> ModEntities.BASELAYER_ABYSSAL;
+                                            case 1 -> ModEntities.CRACKER_ABYSSAL;
+                                            case 2 -> ModEntities.CREEPER_FISH;
+                                            case 3 -> ModEntities.GUIDE_ABYSSAL;
+                                            case 4 -> ModEntities.PUNCTURE_FISH;
+                                            case 5 -> ModEntities.REAPER_FISH;
+                                            case 6 -> ModEntities.UMBRELLA_ABYSSAL;
+                                            case 7 -> ModEntities.PREGNANT_FISH;
+                                            case 8 -> ModEntities.FLEE_FISH;
                                             default -> null;
                                         };
 
@@ -229,8 +229,8 @@ public class MobHitFuncProcedure {
                                     }
                                 }
                             }
-                            if (entity instanceof LivingEntity _livingEntity56 && _livingEntity56.getAttributes().hasAttribute(CaerulaArborModAttributes.SUMMONABLE.get()))
-                                _livingEntity56.getAttribute(CaerulaArborModAttributes.SUMMONABLE.get()).setBaseValue(0);
+                            if (entity instanceof LivingEntity _livingEntity56 && _livingEntity56.getAttributes().hasAttribute(ModAttributes.SUMMONABLE.get()))
+                                _livingEntity56.getAttribute(ModAttributes.SUMMONABLE.get()).setBaseValue(0);
                         }
                     }
                 }
@@ -241,8 +241,8 @@ public class MobHitFuncProcedure {
                     }
                 }
             }
-            if (entity instanceof LivingEntity _livingEntity60 && _livingEntity60.getAttributes().hasAttribute(CaerulaArborModAttributes.EVOLVED.get()))
-                _livingEntity60.getAttribute(CaerulaArborModAttributes.EVOLVED.get()).setBaseValue(1);
+            if (entity instanceof LivingEntity _livingEntity60 && _livingEntity60.getAttributes().hasAttribute(ModAttributes.EVOLVED.get()))
+                _livingEntity60.getAttribute(ModAttributes.EVOLVED.get()).setBaseValue(1);
         }
         if (sourceentity instanceof CrackerAbyssalEntity livEnt) {
             amplifi = livEnt.hasEffect(ModMobEffects.REEF_CRACKER.get()) ? livEnt.getEffect(ModMobEffects.REEF_CRACKER.get()).getAmplifier() : 0;

@@ -1,5 +1,6 @@
 package com.apocalypse.caerulaarbor.procedures;
 
+import com.apocalypse.caerulaarbor.init.ModAttributes;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.fml.common.Mod;
@@ -20,8 +21,6 @@ import net.minecraft.resources.ResourceLocation;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.CommandSource;
-
-import com.apocalypse.caerulaarbor.init.CaerulaArborModAttributes;
 
 import javax.annotation.Nullable;
 
@@ -46,7 +45,7 @@ public class BornFuncProcedure {
 			if (entity instanceof LivingEntity _livingEntity2 && _livingEntity2.getAttributes().hasAttribute(ForgeMod.SWIM_SPEED.get()))
 				_livingEntity2.getAttribute(ForgeMod.SWIM_SPEED.get())
 						.setBaseValue(((entity instanceof LivingEntity _livingEntity1 && _livingEntity1.getAttributes().hasAttribute(Attributes.MOVEMENT_SPEED) ? _livingEntity1.getAttribute(Attributes.MOVEMENT_SPEED).getBaseValue() : 0) * 10));
-			if ((entity instanceof LivingEntity _livingEntity3 && _livingEntity3.getAttributes().hasAttribute(CaerulaArborModAttributes.EVOLVED.get()) ? _livingEntity3.getAttribute(CaerulaArborModAttributes.EVOLVED.get()).getBaseValue() : 0) == 0) {
+			if ((entity instanceof LivingEntity _livingEntity3 && _livingEntity3.getAttributes().hasAttribute(ModAttributes.EVOLVED.get()) ? _livingEntity3.getAttribute(ModAttributes.EVOLVED.get()).getBaseValue() : 0) == 0) {
 				if (entity instanceof LivingEntity _livingEntity5 && _livingEntity5.getAttributes().hasAttribute(Attributes.MAX_HEALTH))
 					_livingEntity5.getAttribute(Attributes.MAX_HEALTH)
 							.setBaseValue(((entity instanceof LivingEntity _livingEntity4 && _livingEntity4.getAttributes().hasAttribute(Attributes.MAX_HEALTH) ? _livingEntity4.getAttribute(Attributes.MAX_HEALTH).getBaseValue() : 0)
@@ -96,8 +95,8 @@ public class BornFuncProcedure {
 						}
 					}
 				}
-				if (entity instanceof LivingEntity _livingEntity24 && _livingEntity24.getAttributes().hasAttribute(CaerulaArborModAttributes.EVOLVED.get()))
-					_livingEntity24.getAttribute(CaerulaArborModAttributes.EVOLVED.get()).setBaseValue(1);
+				if (entity instanceof LivingEntity _livingEntity24 && _livingEntity24.getAttributes().hasAttribute(ModAttributes.EVOLVED.get()))
+					_livingEntity24.getAttribute(ModAttributes.EVOLVED.get()).setBaseValue(1);
 			}
 		}
 	}

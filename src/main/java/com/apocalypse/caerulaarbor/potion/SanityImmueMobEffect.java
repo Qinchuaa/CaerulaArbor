@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.potion;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModAttributes;
+import com.apocalypse.caerulaarbor.init.ModAttributes;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.EffectRenderingInventoryScreen;
 import net.minecraft.world.effect.MobEffect;
@@ -27,7 +27,7 @@ public class SanityImmueMobEffect extends MobEffect {
 
     @Override
     public void applyEffectTick(@NotNull LivingEntity entity, int amplifier) {
-        var san = entity.getAttribute(CaerulaArborModAttributes.SANITY.get());
+        var san = entity.getAttribute(ModAttributes.SANITY.get());
         if (san == null) return;
 
         san.setBaseValue(san.getBaseValue() + 5);

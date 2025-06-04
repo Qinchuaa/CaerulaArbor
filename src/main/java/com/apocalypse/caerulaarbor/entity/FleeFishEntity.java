@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.entity;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
+import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -66,7 +66,7 @@ public class FleeFishEntity extends Monster implements RangedAttackMob, GeoEntit
 	public String animationprocedure = "empty";
 
 	public FleeFishEntity(PlayMessages.SpawnEntity packet, Level world) {
-		this(CaerulaArborModEntities.FLEE_FISH.get(), world);
+		this(ModEntities.FLEE_FISH.get(), world);
 	}
 
 	public FleeFishEntity(EntityType<FleeFishEntity> type, Level world) {
@@ -324,9 +324,9 @@ public class FleeFishEntity extends Monster implements RangedAttackMob, GeoEntit
 	}
 
 	public static void init() {
-		SpawnPlacements.register(CaerulaArborModEntities.FLEE_FISH.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+		SpawnPlacements.register(ModEntities.FLEE_FISH.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
 				(entityType, world, reason, pos, random) -> (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
-		DungeonHooks.addDungeonMob(CaerulaArborModEntities.FLEE_FISH.get(), 180);
+		DungeonHooks.addDungeonMob(ModEntities.FLEE_FISH.get(), 180);
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {

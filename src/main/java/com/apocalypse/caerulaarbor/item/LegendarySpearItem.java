@@ -2,7 +2,7 @@
 package com.apocalypse.caerulaarbor.item;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModEnchantments;
+import com.apocalypse.caerulaarbor.init.ModEnchantments;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.item.renderer.LegendarySpearItemRenderer;
 import com.apocalypse.caerulaarbor.procedures.TridentEnchantProcedure;
@@ -186,7 +186,7 @@ public class LegendarySpearItem extends Item implements GeoItem {
                         entityiterator.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.TRIDENT), source),
                                 (float) ((player.getAttributes().hasAttribute(Attributes.ATTACK_DAMAGE)
                                         ? player.getAttribute(Attributes.ATTACK_DAMAGE).getValue()
-                                        : 0) * (1 + 0.2 * stack.getEnchantmentLevel(CaerulaArborModEnchantments.SYNESTHESIA.get()))));
+                                        : 0) * (1 + 0.2 * stack.getEnchantmentLevel(ModEnchantments.SYNESTHESIA.get()))));
                     }
                 }
 
@@ -208,7 +208,7 @@ public class LegendarySpearItem extends Item implements GeoItem {
                     if (entity.distanceTo(source) <= 4) {
                         entity.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.TRIDENT), source),
                                 (float) ((source.getAttributes().hasAttribute(Attributes.ATTACK_DAMAGE) ? source.getAttribute(Attributes.ATTACK_DAMAGE).getValue() : 0)
-                                        * (1 + 0.2 * stack.getEnchantmentLevel(CaerulaArborModEnchantments.SYNESTHESIA.get()))));
+                                        * (1 + 0.2 * stack.getEnchantmentLevel(ModEnchantments.SYNESTHESIA.get()))));
                     }
                 }
             });
@@ -229,7 +229,7 @@ public class LegendarySpearItem extends Item implements GeoItem {
                     if (entity.distanceTo(source) <= 4) {
                         player.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.TRIDENT), source),
                                 (float) ((player.getAttributes().hasAttribute(Attributes.ATTACK_DAMAGE) ? player.getAttribute(Attributes.ATTACK_DAMAGE).getValue() : 0)
-                                        * (1 + 0.2 * stack.getEnchantmentLevel(CaerulaArborModEnchantments.SYNESTHESIA.get()))));
+                                        * (1 + 0.2 * stack.getEnchantmentLevel(ModEnchantments.SYNESTHESIA.get()))));
                         entity.push(0, 0.5, 0);
                     }
                 }
@@ -249,7 +249,7 @@ public class LegendarySpearItem extends Item implements GeoItem {
                     if (entity.distanceTo(source) <= 4) {
                         player.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.TRIDENT), source),
                                 (float) ((player.getAttributes().hasAttribute(Attributes.ATTACK_DAMAGE) ? player.getAttribute(Attributes.ATTACK_DAMAGE).getValue() : 0)
-                                        * (1 + 0.2 * stack.getEnchantmentLevel(CaerulaArborModEnchantments.SYNESTHESIA.get()))));
+                                        * (1 + 0.2 * stack.getEnchantmentLevel(ModEnchantments.SYNESTHESIA.get()))));
                         entity.push((source.getLookAngle().x), 0, (source.getLookAngle().z));
                     }
                 }

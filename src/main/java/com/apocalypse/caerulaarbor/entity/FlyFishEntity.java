@@ -1,8 +1,8 @@
 
 package com.apocalypse.caerulaarbor.entity;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModAttributes;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
+import com.apocalypse.caerulaarbor.init.ModAttributes;
+import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import net.minecraft.core.BlockPos;
@@ -70,7 +70,7 @@ public class FlyFishEntity extends Monster implements RangedAttackMob, GeoEntity
 	public String animationprocedure = "empty";
 
 	public FlyFishEntity(PlayMessages.SpawnEntity packet, Level world) {
-		this(CaerulaArborModEntities.FLY_FISH.get(), world);
+		this(ModEntities.FLY_FISH.get(), world);
 	}
 
 	public FlyFishEntity(EntityType<FlyFishEntity> type, Level world) {
@@ -284,7 +284,7 @@ public class FlyFishEntity extends Monster implements RangedAttackMob, GeoEntity
 	@Override
 	@ParametersAreNonnullByDefault
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
-		var san = this.getAttribute(CaerulaArborModAttributes.SANITY_RATE.get());
+		var san = this.getAttribute(ModAttributes.SANITY_RATE.get());
 		if (san != null) {
 			san.setBaseValue(12);
 		}
@@ -335,7 +335,7 @@ public class FlyFishEntity extends Monster implements RangedAttackMob, GeoEntity
 	}
 
 	public static void init() {
-		SpawnPlacements.register(CaerulaArborModEntities.FLY_FISH.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+		SpawnPlacements.register(ModEntities.FLY_FISH.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
 				(entityType, world, reason, pos, random) -> (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
 	}
 

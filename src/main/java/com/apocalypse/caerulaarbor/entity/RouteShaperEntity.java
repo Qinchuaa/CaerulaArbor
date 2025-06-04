@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.entity;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
+import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import com.apocalypse.caerulaarbor.procedures.SummonFractalProcedure;
 import net.minecraft.core.registries.Registries;
@@ -69,7 +69,7 @@ public class RouteShaperEntity extends Monster implements GeoEntity {
     private final ServerBossEvent bossInfo = new ServerBossEvent(this.getDisplayName(), ServerBossEvent.BossBarColor.BLUE, ServerBossEvent.BossBarOverlay.PROGRESS);
 
     public RouteShaperEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(CaerulaArborModEntities.ROUTE_SHAPER.get(), world);
+        this(ModEntities.ROUTE_SHAPER.get(), world);
     }
 
     public RouteShaperEntity(EntityType<RouteShaperEntity> type, Level world) {
@@ -249,7 +249,7 @@ public class RouteShaperEntity extends Monster implements GeoEntity {
     }
 
     public static void init() {
-        SpawnPlacements.register(CaerulaArborModEntities.ROUTE_SHAPER.get(),
+        SpawnPlacements.register(ModEntities.ROUTE_SHAPER.get(),
                 SpawnPlacements.Type.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 (entityType, world, reason, pos, random) -> (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));

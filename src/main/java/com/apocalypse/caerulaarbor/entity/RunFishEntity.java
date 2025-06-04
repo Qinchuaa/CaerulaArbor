@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.entity;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
+import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import net.minecraft.core.BlockPos;
@@ -60,7 +60,7 @@ public class RunFishEntity extends Monster implements GeoEntity {
 	public String animationprocedure = "empty";
 
 	public RunFishEntity(PlayMessages.SpawnEntity packet, Level world) {
-		this(CaerulaArborModEntities.RUN_FISH.get(), world);
+		this(ModEntities.RUN_FISH.get(), world);
 	}
 
 	public RunFishEntity(EntityType<RunFishEntity> type, Level world) {
@@ -200,7 +200,7 @@ public class RunFishEntity extends Monster implements GeoEntity {
 	}
 
 	public static void init() {
-		SpawnPlacements.register(CaerulaArborModEntities.RUN_FISH.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+		SpawnPlacements.register(ModEntities.RUN_FISH.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
 				(entityType, world, reason, pos, random) -> (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
 	}
 

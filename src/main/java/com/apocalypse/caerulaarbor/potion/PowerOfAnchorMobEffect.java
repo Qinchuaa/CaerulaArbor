@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.potion;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModAttributes;
+import com.apocalypse.caerulaarbor.init.ModAttributes;
 import com.apocalypse.caerulaarbor.procedures.ReviveSanityLightProcedure;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -18,7 +18,7 @@ import java.util.List;
 public class PowerOfAnchorMobEffect extends MobEffect {
 	public PowerOfAnchorMobEffect() {
 		super(MobEffectCategory.NEUTRAL, -6684724);
-		this.addAttributeModifier(CaerulaArborModAttributes.SANITY_MODIFIER.get(), "fca8c1c6-9152-3107-9573-bd52fa24d2f9", -0.4, AttributeModifier.Operation.MULTIPLY_TOTAL);
+		this.addAttributeModifier(ModAttributes.SANITY_MODIFIER.get(), "fca8c1c6-9152-3107-9573-bd52fa24d2f9", -0.4, AttributeModifier.Operation.MULTIPLY_TOTAL);
 	}
 
 	@Override

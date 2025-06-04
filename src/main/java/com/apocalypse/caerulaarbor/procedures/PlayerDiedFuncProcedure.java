@@ -1,8 +1,8 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModAttributes;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModGameRules;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModParticleTypes;
+import com.apocalypse.caerulaarbor.init.ModAttributes;
+import com.apocalypse.caerulaarbor.init.ModGameRules;
+import com.apocalypse.caerulaarbor.init.ModParticleTypes;
 import com.apocalypse.caerulaarbor.init.ModBlocks;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.core.BlockPos;
@@ -70,16 +70,16 @@ public class PlayerDiedFuncProcedure {
 					}
 				}
 				if (world instanceof ServerLevel _level)
-					_level.sendParticles((SimpleParticleType) (CaerulaArborModParticleTypes.SHIELDLOSS.get()), x, (y + 0.95), z, 72, 0.75, 0.55, 0.75, 0.2);
+					_level.sendParticles((SimpleParticleType) (ModParticleTypes.SHIELDLOSS.get()), x, (y + 0.95), z, 72, 0.75, 0.55, 0.75, 0.2);
 				if (!damagesource.is(DamageTypes.GENERIC_KILL)) {
-					if (world.getLevelData().getGameRules().getBoolean(CaerulaArborModGameRules.TARGET_LIFE_FUNCTION)) {
+					if (world.getLevelData().getGameRules().getBoolean(ModGameRules.TARGET_LIFE_FUNCTION)) {
 						if (event != null && event.isCancelable()) {
 							event.setCanceled(true);
 						}
 						if (entity instanceof LivingEntity _entity)
 							_entity.setHealth((float) ((entity instanceof LivingEntity _livEnt ? _livEnt.getMaxHealth() : -1) * 0.5));
-						if (entity instanceof LivingEntity _livingEntity8 && _livingEntity8.getAttributes().hasAttribute(CaerulaArborModAttributes.SANITY.get()))
-							_livingEntity8.getAttribute(CaerulaArborModAttributes.SANITY.get()).setBaseValue(1000);
+						if (entity instanceof LivingEntity _livingEntity8 && _livingEntity8.getAttributes().hasAttribute(ModAttributes.SANITY.get()))
+							_livingEntity8.getAttribute(ModAttributes.SANITY.get()).setBaseValue(1000);
 					}
 				}
 			} else {
@@ -92,14 +92,14 @@ public class PlayerDiedFuncProcedure {
 						});
 					}
 					if (!damagesource.is(DamageTypes.GENERIC_KILL)) {
-						if (world.getLevelData().getGameRules().getBoolean(CaerulaArborModGameRules.TARGET_LIFE_FUNCTION)) {
+						if (world.getLevelData().getGameRules().getBoolean(ModGameRules.TARGET_LIFE_FUNCTION)) {
 							if (event != null && event.isCancelable()) {
 								event.setCanceled(true);
 							}
 							if (entity instanceof LivingEntity _entity)
 								_entity.setHealth((float) ((entity instanceof LivingEntity _livEnt ? _livEnt.getMaxHealth() : -1) * 0.5));
-							if (entity instanceof LivingEntity _livingEntity13 && _livingEntity13.getAttributes().hasAttribute(CaerulaArborModAttributes.SANITY.get()))
-								_livingEntity13.getAttribute(CaerulaArborModAttributes.SANITY.get()).setBaseValue(1000);
+							if (entity instanceof LivingEntity _livingEntity13 && _livingEntity13.getAttributes().hasAttribute(ModAttributes.SANITY.get()))
+								_livingEntity13.getAttribute(ModAttributes.SANITY.get()).setBaseValue(1000);
 						}
 					}
 					if (world instanceof Level _level) {
@@ -117,7 +117,7 @@ public class PlayerDiedFuncProcedure {
 						}
 					}
 					if (world instanceof ServerLevel _level)
-						_level.sendParticles((SimpleParticleType) (CaerulaArborModParticleTypes.LIFELOSS.get()), x, (y + 0.95), z, 72, 0.75, 0.55, 0.75, 0.2);
+						_level.sendParticles((SimpleParticleType) (ModParticleTypes.LIFELOSS.get()), x, (y + 0.95), z, 72, 0.75, 0.55, 0.75, 0.2);
 					if (damagesource.is(DamageTypes.LIGHTNING_BOLT) || damagesource.is(DamageTypes.FELL_OUT_OF_WORLD) || damagesource.is(DamageTypes.OUTSIDE_BORDER) || damagesource.is(DamageTypes.CRAMMING)) {
 						light_cost = 15;
 					} else if ((damagesource.is(DamageTypes.WITHER) || damagesource.is(DamageTypes.WITHER_SKULL) || damagesource.is(DamageTypes.EXPLOSION) || damagesource.is(DamageTypes.FIREWORKS)) == (damagesource.is(DamageTypes.SONIC_BOOM)

@@ -1,7 +1,7 @@
 package com.apocalypse.caerulaarbor.procedures;
 
 import com.apocalypse.caerulaarbor.entity.RouteFractalEntity;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
+import com.apocalypse.caerulaarbor.init.ModEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -35,7 +35,7 @@ public class SummonFractalProcedure {
 			dx = Mth.nextDouble(RandomSource.create(), -0.5, 0.5);
 			dz = Mth.nextDouble(RandomSource.create(), -0.5, 0.5);
 			if (world instanceof ServerLevel _level) {
-				Entity entityToSpawn = CaerulaArborModEntities.ROUTE_FRACTAL.get().spawn(_level, BlockPos.containing(x + dx, y, z + dz), MobSpawnType.MOB_SUMMONED);
+				Entity entityToSpawn = ModEntities.ROUTE_FRACTAL.get().spawn(_level, BlockPos.containing(x + dx, y, z + dz), MobSpawnType.MOB_SUMMONED);
 				if (entityToSpawn != null) {
 					entityToSpawn.setYRot(world.getRandom().nextFloat() * 360F);
 				}

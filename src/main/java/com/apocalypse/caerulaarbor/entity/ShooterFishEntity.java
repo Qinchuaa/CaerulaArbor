@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.entity;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
+import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import net.minecraft.core.BlockPos;
@@ -62,7 +62,7 @@ public class ShooterFishEntity extends Monster implements RangedAttackMob, GeoEn
 	public String animationprocedure = "empty";
 
 	public ShooterFishEntity(PlayMessages.SpawnEntity packet, Level world) {
-		this(CaerulaArborModEntities.SHOOTER_FISH.get(), world);
+		this(ModEntities.SHOOTER_FISH.get(), world);
 	}
 
 	public ShooterFishEntity(EntityType<ShooterFishEntity> type, Level world) {
@@ -290,7 +290,7 @@ public class ShooterFishEntity extends Monster implements RangedAttackMob, GeoEn
 	}
 
 	public static void init() {
-		SpawnPlacements.register(CaerulaArborModEntities.SHOOTER_FISH.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+		SpawnPlacements.register(ModEntities.SHOOTER_FISH.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
 				(entityType, world, reason, pos, random) -> (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
 	}
 

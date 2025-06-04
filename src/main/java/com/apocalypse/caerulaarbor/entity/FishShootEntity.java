@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.entity;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
+import com.apocalypse.caerulaarbor.init.ModEntities;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -27,7 +27,7 @@ public class FishShootEntity extends AbstractArrow implements ItemSupplier {
     public static final ItemStack PROJECTILE_ITEM = new ItemStack(Items.IRON_NUGGET);
 
     public FishShootEntity(PlayMessages.SpawnEntity packet, Level world) {
-        super(CaerulaArborModEntities.FISH_SHOOT.get(), world);
+        super(ModEntities.FISH_SHOOT.get(), world);
     }
 
     public FishShootEntity(EntityType<? extends FishShootEntity> type, Level world) {
@@ -83,7 +83,7 @@ public class FishShootEntity extends AbstractArrow implements ItemSupplier {
     }
 
     public static FishShootEntity shoot(Level world, LivingEntity entity, RandomSource random, float power, double damage, int knockback) {
-        FishShootEntity entityarrow = new FishShootEntity(CaerulaArborModEntities.FISH_SHOOT.get(), entity, world);
+        FishShootEntity entityarrow = new FishShootEntity(ModEntities.FISH_SHOOT.get(), entity, world);
         entityarrow.shoot(entity.getViewVector(1).x, entity.getViewVector(1).y, entity.getViewVector(1).z, power * 2, 0);
         entityarrow.setSilent(true);
         entityarrow.setCritArrow(false);
@@ -95,7 +95,7 @@ public class FishShootEntity extends AbstractArrow implements ItemSupplier {
     }
 
     public static FishShootEntity shoot(LivingEntity entity, LivingEntity target) {
-        FishShootEntity arrow = new FishShootEntity(CaerulaArborModEntities.FISH_SHOOT.get(), entity, entity.level());
+        FishShootEntity arrow = new FishShootEntity(ModEntities.FISH_SHOOT.get(), entity, entity.level());
         double dx = target.getX() - entity.getX();
         double dy = target.getY() + target.getEyeHeight() - 1.1;
         double dz = target.getZ() - entity.getZ();

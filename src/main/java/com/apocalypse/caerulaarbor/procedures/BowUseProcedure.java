@@ -1,6 +1,6 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModEnchantments;
+import com.apocalypse.caerulaarbor.init.ModEnchantments;
 import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.item.PhloemBowItem;
 import net.minecraft.client.Minecraft;
@@ -32,15 +32,15 @@ public class BowUseProcedure {
 		valid = true;
 		if ((entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == itemstack.getItem()) {
 			if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.POWER_ARROWS, (entity instanceof LivingEntity _livEnt ? _livEnt.getOffhandItem() : ItemStack.EMPTY)) != 0
-					&& (entity instanceof LivingEntity _livEnt ? _livEnt.getOffhandItem() : ItemStack.EMPTY).getEnchantmentLevel(Enchantments.POWER_ARROWS) > itemstack.getEnchantmentLevel(CaerulaArborModEnchantments.REFLECTION.get())) {
+					&& (entity instanceof LivingEntity _livEnt ? _livEnt.getOffhandItem() : ItemStack.EMPTY).getEnchantmentLevel(Enchantments.POWER_ARROWS) > itemstack.getEnchantmentLevel(ModEnchantments.REFLECTION.get())) {
 				{
 					Map<Enchantment, Integer> _enchantments = EnchantmentHelper.getEnchantments(itemstack);
-					if (_enchantments.containsKey(CaerulaArborModEnchantments.REFLECTION.get())) {
-						_enchantments.remove(CaerulaArborModEnchantments.REFLECTION.get());
+					if (_enchantments.containsKey(ModEnchantments.REFLECTION.get())) {
+						_enchantments.remove(ModEnchantments.REFLECTION.get());
 						EnchantmentHelper.setEnchantments(_enchantments, itemstack);
 					}
 				}
-				itemstack.enchant(CaerulaArborModEnchantments.REFLECTION.get(), (entity instanceof LivingEntity _livEnt ? _livEnt.getOffhandItem() : ItemStack.EMPTY).getEnchantmentLevel(Enchantments.POWER_ARROWS));
+				itemstack.enchant(ModEnchantments.REFLECTION.get(), (entity instanceof LivingEntity _livEnt ? _livEnt.getOffhandItem() : ItemStack.EMPTY).getEnchantmentLevel(Enchantments.POWER_ARROWS));
 				{
 					Map<Enchantment, Integer> _enchantments = EnchantmentHelper.getEnchantments((entity instanceof LivingEntity _livEnt ? _livEnt.getOffhandItem() : ItemStack.EMPTY));
 					if (_enchantments.containsKey(Enchantments.POWER_ARROWS)) {
@@ -59,15 +59,15 @@ public class BowUseProcedure {
 				}
 				valid = false;
 			} else if (EnchantmentHelper.getItemEnchantmentLevel(Enchantments.INFINITY_ARROWS, (entity instanceof LivingEntity _livEnt ? _livEnt.getOffhandItem() : ItemStack.EMPTY)) != 0
-					&& !(EnchantmentHelper.getItemEnchantmentLevel(CaerulaArborModEnchantments.METABOLISM.get(), itemstack) != 0)) {
+					&& !(EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.METABOLISM.get(), itemstack) != 0)) {
 				{
 					Map<Enchantment, Integer> _enchantments = EnchantmentHelper.getEnchantments(itemstack);
-					if (_enchantments.containsKey(CaerulaArborModEnchantments.METABOLISM.get())) {
-						_enchantments.remove(CaerulaArborModEnchantments.METABOLISM.get());
+					if (_enchantments.containsKey(ModEnchantments.METABOLISM.get())) {
+						_enchantments.remove(ModEnchantments.METABOLISM.get());
 						EnchantmentHelper.setEnchantments(_enchantments, itemstack);
 					}
 				}
-				itemstack.enchant(CaerulaArborModEnchantments.METABOLISM.get(), 1);
+				itemstack.enchant(ModEnchantments.METABOLISM.get(), 1);
 				{
 					Map<Enchantment, Integer> _enchantments = EnchantmentHelper.getEnchantments((entity instanceof LivingEntity _livEnt ? _livEnt.getOffhandItem() : ItemStack.EMPTY));
 					if (_enchantments.containsKey(Enchantments.INFINITY_ARROWS)) {

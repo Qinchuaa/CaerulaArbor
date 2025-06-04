@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.entity;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
+import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -58,7 +58,7 @@ public class PunctureFishEntity extends Monster implements GeoEntity {
     public String animationprocedure = "empty";
 
     public PunctureFishEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(CaerulaArborModEntities.PUNCTURE_FISH.get(), world);
+        this(ModEntities.PUNCTURE_FISH.get(), world);
     }
 
     public PunctureFishEntity(EntityType<PunctureFishEntity> type, Level world) {
@@ -207,7 +207,7 @@ public class PunctureFishEntity extends Monster implements GeoEntity {
     }
 
     public static void init() {
-        SpawnPlacements.register(CaerulaArborModEntities.PUNCTURE_FISH.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+        SpawnPlacements.register(ModEntities.PUNCTURE_FISH.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 (entityType, world, reason, pos, random) -> (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
     }
 

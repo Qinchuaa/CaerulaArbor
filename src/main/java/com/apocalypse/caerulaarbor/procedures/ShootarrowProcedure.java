@@ -1,7 +1,7 @@
 package com.apocalypse.caerulaarbor.procedures;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModEnchantments;
+import com.apocalypse.caerulaarbor.init.ModEnchantments;
 import com.apocalypse.caerulaarbor.init.ModItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
@@ -38,7 +38,7 @@ public class ShootarrowProcedure {
                     }
                     return false;
                 }
-            }.checkGamemode(entity) || EnchantmentHelper.getItemEnchantmentLevel(CaerulaArborModEnchantments.METABOLISM.get(), itemstack) != 0)
+            }.checkGamemode(entity) || EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.METABOLISM.get(), itemstack) != 0)
                     && ((entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == itemstack.getItem()
                     || (entity instanceof LivingEntity _livEnt ? _livEnt.getOffhandItem() : ItemStack.EMPTY).getItem() == itemstack.getItem())) {
                 if (world instanceof Level _level) {
@@ -53,7 +53,7 @@ public class ShootarrowProcedure {
                     itemstack.setDamageValue(0);
                 }
 
-                if (EnchantmentHelper.getItemEnchantmentLevel(CaerulaArborModEnchantments.METABOLISM.get(), itemstack) != 0) {
+                if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.METABOLISM.get(), itemstack) != 0) {
                     Level projectileLevel = entity.level();
                     if (!projectileLevel.isClientSide()) {
                         Projectile _entityToSpawn = new Object() {
@@ -67,9 +67,9 @@ public class ShootarrowProcedure {
                                 entityToSpawn.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
                                 return entityToSpawn;
                             }
-                        }.getArrow(projectileLevel, entity, (float) (7 + 1.5 * itemstack.getEnchantmentLevel(CaerulaArborModEnchantments.REFLECTION.get())), (int) 0.5, (byte) 1);
+                        }.getArrow(projectileLevel, entity, (float) (7 + 1.5 * itemstack.getEnchantmentLevel(ModEnchantments.REFLECTION.get())), (int) 0.5, (byte) 1);
                         _entityToSpawn.setPos(entity.getX(), entity.getEyeY() - 0.1, entity.getZ());
-                        _entityToSpawn.shoot(entity.getLookAngle().x, entity.getLookAngle().y, entity.getLookAngle().z, (float) (3 + 0.2 * itemstack.getEnchantmentLevel(CaerulaArborModEnchantments.REFLECTION.get())), 0);
+                        _entityToSpawn.shoot(entity.getLookAngle().x, entity.getLookAngle().y, entity.getLookAngle().z, (float) (3 + 0.2 * itemstack.getEnchantmentLevel(ModEnchantments.REFLECTION.get())), 0);
                         projectileLevel.addFreshEntity(_entityToSpawn);
                     }
                 } else {
@@ -100,9 +100,9 @@ public class ShootarrowProcedure {
                                     entityToSpawn.pickup = AbstractArrow.Pickup.ALLOWED;
                                     return entityToSpawn;
                                 }
-                            }.getArrow(projectileLevel, entity, (float) (7 + 1.5 * itemstack.getEnchantmentLevel(CaerulaArborModEnchantments.REFLECTION.get())), (int) 0.5, (byte) 1);
+                            }.getArrow(projectileLevel, entity, (float) (7 + 1.5 * itemstack.getEnchantmentLevel(ModEnchantments.REFLECTION.get())), (int) 0.5, (byte) 1);
                             _entityToSpawn.setPos(entity.getX(), entity.getEyeY() - 0.1, entity.getZ());
-                            _entityToSpawn.shoot(entity.getLookAngle().x, entity.getLookAngle().y, entity.getLookAngle().z, (float) (3 + 0.2 * itemstack.getEnchantmentLevel(CaerulaArborModEnchantments.REFLECTION.get())), 0);
+                            _entityToSpawn.shoot(entity.getLookAngle().x, entity.getLookAngle().y, entity.getLookAngle().z, (float) (3 + 0.2 * itemstack.getEnchantmentLevel(ModEnchantments.REFLECTION.get())), 0);
                             projectileLevel.addFreshEntity(_entityToSpawn);
                         }
                     } else {
@@ -119,9 +119,9 @@ public class ShootarrowProcedure {
                                     entityToSpawn.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
                                     return entityToSpawn;
                                 }
-                            }.getArrow(projectileLevel, entity, (float) (7 + 1.5 * itemstack.getEnchantmentLevel(CaerulaArborModEnchantments.REFLECTION.get())), (int) 0.5, (byte) 1);
+                            }.getArrow(projectileLevel, entity, (float) (7 + 1.5 * itemstack.getEnchantmentLevel(ModEnchantments.REFLECTION.get())), (int) 0.5, (byte) 1);
                             _entityToSpawn.setPos(entity.getX(), entity.getEyeY() - 0.1, entity.getZ());
-                            _entityToSpawn.shoot(entity.getLookAngle().x, entity.getLookAngle().y, entity.getLookAngle().z, (float) (3 + 0.2 * itemstack.getEnchantmentLevel(CaerulaArborModEnchantments.REFLECTION.get())), 0);
+                            _entityToSpawn.shoot(entity.getLookAngle().x, entity.getLookAngle().y, entity.getLookAngle().z, (float) (3 + 0.2 * itemstack.getEnchantmentLevel(ModEnchantments.REFLECTION.get())), 0);
                             projectileLevel.addFreshEntity(_entityToSpawn);
                         }
                     }

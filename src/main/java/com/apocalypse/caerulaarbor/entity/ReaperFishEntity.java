@@ -1,8 +1,8 @@
 
 package com.apocalypse.caerulaarbor.entity;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModAttributes;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
+import com.apocalypse.caerulaarbor.init.ModAttributes;
+import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.procedures.DestroyBlocksProcedure;
 import net.minecraft.core.BlockPos;
@@ -64,7 +64,7 @@ public class ReaperFishEntity extends Monster implements GeoEntity {
     public String animationprocedure = "empty";
 
     public ReaperFishEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(CaerulaArborModEntities.REAPER_FISH.get(), world);
+        this(ModEntities.REAPER_FISH.get(), world);
     }
 
     public ReaperFishEntity(EntityType<ReaperFishEntity> type, Level world) {
@@ -169,7 +169,7 @@ public class ReaperFishEntity extends Monster implements GeoEntity {
     @Override
     @ParametersAreNonnullByDefault
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
-        var san = this.getAttribute(CaerulaArborModAttributes.SANITY_RATE.get());
+        var san = this.getAttribute(ModAttributes.SANITY_RATE.get());
         if (san != null) {
             san.setBaseValue(6);
         }
@@ -212,7 +212,7 @@ public class ReaperFishEntity extends Monster implements GeoEntity {
     }
 
     public static void init() {
-        SpawnPlacements.register(CaerulaArborModEntities.REAPER_FISH.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+        SpawnPlacements.register(ModEntities.REAPER_FISH.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 (entityType, world, reason, pos, random) -> (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
     }
 

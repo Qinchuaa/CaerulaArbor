@@ -1,6 +1,6 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModAttributes;
+import com.apocalypse.caerulaarbor.init.ModAttributes;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -11,7 +11,7 @@ public class PlayerRebornRefillSanProcedure {
     public static void onPlayerRespawned(PlayerEvent.PlayerRespawnEvent event) {
         var entity = event.getEntity();
 
-        var san = entity.getAttribute(CaerulaArborModAttributes.SANITY.get());
+        var san = entity.getAttribute(ModAttributes.SANITY.get());
         if (san != null) {
             san.setBaseValue(1000);
         }

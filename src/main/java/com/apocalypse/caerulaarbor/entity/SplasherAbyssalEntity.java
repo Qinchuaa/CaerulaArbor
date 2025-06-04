@@ -1,8 +1,8 @@
 
 package com.apocalypse.caerulaarbor.entity;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModAttributes;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
+import com.apocalypse.caerulaarbor.init.ModAttributes;
+import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import net.minecraft.core.BlockPos;
@@ -67,7 +67,7 @@ public class SplasherAbyssalEntity extends Monster implements RangedAttackMob, G
     public String animationprocedure = "empty";
 
     public SplasherAbyssalEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(CaerulaArborModEntities.SPLASHER_ABYSSAL.get(), world);
+        this(ModEntities.SPLASHER_ABYSSAL.get(), world);
     }
 
     public SplasherAbyssalEntity(EntityType<SplasherAbyssalEntity> type, Level world) {
@@ -264,8 +264,8 @@ public class SplasherAbyssalEntity extends Monster implements RangedAttackMob, G
     @Override
     @ParametersAreNonnullByDefault
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
-        if (this.getAttributes().hasAttribute(CaerulaArborModAttributes.SANITY_RATE.get()))
-            this.getAttribute(CaerulaArborModAttributes.SANITY_RATE.get()).setBaseValue(2);
+        if (this.getAttributes().hasAttribute(ModAttributes.SANITY_RATE.get()))
+            this.getAttribute(ModAttributes.SANITY_RATE.get()).setBaseValue(2);
         return super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
     }
 
@@ -302,9 +302,9 @@ public class SplasherAbyssalEntity extends Monster implements RangedAttackMob, G
     }
 
     public static void init() {
-        SpawnPlacements.register(CaerulaArborModEntities.SPLASHER_ABYSSAL.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+        SpawnPlacements.register(ModEntities.SPLASHER_ABYSSAL.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 (entityType, world, reason, pos, random) -> (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
-        DungeonHooks.addDungeonMob(CaerulaArborModEntities.SPLASHER_ABYSSAL.get(), 180);
+        DungeonHooks.addDungeonMob(ModEntities.SPLASHER_ABYSSAL.get(), 180);
     }
 
     public static AttributeSupplier.Builder createAttributes() {

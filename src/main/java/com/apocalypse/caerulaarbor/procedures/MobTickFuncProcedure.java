@@ -1,7 +1,7 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModAttributes;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModGameRules;
+import com.apocalypse.caerulaarbor.init.ModAttributes;
+import com.apocalypse.caerulaarbor.init.ModGameRules;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.core.BlockPos;
@@ -50,9 +50,9 @@ public class MobTickFuncProcedure {
             return;
         double amplifi;
         double pnt;
-        if ((entity instanceof LivingEntity living && living.getAttributes().hasAttribute(CaerulaArborModAttributes.SANITY.get()) ? living.getAttribute(CaerulaArborModAttributes.SANITY.get()).getBaseValue() : 0) < 0) {
-            if (entity instanceof LivingEntity _livingEntity1 && _livingEntity1.getAttributes().hasAttribute(CaerulaArborModAttributes.SANITY.get()))
-                _livingEntity1.getAttribute(CaerulaArborModAttributes.SANITY.get()).setBaseValue(0);
+        if ((entity instanceof LivingEntity living && living.getAttributes().hasAttribute(ModAttributes.SANITY.get()) ? living.getAttribute(ModAttributes.SANITY.get()).getBaseValue() : 0) < 0) {
+            if (entity instanceof LivingEntity _livingEntity1 && _livingEntity1.getAttributes().hasAttribute(ModAttributes.SANITY.get()))
+                _livingEntity1.getAttribute(ModAttributes.SANITY.get()).setBaseValue(0);
             if (entity instanceof LivingEntity living && !living.level().isClientSide()) {
                 living.addEffect(new MobEffectInstance(ModMobEffects.SANITY_IMMUE.get(), 200, 0, false, false));
                 living.addEffect(new MobEffectInstance(ModMobEffects.DIZZY.get(), 200, 0, false, false));
@@ -68,8 +68,8 @@ public class MobTickFuncProcedure {
             }
             LivingEntity _entity = (LivingEntity) entity;
             if (!_entity.canBeAffected(new MobEffectInstance(ModMobEffects.SANITY_IMMUE.get()))) {
-                if (entity instanceof LivingEntity _livingEntity9 && _livingEntity9.getAttributes().hasAttribute(CaerulaArborModAttributes.SANITY.get()))
-                    _livingEntity9.getAttribute(CaerulaArborModAttributes.SANITY.get()).setBaseValue(1000);
+                if (entity instanceof LivingEntity _livingEntity9 && _livingEntity9.getAttributes().hasAttribute(ModAttributes.SANITY.get()))
+                    _livingEntity9.getAttribute(ModAttributes.SANITY.get()).setBaseValue(1000);
             }
         }
         if (!(world.getBlockState(BlockPos.containing(x, y, z))).is(BlockTags.create(new ResourceLocation("caerula_arbor:sea_trail")))) {
@@ -145,7 +145,7 @@ public class MobTickFuncProcedure {
                     }
                 }
             }
-            if (world.getLevelData().getGameRules().getBoolean(CaerulaArborModGameRules.NATURAL_EVOLUTION)) {
+            if (world.getLevelData().getGameRules().getBoolean(ModGameRules.NATURAL_EVOLUTION)) {
                 if (Math.random() < 0.008 && !world.getEntitiesOfClass(Player.class, AABB.ofSize(new Vec3(x, y, z), 96, 96, 96), e -> true).isEmpty()) {
                     pnt = Mth.nextDouble(RandomSource.create(), 0, 0.05);
                     CaerulaArborModVariables.MapVariables.get(world).evo_point_migration = CaerulaArborModVariables.MapVariables.get(world).evo_point_migration + pnt;

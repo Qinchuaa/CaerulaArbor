@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.entity;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
+import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
@@ -63,7 +63,7 @@ public class RouteFractalEntity extends Monster implements GeoEntity {
     public String animationprocedure = "empty";
 
     public RouteFractalEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(CaerulaArborModEntities.ROUTE_FRACTAL.get(), world);
+        this(ModEntities.ROUTE_FRACTAL.get(), world);
     }
 
     public RouteFractalEntity(EntityType<RouteFractalEntity> type, Level world) {

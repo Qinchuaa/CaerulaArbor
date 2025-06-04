@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.potion;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModParticleTypes;
+import com.apocalypse.caerulaarbor.init.ModParticleTypes;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffect;
@@ -32,13 +32,13 @@ public class ReefCrackerMobEffect extends MobEffect {
     public void applyEffectTick(LivingEntity entity, int amplifier) {
         if (!(entity.level() instanceof ServerLevel server)) return;
 
-        server.sendParticles(CaerulaArborModParticleTypes.CRACKER_BUFF_0.get(),
+        server.sendParticles(ModParticleTypes.CRACKER_BUFF_0.get(),
                 entity.getX(), entity.getY() + entity.getBbHeight() * 0.5, entity.getZ(),
                 amplifier + 1, 0.8, 1.5, 0.8, 0.3
         );
 
         if (amplifier > 6) {
-            server.sendParticles(CaerulaArborModParticleTypes.CRACKER_BUFF_1.get(),
+            server.sendParticles(ModParticleTypes.CRACKER_BUFF_1.get(),
                     entity.getX(), entity.getY(), entity.getZ(),
                     3, 1, 0.5, 1, 0.3
             );

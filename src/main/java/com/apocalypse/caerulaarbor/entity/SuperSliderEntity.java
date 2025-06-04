@@ -1,8 +1,8 @@
 
 package com.apocalypse.caerulaarbor.entity;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModAttributes;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
+import com.apocalypse.caerulaarbor.init.ModAttributes;
+import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import net.minecraft.core.BlockPos;
@@ -65,7 +65,7 @@ public class SuperSliderEntity extends Monster implements GeoEntity {
 	private final ServerBossEvent bossInfo = new ServerBossEvent(this.getDisplayName(), ServerBossEvent.BossBarColor.BLUE, ServerBossEvent.BossBarOverlay.PROGRESS);
 
 	public SuperSliderEntity(PlayMessages.SpawnEntity packet, Level world) {
-		this(CaerulaArborModEntities.SUPER_SLIDER.get(), world);
+		this(ModEntities.SUPER_SLIDER.get(), world);
 	}
 
 	public SuperSliderEntity(EntityType<SuperSliderEntity> type, Level world) {
@@ -190,7 +190,7 @@ public class SuperSliderEntity extends Monster implements GeoEntity {
 	@ParametersAreNonnullByDefault
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
 		SpawnGroupData retval = super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
-		var san = getAttribute(CaerulaArborModAttributes.SANITY_RATE.get());
+		var san = getAttribute(ModAttributes.SANITY_RATE.get());
 		if (san != null) {
 			san.setBaseValue(10);
 		}

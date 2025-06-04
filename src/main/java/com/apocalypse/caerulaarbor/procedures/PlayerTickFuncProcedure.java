@@ -1,8 +1,8 @@
 package com.apocalypse.caerulaarbor.procedures;
 
 import com.apocalypse.caerulaarbor.configuration.CaerulaConfigsConfiguration;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModAttributes;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModEnchantments;
+import com.apocalypse.caerulaarbor.init.ModAttributes;
+import com.apocalypse.caerulaarbor.init.ModEnchantments;
 import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
@@ -90,8 +90,8 @@ public class PlayerTickFuncProcedure {
         if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).player_oceanization >= 3) {
             modifi = 0.33;
         }
-        if (entity instanceof LivingEntity _livingEntity8 && _livingEntity8.getAttributes().hasAttribute(CaerulaArborModAttributes.SANITY_MODIFIER.get()))
-            _livingEntity8.getAttribute(CaerulaArborModAttributes.SANITY_MODIFIER.get()).setBaseValue(modifi);
+        if (entity instanceof LivingEntity _livingEntity8 && _livingEntity8.getAttributes().hasAttribute(ModAttributes.SANITY_MODIFIER.get()))
+            _livingEntity8.getAttribute(ModAttributes.SANITY_MODIFIER.get()).setBaseValue(modifi);
         if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).lives <= 1) {
             suitKing = 0;
             if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_king_SPEAR) {
@@ -264,9 +264,9 @@ public class PlayerTickFuncProcedure {
                 capability.syncPlayerVariables(entity);
             });
         }
-        if ((entity instanceof LivingEntity _livingEntity52 && _livingEntity52.getAttributes().hasAttribute(CaerulaArborModAttributes.SANITY.get()) ? _livingEntity52.getAttribute(CaerulaArborModAttributes.SANITY.get()).getBaseValue() : 0) > 1000) {
-            if (entity instanceof LivingEntity _livingEntity53 && _livingEntity53.getAttributes().hasAttribute(CaerulaArborModAttributes.SANITY.get()))
-                _livingEntity53.getAttribute(CaerulaArborModAttributes.SANITY.get()).setBaseValue(1000);
+        if ((entity instanceof LivingEntity _livingEntity52 && _livingEntity52.getAttributes().hasAttribute(ModAttributes.SANITY.get()) ? _livingEntity52.getAttribute(ModAttributes.SANITY.get()).getBaseValue() : 0) > 1000) {
+            if (entity instanceof LivingEntity _livingEntity53 && _livingEntity53.getAttributes().hasAttribute(ModAttributes.SANITY.get()))
+                _livingEntity53.getAttribute(ModAttributes.SANITY.get()).setBaseValue(1000);
         }
 
         double suit;
@@ -289,17 +289,17 @@ public class PlayerTickFuncProcedure {
         }
 
         enchant = 0;
-        if (EnchantmentHelper.getItemEnchantmentLevel(CaerulaArborModEnchantments.SANITY_DEFEND.get(), (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.FEET) : ItemStack.EMPTY)) != 0) {
-            enchant = enchant + (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.FEET) : ItemStack.EMPTY).getEnchantmentLevel(CaerulaArborModEnchantments.SANITY_DEFEND.get());
+        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.SANITY_DEFEND.get(), (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.FEET) : ItemStack.EMPTY)) != 0) {
+            enchant = enchant + (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.FEET) : ItemStack.EMPTY).getEnchantmentLevel(ModEnchantments.SANITY_DEFEND.get());
         }
-        if (EnchantmentHelper.getItemEnchantmentLevel(CaerulaArborModEnchantments.SANITY_DEFEND.get(), (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)) != 0) {
-            enchant = enchant + (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY).getEnchantmentLevel(CaerulaArborModEnchantments.SANITY_DEFEND.get());
+        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.SANITY_DEFEND.get(), (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY)) != 0) {
+            enchant = enchant + (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY).getEnchantmentLevel(ModEnchantments.SANITY_DEFEND.get());
         }
-        if (EnchantmentHelper.getItemEnchantmentLevel(CaerulaArborModEnchantments.SANITY_DEFEND.get(), (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)) != 0) {
-            enchant = enchant + (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY).getEnchantmentLevel(CaerulaArborModEnchantments.SANITY_DEFEND.get());
+        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.SANITY_DEFEND.get(), (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY)) != 0) {
+            enchant = enchant + (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY).getEnchantmentLevel(ModEnchantments.SANITY_DEFEND.get());
         }
-        if (EnchantmentHelper.getItemEnchantmentLevel(CaerulaArborModEnchantments.SANITY_DEFEND.get(), (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)) != 0) {
-            enchant = enchant + (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY).getEnchantmentLevel(CaerulaArborModEnchantments.SANITY_DEFEND.get());
+        if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.SANITY_DEFEND.get(), (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY)) != 0) {
+            enchant = enchant + (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY).getEnchantmentLevel(ModEnchantments.SANITY_DEFEND.get());
         }
         if (enchant > 16) {
             enchant = 16;

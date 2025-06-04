@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.item;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModAttributes;
+import com.apocalypse.caerulaarbor.init.ModAttributes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
@@ -26,7 +26,7 @@ public class CaramelCakePieceItem extends Item {
             entity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 80, 1));
         }
 
-        var san = entity.getAttribute(CaerulaArborModAttributes.SANITY.get());
+        var san = entity.getAttribute(ModAttributes.SANITY.get());
         if (san != null) {
             san.setBaseValue(san.getBaseValue() + 125);
         }

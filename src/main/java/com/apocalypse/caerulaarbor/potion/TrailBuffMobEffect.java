@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.potion;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModAttributes;
+import com.apocalypse.caerulaarbor.init.ModAttributes;
 import com.apocalypse.caerulaarbor.procedures.TrailTrapProcedure;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -18,7 +18,7 @@ import java.util.List;
 public class TrailBuffMobEffect extends MobEffect {
 	public TrailBuffMobEffect() {
 		super(MobEffectCategory.NEUTRAL, -10053121);
-		this.addAttributeModifier(CaerulaArborModAttributes.SANITY_RATE.get(), "204fd8a1-28dc-3106-bb46-8c9977e6079d", 1, AttributeModifier.Operation.MULTIPLY_BASE);
+		this.addAttributeModifier(ModAttributes.SANITY_RATE.get(), "204fd8a1-28dc-3106-bb46-8c9977e6079d", 1, AttributeModifier.Operation.MULTIPLY_BASE);
 	}
 
 	@Override

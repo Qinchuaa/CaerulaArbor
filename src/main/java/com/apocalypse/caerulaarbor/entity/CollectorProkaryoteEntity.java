@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.entity;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
+import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import net.minecraft.nbt.CompoundTag;
@@ -63,7 +63,7 @@ public class CollectorProkaryoteEntity extends Monster implements GeoEntity {
 	public String animationprocedure = "empty";
 
 	public CollectorProkaryoteEntity(PlayMessages.SpawnEntity packet, Level world) {
-		this(CaerulaArborModEntities.COLLECTOR_PROKARYOTE.get(), world);
+		this(ModEntities.COLLECTOR_PROKARYOTE.get(), world);
 	}
 
 	public CollectorProkaryoteEntity(EntityType<CollectorProkaryoteEntity> type, Level world) {
@@ -243,7 +243,7 @@ public class CollectorProkaryoteEntity extends Monster implements GeoEntity {
 	}
 
 	public static void init() {
-		SpawnPlacements.register(CaerulaArborModEntities.COLLECTOR_PROKARYOTE.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+		SpawnPlacements.register(ModEntities.COLLECTOR_PROKARYOTE.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
 				(entityType, world, reason, pos, random) -> (world.getBlockState(pos).is(Blocks.WATER) && world.getBlockState(pos.above()).is(Blocks.WATER)));
 	}
 

@@ -45,17 +45,17 @@ public class CaerulaArborMod {
         ModBlocks.BLOCKS.register(bus);
 
         ModItems.register(bus);
-        CaerulaArborModEntities.REGISTRY.register(bus);
-        CaerulaArborModEnchantments.REGISTRY.register(bus);
+        ModEntities.REGISTRY.register(bus);
+        ModEnchantments.REGISTRY.register(bus);
         ModTabs.REGISTRY.register(bus);
 
         ModMobEffects.REGISTRY.register(bus);
         ModPotions.REGISTRY.register(bus);
 
-        CaerulaArborModParticleTypes.REGISTRY.register(bus);
-        CaerulaArborModVillagerProfessions.PROFESSIONS.register(bus);
+        ModParticleTypes.REGISTRY.register(bus);
+        ModVillagers.PROFESSIONS.register(bus);
         ModMenus.REGISTRY.register(bus);
-        CaerulaArborModAttributes.REGISTRY.register(bus);
+        ModAttributes.REGISTRY.register(bus);
 
         bus.addListener(this::onCommonSetup);
 

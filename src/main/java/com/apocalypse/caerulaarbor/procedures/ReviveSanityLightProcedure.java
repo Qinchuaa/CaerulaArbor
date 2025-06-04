@@ -1,6 +1,6 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModAttributes;
+import com.apocalypse.caerulaarbor.init.ModAttributes;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -27,13 +27,13 @@ public class ReviveSanityLightProcedure {
 					});
 				}
 			}
-			if (entity instanceof LivingEntity _livingEntity2 && _livingEntity2.getAttributes().hasAttribute(CaerulaArborModAttributes.SANITY.get()))
-				_livingEntity2.getAttribute(CaerulaArborModAttributes.SANITY.get()).setBaseValue(
-						((entity instanceof LivingEntity _livingEntity1 && _livingEntity1.getAttributes().hasAttribute(CaerulaArborModAttributes.SANITY.get()) ? _livingEntity1.getAttribute(CaerulaArborModAttributes.SANITY.get()).getBaseValue() : 0)
+			if (entity instanceof LivingEntity _livingEntity2 && _livingEntity2.getAttributes().hasAttribute(ModAttributes.SANITY.get()))
+				_livingEntity2.getAttribute(ModAttributes.SANITY.get()).setBaseValue(
+						((entity instanceof LivingEntity _livingEntity1 && _livingEntity1.getAttributes().hasAttribute(ModAttributes.SANITY.get()) ? _livingEntity1.getAttribute(ModAttributes.SANITY.get()).getBaseValue() : 0)
 								+ 40));
-			if ((entity instanceof LivingEntity _livingEntity3 && _livingEntity3.getAttributes().hasAttribute(CaerulaArborModAttributes.SANITY.get()) ? _livingEntity3.getAttribute(CaerulaArborModAttributes.SANITY.get()).getBaseValue() : 0) > 1000) {
-				if (entity instanceof LivingEntity _livingEntity4 && _livingEntity4.getAttributes().hasAttribute(CaerulaArborModAttributes.SANITY.get()))
-					_livingEntity4.getAttribute(CaerulaArborModAttributes.SANITY.get()).setBaseValue(1000);
+			if ((entity instanceof LivingEntity _livingEntity3 && _livingEntity3.getAttributes().hasAttribute(ModAttributes.SANITY.get()) ? _livingEntity3.getAttribute(ModAttributes.SANITY.get()).getBaseValue() : 0) > 1000) {
+				if (entity instanceof LivingEntity _livingEntity4 && _livingEntity4.getAttributes().hasAttribute(ModAttributes.SANITY.get()))
+					_livingEntity4.getAttribute(ModAttributes.SANITY.get()).setBaseValue(1000);
 			}
 		}
 	}

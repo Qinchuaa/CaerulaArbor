@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.potion;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModAttributes;
+import com.apocalypse.caerulaarbor.init.ModAttributes;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.EffectRenderingInventoryScreen;
 import net.minecraft.world.effect.MobEffect;
@@ -17,7 +17,7 @@ import java.util.List;
 public class SanidyDefenderMobEffect extends MobEffect {
 	public SanidyDefenderMobEffect() {
 		super(MobEffectCategory.NEUTRAL, -6697729);
-		this.addAttributeModifier(CaerulaArborModAttributes.SANITY_MODIFIER.get(), "498300c6-3f7a-35d7-ba0c-e5cbdbc312dc", -0.04, AttributeModifier.Operation.MULTIPLY_BASE);
+		this.addAttributeModifier(ModAttributes.SANITY_MODIFIER.get(), "498300c6-3f7a-35d7-ba0c-e5cbdbc312dc", -0.04, AttributeModifier.Operation.MULTIPLY_BASE);
 	}
 
 	@Override

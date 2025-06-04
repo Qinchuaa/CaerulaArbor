@@ -2,7 +2,7 @@
 package com.apocalypse.caerulaarbor.potion;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModParticleTypes;
+import com.apocalypse.caerulaarbor.init.ModParticleTypes;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.server.level.ServerLevel;
@@ -72,7 +72,7 @@ public class TideOfChitinMobEffect extends MobEffect {
                 .orElse(new CaerulaArborModVariables.PlayerVariables())
                 .kingShowPtc
         ) {
-            world.addParticle(CaerulaArborModParticleTypes.KNIFEPTC.get(),
+            world.addParticle(ModParticleTypes.KNIFEPTC.get(),
                     x + Mth.nextDouble(RandomSource.create(), -0.45, 0.45),
                     y + Mth.nextDouble(RandomSource.create(), 0, entity.getBbHeight() * 0.8),
                     z + Mth.nextDouble(RandomSource.create(), -0.45, 0.45),

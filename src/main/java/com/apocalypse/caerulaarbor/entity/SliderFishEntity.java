@@ -1,8 +1,8 @@
 
 package com.apocalypse.caerulaarbor.entity;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModAttributes;
-import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
+import com.apocalypse.caerulaarbor.init.ModAttributes;
+import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -64,7 +64,7 @@ public class SliderFishEntity extends Monster implements GeoEntity {
 	public String animationprocedure = "empty";
 
 	public SliderFishEntity(PlayMessages.SpawnEntity packet, Level world) {
-		this(CaerulaArborModEntities.SLIDER_FISH.get(), world);
+		this(ModEntities.SLIDER_FISH.get(), world);
 	}
 
 	public SliderFishEntity(EntityType<SliderFishEntity> type, Level world) {
@@ -176,7 +176,7 @@ public class SliderFishEntity extends Monster implements GeoEntity {
 	@Override
 	public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor world, @NotNull DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
 		SpawnGroupData retval = super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
-		var san = getAttribute(CaerulaArborModAttributes.SANITY_RATE.get());
+		var san = getAttribute(ModAttributes.SANITY_RATE.get());
 		if (san != null) {
 			san.setBaseValue(10);
 		}
@@ -208,9 +208,9 @@ public class SliderFishEntity extends Monster implements GeoEntity {
 	}
 
 	public static void init() {
-		SpawnPlacements.register(CaerulaArborModEntities.SLIDER_FISH.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+		SpawnPlacements.register(ModEntities.SLIDER_FISH.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
 				(entityType, world, reason, pos, random) -> (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
-		DungeonHooks.addDungeonMob(CaerulaArborModEntities.SLIDER_FISH.get(), 180);
+		DungeonHooks.addDungeonMob(ModEntities.SLIDER_FISH.get(), 180);
 	}
 
 	public static AttributeSupplier.Builder createAttributes() {

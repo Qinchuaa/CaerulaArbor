@@ -1,6 +1,6 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModAttributes;
+import com.apocalypse.caerulaarbor.init.ModAttributes;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
@@ -10,8 +10,8 @@ public class DeductPlayerSanityProcedure {
     public static void execute(Entity entity, double value) {
         if (!(entity instanceof Player player) || player.hasEffect(ModMobEffects.SANITY_IMMUE.get())) return;
 
-        var sanAttribute = player.getAttribute(CaerulaArborModAttributes.SANITY.get());
-        var sanModifierAttribute = player.getAttribute(CaerulaArborModAttributes.SANITY_MODIFIER.get());
+        var sanAttribute = player.getAttribute(ModAttributes.SANITY.get());
+        var sanModifierAttribute = player.getAttribute(ModAttributes.SANITY_MODIFIER.get());
 
         var san = sanAttribute == null ? 0 : sanAttribute.getValue();
         var sanModifier = sanModifierAttribute == null ? 0 : sanModifierAttribute.getValue();

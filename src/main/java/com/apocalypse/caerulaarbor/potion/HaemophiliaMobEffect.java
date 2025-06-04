@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.potion;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModParticleTypes;
+import com.apocalypse.caerulaarbor.init.ModParticleTypes;
 import net.minecraft.util.Mth;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -35,7 +35,7 @@ public class HaemophiliaMobEffect extends MobEffect {
             for (int index0 = 0; index0 < 24; index0++) {
                 var random = entity.level().random;
 
-                entity.level().addParticle(CaerulaArborModParticleTypes.BLOODOOZE.get(),
+                entity.level().addParticle(ModParticleTypes.BLOODOOZE.get(),
                         entity.getX(),
                         entity.getY() + 1.33,
                         entity.getZ(),

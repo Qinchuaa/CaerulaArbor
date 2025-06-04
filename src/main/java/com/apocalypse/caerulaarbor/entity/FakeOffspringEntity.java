@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.entity;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
+import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
@@ -66,7 +66,7 @@ public class FakeOffspringEntity extends Monster implements GeoEntity {
     public String animationprocedure = "empty";
 
     public FakeOffspringEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(CaerulaArborModEntities.FAKE_OFFSPRING.get(), world);
+        this(ModEntities.FAKE_OFFSPRING.get(), world);
     }
 
     public FakeOffspringEntity(EntityType<FakeOffspringEntity> type, Level world) {

@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.entity;
 
-import com.apocalypse.caerulaarbor.init.CaerulaArborModEntities;
+import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
@@ -60,7 +60,7 @@ public class PregnantFishEntity extends Monster implements RangedAttackMob, GeoE
     public String animationprocedure = "empty";
 
     public PregnantFishEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(CaerulaArborModEntities.PREGNANT_FISH.get(), world);
+        this(ModEntities.PREGNANT_FISH.get(), world);
     }
 
     public PregnantFishEntity(EntityType<PregnantFishEntity> type, Level world) {
@@ -288,7 +288,7 @@ public class PregnantFishEntity extends Monster implements RangedAttackMob, GeoE
     }
 
     public static void init() {
-        SpawnPlacements.register(CaerulaArborModEntities.PREGNANT_FISH.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+        SpawnPlacements.register(ModEntities.PREGNANT_FISH.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 (entityType, world, reason, pos, random) -> (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
     }
 
