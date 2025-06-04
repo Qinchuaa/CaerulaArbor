@@ -4,7 +4,7 @@ package com.apocalypse.caerulaarbor.item;
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.init.ModEnchantments;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
-import com.apocalypse.caerulaarbor.item.renderer.LegendarySpearItemRenderer;
+import com.apocalypse.caerulaarbor.client.renderer.item.LegendarySpearItemRenderer;
 import com.apocalypse.caerulaarbor.procedures.TridentEnchantProcedure;
 import com.google.common.collect.ImmutableMultimap;
 import com.google.common.collect.Multimap;

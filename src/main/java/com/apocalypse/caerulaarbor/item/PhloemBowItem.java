@@ -1,6 +1,6 @@
 package com.apocalypse.caerulaarbor.item;
 
-import com.apocalypse.caerulaarbor.item.renderer.PhloemBowItemRenderer;
+import com.apocalypse.caerulaarbor.client.renderer.item.PhloemBowItemRenderer;
 import com.apocalypse.caerulaarbor.procedures.BowUseProcedure;
 import net.minecraft.client.renderer.BlockEntityWithoutLevelRenderer;
 import net.minecraft.world.InteractionHand;

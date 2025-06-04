@@ -1,22 +1,24 @@
-package com.apocalypse.caerulaarbor.item.model;
+package com.apocalypse.caerulaarbor.client.model.item;
 
+import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.item.PhloemBowItem;
 import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.model.GeoModel;
 
 public class PhloemBowItemModel extends GeoModel<PhloemBowItem> {
+
 	@Override
 	public ResourceLocation getAnimationResource(PhloemBowItem animatable) {
-		return new ResourceLocation("caerula_arbor", "animations/bluebow.animation.json");
+		return CaerulaArborMod.loc("animations/bluebow.animation.json");
 	}
 
 	@Override
 	public ResourceLocation getModelResource(PhloemBowItem animatable) {
-		return new ResourceLocation("caerula_arbor", "geo/bluebow.geo.json");
+		return CaerulaArborMod.loc("geo/bluebow.geo.json");
 	}
 
 	@Override
 	public ResourceLocation getTextureResource(PhloemBowItem animatable) {
-		return new ResourceLocation("caerula_arbor", "textures/item/combinedarrow.png");
+		return CaerulaArborMod.loc("textures/item/combinedarrow.png");
 	}
 }
