@@ -53,7 +53,7 @@ public class CaerulaArborMod {
         ModPotions.REGISTRY.register(bus);
 
         ModParticleTypes.REGISTRY.register(bus);
-        ModVillagers.PROFESSIONS.register(bus);
+        ModVillagers.register(bus);
         ModMenus.REGISTRY.register(bus);
         ModAttributes.REGISTRY.register(bus);
 
