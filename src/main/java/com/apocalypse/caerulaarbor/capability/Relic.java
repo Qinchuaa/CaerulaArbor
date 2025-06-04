@@ -2,7 +2,7 @@ package com.apocalypse.caerulaarbor.capability;
 
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.util.Mth;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.Entity;
 
 public enum Relic {
     CURSED_EMELIGHT,
@@ -64,7 +64,7 @@ public enum Relic {
         this.defaultLevel = defaultLevel;
     }
 
-    public int get(Player player) {
+    public int get(Entity player) {
         return player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
                 .map(this::get)
                 .orElse(defaultLevel);
@@ -74,7 +74,7 @@ public enum Relic {
         return variables.relics.getOrDefault(this, defaultLevel);
     }
 
-    public boolean gained(Player player) {
+    public boolean gained(Entity player) {
         return player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
                 .map(this::gained)
                 .orElse(false);
@@ -84,7 +84,7 @@ public enum Relic {
         return this.get(variables) != defaultLevel;
     }
 
-    public void reset(Player player) {
+    public void reset(Entity player) {
         player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(this::reset);
     }
 
@@ -92,12 +92,16 @@ public enum Relic {
         variables.relics.remove(this);
     }
 
-    public void set(Player player, int level) {
+    public void set(Entity player, int level) {
         player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
                 .ifPresent(c -> set(c, level));
     }
 
     public void set(CaerulaArborModVariables.PlayerVariables variables, int level) {
+        if (level == defaultLevel) {
+            variables.relics.remove(this);
+            return;
+        }
         variables.relics.put(this, Mth.clamp(level, minLevel, maxLevel));
     }
 }

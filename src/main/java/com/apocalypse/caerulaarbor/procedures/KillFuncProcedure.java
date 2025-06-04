@@ -1,5 +1,6 @@
 package com.apocalypse.caerulaarbor.procedures;
 
+import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.config.common.RelicsConfig;
 import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.init.ModGameRules;
@@ -59,19 +60,19 @@ public class KillFuncProcedure {
         ItemStack weapon;
         if (sourceentity instanceof Player) {
             var cap = sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
-            if (cap.relic_cursed_EMELIGHT) {
+            if (Relic.CURSED_EMELIGHT.gained(cap)) {
                 sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
                     capability.light = cap.light - Mth.nextDouble(RandomSource.create(), 0.1, 0.2);
                     capability.syncPlayerVariables(sourceentity);
                 });
             }
-            if (cap.relic_cursed_GLOWBODY) {
+            if (Relic.CURSED_GLOWBODY.gained(cap)) {
                 sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
                     capability.light = cap.light - Mth.nextDouble(RandomSource.create(), 0.2, 0.3);
                     capability.syncPlayerVariables(sourceentity);
                 });
             }
-            if (cap.relic_cursed_RESEARCH) {
+            if (Relic.CURSED_RESEARCH.gained(cap)) {
                 sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
                     capability.light = cap.light - Mth.nextDouble(RandomSource.create(), 0.3, 0.5);
                     capability.syncPlayerVariables(sourceentity);
@@ -83,7 +84,7 @@ public class KillFuncProcedure {
                     capability.syncPlayerVariables(sourceentity);
                 });
             }
-            if (cap.relic_king_ARMOR) {
+            if (Relic.KING_ARMOR.gained(cap)) {
                 if (Math.random() < 0.08) {
                     if (cap.lives > 1) {
                         sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
@@ -97,7 +98,7 @@ public class KillFuncProcedure {
                     });
                 }
             }
-            if (cap.relic_king_CRYSTAL) {
+            if (Relic.KING_CRYSTAL.gained(cap)) {
                 if (Math.random() < 0.1) {
                     if (cap.lives > 1) {
                         sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
@@ -120,35 +121,39 @@ public class KillFuncProcedure {
                     }
                 }
             }
-            if (cap.relic_hand_ENGRAVE >= 0) {
-                if (cap.relic_hand_ENGRAVE < 99) {
-                    validweapon = false;
-                    LivingEntity _livEnt = (LivingEntity) sourceentity;
-                    if (_livEnt.getMainHandItem().getItem() == Items.TRIDENT) {
-                        validweapon = true;
-                    } else if (damagesource.is(DamageTypes.TRIDENT)) {
-                        validweapon = true;
-                    } else {
-                        for (String stringiterator : RelicsConfig.HAND_ENGRAVE.get()) {
-                            if ((ForgeRegistries.ITEMS.getKey(_livEnt.getMainHandItem().getItem()).toString()).equals(stringiterator)) {
-                                validweapon = true;
-                                break;
-                            }
+            if (Relic.HAND_ENGRAVE.get(cap) >= 0 && Relic.HAND_ENGRAVE.get(cap) < 99) {
+                validweapon = false;
+                LivingEntity _livEnt = (LivingEntity) sourceentity;
+                if (_livEnt.getMainHandItem().getItem() == Items.TRIDENT) {
+                    validweapon = true;
+                } else if (damagesource.is(DamageTypes.TRIDENT)) {
+                    validweapon = true;
+                } else {
+                    for (String stringiterator : RelicsConfig.HAND_ENGRAVE.get()) {
+                        if ((ForgeRegistries.ITEMS.getKey(_livEnt.getMainHandItem().getItem()).toString()).equals(stringiterator)) {
+                            validweapon = true;
+                            break;
                         }
                     }
-                    if (validweapon) {
-                        sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
-                            capability.relic_hand_ENGRAVE = cap.relic_hand_ENGRAVE + 1;
-                            capability.syncPlayerVariables(sourceentity);
-                        });
-                    }
+                }
+                if (validweapon) {
+                    Relic.HAND_ENGRAVE.set(cap, Relic.HAND_ENGRAVE.get(cap) + 1);
+                    cap.syncPlayerVariables(sourceentity);
+
+//                    sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+//                        capability.relic_hand_ENGRAVE = Relic.HAND_ENGRAVE.get(cap) + 1;
+//                        capability.syncPlayerVariables(sourceentity);
+//                    });
                 }
             }
-            if (cap.relic_SURVIVOR >= 0 && cap.relic_SURVIVOR < 32 && Math.random() < 0.02) {
-                sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
-                    capability.relic_SURVIVOR = cap.relic_SURVIVOR + 1;
-                    capability.syncPlayerVariables(sourceentity);
-                });
+            if (Relic.SURVIVOR.get(cap) >= 0 && Relic.SURVIVOR.get(cap) < 32 && Math.random() < 0.02) {
+                Relic.SURVIVOR.set(cap, Relic.SURVIVOR.get(cap) + 1);
+                cap.syncPlayerVariables(sourceentity);
+
+//                sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+//                    capability.relic_SURVIVOR = Relic.SURVIVOR.get(cap) + 1;
+//                    capability.syncPlayerVariables(sourceentity);
+//                });
                 if (world instanceof ServerLevel _level)
                     _level.sendParticles(ParticleTypes.WAX_ON, x, y, z, 48, 0.7, 1.5, 0.7, 0.2);
             }

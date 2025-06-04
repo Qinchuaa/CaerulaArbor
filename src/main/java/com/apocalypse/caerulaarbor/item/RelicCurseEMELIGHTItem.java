@@ -1,6 +1,7 @@
 
 package com.apocalypse.caerulaarbor.item;
 
+import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import com.apocalypse.caerulaarbor.procedures.PlaceLamternProcedure;
 import net.minecraft.client.Minecraft;
@@ -51,8 +52,8 @@ public class RelicCurseEMELIGHTItem extends Item {
         double z = entity.getZ();
 
         var cap = entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
-        if (!cap.relic_cursed_EMELIGHT) {
-            cap.relic_cursed_EMELIGHT = true;
+        if (!Relic.CURSED_EMELIGHT.gained(cap)) {
+            Relic.CURSED_EMELIGHT.set(cap, 1);
             cap.syncPlayerVariables(entity);
 
             if (world instanceof ServerLevel server) {

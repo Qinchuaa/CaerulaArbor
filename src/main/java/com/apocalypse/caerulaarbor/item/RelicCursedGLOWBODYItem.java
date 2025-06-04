@@ -1,6 +1,7 @@
 
 package com.apocalypse.caerulaarbor.item;
 
+import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import com.apocalypse.caerulaarbor.procedures.DeductPlayerSanityProcedure;
 import net.minecraft.client.Minecraft;
@@ -83,10 +84,9 @@ public class RelicCursedGLOWBODYItem extends Item {
         double y = entity.getY();
         double z = entity.getZ();
 
-        if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
-                .map(c -> c.relic_cursed_GLOWBODY)
-                .orElse(false)
-        ) return;
+        var cap = entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
+
+        if (Relic.CURSED_GLOWBODY.gained(cap)) return;
 
         if (!world.isClientSide()) {
             world.playSound(null, BlockPos.containing(x, y, z), SoundEvents.AMBIENT_SOUL_SAND_VALLEY_MOOD.get(), SoundSource.NEUTRAL, 2, 1);
@@ -100,9 +100,7 @@ public class RelicCursedGLOWBODYItem extends Item {
             Minecraft.getInstance().gameRenderer.displayItemActivation(itemstack);
         }
 
-        entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(cap -> {
-            cap.relic_cursed_GLOWBODY = true;
-            cap.syncPlayerVariables(entity);
-        });
+        Relic.CURSED_GLOWBODY.set(cap, 1);
+        cap.syncPlayerVariables(entity);
     }
 }
