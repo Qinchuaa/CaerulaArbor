@@ -25,9 +25,4 @@ public class ChitinSwordItem extends SwordItem {
         }
         return stack;
     }
-
-    @Override
-    public boolean isRepairable(ItemStack itemstack) {
-        return false;
-    }
 }

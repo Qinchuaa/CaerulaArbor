@@ -42,6 +42,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         handheldItem(ModItems.CHITIN_PICKAXE);
         handheldItem(ModItems.CHITIN_SHOVEL);
         handheldItem(ModItems.CHITIN_SWORD);
+        simpleItem(ModItems.CHITIN_HELMET);
+        simpleItem(ModItems.CHITIN_CHESTPLATE);
+        simpleItem(ModItems.CHITIN_LEGGINGS);
+        simpleItem(ModItems.CHITIN_BOOTS);
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {

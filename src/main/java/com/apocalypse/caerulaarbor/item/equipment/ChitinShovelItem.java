@@ -25,9 +25,4 @@ public class ChitinShovelItem extends ShovelItem {
         }
         return stack;
     }
-
-    @Override
-    public boolean isRepairable(ItemStack itemstack) {
-        return false;
-    }
 }

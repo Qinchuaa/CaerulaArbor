@@ -25,9 +25,4 @@ public class ChitinAxeItem extends AxeItem {
         }
         return stack;
     }
-
-    @Override
-    public boolean isRepairable(ItemStack itemstack) {
-        return false;
-    }
 }

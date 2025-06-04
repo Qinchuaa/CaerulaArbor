@@ -25,9 +25,4 @@ public class ChitinHoeItem extends HoeItem {
         }
         return stack;
     }
-
-    @Override
-    public boolean isRepairable(ItemStack itemstack) {
-        return false;
-    }
 }

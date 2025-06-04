@@ -25,9 +25,4 @@ public class ChitinPickaxeItem extends PickaxeItem {
         }
         return stack;
     }
-
-    @Override
-    public boolean isRepairable(ItemStack itemstack) {
-        return false;
-    }
 }

@@ -59,10 +59,10 @@ public class ModTabs {
                 tabData.accept(ModBlocks.SEA_TRAIL_GROWN.get().asItem());
                 tabData.accept(ModItems.WEARABLE_CROWN_HELMET.get());
                 tabData.accept(ModItems.WEARABLE_CHEST_CHESTPLATE.get());
-                tabData.accept(ModItems.CHITIN_ARMOR_HELMET.get());
-                tabData.accept(ModItems.CHITIN_ARMOR_CHESTPLATE.get());
-                tabData.accept(ModItems.CHITIN_ARMOR_LEGGINGS.get());
-                tabData.accept(ModItems.CHITIN_ARMOR_BOOTS.get());
+                tabData.accept(ModItems.CHITIN_HELMET.get());
+                tabData.accept(ModItems.CHITIN_CHESTPLATE.get());
+                tabData.accept(ModItems.CHITIN_LEGGINGS.get());
+                tabData.accept(ModItems.CHITIN_BOOTS.get());
                 tabData.accept(ModItems.COMPLEXCHITIN_ARMOR_HELMET.get());
                 tabData.accept(ModItems.COMPLEXCHITIN_ARMOR_CHESTPLATE.get());
                 tabData.accept(ModItems.COMPLEXCHITIN_ARMOR_LEGGINGS.get());
