@@ -1,5 +1,6 @@
 package com.apocalypse.caerulaarbor.item.relic;
 
+import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
@@ -26,7 +27,7 @@ import org.jetbrains.annotations.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
-public class RelicItem extends Item implements IRelic {
+public abstract class RelicItem extends Item implements IRelic {
 
     public RelicItem(Properties pProperties) {
         super(pProperties);
@@ -38,6 +39,7 @@ public class RelicItem extends Item implements IRelic {
             pTooltipComponents.add(Component.translatable("item.caerula_arbor.relics.used").withStyle(ChatFormatting.ITALIC));
         }
     }
+
 
     @Override
     @ParametersAreNonnullByDefault
@@ -52,6 +54,8 @@ public class RelicItem extends Item implements IRelic {
     }
 
     public void afterUse(ItemStack stack, Level pLevel, LivingEntity entity) {
+        var cap = entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
+
         if (pLevel instanceof ServerLevel serverLevel) {
             serverLevel.sendParticles(this.getGainParticle(), entity.getX(), entity.getY(), entity.getZ(), 72, 0.75, 1, 0.75, 1);
 
@@ -62,28 +66,13 @@ public class RelicItem extends Item implements IRelic {
             Minecraft.getInstance().gameRenderer.displayItemActivation(stack);
 
             if (this.getAddedLives() != 0) {
-                double lives = (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
-                        .orElse(new CaerulaArborModVariables.PlayerVariables())).maxLive + this.getAddedLives();
-                entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
-                    capability.maxLive = lives;
-                    capability.syncPlayerVariables(entity);
-                });
+                cap.maxLive += this.getAddedLives();
             }
             if (this.getAddedMaxLives() != 0) {
-                double maxLives = (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
-                        .orElse(new CaerulaArborModVariables.PlayerVariables())).lives + this.getAddedMaxLives();
-                entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
-                    capability.lives = maxLives;
-                    capability.syncPlayerVariables(entity);
-                });
+                cap.lives += this.getAddedMaxLives();
             }
             if (this.getAddedShield() != 0) {
-                double shield = (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
-                        .orElse(new CaerulaArborModVariables.PlayerVariables())).shield + this.getAddedShield();
-                entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
-                    capability.shield = shield;
-                    capability.syncPlayerVariables(entity);
-                });
+                cap.shield += this.getAddedShield();
             }
         }
 
@@ -93,6 +82,24 @@ public class RelicItem extends Item implements IRelic {
             ItemHandlerHelper.giveItemToPlayer(player, this.getRewardItemStack());
             stack.shrink(1);
         }
+
+        // 增加遗物属性
+        var relic = getRelic();
+        if (relic != null && !relic.gained(entity)) {
+            var level = entity.level();
+
+            if (level instanceof ServerLevel server) {
+                server.playSound(null, entity.blockPosition(), getGainSound(), SoundSource.NEUTRAL, 2, 1);
+                server.sendParticles(ParticleTypes.CLOUD, entity.getX(), entity.getY(), entity.getZ(), 72, 1, 1, 1, 1);
+            } else {
+                level.playLocalSound(entity.blockPosition(), getGainSound(), SoundSource.NEUTRAL, 2, 1, false);
+                Minecraft.getInstance().gameRenderer.displayItemActivation(stack);
+            }
+
+            relic.gain(cap);
+        }
+
+        cap.syncPlayerVariables(entity);
     }
 
     public void playGainSound(Level pLevel, LivingEntity entity) {
@@ -138,5 +145,9 @@ public class RelicItem extends Item implements IRelic {
 
     public ItemStack getRewardItemStack() {
         return ItemStack.EMPTY;
+    }
+
+    public @Nullable Relic getRelic() {
+        return null;
     }
 }

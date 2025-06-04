@@ -97,16 +97,16 @@ public class CaerulaArborModVariables {
 //            clone.relic_king_SPEAR = original.relic_king_SPEAR;
 //            clone.relic_king_EXTENSION = original.relic_king_EXTENSION;
 //            clone.relic_king_CRYSTAL = original.relic_king_CRYSTAL;
-            clone.relic_hand_THORNS = original.relic_hand_THORNS;
-            clone.relic_hand_STRANGLE = original.relic_hand_STRANGLE;
-            clone.relic_hand_FERTILITY = original.relic_hand_FERTILITY;
-            clone.relic_hand_SPEED = original.relic_hand_SPEED;
-            clone.relic_hand_BARREN = original.relic_hand_BARREN;
-            clone.relic_hand_SWIPE = original.relic_hand_SWIPE;
+//            clone.relic_hand_THORNS = original.relic_hand_THORNS;
+//            clone.relic_hand_STRANGLE = original.relic_hand_STRANGLE;
+//            clone.relic_hand_FERTILITY = original.relic_hand_FERTILITY;
+//            clone.relic_hand_SPEED = original.relic_hand_SPEED;
+//            clone.relic_hand_BARREN = original.relic_hand_BARREN;
+//            clone.relic_hand_SWIPE = original.relic_hand_SWIPE;
 //            clone.relic_SARKAZ_KING_ARTIFACT = original.relic_SARKAZ_KING_ARTIFACT;
-            clone.relic_hand_FIREWORK = original.relic_hand_FIREWORK;
+//            clone.relic_hand_FIREWORK = original.relic_hand_FIREWORK;
 //            clone.relic_SARKAZ_KING_FLAG = original.relic_SARKAZ_KING_FLAG;
-            clone.relic_hand_ENGRAVE = original.relic_hand_ENGRAVE;
+//            clone.relic_hand_ENGRAVE = original.relic_hand_ENGRAVE;
 //            clone.relic_SARKAZ_KING_BED = original.relic_SARKAZ_KING_BED;
             clone.relic_SURVIVOR = original.relic_SURVIVOR;
             clone.relic_TREATY = original.relic_TREATY;
@@ -131,7 +131,7 @@ public class CaerulaArborModVariables {
             clone.relic_util_score = original.relic_util_score;
             clone.relic_util_RESCISSION = original.relic_util_RESCISSION;
             clone.relic_util_STARE = original.relic_util_STARE;
-            clone.relic_hand_SWORD = original.relic_hand_SWORD;
+//            clone.relic_hand_SWORD = original.relic_hand_SWORD;
 //            clone.relic_cursed_HEART = original.relic_cursed_HEART;
 
 
@@ -346,14 +346,6 @@ public class CaerulaArborModVariables {
         public int disoclusion = 0;
         public boolean show_stats = false;
         public boolean kingShowPtc = true;
-        public boolean relic_hand_THORNS = false;
-        public boolean relic_hand_STRANGLE = false;
-        public boolean relic_hand_FERTILITY = false;
-        public boolean relic_hand_SPEED = false;
-        public boolean relic_hand_BARREN = false;
-        public boolean relic_hand_SWIPE = false;
-        public boolean relic_hand_FIREWORK = false;
-        public double relic_hand_ENGRAVE = -1.0;
         public double relic_SURVIVOR = -1.0;
         public boolean relic_TREATY = false;
         public boolean relic_util_MEATCAN = false;
@@ -379,7 +371,6 @@ public class CaerulaArborModVariables {
         public boolean relic_util_score = false;
         public boolean relic_util_RESCISSION = false;
         public boolean relic_util_STARE = false;
-        public boolean relic_hand_SWORD = false;
         public double player_king_suit = 0;
         public double player_demon_suit = 0;
         public double player_oceanization = 0;
@@ -417,16 +408,16 @@ public class CaerulaArborModVariables {
 //            nbt.putBoolean("relic_king_SPEAR", relic_king_SPEAR);
 //            nbt.putBoolean("relic_king_EXTENSION", relic_king_EXTENSION);
 //            nbt.putBoolean("relic_king_CRYSTAL", relic_king_CRYSTAL);
-            nbt.putBoolean("relic_hand_THORNS", relic_hand_THORNS);
-            nbt.putBoolean("relic_hand_STRANGLE", relic_hand_STRANGLE);
-            nbt.putBoolean("relic_hand_FERTILITY", relic_hand_FERTILITY);
-            nbt.putBoolean("relic_hand_SPEED", relic_hand_SPEED);
-            nbt.putBoolean("relic_hand_BARREN", relic_hand_BARREN);
-            nbt.putBoolean("relic_hand_SWIPE", relic_hand_SWIPE);
+//            nbt.putBoolean("relic_hand_THORNS", relic_hand_THORNS);
+//            nbt.putBoolean("relic_hand_STRANGLE", relic_hand_STRANGLE);
+//            nbt.putBoolean("relic_hand_FERTILITY", relic_hand_FERTILITY);
+//            nbt.putBoolean("relic_hand_SPEED", relic_hand_SPEED);
+//            nbt.putBoolean("relic_hand_BARREN", relic_hand_BARREN);
+//            nbt.putBoolean("relic_hand_SWIPE", relic_hand_SWIPE);
 //            nbt.putBoolean("relic_SARKAZ_KING_ARTIFACT", relic_SARKAZ_KING_ARTIFACT);
-            nbt.putBoolean("relic_hand_FIREWORK", relic_hand_FIREWORK);
+//            nbt.putBoolean("relic_hand_FIREWORK", relic_hand_FIREWORK);
 //            nbt.putBoolean("relic_SARKAZ_KING_FLAG", relic_SARKAZ_KING_FLAG);
-            nbt.putDouble("relic_hand_ENGRAVE", relic_hand_ENGRAVE);
+//            nbt.putDouble("relic_hand_ENGRAVE", relic_hand_ENGRAVE);
 //            nbt.putBoolean("relic_SARKAZ_KING_BED", relic_SARKAZ_KING_BED);
             nbt.putDouble("relic_SURVIVOR", relic_SURVIVOR);
             nbt.putBoolean("relic_TREATY", relic_TREATY);
@@ -451,7 +442,7 @@ public class CaerulaArborModVariables {
             nbt.putBoolean("relic_util_score", relic_util_score);
             nbt.putBoolean("relic_util_RESCISSION", relic_util_RESCISSION);
             nbt.putBoolean("relic_util_STARE", relic_util_STARE);
-            nbt.putBoolean("relic_hand_SWORD", relic_hand_SWORD);
+//            nbt.putBoolean("relic_hand_SWORD", relic_hand_SWORD);
 //            nbt.putBoolean("relic_cursed_HEART", relic_cursed_HEART);
 
 
@@ -488,16 +479,16 @@ public class CaerulaArborModVariables {
 //            relic_king_SPEAR = nbt.getBoolean("relic_king_SPEAR");
 //            relic_king_EXTENSION = nbt.getBoolean("relic_king_EXTENSION");
 //            relic_king_CRYSTAL = nbt.getBoolean("relic_king_CRYSTAL");
-            relic_hand_THORNS = nbt.getBoolean("relic_hand_THORNS");
-            relic_hand_STRANGLE = nbt.getBoolean("relic_hand_STRANGLE");
-            relic_hand_FERTILITY = nbt.getBoolean("relic_hand_FERTILITY");
-            relic_hand_SPEED = nbt.getBoolean("relic_hand_SPEED");
-            relic_hand_BARREN = nbt.getBoolean("relic_hand_BARREN");
-            relic_hand_SWIPE = nbt.getBoolean("relic_hand_SWIPE");
+//            relic_hand_THORNS = nbt.getBoolean("relic_hand_THORNS");
+//            relic_hand_STRANGLE = nbt.getBoolean("relic_hand_STRANGLE");
+//            relic_hand_FERTILITY = nbt.getBoolean("relic_hand_FERTILITY");
+//            relic_hand_SPEED = nbt.getBoolean("relic_hand_SPEED");
+//            relic_hand_BARREN = nbt.getBoolean("relic_hand_BARREN");
+//            relic_hand_SWIPE = nbt.getBoolean("relic_hand_SWIPE");
 //            relic_SARKAZ_KING_ARTIFACT = nbt.getBoolean("relic_SARKAZ_KING_ARTIFACT");
-            relic_hand_FIREWORK = nbt.getBoolean("relic_hand_FIREWORK");
+//            relic_hand_FIREWORK = nbt.getBoolean("relic_hand_FIREWORK");
 //            relic_SARKAZ_KING_FLAG = nbt.getBoolean("relic_SARKAZ_KING_FLAG");
-            relic_hand_ENGRAVE = nbt.getDouble("relic_hand_ENGRAVE");
+//            relic_hand_ENGRAVE = nbt.getDouble("relic_hand_ENGRAVE");
 //            relic_SARKAZ_KING_BED = nbt.getBoolean("relic_SARKAZ_KING_BED");
             relic_SURVIVOR = nbt.getDouble("relic_SURVIVOR");
             relic_TREATY = nbt.getBoolean("relic_TREATY");
@@ -522,7 +513,7 @@ public class CaerulaArborModVariables {
             relic_util_score = nbt.getBoolean("relic_util_score");
             relic_util_RESCISSION = nbt.getBoolean("relic_util_RESCISSION");
             relic_util_STARE = nbt.getBoolean("relic_util_STARE");
-            relic_hand_SWORD = nbt.getBoolean("relic_hand_SWORD");
+//            relic_hand_SWORD = nbt.getBoolean("relic_hand_SWORD");
 //            relic_cursed_HEART = nbt.getBoolean("relic_cursed_HEART");
 
 
@@ -576,16 +567,16 @@ public class CaerulaArborModVariables {
 //                    variables.relic_king_SPEAR = message.data.relic_king_SPEAR;
 //                    variables.relic_king_EXTENSION = message.data.relic_king_EXTENSION;
 //                    variables.relic_king_CRYSTAL = message.data.relic_king_CRYSTAL;
-                    variables.relic_hand_THORNS = message.data.relic_hand_THORNS;
-                    variables.relic_hand_STRANGLE = message.data.relic_hand_STRANGLE;
-                    variables.relic_hand_FERTILITY = message.data.relic_hand_FERTILITY;
-                    variables.relic_hand_SPEED = message.data.relic_hand_SPEED;
-                    variables.relic_hand_BARREN = message.data.relic_hand_BARREN;
-                    variables.relic_hand_SWIPE = message.data.relic_hand_SWIPE;
+//                    variables.relic_hand_THORNS = message.data.relic_hand_THORNS;
+//                    variables.relic_hand_STRANGLE = message.data.relic_hand_STRANGLE;
+//                    variables.relic_hand_FERTILITY = message.data.relic_hand_FERTILITY;
+//                    variables.relic_hand_SPEED = message.data.relic_hand_SPEED;
+//                    variables.relic_hand_BARREN = message.data.relic_hand_BARREN;
+//                    variables.relic_hand_SWIPE = message.data.relic_hand_SWIPE;
 //                    variables.relic_SARKAZ_KING_ARTIFACT = message.data.relic_SARKAZ_KING_ARTIFACT;
-                    variables.relic_hand_FIREWORK = message.data.relic_hand_FIREWORK;
+//                    variables.relic_hand_FIREWORK = message.data.relic_hand_FIREWORK;
 //                    variables.relic_SARKAZ_KING_FLAG = message.data.relic_SARKAZ_KING_FLAG;
-                    variables.relic_hand_ENGRAVE = message.data.relic_hand_ENGRAVE;
+//                    variables.relic_hand_ENGRAVE = message.data.relic_hand_ENGRAVE;
 //                    variables.relic_SARKAZ_KING_BED = message.data.relic_SARKAZ_KING_BED;
                     variables.relic_SURVIVOR = message.data.relic_SURVIVOR;
                     variables.relic_TREATY = message.data.relic_TREATY;
@@ -610,7 +601,7 @@ public class CaerulaArborModVariables {
                     variables.relic_util_score = message.data.relic_util_score;
                     variables.relic_util_RESCISSION = message.data.relic_util_RESCISSION;
                     variables.relic_util_STARE = message.data.relic_util_STARE;
-                    variables.relic_hand_SWORD = message.data.relic_hand_SWORD;
+//                    variables.relic_hand_SWORD = message.data.relic_hand_SWORD;
 //                    variables.relic_cursed_HEART = message.data.relic_cursed_HEART;
 
 

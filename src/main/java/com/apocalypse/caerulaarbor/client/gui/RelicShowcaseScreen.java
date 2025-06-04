@@ -4,10 +4,6 @@ import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import com.apocalypse.caerulaarbor.network.RelicShowcaseButtonMessage;
-import com.apocalypse.caerulaarbor.procedures.HandhandFertilityProcedure;
-import com.apocalypse.caerulaarbor.procedures.HasHAndbarrenProcedure;
-import com.apocalypse.caerulaarbor.procedures.HasHandFirewpedProcedure;
-import com.apocalypse.caerulaarbor.procedures.HasHandStrangleProcedure;
 import com.apocalypse.caerulaarbor.world.inventory.RelicShowcaseMenu;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
@@ -434,42 +430,42 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         guistate.put("button:imagebutton_HAND_spike", imagebutton_HAND_spike);
         this.addRenderableWidget(imagebutton_HAND_spike);
         imagebutton_HAND_reap = new ImageButton(this.leftPos + 28, this.topPos + 28, 16, 16, 0, 0, 16, new ResourceLocation("caerula_arbor:textures/screens/atlas/imagebutton_HAND_reap.png"), 16, 32, e -> {
-            if (HasHandStrangleProcedure.execute(entity)) {
+            if (Relic.HAND_STRANGLE.gained(entity)) {
                 CaerulaArborMod.PACKET_HANDLER.sendToServer(new RelicShowcaseButtonMessage(11, x, y, z));
                 RelicShowcaseButtonMessage.handleButtonAction(entity, 11, x, y, z);
             }
         }) {
             @Override
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
-                this.visible = HasHandStrangleProcedure.execute(entity);
+                this.visible = Relic.HAND_STRANGLE.gained(entity);
                 super.renderWidget(guiGraphics, gx, gy, ticks);
             }
         };
         guistate.put("button:imagebutton_HAND_reap", imagebutton_HAND_reap);
         this.addRenderableWidget(imagebutton_HAND_reap);
         imagebutton_HAND_reap1 = new ImageButton(this.leftPos + 52, this.topPos + 28, 16, 16, 0, 0, 16, new ResourceLocation("caerula_arbor:textures/screens/atlas/imagebutton_HAND_reap1.png"), 16, 32, e -> {
-            if (HandhandFertilityProcedure.execute(entity)) {
+            if (Relic.HAND_FERTILITY.gained(entity)) {
                 CaerulaArborMod.PACKET_HANDLER.sendToServer(new RelicShowcaseButtonMessage(12, x, y, z));
                 RelicShowcaseButtonMessage.handleButtonAction(entity, 12, x, y, z);
             }
         }) {
             @Override
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
-                this.visible = HandhandFertilityProcedure.execute(entity);
+                this.visible = Relic.HAND_FERTILITY.gained(entity);
                 super.renderWidget(guiGraphics, gx, gy, ticks);
             }
         };
         guistate.put("button:imagebutton_HAND_reap1", imagebutton_HAND_reap1);
         this.addRenderableWidget(imagebutton_HAND_reap1);
         imagebutton_HAND_smash = new ImageButton(this.leftPos + 100, this.topPos + 28, 16, 16, 0, 0, 16, new ResourceLocation("caerula_arbor:textures/screens/atlas/imagebutton_HAND_smash.png"), 16, 32, e -> {
-            if (HasHAndbarrenProcedure.execute(entity)) {
+            if (Relic.HAND_BARREN.gained(entity)) {
                 CaerulaArborMod.PACKET_HANDLER.sendToServer(new RelicShowcaseButtonMessage(13, x, y, z));
                 RelicShowcaseButtonMessage.handleButtonAction(entity, 13, x, y, z);
             }
         }) {
             @Override
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
-                this.visible = HasHAndbarrenProcedure.execute(entity);
+                this.visible = Relic.HAND_BARREN.gained(entity);
                 super.renderWidget(guiGraphics, gx, gy, ticks);
             }
         };
@@ -507,7 +503,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         }) {
             @Override
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
-                this.visible = HasHandFirewpedProcedure.execute(entity);
+                this.visible = Relic.HAND_FIREWORK.gained(entity);
                 super.renderWidget(guiGraphics, gx, gy, ticks);
             }
         };
