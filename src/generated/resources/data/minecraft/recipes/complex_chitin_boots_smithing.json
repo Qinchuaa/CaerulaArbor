@@ -1,0 +1,15 @@
+{
+  "type": "minecraft:smithing_transform",
+  "addition": {
+    "item": "caerula_arbor:complex_chitin"
+  },
+  "base": {
+    "item": "caerula_arbor:chitin_boots"
+  },
+  "result": {
+    "item": "caerula_arbor:complex_chitin_boots"
+  },
+  "template": {
+    "item": "caerula_arbor:ocean_trim_template"
+  }
+}
