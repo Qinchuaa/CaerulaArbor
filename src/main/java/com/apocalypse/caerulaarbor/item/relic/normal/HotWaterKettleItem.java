@@ -12,7 +12,9 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
 public class HotWaterKettleItem extends RelicItem {
@@ -22,13 +24,14 @@ public class HotWaterKettleItem extends RelicItem {
     }
 
     @Override
-    public void appendHoverText(ItemStack itemstack, Level level, List<Component> list, TooltipFlag flag) {
+    public void appendHoverText(ItemStack itemstack, Level level, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         list.add(Component.translatable("item.caerula_arbor.hot_water_kettle.des_1").withStyle(ChatFormatting.AQUA));
         list.add(Component.translatable("item.caerula_arbor.hot_water_kettle.des_2").withStyle(ChatFormatting.GRAY));
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level pLevel, Player player, InteractionHand pUsedHand) {
+    @ParametersAreNonnullByDefault
+    public @NotNull InteractionResultHolder<ItemStack> use(Level pLevel, Player player, InteractionHand pUsedHand) {
         InteractionResultHolder<ItemStack> resultHolder = super.use(pLevel, player, pUsedHand);
 
         player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {

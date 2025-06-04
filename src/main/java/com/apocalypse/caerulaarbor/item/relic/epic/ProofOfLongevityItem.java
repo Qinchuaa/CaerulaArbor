@@ -16,6 +16,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
 public class ProofOfLongevityItem extends RelicItem {
@@ -25,13 +26,14 @@ public class ProofOfLongevityItem extends RelicItem {
     }
 
     @Override
-    public void appendHoverText(ItemStack itemstack, Level level, List<Component> list, TooltipFlag flag) {
+    public void appendHoverText(ItemStack itemstack, Level level, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         list.add(Component.translatable("item.caerula_arbor.proof_of_longevity.des_1").withStyle(ChatFormatting.AQUA));
         list.add(Component.translatable("item.caerula_arbor.proof_of_longevity.des_2").withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand hand) {
+    @ParametersAreNonnullByDefault
+    public @NotNull InteractionResultHolder<ItemStack> use(Level pLevel, @NotNull Player pPlayer, InteractionHand hand) {
         ItemStack stack = pPlayer.getItemInHand(hand);
         pPlayer.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
             capability.relic_util_LONGEVITY = true;

@@ -92,11 +92,11 @@ public class CaerulaArborModVariables {
 //            clone.relic_cursed_EMELIGHT = original.relic_cursed_EMELIGHT;
 //            clone.relic_cursed_GLOWBODY = original.relic_cursed_GLOWBODY;
 //            clone.relic_cursed_RESEARCH = original.relic_cursed_RESEARCH;
-            clone.relic_king_CROWN = original.relic_king_CROWN;
-            clone.relic_king_ARMOR = original.relic_king_ARMOR;
-            clone.relic_king_SPEAR = original.relic_king_SPEAR;
-            clone.relic_king_EXTENSION = original.relic_king_EXTENSION;
-            clone.relic_king_CRYSTAL = original.relic_king_CRYSTAL;
+//            clone.relic_king_CROWN = original.relic_king_CROWN;
+//            clone.relic_king_ARMOR = original.relic_king_ARMOR;
+//            clone.relic_king_SPEAR = original.relic_king_SPEAR;
+//            clone.relic_king_EXTENSION = original.relic_king_EXTENSION;
+//            clone.relic_king_CRYSTAL = original.relic_king_CRYSTAL;
             clone.relic_hand_THORNS = original.relic_hand_THORNS;
             clone.relic_hand_STRANGLE = original.relic_hand_STRANGLE;
             clone.relic_hand_FERTILITY = original.relic_hand_FERTILITY;
@@ -168,13 +168,13 @@ public class CaerulaArborModVariables {
     public static class WorldVariables extends SavedData {
         public static final String DATA_NAME = "caerula_arbor_worldvars";
 
-        public static WorldVariables load(CompoundTag tag) {
+        public static WorldVariables load() {
             WorldVariables data = new WorldVariables();
-            data.read(tag);
+            data.read();
             return data;
         }
 
-        public void read(CompoundTag nbt) {
+        public void read() {
         }
 
         @Override
@@ -192,7 +192,7 @@ public class CaerulaArborModVariables {
 
         public static WorldVariables get(LevelAccessor world) {
             if (world instanceof ServerLevel level) {
-                return level.getDataStorage().computeIfAbsent(WorldVariables::load, WorldVariables::new, DATA_NAME);
+                return level.getDataStorage().computeIfAbsent((CompoundTag t) -> load(), WorldVariables::new, DATA_NAME);
             } else {
                 return clientSide;
             }
@@ -278,7 +278,7 @@ public class CaerulaArborModVariables {
                 if (this.data instanceof MapVariables mapVariables)
                     mapVariables.read(nbt);
                 else if (this.data instanceof WorldVariables worldVariables)
-                    worldVariables.read(nbt);
+                    worldVariables.read();
             }
         }
 
@@ -345,12 +345,7 @@ public class CaerulaArborModVariables {
         public double shield = 0;
         public int disoclusion = 0;
         public boolean show_stats = false;
-        public boolean relic_king_CROWN = false;
-        public boolean relic_king_ARMOR = false;
-        public boolean relic_king_SPEAR = false;
-        public boolean relic_king_EXTENSION = false;
         public boolean kingShowPtc = true;
-        public boolean relic_king_CRYSTAL = false;
         public boolean relic_hand_THORNS = false;
         public boolean relic_hand_STRANGLE = false;
         public boolean relic_hand_FERTILITY = false;
@@ -417,11 +412,11 @@ public class CaerulaArborModVariables {
 //            nbt.putBoolean("relic_cursed_EMELIGHT", relic_cursed_EMELIGHT);
 //            nbt.putBoolean("relic_cursed_GLOWBODY", relic_cursed_GLOWBODY);
 //            nbt.putBoolean("relic_cursed_RESEARCH", relic_cursed_RESEARCH);
-            nbt.putBoolean("relic_king_CROWN", relic_king_CROWN);
-            nbt.putBoolean("relic_king_ARMOR", relic_king_ARMOR);
-            nbt.putBoolean("relic_king_SPEAR", relic_king_SPEAR);
-            nbt.putBoolean("relic_king_EXTENSION", relic_king_EXTENSION);
-            nbt.putBoolean("relic_king_CRYSTAL", relic_king_CRYSTAL);
+//            nbt.putBoolean("relic_king_CROWN", relic_king_CROWN);
+//            nbt.putBoolean("relic_king_ARMOR", relic_king_ARMOR);
+//            nbt.putBoolean("relic_king_SPEAR", relic_king_SPEAR);
+//            nbt.putBoolean("relic_king_EXTENSION", relic_king_EXTENSION);
+//            nbt.putBoolean("relic_king_CRYSTAL", relic_king_CRYSTAL);
             nbt.putBoolean("relic_hand_THORNS", relic_hand_THORNS);
             nbt.putBoolean("relic_hand_STRANGLE", relic_hand_STRANGLE);
             nbt.putBoolean("relic_hand_FERTILITY", relic_hand_FERTILITY);
@@ -488,11 +483,11 @@ public class CaerulaArborModVariables {
 //            relic_cursed_EMELIGHT = nbt.getBoolean("relic_cursed_EMELIGHT");
 //            relic_cursed_GLOWBODY = nbt.getBoolean("relic_cursed_GLOWBODY");
 //            relic_cursed_RESEARCH = nbt.getBoolean("relic_cursed_RESEARCH");
-            relic_king_CROWN = nbt.getBoolean("relic_king_CROWN");
-            relic_king_ARMOR = nbt.getBoolean("relic_king_ARMOR");
-            relic_king_SPEAR = nbt.getBoolean("relic_king_SPEAR");
-            relic_king_EXTENSION = nbt.getBoolean("relic_king_EXTENSION");
-            relic_king_CRYSTAL = nbt.getBoolean("relic_king_CRYSTAL");
+//            relic_king_CROWN = nbt.getBoolean("relic_king_CROWN");
+//            relic_king_ARMOR = nbt.getBoolean("relic_king_ARMOR");
+//            relic_king_SPEAR = nbt.getBoolean("relic_king_SPEAR");
+//            relic_king_EXTENSION = nbt.getBoolean("relic_king_EXTENSION");
+//            relic_king_CRYSTAL = nbt.getBoolean("relic_king_CRYSTAL");
             relic_hand_THORNS = nbt.getBoolean("relic_hand_THORNS");
             relic_hand_STRANGLE = nbt.getBoolean("relic_hand_STRANGLE");
             relic_hand_FERTILITY = nbt.getBoolean("relic_hand_FERTILITY");
@@ -576,11 +571,11 @@ public class CaerulaArborModVariables {
 //                    variables.relic_cursed_EMELIGHT = message.data.relic_cursed_EMELIGHT;
 //                    variables.relic_cursed_GLOWBODY = message.data.relic_cursed_GLOWBODY;
 //                    variables.relic_cursed_RESEARCH = message.data.relic_cursed_RESEARCH;
-                    variables.relic_king_CROWN = message.data.relic_king_CROWN;
-                    variables.relic_king_ARMOR = message.data.relic_king_ARMOR;
-                    variables.relic_king_SPEAR = message.data.relic_king_SPEAR;
-                    variables.relic_king_EXTENSION = message.data.relic_king_EXTENSION;
-                    variables.relic_king_CRYSTAL = message.data.relic_king_CRYSTAL;
+//                    variables.relic_king_CROWN = message.data.relic_king_CROWN;
+//                    variables.relic_king_ARMOR = message.data.relic_king_ARMOR;
+//                    variables.relic_king_SPEAR = message.data.relic_king_SPEAR;
+//                    variables.relic_king_EXTENSION = message.data.relic_king_EXTENSION;
+//                    variables.relic_king_CRYSTAL = message.data.relic_king_CRYSTAL;
                     variables.relic_hand_THORNS = message.data.relic_hand_THORNS;
                     variables.relic_hand_STRANGLE = message.data.relic_hand_STRANGLE;
                     variables.relic_hand_FERTILITY = message.data.relic_hand_FERTILITY;

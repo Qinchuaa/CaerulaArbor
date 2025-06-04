@@ -19,6 +19,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
 public class WeirdFluteItem extends RelicItem {
@@ -43,21 +44,22 @@ public class WeirdFluteItem extends RelicItem {
     }
 
     @Override
-    public void appendHoverText(ItemStack itemstack, Level level, List<Component> list, TooltipFlag flag) {
+    public void appendHoverText(ItemStack itemstack, Level level, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         super.appendHoverText(itemstack, level, list, flag);
         list.add(Component.translatable("item.caerula_arbor.weird_flute.des_1").withStyle(ChatFormatting.AQUA));
         list.add(Component.translatable("item.caerula_arbor.weird_flute.des_2").withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
     }
 
     @Override
-    public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand hand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(Level pLevel, @NotNull Player pPlayer, InteractionHand hand) {
         ItemStack stack = pPlayer.getItemInHand(hand);
         pPlayer.startUsingItem(hand);
         return InteractionResultHolder.consume(stack);
     }
 
     @Override
-    public ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity entity) {
+    @ParametersAreNonnullByDefault
+    public @NotNull ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity entity) {
         if (!pStack.getOrCreateTag().getBoolean("Used")) {
             this.afterUse(pStack, pLevel, entity);
 
@@ -98,6 +100,7 @@ public class WeirdFluteItem extends RelicItem {
     }
 
     @Override
+    @ParametersAreNonnullByDefault
     public void onUseTick(Level pLevel, LivingEntity pLivingEntity, ItemStack pStack, int pRemainingUseDuration) {
         if (pLevel instanceof ServerLevel serverLevel) {
             serverLevel.sendParticles(ParticleTypes.NOTE, pLivingEntity.getX(), pLivingEntity.getY(), pLivingEntity.getZ(),

@@ -18,7 +18,9 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
 public class PittsAssortedFruitsItem extends RelicItem {
@@ -34,7 +36,8 @@ public class PittsAssortedFruitsItem extends RelicItem {
     }
 
     @Override
-    public InteractionResult interactLivingEntity(ItemStack pStack, Player pPlayer, LivingEntity pInteractionTarget, InteractionHand pUsedHand) {
+    @ParametersAreNonnullByDefault
+    public @NotNull InteractionResult interactLivingEntity(ItemStack pStack, Player pPlayer, LivingEntity pInteractionTarget, InteractionHand pUsedHand) {
         if (pInteractionTarget instanceof Sheep) {
             pInteractionTarget.setCustomName(Component.literal("jeb_"));
             pStack.shrink(1);
@@ -44,13 +47,14 @@ public class PittsAssortedFruitsItem extends RelicItem {
     }
 
     @Override
-    public void appendHoverText(ItemStack itemstack, Level level, List<Component> list, TooltipFlag flag) {
+    public void appendHoverText(ItemStack itemstack, Level level, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         list.add(Component.translatable("item.caerula_arbor.pitts_assorted_fruits.des_1").withStyle(ChatFormatting.AQUA));
         list.add(Component.translatable("item.caerula_arbor.pitts_assorted_fruits.des_2").withStyle(ChatFormatting.GRAY));
     }
 
     @Override
-    public ItemStack finishUsingItem(ItemStack pStack, Level world, LivingEntity entity) {
+    @ParametersAreNonnullByDefault
+    public @NotNull ItemStack finishUsingItem(ItemStack pStack, Level world, LivingEntity entity) {
         entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
 			capability.player_util_RAINBOW = true;
 			capability.syncPlayerVariables(entity);

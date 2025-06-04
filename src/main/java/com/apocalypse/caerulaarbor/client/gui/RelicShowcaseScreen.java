@@ -4,7 +4,10 @@ import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import com.apocalypse.caerulaarbor.network.RelicShowcaseButtonMessage;
-import com.apocalypse.caerulaarbor.procedures.*;
+import com.apocalypse.caerulaarbor.procedures.HandhandFertilityProcedure;
+import com.apocalypse.caerulaarbor.procedures.HasHAndbarrenProcedure;
+import com.apocalypse.caerulaarbor.procedures.HasHandFirewpedProcedure;
+import com.apocalypse.caerulaarbor.procedures.HasHandStrangleProcedure;
 import com.apocalypse.caerulaarbor.world.inventory.RelicShowcaseMenu;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
@@ -319,14 +322,14 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         guistate.put("button:imagebutton_relic_crown", imagebutton_relic_crown);
         this.addRenderableWidget(imagebutton_relic_crown);
         imagebutton_relic_spear = new ImageButton(this.leftPos + 28, this.topPos + 4, 16, 16, 0, 0, 16, new ResourceLocation("caerula_arbor:textures/screens/atlas/imagebutton_relic_spear.png"), 16, 32, e -> {
-            if (HasSpearProcedure.execute(entity)) {
+            if (Relic.KING_SPEAR.gained(entity)) {
                 CaerulaArborMod.PACKET_HANDLER.sendToServer(new RelicShowcaseButtonMessage(2, x, y, z));
                 RelicShowcaseButtonMessage.handleButtonAction(entity, 2, x, y, z);
             }
         }) {
             @Override
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
-                this.visible = HasSpearProcedure.execute(entity);
+                this.visible = Relic.KING_SPEAR.gained(entity);
                 super.renderWidget(guiGraphics, gx, gy, ticks);
             }
         };
@@ -347,14 +350,14 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         guistate.put("button:imagebutton_kingsarmor", imagebutton_kingsarmor);
         this.addRenderableWidget(imagebutton_kingsarmor);
         imagebutton_extension = new ImageButton(this.leftPos + 52, this.topPos + 4, 16, 16, 0, 0, 16, new ResourceLocation("caerula_arbor:textures/screens/atlas/imagebutton_extension.png"), 16, 32, e -> {
-            if (HasExtensionProcedure.execute(entity)) {
+            if (Relic.KING_EXTENSION.gained(entity)) {
                 CaerulaArborMod.PACKET_HANDLER.sendToServer(new RelicShowcaseButtonMessage(4, x, y, z));
                 RelicShowcaseButtonMessage.handleButtonAction(entity, 4, x, y, z);
             }
         }) {
             @Override
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
-                this.visible = HasExtensionProcedure.execute(entity);
+                this.visible = Relic.KING_EXTENSION.gained(entity);
                 super.renderWidget(guiGraphics, gx, gy, ticks);
             }
         };

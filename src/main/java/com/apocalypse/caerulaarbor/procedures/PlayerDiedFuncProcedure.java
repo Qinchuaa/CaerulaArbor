@@ -1,14 +1,15 @@
 package com.apocalypse.caerulaarbor.procedures;
 
 import com.apocalypse.caerulaarbor.init.ModAttributes;
+import com.apocalypse.caerulaarbor.init.ModBlocks;
 import com.apocalypse.caerulaarbor.init.ModGameRules;
 import com.apocalypse.caerulaarbor.init.ModParticleTypes;
-import com.apocalypse.caerulaarbor.init.ModBlocks;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.SimpleParticleType;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -42,9 +43,9 @@ public class PlayerDiedFuncProcedure {
 	private static void execute(@Nullable Event event, LevelAccessor world, double x, double y, double z, DamageSource damagesource, Entity entity) {
 		if (damagesource == null || entity == null)
 			return;
-		double light_cost = 0;
-		double dx = 0;
-		double dz = 0;
+		double light_cost;
+		double dx;
+		double dz;
 		if ((ForgeRegistries.ENTITY_TYPES.getKey(entity.getType()).toString()).equals("minecraft:player")) {
 			light_cost = 0;
 			if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).shield > 0) {
@@ -64,9 +65,9 @@ public class PlayerDiedFuncProcedure {
 				}
 				if (world instanceof Level _level) {
 					if (!_level.isClientSide()) {
-						_level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("item.totem.use")), SoundSource.PLAYERS, 1, 1);
+						_level.playSound(null, BlockPos.containing(x, y, z), SoundEvents.TOTEM_USE, SoundSource.PLAYERS, 1, 1);
 					} else {
-						_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("item.totem.use")), SoundSource.PLAYERS, 1, 1, false);
+						_level.playLocalSound(x, y, z, SoundEvents.TOTEM_USE, SoundSource.PLAYERS, 1, 1, false);
 					}
 				}
 				if (world instanceof ServerLevel _level)
@@ -111,9 +112,9 @@ public class PlayerDiedFuncProcedure {
 					}
 					if (world instanceof Level _level) {
 						if (!_level.isClientSide()) {
-							_level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("item.totem.use")), SoundSource.PLAYERS, 1, 1);
+							_level.playSound(null, BlockPos.containing(x, y, z), SoundEvents.TOTEM_USE, SoundSource.PLAYERS, 1, 1);
 						} else {
-							_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("item.totem.use")), SoundSource.PLAYERS, 1, 1, false);
+							_level.playLocalSound(x, y, z, SoundEvents.TOTEM_USE, SoundSource.PLAYERS, 1, 1, false);
 						}
 					}
 					if (world instanceof ServerLevel _level)
@@ -155,9 +156,9 @@ public class PlayerDiedFuncProcedure {
 				if ((world.getBlockState(BlockPos.containing(x + dx, y, z + dz))).getBlock() == ModBlocks.SEA_TRAIL_INIT.get()
 						|| (world.getBlockState(BlockPos.containing(x + dx, y, z + dz))).getBlock() == ModBlocks.SEA_TRAIL_GROWING.get()) {
 					{
-						int _value = (int) (((world.getBlockState(BlockPos.containing(x + dx, y, z + dz))).getBlock().getStateDefinition().getProperty("grow_age") instanceof IntegerProperty _getip36
+						int _value = ((world.getBlockState(BlockPos.containing(x + dx, y, z + dz))).getBlock().getStateDefinition().getProperty("grow_age") instanceof IntegerProperty _getip36
 								? (world.getBlockState(BlockPos.containing(x + dx, y, z + dz))).getValue(_getip36)
-								: -1) + 4);
+								: -1) + 4;
 						BlockPos _pos = BlockPos.containing(x + dx, y, z + dz);
 						BlockState _bs = world.getBlockState(_pos);
 						if (_bs.getBlock().getStateDefinition().getProperty("grow_age") instanceof IntegerProperty _integerProp && _integerProp.getPossibleValues().contains(_value))
@@ -167,9 +168,9 @@ public class PlayerDiedFuncProcedure {
 				if ((world.getBlockState(BlockPos.containing(x + dx, y - 1, z + dz))).getBlock() == ModBlocks.SEA_TRAIL_INIT.get()
 						|| (world.getBlockState(BlockPos.containing(x + dx, y - 1, z + dz))).getBlock() == ModBlocks.SEA_TRAIL_GROWING.get()) {
 					{
-						int _value = (int) (((world.getBlockState(BlockPos.containing(x + dx, y, z + dz))).getBlock().getStateDefinition().getProperty("grow_age") instanceof IntegerProperty _getip43
+						int _value = ((world.getBlockState(BlockPos.containing(x + dx, y, z + dz))).getBlock().getStateDefinition().getProperty("grow_age") instanceof IntegerProperty _getip43
 								? (world.getBlockState(BlockPos.containing(x + dx, y, z + dz))).getValue(_getip43)
-								: -1) + 4);
+								: -1) + 4;
 						BlockPos _pos = BlockPos.containing(x + dx, y - 1, z + dz);
 						BlockState _bs = world.getBlockState(_pos);
 						if (_bs.getBlock().getStateDefinition().getProperty("grow_age") instanceof IntegerProperty _integerProp && _integerProp.getPossibleValues().contains(_value))

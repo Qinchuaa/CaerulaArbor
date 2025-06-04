@@ -14,7 +14,9 @@ import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
 public class FeaturedCannedMeatItem extends RelicItem {
@@ -28,18 +30,19 @@ public class FeaturedCannedMeatItem extends RelicItem {
     }
 
     @Override
-    public int getUseDuration(ItemStack itemstack) {
+    public int getUseDuration(@NotNull ItemStack itemstack) {
         return 40;
     }
 
     @Override
-    public void appendHoverText(ItemStack itemstack, Level level, List<Component> list, TooltipFlag flag) {
+    public void appendHoverText(ItemStack itemstack, Level level, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         list.add(Component.translatable("item.caerula_arbor.featured_canned_meat.des_1").withStyle(ChatFormatting.AQUA));
         list.add(Component.translatable("item.caerula_arbor.featured_canned_meat.des_2").withStyle(ChatFormatting.GRAY));
     }
 
     @Override
-    public ItemStack finishUsingItem(ItemStack pStack, Level world, LivingEntity entity) {
+    @ParametersAreNonnullByDefault
+    public @NotNull ItemStack finishUsingItem(ItemStack pStack, Level world, LivingEntity entity) {
         entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
             capability.relic_util_MEATCAN = true;
             capability.syncPlayerVariables(entity);

@@ -91,21 +91,22 @@ public class PlayerTickFuncProcedure {
         if (cap.player_oceanization >= 3) {
             modifi = 0.33;
         }
+
         if (entity instanceof LivingEntity _livingEntity8 && _livingEntity8.getAttributes().hasAttribute(ModAttributes.SANITY_MODIFIER.get()))
             _livingEntity8.getAttribute(ModAttributes.SANITY_MODIFIER.get()).setBaseValue(modifi);
         if (cap.lives <= 1) {
             suitKing = 0;
-            if (cap.relic_king_SPEAR) {
+            if (Relic.KING_SPEAR.gained(cap)) {
                 suitKing = suitKing + 1;
                 if (!(entity instanceof LivingEntity _livEnt9 && _livEnt9.hasEffect(ModMobEffects.KINGS_BOOST.get()))) {
                     if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
                         _entity.addEffect(new MobEffectInstance(ModMobEffects.KINGS_BOOST.get(), 100, 1, false, false));
                 }
             }
-            if (cap.relic_king_ARMOR) {
+            if (Relic.KING_ARMOR.gained(cap)) {
                 suitKing = suitKing + 1;
             }
-            if (cap.relic_king_EXTENSION) {
+            if (Relic.KING_EXTENSION.gained(cap)) {
                 suitKing = suitKing + 1;
                 amplifi = Math.ceil((entity instanceof LivingEntity _livEnt ? _livEnt.getMaxHealth() : -1) / 20);
                 if (amplifi > 24) {
@@ -116,7 +117,7 @@ public class PlayerTickFuncProcedure {
                         _entity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 100, (int) amplifi, false, false));
                 }
             }
-            if (cap.relic_king_CROWN) {
+            if (Relic.KING_CROWN.gained(cap)) {
                 suitKing = suitKing + 1;
                 if (!(entity instanceof LivingEntity _livEnt14 && _livEnt14.hasEffect(ModMobEffects.KINGS_BREATH.get()))) {
                     if (suitKing < 3) {
@@ -145,7 +146,7 @@ public class PlayerTickFuncProcedure {
                 });
             }
         }
-        if (cap.relic_hand_SPEED
+        if (Relic.HAND_SPEED.gained(cap)
                 && (entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).is(ItemTags.create(new ResourceLocation("minecraft:pickaxes")))) {
             valid = true;
             {
@@ -171,7 +172,7 @@ public class PlayerTickFuncProcedure {
                 }
             }
         }
-        if (cap.relic_hand_SWIPE) {
+        if (Relic.HAND_SWIPE.gained(cap)) {
             if (!(entity instanceof LivingEntity _livEnt28 && _livEnt28.hasEffect(ModMobEffects.WIPE_DUSTS.get()))
                     && (entity instanceof Player _playerHasItem && _playerHasItem.getInventory().contains(new ItemStack(Items.BRUSH)))) {
                 if (!_playerHasItem.level().isClientSide())
