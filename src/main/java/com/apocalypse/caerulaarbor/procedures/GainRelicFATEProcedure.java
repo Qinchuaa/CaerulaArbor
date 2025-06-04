@@ -64,7 +64,7 @@ public class GainRelicFATEProcedure {
 		{
 			boolean _setval = true;
 			entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
-				capability.relic_archifi_RYLFATE = _setval;
+				capability.relic_SARKAZ_KING_RYLFATE = _setval;
 				capability.syncPlayerVariables(entity);
 			});
 		}

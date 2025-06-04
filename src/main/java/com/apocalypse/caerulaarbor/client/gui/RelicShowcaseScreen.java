@@ -100,16 +100,16 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         if (Relic.KING_CRYSTAL.gained(entity))
             if (mouseX > leftPos + 76 && mouseX < leftPos + 92 && mouseY > topPos + 4 && mouseY < topPos + 20)
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.kings_crystal").getString() + ": " + Component.translatable("item.caerula_arbor.kings_crystal.description_0").getString()), mouseX, mouseY);
-        if (Relic.ARCHFI_ARTIFACT.gained(entity))
+        if (Relic.SARKAZ_KING_ARTIFACT.gained(entity))
             if (mouseX > leftPos + 124 && mouseX < leftPos + 140 && mouseY > topPos + 4 && mouseY < topPos + 20)
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.archfiends_artifact").getString() + ": " + Component.translatable("item.caerula_arbor.archfiends_artifact.description_0").getString()), mouseX, mouseY);
-        if (Relic.ARCHFI_FLAG.gained(entity))
+        if (Relic.SARKAZ_KING_FLAG.gained(entity))
             if (mouseX > leftPos + 148 && mouseX < leftPos + 164 && mouseY > topPos + 4 && mouseY < topPos + 20)
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.archfiends_flag").getString() + ": " + Component.translatable("item.caerula_arbor.archfiends_flag.description_0").getString()), mouseX, mouseY);
-        if (Relic.ARCHFI_BED.gained(entity))
+        if (Relic.SARKAZ_KING_BED.gained(entity))
             if (mouseX > leftPos + 172 && mouseX < leftPos + 188 && mouseY > topPos + 4 && mouseY < topPos + 20)
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.archfiends_bed").getString() + ": " + Component.translatable("item.caerula_arbor.archfiends_bed.description_0").getString()), mouseX, mouseY);
-        if (Relic.ARCHIFI_RYLFATE.gained(entity))
+        if (Relic.SARKAZ_KING_RYLFATE.gained(entity))
             if (mouseX > leftPos + 196 && mouseX < leftPos + 212 && mouseY > topPos + 4 && mouseY < topPos + 20)
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.royal_fate").getString() + ": " + Component.translatable("item.caerula_arbor.royal_fate.description_0").getString()), mouseX, mouseY);
         if (Relic.HAND_THORNS.gained(entity))
@@ -379,7 +379,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
             @Override
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
                 this.visible = entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
-                        .map(cap -> Relic.ARCHFI_ARTIFACT.gained(entity))
+                        .map(cap -> Relic.SARKAZ_KING_ARTIFACT.gained(entity))
                         .orElse(false);
                 super.renderWidget(guiGraphics, gx, gy, ticks);
             }
@@ -400,7 +400,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         }) {
             @Override
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
-                this.visible = Relic.ARCHFI_BED.gained(entity);
+                this.visible = Relic.SARKAZ_KING_BED.gained(entity);
                 super.renderWidget(guiGraphics, gx, gy, ticks);
             }
         };

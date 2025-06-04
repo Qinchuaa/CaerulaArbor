@@ -17,7 +17,7 @@ public class GainRelicFLAGProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, Entity entity, ItemStack itemstack) {
 		if (entity == null)
 			return;
-		if (!(entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_archfi_FLAG) {
+        if (!(entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_SARKAZ_KING_FLAG) {
 			if (world instanceof Level _level) {
 				if (!_level.isClientSide()) {
 					_level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("item.totem.use")), SoundSource.NEUTRAL, 2, 1);
@@ -30,7 +30,7 @@ public class GainRelicFLAGProcedure {
 			{
 				boolean _setval = true;
 				entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
-					capability.relic_archfi_FLAG = _setval;
+                    capability.relic_SARKAZ_KING_FLAG = _setval;
 					capability.syncPlayerVariables(entity);
 				});
 			}
