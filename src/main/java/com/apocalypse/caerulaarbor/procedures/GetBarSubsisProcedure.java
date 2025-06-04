@@ -1,6 +1,6 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import com.apocalypse.caerulaarbor.configuration.CaerulaConfigsConfiguration;
+import com.apocalypse.caerulaarbor.config.common.GameplayConfig;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.world.level.LevelAccessor;
 
@@ -10,7 +10,7 @@ public class GetBarSubsisProcedure {
 		if (CaerulaArborModVariables.MapVariables.get(world).strategy_subsisting >= 4) {
 			return 18;
 		}
-		rate = CaerulaArborModVariables.MapVariables.get(world).evo_point_subsisting / (Math.pow(CaerulaArborModVariables.MapVariables.get(world).strategy_subsisting + 1, 3) * (double) CaerulaConfigsConfiguration.COEFFICIENT.get());
+		rate = CaerulaArborModVariables.MapVariables.get(world).evo_point_subsisting / (Math.pow(CaerulaArborModVariables.MapVariables.get(world).strategy_subsisting + 1, 3) * (double) GameplayConfig.EVOLUTION_POINT_COEFFICIENT.get());
 		if (rate > 1) {
 			rate = 1;
 		}

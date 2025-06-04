@@ -1,6 +1,6 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import com.apocalypse.caerulaarbor.configuration.CaerulaConfigsConfiguration;
+import com.apocalypse.caerulaarbor.config.common.GameplayConfig;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -34,7 +34,7 @@ public class PlayerEatFuncProcedure {
 		double least = 0;
 		double most = 0;
 		double index = 0;
-		for (String stringiterator : CaerulaConfigsConfiguration.LIGHTS_FOOD.get()) {
+		for (String stringiterator : GameplayConfig.LIGHTS_RECOVERY_FOODS.get()) {
 			index = stringiterator.indexOf(", ", 0);
 			str = stringiterator.substring(0, (int) index);
 			if ((ForgeRegistries.ITEMS.getKey(itemstack.getItem()).toString()).equals(str)) {

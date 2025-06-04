@@ -1,6 +1,6 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import com.apocalypse.caerulaarbor.configuration.CaerulaConfigsConfiguration;
+import com.apocalypse.caerulaarbor.config.common.GameplayConfig;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementProgress;
@@ -29,7 +29,7 @@ public class UpgradeSilenceProcedure {
 			CaerulaArborModVariables.MapVariables.get(world).evo_point_silence = CaerulaArborModVariables.MapVariables.get(world).evo_point_silence + point;
 			CaerulaArborModVariables.MapVariables.get(world).syncData(world);
 			if (stra < 4) {
-				if (CaerulaArborModVariables.MapVariables.get(world).evo_point_silence >= Math.pow(stra + 1, 3) * (double) CaerulaConfigsConfiguration.COEFFICIENT.get() * 4) {
+				if (CaerulaArborModVariables.MapVariables.get(world).evo_point_silence >= Math.pow(stra + 1, 3) * (double) GameplayConfig.EVOLUTION_POINT_COEFFICIENT.get() * 4) {
 					for (Entity entityiterator : new ArrayList<>(world.players())) {
 						if (entity instanceof ServerPlayer _player) {
 							Advancement _adv = _player.server.getAdvancements().getAdvancement(new ResourceLocation("caerula_arbor:she_coming"));
@@ -58,7 +58,7 @@ public class UpgradeSilenceProcedure {
 						num = "IV";
 						prefix = "\u00A74";
 					}
-					if (CaerulaConfigsConfiguration.EVOSOUND.get()) {
+					if (GameplayConfig.ENABLE_EVOLUTION_SOUND.get()) {
 						for (Entity entityiterator : new ArrayList<>(world.players())) {
 							if (stra == 1) {
 								if (world instanceof Level _level) {

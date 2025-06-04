@@ -1,6 +1,6 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import com.apocalypse.caerulaarbor.configuration.CaerulaConfigsConfiguration;
+import com.apocalypse.caerulaarbor.config.common.RelicsConfig;
 import com.apocalypse.caerulaarbor.init.ModAttributes;
 import com.apocalypse.caerulaarbor.init.ModEnchantments;
 import com.apocalypse.caerulaarbor.init.ModItems;
@@ -236,7 +236,7 @@ public class PlayerTickFuncProcedure {
             if (entity instanceof Player _playerHasItem && _playerHasItem.getInventory().contains(new ItemStack(Items.TRIDENT))) {
                 valid = true;
             } else {
-                for (String stringiterator : CaerulaConfigsConfiguration.HAND_ENGRAVE.get()) {
+                for (String stringiterator : RelicsConfig.HAND_ENGRAVE.get()) {
                     if ((entity instanceof Player _playerHasItem && _playerHasItem.getInventory().contains(new ItemStack(ForgeRegistries.ITEMS.getValue(new ResourceLocation((stringiterator).toLowerCase(java.util.Locale.ENGLISH))))))
                             && !(ForgeRegistries.ITEMS.getValue(new ResourceLocation((stringiterator).toLowerCase(java.util.Locale.ENGLISH))) == ItemStack.EMPTY.getItem()
                             || ForgeRegistries.ITEMS.getValue(new ResourceLocation((stringiterator).toLowerCase(java.util.Locale.ENGLISH))) == Blocks.AIR.asItem())) {

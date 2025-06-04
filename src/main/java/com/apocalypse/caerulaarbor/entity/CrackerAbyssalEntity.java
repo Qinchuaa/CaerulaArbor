@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.entity;
 
-import com.apocalypse.caerulaarbor.configuration.CaerulaConfigsConfiguration;
+import com.apocalypse.caerulaarbor.config.common.GameplayConfig;
 import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.init.ModBlocks;
 import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
@@ -106,14 +106,14 @@ public class CrackerAbyssalEntity extends Monster implements GeoEntity {
             public boolean canUse() {
                 Level world = CrackerAbyssalEntity.this.level();
                 if (!super.canUse()) return false;
-                return CaerulaConfigsConfiguration.BREAKABLE.get() && ((LevelAccessor) world).getLevelData().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING);
+                return GameplayConfig.ENABLE_MOB_BREAK.get() && ((LevelAccessor) world).getLevelData().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING);
             }
 
             @Override
             public boolean canContinueToUse() {
                 Level world = CrackerAbyssalEntity.this.level();
                 if (!super.canContinueToUse()) return false;
-                return CaerulaConfigsConfiguration.BREAKABLE.get() && ((LevelAccessor) world).getLevelData().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING);
+                return GameplayConfig.ENABLE_MOB_BREAK.get() && ((LevelAccessor) world).getLevelData().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING);
             }
         });
         this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 0.4, true) {

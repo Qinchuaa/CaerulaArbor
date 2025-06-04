@@ -1,5 +1,6 @@
 package com.apocalypse.caerulaarbor;
 
+import com.apocalypse.caerulaarbor.config.CommonConfig;
 import com.apocalypse.caerulaarbor.init.*;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -13,7 +14,9 @@ import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.ModLoadingContext;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.fml.config.ModConfig;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.fml.javafmlmod.FMLJavaModLoadingContext;
 import net.minecraftforge.fml.util.thread.SidedThreadGroups;
@@ -39,6 +42,8 @@ public class CaerulaArborMod {
     public static final Logger LOGGER = LogManager.getLogger(CaerulaArborMod.class);
 
     public CaerulaArborMod() {
+        ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.init());
+
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
         ModSounds.REGISTRY.register(bus);

@@ -1,6 +1,6 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import com.apocalypse.caerulaarbor.configuration.CaerulaConfigsConfiguration;
+import com.apocalypse.caerulaarbor.config.common.RelicsConfig;
 import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.init.ModGameRules;
 import com.apocalypse.caerulaarbor.init.ModItems;
@@ -129,7 +129,7 @@ public class KillFuncProcedure {
                     } else if (damagesource.is(DamageTypes.TRIDENT)) {
                         validweapon = true;
                     } else {
-                        for (String stringiterator : CaerulaConfigsConfiguration.HAND_ENGRAVE.get()) {
+                        for (String stringiterator : RelicsConfig.HAND_ENGRAVE.get()) {
                             if ((ForgeRegistries.ITEMS.getKey(_livEnt.getMainHandItem().getItem()).toString()).equals(stringiterator)) {
                                 validweapon = true;
                                 break;

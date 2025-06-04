@@ -1,6 +1,6 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import com.apocalypse.caerulaarbor.configuration.CaerulaConfigsConfiguration;
+import com.apocalypse.caerulaarbor.config.common.GameplayConfig;
 import com.apocalypse.caerulaarbor.entity.ReaperFishEntity;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.core.BlockPos;
@@ -30,7 +30,7 @@ public class DestroyBlocksProcedure {
 			} else if (CaerulaArborModVariables.MapVariables.get(world).strategy_migration >= 4) {
 				limithard = 5;
 			}
-			if (CaerulaConfigsConfiguration.BREAKABLE.get() && world.getLevelData().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING) && limithard > 0) {
+			if (GameplayConfig.ENABLE_MOB_BREAK.get() && world.getLevelData().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING) && limithard > 0) {
 				if (Math.random() < 0.5) {
 					once = false;
 					dx = -1;

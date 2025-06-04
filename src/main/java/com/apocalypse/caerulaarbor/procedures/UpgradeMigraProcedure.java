@@ -1,6 +1,6 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import com.apocalypse.caerulaarbor.configuration.CaerulaConfigsConfiguration;
+import com.apocalypse.caerulaarbor.config.common.GameplayConfig;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementProgress;
@@ -23,7 +23,7 @@ public class UpgradeMigraProcedure {
 		String prefix = "";
 		stra = CaerulaArborModVariables.MapVariables.get(world).strategy_migration;
 		if (stra < 4) {
-			if (CaerulaArborModVariables.MapVariables.get(world).evo_point_migration >= Math.pow(stra + 1, 3) * (double) CaerulaConfigsConfiguration.COEFFICIENT.get()) {
+			if (CaerulaArborModVariables.MapVariables.get(world).evo_point_migration >= Math.pow(stra + 1, 3) * (double) GameplayConfig.EVOLUTION_POINT_COEFFICIENT.get()) {
 				for (Entity entityiterator : new ArrayList<>(world.players())) {
 					if (entityiterator instanceof ServerPlayer _player) {
 						Advancement _adv = _player.server.getAdvancements().getAdvancement(new ResourceLocation("caerula_arbor:to_experience_evolution"));
@@ -52,7 +52,7 @@ public class UpgradeMigraProcedure {
 					num = "IV";
 					prefix = "\u00A71";
 				}
-				if (CaerulaConfigsConfiguration.EVOSOUND.get()) {
+				if (GameplayConfig.ENABLE_EVOLUTION_SOUND.get()) {
 					for (Entity entityiterator : new ArrayList<>(world.players())) {
 						if (stra >= 3) {
 							if (world instanceof Level _level) {

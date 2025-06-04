@@ -1,7 +1,7 @@
 package com.apocalypse.caerulaarbor.procedures;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
-import com.apocalypse.caerulaarbor.configuration.CaerulaConfigsConfiguration;
+import com.apocalypse.caerulaarbor.config.common.RelicsConfig;
 import com.apocalypse.caerulaarbor.entity.CreeperFishEntity;
 import com.apocalypse.caerulaarbor.init.ModAttributes;
 import com.apocalypse.caerulaarbor.init.ModEnchantments;
@@ -120,7 +120,7 @@ public class PlayerHitFuncProcedure {
 				if (sourceentity.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("forge:nether_mobs")))) {
 					validItem = true;
 				} else {
-					for (String stringiterator : CaerulaConfigsConfiguration.CRIMSON_TREATY.get()) {
+					for (String stringiterator : RelicsConfig.CRIMSON_TREATY.get()) {
 						if ((ForgeRegistries.ENTITY_TYPES.getKey(sourceentity.getType()).toString()).equals(stringiterator)) {
 							validItem = true;
 							break;
@@ -227,7 +227,7 @@ public class PlayerHitFuncProcedure {
 					if ((sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == Items.CROSSBOW) {
 						validItem = true;
 					} else {
-						for (String stringiterator : CaerulaConfigsConfiguration.HAND_STRANGLE.get()) {
+						for (String stringiterator : RelicsConfig.HAND_OF_CHOKER.get()) {
 							if ((ForgeRegistries.ITEMS.getKey((sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem()).toString()).equals(stringiterator)) {
 								validItem = true;
 								break;
@@ -261,7 +261,7 @@ public class PlayerHitFuncProcedure {
 					} else if ((sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).is(ItemTags.create(new ResourceLocation("forge:tools/bows")))) {
 						validItem = true;
 					} else {
-						for (String stringiterator : CaerulaConfigsConfiguration.HAND_FIREWORK.get()) {
+						for (String stringiterator : RelicsConfig.HAND_FIREWORK.get()) {
 							if ((ForgeRegistries.ITEMS.getKey((sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem()).toString()).equals(stringiterator)) {
 								validItem = true;
 								break;

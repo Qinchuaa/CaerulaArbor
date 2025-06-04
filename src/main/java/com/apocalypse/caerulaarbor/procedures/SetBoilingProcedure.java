@@ -1,6 +1,6 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import com.apocalypse.caerulaarbor.configuration.CaerulaConfigsConfiguration;
+import com.apocalypse.caerulaarbor.config.common.GameplayConfig;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.BlockTags;
@@ -17,7 +17,7 @@ public class SetBoilingProcedure {
 		if ((world.getBlockState(BlockPos.containing(x, y - 1, z))).is(BlockTags.create(new ResourceLocation("caerula_arbor:heat")))) {
 			valid = true;
 		} else {
-			for (String stringiterator : CaerulaConfigsConfiguration.BOIL_WATER.get()) {
+			for (String stringiterator : GameplayConfig.KETTLE_HEAT_SOURCE.get()) {
 				if ((ForgeRegistries.BLOCKS.getKey((world.getBlockState(BlockPos.containing(x, y - 1, z))).getBlock()).toString()).equals(stringiterator)) {
 					valid = true;
 					break;
