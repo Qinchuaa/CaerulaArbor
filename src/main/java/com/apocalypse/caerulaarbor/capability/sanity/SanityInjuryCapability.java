@@ -21,8 +21,8 @@ public class SanityInjuryCapability implements ISanityInjuryCapability {
     }
 
     @Override
-    public double setValue(double value) {
-        return Mth.clamp(value, -1, 1000);
+    public void setValue(double value) {
+        this.value = Mth.clamp(value, -1, 1000);
     }
 
     @Override

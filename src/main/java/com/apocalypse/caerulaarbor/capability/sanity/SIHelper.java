@@ -11,7 +11,7 @@ import net.minecraft.world.entity.LivingEntity;
 public class SIHelper {
 
     public static boolean causeSanityInjury(LivingEntity living, double value) {
-        if (living.hasEffect(ModMobEffects.SANITY_IMMUE.get())) return false;
+        if (living.hasEffect(ModMobEffects.SANITY_IMMUNE.get())) return false;
 
         var sanRate = living.getAttribute(ModAttributes.SANITY_RATE.get());
         var resistance = living.getAttribute(ModAttributes.SANITY_INJURY_RESISTANCE.get());

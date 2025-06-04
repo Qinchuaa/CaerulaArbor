@@ -8,7 +8,7 @@ import net.minecraft.world.entity.player.Player;
 
 public class DeductPlayerSanityProcedure {
     public static void execute(Entity entity, double value) {
-        if (!(entity instanceof Player player) || player.hasEffect(ModMobEffects.SANITY_IMMUE.get())) return;
+        if (!(entity instanceof Player player) || player.hasEffect(ModMobEffects.SANITY_IMMUNE.get())) return;
 
         var sanAttribute = player.getAttribute(ModAttributes.SANITY.get());
         var sanModifierAttribute = player.getAttribute(ModAttributes.SANITY_INJURY_RESISTANCE.get());

@@ -9,7 +9,7 @@ public interface ISanityInjuryCapability extends INBTSerializable<CompoundTag> {
 
     double getValue();
 
-    double setValue(double value);
+    void setValue(double value);
 
     double injure(double damage);
 
