@@ -71,6 +71,10 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                 .save(writer);
     }
 
+    private static void simpleSmithing(Consumer<FinishedRecipe> writer, ItemLike template, ItemLike base, ItemLike addition, Item result) {
+        simpleSmithing(writer, template, base, addition, result, RecipeCategory.MISC);
+    }
+
     private static void simpleSmithing(Consumer<FinishedRecipe> writer, ItemLike template, ItemLike base, ItemLike addition, Item result, RecipeCategory category) {
         SmithingTransformRecipeBuilder.smithing(Ingredient.of(template), Ingredient.of(base), Ingredient.of(addition), category, result)
                 .unlocks(getHasName(addition), has(addition))
