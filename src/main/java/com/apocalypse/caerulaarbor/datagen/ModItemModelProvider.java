@@ -46,6 +46,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.CHITIN_CHESTPLATE);
         simpleItem(ModItems.CHITIN_LEGGINGS);
         simpleItem(ModItems.CHITIN_BOOTS);
+
+        simpleItem(ModItems.COMPLEX_CHITIN_HELMET);
+        simpleItem(ModItems.COMPLEX_CHITIN_CHESTPLATE);
+        simpleItem(ModItems.COMPLEX_CHITIN_LEGGINGS);
+        simpleItem(ModItems.COMPLEX_CHITIN_BOOTS);
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {

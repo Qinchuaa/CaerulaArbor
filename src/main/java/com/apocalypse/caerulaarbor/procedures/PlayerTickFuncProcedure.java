@@ -263,16 +263,16 @@ public class PlayerTickFuncProcedure {
 
         double suit;
         suit = 0;
-        if ((entity instanceof LivingEntity _entGetArmor1 ? _entGetArmor1.getItemBySlot(EquipmentSlot.FEET) : ItemStack.EMPTY).getItem() == ModItems.COMPLEXCHITIN_ARMOR_BOOTS.get()) {
+        if ((entity instanceof LivingEntity _entGetArmor1 ? _entGetArmor1.getItemBySlot(EquipmentSlot.FEET) : ItemStack.EMPTY).getItem() == ModItems.COMPLEX_CHITIN_BOOTS.get()) {
             suit = suit + 1;
         }
-        if ((entity instanceof LivingEntity _entGetArmor1 ? _entGetArmor1.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY).getItem() == ModItems.COMPLEXCHITIN_ARMOR_LEGGINGS.get()) {
+        if ((entity instanceof LivingEntity _entGetArmor1 ? _entGetArmor1.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY).getItem() == ModItems.COMPLEX_CHITIN_LEGGINGS.get()) {
             suit = suit + 1;
         }
-        if ((entity instanceof LivingEntity _entGetArmor1 ? _entGetArmor1.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY).getItem() == ModItems.COMPLEXCHITIN_ARMOR_CHESTPLATE.get()) {
+        if ((entity instanceof LivingEntity _entGetArmor1 ? _entGetArmor1.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY).getItem() == ModItems.COMPLEX_CHITIN_CHESTPLATE.get()) {
             suit = suit + 1;
         }
-        if ((entity instanceof LivingEntity _entGetArmor1 ? _entGetArmor1.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY).getItem() == ModItems.COMPLEXCHITIN_ARMOR_HELMET.get()) {
+        if ((entity instanceof LivingEntity _entGetArmor1 ? _entGetArmor1.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY).getItem() == ModItems.COMPLEX_CHITIN_HELMET.get()) {
             suit = suit + 1;
         }
         if (suit > 0 && !(entity instanceof LivingEntity _livEnt8 && _livEnt8.hasEffect(ModMobEffects.SANITY_PROTECT.get()))) {

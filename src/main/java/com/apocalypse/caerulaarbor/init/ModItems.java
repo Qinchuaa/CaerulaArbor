@@ -135,10 +135,10 @@ public class ModItems {
     public static final RegistryObject<Item> COMPLEX_CHITIN = ITEMS.register("complex_chitin", ComplexChitinItem::new);
     public static final RegistryObject<Item> COMPLEX_CHITIN_SWORD = ITEMS.register("complex_chitin_sword", ComplexChitinSwordItem::new);
     public static final RegistryObject<Item> OCEAN_TRIM_TEMPLATE = ITEMS.register("ocean_trim_template", OceanTrimTemplateItem::new);
-    public static final RegistryObject<Item> COMPLEXCHITIN_ARMOR_HELMET = ITEMS.register("complexchitin_armor_helmet", () -> new ComplexchitinArmorItem.Helmet());
-    public static final RegistryObject<Item> COMPLEXCHITIN_ARMOR_CHESTPLATE = ITEMS.register("complexchitin_armor_chestplate", () -> new ComplexchitinArmorItem.Chestplate());
-    public static final RegistryObject<Item> COMPLEXCHITIN_ARMOR_LEGGINGS = ITEMS.register("complexchitin_armor_leggings", () -> new ComplexchitinArmorItem.Leggings());
-    public static final RegistryObject<Item> COMPLEXCHITIN_ARMOR_BOOTS = ITEMS.register("complexchitin_armor_boots", () -> new ComplexchitinArmorItem.Boots());
+    public static final RegistryObject<Item> COMPLEX_CHITIN_HELMET = ITEMS.register("complex_chitin_helmet", () -> new ComplexChitinArmorItem(ArmorItem.Type.HELMET));
+    public static final RegistryObject<Item> COMPLEX_CHITIN_CHESTPLATE = ITEMS.register("complex_chitin_chestplate", () -> new ComplexChitinArmorItem(ArmorItem.Type.CHESTPLATE));
+    public static final RegistryObject<Item> COMPLEX_CHITIN_LEGGINGS = ITEMS.register("complex_chitin_leggings", () -> new ComplexChitinArmorItem(ArmorItem.Type.LEGGINGS));
+    public static final RegistryObject<Item> COMPLEX_CHITIN_BOOTS = ITEMS.register("complex_chitin_boots", () -> new ComplexChitinArmorItem(ArmorItem.Type.BOOTS));
     public static final RegistryObject<Item> COMPLEX_CHITIN_PICKAXE = ITEMS.register("complex_chitin_pickaxe", ComplexChitinPickaxeItem::new);
     public static final RegistryObject<Item> COMPLEX_CHITIN_AXE = ITEMS.register("complex_chitin_axe", ComplexChitinAxeItem::new);
     public static final RegistryObject<Item> COMPLEX_CHITIN_SHOVEL = ITEMS.register("complex_chitin_shovel", ComplexChitinShovelItem::new);

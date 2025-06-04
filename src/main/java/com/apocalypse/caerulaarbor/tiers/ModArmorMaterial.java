@@ -19,6 +19,12 @@ public enum ModArmorMaterial implements ArmorMaterial {
         p.put(ArmorItem.Type.CHESTPLATE, 7);
         p.put(ArmorItem.Type.HELMET, 3);
     }), 11, SoundEvents.ARMOR_EQUIP_IRON, 3.5F, 0.15F, () -> Ingredient.of(ModItems.OCEAN_CHITIN.get())),
+    COMPLEX_CHITIN("complex_chitin", 42, Util.make(new EnumMap<>(ArmorItem.Type.class), p -> {
+        p.put(ArmorItem.Type.BOOTS, 4);
+        p.put(ArmorItem.Type.LEGGINGS, 6);
+        p.put(ArmorItem.Type.CHESTPLATE, 9);
+        p.put(ArmorItem.Type.HELMET, 4);
+    }), 22, SoundEvents.ARMOR_EQUIP_DIAMOND, 4F, 0.15F, () -> Ingredient.of(ModItems.COMPLEX_CHITIN.get())),
     ;
 
     private static final EnumMap<ArmorItem.Type, Integer> HEALTH_FUNCTION_FOR_TYPE = Util.make(new EnumMap<>(ArmorItem.Type.class), (p_266653_) -> {

@@ -63,10 +63,10 @@ public class ModTabs {
                 tabData.accept(ModItems.CHITIN_CHESTPLATE.get());
                 tabData.accept(ModItems.CHITIN_LEGGINGS.get());
                 tabData.accept(ModItems.CHITIN_BOOTS.get());
-                tabData.accept(ModItems.COMPLEXCHITIN_ARMOR_HELMET.get());
-                tabData.accept(ModItems.COMPLEXCHITIN_ARMOR_CHESTPLATE.get());
-                tabData.accept(ModItems.COMPLEXCHITIN_ARMOR_LEGGINGS.get());
-                tabData.accept(ModItems.COMPLEXCHITIN_ARMOR_BOOTS.get());
+                tabData.accept(ModItems.COMPLEX_CHITIN_HELMET.get());
+                tabData.accept(ModItems.COMPLEX_CHITIN_CHESTPLATE.get());
+                tabData.accept(ModItems.COMPLEX_CHITIN_LEGGINGS.get());
+                tabData.accept(ModItems.COMPLEX_CHITIN_BOOTS.get());
                 tabData.accept(ModBlocks.KINGS_ARMOR.get().asItem());
                 tabData.accept(ModBlocks.BLOCK_CROWN.get().asItem());
                 tabData.accept(ModBlocks.BLOCK_SPEAR.get().asItem());
