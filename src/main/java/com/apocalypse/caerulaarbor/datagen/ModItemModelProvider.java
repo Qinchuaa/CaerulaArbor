@@ -46,7 +46,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.CHITIN_CHESTPLATE);
         simpleItem(ModItems.CHITIN_LEGGINGS);
         simpleItem(ModItems.CHITIN_BOOTS);
-
+        handheldItem(ModItems.COMPLEX_CHITIN_AXE);
+        handheldItem(ModItems.COMPLEX_CHITIN_HOE);
+        handheldItem(ModItems.COMPLEX_CHITIN_PICKAXE);
+        handheldItem(ModItems.COMPLEX_CHITIN_SHOVEL);
+        handheldItem(ModItems.COMPLEX_CHITIN_SWORD);
         simpleItem(ModItems.COMPLEX_CHITIN_HELMET);
         simpleItem(ModItems.COMPLEX_CHITIN_CHESTPLATE);
         simpleItem(ModItems.COMPLEX_CHITIN_LEGGINGS);

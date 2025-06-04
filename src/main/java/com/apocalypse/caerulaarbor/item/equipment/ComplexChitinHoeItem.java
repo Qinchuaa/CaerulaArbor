@@ -1,7 +1,7 @@
 package com.apocalypse.caerulaarbor.item.equipment;
 
 import com.apocalypse.caerulaarbor.capability.sanity.SIHelper;
-import com.apocalypse.caerulaarbor.procedures.AdvancedFarmProcedure;
+import com.apocalypse.caerulaarbor.init.ModBlocks;
 import com.apocalypse.caerulaarbor.tiers.ModItemTier;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
@@ -10,6 +10,7 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.*;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.Blocks;
 
 import java.util.List;
 
@@ -47,7 +48,16 @@ public class ComplexChitinHoeItem extends HoeItem {
 
     @Override
     public InteractionResult useOn(UseOnContext context) {
-        super.useOn(context);
-        return AdvancedFarmProcedure.execute(context.getLevel(), context.getClickedPos().getX(), context.getClickedPos().getY(), context.getClickedPos().getZ(), context.getLevel().getBlockState(context.getClickedPos()), context.getPlayer());
+        var player = context.getPlayer();
+        if (player == null) return InteractionResult.PASS;
+
+        var level = context.getLevel();
+        var blockstate = level.getBlockState(context.getClickedPos());
+
+        if (player.isShiftKeyDown() && blockstate.getBlock() == Blocks.FARMLAND) {
+            level.setBlock(context.getClickedPos(), ModBlocks.OCEAN_FARMLAND.get().defaultBlockState(), 3);
+            return InteractionResult.SUCCESS;
+        }
+        return super.useOn(context);
     }
 }
