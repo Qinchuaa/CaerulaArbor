@@ -261,25 +261,6 @@ public class PlayerTickFuncProcedure {
                 _livingEntity53.getAttribute(ModAttributes.SANITY.get()).setBaseValue(1000);
         }
 
-        double suit;
-        suit = 0;
-        if ((entity instanceof LivingEntity _entGetArmor1 ? _entGetArmor1.getItemBySlot(EquipmentSlot.FEET) : ItemStack.EMPTY).getItem() == ModItems.COMPLEX_CHITIN_BOOTS.get()) {
-            suit = suit + 1;
-        }
-        if ((entity instanceof LivingEntity _entGetArmor1 ? _entGetArmor1.getItemBySlot(EquipmentSlot.LEGS) : ItemStack.EMPTY).getItem() == ModItems.COMPLEX_CHITIN_LEGGINGS.get()) {
-            suit = suit + 1;
-        }
-        if ((entity instanceof LivingEntity _entGetArmor1 ? _entGetArmor1.getItemBySlot(EquipmentSlot.CHEST) : ItemStack.EMPTY).getItem() == ModItems.COMPLEX_CHITIN_CHESTPLATE.get()) {
-            suit = suit + 1;
-        }
-        if ((entity instanceof LivingEntity _entGetArmor1 ? _entGetArmor1.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY).getItem() == ModItems.COMPLEX_CHITIN_HELMET.get()) {
-            suit = suit + 1;
-        }
-        if (suit > 0 && !(entity instanceof LivingEntity _livEnt8 && _livEnt8.hasEffect(ModMobEffects.SANITY_PROTECT.get()))) {
-            if (entity instanceof LivingEntity _entity1 && !_entity1.level().isClientSide())
-                _entity1.addEffect(new MobEffectInstance(ModMobEffects.SANITY_PROTECT.get(), 40, (int) (suit - 1), false, false));
-        }
-
         enchant = 0;
         if (EnchantmentHelper.getItemEnchantmentLevel(ModEnchantments.SANITY_DEFEND.get(), (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.FEET) : ItemStack.EMPTY)) != 0) {
             enchant = enchant + (entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.FEET) : ItemStack.EMPTY).getEnchantmentLevel(ModEnchantments.SANITY_DEFEND.get());

@@ -74,6 +74,8 @@
   "death.attack.nervous_impairment.item": "%1$s fell into nether sea",
   "death.attack.nervous_impairment.player": "%1$s fell into nether sea",
 
+  "attribute.caerula_arbor.sanity_injury_resistance": "Sanity Injury Resistance",
+
   "item.caerula_arbor.fluore_berries": "Fluore Berries",
   "subtitles.grow1": "EMBRACE MORE",
   "item.caerula_arbor.complex_chitin": "Complex Chitin",
@@ -182,7 +184,6 @@
   "attribute.caerula_arbor.sanity_rate": "Sanity Rate",
   "gui.caerula_arbor.relic_showcase.tooltip_bed": "bed",
   "item.caerula_arbor.allay_sculpture.description_0": "§bPlayer Maxlife +3 when used",
-  "attribute.caerula_arbor.sanity_modifier": "Sanity Modifier",
   "item.caerula_arbor.allay_sculpture.description_1": "§oA hand-size  sculpture, which is said to be created by allay to convert friendlyness",
   "gui.caerula_arbor.relic_showcase.tooltip_royalfate": "royalfate",
   "item.caerula_arbor.crimson_treaty.description_0": "§bMobs from nether can\u0027t hurt player anymore",

@@ -40,6 +40,7 @@ public class CaerulaArborMod {
 
     public static final String MODID = "caerula_arbor";
     public static final Logger LOGGER = LogManager.getLogger(CaerulaArborMod.class);
+    public static final String ATTRIBUTE_MODIFIER = "caerula_arbor_attribute_modifier";
 
     public CaerulaArborMod() {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.init());

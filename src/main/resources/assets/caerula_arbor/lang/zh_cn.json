@@ -74,6 +74,8 @@
   "death.attack.nervous_impairment.item": "%1$s沉入溟海",
   "death.attack.nervous_impairment.player": "%1$s沉入溟海",
 
+  "attribute.caerula_arbor.sanity_injury_resistance": "神经损伤减免",
+
   "subtitles.grow1": "拥纳愈广",
   "item.caerula_arbor.fluore_berries": "荧光浆果",
   "item.caerula_arbor.complex_chitin": "复合几丁质",
@@ -182,7 +184,6 @@
   "attribute.caerula_arbor.sanity_rate": "损伤系数",
   "item.caerula_arbor.allay_sculpture.description_0": "§b使用后玩家目标生命上限+3",
   "gui.caerula_arbor.relic_showcase.tooltip_bed": "床榻",
-  "attribute.caerula_arbor.sanity_modifier": "损伤乘数",
   "item.caerula_arbor.allay_sculpture.description_1": "§o一个手掌大小的雕像，听说是悦灵表示友好的造物",
   "gui.caerula_arbor.relic_showcase.tooltip_royalfate": "王命",
   "item.caerula_arbor.crimson_treaty.description_0": "§b玩家不再受到来自下界生物的伤害",
