@@ -120,7 +120,7 @@ public class ModTabs {
                 tabData.accept(ModItems.CUTIN_STICK.get());
                 tabData.accept(ModItems.OCEAN_CHITIN.get());
                 tabData.accept(ModItems.INSTANT_NOODLE.get());
-                tabData.accept(ModItems.OBISIDIAN_BALL.get());
+                tabData.accept(ModItems.OBSIDIAN_BALL.get());
                 tabData.accept(ModItems.FAKE_EGG.get());
                 tabData.accept(ModItems.REAL_EGG.get());
                 tabData.accept(ModItems.TRAIL_CREAM.get());

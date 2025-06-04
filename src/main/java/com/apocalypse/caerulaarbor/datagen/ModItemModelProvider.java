@@ -55,6 +55,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.COMPLEX_CHITIN_CHESTPLATE);
         simpleItem(ModItems.COMPLEX_CHITIN_LEGGINGS);
         simpleItem(ModItems.COMPLEX_CHITIN_BOOTS);
+
+        // misc
+        simpleItem(ModItems.OBSIDIAN_BALL);
+        simpleItem(ModItems.OCEAN_CHITIN);
+        simpleItem(ModItems.COMPLEX_CHITIN);
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {

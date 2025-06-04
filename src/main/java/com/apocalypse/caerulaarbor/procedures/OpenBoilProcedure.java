@@ -160,7 +160,7 @@ public class OpenBoilProcedure {
 						world.setBlock(_pos, _bs.setValue(_booleanProp, false), 3);
 				}
 				if (entity instanceof Player _player) {
-					ItemStack _setstack = new ItemStack(ModItems.OBISIDIAN_BALL.get()).copy();
+					ItemStack _setstack = new ItemStack(ModItems.OBSIDIAN_BALL.get()).copy();
 					_setstack.setCount(1);
 					ItemHandlerHelper.giveItemToPlayer(_player, _setstack);
 				}
