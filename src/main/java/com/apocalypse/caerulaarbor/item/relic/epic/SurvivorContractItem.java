@@ -1,5 +1,6 @@
 package com.apocalypse.caerulaarbor.item.relic.epic;
 
+import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.item.relic.RelicItem;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.ChatFormatting;
@@ -36,13 +37,11 @@ public class SurvivorContractItem extends RelicItem {
     @Override
     @ParametersAreNonnullByDefault
     public @NotNull InteractionResultHolder<ItemStack> use(Level world, @NotNull Player entity, InteractionHand hand) {
-		ItemStack itemstack = entity.getItemInHand(hand);
-        if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
-                .orElse(new CaerulaArborModVariables.PlayerVariables())).relic_SURVIVOR < 0) {
-            entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
-                capability.relic_SURVIVOR = 0;
-                capability.syncPlayerVariables(entity);
-            });
+        ItemStack itemstack = entity.getItemInHand(hand);
+        if (Relic.SURVIVOR.get(entity) < 0) {
+            Relic.SURVIVOR.set(entity, 0);
+
+            entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(c -> c.syncPlayerVariables(entity));
             return super.use(world, entity, hand);
         }
         return InteractionResultHolder.fail(itemstack);

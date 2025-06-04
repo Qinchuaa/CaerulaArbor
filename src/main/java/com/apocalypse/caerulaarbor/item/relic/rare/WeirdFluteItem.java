@@ -1,9 +1,9 @@
 package com.apocalypse.caerulaarbor.item.relic.rare;
 
+import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.init.ModSounds;
 import com.apocalypse.caerulaarbor.item.relic.RelicItem;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -29,12 +29,12 @@ public class WeirdFluteItem extends RelicItem {
     }
 
     @Override
-    public UseAnim getUseAnimation(ItemStack itemstack) {
+    public @NotNull UseAnim getUseAnimation(@NotNull ItemStack itemstack) {
         return UseAnim.BOW;
     }
 
     @Override
-    public int getUseDuration(ItemStack itemstack) {
+    public int getUseDuration(@NotNull ItemStack itemstack) {
         return 40;
     }
 
@@ -51,7 +51,7 @@ public class WeirdFluteItem extends RelicItem {
     }
 
     @Override
-    public @NotNull InteractionResultHolder<ItemStack> use(Level pLevel, @NotNull Player pPlayer, InteractionHand hand) {
+    public @NotNull InteractionResultHolder<ItemStack> use(@NotNull Level pLevel, @NotNull Player pPlayer, @NotNull InteractionHand hand) {
         ItemStack stack = pPlayer.getItemInHand(hand);
         pPlayer.startUsingItem(hand);
         return InteractionResultHolder.consume(stack);
@@ -63,10 +63,7 @@ public class WeirdFluteItem extends RelicItem {
         if (!pStack.getOrCreateTag().getBoolean("Used")) {
             this.afterUse(pStack, pLevel, entity);
 
-            entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
-                capability.relic_util_FLUTE = true;
-                capability.syncPlayerVariables(entity);
-            });
+            Relic.UTIL_FLUTE.gainAndSync(entity);
 
             if (!pLevel.isClientSide) {
                 entity.addEffect(new MobEffectInstance(ModMobEffects.ADD_REACH.get(), 300, 0, false, false));

@@ -57,7 +57,7 @@ public abstract class RelicItem extends Item implements IRelic {
         var cap = entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
 
         if (pLevel instanceof ServerLevel serverLevel) {
-            serverLevel.sendParticles(this.getGainParticle(), entity.getX(), entity.getY(), entity.getZ(), 72, 0.75, 1, 0.75, 1);
+//            serverLevel.sendParticles(this.getGainParticle(), entity.getX(), entity.getY(), entity.getZ(), 72, 0.75, 1, 0.75, 1);
 
             if (this.getAddedExperience() > 0) {
                 serverLevel.addFreshEntity(new ExperienceOrb(serverLevel, entity.getX(), entity.getY(), entity.getZ(), this.getAddedExperience()));
@@ -90,7 +90,7 @@ public abstract class RelicItem extends Item implements IRelic {
 
             if (level instanceof ServerLevel server) {
                 server.playSound(null, entity.blockPosition(), getGainSound(), SoundSource.NEUTRAL, 2, 1);
-                server.sendParticles(ParticleTypes.CLOUD, entity.getX(), entity.getY(), entity.getZ(), 72, 1, 1, 1, 1);
+                server.sendParticles(this.getGainParticle(), entity.getX(), entity.getY(), entity.getZ(), 72, 1, 1, 1, 1);
             } else {
                 level.playLocalSound(entity.blockPosition(), getGainSound(), SoundSource.NEUTRAL, 2, 1, false);
                 Minecraft.getInstance().gameRenderer.displayItemActivation(stack);

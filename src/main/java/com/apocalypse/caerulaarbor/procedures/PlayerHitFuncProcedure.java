@@ -116,7 +116,7 @@ public class PlayerHitFuncProcedure {
                     sourceentity.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.THORNS)), entity instanceof LivingEntity _livEnt ? _livEnt.getArmorValue() : 0);
                 });
             }
-            if (cap.relic_TREATY) {
+            if (Relic.TREATY.gained(cap)) {
                 validItem = false;
                 if (sourceentity.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("forge:nether_mobs")))) {
                     validItem = true;
@@ -306,7 +306,7 @@ public class PlayerHitFuncProcedure {
                     }
                 }
             }
-            if (cap1.relic_legend_CHITIN) {
+            if (Relic.LEGEND_CHITIN.gained(cap1)) {
                 if (Math.random() < 0.05) {
                     {
                         ItemStack _setval = (sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY);

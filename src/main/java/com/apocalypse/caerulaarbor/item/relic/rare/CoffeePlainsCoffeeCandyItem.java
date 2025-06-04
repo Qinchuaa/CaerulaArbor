@@ -1,8 +1,8 @@
 package com.apocalypse.caerulaarbor.item.relic.rare;
 
+import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.item.relic.RelicItem;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -43,10 +43,7 @@ public class CoffeePlainsCoffeeCandyItem extends RelicItem {
     @Override
     @ParametersAreNonnullByDefault
     public @NotNull ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity entity) {
-        entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
-            capability.relic_util_COFFEE = true;
-            capability.syncPlayerVariables(entity);
-        });
+        Relic.modify(entity, cap -> Relic.UTIL_COFFEE.gain(entity));
 
         ItemStack rt = new ItemStack(ModItems.PAPER_BAG.get());
         if (super.finishUsingItem(stack, world, entity).isEmpty()) {

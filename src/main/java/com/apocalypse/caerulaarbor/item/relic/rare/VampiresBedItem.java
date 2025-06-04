@@ -1,8 +1,8 @@
 package com.apocalypse.caerulaarbor.item.relic.rare;
 
+import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.init.ModBlocks;
 import com.apocalypse.caerulaarbor.item.relic.RelicItem;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -37,12 +37,8 @@ public class VampiresBedItem extends RelicItem {
     @Override
     @ParametersAreNonnullByDefault
     public @NotNull InteractionResultHolder<ItemStack> use(Level world, Player entity, InteractionHand hand) {
-        InteractionResultHolder<ItemStack> resultHolder = super.use(world, entity, hand);
-        entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
-            capability.relic_util_BATBED = true;
-            capability.syncPlayerVariables(entity);
-        });
-        return resultHolder;
+        Relic.UTIL_BATBED.gainAndSync(entity);
+        return super.use(world, entity, hand);
     }
 
     @Override

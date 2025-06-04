@@ -1,8 +1,8 @@
 package com.apocalypse.caerulaarbor.item.relic.normal;
 
+import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.init.ModBlocks;
 import com.apocalypse.caerulaarbor.item.relic.RelicItem;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
@@ -34,10 +34,7 @@ public class HotWaterKettleItem extends RelicItem {
     public @NotNull InteractionResultHolder<ItemStack> use(Level pLevel, Player player, InteractionHand pUsedHand) {
         InteractionResultHolder<ItemStack> resultHolder = super.use(pLevel, player, pUsedHand);
 
-        player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
-            capability.relic_util_KETTLE = true;
-            capability.syncPlayerVariables(player);
-        });
+        Relic.UTIL_KETTLE.gainAndSync(player);
 
         return resultHolder;
     }

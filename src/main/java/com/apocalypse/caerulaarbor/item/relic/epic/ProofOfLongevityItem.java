@@ -1,7 +1,7 @@
 package com.apocalypse.caerulaarbor.item.relic.epic;
 
+import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.item.relic.RelicItem;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
@@ -34,12 +34,9 @@ public class ProofOfLongevityItem extends RelicItem {
     @Override
     @ParametersAreNonnullByDefault
     public @NotNull InteractionResultHolder<ItemStack> use(Level pLevel, @NotNull Player pPlayer, InteractionHand hand) {
-        ItemStack stack = pPlayer.getItemInHand(hand);
-        pPlayer.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
-            capability.relic_util_LONGEVITY = true;
-            capability.syncPlayerVariables(pPlayer);
-        });
-        stack.shrink(1);
+        Relic.UTIL_LONGEVITY.gainAndSync(pPlayer);
+
+        pPlayer.getItemInHand(hand).shrink(1);
         return super.use(pLevel, pPlayer, hand);
     }
 

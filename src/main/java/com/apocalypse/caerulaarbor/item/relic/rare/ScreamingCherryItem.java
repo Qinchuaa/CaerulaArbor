@@ -1,8 +1,8 @@
 package com.apocalypse.caerulaarbor.item.relic.rare;
 
+import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.init.ModBlocks;
 import com.apocalypse.caerulaarbor.item.relic.IRelic;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.chat.Component;
@@ -16,7 +16,9 @@ import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
+import org.jetbrains.annotations.NotNull;
 
+import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
 public class ScreamingCherryItem extends BlockItem implements IRelic {
@@ -30,17 +32,15 @@ public class ScreamingCherryItem extends BlockItem implements IRelic {
     }
 
     @Override
-    public void appendHoverText(ItemStack itemstack, Level level, List<Component> list, TooltipFlag flag) {
+    public void appendHoverText(@NotNull ItemStack itemstack, Level level, List<Component> list, @NotNull TooltipFlag flag) {
         list.add(Component.translatable("item.caerula_arbor.screaming_cherry.des_1").withStyle(ChatFormatting.AQUA));
         list.add(Component.translatable("item.caerula_arbor.screaming_cherry.des_2").withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
     }
 
     @Override
-    public ItemStack finishUsingItem(ItemStack pStack, Level world, LivingEntity entity) {
-        entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
-            capability.relic_util_BERRIES = true;
-            capability.syncPlayerVariables(entity);
-        });
+    @ParametersAreNonnullByDefault
+    public @NotNull ItemStack finishUsingItem(ItemStack pStack, Level world, LivingEntity entity) {
+        Relic.modify(entity, cap -> Relic.UTIL_BERRIES.gain(entity));
 
         ItemStack rt = new ItemStack(Items.GLASS_BOTTLE);
         if (super.finishUsingItem(pStack, world, entity).isEmpty()) {
@@ -56,7 +56,8 @@ public class ScreamingCherryItem extends BlockItem implements IRelic {
     }
 
     @Override
-    protected SoundEvent getPlaceSound(BlockState state, Level world, BlockPos pos, Player entity) {
+    @ParametersAreNonnullByDefault
+    protected @NotNull SoundEvent getPlaceSound(BlockState state, Level world, BlockPos pos, Player entity) {
         return SoundEvents.GLASS_PLACE;
     }
 }

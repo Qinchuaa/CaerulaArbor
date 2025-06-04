@@ -1,7 +1,7 @@
 package com.apocalypse.caerulaarbor.item.relic.rare;
 
+import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.item.relic.RelicItem;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -41,10 +41,7 @@ public class DurinOvergroundOdysseyItem extends RelicItem {
         if (!stack.getOrCreateTag().getBoolean("Used")) {
             stack.getOrCreateTag().putBoolean("Used", true);
 
-            pPlayer.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
-                capability.relic_util_DURIN = true;
-                capability.syncPlayerVariables(pPlayer);
-            });
+            Relic.UTIL_DURIN.gainAndSync(pPlayer);
 
             return super.use(pLevel, pPlayer, pUsedHand);
         }

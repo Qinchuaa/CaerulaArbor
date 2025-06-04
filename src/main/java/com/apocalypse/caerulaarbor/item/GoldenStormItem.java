@@ -1,8 +1,8 @@
 
 package com.apocalypse.caerulaarbor.item;
 
+import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.init.ModItems;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -45,10 +45,7 @@ public class GoldenStormItem extends Item {
             entity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 100, 0));
         }
 
-        entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(cap -> {
-            cap.relic_util_ORANGE = true;
-            cap.syncPlayerVariables(entity);
-        });
+        Relic.modify(entity, cap -> Relic.UTIL_ORANGE.gain(entity));
 
         if (stack.isEmpty()) {
             return new ItemStack(ModItems.PAPER_BAG.get());

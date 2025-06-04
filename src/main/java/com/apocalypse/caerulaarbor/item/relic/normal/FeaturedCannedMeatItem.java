@@ -1,8 +1,8 @@
 package com.apocalypse.caerulaarbor.item.relic.normal;
 
+import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.item.relic.RelicItem;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -43,10 +43,7 @@ public class FeaturedCannedMeatItem extends RelicItem {
     @Override
     @ParametersAreNonnullByDefault
     public @NotNull ItemStack finishUsingItem(ItemStack pStack, Level world, LivingEntity entity) {
-        entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
-            capability.relic_util_MEATCAN = true;
-            capability.syncPlayerVariables(entity);
-        });
+        Relic.modify(entity, cap -> Relic.UTIL_MEATCAN.set(entity, 1));
 
         ItemStack rt = new ItemStack(ModItems.EMPTY_CAN.get());
         if (super.finishUsingItem(pStack, world, entity).isEmpty()) {

@@ -1,8 +1,13 @@
 
 package com.apocalypse.caerulaarbor.item;
 
-import com.apocalypse.caerulaarbor.procedures.GainRelicSTAREProcedure;
+import com.apocalypse.caerulaarbor.capability.Relic;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffects;
@@ -35,7 +40,23 @@ public class GuardianStareItem extends Item {
     @ParametersAreNonnullByDefault
     public @NotNull InteractionResultHolder<ItemStack> use(Level world, Player entity, InteractionHand hand) {
         InteractionResultHolder<ItemStack> ar = super.use(world, entity, hand);
-        GainRelicSTAREProcedure.execute(world, entity.getX(), entity.getY(), entity.getZ(), entity, ar.getObject());
+        double x = entity.getX();
+        double y = entity.getY();
+        double z = entity.getZ();
+        ItemStack stack = ar.getObject();
+        if (!stack.getOrCreateTag().getBoolean("Used")) {
+            Relic.UTIL_STARE.gainAndSync(entity);
+
+            if (world instanceof ServerLevel server) {
+                server.playSound(null, BlockPos.containing(x, y, z), SoundEvents.PLAYER_LEVELUP, SoundSource.NEUTRAL, 2, 1);
+                server.sendParticles(ParticleTypes.NAUTILUS, x, (y + 0.5), z, 72, 1, 1, 1, 1);
+            } else {
+                world.playLocalSound(x, y, z, SoundEvents.PLAYER_LEVELUP, SoundSource.NEUTRAL, 2, 1, false);
+            }
+
+            entity.giveExperienceLevels(4);
+            stack.getOrCreateTag().putBoolean("Used", true);
+        }
         return ar;
     }
 

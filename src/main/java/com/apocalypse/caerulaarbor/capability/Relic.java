@@ -4,6 +4,8 @@ import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 
+import java.util.function.Consumer;
+
 public enum Relic {
     CURSED_EMELIGHT,
     CURSED_GLOWBODY,
@@ -111,5 +113,32 @@ public enum Relic {
 
     public void gain(CaerulaArborModVariables.PlayerVariables variables) {
         set(variables, 1);
+    }
+
+    public static void modify(Entity player, Consumer<CaerulaArborModVariables.PlayerVariables> operation) {
+        player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(cap -> modify(cap, player, operation));
+    }
+
+    public static void modify(CaerulaArborModVariables.PlayerVariables cap, Entity player, Consumer<CaerulaArborModVariables.PlayerVariables> operation) {
+        operation.accept(cap);
+        cap.syncPlayerVariables(player);
+    }
+
+    public void modify(Entity player, int value) {
+        player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(cap -> modify(cap, player, value));
+    }
+
+    public void modify(CaerulaArborModVariables.PlayerVariables cap, Entity player, int value) {
+        this.set(cap, value);
+        cap.syncPlayerVariables(player);
+    }
+
+    public void gainAndSync(Entity player) {
+        player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(cap -> gainAndSync(cap, player));
+    }
+
+    public void gainAndSync(CaerulaArborModVariables.PlayerVariables cap, Entity player) {
+        this.set(cap, 1);
+        cap.syncPlayerVariables(player);
     }
 }
