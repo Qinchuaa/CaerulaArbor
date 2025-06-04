@@ -2,6 +2,7 @@ package com.apocalypse.caerulaarbor.init;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.item.*;
+import com.apocalypse.caerulaarbor.item.equipment.*;
 import com.apocalypse.caerulaarbor.item.relic.epic.PittsAssortedFruitsItem;
 import com.apocalypse.caerulaarbor.item.relic.epic.ProofOfLongevityItem;
 import com.apocalypse.caerulaarbor.item.relic.epic.PureGoldExpeditionItem;

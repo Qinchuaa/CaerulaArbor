@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "caerula_arbor:item/chitin_sword"
+  }
+}

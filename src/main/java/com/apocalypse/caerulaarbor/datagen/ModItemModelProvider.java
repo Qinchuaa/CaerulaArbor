@@ -35,6 +35,13 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.COFFEE_PLAINS_COFFEE_CANDY);
 
         simpleItem(ModItems.SURVIVOR_CONTRACT);
+
+        // equipments
+        handheldItem(ModItems.CHITIN_AXE);
+        handheldItem(ModItems.CHITIN_HOE);
+        handheldItem(ModItems.CHITIN_PICKAXE);
+        handheldItem(ModItems.CHITIN_SHOVEL);
+        handheldItem(ModItems.CHITIN_SWORD);
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {

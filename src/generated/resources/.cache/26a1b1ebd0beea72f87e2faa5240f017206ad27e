@@ -1,4 +1,9 @@
-// 1.20.1	2025-05-15T14:19:35.3289309	Item Models: caerula_arbor
+// 1.20.1	2025-06-04T15:09:53.9613184	Item Models: caerula_arbor
+c774decfe9718a509a26f38fd7232d820f183e37 assets/caerula_arbor/models/item/chitin_axe.json
+d546d35cc279dbed05550d44d9930b4b44db8369 assets/caerula_arbor/models/item/chitin_hoe.json
+5a6d0198c833f0d828a1f329bdbf8602e8443a15 assets/caerula_arbor/models/item/chitin_pickaxe.json
+aff4ec49cf0971507980bcdb239795dda9208ab7 assets/caerula_arbor/models/item/chitin_shovel.json
+edabfff235cc9222ef87ce6b91e19714b6e14503 assets/caerula_arbor/models/item/chitin_sword.json
 c7f7d892dfba48871ba67e2a730a23b6c4b48500 assets/caerula_arbor/models/item/coffee_plains_coffee_candy.json
 81f861c7a9739ee3e51751396f049f6076559f93 assets/caerula_arbor/models/item/durin_overground_odyssey.json
 760bc47a06dff57816fd0bb9e44ec690e34ed180 assets/caerula_arbor/models/item/featured_canned_meat.json

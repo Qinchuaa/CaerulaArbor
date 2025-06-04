@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "caerula_arbor:redstoneiris_seeding"
+          "name": "caerula_arbor:redstone_iris_seeding"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "caerula_arbor:blocks/redstoneiris_seeding"
+  "random_sequence": "caerula_arbor:blocks/redstone_iris_seeding"
 }
