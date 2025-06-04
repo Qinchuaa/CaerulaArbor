@@ -103,14 +103,14 @@ public class CaerulaArborModVariables {
             clone.relic_hand_SPEED = original.relic_hand_SPEED;
             clone.relic_hand_BARREN = original.relic_hand_BARREN;
             clone.relic_hand_SWIPE = original.relic_hand_SWIPE;
-            clone.relic_SARKAZ_KING_ARTIFACT = original.relic_SARKAZ_KING_ARTIFACT;
+//            clone.relic_SARKAZ_KING_ARTIFACT = original.relic_SARKAZ_KING_ARTIFACT;
             clone.relic_hand_FIREWORK = original.relic_hand_FIREWORK;
-            clone.relic_SARKAZ_KING_FLAG = original.relic_SARKAZ_KING_FLAG;
+//            clone.relic_SARKAZ_KING_FLAG = original.relic_SARKAZ_KING_FLAG;
             clone.relic_hand_ENGRAVE = original.relic_hand_ENGRAVE;
-            clone.relic_SARKAZ_KING_BED = original.relic_SARKAZ_KING_BED;
+//            clone.relic_SARKAZ_KING_BED = original.relic_SARKAZ_KING_BED;
             clone.relic_SURVIVOR = original.relic_SURVIVOR;
             clone.relic_TREATY = original.relic_TREATY;
-            clone.relic_SARKAZ_KING_RYLFATE = original.relic_SARKAZ_KING_RYLFATE;
+//            clone.relic_SARKAZ_KING_RYLFATE = original.relic_SARKAZ_KING_RYLFATE;
             clone.relic_util_MEATCAN = original.relic_util_MEATCAN;
             clone.relic_util_SEAGRASS = original.relic_util_SEAGRASS;
             clone.relic_util_ORANGE = original.relic_util_ORANGE;
@@ -178,7 +178,7 @@ public class CaerulaArborModVariables {
         }
 
         @Override
-        public CompoundTag save(CompoundTag nbt) {
+        public @NotNull CompoundTag save(@NotNull CompoundTag nbt) {
             return nbt;
         }
 
@@ -234,7 +234,7 @@ public class CaerulaArborModVariables {
         }
 
         @Override
-        public CompoundTag save(CompoundTag nbt) {
+        public @NotNull CompoundTag save(CompoundTag nbt) {
             nbt.putDouble("evo_point_grow", evo_point_grow);
             nbt.putDouble("evo_point_subsisting", evo_point_subsisting);
             nbt.putDouble("evo_point_breed", evo_point_breed);
@@ -259,7 +259,7 @@ public class CaerulaArborModVariables {
 
         public static MapVariables get(LevelAccessor world) {
             if (world instanceof ServerLevelAccessor serverLevelAcc) {
-                return serverLevelAcc.getLevel().getServer().getLevel(Level.OVERWORLD).getDataStorage().computeIfAbsent(e -> MapVariables.load(e), MapVariables::new, DATA_NAME);
+                return serverLevelAcc.getLevel().getServer().getLevel(Level.OVERWORLD).getDataStorage().computeIfAbsent(MapVariables::load, MapVariables::new, DATA_NAME);
             } else {
                 return clientSide;
             }
@@ -307,7 +307,7 @@ public class CaerulaArborModVariables {
         }
     }
 
-    public static final Capability<PlayerVariables> PLAYER_VARIABLES_CAPABILITY = CapabilityManager.get(new CapabilityToken<PlayerVariables>() {
+    public static final Capability<PlayerVariables> PLAYER_VARIABLES_CAPABILITY = CapabilityManager.get(new CapabilityToken<>() {
     });
 
     @Mod.EventBusSubscriber
@@ -322,7 +322,7 @@ public class CaerulaArborModVariables {
         private final LazyOptional<PlayerVariables> instance = LazyOptional.of(() -> playerVariables);
 
         @Override
-        public <T> @NotNull LazyOptional<T> getCapability(Capability<T> cap, Direction side) {
+        public <T> @NotNull LazyOptional<T> getCapability(@NotNull Capability<T> cap, Direction side) {
             return cap == PLAYER_VARIABLES_CAPABILITY ? instance.cast() : LazyOptional.empty();
         }
 
@@ -357,14 +357,10 @@ public class CaerulaArborModVariables {
         public boolean relic_hand_SPEED = false;
         public boolean relic_hand_BARREN = false;
         public boolean relic_hand_SWIPE = false;
-        public boolean relic_SARKAZ_KING_ARTIFACT = false;
         public boolean relic_hand_FIREWORK = false;
-        public boolean relic_SARKAZ_KING_FLAG = false;
         public double relic_hand_ENGRAVE = -1.0;
-        public boolean relic_SARKAZ_KING_BED = false;
         public double relic_SURVIVOR = -1.0;
         public boolean relic_TREATY = false;
-        public boolean relic_SARKAZ_KING_RYLFATE = false;
         public boolean relic_util_MEATCAN = false;
         public boolean relic_util_SEAGRASS = false;
         public boolean relic_util_ORANGE = false;
@@ -432,14 +428,14 @@ public class CaerulaArborModVariables {
             nbt.putBoolean("relic_hand_SPEED", relic_hand_SPEED);
             nbt.putBoolean("relic_hand_BARREN", relic_hand_BARREN);
             nbt.putBoolean("relic_hand_SWIPE", relic_hand_SWIPE);
-            nbt.putBoolean("relic_SARKAZ_KING_ARTIFACT", relic_SARKAZ_KING_ARTIFACT);
+//            nbt.putBoolean("relic_SARKAZ_KING_ARTIFACT", relic_SARKAZ_KING_ARTIFACT);
             nbt.putBoolean("relic_hand_FIREWORK", relic_hand_FIREWORK);
-            nbt.putBoolean("relic_SARKAZ_KING_FLAG", relic_SARKAZ_KING_FLAG);
+//            nbt.putBoolean("relic_SARKAZ_KING_FLAG", relic_SARKAZ_KING_FLAG);
             nbt.putDouble("relic_hand_ENGRAVE", relic_hand_ENGRAVE);
-            nbt.putBoolean("relic_SARKAZ_KING_BED", relic_SARKAZ_KING_BED);
+//            nbt.putBoolean("relic_SARKAZ_KING_BED", relic_SARKAZ_KING_BED);
             nbt.putDouble("relic_SURVIVOR", relic_SURVIVOR);
             nbt.putBoolean("relic_TREATY", relic_TREATY);
-            nbt.putBoolean("relic_SARKAZ_KING_RYLFATE", relic_SARKAZ_KING_RYLFATE);
+//            nbt.putBoolean("relic_SARKAZ_KING_RYLFATE", relic_SARKAZ_KING_RYLFATE);
             nbt.putBoolean("relic_util_MEATCAN", relic_util_MEATCAN);
             nbt.putBoolean("relic_util_SEAGRASS", relic_util_SEAGRASS);
             nbt.putBoolean("relic_util_ORANGE", relic_util_ORANGE);
@@ -503,14 +499,14 @@ public class CaerulaArborModVariables {
             relic_hand_SPEED = nbt.getBoolean("relic_hand_SPEED");
             relic_hand_BARREN = nbt.getBoolean("relic_hand_BARREN");
             relic_hand_SWIPE = nbt.getBoolean("relic_hand_SWIPE");
-            relic_SARKAZ_KING_ARTIFACT = nbt.getBoolean("relic_SARKAZ_KING_ARTIFACT");
+//            relic_SARKAZ_KING_ARTIFACT = nbt.getBoolean("relic_SARKAZ_KING_ARTIFACT");
             relic_hand_FIREWORK = nbt.getBoolean("relic_hand_FIREWORK");
-            relic_SARKAZ_KING_FLAG = nbt.getBoolean("relic_SARKAZ_KING_FLAG");
+//            relic_SARKAZ_KING_FLAG = nbt.getBoolean("relic_SARKAZ_KING_FLAG");
             relic_hand_ENGRAVE = nbt.getDouble("relic_hand_ENGRAVE");
-            relic_SARKAZ_KING_BED = nbt.getBoolean("relic_SARKAZ_KING_BED");
+//            relic_SARKAZ_KING_BED = nbt.getBoolean("relic_SARKAZ_KING_BED");
             relic_SURVIVOR = nbt.getDouble("relic_SURVIVOR");
             relic_TREATY = nbt.getBoolean("relic_TREATY");
-            relic_SARKAZ_KING_RYLFATE = nbt.getBoolean("relic_SARKAZ_KING_RYLFATE");
+//            relic_SARKAZ_KING_RYLFATE = nbt.getBoolean("relic_SARKAZ_KING_RYLFATE");
             relic_util_MEATCAN = nbt.getBoolean("relic_util_MEATCAN");
             relic_util_SEAGRASS = nbt.getBoolean("relic_util_SEAGRASS");
             relic_util_ORANGE = nbt.getBoolean("relic_util_ORANGE");
@@ -591,14 +587,14 @@ public class CaerulaArborModVariables {
                     variables.relic_hand_SPEED = message.data.relic_hand_SPEED;
                     variables.relic_hand_BARREN = message.data.relic_hand_BARREN;
                     variables.relic_hand_SWIPE = message.data.relic_hand_SWIPE;
-                    variables.relic_SARKAZ_KING_ARTIFACT = message.data.relic_SARKAZ_KING_ARTIFACT;
+//                    variables.relic_SARKAZ_KING_ARTIFACT = message.data.relic_SARKAZ_KING_ARTIFACT;
                     variables.relic_hand_FIREWORK = message.data.relic_hand_FIREWORK;
-                    variables.relic_SARKAZ_KING_FLAG = message.data.relic_SARKAZ_KING_FLAG;
+//                    variables.relic_SARKAZ_KING_FLAG = message.data.relic_SARKAZ_KING_FLAG;
                     variables.relic_hand_ENGRAVE = message.data.relic_hand_ENGRAVE;
-                    variables.relic_SARKAZ_KING_BED = message.data.relic_SARKAZ_KING_BED;
+//                    variables.relic_SARKAZ_KING_BED = message.data.relic_SARKAZ_KING_BED;
                     variables.relic_SURVIVOR = message.data.relic_SURVIVOR;
                     variables.relic_TREATY = message.data.relic_TREATY;
-                    variables.relic_SARKAZ_KING_RYLFATE = message.data.relic_SARKAZ_KING_RYLFATE;
+//                    variables.relic_SARKAZ_KING_RYLFATE = message.data.relic_SARKAZ_KING_RYLFATE;
                     variables.relic_util_MEATCAN = message.data.relic_util_MEATCAN;
                     variables.relic_util_SEAGRASS = message.data.relic_util_SEAGRASS;
                     variables.relic_util_ORANGE = message.data.relic_util_ORANGE;

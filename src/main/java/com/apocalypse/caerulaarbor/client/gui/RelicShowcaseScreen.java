@@ -390,7 +390,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         }) {
             @Override
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
-                this.visible = HasFlagProcedure.execute(entity);
+                this.visible = Relic.SARKAZ_KING_FLAG.gained(entity);
                 super.renderWidget(guiGraphics, gx, gy, ticks);
             }
         };
@@ -410,7 +410,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         }) {
             @Override
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
-                this.visible = HasRoyalfateProcedure.execute(entity);
+                this.visible = Relic.SARKAZ_KING_RYLFATE.gained(entity);
                 super.renderWidget(guiGraphics, gx, gy, ticks);
             }
         };

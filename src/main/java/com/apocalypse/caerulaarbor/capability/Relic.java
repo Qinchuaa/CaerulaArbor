@@ -104,4 +104,12 @@ public enum Relic {
         }
         variables.relics.put(this, Mth.clamp(level, minLevel, maxLevel));
     }
+
+    public void gain(Entity player) {
+        set(player, 1);
+    }
+
+    public void gain(CaerulaArborModVariables.PlayerVariables variables) {
+        set(variables, 1);
+    }
 }

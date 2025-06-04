@@ -1,5 +1,6 @@
 package com.apocalypse.caerulaarbor.procedures;
 
+import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.config.common.RelicsConfig;
 import com.apocalypse.caerulaarbor.init.ModAttributes;
 import com.apocalypse.caerulaarbor.init.ModEnchantments;
@@ -7,7 +8,6 @@ import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -31,7 +31,6 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 import java.util.Comparator;
-import java.util.List;
 
 @Mod.EventBusSubscriber
 public class PlayerTickFuncProcedure {
@@ -55,7 +54,9 @@ public class PlayerTickFuncProcedure {
         double amplifi;
         double suitArchfi;
         double enchant;
-        if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).disoclusion == 2) {
+        var cap = entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
+
+        if (cap.disoclusion == 2) {
             if (!(entity instanceof LivingEntity _livEnt0 && _livEnt0.hasEffect(ModMobEffects.HAEMOPHILIA.get()))) {
                 if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
                     _entity.addEffect(new MobEffectInstance(ModMobEffects.HAEMOPHILIA.get(), 299, 0, false, false));
@@ -66,7 +67,7 @@ public class PlayerTickFuncProcedure {
                     _entity.removeEffect(ModMobEffects.HAEMOPHILIA.get());
             }
         }
-        if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).disoclusion == 4) {
+        if (cap.disoclusion == 4) {
             if ((entity instanceof LivingEntity _livEnt && _livEnt.hasEffect(ModMobEffects.FLESHDEFORMITY.get()) ? _livEnt.getEffect(ModMobEffects.FLESHDEFORMITY.get()).getDuration() : 0) < 5) {
                 if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
                     _entity.addEffect(new MobEffectInstance(ModMobEffects.FLESHDEFORMITY.get(), 200, 1, false, false));
@@ -87,24 +88,24 @@ public class PlayerTickFuncProcedure {
                 .orElse(false)) {
             modifi = 1.5;
         }
-        if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).player_oceanization >= 3) {
+        if (cap.player_oceanization >= 3) {
             modifi = 0.33;
         }
         if (entity instanceof LivingEntity _livingEntity8 && _livingEntity8.getAttributes().hasAttribute(ModAttributes.SANITY_MODIFIER.get()))
             _livingEntity8.getAttribute(ModAttributes.SANITY_MODIFIER.get()).setBaseValue(modifi);
-        if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).lives <= 1) {
+        if (cap.lives <= 1) {
             suitKing = 0;
-            if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_king_SPEAR) {
+            if (cap.relic_king_SPEAR) {
                 suitKing = suitKing + 1;
                 if (!(entity instanceof LivingEntity _livEnt9 && _livEnt9.hasEffect(ModMobEffects.KINGS_BOOST.get()))) {
                     if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
                         _entity.addEffect(new MobEffectInstance(ModMobEffects.KINGS_BOOST.get(), 100, 1, false, false));
                 }
             }
-            if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_king_ARMOR) {
+            if (cap.relic_king_ARMOR) {
                 suitKing = suitKing + 1;
             }
-            if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_king_EXTENSION) {
+            if (cap.relic_king_EXTENSION) {
                 suitKing = suitKing + 1;
                 amplifi = Math.ceil((entity instanceof LivingEntity _livEnt ? _livEnt.getMaxHealth() : -1) / 20);
                 if (amplifi > 24) {
@@ -115,7 +116,7 @@ public class PlayerTickFuncProcedure {
                         _entity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 100, (int) amplifi, false, false));
                 }
             }
-            if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_king_CROWN) {
+            if (cap.relic_king_CROWN) {
                 suitKing = suitKing + 1;
                 if (!(entity instanceof LivingEntity _livEnt14 && _livEnt14.hasEffect(ModMobEffects.KINGS_BREATH.get()))) {
                     if (suitKing < 3) {
@@ -131,37 +132,31 @@ public class PlayerTickFuncProcedure {
                     } else {
                         if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
                             _entity.addEffect(new MobEffectInstance(ModMobEffects.KINGS_BREATH.get(), 3, 2, false, false));
-                        {
-                            double _setval = 2;
-                            entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
-                                capability.player_king_suit = _setval;
-                                capability.syncPlayerVariables(entity);
-                            });
-                        }
+                        entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+                            capability.player_king_suit = 2;
+                            capability.syncPlayerVariables(entity);
+                        });
                     }
                 }
             } else {
-                {
-                    double _setval = 0;
-                    entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
-                        capability.player_king_suit = _setval;
-                        capability.syncPlayerVariables(entity);
-                    });
-                }
+                entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+                    capability.player_king_suit = 0;
+                    capability.syncPlayerVariables(entity);
+                });
             }
         }
-        if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_hand_SPEED
+        if (cap.relic_hand_SPEED
                 && (entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).is(ItemTags.create(new ResourceLocation("minecraft:pickaxes")))) {
             valid = true;
             {
                 final Vec3 _center = new Vec3(x, y, z);
-                List<Entity> _entfound = world.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(8 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList();
-                for (Entity entityiterator : _entfound) {
+                for (Entity entityiterator : world.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(8 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList()) {
                     if (entityiterator == entity) {
                         continue;
                     }
-                    if (entityiterator instanceof ServerPlayer || entityiterator instanceof Player || entityiterator instanceof Animal) {
+                    if (entityiterator instanceof Player || entityiterator instanceof Animal) {
                         valid = false;
+                        break;
                     }
                 }
             }
@@ -176,31 +171,30 @@ public class PlayerTickFuncProcedure {
                 }
             }
         }
-        if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_hand_SWIPE) {
+        if (cap.relic_hand_SWIPE) {
             if (!(entity instanceof LivingEntity _livEnt28 && _livEnt28.hasEffect(ModMobEffects.WIPE_DUSTS.get()))
                     && (entity instanceof Player _playerHasItem && _playerHasItem.getInventory().contains(new ItemStack(Items.BRUSH)))) {
                 if (!_playerHasItem.level().isClientSide())
                     _playerHasItem.addEffect(new MobEffectInstance(ModMobEffects.WIPE_DUSTS.get(), 100, 0, false, false));
             }
         }
-        if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).lives >= (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
-                .orElse(new CaerulaArborModVariables.PlayerVariables())).maxLive) {
+        if (cap.lives >= cap.maxLive) {
             suitArchfi = 0;
-            if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_SARKAZ_KING_FLAG) {
+            if (Relic.SARKAZ_KING_FLAG.gained(cap)) {
                 suitArchfi = suitArchfi + 1;
                 if (!(entity instanceof LivingEntity _livEnt31 && _livEnt31.hasEffect(ModMobEffects.FLAG_SWINGS.get()))) {
                     if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
                         _entity.addEffect(new MobEffectInstance(ModMobEffects.FLAG_SWINGS.get(), 30, 2, false, false));
                 }
             }
-            if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_SARKAZ_KING_BED) {
+            if (Relic.SARKAZ_KING_BED.gained(cap)) {
                 suitArchfi = suitArchfi + 1;
                 if (!(entity instanceof LivingEntity _livEnt33 && _livEnt33.hasEffect(ModMobEffects.KEEP_BEDDING.get()))) {
                     if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
                         _entity.addEffect(new MobEffectInstance(ModMobEffects.KEEP_BEDDING.get(), 30, 0, false, false));
                 }
             }
-            if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_SARKAZ_KING_ARTIFACT) {
+            if (Relic.SARKAZ_KING_ARTIFACT.gained(cap)) {
                 suitArchfi = suitArchfi + 1;
                 if ((entity instanceof LivingEntity _livEnt && _livEnt.hasEffect(ModMobEffects.SACREFICE.get()) ? _livEnt.getEffect(ModMobEffects.SACREFICE.get()).getDuration() : 0) < 5) {
                     if (suitArchfi < 3) {
@@ -222,16 +216,13 @@ public class PlayerTickFuncProcedure {
                     }
                 }
             } else {
-                {
-                    double _setval = 0;
-                    entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
-                        capability.player_demon_suit = _setval;
-                        capability.syncPlayerVariables(entity);
-                    });
-                }
+                entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+                    capability.player_demon_suit = 0;
+                    capability.syncPlayerVariables(entity);
+                });
             }
         }
-        if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_hand_ENGRAVE > 0) {
+        if (Relic.HAND_ENGRAVE.get(cap) > 0) {
             valid = false;
             if (entity instanceof Player _playerHasItem && _playerHasItem.getInventory().contains(new ItemStack(Items.TRIDENT))) {
                 valid = true;
@@ -245,22 +236,22 @@ public class PlayerTickFuncProcedure {
                 }
             }
             if (valid) {
-                if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide()) {
+                LivingEntity _entity = (LivingEntity) entity;
+                if (!_entity.level().isClientSide()) {
                     _entity.addEffect(new MobEffectInstance(ModMobEffects.ENGRAVED_TRIUMPH.get(), 40,
-                            (int) ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_hand_ENGRAVE - 1), false, false));
+                            Relic.HAND_ENGRAVE.get(cap) - 1, false, false));
                 }
             }
         }
-        if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_SURVIVOR > 0) {
+        if (Relic.SURVIVOR.get(cap) > 0) {
             if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide()) {
                 _entity.addEffect(new MobEffectInstance(ModMobEffects.SURVIVORS_GUIDE.get(), 40,
-                        (int) ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).relic_SURVIVOR - 1), false, false));
+                        Relic.SURVIVOR.get(cap) - 1, false, false));
             }
         }
-        if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).lives > (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
-                .orElse(new CaerulaArborModVariables.PlayerVariables())).maxLive) {
+        if (cap.lives > cap.maxLive) {
             entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
-                capability.lives = (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).maxLive;
+                capability.lives = cap.maxLive;
                 capability.syncPlayerVariables(entity);
             });
         }
