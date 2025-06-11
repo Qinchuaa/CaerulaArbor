@@ -26,10 +26,10 @@ public class SanityImmuneMobEffect extends MobEffect {
     @Override
     public void applyEffectTick(@NotNull LivingEntity entity, int amplifier) {
         entity.getCapability(ModCapabilities.SANITY_INJURY).ifPresent(cap -> {
-            if (cap.getValue() < 0) {
-                cap.setValue(0);
+            if (!cap.isImmune()) {
+                cap.setImmune(true);
             }
-            cap.heal(5);
+            cap.regenerate(5);
         });
     }
 
