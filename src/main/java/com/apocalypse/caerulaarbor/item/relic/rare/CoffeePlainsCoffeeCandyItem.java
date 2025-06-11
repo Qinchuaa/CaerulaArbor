@@ -41,9 +41,14 @@ public class CoffeePlainsCoffeeCandyItem extends RelicItem {
     }
 
     @Override
+    public @NotNull Relic getRelic() {
+        return Relic.COFFEE_PLAINS_COFFEE_CANDY;
+    }
+
+    @Override
     @ParametersAreNonnullByDefault
     public @NotNull ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity entity) {
-        Relic.modify(entity, cap -> Relic.UTIL_COFFEE.gain(entity));
+        Relic.modify(entity, cap -> this.getRelic().gain(entity));
 
         ItemStack rt = new ItemStack(ModItems.PAPER_BAG.get());
         if (super.finishUsingItem(stack, world, entity).isEmpty()) {

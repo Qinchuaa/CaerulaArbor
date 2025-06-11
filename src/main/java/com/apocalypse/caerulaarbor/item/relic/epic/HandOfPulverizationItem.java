@@ -1,5 +1,4 @@
-
-package com.apocalypse.caerulaarbor.item;
+package com.apocalypse.caerulaarbor.item.relic.epic;
 
 import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.item.relic.RelicItem;
@@ -14,20 +13,21 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public class HandOfBarrenItem extends RelicItem {
-    public HandOfBarrenItem() {
+public class HandOfPulverizationItem extends RelicItem {
+
+    public HandOfPulverizationItem() {
         super(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC));
     }
 
     @Override
     public void appendHoverText(ItemStack itemstack, Level level, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         super.appendHoverText(itemstack, level, list, flag);
-        list.add(Component.translatable("item.caerula_arbor.hand_of_barren.description_0"));
-        list.add(Component.translatable("item.caerula_arbor.hand_of_barren.description_1"));
+        list.add(Component.translatable("item.caerula_arbor.hand_of_pulverization.des_1"));
+        list.add(Component.translatable("item.caerula_arbor.hand_of_pulverization.des_2"));
     }
 
     @Override
     public @Nullable Relic getRelic() {
-        return Relic.HAND_BARREN;
+        return Relic.HAND_OF_PULVERIZATION;
     }
 }

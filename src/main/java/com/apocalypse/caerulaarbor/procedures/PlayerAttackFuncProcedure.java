@@ -54,7 +54,7 @@ public class PlayerAttackFuncProcedure {
                     }
                 }
             }
-            if (Relic.HAND_BARREN.gained(cap)
+            if (Relic.HAND_OF_PULVERIZATION.gained(cap)
                     && (sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).is(ItemTags.create(new ResourceLocation("minecraft:axes")))) {
                 if (sourceentity instanceof LivingEntity _livEnt9 && _livEnt9.hasEffect(ModMobEffects.BUTCHERS_POWER.get())) {
                     if ((sourceentity instanceof LivingEntity _livEnt && _livEnt.hasEffect(ModMobEffects.BUTCHERS_POWER.get()) ? _livEnt.getEffect(ModMobEffects.BUTCHERS_POWER.get()).getAmplifier() : 0) < 7) {

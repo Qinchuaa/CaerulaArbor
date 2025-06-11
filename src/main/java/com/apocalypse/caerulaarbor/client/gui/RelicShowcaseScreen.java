@@ -123,7 +123,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         if (Relic.HAND_SPEED.gained(entity))
             if (mouseX > leftPos + 76 && mouseX < leftPos + 92 && mouseY > topPos + 28 && mouseY < topPos + 44)
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.HAND_of_speed").getString() + ": " + Component.translatable("item.caerula_arbor.HAND_of_speed.description_0").getString()), mouseX, mouseY);
-        if (Relic.HAND_BARREN.gained(entity))
+        if (Relic.HAND_OF_PULVERIZATION.gained(entity))
             if (mouseX > leftPos + 100 && mouseX < leftPos + 116 && mouseY > topPos + 28 && mouseY < topPos + 44)
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.HAND_of_barren").getString() + ": " + Component.translatable("item.caerula_arbor.HAND_of_barren.description_0").getString()), mouseX, mouseY);
         if (Relic.HAND_SWIPE.gained(entity))
@@ -159,7 +159,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         if (Relic.UTIL_ORANGE.gained(entity))
             if (mouseX > leftPos + 52 && mouseX < leftPos + 68 && mouseY > topPos + 76 && mouseY < topPos + 92)
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.golden_storm").getString() + ": " + Component.translatable("item.caerula_arbor.golden_storm.description_0").getString()), mouseX, mouseY);
-        if (Relic.UTIL_COFFEE.gained(entity))
+        if (Relic.COFFEE_PLAINS_COFFEE_CANDY.gained(entity))
             if (mouseX > leftPos + 76 && mouseX < leftPos + 92 && mouseY > topPos + 76 && mouseY < topPos + 92)
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.coffee_candy").getString() + ": " + Component.translatable("item.caerula_arbor.coffee_plains_coffee_candy.des_1").getString()), mouseX, mouseY);
         if (Relic.UTIL_BERRIES.gained(entity))
@@ -458,14 +458,14 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         guistate.put("button:imagebutton_HAND_reap1", imagebutton_HAND_reap1);
         this.addRenderableWidget(imagebutton_HAND_reap1);
         imagebutton_HAND_smash = new ImageButton(this.leftPos + 100, this.topPos + 28, 16, 16, 0, 0, 16, new ResourceLocation("caerula_arbor:textures/screens/atlas/imagebutton_HAND_smash.png"), 16, 32, e -> {
-            if (Relic.HAND_BARREN.gained(entity)) {
+            if (Relic.HAND_OF_PULVERIZATION.gained(entity)) {
                 CaerulaArborMod.PACKET_HANDLER.sendToServer(new RelicShowcaseButtonMessage(13, x, y, z));
                 RelicShowcaseButtonMessage.handleButtonAction(entity, 13, x, y, z);
             }
         }) {
             @Override
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
-                this.visible = Relic.HAND_BARREN.gained(entity);
+                this.visible = Relic.HAND_OF_PULVERIZATION.gained(entity);
                 super.renderWidget(guiGraphics, gx, gy, ticks);
             }
         };
@@ -619,7 +619,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
                 boolean result = false;
                 if (entity != null) {
-                    result = Relic.UTIL_COFFEE.gained(entity);
+                    result = Relic.COFFEE_PLAINS_COFFEE_CANDY.gained(entity);
                 }
                 this.visible = result;
                 super.renderWidget(guiGraphics, gx, gy, ticks);

@@ -1,6 +1,5 @@
 package com.apocalypse.caerulaarbor.item.relic;
 
-import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
@@ -39,7 +38,6 @@ public abstract class RelicItem extends Item implements IRelic {
             pTooltipComponents.add(Component.translatable("item.caerula_arbor.relics.used").withStyle(ChatFormatting.ITALIC));
         }
     }
-
 
     @Override
     @ParametersAreNonnullByDefault
@@ -145,9 +143,5 @@ public abstract class RelicItem extends Item implements IRelic {
 
     public ItemStack getRewardItemStack() {
         return ItemStack.EMPTY;
-    }
-
-    public @Nullable Relic getRelic() {
-        return null;
     }
 }

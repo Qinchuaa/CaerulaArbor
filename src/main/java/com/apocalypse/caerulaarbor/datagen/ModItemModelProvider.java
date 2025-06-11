@@ -34,6 +34,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.DURIN_OVERGROUND_ODYSSEY);
         simpleItem(ModItems.COFFEE_PLAINS_COFFEE_CANDY);
 
+        simpleItem(ModItems.HAND_OF_PULVERIZATION);
+
         simpleItem(ModItems.SURVIVOR_CONTRACT);
 
         // equipments

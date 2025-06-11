@@ -79,7 +79,7 @@ public class RelicShowcaseButtonMessage {
             case 10 -> Relic.HAND_THORNS;
             case 11 -> Relic.HAND_STRANGLE;
             case 12 -> Relic.HAND_FERTILITY;
-            case 13 -> Relic.HAND_BARREN;
+            case 13 -> Relic.HAND_OF_PULVERIZATION;
             case 14 -> Relic.HAND_SWIPE;
             case 19 -> Relic.CURSED_EMELIGHT;
             case 20 -> Relic.CURSED_GLOWBODY;

@@ -33,7 +33,7 @@ public class ModItemTagProvider extends ItemTagsProvider {
         this.tag(ModTags.Items.CURSED_RELICS)
                 .add(ModItems.RELIC_CURSE_EMELIGHT.get(), ModItems.RELIC_CURSED_RESEARCH.get(), ModItems.RELIC_CURSED_GLOWBODY.get());
         this.tag(ModTags.Items.HAND_RELICS)
-                .add(ModItems.HAND_OF_BARREN.get(), ModItems.HAND_OF_ENGRAVE.get(), ModItems.HAND_OF_FERTILIY.get(), ModItems.HAND_OF_SPEED.get(),
+                .add(ModItems.HAND_OF_PULVERIZATION.get(), ModItems.HAND_OF_ENGRAVE.get(), ModItems.HAND_OF_FERTILIY.get(), ModItems.HAND_OF_SPEED.get(),
                         ModItems.HAND_OF_FIREWORK.get(), ModItems.HAND_OF_SPOTLESS.get(), ModItems.HAND_OF_STRANGLE.get(), ModItems.HAND_OF_THORNS.get());
         this.tag(ModTags.Items.KING_RELICS).add(ModItems.KINGS_ARMOR.get(), ModItems.KINGS_SPEAR.get(), ModItems.KINGS_CRYSTAL.get(),
                 ModItems.KINGS_EXTENSION.get(), ModItems.RELIC_CROWN.get());

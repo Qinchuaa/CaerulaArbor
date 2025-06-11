@@ -38,6 +38,10 @@
   "item.caerula_arbor.coffee_plains_coffee_candy.des_1": "食用后获得12秒急迫II",
   "item.caerula_arbor.coffee_plains_coffee_candy.des_2": "温水海洋咖啡品牌糖果产品，添加真实咖啡因，让你从白天清醒到幻翼来袭",
 
+  "item.caerula_arbor.hand_of_pulverization": "荒芜之手",
+  "item.caerula_arbor.hand_of_pulverization.des_1": "用斧头暴击后攻击力+20%，最多叠加8次，8秒内未暴击则清空加成",
+  "item.caerula_arbor.hand_of_pulverization.des_2": "年轮上走过的岁月，毁于一旦",
+
   "item.caerula_arbor.survivor_contract": "生还者合约",
   "item.caerula_arbor.survivor_contract.des_1": "玩家在击杀生物时有2%的概率攻击力+20%，盔甲值+2（最多叠加32次）",
   "item.caerula_arbor.survivor_contract.des_2": "一本包含海量条目的合约书。书中记录的每一项条款都是抛弃感性与运气的经验结晶，逐一履行，便能成为幸存的最后一人",
@@ -427,9 +431,7 @@
   "item.caerula_arbor.sample_subsisting.description_9": "【静谧】海嗣获得生命恢复V，获得40%的概率反伤",
   "item.caerula_arbor.sample_subsisting.description_8": "【静谧】海嗣获得生命恢复IV，获得20%的概率反伤",
   "entity.minecraft.villager.caerula_arbor.cannot_goodenough": "诡意行商",
-  "item.caerula_arbor.hand_of_barren.description_0": "§b玩家用斧头暴击后攻击力+20%，最多叠加8次，8秒内未暴击则清空加成",
   "item.minecraft.lingering_potion.effect.inst_sanity": "滞留型神经损伤药水",
-  "item.caerula_arbor.hand_of_barren.description_1": "§o年轮上走过的岁月，毁于一旦",
   "death.attack.oceanize_damage.player": "%1$s 被增生的海嗣组织撕碎了",
   "item.caerula_arbor.coin_of_trade": "“风雨际会”证章",
   "gui.caerula_arbor.info_strategy_breed.label_proceed": "海嗣死亡时累积进化点数。",
@@ -523,7 +525,6 @@
   "item.caerula_arbor.sample_migration": "Sample Migration",
   "effect.caerula_arbor.kings_breath": "诸王之息",
   "gui.caerula_arbor.caerula_record_gui.tooltip_discon": "玩家在攻击或受击时有概率交换双手物品",
-  "item.caerula_arbor.hand_of_barren": "荒芜之手",
   "item.caerula_arbor.puncture_fish_spawn_egg": "始海穿刺者刷怪蛋",
   "item.caerula_arbor.chitin_knife.description_0": "§b玩家攻击时有5%概率攻击力+100%，生命值+100%，持续25秒。更换主手物品时提前结束",
   "item.minecraft.lingering_potion.effect.sanity_cure_ii": "滞留型神经抚慰药水",

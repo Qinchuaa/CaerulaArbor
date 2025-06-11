@@ -38,6 +38,10 @@
   "item.caerula_arbor.coffee_plains_coffee_candy.des_1": "Gain haste II when eaten",
   "item.caerula_arbor.coffee_plains_coffee_candy.des_2": "Candy product from Lukewarm Ocean, sold overworld, with caffeine added",
 
+  "item.caerula_arbor.hand_of_pulverization": "Hand Of Desolation",
+  "item.caerula_arbor.hand_of_pulverization.des_1": "If player crits with axe, attack +20% for max 8 times, and get emptied if not attacking for 8s",
+  "item.caerula_arbor.hand_of_pulverization.des_2": "Millenniums of growth, vanished in a second",
+  
   "item.caerula_arbor.survivor_contract": "Survivor Contract",
   "item.caerula_arbor.survivor_contract.des_1": "When player kill a mob, he got 2% chance to get 20% addition on health and attack, and armor +2 (32 times limited)",
   "item.caerula_arbor.survivor_contract.des_2": "All records of previous survivors, follow which you can make it to the end",
@@ -427,9 +431,7 @@
   "item.caerula_arbor.sample_subsisting.description_9": "[Silence] Oceanoffspring gain regeneration V, 40% chance to damage the attacker",
   "item.caerula_arbor.sample_subsisting.description_8": "[Silence] Oceanoffspring gain regeneration IV, 20% chance to damage the attacker",
   "entity.minecraft.villager.caerula_arbor.cannot_goodenough": "Rouge Trader",
-  "item.caerula_arbor.hand_of_barren.description_0": "§bIf player crits with axe, his attack \u003d20% for max 8 times, and get emptied if not attacking for 8s",
   "item.minecraft.lingering_potion.effect.inst_sanity": "Lingering Potion of Inst Sanity",
-  "item.caerula_arbor.hand_of_barren.description_1": "§oMilleniums of growth, vanished in a second",
   "death.attack.oceanize_damage.player": "%1$s was split by out pouring oceanoffspring",
   "item.caerula_arbor.coin_of_trade": "Coin Of Trade",
   "gui.caerula_arbor.info_strategy_breed.label_proceed": "Proceed when Oceanoffspring died",
@@ -522,7 +524,6 @@
   "item.caerula_arbor.wearable_crown_helmet": "Kings\u0027 Crown",
   "item.caerula_arbor.sample_migration": "Sample Migration",
   "effect.caerula_arbor.kings_breath": "Kings Breath",
-  "item.caerula_arbor.hand_of_barren": "Hand Of Barren",
   "gui.caerula_arbor.caerula_record_gui.tooltip_discon": "Player got chance to exchange both hand items when attacking our hit",
   "item.caerula_arbor.puncture_fish_spawn_egg": "Puncture Fish Spawn Egg",
   "item.caerula_arbor.chitin_knife.description_0": "§bPlayer got 5% chance to attack +100%, maxhealth +100% for 25s when hold his current weapon,and buff vanishes when he changes weapon",
