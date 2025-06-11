@@ -50,18 +50,10 @@ public class ModItems {
     public static final RegistryObject<Item> THE_SPEAR = ITEMS.register("the_spear", TheSpearItem::new);
     public static final RegistryObject<Item> WEARABLE_CHEST_CHESTPLATE = ITEMS.register("wearable_chest_chestplate", () -> new WearableChestItem.Chestplate());
     public static final RegistryObject<WearableCrownItem> WEARABLE_CROWN_HELMET = ITEMS.register("wearable_crown_helmet", () -> new WearableCrownItem(ArmorItem.Type.HELMET, new Item.Properties().fireResistant()));
-    public static final RegistryObject<Item> HAND_OF_THORNS = ITEMS.register("hand_of_thorns", HandOfThornsItem::new);
-    public static final RegistryObject<Item> HAND_OF_STRANGLE = ITEMS.register("hand_of_strangle", HandOfStrangleItem::new);
-    public static final RegistryObject<Item> HAND_OF_FERTILIY = ITEMS.register("hand_of_fertiliy", HandOfFertiliyItem::new);
-    public static final RegistryObject<Item> HAND_OF_SPEED = ITEMS.register("hand_of_speed", HandOfSpeedItem::new);
-    public static final RegistryObject<Item> HAND_OF_PULVERIZATION = ITEMS.register("hand_of_pulverization", HandOfPulverizationItem::new);
     public static final RegistryObject<Item> FLUORE_BERRIES = ITEMS.register("fluore_berries", FluoreBerriesItem::new);
     public static final RegistryObject<Item> RADIANT_BERRIES = ITEMS.register("radiant_berries", RadiantBerriesItem::new);
-    public static final RegistryObject<Item> HAND_OF_SPOTLESS = ITEMS.register("hand_of_spotless", HandOfSwipeItem::new);
     public static final RegistryObject<Item> ARCHFIENDS_ARTIFACT = ITEMS.register("archfiends_artifact", ArchfiendsArtifactItem::new);
-    public static final RegistryObject<Item> HAND_OF_FIREWORK = ITEMS.register("hand_of_firework", HandOfFireworkItem::new);
     public static final RegistryObject<Item> ARCHFIENDS_FLAG = ITEMS.register("archfiends_flag", ArchfiendsFlagItem::new);
-    public static final RegistryObject<Item> HAND_OF_ENGRAVE = ITEMS.register("hand_of_engrave", HandOfEngraveItem::new);
     public static final RegistryObject<Item> ARCHFIENDS_BED = ITEMS.register("archfiends_bed", ArchfiendsBedItem::new);
     public static final RegistryObject<Item> ROYAL_FATE = ITEMS.register("royal_fate", RoyalFateItem::new);
     public static final RegistryObject<Item> BLOCK_FATE = block(ModBlocks.BLOCK_FATE);
@@ -230,6 +222,15 @@ public class ModItems {
     public static final RegistryObject<Item> WEIRD_FLUTE = RELICS.register("weird_flute", WeirdFluteItem::new);
     public static final RegistryObject<Item> DURIN_OVERGROUND_ODYSSEY = RELICS.register("durin_overground_odyssey", DurinOvergroundOdysseyItem::new);
     public static final RegistryObject<Item> COFFEE_PLAINS_COFFEE_CANDY = RELICS.register("coffee_plains_coffee_candy", CoffeePlainsCoffeeCandyItem::new);
+
+    public static final RegistryObject<Item> HAND_OF_SPOTLESS = RELICS.register("hand_of_spotless", HandOfSwipeItem::new);
+    public static final RegistryObject<Item> HAND_OF_FIREWORK = RELICS.register("hand_of_firework", HandOfFireworkItem::new);
+    public static final RegistryObject<Item> HAND_OF_ENGRAVE = RELICS.register("hand_of_engrave", HandOfEngraveItem::new);
+    public static final RegistryObject<Item> HAND_OF_THORNS = RELICS.register("hand_of_thorns", HandOfThornsItem::new);
+    public static final RegistryObject<Item> HAND_OF_STRANGLE = RELICS.register("hand_of_strangle", HandOfStrangleItem::new);
+    public static final RegistryObject<Item> HAND_OF_FERTILIY = RELICS.register("hand_of_fertiliy", HandOfFertiliyItem::new);
+    public static final RegistryObject<Item> HAND_OF_SPEED = RELICS.register("hand_of_speed", HandOfSpeedItem::new);
+    public static final RegistryObject<Item> HAND_OF_PULVERIZATION = RELICS.register("hand_of_pulverization", HandOfPulverizationItem::new);
 
     public static final RegistryObject<Item> SURVIVOR_CONTRACT = RELICS.register("survivor_contract", SurvivorContractItem::new);
 

@@ -2,6 +2,7 @@ package com.apocalypse.caerulaarbor.item.relic.epic;
 
 import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.item.relic.RelicItem;
+import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -22,8 +23,8 @@ public class HandOfPulverizationItem extends RelicItem {
     @Override
     public void appendHoverText(ItemStack itemstack, Level level, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         super.appendHoverText(itemstack, level, list, flag);
-        list.add(Component.translatable("item.caerula_arbor.hand_of_pulverization.des_1"));
-        list.add(Component.translatable("item.caerula_arbor.hand_of_pulverization.des_2"));
+        list.add(Component.translatable("item.caerula_arbor.hand_of_pulverization.des_1").withStyle(ChatFormatting.GRAY));
+        list.add(Component.translatable("item.caerula_arbor.hand_of_pulverization.des_2").withStyle(ChatFormatting.GRAY));
     }
 
     @Override
