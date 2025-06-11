@@ -1,5 +1,6 @@
 package com.apocalypse.caerulaarbor.capability;
 
+import com.apocalypse.caerulaarbor.item.relic.IRelic;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
@@ -55,6 +56,8 @@ public enum Relic {
     public final int minLevel;
     public final int maxLevel;
     public final int defaultLevel;
+    // TODO 我觉得这里需要双向绑定item，方便后续操作
+    public IRelic relic;
 
     Relic() {
         this(0, 1, 0);

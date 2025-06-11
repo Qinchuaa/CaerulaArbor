@@ -4,6 +4,8 @@ import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.item.relic.RelicItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
+import net.minecraft.tags.ItemTags;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
@@ -23,12 +25,22 @@ public class HandOfPulverizationItem extends RelicItem {
     @Override
     public void appendHoverText(ItemStack itemstack, Level level, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         super.appendHoverText(itemstack, level, list, flag);
-        list.add(Component.translatable("item.caerula_arbor.hand_of_pulverization.des_1").withStyle(ChatFormatting.GRAY));
-        list.add(Component.translatable("item.caerula_arbor.hand_of_pulverization.des_2").withStyle(ChatFormatting.GRAY));
+        list.add(Component.translatable("item.caerula_arbor.hand_of_pulverization.des_1").withStyle(ChatFormatting.AQUA));
+        list.add(Component.translatable("item.caerula_arbor.hand_of_pulverization.des_2").withStyle(ChatFormatting.GRAY).withStyle(ChatFormatting.ITALIC));
     }
 
     @Override
     public @Nullable Relic getRelic() {
         return Relic.HAND_OF_PULVERIZATION;
+    }
+
+    @Override
+    public int onCriticalHit(Player player, int level) {
+        ItemStack stack = player.getMainHandItem();
+        if (stack.is(ItemTags.AXES)) {
+            if (level < 8) level++;
+            player.displayClientMessage(Component.literal("Level: " + level), true);
+        }
+        return level;
     }
 }
