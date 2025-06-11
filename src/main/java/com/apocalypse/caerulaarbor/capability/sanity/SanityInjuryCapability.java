@@ -76,6 +76,7 @@ public class SanityInjuryCapability implements ISanityInjuryCapability {
 
     @Override
     public void setImmune(boolean immune) {
+        if (immune) this.value = 0;
         this.immune = immune;
     }
 
