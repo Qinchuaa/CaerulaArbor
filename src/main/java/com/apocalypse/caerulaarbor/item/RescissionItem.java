@@ -46,6 +46,7 @@ public class RescissionItem extends Item {
         list.add(Component.translatable("item.caerula_arbor.rescission.description_1"));
     }
 
+    // TODO 什么玩意这是
     @Override
     @ParametersAreNonnullByDefault
     public @NotNull InteractionResultHolder<ItemStack> use(Level world, Player entity, InteractionHand hand) {

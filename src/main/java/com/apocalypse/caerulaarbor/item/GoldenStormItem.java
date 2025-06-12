@@ -3,11 +3,11 @@ package com.apocalypse.caerulaarbor.item;
 
 import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.init.ModItems;
+import com.apocalypse.caerulaarbor.item.relic.RelicItem;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -15,11 +15,11 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
-public class GoldenStormItem extends Item {
+public class GoldenStormItem extends RelicItem {
     public GoldenStormItem() {
         super(new Item.Properties().stacksTo(64).rarity(Rarity.COMMON).food((new FoodProperties.Builder()).nutrition(3).saturationMod(0.8f).alwaysEat().build()));
     }
@@ -37,25 +37,21 @@ public class GoldenStormItem extends Item {
     }
 
     @Override
-    @ParametersAreNonnullByDefault
-    public @NotNull ItemStack finishUsingItem(ItemStack stack, Level world, LivingEntity entity) {
-        super.finishUsingItem(stack, world, entity);
+    public @Nullable Relic getRelic() {
+        return Relic.UTIL_ORANGE;
+    }
+
+    @Override
+    public ItemStack getRewardItemStack() {
+        return new ItemStack(ModItems.PAPER_BAG.get());
+    }
+
+    @Override
+    public void afterUse(ItemStack stack, Level pLevel, LivingEntity entity) {
+        super.afterUse(stack, pLevel, entity);
 
         if (!entity.level().isClientSide()) {
             entity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_BOOST, 100, 0));
-        }
-
-        Relic.modify(entity, cap -> Relic.UTIL_ORANGE.gain(entity));
-
-        if (stack.isEmpty()) {
-            return new ItemStack(ModItems.PAPER_BAG.get());
-        } else {
-            if (entity instanceof Player player && !player.getAbilities().instabuild) {
-                if (!player.getInventory().add(new ItemStack(ModItems.PAPER_BAG.get()))) {
-                    player.drop(new ItemStack(ModItems.PAPER_BAG.get()), false);
-                }
-            }
-            return stack;
         }
     }
 }

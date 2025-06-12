@@ -7,7 +7,13 @@ import com.apocalypse.caerulaarbor.init.ModEnchantments;
 import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
+import net.minecraft.client.Minecraft;
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -19,6 +25,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.item.enchantment.EnchantmentHelper;
+import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.phys.AABB;
@@ -282,7 +289,23 @@ public class PlayerTickFuncProcedure {
                 _entity.addEffect(new MobEffectInstance(ModMobEffects.SANIDY_DEFENDER.get(), 20, (int) (enchant - 1), false, false));
         }
         if ((entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY).getItem() == ModItems.WEARABLE_CROWN_HELMET.get()) {
-            GainRelicCROWNProcedure.execute(world, x, y, z, entity, entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY);
+            ItemStack itemstack = entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY;
+            if (entity == null)
+                return;
+            var cap1 = entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
+            if (!Relic.KING_CROWN.gained(cap1)) {
+                if (world instanceof Level _level) {
+                    if (!_level.isClientSide()) {
+                        _level.playSound(null, BlockPos.containing(x, y, z), SoundEvents.TOTEM_USE, SoundSource.NEUTRAL, 2, 1);
+                        ((ServerLevel) _level).sendParticles(ParticleTypes.ENCHANTED_HIT, x, y, z, 72, 1, 1, 1, 1);
+                    } else {
+                        _level.playLocalSound(x, y, z, SoundEvents.TOTEM_USE, SoundSource.NEUTRAL, 2, 1, false);
+                        Minecraft.getInstance().gameRenderer.displayItemActivation(itemstack);
+                    }
+                }
+                Relic.KING_CROWN.gain(cap1);
+                cap1.syncPlayerVariables(entity);
+            }
         }
     }
 }

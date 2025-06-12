@@ -5,18 +5,16 @@ import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.item.relic.RelicItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
 public class PureGoldExpeditionItem extends RelicItem {
@@ -36,20 +34,23 @@ public class PureGoldExpeditionItem extends RelicItem {
     }
 
     @Override
-    @ParametersAreNonnullByDefault
-    public @NotNull InteractionResultHolder<ItemStack> use(Level pLevel, @NotNull Player pPlayer, InteractionHand pUsedHand) {
-        ItemStack stack = pPlayer.getItemInHand(pUsedHand);
-        if (!stack.getOrCreateTag().getBoolean("Used")) {
-            stack.getOrCreateTag().putBoolean("Used", true);
-            if (!pLevel.isClientSide) {
-                pPlayer.addEffect(new MobEffectInstance(ModMobEffects.ADD_REACH.get(), 400, 1, false, false));
-            }
+    public boolean checkUsedMark() {
+        return true;
+    }
 
-            Relic.UTIL_VOYGOLD.gainAndSync(pPlayer);
+    @Override
+    public @Nullable Relic getRelic() {
+        return Relic.UTIL_VOYGOLD;
+    }
 
-            return super.use(pLevel, pPlayer, pUsedHand);
+    @Override
+    public void afterUse(ItemStack stack, Level pLevel, LivingEntity entity) {
+        super.afterUse(stack, pLevel, entity);
+
+        if (!pLevel.isClientSide) {
+            entity.addEffect(new MobEffectInstance(ModMobEffects.ADD_REACH.get(), 400, 1, false, false));
         }
-        return InteractionResultHolder.fail(stack);
+
     }
 
     @Override

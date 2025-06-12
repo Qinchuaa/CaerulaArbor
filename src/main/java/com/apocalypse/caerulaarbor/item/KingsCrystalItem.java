@@ -2,74 +2,86 @@
 package com.apocalypse.caerulaarbor.item;
 
 import com.apocalypse.caerulaarbor.capability.Relic;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
-import com.apocalypse.caerulaarbor.procedures.PlaceCrystalProcedure;
-import net.minecraft.client.Minecraft;
-import net.minecraft.core.BlockPos;
+import com.apocalypse.caerulaarbor.init.ModBlocks;
+import com.apocalypse.caerulaarbor.item.relic.RelicItem;
+import net.minecraft.core.Direction;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.properties.DirectionProperty;
+import net.minecraft.world.level.block.state.properties.EnumProperty;
+import net.minecraft.world.level.block.state.properties.Property;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
-public class KingsCrystalItem extends Item {
-	public KingsCrystalItem() {
-		super(new Item.Properties().stacksTo(1).fireResistant().rarity(Rarity.UNCOMMON));
-	}
+public class KingsCrystalItem extends RelicItem {
+    public KingsCrystalItem() {
+        super(new Item.Properties().stacksTo(1).fireResistant().rarity(Rarity.UNCOMMON));
+    }
 
-	@Override
-	public void appendHoverText(@NotNull ItemStack itemstack, Level level, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
-		super.appendHoverText(itemstack, level, list, flag);
-		list.add(Component.translatable("item.caerula_arbor.kings_crystal.description_0"));
-		list.add(Component.translatable("item.caerula_arbor.kings_crystal.description_1"));
-	}
+    @Override
+    public void appendHoverText(@NotNull ItemStack itemstack, Level level, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
+        super.appendHoverText(itemstack, level, list, flag);
+        list.add(Component.translatable("item.caerula_arbor.kings_crystal.description_0"));
+        list.add(Component.translatable("item.caerula_arbor.kings_crystal.description_1"));
+    }
 
-	@Override
-	@ParametersAreNonnullByDefault
-	public @NotNull InteractionResultHolder<ItemStack> use(Level world, Player entity, InteractionHand hand) {
-		InteractionResultHolder<ItemStack> ar = super.use(world, entity, hand);
-		double x = entity.getX();
-		double y = entity.getY();
-		double z = entity.getZ();
-		ItemStack itemstack = ar.getObject();
+    @Override
+    public @Nullable Relic getRelic() {
+        return Relic.KING_CRYSTAL;
+    }
 
-		var cap = entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
-		if (!Relic.KING_CRYSTAL.gained(cap)) {
-			if ((LevelAccessor) world instanceof Level _level) {
-				if (!_level.isClientSide()) {
-					_level.playSound(null, BlockPos.containing(x, y, z), SoundEvents.TOTEM_USE, SoundSource.NEUTRAL, 2, 1);
-					((ServerLevel) _level).sendParticles(ParticleTypes.ENCHANTED_HIT, x, y, z, 72, 1, 1, 1, 1);
-				} else {
-					_level.playLocalSound(x, y, z, SoundEvents.TOTEM_USE, SoundSource.NEUTRAL, 2, 1, false);
-					Minecraft.getInstance().gameRenderer.displayItemActivation(itemstack);
-				}
-			}
-			Relic.KING_CRYSTAL.gain(cap);
-			cap.syncPlayerVariables(entity);
-		}
+    @Override
+    public @NotNull ParticleOptions getGainParticle() {
+        return ParticleTypes.ENCHANTED_HIT;
+    }
 
-		return ar;
-	}
+    @Override
+    public @NotNull SoundEvent getGainSound() {
+        return SoundEvents.TOTEM_USE;
+    }
 
-	@Override
-	public @NotNull InteractionResult useOn(@NotNull UseOnContext context) {
-		super.useOn(context);
-		return PlaceCrystalProcedure.execute(context.getLevel(), context.getClickedPos().getX(), context.getClickedPos().getY(), context.getClickedPos().getZ(), context.getLevel().getBlockState(context.getClickedPos()), context.getPlayer(),
-				context.getItemInHand());
-	}
+    @Override
+    public @NotNull InteractionResult useOn(@NotNull UseOnContext context) {
+        super.useOn(context);
+
+        Entity entity = context.getPlayer();
+        if (entity == null) return InteractionResult.PASS;
+
+        var world = context.getLevel();
+        var pos = context.getClickedPos();
+        var state = context.getLevel().getBlockState(pos);
+
+        var stack = context.getItemInHand();
+
+        if (state.getBlock() == Blocks.DEEPSLATE_BRICK_SLAB) {
+            world.setBlock(pos, ModBlocks.BLOCK_CRYSTAL.get().defaultBlockState(), 3);
+
+            Direction direction = entity.getDirection().getOpposite();
+            Property<?> facing = state.getBlock().getStateDefinition().getProperty("facing");
+            if (facing instanceof DirectionProperty prop && prop.getPossibleValues().contains(direction)) {
+                world.setBlock(pos, state.setValue(prop, direction), 3);
+            } else {
+                var axis = state.getBlock().getStateDefinition().getProperty("axis");
+                if (axis instanceof EnumProperty axisEnum && axisEnum.getPossibleValues().contains(direction.getAxis()))
+                    world.setBlock(pos, state.setValue(axisEnum, direction.getAxis()), 3);
+            }
+            stack.shrink(1);
+            return InteractionResult.SUCCESS;
+        }
+        return InteractionResult.PASS;
+    }
 }

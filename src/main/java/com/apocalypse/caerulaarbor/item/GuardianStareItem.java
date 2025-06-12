@@ -2,29 +2,25 @@
 package com.apocalypse.caerulaarbor.item;
 
 import com.apocalypse.caerulaarbor.capability.Relic;
-import net.minecraft.core.BlockPos;
+import com.apocalypse.caerulaarbor.item.relic.RelicItem;
+import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
-public class GuardianStareItem extends Item {
+public class GuardianStareItem extends RelicItem {
     public GuardianStareItem() {
         super(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC));
     }
@@ -37,27 +33,18 @@ public class GuardianStareItem extends Item {
     }
 
     @Override
-    @ParametersAreNonnullByDefault
-    public @NotNull InteractionResultHolder<ItemStack> use(Level world, Player entity, InteractionHand hand) {
-        InteractionResultHolder<ItemStack> ar = super.use(world, entity, hand);
-        double x = entity.getX();
-        double y = entity.getY();
-        double z = entity.getZ();
-        ItemStack stack = ar.getObject();
-        if (!stack.getOrCreateTag().getBoolean("Used")) {
-            Relic.UTIL_STARE.gainAndSync(entity);
+    public @Nullable Relic getRelic() {
+        return Relic.UTIL_STARE;
+    }
 
-            if (world instanceof ServerLevel server) {
-                server.playSound(null, BlockPos.containing(x, y, z), SoundEvents.PLAYER_LEVELUP, SoundSource.NEUTRAL, 2, 1);
-                server.sendParticles(ParticleTypes.NAUTILUS, x, (y + 0.5), z, 72, 1, 1, 1, 1);
-            } else {
-                world.playLocalSound(x, y, z, SoundEvents.PLAYER_LEVELUP, SoundSource.NEUTRAL, 2, 1, false);
-            }
+    @Override
+    public @NotNull ParticleOptions getGainParticle() {
+        return ParticleTypes.NAUTILUS;
+    }
 
-            entity.giveExperienceLevels(4);
-            stack.getOrCreateTag().putBoolean("Used", true);
-        }
-        return ar;
+    @Override
+    public boolean checkUsedMark() {
+        return true;
     }
 
     @Override

@@ -23,6 +23,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
 public class ScoreItem extends RecordItem {
+	// TODO 这玩意怎么整成RelicItem
 	public ScoreItem() {
 		super(8, () -> ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("caerula_arbor:bloodywolf_openmouth")), new Item.Properties().stacksTo(1).rarity(Rarity.COMMON), 1180);
 	}

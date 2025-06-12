@@ -42,10 +42,14 @@ public abstract class RelicItem extends Item implements IRelic {
     @Override
     @ParametersAreNonnullByDefault
     public @NotNull InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
+        var stack = pPlayer.getItemInHand(pUsedHand);
+        if (checkUsedMark() && stack.getOrCreateTag().getBoolean("Used")) {
+            return InteractionResultHolder.fail(stack);
+        }
+
         if (!this.isInstantUse()) {
             return super.use(pLevel, pPlayer, pUsedHand);
         }
-        ItemStack stack = pPlayer.getItemInHand(pUsedHand);
         this.afterUse(stack, pLevel, pPlayer);
 
         return InteractionResultHolder.consume(stack);
@@ -86,11 +90,9 @@ public abstract class RelicItem extends Item implements IRelic {
         if (relic != null && !relic.gained(entity)) {
             var level = entity.level();
 
-            if (level instanceof ServerLevel server) {
-                server.playSound(null, entity.blockPosition(), getGainSound(), SoundSource.NEUTRAL, 2, 1);
+            if (level instanceof ServerLevel server && this.getGainParticle() != null) {
                 server.sendParticles(this.getGainParticle(), entity.getX(), entity.getY(), entity.getZ(), 72, 1, 1, 1, 1);
             } else {
-                level.playLocalSound(entity.blockPosition(), getGainSound(), SoundSource.NEUTRAL, 2, 1, false);
                 Minecraft.getInstance().gameRenderer.displayItemActivation(stack);
             }
 
@@ -98,13 +100,20 @@ public abstract class RelicItem extends Item implements IRelic {
         }
 
         cap.syncPlayerVariables(entity);
+
+        if (checkUsedMark()) {
+            stack.getOrCreateTag().putBoolean("Used", true);
+        }
     }
 
     public void playGainSound(Level pLevel, LivingEntity entity) {
+        var sound = this.getGainSound();
+        if (sound == null) return;
+
         if (!pLevel.isClientSide) {
-            pLevel.playSound(null, entity.getOnPos(), this.getGainSound(), SoundSource.NEUTRAL, 2, 1);
+            pLevel.playSound(null, entity.getOnPos(), sound, SoundSource.NEUTRAL, 2, 1);
         } else {
-            pLevel.playLocalSound(entity.getOnPos(), this.getGainSound(), SoundSource.NEUTRAL, 2, 1, false);
+            pLevel.playLocalSound(entity.getOnPos(), sound, SoundSource.NEUTRAL, 2, 1, false);
         }
     }
 
@@ -113,6 +122,10 @@ public abstract class RelicItem extends Item implements IRelic {
      */
     public boolean isInstantUse() {
         return !this.isEdible();
+    }
+
+    public boolean checkUsedMark() {
+        return false;
     }
 
     public int getAddedLives() {
@@ -131,12 +144,12 @@ public abstract class RelicItem extends Item implements IRelic {
         return 0;
     }
 
-    @NotNull
+    @Nullable
     public SoundEvent getGainSound() {
         return SoundEvents.PLAYER_LEVELUP;
     }
 
-    @NotNull
+    @Nullable
     public ParticleOptions getGainParticle() {
         return ParticleTypes.HAPPY_VILLAGER;
     }

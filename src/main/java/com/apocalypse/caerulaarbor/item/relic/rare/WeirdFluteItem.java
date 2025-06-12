@@ -5,7 +5,6 @@ import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.init.ModSounds;
 import com.apocalypse.caerulaarbor.item.relic.RelicItem;
 import net.minecraft.ChatFormatting;
-import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -18,6 +17,7 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.*;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
@@ -58,27 +58,26 @@ public class WeirdFluteItem extends RelicItem {
     }
 
     @Override
-    @ParametersAreNonnullByDefault
-    public @NotNull ItemStack finishUsingItem(ItemStack pStack, Level pLevel, LivingEntity entity) {
-        if (!pStack.getOrCreateTag().getBoolean("Used")) {
-            this.afterUse(pStack, pLevel, entity);
+    public boolean checkUsedMark() {
+        return true;
+    }
 
-            Relic.UTIL_FLUTE.gainAndSync(entity);
+    @Override
+    public @Nullable Relic getRelic() {
+        return Relic.UTIL_FLUTE;
+    }
 
-            if (!pLevel.isClientSide) {
-                entity.addEffect(new MobEffectInstance(ModMobEffects.ADD_REACH.get(), 300, 0, false, false));
-            }
+    @Override
+    public void afterUse(ItemStack stack, Level pLevel, LivingEntity entity) {
+        super.afterUse(stack, pLevel, entity);
 
-            pStack.getOrCreateTag().putBoolean("Used", true);
-        } else {
-            this.playGainSound(pLevel, entity);
+        if (!pLevel.isClientSide) {
+            entity.addEffect(new MobEffectInstance(ModMobEffects.ADD_REACH.get(), 300, 0, false, false));
         }
 
         if (entity instanceof Player player) {
             player.getCooldowns().addCooldown(this, 280);
         }
-
-        return super.finishUsingItem(pStack, pLevel, entity);
     }
 
     @Override
@@ -89,11 +88,6 @@ public class WeirdFluteItem extends RelicItem {
     @Override
     public @NotNull SoundEvent getGainSound() {
         return ModSounds.FLUTESONG.get();
-    }
-
-    @Override
-    public @NotNull ParticleOptions getGainParticle() {
-        return super.getGainParticle();
     }
 
     @Override

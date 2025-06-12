@@ -8,17 +8,14 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.InteractionHand;
-import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
-import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
 public class DurinOvergroundOdysseyItem extends RelicItem {
@@ -35,17 +32,13 @@ public class DurinOvergroundOdysseyItem extends RelicItem {
     }
 
     @Override
-    @ParametersAreNonnullByDefault
-    public @NotNull InteractionResultHolder<ItemStack> use(Level pLevel, @NotNull Player pPlayer, InteractionHand pUsedHand) {
-        ItemStack stack = pPlayer.getItemInHand(pUsedHand);
-        if (!stack.getOrCreateTag().getBoolean("Used")) {
-            stack.getOrCreateTag().putBoolean("Used", true);
+    public boolean checkUsedMark() {
+        return true;
+    }
 
-            Relic.UTIL_DURIN.gainAndSync(pPlayer);
-
-            return super.use(pLevel, pPlayer, pUsedHand);
-        }
-        return InteractionResultHolder.fail(stack);
+    @Override
+    public @Nullable Relic getRelic() {
+        return Relic.UTIL_DURIN;
     }
 
     @Override
