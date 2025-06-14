@@ -153,7 +153,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         if (Relic.FEATURED_CANNED_MEAT.gained(entity))
             if (mouseX > leftPos + 4 && mouseX < leftPos + 20 && mouseY > topPos + 76 && mouseY < topPos + 92)
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.meat_can").getString() + ": " + Component.translatable("item.caerula_arbor.meat_can.description_0").getString()), mouseX, mouseY);
-        if (Relic.UTIL_SEAGRASS.gained(entity))
+        if (Relic.SEAWEED_SALAD.gained(entity))
             if (mouseX > leftPos + 28 && mouseX < leftPos + 44 && mouseY > topPos + 76 && mouseY < topPos + 92)
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.bowl_seagrass").getString() + ": " + Component.translatable("item.caerula_arbor.bowl_seagrass.description_0").getString()), mouseX, mouseY);
         if (Relic.UTIL_ORANGE.gained(entity))
@@ -591,7 +591,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
                 boolean result = false;
                 if (entity != null) {
-                    result = Relic.UTIL_SEAGRASS.gained(entity);
+                    result = Relic.SEAWEED_SALAD.gained(entity);
                 }
                 this.visible = result;
                 super.renderWidget(guiGraphics, gx, gy, ticks);

@@ -23,9 +23,11 @@ public class ModItemModelProvider extends ItemModelProvider {
     protected void registerModels() {
 
         // relics
+        simpleItem(ModItems.FEATURED_CANNED_MEAT);
+        simpleItem(ModItems.SEAWEED_SALAD);
+
         simpleItem(ModItems.HOT_WATER_KETTLE);
         simpleItem(ModItems.VAMPIRES_BED);
-        simpleItem(ModItems.FEATURED_CANNED_MEAT);
         simpleItem(ModItems.PURE_GOLD_EXPEDITION);
         simpleItem(ModItems.PITTS_ASSORTED_FRUITS);
         simpleItem(ModItems.SCREAMING_CHERRY);
