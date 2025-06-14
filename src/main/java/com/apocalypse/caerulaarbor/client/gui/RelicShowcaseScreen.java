@@ -156,9 +156,9 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         if (Relic.SEAWEED_SALAD.gained(entity))
             if (mouseX > leftPos + 28 && mouseX < leftPos + 44 && mouseY > topPos + 76 && mouseY < topPos + 92)
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.bowl_seagrass").getString() + ": " + Component.translatable("item.caerula_arbor.bowl_seagrass.description_0").getString()), mouseX, mouseY);
-        if (Relic.UTIL_ORANGE.gained(entity))
+        if (Relic.ORANGE_STORM.gained(entity))
             if (mouseX > leftPos + 52 && mouseX < leftPos + 68 && mouseY > topPos + 76 && mouseY < topPos + 92)
-                guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.golden_storm").getString() + ": " + Component.translatable("item.caerula_arbor.golden_storm.description_0").getString()), mouseX, mouseY);
+                guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.orange_storm").getString() + ": " + Component.translatable("item.caerula_arbor.orange_storm.des_1").getString()), mouseX, mouseY);
         if (Relic.COFFEE_PLAINS_COFFEE_CANDY.gained(entity))
             if (mouseX > leftPos + 76 && mouseX < leftPos + 92 && mouseY > topPos + 76 && mouseY < topPos + 92)
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.coffee_candy").getString() + ": " + Component.translatable("item.caerula_arbor.coffee_plains_coffee_candy.des_1").getString()), mouseX, mouseY);
@@ -605,7 +605,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
                 boolean result = false;
                 if (entity != null) {
-                    result = Relic.UTIL_ORANGE.gained(entity);
+                    result = Relic.ORANGE_STORM.gained(entity);
                 }
                 this.visible = result;
                 super.renderWidget(guiGraphics, gx, gy, ticks);

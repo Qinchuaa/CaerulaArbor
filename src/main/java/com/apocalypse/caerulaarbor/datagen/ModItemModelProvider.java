@@ -25,16 +25,17 @@ public class ModItemModelProvider extends ItemModelProvider {
         // relics
         simpleItem(ModItems.FEATURED_CANNED_MEAT);
         simpleItem(ModItems.SEAWEED_SALAD);
+        simpleItem(ModItems.ORANGE_STORM);
+        simpleItem(ModItems.COFFEE_PLAINS_COFFEE_CANDY);
+        simpleItem(ModItems.SCREAMING_CHERRY);
+        simpleItem(ModItems.PITTS_ASSORTED_FRUITS);
 
         simpleItem(ModItems.HOT_WATER_KETTLE);
         simpleItem(ModItems.VAMPIRES_BED);
         simpleItem(ModItems.PURE_GOLD_EXPEDITION);
-        simpleItem(ModItems.PITTS_ASSORTED_FRUITS);
-        simpleItem(ModItems.SCREAMING_CHERRY);
         simpleItem(ModItems.PROOF_OF_LONGEVITY);
         simpleItem(ModItems.WEIRD_FLUTE);
         simpleItem(ModItems.DURIN_OVERGROUND_ODYSSEY);
-        simpleItem(ModItems.COFFEE_PLAINS_COFFEE_CANDY);
 
         simpleItem(ModItems.HAND_OF_PULVERIZATION);
 

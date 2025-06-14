@@ -62,7 +62,6 @@ public class ModItems {
     public static final RegistryObject<Item> CRIMSON_TREATY = ITEMS.register("crimson_treaty", CrimsonTreatyItem::new);
     public static final RegistryObject<Item> MEAT_CAN = ITEMS.register("meat_can", FeaturedCannedMeatItem::new);
     public static final RegistryObject<Item> EMPTY_CAN = ITEMS.register("empty_can", EmptyCanItem::new);
-    public static final RegistryObject<Item> GOLDEN_STORM = ITEMS.register("golden_storm", GoldenStormItem::new);
     public static final RegistryObject<Item> PAPER_BAG = ITEMS.register("paper_bag", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> CAFFEINE = ITEMS.register("caffeine", CaffeineItem::new);
     public static final RegistryObject<Item> AROMATIC_COFFEE = ITEMS.register("aromatic_coffee", AromaticCoffeeItem::new);
@@ -215,17 +214,18 @@ public class ModItems {
 
     public static final RegistryObject<Item> FEATURED_CANNED_MEAT = RELICS.register("featured_canned_meat", FeaturedCannedMeatItem::new);
     public static final RegistryObject<Item> SEAWEED_SALAD = RELICS.register("seaweed_salad", SeaweedSaladItem::new);
+    public static final RegistryObject<Item> ORANGE_STORM = ITEMS.register("orange_storm", OrangeStormItem::new);
+    public static final RegistryObject<Item> COFFEE_PLAINS_COFFEE_CANDY = RELICS.register("coffee_plains_coffee_candy", CoffeePlainsCoffeeCandyItem::new);
+    public static final RegistryObject<Item> SCREAMING_CHERRY = RELICS.register("screaming_cherry", ScreamingCherryItem::new);
+    public static final RegistryObject<Item> PITTS_ASSORTED_FRUITS = RELICS.register("pitts_assorted_fruits", PittsAssortedFruitsItem::new);
 
     public static final RegistryObject<Item> HOT_WATER_KETTLE = RELICS.register("hot_water_kettle", HotWaterKettleItem::new);
     public static final RegistryObject<Item> VAMPIRES_BED = RELICS.register("vampires_bed", VampiresBedItem::new);
 
     public static final RegistryObject<Item> PURE_GOLD_EXPEDITION = RELICS.register("pure_gold_expedition", PureGoldExpeditionItem::new);
-    public static final RegistryObject<Item> PITTS_ASSORTED_FRUITS = RELICS.register("pitts_assorted_fruits", PittsAssortedFruitsItem::new);
-    public static final RegistryObject<Item> SCREAMING_CHERRY = RELICS.register("screaming_cherry", ScreamingCherryItem::new);
     public static final RegistryObject<Item> PROOF_OF_LONGEVITY = RELICS.register("proof_of_longevity", ProofOfLongevityItem::new);
     public static final RegistryObject<Item> WEIRD_FLUTE = RELICS.register("weird_flute", WeirdFluteItem::new);
     public static final RegistryObject<Item> DURIN_OVERGROUND_ODYSSEY = RELICS.register("durin_overground_odyssey", DurinOvergroundOdysseyItem::new);
-    public static final RegistryObject<Item> COFFEE_PLAINS_COFFEE_CANDY = RELICS.register("coffee_plains_coffee_candy", CoffeePlainsCoffeeCandyItem::new);
 
     public static final RegistryObject<Item> HAND_OF_SPOTLESS = RELICS.register("hand_of_spotless", HandOfSwipeItem::new);
     public static final RegistryObject<Item> HAND_OF_FIREWORK = RELICS.register("hand_of_firework", HandOfFireworkItem::new);

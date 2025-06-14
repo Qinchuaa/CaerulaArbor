@@ -14,6 +14,10 @@ import java.util.function.Consumer;
 public enum Relic {
     FEATURED_CANNED_MEAT,
     SEAWEED_SALAD,
+    ORANGE_STORM,
+    COFFEE_PLAINS_COFFEE_CANDY,
+    SCREAMING_CHERRY,
+
     CURSED_EMELIGHT,
     CURSED_GLOWBODY,
     CURSED_RESEARCH,
@@ -36,9 +40,6 @@ public enum Relic {
     SURVIVOR_CONTRACT(-1, 32, -1),
     TREATY,
     SARKAZ_KING_RYLFATE,
-    UTIL_ORANGE,
-    COFFEE_PLAINS_COFFEE_CANDY,
-    SCREAMING_CHERRY,
     UTIL_MUSICBOX,
     UTIL_IRIS,
     WEIRD_FLUTE,
@@ -173,6 +174,10 @@ public enum Relic {
     public static void onRegisterItem() {
         FEATURED_CANNED_MEAT.item = ModItems.FEATURED_CANNED_MEAT.get();
         SEAWEED_SALAD.item = ModItems.SEAWEED_SALAD.get();
+        ORANGE_STORM.item = ModItems.ORANGE_STORM.get();
+        COFFEE_PLAINS_COFFEE_CANDY.item = ModItems.COFFEE_PLAINS_COFFEE_CANDY.get();
+        SCREAMING_CHERRY.item = ModItems.SCREAMING_CHERRY.get();
+
         HAND_OF_PULVERIZATION.item = ModItems.HAND_OF_PULVERIZATION.get();
     }
 }
