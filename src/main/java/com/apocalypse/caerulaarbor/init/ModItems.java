@@ -48,7 +48,7 @@ public class ModItems {
     public static final RegistryObject<Item> BLOCK_EXTENSION = block(ModBlocks.BLOCK_EXTENSION);
     public static final RegistryObject<Item> KINGS_CRYSTAL = ITEMS.register("kings_crystal", KingsCrystalItem::new);
     public static final RegistryObject<Item> BLOCK_CRYSTAL = block(ModBlocks.BLOCK_CRYSTAL);
-    public static final RegistryObject<Item> REDSTONE_INGOT = ITEMS.register("redstone_ingot", RedstoneIngotItem::new);
+    public static final RegistryObject<Item> REDSTONE_INGOT = ITEMS.register("redstone_ingot", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> THE_SPEAR = ITEMS.register("the_spear", TheSpearItem::new);
     public static final RegistryObject<Item> WEARABLE_CHEST_CHESTPLATE = ITEMS.register("wearable_chest_chestplate", () -> new WearableChestItem.Chestplate());
     public static final RegistryObject<WearableCrownItem> WEARABLE_CROWN_HELMET = ITEMS.register("wearable_crown_helmet", () -> new WearableCrownItem(ArmorItem.Type.HELMET, new Item.Properties().fireResistant()));

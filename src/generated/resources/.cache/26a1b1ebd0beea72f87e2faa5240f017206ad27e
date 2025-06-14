@@ -1,4 +1,4 @@
-// 1.20.1	2025-06-15T02:30:57.490102	Item Models: caerula_arbor
+// 1.20.1	2025-06-15T02:49:30.0787117	Item Models: caerula_arbor
 c774decfe9718a509a26f38fd7232d820f183e37 assets/caerula_arbor/models/item/chitin_axe.json
 c1be44f5472b8282f422055c575fb484519ee30a assets/caerula_arbor/models/item/chitin_boots.json
 80d6a6f5651bf7c86f684f8ae67336a2c5c5b16c assets/caerula_arbor/models/item/chitin_chestplate.json
@@ -29,6 +29,7 @@ f1873f49d4e2fa9f5ddacb992076e8794727ad43 assets/caerula_arbor/models/item/obsidi
 14c56152552b25276cf0b2acccc20a0b58c9d4eb assets/caerula_arbor/models/item/pitts_assorted_fruits.json
 f6a64f277f8523628c29115b94951dd28221fa4b assets/caerula_arbor/models/item/proof_of_longevity.json
 39033856a9047b5f197767d9309f0e72fe74f217 assets/caerula_arbor/models/item/pure_gold_expedition.json
+35620dfbc02000be513a43ae927c57b142c90d26 assets/caerula_arbor/models/item/redstone_ingot.json
 33a4c40feff71dba9d642f3ba3b895949cbb05b9 assets/caerula_arbor/models/item/screaming_cherry.json
 0fe62e874d8658eb8695d4daecd6144c5d587203 assets/caerula_arbor/models/item/seaweed_salad.json
 8ba2118621adc599258516669da5642ea8e16ec0 assets/caerula_arbor/models/item/survivor_contract.json
