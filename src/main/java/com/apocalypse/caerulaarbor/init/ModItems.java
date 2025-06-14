@@ -64,7 +64,6 @@ public class ModItems {
     public static final RegistryObject<Item> EMPTY_CAN = ITEMS.register("empty_can", EmptyCanItem::new);
     public static final RegistryObject<Item> PAPER_BAG = ITEMS.register("paper_bag", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> CAFFEINE = ITEMS.register("caffeine", CaffeineItem::new);
-    public static final RegistryObject<Item> AROMATIC_COFFEE = ITEMS.register("aromatic_coffee", AromaticCoffeeItem::new);
     public static final RegistryObject<Item> SOLO_MUSIC_BOX = ITEMS.register("solo_music_box", SoloMusicBoxItem::new);
     public static final RegistryObject<Item> MUSIC_BOX_FIXED = ITEMS.register("music_box_fixed", MusicBoxFixedItem::new);
     public static final RegistryObject<Item> REDSTONE_IRIS = block(ModBlocks.REDSTONE_IRIS);
@@ -218,6 +217,7 @@ public class ModItems {
     public static final RegistryObject<Item> COFFEE_PLAINS_COFFEE_CANDY = RELICS.register("coffee_plains_coffee_candy", CoffeePlainsCoffeeCandyItem::new);
     public static final RegistryObject<Item> SCREAMING_CHERRY = RELICS.register("screaming_cherry", ScreamingCherryItem::new);
     public static final RegistryObject<Item> PITTS_ASSORTED_FRUITS = RELICS.register("pitts_assorted_fruits", PittsAssortedFruitsItem::new);
+    public static final RegistryObject<Item> EXTRA_PUNGENT_COFFEE_BEANS = RELICS.register("extra_pungent_coffee_beans", ExtraPungentCoffeeBeansItem::new);
 
     public static final RegistryObject<Item> HOT_WATER_KETTLE = RELICS.register("hot_water_kettle", HotWaterKettleItem::new);
     public static final RegistryObject<Item> VAMPIRES_BED = RELICS.register("vampires_bed", VampiresBedItem::new);

@@ -165,12 +165,12 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         if (Relic.SCREAMING_CHERRY.gained(entity))
             if (mouseX > leftPos + 124 && mouseX < leftPos + 140 && mouseY > topPos + 76 && mouseY < topPos + 92)
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.canned_cherry").getString() + ": " + Component.translatable("item.caerula_arbor.screaming_cherry.des_1").getString()), mouseX, mouseY);
-        if (cap.PITTS_ASSORTED_FRUITS)
+        if (Relic.PITTS_ASSORTED_FRUITS.gained(entity))
             if (mouseX > leftPos + 100 && mouseX < leftPos + 116 && mouseY > topPos + 76 && mouseY < topPos + 92)
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.rainbow_candy").getString() + ": " + Component.translatable("item.caerula_arbor.rainbow_candy.description_0").getString()), mouseX, mouseY);
-        if (cap.player_util_AROMATIC)
+        if (Relic.EXTRA_PUNGENT_COFFEE_BEANS.gained(entity))
             if (mouseX > leftPos + 148 && mouseX < leftPos + 164 && mouseY > topPos + 76 && mouseY < topPos + 92)
-                guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.aromatic_coffee").getString() + ": " + Component.translatable("item.caerula_arbor.aromatic_coffee.description_0").getString()), mouseX, mouseY);
+                guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.aromatic_coffee").getString() + ": " + Component.translatable("item.caerula_arbor.extra_pungent_coffee_beans.des_1").getString()), mouseX, mouseY);
         if (Relic.UTIL_MUSICBOX.gained(entity))
             if (mouseX > leftPos + 172 && mouseX < leftPos + 188 && mouseY > topPos + 76 && mouseY < topPos + 92)
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.solo_music_box").getString() + ": " + Component.translatable("item.caerula_arbor.solo_music_box.description_0").getString()), mouseX, mouseY);
@@ -646,9 +646,9 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
             @Override
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
                 boolean result = false;
-                if (entity != null) {
-                    result = (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).PITTS_ASSORTED_FRUITS;
-                }
+//                if (entity != null) {
+//                    result = (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).PITTS_ASSORTED_FRUITS;
+//                }
                 this.visible = result;
                 super.renderWidget(guiGraphics, gx, gy, ticks);
             }
@@ -660,9 +660,9 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
             @Override
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
                 boolean result = false;
-                if (entity != null) {
-                    result = (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).player_util_AROMATIC;
-                }
+//                if (entity != null) {
+//                    result = (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).EXTRA_PUNGENT_COFFEE_BEANS;
+//                }
                 this.visible = result;
                 super.renderWidget(guiGraphics, gx, gy, ticks);
             }

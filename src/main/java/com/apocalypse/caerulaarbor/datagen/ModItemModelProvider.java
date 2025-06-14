@@ -29,6 +29,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.COFFEE_PLAINS_COFFEE_CANDY);
         simpleItem(ModItems.SCREAMING_CHERRY);
         simpleItem(ModItems.PITTS_ASSORTED_FRUITS);
+        simpleItem(ModItems.EXTRA_PUNGENT_COFFEE_BEANS);
 
         simpleItem(ModItems.HOT_WATER_KETTLE);
         simpleItem(ModItems.VAMPIRES_BED);

@@ -1,8 +1,8 @@
 package com.apocalypse.caerulaarbor.item.relic.epic;
 
+import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.item.relic.RelicItem;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
@@ -19,6 +19,7 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
@@ -53,14 +54,13 @@ public class PittsAssortedFruitsItem extends RelicItem {
     }
 
     @Override
+    public @Nullable Relic getRelic() {
+        return Relic.PITTS_ASSORTED_FRUITS;
+    }
+
+    @Override
     @ParametersAreNonnullByDefault
     public @NotNull ItemStack finishUsingItem(ItemStack pStack, Level world, LivingEntity entity) {
-        // TODO 提取到relic
-        entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
-			capability.PITTS_ASSORTED_FRUITS = true;
-			capability.syncPlayerVariables(entity);
-		});
-
         ItemStack rt = new ItemStack(ModItems.PAPER_BAG.get());
         if (super.finishUsingItem(pStack, world, entity).isEmpty()) {
             return rt;
