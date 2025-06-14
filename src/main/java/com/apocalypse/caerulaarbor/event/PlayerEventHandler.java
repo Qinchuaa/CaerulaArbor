@@ -35,7 +35,7 @@ public class PlayerEventHandler {
         var cap = player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
         cap.relics.forEach((relic, integer) -> {
             if (!relic.gained(player)) return;
-            var relicItem = relic.relic;
+            var relicItem = relic.item;
             if (relicItem instanceof IRelic iRelic) {
                 int level = iRelic.onCriticalHit(player, integer);
                 if (integer != level) {
@@ -52,7 +52,7 @@ public class PlayerEventHandler {
         var cap = player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
         cap.relics.forEach((relic, integer) -> {
             if (!relic.gained(player)) return;
-            var relicItem = relic.relic;
+            var relicItem = relic.item;
             if (relicItem instanceof IRelic iRelic) {
                 int level = iRelic.onAttack(player, integer);
                 if (integer != level) {
@@ -68,7 +68,7 @@ public class PlayerEventHandler {
         var player = event.player;
         var cap = player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
         cap.relics.forEach((relic, integer) -> {
-            if (relic.relic instanceof IRelic iRelic) {
+            if (relic.item instanceof IRelic iRelic) {
                 int level = iRelic.onPlayerTick(player, integer);
                 if (integer != level) {
                     relic.set(player, level);

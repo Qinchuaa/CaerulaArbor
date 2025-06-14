@@ -12,6 +12,8 @@ import java.util.function.Consumer;
 
 // TODO 需要在玩家获取、更新、失去藏品时，发送对应的事件
 public enum Relic {
+    FEATURED_CANNED_MEAT,
+    SEAWEED_SALAD,
     CURSED_EMELIGHT,
     CURSED_GLOWBODY,
     CURSED_RESEARCH,
@@ -34,8 +36,6 @@ public enum Relic {
     SURVIVOR_CONTRACT(-1, 32, -1),
     TREATY,
     SARKAZ_KING_RYLFATE,
-    FEATURED_CANNED_MEAT,
-    SEAWEED_SALAD,
     UTIL_ORANGE,
     COFFEE_PLAINS_COFFEE_CANDY,
     SCREAMING_CHERRY,
@@ -60,7 +60,7 @@ public enum Relic {
     public final int minLevel;
     public final int maxLevel;
     public final int defaultLevel;
-    public Item relic;
+    public Item item;
 
     Relic() {
         this(0, 1, 0);
@@ -171,6 +171,8 @@ public enum Relic {
 
     // TODO 这里的双向绑定item是不是可以优化？
     public static void onRegisterItem() {
-        HAND_OF_PULVERIZATION.relic = ModItems.HAND_OF_PULVERIZATION.get();
+        FEATURED_CANNED_MEAT.item = ModItems.FEATURED_CANNED_MEAT.get();
+        SEAWEED_SALAD.item = ModItems.SEAWEED_SALAD.get();
+        HAND_OF_PULVERIZATION.item = ModItems.HAND_OF_PULVERIZATION.get();
     }
 }

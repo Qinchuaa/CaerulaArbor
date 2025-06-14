@@ -61,7 +61,7 @@ public class LivingEventHandler {
     @SubscribeEvent
     public static void onGainRelic(RelicEvent.Gain event) {
         if (!(event.player instanceof Player player)) return;
-        if (!(event.relic.relic instanceof IRelic iRelic)) return;
+        if (!(event.relic.item instanceof IRelic iRelic)) return;
         if (player.level().isClientSide) return;
 
         for (Map.Entry<Attribute, AttributeModifier> entry : iRelic.getRelicAttributeModifiers(player).entrySet()) {
@@ -78,7 +78,7 @@ public class LivingEventHandler {
     @SubscribeEvent
     public static void onUpdateRelic(RelicEvent.Update event) {
         if (!(event.player instanceof Player player)) return;
-        if (!(event.relic.relic instanceof IRelic iRelic)) return;
+        if (!(event.relic.item instanceof IRelic iRelic)) return;
         if (player.level().isClientSide) return;
 
         for (Map.Entry<Attribute, AttributeModifier> entry : iRelic.getRelicAttributeModifiers(player).entrySet()) {
@@ -102,7 +102,7 @@ public class LivingEventHandler {
     @SubscribeEvent
     public static void onRemoveRelic(RelicEvent.Remove event) {
         if (!(event.player instanceof Player player)) return;
-        if (!(event.relic.relic instanceof IRelic iRelic)) return;
+        if (!(event.relic.item instanceof IRelic iRelic)) return;
         if (player.level().isClientSide) return;
 
         for (Map.Entry<Attribute, AttributeModifier> entry : iRelic.getRelicAttributeModifiers(player).entrySet()) {
