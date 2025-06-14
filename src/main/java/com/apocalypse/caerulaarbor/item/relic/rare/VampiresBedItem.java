@@ -37,7 +37,7 @@ public class VampiresBedItem extends RelicItem {
     @Override
     @ParametersAreNonnullByDefault
     public @NotNull InteractionResultHolder<ItemStack> use(Level world, Player entity, InteractionHand hand) {
-        Relic.UTIL_BATBED.gainAndSync(entity);
+        Relic.VAMPIRES_BED.gainAndSync(entity);
         return super.use(world, entity, hand);
     }
 

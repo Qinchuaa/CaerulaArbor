@@ -43,7 +43,7 @@ public class FeaturedCannedMeatItem extends RelicItem {
     @Override
     @ParametersAreNonnullByDefault
     public @NotNull ItemStack finishUsingItem(ItemStack pStack, Level world, LivingEntity entity) {
-        Relic.modify(entity, cap -> Relic.UTIL_MEATCAN.set(entity, 1));
+        Relic.modify(entity, cap -> Relic.FEATURED_CANNED_MEAT.set(entity, 1));
 
         ItemStack rt = new ItemStack(ModItems.EMPTY_CAN.get());
         if (super.finishUsingItem(pStack, world, entity).isEmpty()) {

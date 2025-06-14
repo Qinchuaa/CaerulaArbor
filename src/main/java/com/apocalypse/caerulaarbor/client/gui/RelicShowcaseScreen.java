@@ -138,7 +138,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         if (Relic.TREATY.gained(entity))
             if (mouseX > leftPos + 4 && mouseX < leftPos + 20 && mouseY > topPos + 52 && mouseY < topPos + 68)
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.crimson_treaty").getString() + ": " + Component.translatable("item.caerula_arbor.crimson_treaty.description_0").getString()), mouseX, mouseY);
-        if (Relic.SURVIVOR.get(entity) >= 0)
+        if (Relic.SURVIVOR_CONTRACT.get(entity) >= 0)
             if (mouseX > leftPos + 28 && mouseX < leftPos + 44 && mouseY > topPos + 52 && mouseY < topPos + 68)
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.survivor_contract").getString() + ": " + Component.translatable("item.caerula_arbor.survivor_contract.des_1").getString()), mouseX, mouseY);
         if (Relic.CURSED_EMELIGHT.gained(entity))
@@ -150,7 +150,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         if (Relic.CURSED_RESEARCH.gained(entity))
             if (mouseX > leftPos + 52 && mouseX < leftPos + 68 && mouseY > topPos + 196 && mouseY < topPos + 212)
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.relic_cursed_research").getString() + ": " + Component.translatable("item.caerula_arbor.relic_cursed_research.description_0").getString()), mouseX, mouseY);
-        if (Relic.UTIL_MEATCAN.gained(entity))
+        if (Relic.FEATURED_CANNED_MEAT.gained(entity))
             if (mouseX > leftPos + 4 && mouseX < leftPos + 20 && mouseY > topPos + 76 && mouseY < topPos + 92)
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.meat_can").getString() + ": " + Component.translatable("item.caerula_arbor.meat_can.description_0").getString()), mouseX, mouseY);
         if (Relic.UTIL_SEAGRASS.gained(entity))
@@ -162,10 +162,10 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         if (Relic.COFFEE_PLAINS_COFFEE_CANDY.gained(entity))
             if (mouseX > leftPos + 76 && mouseX < leftPos + 92 && mouseY > topPos + 76 && mouseY < topPos + 92)
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.coffee_candy").getString() + ": " + Component.translatable("item.caerula_arbor.coffee_plains_coffee_candy.des_1").getString()), mouseX, mouseY);
-        if (Relic.UTIL_BERRIES.gained(entity))
+        if (Relic.SCREAMING_CHERRY.gained(entity))
             if (mouseX > leftPos + 124 && mouseX < leftPos + 140 && mouseY > topPos + 76 && mouseY < topPos + 92)
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.canned_cherry").getString() + ": " + Component.translatable("item.caerula_arbor.screaming_cherry.des_1").getString()), mouseX, mouseY);
-        if (cap.player_util_RAINBOW)
+        if (cap.PITTS_ASSORTED_FRUITS)
             if (mouseX > leftPos + 100 && mouseX < leftPos + 116 && mouseY > topPos + 76 && mouseY < topPos + 92)
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.rainbow_candy").getString() + ": " + Component.translatable("item.caerula_arbor.rainbow_candy.description_0").getString()), mouseX, mouseY);
         if (cap.player_util_AROMATIC)
@@ -177,19 +177,19 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         if (Relic.UTIL_IRIS.gained(entity))
             if (mouseX > leftPos + 220 && mouseX < leftPos + 236 && mouseY > topPos + 76 && mouseY < topPos + 92)
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.redstone_iris_flower").getString() + ": " + Component.translatable("item.caerula_arbor.redstone_iris_flower.description_0").getString()), mouseX, mouseY);
-        if (Relic.UTIL_FLUTE.gained(entity))
+        if (Relic.WEIRD_FLUTE.gained(entity))
             if (mouseX > leftPos + 196 && mouseX < leftPos + 212 && mouseY > topPos + 76 && mouseY < topPos + 92)
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.odd_flute").getString() + ": " + Component.translatable("item.caerula_arbor.weird_flute.des_1").getString()), mouseX, mouseY);
-        if (Relic.UTIL_VOYGOLD.gained(entity))
+        if (Relic.PURE_GOLD_EXPEDITION.gained(entity))
             if (mouseX > leftPos + 244 && mouseX < leftPos + 260 && mouseY > topPos + 76 && mouseY < topPos + 92)
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.pure_gold_expedition").getString() + ": " + Component.translatable("item.caerula_arbor.voyage_of_gold.description_0").getString()), mouseX, mouseY);
-        if (Relic.UTIL_DURIN.gained(entity))
+        if (Relic.DURIN_OVERGROUND_ODYSSEY.gained(entity))
             if (mouseX > leftPos + 268 && mouseX < leftPos + 284 && mouseY > topPos + 76 && mouseY < topPos + 92)
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.piglin_diary").getString() + ": " + Component.translatable("item.caerula_arbor.durin_overground_odyssey.des_1").getString()), mouseX, mouseY);
         if (Relic.UTIL_TOPONYM.gained(entity))
             if (mouseX > leftPos + 292 && mouseX < leftPos + 308 && mouseY > topPos + 76 && mouseY < topPos + 92)
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.toponym_textology").getString() + ": " + Component.translatable("item.caerula_arbor.toponym_textology.description_0").getString()), mouseX, mouseY);
-        if (Relic.UTIL_KETTLE.gained(entity))
+        if (Relic.HOT_WATER_KETTLE.gained(entity))
             if (mouseX > leftPos + 4 && mouseX < leftPos + 20 && mouseY > topPos + 100 && mouseY < topPos + 116)
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.kettle").getString() + ": " + Component.translatable("item.caerula_arbor.kettle.description_0").getString()), mouseX, mouseY);
         if (Relic.LEGEND_CHITIN.gained(entity))
@@ -198,7 +198,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         if (Relic.UTIL_ALLEY.gained(entity))
             if (mouseX > leftPos + 28 && mouseX < leftPos + 44 && mouseY > topPos + 100 && mouseY < topPos + 116)
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.allay_sculpture").getString() + ": " + Component.translatable("item.caerula_arbor.allay_sculpture.description_0").getString()), mouseX, mouseY);
-        if (Relic.UTIL_BATBED.gained(entity))
+        if (Relic.VAMPIRES_BED.gained(entity))
             if (mouseX > leftPos + 52 && mouseX < leftPos + 68 && mouseY > topPos + 100 && mouseY < topPos + 116)
                 guiGraphics.renderTooltip(font, Component.literal(Component.translatable("item.caerula_arbor.bat_bed").getString() + ": " + Component.translatable("item.caerula_arbor.bat_bed.description_0").getString()), mouseX, mouseY);
         if (Relic.UTIL_OMNIKEY.gained(entity))
@@ -231,13 +231,13 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
 
         guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/relic_bg.png"), this.leftPos, this.topPos, 0, 0, 328, 216, 328, 216);
 
-        if (Relic.UTIL_DURIN.gained(entity)) {
+        if (Relic.DURIN_OVERGROUND_ODYSSEY.gained(entity)) {
             guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/durin_overground_odyssey.png"), this.leftPos + 268, this.topPos + 76, 0, 0, 16, 16, 16, 16);
         }
         if (Relic.UTIL_ALLEY.gained(entity)) {
             guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/stonealley.png"), this.leftPos + 28, this.topPos + 100, 0, 0, 16, 16, 16, 16);
         }
-        if (Relic.UTIL_BATBED.gained(entity)) {
+        if (Relic.VAMPIRES_BED.gained(entity)) {
             guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/vampires_bed.png"), this.leftPos + 52, this.topPos + 100, 0, 0, 16, 16, 16, 16);
         }
         if (Relic.UTIL_OMNIKEY.gained(entity)) {
@@ -279,8 +279,8 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
             guiGraphics.drawString(this.font, msg, 157, 36, -16777165, false);
             guiGraphics.drawString(this.font, msg, 156, 36, -1, false);
         }
-        if (Relic.SURVIVOR.get(entity) >= 0) {
-            String msg = "" + Relic.SURVIVOR.get(entity);
+        if (Relic.SURVIVOR_CONTRACT.get(entity) >= 0) {
+            String msg = "" + Relic.SURVIVOR_CONTRACT.get(entity);
             guiGraphics.drawString(this.font, msg, 37, 60, -12829636, false);
             guiGraphics.drawString(this.font, msg, 36, 60, -1, false);
         }
@@ -525,7 +525,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
                 boolean result = false;
                 if (entity != null) {
-                    result = Relic.SURVIVOR.get(entity) >= 0;
+                    result = Relic.SURVIVOR_CONTRACT.get(entity) >= 0;
                 }
                 this.visible = result;
                 super.renderWidget(guiGraphics, gx, gy, ticks);
@@ -579,7 +579,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
         }) {
             @Override
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
-                this.visible = Relic.UTIL_MEATCAN.gained(entity);
+                this.visible = Relic.FEATURED_CANNED_MEAT.gained(entity);
                 super.renderWidget(guiGraphics, gx, gy, ticks);
             }
         };
@@ -633,7 +633,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
                 boolean result = false;
                 if (entity != null) {
-                    result = Relic.UTIL_BERRIES.gained(entity);
+                    result = Relic.SCREAMING_CHERRY.gained(entity);
                 }
                 this.visible = result;
                 super.renderWidget(guiGraphics, gx, gy, ticks);
@@ -647,7 +647,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
                 boolean result = false;
                 if (entity != null) {
-                    result = (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).player_util_RAINBOW;
+                    result = (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).PITTS_ASSORTED_FRUITS;
                 }
                 this.visible = result;
                 super.renderWidget(guiGraphics, gx, gy, ticks);
@@ -703,7 +703,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
                 boolean result = false;
                 if (entity != null) {
-                    result = Relic.UTIL_FLUTE.gained(entity);
+                    result = Relic.WEIRD_FLUTE.gained(entity);
                 }
                 this.visible = result;
                 super.renderWidget(guiGraphics, gx, gy, ticks);
@@ -717,7 +717,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
                 boolean result = false;
                 if (entity != null) {
-                    result = Relic.UTIL_VOYGOLD.gained(entity);
+                    result = Relic.PURE_GOLD_EXPEDITION.gained(entity);
                 }
                 this.visible = result;
                 super.renderWidget(guiGraphics, gx, gy, ticks);
@@ -747,7 +747,7 @@ public class RelicShowcaseScreen extends AbstractContainerScreen<RelicShowcaseMe
             public void renderWidget(@NotNull GuiGraphics guiGraphics, int gx, int gy, float ticks) {
                 boolean result = false;
                 if (entity != null) {
-                    result = Relic.UTIL_KETTLE.gained(entity);
+                    result = Relic.HOT_WATER_KETTLE.gained(entity);
                 }
                 this.visible = result;
                 super.renderWidget(guiGraphics, gx, gy, ticks);

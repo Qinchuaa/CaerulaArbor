@@ -34,7 +34,7 @@ public class ProofOfLongevityItem extends RelicItem {
     @Override
     @ParametersAreNonnullByDefault
     public @NotNull InteractionResultHolder<ItemStack> use(Level pLevel, @NotNull Player pPlayer, InteractionHand hand) {
-        Relic.UTIL_LONGEVITY.gainAndSync(pPlayer);
+        Relic.PROOF_OF_LONGEVITY.gainAndSync(pPlayer);
 
         pPlayer.getItemInHand(hand).shrink(1);
         return super.use(pLevel, pPlayer, hand);

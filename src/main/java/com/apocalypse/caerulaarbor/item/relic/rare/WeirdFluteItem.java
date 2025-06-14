@@ -64,7 +64,7 @@ public class WeirdFluteItem extends RelicItem {
 
     @Override
     public @Nullable Relic getRelic() {
-        return Relic.UTIL_FLUTE;
+        return Relic.WEIRD_FLUTE;
     }
 
     @Override

@@ -40,7 +40,7 @@ public class ScreamingCherryItem extends BlockItem implements IRelic {
     @Override
     @ParametersAreNonnullByDefault
     public @NotNull ItemStack finishUsingItem(ItemStack pStack, Level world, LivingEntity entity) {
-        Relic.modify(entity, cap -> Relic.UTIL_BERRIES.gain(entity));
+        Relic.modify(entity, cap -> Relic.SCREAMING_CHERRY.gain(entity));
 
         ItemStack rt = new ItemStack(Items.GLASS_BOTTLE);
         if (super.finishUsingItem(pStack, world, entity).isEmpty()) {

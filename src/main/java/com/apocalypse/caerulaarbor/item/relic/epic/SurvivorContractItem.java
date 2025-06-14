@@ -38,8 +38,8 @@ public class SurvivorContractItem extends RelicItem {
     @ParametersAreNonnullByDefault
     public @NotNull InteractionResultHolder<ItemStack> use(Level world, @NotNull Player entity, InteractionHand hand) {
         ItemStack itemstack = entity.getItemInHand(hand);
-        if (Relic.SURVIVOR.get(entity) < 0) {
-            Relic.SURVIVOR.set(entity, 0);
+        if (Relic.SURVIVOR_CONTRACT.get(entity) < 0) {
+            Relic.SURVIVOR_CONTRACT.set(entity, 0);
 
             entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(c -> c.syncPlayerVariables(entity));
             return super.use(world, entity, hand);

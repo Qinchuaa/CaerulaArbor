@@ -80,7 +80,7 @@ public class CaerulaArborModVariables {
             clone.disoclusion = original.disoclusion;
             clone.show_stats = original.show_stats;
             clone.kingShowPtc = original.kingShowPtc;
-            clone.player_util_RAINBOW = original.player_util_RAINBOW;
+            clone.PITTS_ASSORTED_FRUITS = original.PITTS_ASSORTED_FRUITS;
             clone.player_util_AROMATIC = original.player_util_AROMATIC;
 
             for (var relic : Relic.values()) {
@@ -300,7 +300,7 @@ public class CaerulaArborModVariables {
         public int disoclusion = 0;
         public boolean show_stats = false;
         public boolean kingShowPtc = true;
-        public boolean player_util_RAINBOW = false;
+        public boolean PITTS_ASSORTED_FRUITS = false;
         public boolean player_util_AROMATIC = false;
         public ItemStack chitin_knife_selected = ItemStack.EMPTY;
         public double player_king_suit = 0;
@@ -323,7 +323,7 @@ public class CaerulaArborModVariables {
             nbt.putInt("disoclusion", disoclusion);
             nbt.putBoolean("show_stats", show_stats);
             nbt.putBoolean("kingShowPtc", kingShowPtc);
-            nbt.putBoolean("player_util_RAINBOW", player_util_RAINBOW);
+            nbt.putBoolean("player_util_RAINBOW", PITTS_ASSORTED_FRUITS);
             nbt.putBoolean("player_util_AROMATIC", player_util_AROMATIC);
 
             for (var relic : Relic.values()) {
@@ -348,7 +348,7 @@ public class CaerulaArborModVariables {
             disoclusion = nbt.getInt("disoclusion");
             show_stats = nbt.getBoolean("show_stats");
             kingShowPtc = nbt.getBoolean("kingShowPtc");
-            player_util_RAINBOW = nbt.getBoolean("player_util_RAINBOW");
+            PITTS_ASSORTED_FRUITS = nbt.getBoolean("player_util_RAINBOW");
             player_util_AROMATIC = nbt.getBoolean("player_util_AROMATIC");
 
             for (var relic : Relic.values()) {
@@ -392,7 +392,7 @@ public class CaerulaArborModVariables {
                     variables.disoclusion = message.data.disoclusion;
                     variables.show_stats = message.data.show_stats;
                     variables.kingShowPtc = message.data.kingShowPtc;
-                    variables.player_util_RAINBOW = message.data.player_util_RAINBOW;
+                    variables.PITTS_ASSORTED_FRUITS = message.data.PITTS_ASSORTED_FRUITS;
                     variables.player_util_AROMATIC = message.data.player_util_AROMATIC;
 
                     for (var relic : Relic.values()) {

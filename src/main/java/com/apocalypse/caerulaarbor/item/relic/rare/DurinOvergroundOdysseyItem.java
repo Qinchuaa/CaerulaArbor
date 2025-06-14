@@ -38,7 +38,7 @@ public class DurinOvergroundOdysseyItem extends RelicItem {
 
     @Override
     public @Nullable Relic getRelic() {
-        return Relic.UTIL_DURIN;
+        return Relic.DURIN_OVERGROUND_ODYSSEY;
     }
 
     @Override

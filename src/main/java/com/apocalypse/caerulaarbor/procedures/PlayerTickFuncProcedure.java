@@ -251,10 +251,10 @@ public class PlayerTickFuncProcedure {
                 }
             }
         }
-        if (Relic.SURVIVOR.get(cap) > 0) {
+        if (Relic.SURVIVOR_CONTRACT.get(cap) > 0) {
             if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide()) {
                 _entity.addEffect(new MobEffectInstance(ModMobEffects.SURVIVORS_GUIDE.get(), 40,
-                        Relic.SURVIVOR.get(cap) - 1, false, false));
+                        Relic.SURVIVOR_CONTRACT.get(cap) - 1, false, false));
             }
         }
         if (cap.lives > cap.maxLive) {

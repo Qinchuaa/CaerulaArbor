@@ -40,7 +40,7 @@ public class PureGoldExpeditionItem extends RelicItem {
 
     @Override
     public @Nullable Relic getRelic() {
-        return Relic.UTIL_VOYGOLD;
+        return Relic.PURE_GOLD_EXPEDITION;
     }
 
     @Override
@@ -50,7 +50,6 @@ public class PureGoldExpeditionItem extends RelicItem {
         if (!pLevel.isClientSide) {
             entity.addEffect(new MobEffectInstance(ModMobEffects.ADD_REACH.get(), 400, 1, false, false));
         }
-
     }
 
     @Override

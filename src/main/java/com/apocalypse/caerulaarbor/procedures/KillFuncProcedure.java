@@ -146,8 +146,8 @@ public class KillFuncProcedure {
 //                    });
                 }
             }
-            if (Relic.SURVIVOR.get(cap) >= 0 && Relic.SURVIVOR.get(cap) < 32 && Math.random() < 0.02) {
-                Relic.SURVIVOR.set(cap, Relic.SURVIVOR.get(cap) + 1);
+            if (Relic.SURVIVOR_CONTRACT.get(cap) >= 0 && Relic.SURVIVOR_CONTRACT.get(cap) < 32 && Math.random() < 0.02) {
+                Relic.SURVIVOR_CONTRACT.set(cap, Relic.SURVIVOR_CONTRACT.get(cap) + 1);
                 cap.syncPlayerVariables(sourceentity);
 
 //                sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
