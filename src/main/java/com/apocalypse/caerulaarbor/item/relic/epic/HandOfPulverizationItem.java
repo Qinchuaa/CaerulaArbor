@@ -22,6 +22,9 @@ import java.util.UUID;
 
 public class HandOfPulverizationItem extends RelicItem {
 
+    // TODO 换一个更好的方式存储所需的NBT
+    public static final String TAG = "HandOfPulverizationTime";
+
     public HandOfPulverizationItem() {
         super(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC));
     }
@@ -47,7 +50,22 @@ public class HandOfPulverizationItem extends RelicItem {
         return level;
     }
 
-    // TODO 想个办法让这个attribute在8s后消失
+    @Override
+    public int onAttack(Player player, int level) {
+        player.getPersistentData().putInt(TAG, 160);
+        return super.onAttack(player, level);
+    }
+
+    @Override
+    public int onPlayerTick(Player player, int level) {
+        if (player.getPersistentData().getInt(TAG) > 0) {
+            player.getPersistentData().putInt(TAG, player.getPersistentData().getInt(TAG) - 1);
+            return super.onPlayerTick(player, level);
+        } else {
+            return 0;
+        }
+    }
+
     @Override
     public @NotNull Map<Attribute, AttributeModifier> getRelicAttributeModifiers(Player player) {
         int level = Math.max(0, Relic.getLevel(player, this.getRelic()));

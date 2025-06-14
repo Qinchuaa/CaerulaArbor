@@ -17,7 +17,9 @@ import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
+import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
+import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.CriticalHitEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -35,7 +37,42 @@ public class PlayerEventHandler {
             if (!relic.gained(player)) return;
             var relicItem = relic.relic;
             if (relicItem instanceof IRelic iRelic) {
-                relic.set(player, iRelic.onCriticalHit(player, integer));
+                int level = iRelic.onCriticalHit(player, integer);
+                if (integer != level) {
+                    relic.set(player, level);
+                }
+            }
+        });
+    }
+
+    @SubscribeEvent
+    public static void onPlayerAttack(AttackEntityEvent event) {
+        var player = event.getEntity();
+
+        var cap = player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
+        cap.relics.forEach((relic, integer) -> {
+            if (!relic.gained(player)) return;
+            var relicItem = relic.relic;
+            if (relicItem instanceof IRelic iRelic) {
+                int level = iRelic.onAttack(player, integer);
+                if (integer != level) {
+                    relic.set(player, level);
+                }
+            }
+        });
+    }
+
+    @SubscribeEvent
+    public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
+        if (event.phase != TickEvent.Phase.END) return;
+        var player = event.player;
+        var cap = player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
+        cap.relics.forEach((relic, integer) -> {
+            if (relic.relic instanceof IRelic iRelic) {
+                int level = iRelic.onPlayerTick(player, integer);
+                if (integer != level) {
+                    relic.set(player, level);
+                }
             }
         });
     }

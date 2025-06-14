@@ -17,12 +17,20 @@ public interface IRelic {
         return null;
     }
 
+    default int onAttack(Player player, int level) {
+        return level;
+    }
+
     default int onCriticalHit(Player player, int level) {
-        return 0;
+        return level;
     }
 
     @NotNull
     default Map<Attribute, AttributeModifier> getRelicAttributeModifiers(Player player) {
         return new HashMap<>();
+    }
+
+    default int onPlayerTick(Player player, int level) {
+        return level;
     }
 }
