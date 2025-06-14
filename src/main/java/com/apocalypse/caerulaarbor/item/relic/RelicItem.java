@@ -96,7 +96,7 @@ public abstract class RelicItem extends Item implements IRelic {
                 Minecraft.getInstance().gameRenderer.displayItemActivation(stack);
             }
 
-            relic.gain(cap);
+            relic.gain(entity);
         }
 
         cap.syncPlayerVariables(entity);

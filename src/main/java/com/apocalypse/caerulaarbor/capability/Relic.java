@@ -1,10 +1,12 @@
 package com.apocalypse.caerulaarbor.capability;
 
+import com.apocalypse.caerulaarbor.api.event.RelicEvent;
 import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.Item;
+import net.minecraftforge.common.MinecraftForge;
 
 import java.util.function.Consumer;
 
@@ -99,23 +101,37 @@ public enum Relic {
 
     public void set(Entity player, int level) {
         player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
-                .ifPresent(c -> set(c, level));
+                .ifPresent(c -> {
+                    if (level == this.defaultLevel) {
+                        remove(player);
+                    } else {
+                        set(c, level);
+                    }
+                });
     }
 
     public void set(CaerulaArborModVariables.PlayerVariables variables, int level) {
-        if (level == defaultLevel) {
-            variables.relics.remove(this);
-            return;
-        }
         variables.relics.put(this, Mth.clamp(level, minLevel, maxLevel));
     }
 
     public void gain(Entity player) {
         set(player, 1);
+        MinecraftForge.EVENT_BUS.post(new RelicEvent.Gain(player, this));
     }
 
+    // TODO 尽量不用这个，需要发event
     public void gain(CaerulaArborModVariables.PlayerVariables variables) {
         set(variables, 1);
+    }
+
+    public void remove(Entity player) {
+        player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                .ifPresent(this::remove);
+        MinecraftForge.EVENT_BUS.post(new RelicEvent.Remove(player, this));
+    }
+
+    public void remove(CaerulaArborModVariables.PlayerVariables variables) {
+        variables.relics.remove(this);
     }
 
     public static void modify(Entity player, Consumer<CaerulaArborModVariables.PlayerVariables> operation) {
@@ -125,6 +141,12 @@ public enum Relic {
     public static void modify(CaerulaArborModVariables.PlayerVariables cap, Entity player, Consumer<CaerulaArborModVariables.PlayerVariables> operation) {
         operation.accept(cap);
         cap.syncPlayerVariables(player);
+    }
+
+    public static int getLevel(Entity player, Relic relic) {
+        return player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                .map(relic::get)
+                .orElse(relic.defaultLevel);
     }
 
     public void modify(Entity player, int value) {

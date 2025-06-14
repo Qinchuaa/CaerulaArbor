@@ -5,6 +5,9 @@ import com.apocalypse.caerulaarbor.item.relic.RelicItem;
 import net.minecraft.ChatFormatting;
 import net.minecraft.network.chat.Component;
 import net.minecraft.tags.ItemTags;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -12,9 +15,10 @@ import net.minecraft.world.item.Rarity;
 import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.level.Level;
 import org.jetbrains.annotations.NotNull;
-import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
+import java.util.Map;
+import java.util.UUID;
 
 public class HandOfPulverizationItem extends RelicItem {
 
@@ -30,7 +34,7 @@ public class HandOfPulverizationItem extends RelicItem {
     }
 
     @Override
-    public @Nullable Relic getRelic() {
+    public @NotNull Relic getRelic() {
         return Relic.HAND_OF_PULVERIZATION;
     }
 
@@ -41,5 +45,14 @@ public class HandOfPulverizationItem extends RelicItem {
             if (level < 8) level++;
         }
         return level;
+    }
+
+    @Override
+    public @NotNull Map<Attribute, AttributeModifier> getRelicAttributeModifiers(Player player) {
+        int level = Math.max(0, Relic.getLevel(player, this.getRelic()));
+        var map = super.getRelicAttributeModifiers(player);
+        map.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(UUID.fromString(this.getRelic().toString()), "Relic Item Modifier",
+                0.2 * level, AttributeModifier.Operation.MULTIPLY_BASE));
+        return map;
     }
 }

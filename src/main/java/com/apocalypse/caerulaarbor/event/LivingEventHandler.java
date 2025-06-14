@@ -1,8 +1,10 @@
 package com.apocalypse.caerulaarbor.event;
 
+import com.apocalypse.caerulaarbor.api.event.RelicEvent;
 import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.init.ModDamageTypes;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
+import net.minecraft.network.chat.Component;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -49,5 +51,11 @@ public class LivingEventHandler {
                     }
                 }
         );
+    }
+
+    @SubscribeEvent
+    public static void onGainRelic(RelicEvent.Gain event) {
+        if (!(event.player instanceof Player player)) return;
+        player.displayClientMessage(Component.literal("Relic " + event.relic + "Gained"), false);
     }
 }
