@@ -1,6 +1,7 @@
 package com.apocalypse.caerulaarbor.event;
 
 import com.apocalypse.caerulaarbor.capability.ModCapabilities;
+import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.init.ModGameRules;
 import com.apocalypse.caerulaarbor.init.ModParticleTypes;
 import com.apocalypse.caerulaarbor.init.ModSounds;
@@ -14,6 +15,7 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.CriticalHitEvent;
@@ -43,6 +45,11 @@ public class PlayerEventHandler {
         LivingEntity entity = event.getEntity();
         if (!(entity instanceof Player player)) return;
         Level level = player.level();
+
+        if (!level.getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY) && !level.isClientSide) {
+            Relic.modify(player, relicCap -> relicCap.relics.forEach(((relic, integer) -> relic.remove(player))));
+        }
+
         var source = event.getSource();
         if (source.is(DamageTypes.GENERIC_KILL)) return;
 
@@ -83,7 +90,7 @@ public class PlayerEventHandler {
         cap.light = Math.max(0, cap.light - lightCost);
         cap.syncPlayerVariables(player);
 
-        if (shouldCancel && level.getLevelData().getGameRules().getBoolean(ModGameRules.TARGET_LIFE_FUNCTION)) {
+        if (shouldCancel && level.getGameRules().getBoolean(ModGameRules.TARGET_LIFE_FUNCTION)) {
             event.setCanceled(true);
             player.setHealth(player.getMaxHealth() * 0.5f);
             player.getCapability(ModCapabilities.SANITY_INJURY).ifPresent(capability -> capability.setValue(1000));
