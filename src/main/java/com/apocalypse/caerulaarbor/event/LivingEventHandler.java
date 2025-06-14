@@ -4,15 +4,20 @@ import com.apocalypse.caerulaarbor.api.event.RelicEvent;
 import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.init.ModDamageTypes;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
-import net.minecraft.network.chat.Component;
+import com.apocalypse.caerulaarbor.item.relic.IRelic;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.ai.attributes.Attribute;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.player.Player;
 import net.minecraftforge.event.entity.living.LivingEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+
+import java.util.Map;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE)
 public class LivingEventHandler {
@@ -56,6 +61,55 @@ public class LivingEventHandler {
     @SubscribeEvent
     public static void onGainRelic(RelicEvent.Gain event) {
         if (!(event.player instanceof Player player)) return;
-        player.displayClientMessage(Component.literal("Relic " + event.relic + "Gained"), false);
+        if (!(event.relic.relic instanceof IRelic iRelic)) return;
+        if (player.level().isClientSide) return;
+
+        for (Map.Entry<Attribute, AttributeModifier> entry : iRelic.getRelicAttributeModifiers(player).entrySet()) {
+            AttributeInstance attributeinstance = player.getAttributes().getInstance(entry.getKey());
+            if (attributeinstance != null) {
+                AttributeModifier attributemodifier = entry.getValue();
+                attributeinstance.removeModifier(attributemodifier);
+                attributeinstance.addPermanentModifier(new AttributeModifier(attributemodifier.getId(), attributemodifier.getName(),
+                        attributemodifier.getAmount(), attributemodifier.getOperation()));
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onUpdateRelic(RelicEvent.Update event) {
+        if (!(event.player instanceof Player player)) return;
+        if (!(event.relic.relic instanceof IRelic iRelic)) return;
+        if (player.level().isClientSide) return;
+
+        for (Map.Entry<Attribute, AttributeModifier> entry : iRelic.getRelicAttributeModifiers(player).entrySet()) {
+            AttributeInstance attributeinstance = player.getAttributes().getInstance(entry.getKey());
+            if (attributeinstance != null) {
+                attributeinstance.removeModifier(entry.getValue());
+            }
+        }
+
+        for (Map.Entry<Attribute, AttributeModifier> entry : iRelic.getRelicAttributeModifiers(player).entrySet()) {
+            AttributeInstance attributeinstance = player.getAttributes().getInstance(entry.getKey());
+            if (attributeinstance != null) {
+                AttributeModifier attributemodifier = entry.getValue();
+                attributeinstance.removeModifier(attributemodifier);
+                attributeinstance.addPermanentModifier(new AttributeModifier(attributemodifier.getId(), attributemodifier.getName(),
+                        attributemodifier.getAmount(), attributemodifier.getOperation()));
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onRemoveRelic(RelicEvent.Remove event) {
+        if (!(event.player instanceof Player player)) return;
+        if (!(event.relic.relic instanceof IRelic iRelic)) return;
+        if (player.level().isClientSide) return;
+
+        for (Map.Entry<Attribute, AttributeModifier> entry : iRelic.getRelicAttributeModifiers(player).entrySet()) {
+            AttributeInstance attributeinstance = player.getAttributes().getInstance(entry.getKey());
+            if (attributeinstance != null) {
+                attributeinstance.removeModifier(entry.getValue());
+            }
+        }
     }
 }

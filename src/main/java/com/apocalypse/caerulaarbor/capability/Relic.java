@@ -10,6 +10,7 @@ import net.minecraftforge.common.MinecraftForge;
 
 import java.util.function.Consumer;
 
+// TODO 需要在玩家获取、更新、失去藏品时，发送对应的事件
 public enum Relic {
     CURSED_EMELIGHT,
     CURSED_GLOWBODY,
@@ -106,6 +107,9 @@ public enum Relic {
                         remove(player);
                     } else {
                         set(c, level);
+                        if (Relic.getLevel(player, this) != level) {
+                            MinecraftForge.EVENT_BUS.post(new RelicEvent.Update(player, this));
+                        }
                     }
                 });
     }

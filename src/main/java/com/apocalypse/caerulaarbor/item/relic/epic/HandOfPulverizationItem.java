@@ -51,8 +51,8 @@ public class HandOfPulverizationItem extends RelicItem {
     public @NotNull Map<Attribute, AttributeModifier> getRelicAttributeModifiers(Player player) {
         int level = Math.max(0, Relic.getLevel(player, this.getRelic()));
         var map = super.getRelicAttributeModifiers(player);
-        map.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(UUID.fromString(this.getRelic().toString()), "Relic Item Modifier",
-                0.2 * level, AttributeModifier.Operation.MULTIPLY_BASE));
+        map.put(Attributes.ATTACK_DAMAGE, new AttributeModifier(new UUID(this.getRelic().toString().hashCode(), 0), "Relic Item Modifier",
+                0.2 * level, AttributeModifier.Operation.MULTIPLY_TOTAL));
         return map;
     }
 }

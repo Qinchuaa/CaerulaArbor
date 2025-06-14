@@ -23,6 +23,13 @@ public class RelicEvent extends Event {
         }
     }
 
+    public static class Update extends RelicEvent {
+
+        public Update(Entity player, Relic relic) {
+            super(player, relic);
+        }
+    }
+
     public static class Remove extends RelicEvent {
 
         public Remove(Entity player, Relic relic) {

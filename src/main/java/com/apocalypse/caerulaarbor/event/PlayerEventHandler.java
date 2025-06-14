@@ -46,6 +46,7 @@ public class PlayerEventHandler {
         if (!(entity instanceof Player player)) return;
         Level level = player.level();
 
+        // TODO 想个办法，一键清空全部relic并保存
         if (!level.getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY) && !level.isClientSide) {
             Relic.modify(player, relicCap -> relicCap.relics.forEach(((relic, integer) -> relic.remove(player))));
         }
