@@ -18,7 +18,6 @@ public class ModMobEffects {
 	public static final RegistryObject<MobEffect> KINGS_BOOST = REGISTRY.register("kings_boost", KingsBoostMobEffect::new);
 	public static final RegistryObject<MobEffect> SPEAR_FIGHT = REGISTRY.register("spear_fight", SpearFightMobEffect::new);
 	public static final RegistryObject<MobEffect> HANDS_SPEED = REGISTRY.register("hands_speed", HandsSpeedMobEffect::new);
-	public static final RegistryObject<MobEffect> BUTCHERS_POWER = REGISTRY.register("butchers_power", ButchersPowerMobEffect::new);
 	public static final RegistryObject<MobEffect> WIPE_DUSTS = REGISTRY.register("wipe_dusts", WipeDustsMobEffect::new);
 	public static final RegistryObject<MobEffect> SACREFICE = REGISTRY.register("sacrefice", SacreficeMobEffect::new);
 	public static final RegistryObject<MobEffect> ENGRAVED_TRIUMPH = REGISTRY.register("engraved_triumph", EngravedTriumphMobEffect::new);

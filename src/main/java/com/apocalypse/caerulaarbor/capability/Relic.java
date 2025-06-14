@@ -107,9 +107,7 @@ public enum Relic {
                         remove(player);
                     } else {
                         set(c, level);
-                        if (Relic.getLevel(player, this) != level) {
-                            MinecraftForge.EVENT_BUS.post(new RelicEvent.Update(player, this));
-                        }
+                        MinecraftForge.EVENT_BUS.post(new RelicEvent.Update(player, this));
                     }
                 });
     }

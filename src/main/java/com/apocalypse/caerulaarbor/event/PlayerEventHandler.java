@@ -46,9 +46,13 @@ public class PlayerEventHandler {
         if (!(entity instanceof Player player)) return;
         Level level = player.level();
 
-        // TODO 想个办法，一键清空全部relic并保存
+        var cap = player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
+
         if (!level.getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY) && !level.isClientSide) {
-            Relic.modify(player, relicCap -> relicCap.relics.forEach(((relic, integer) -> relic.remove(player))));
+            for (var relic : Relic.values()) {
+                relic.remove(player);
+            }
+            cap.syncPlayerVariables(player);
         }
 
         var source = event.getSource();
@@ -61,8 +65,6 @@ public class PlayerEventHandler {
         double lightCost = 0;
         double dx;
         double dz;
-
-        var cap = player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
 
         if (cap.shield > 0) {
             cap.shield -= 1;

@@ -47,6 +47,7 @@ public class HandOfPulverizationItem extends RelicItem {
         return level;
     }
 
+    // TODO 想个办法让这个attribute在8s后消失
     @Override
     public @NotNull Map<Attribute, AttributeModifier> getRelicAttributeModifiers(Player player) {
         int level = Math.max(0, Relic.getLevel(player, this.getRelic()));
