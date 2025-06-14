@@ -39,7 +39,6 @@ public class HandOfPulverizationItem extends RelicItem {
         ItemStack stack = player.getMainHandItem();
         if (stack.is(ItemTags.AXES)) {
             if (level < 8) level++;
-            player.displayClientMessage(Component.literal("Level: " + level), true);
         }
         return level;
     }

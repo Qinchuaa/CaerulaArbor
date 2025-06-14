@@ -1,5 +1,6 @@
 package com.apocalypse.caerulaarbor;
 
+import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.config.CommonConfig;
 import com.apocalypse.caerulaarbor.init.*;
 import net.minecraft.network.FriendlyByteBuf;
@@ -113,5 +114,6 @@ public class CaerulaArborMod {
                 Ingredient.of(Items.GLOWSTONE_DUST), PotionUtils.setPotion(new ItemStack(Items.POTION), ModPotions.INST_SANITY_II.get())));
         event.enqueueWork(() -> BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), ModPotions.SANITY_CURE.get())),
                 Ingredient.of(Items.GLOWSTONE_DUST), PotionUtils.setPotion(new ItemStack(Items.POTION), ModPotions.SANITY_CURE_II.get())));
+        event.enqueueWork(Relic::onRegisterItem);
     }
 }

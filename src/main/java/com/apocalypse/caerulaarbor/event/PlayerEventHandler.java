@@ -1,5 +1,6 @@
 package com.apocalypse.caerulaarbor.event;
 
+import com.apocalypse.caerulaarbor.item.relic.IRelic;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraftforge.event.entity.player.CriticalHitEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -16,11 +17,10 @@ public class PlayerEventHandler {
         var cap = player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
         cap.relics.forEach((relic, integer) -> {
             if (!relic.gained(player)) return;
-            // TODO 实现通用暴击处理方法
-//            var relicItem = relic.relic;
-//            if (relicItem != null) {
-//                relic.set(player, relicItem.get().onCriticalHit(player, integer));
-//            }
+            var relicItem = relic.relic;
+            if (relicItem instanceof IRelic iRelic) {
+                relic.set(player, iRelic.onCriticalHit(player, integer));
+            }
         });
     }
 }

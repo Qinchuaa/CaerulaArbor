@@ -1,9 +1,10 @@
 package com.apocalypse.caerulaarbor.capability;
 
-import com.apocalypse.caerulaarbor.item.relic.IRelic;
+import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.item.Item;
 
 import java.util.function.Consumer;
 
@@ -56,8 +57,7 @@ public enum Relic {
     public final int minLevel;
     public final int maxLevel;
     public final int defaultLevel;
-    // TODO 我觉得这里需要双向绑定item，方便后续操作
-    public IRelic relic;
+    public Item relic;
 
     Relic() {
         this(0, 1, 0);
@@ -143,5 +143,10 @@ public enum Relic {
     public void gainAndSync(CaerulaArborModVariables.PlayerVariables cap, Entity player) {
         this.set(cap, 1);
         cap.syncPlayerVariables(player);
+    }
+
+    // TODO 这里的双向绑定item是不是可以优化？
+    public static void onRegisterItem() {
+        HAND_OF_PULVERIZATION.relic = ModItems.HAND_OF_PULVERIZATION.get();
     }
 }

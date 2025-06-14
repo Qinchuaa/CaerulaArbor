@@ -1,6 +1,7 @@
 package com.apocalypse.caerulaarbor.init;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
+import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.item.*;
 import com.apocalypse.caerulaarbor.item.equipment.*;
 import com.apocalypse.caerulaarbor.item.relic.epic.*;
@@ -26,6 +27,7 @@ import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
+@SuppressWarnings("unused")
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
 public class ModItems {
 
