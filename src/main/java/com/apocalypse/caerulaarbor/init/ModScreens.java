@@ -13,7 +13,7 @@ public class ModScreens {
     @SubscribeEvent
     public static void onClientSetup(FMLClientSetupEvent event) {
         event.enqueueWork(() -> {
-            MenuScreens.register(ModMenus.CAERULA_RECORD_GUI.get(), CaerulaRecordGUIScreen::new);
+            MenuScreens.register(ModMenus.CAERULA_RECORDER.get(), CaerulaRecordGUIScreen::new);
             MenuScreens.register(ModMenus.RELIC_SHOWCASE.get(), RelicShowcaseScreen::new);
             MenuScreens.register(ModMenus.INFO_STRATEGY_SUBSIS.get(), InfoStrategySubsisScreen::new);
             MenuScreens.register(ModMenus.INFO_STRATEGY_BREED.get(), InfoStrategyBreedScreen::new);

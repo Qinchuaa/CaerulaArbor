@@ -1,15 +1,16 @@
-
 package com.apocalypse.caerulaarbor.network;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.init.ModItems;
-import com.apocalypse.caerulaarbor.procedures.InnerOpenCaerulaProcedure;
+import com.apocalypse.caerulaarbor.world.inventory.CaerulaRecorderMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.util.RandomSource;
+import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
@@ -67,7 +68,7 @@ public class RelicShowcaseButtonMessage {
         if (!world.hasChunkAt(new BlockPos(x, y, z))) return;
 
         if (buttonID == 0) {
-            InnerOpenCaerulaProcedure.execute(world, x, y, z, player);
+            player.openMenu(new SimpleMenuProvider((i, inventory, p) -> new CaerulaRecorderMenu(i, inventory), Component.empty()));
         }
 
         var relic = switch (buttonID) {

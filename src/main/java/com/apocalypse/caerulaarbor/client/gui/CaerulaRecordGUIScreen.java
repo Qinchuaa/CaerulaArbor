@@ -4,7 +4,7 @@ import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import com.apocalypse.caerulaarbor.network.CaerulaRecordGUIButtonMessage;
 import com.apocalypse.caerulaarbor.procedures.*;
-import com.apocalypse.caerulaarbor.world.inventory.CaerulaRecordGUIMenu;
+import com.apocalypse.caerulaarbor.world.inventory.CaerulaRecorderMenu;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Checkbox;
@@ -20,18 +20,16 @@ import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
 import org.jetbrains.annotations.NotNull;
 
-import java.util.HashMap;
+public class CaerulaRecordGUIScreen extends AbstractContainerScreen<CaerulaRecorderMenu> {
 
-public class CaerulaRecordGUIScreen extends AbstractContainerScreen<CaerulaRecordGUIMenu> {
-    private final static HashMap<String, Object> guistate = CaerulaRecordGUIMenu.guistate;
     private final Player entity;
     Checkbox show_hud;
     Checkbox show_ptc;
     ImageButton imagebutton_relic_icon;
 
-    public CaerulaRecordGUIScreen(CaerulaRecordGUIMenu container, Inventory inventory, Component text) {
+    public CaerulaRecordGUIScreen(CaerulaRecorderMenu container, Inventory inventory, Component text) {
         super(container, inventory, text);
-        this.entity = container.entity;
+        this.entity = container.player;
         this.imageWidth = 168;
         this.imageHeight = 166;
     }
@@ -205,19 +203,19 @@ public class CaerulaRecordGUIScreen extends AbstractContainerScreen<CaerulaRecor
         imagebutton_relic_icon = new ImageButton(this.leftPos + 6, this.topPos + 99, 16, 16, 0, 0, 16, new ResourceLocation("caerula_arbor:textures/screens/atlas/imagebutton_relic_icon.png"), 16, 32, e -> {
             CaerulaArborMod.PACKET_HANDLER.sendToServer(new CaerulaRecordGUIButtonMessage(0));
         });
-        guistate.put("button:imagebutton_relic_icon", imagebutton_relic_icon);
+//        guistate.put("button:imagebutton_relic_icon", imagebutton_relic_icon);
         this.addRenderableWidget(imagebutton_relic_icon);
         boolean result = false;
         if (entity != null) {
             result = (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).show_stats;
         }
         show_hud = new Checkbox(this.leftPos + 4, this.topPos + 120, 20, 20, Component.translatable("gui.caerula_arbor.caerula_record_gui.show_hud"), result);
-        guistate.put("checkbox:show_hud", show_hud);
+//        guistate.put("checkbox:show_hud", show_hud);
         this.addRenderableWidget(show_hud);
         show_ptc = new Checkbox(this.leftPos + 4, this.topPos + 142, 20, 20, Component.translatable("gui.caerula_arbor.caerula_record_gui.show_ptc"), ((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
                 .map(c -> c.kingShowPtc)
                 .orElse(false));
-        guistate.put("checkbox:show_ptc", show_ptc);
+//        guistate.put("checkbox:show_ptc", show_ptc);
         this.addRenderableWidget(show_ptc);
     }
 }
