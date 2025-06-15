@@ -24,7 +24,6 @@ import java.util.HashMap;
 
 public class CaerulaRecordGUIScreen extends AbstractContainerScreen<CaerulaRecordGUIMenu> {
     private final static HashMap<String, Object> guistate = CaerulaRecordGUIMenu.guistate;
-    private final int x, y, z;
     private final Player entity;
     Checkbox show_hud;
     Checkbox show_ptc;
@@ -32,9 +31,6 @@ public class CaerulaRecordGUIScreen extends AbstractContainerScreen<CaerulaRecor
 
     public CaerulaRecordGUIScreen(CaerulaRecordGUIMenu container, Inventory inventory, Component text) {
         super(container, inventory, text);
-        this.x = container.x;
-        this.y = container.y;
-        this.z = container.z;
         this.entity = container.entity;
         this.imageWidth = 168;
         this.imageHeight = 166;
@@ -207,14 +203,13 @@ public class CaerulaRecordGUIScreen extends AbstractContainerScreen<CaerulaRecor
     public void init() {
         super.init();
         imagebutton_relic_icon = new ImageButton(this.leftPos + 6, this.topPos + 99, 16, 16, 0, 0, 16, new ResourceLocation("caerula_arbor:textures/screens/atlas/imagebutton_relic_icon.png"), 16, 32, e -> {
-            CaerulaArborMod.PACKET_HANDLER.sendToServer(new CaerulaRecordGUIButtonMessage(0, x, y, z));
-            CaerulaRecordGUIButtonMessage.handleButtonAction(entity, 0, x, y, z);
+            CaerulaArborMod.PACKET_HANDLER.sendToServer(new CaerulaRecordGUIButtonMessage(0));
         });
         guistate.put("button:imagebutton_relic_icon", imagebutton_relic_icon);
         this.addRenderableWidget(imagebutton_relic_icon);
         boolean result = false;
         if (entity != null) {
-            result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).show_stats;
+            result = (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).show_stats;
         }
         show_hud = new Checkbox(this.leftPos + 4, this.topPos + 120, 20, 20, Component.translatable("gui.caerula_arbor.caerula_record_gui.show_hud"), result);
         guistate.put("checkbox:show_hud", show_hud);

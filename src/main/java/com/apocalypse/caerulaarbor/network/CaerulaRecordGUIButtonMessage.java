@@ -1,73 +1,64 @@
-
 package com.apocalypse.caerulaarbor.network;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
-import com.apocalypse.caerulaarbor.procedures.OpenRelicshowcseProcedure;
-import com.apocalypse.caerulaarbor.world.inventory.CaerulaRecordGUIMenu;
-import net.minecraft.core.BlockPos;
+import com.apocalypse.caerulaarbor.world.inventory.RelicShowcaseMenu;
 import net.minecraft.network.FriendlyByteBuf;
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.world.MenuProvider;
+import net.minecraft.world.entity.player.Inventory;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.Level;
+import net.minecraft.world.inventory.AbstractContainerMenu;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
 import net.minecraftforge.network.NetworkEvent;
+import net.minecraftforge.network.NetworkHooks;
+import org.jetbrains.annotations.Nullable;
 
-import java.util.HashMap;
 import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class CaerulaRecordGUIButtonMessage {
-	private final int buttonID, x, y, z;
 
-	public CaerulaRecordGUIButtonMessage(FriendlyByteBuf buffer) {
-		this.buttonID = buffer.readInt();
-		this.x = buffer.readInt();
-		this.y = buffer.readInt();
-		this.z = buffer.readInt();
-	}
+    private final int buttonID;
 
-	public CaerulaRecordGUIButtonMessage(int buttonID, int x, int y, int z) {
-		this.buttonID = buttonID;
-		this.x = x;
-		this.y = y;
-		this.z = z;
-	}
+    public CaerulaRecordGUIButtonMessage(int buttonID) {
+        this.buttonID = buttonID;
+    }
 
-	public static void buffer(CaerulaRecordGUIButtonMessage message, FriendlyByteBuf buffer) {
-		buffer.writeInt(message.buttonID);
-		buffer.writeInt(message.x);
-		buffer.writeInt(message.y);
-		buffer.writeInt(message.z);
-	}
+    public static CaerulaRecordGUIButtonMessage decode(FriendlyByteBuf buffer) {
+        return new CaerulaRecordGUIButtonMessage(buffer.readInt());
+    }
 
-	public static void handler(CaerulaRecordGUIButtonMessage message, Supplier<NetworkEvent.Context> contextSupplier) {
-		NetworkEvent.Context context = contextSupplier.get();
-		context.enqueueWork(() -> {
-			Player entity = context.getSender();
-			int buttonID = message.buttonID;
-			int x = message.x;
-			int y = message.y;
-			int z = message.z;
-			handleButtonAction(entity, buttonID, x, y, z);
-		});
-		context.setPacketHandled(true);
-	}
+    public static void encode(CaerulaRecordGUIButtonMessage message, FriendlyByteBuf buffer) {
+        buffer.writeInt(message.buttonID);
+    }
 
-	public static void handleButtonAction(Player entity, int buttonID, int x, int y, int z) {
-		Level world = entity.level();
-		HashMap guistate = CaerulaRecordGUIMenu.guistate;
-		// security measure to prevent arbitrary chunk generation
-		if (!world.hasChunkAt(new BlockPos(x, y, z)))
-			return;
-		if (buttonID == 0) {
+    public static void handler(CaerulaRecordGUIButtonMessage message, Supplier<NetworkEvent.Context> contextSupplier) {
+        NetworkEvent.Context context = contextSupplier.get();
+        context.enqueueWork(() -> {
+            ServerPlayer entity = context.getSender();
+            if (entity == null) return;
 
-			OpenRelicshowcseProcedure.execute(world, x, y, z, entity);
-		}
-	}
+            NetworkHooks.openScreen(entity, new MenuProvider() {
+                @Nullable
+                @Override
+                public AbstractContainerMenu createMenu(int pContainerId, Inventory pPlayerInventory, Player pPlayer) {
+                    return new RelicShowcaseMenu(pContainerId, pPlayerInventory);
+                }
 
-	@SubscribeEvent
-	public static void registerMessage(FMLCommonSetupEvent event) {
-		CaerulaArborMod.addNetworkMessage(CaerulaRecordGUIButtonMessage.class, CaerulaRecordGUIButtonMessage::buffer, CaerulaRecordGUIButtonMessage::new, CaerulaRecordGUIButtonMessage::handler);
-	}
+                @Override
+                public Component getDisplayName() {
+                    return Component.literal("RelicShowcase");
+                }
+            });
+        });
+        context.setPacketHandled(true);
+    }
+
+    @SubscribeEvent
+    public static void registerMessage(FMLCommonSetupEvent event) {
+        CaerulaArborMod.addNetworkMessage(CaerulaRecordGUIButtonMessage.class, CaerulaRecordGUIButtonMessage::encode, CaerulaRecordGUIButtonMessage::decode, CaerulaRecordGUIButtonMessage::handler);
+    }
 }
