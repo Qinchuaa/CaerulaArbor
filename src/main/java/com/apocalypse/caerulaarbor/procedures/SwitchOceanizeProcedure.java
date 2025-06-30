@@ -1,6 +1,6 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
+import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.mojang.brigadier.arguments.DoubleArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -21,7 +21,7 @@ public class SwitchOceanizeProcedure {
 						return null;
 					}
 				}
-			}.getEntity()).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+			}.getEntity()).getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
 				capability.player_oceanization = _setval;
 				capability.syncPlayerVariables((new Object() {
 					public Entity getEntity() {

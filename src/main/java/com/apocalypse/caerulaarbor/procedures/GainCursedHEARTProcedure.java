@@ -1,7 +1,8 @@
 package com.apocalypse.caerulaarbor.procedures;
 
+import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.capability.Relic;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
+import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -20,23 +21,23 @@ public class GainCursedHEARTProcedure {
     public static void execute(LevelAccessor world, double x, double y, double z, Entity entity, ItemStack itemstack) {
         if (entity == null)
             return;
-        var cap = entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
+        var cap = entity.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable());
 
         if (!Relic.CURSED_HEART.gained(entity)) {
             Relic.CURSED_HEART.set(cap, 1);
             cap.syncPlayerVariables(entity);
             
-            entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+            entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
                 capability.light = cap.light - 50;
                 capability.syncPlayerVariables(entity);
             });
             if (cap.light < 0) {
-                entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+                entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
                     capability.light = 0;
                     capability.syncPlayerVariables(entity);
                 });
             }
-            entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+            entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
                 capability.disoclusion = Mth.nextInt(RandomSource.create(), 1, 4);
                 capability.syncPlayerVariables(entity);
             });

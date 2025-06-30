@@ -1,12 +1,13 @@
 package com.apocalypse.caerulaarbor.procedures;
 
+import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.capability.Relic;
+import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
 import com.apocalypse.caerulaarbor.config.common.RelicsConfig;
 import com.apocalypse.caerulaarbor.init.ModAttributes;
 import com.apocalypse.caerulaarbor.init.ModEnchantments;
 import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -61,7 +62,7 @@ public class PlayerTickFuncProcedure {
         double amplifi;
         double suitArchfi;
         double enchant;
-        var cap = entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
+        var cap = entity.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable());
 
         if (cap.disoclusion == 2) {
             if (!(entity instanceof LivingEntity _livEnt0 && _livEnt0.hasEffect(ModMobEffects.HAEMOPHILIA.get()))) {
@@ -86,11 +87,11 @@ public class PlayerTickFuncProcedure {
             }
         }
         modifi = 1;
-        if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+        if (entity.getCapability(ModCapabilities.PLAYER_VARIABLE)
                 .map(c -> c.light >= 1 && c.light < 50)
                 .orElse(false)) {
             modifi = 1.2;
-        } else if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+        } else if (entity.getCapability(ModCapabilities.PLAYER_VARIABLE)
                 .map(c -> c.light < 1)
                 .orElse(false)) {
             modifi = 1.5;
@@ -132,7 +133,7 @@ public class PlayerTickFuncProcedure {
                             _entity.addEffect(new MobEffectInstance(ModMobEffects.KINGS_BREATH.get(), 30, 0, false, false));
                         {
                             double _setval = 1;
-                            entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+                            entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
                                 capability.player_king_suit = _setval;
                                 capability.syncPlayerVariables(entity);
                             });
@@ -140,14 +141,14 @@ public class PlayerTickFuncProcedure {
                     } else {
                         if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
                             _entity.addEffect(new MobEffectInstance(ModMobEffects.KINGS_BREATH.get(), 3, 2, false, false));
-                        entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+                        entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
                             capability.player_king_suit = 2;
                             capability.syncPlayerVariables(entity);
                         });
                     }
                 }
             } else {
-                entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+                entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
                     capability.player_king_suit = 0;
                     capability.syncPlayerVariables(entity);
                 });
@@ -209,7 +210,7 @@ public class PlayerTickFuncProcedure {
                         if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
                             _entity.addEffect(new MobEffectInstance(ModMobEffects.SACREFICE.get(), 30, 0, false, false));
 
-                        entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+                        entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
                             capability.player_demon_suit = 1;
                             capability.syncPlayerVariables(entity);
                         });
@@ -217,14 +218,14 @@ public class PlayerTickFuncProcedure {
                         if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
                             _entity.addEffect(new MobEffectInstance(ModMobEffects.SACREFICE.get(), 30, 2, false, false));
 
-                        entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+                        entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
                             capability.player_demon_suit = 2;
                             capability.syncPlayerVariables(entity);
                         });
                     }
                 }
             } else {
-                entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+                entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
                     capability.player_demon_suit = 0;
                     capability.syncPlayerVariables(entity);
                 });
@@ -258,7 +259,7 @@ public class PlayerTickFuncProcedure {
             }
         }
         if (cap.lives > cap.maxLive) {
-            entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+            entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
                 capability.lives = cap.maxLive;
                 capability.syncPlayerVariables(entity);
             });
@@ -292,7 +293,7 @@ public class PlayerTickFuncProcedure {
             ItemStack itemstack = entity instanceof LivingEntity _entGetArmor ? _entGetArmor.getItemBySlot(EquipmentSlot.HEAD) : ItemStack.EMPTY;
             if (entity == null)
                 return;
-            var cap1 = entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
+            var cap1 = entity.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable());
             if (!Relic.KING_CROWN.gained(cap1)) {
                 if (world instanceof Level _level) {
                     if (!_level.isClientSide()) {

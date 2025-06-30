@@ -1,7 +1,8 @@
 
 package com.apocalypse.caerulaarbor.client.screens;
 
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
+import com.apocalypse.caerulaarbor.capability.ModCapabilities;
+import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
 import com.apocalypse.caerulaarbor.procedures.*;
 import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -32,25 +33,25 @@ public class LightShowOverlay {
         RenderSystem.setShaderColor(1, 1, 1, 1);
         boolean result = false;
         if (entity != null) {
-            result = (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).show_stats;
+            result = (((Entity) entity).getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable())).show_stats;
         }
         if (result) {
-            if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+            if (entity.getCapability(ModCapabilities.PLAYER_VARIABLE)
                     .map(c2 -> c2.light < 1)
                     .orElse(false)) {
                 event.getGuiGraphics().blit(new ResourceLocation("caerula_arbor:textures/screens/light_extinguish.png"), w / 2 - 32, 0, 0, 0, 64, 32, 64, 32);
             }
-            if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+            if (entity.getCapability(ModCapabilities.PLAYER_VARIABLE)
                     .map(c1 -> c1.light >= 1 && c1.light < 50)
                     .orElse(false)) {
                 event.getGuiGraphics().blit(new ResourceLocation("caerula_arbor:textures/screens/light_dim.png"), w / 2 - 32, 0, 0, 0, 64, 32, 64, 32);
             }
-            if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+            if (entity.getCapability(ModCapabilities.PLAYER_VARIABLE)
                     .map(c -> c.light < 85 && c.light >= 50)
                     .orElse(false)) {
                 event.getGuiGraphics().blit(new ResourceLocation("caerula_arbor:textures/screens/light_waving.png"), w / 2 - 32, 0, 0, 0, 64, 32, 64, 32);
             }
-            if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+            if (entity.getCapability(ModCapabilities.PLAYER_VARIABLE)
                     .map(cap -> cap.light >= 85)
                     .orElse(false)) {
                 event.getGuiGraphics().blit(new ResourceLocation("caerula_arbor:textures/screens/light.png"), w / 2 - 32, 0, 0, 0, 64, 32, 64, 32);
@@ -58,7 +59,7 @@ public class LightShowOverlay {
 
             event.getGuiGraphics().blit(new ResourceLocation("caerula_arbor:textures/screens/target_health.png"), 6, h - 24, 0, 0, 24, 16, 24, 16);
 
-            if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+            if (entity.getCapability(ModCapabilities.PLAYER_VARIABLE)
                     .map(c2 -> c2.shield > 0)
                     .orElse(false)) {
                 event.getGuiGraphics().blit(new ResourceLocation("caerula_arbor:textures/screens/target_shield.png"), 6, h - 40, 0, 0, 24, 16, 24, 16);
@@ -81,13 +82,13 @@ public class LightShowOverlay {
             event.getGuiGraphics().drawString(Minecraft.getInstance().font,
 
                     GetLivesProcedure.execute(entity), 20, h - 21, -1, false);
-            if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+            if (entity.getCapability(ModCapabilities.PLAYER_VARIABLE)
                     .map(c1 -> c1.shield > 0)
                     .orElse(false))
                 event.getGuiGraphics().drawString(Minecraft.getInstance().font,
 
                         GetShieldProcedure.execute(entity), 21, h - 36, -16777216, false);
-            if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+            if (entity.getCapability(ModCapabilities.PLAYER_VARIABLE)
                     .map(c -> c.shield > 0)
                     .orElse(false))
                 event.getGuiGraphics().drawString(Minecraft.getInstance().font,

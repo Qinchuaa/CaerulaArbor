@@ -2,9 +2,10 @@
 package com.apocalypse.caerulaarbor.potion;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
+import com.apocalypse.caerulaarbor.capability.ModCapabilities;
+import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
 import com.apocalypse.caerulaarbor.init.ModParticleTypes;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -42,7 +43,7 @@ public class TideOfChitinMobEffect extends MobEffect {
     public void addAttributeModifiers(LivingEntity entity, AttributeMap attributeMap, int amplifier) {
         super.addAttributeModifiers(entity, attributeMap, amplifier);
 
-        entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+        entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
             capability.chitin_knife_selected = entity.getMainHandItem().copy();
             capability.syncPlayerVariables(entity);
         });
@@ -59,8 +60,8 @@ public class TideOfChitinMobEffect extends MobEffect {
         double x = entity.getX();
         double y = entity.getY();
         double z = entity.getZ();
-        if (!(entity.getMainHandItem().getItem() == entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
-                .orElse(new CaerulaArborModVariables.PlayerVariables())
+        if (!(entity.getMainHandItem().getItem() == entity.getCapability(ModCapabilities.PLAYER_VARIABLE)
+                .orElse(new PlayerVariable())
                 .chitin_knife_selected.getItem())
         ) {
             if (world instanceof ServerLevel server) {
@@ -68,8 +69,8 @@ public class TideOfChitinMobEffect extends MobEffect {
             }
             entity.removeEffect(ModMobEffects.TIDE_OF_CHITIN.get());
         }
-        if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
-                .orElse(new CaerulaArborModVariables.PlayerVariables())
+        if (entity.getCapability(ModCapabilities.PLAYER_VARIABLE)
+                .orElse(new PlayerVariable())
                 .kingShowPtc
         ) {
             world.addParticle(ModParticleTypes.KNIFEPTC.get(),

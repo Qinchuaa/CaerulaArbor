@@ -1,6 +1,7 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
+import com.apocalypse.caerulaarbor.capability.ModCapabilities;
+import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
@@ -26,16 +27,16 @@ public class PlayergetupFuncProcedure {
 		if (entity == null)
 			return;
 		{
-			double _setval = (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).light + Mth.nextInt(RandomSource.create(), 1, 3);
-			entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+			double _setval = (entity.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable())).light + Mth.nextInt(RandomSource.create(), 1, 3);
+			entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
 				capability.light = _setval;
 				capability.syncPlayerVariables(entity);
 			});
 		}
-		if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).light > 100) {
+		if ((entity.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable())).light > 100) {
 			{
 				double _setval = 100;
-				entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+				entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
 					capability.light = _setval;
 					capability.syncPlayerVariables(entity);
 				});

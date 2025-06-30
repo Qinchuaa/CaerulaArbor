@@ -2,11 +2,11 @@ package com.apocalypse.caerulaarbor.event;
 
 import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.capability.Relic;
+import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
 import com.apocalypse.caerulaarbor.init.ModGameRules;
 import com.apocalypse.caerulaarbor.init.ModParticleTypes;
 import com.apocalypse.caerulaarbor.init.ModSounds;
 import com.apocalypse.caerulaarbor.item.relic.IRelic;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.server.level.ServerLevel;
@@ -32,7 +32,7 @@ public class PlayerEventHandler {
         if (!event.isVanillaCritical()) return;
         var player = event.getEntity();
 
-        var cap = player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
+        var cap = player.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable());
         cap.relics.forEach((relic, integer) -> {
             if (!relic.gained(player)) return;
             var relicItem = relic.item;
@@ -49,7 +49,7 @@ public class PlayerEventHandler {
     public static void onPlayerAttack(AttackEntityEvent event) {
         var player = event.getEntity();
 
-        var cap = player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
+        var cap = player.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable());
         cap.relics.forEach((relic, integer) -> {
             if (!relic.gained(player)) return;
             var relicItem = relic.item;
@@ -66,7 +66,7 @@ public class PlayerEventHandler {
     public static void onPlayerTick(TickEvent.PlayerTickEvent event) {
         if (event.phase != TickEvent.Phase.END) return;
         var player = event.player;
-        var cap = player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
+        var cap = player.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable());
         cap.relics.forEach((relic, integer) -> {
             if (relic.item instanceof IRelic iRelic) {
                 int level = iRelic.onPlayerTick(player, integer);
@@ -83,7 +83,7 @@ public class PlayerEventHandler {
         if (!(entity instanceof Player player)) return;
         Level level = player.level();
 
-        var cap = player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
+        var cap = player.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable());
 
         if (!level.getGameRules().getBoolean(GameRules.RULE_KEEPINVENTORY) && !level.isClientSide) {
             for (var relic : Relic.values()) {

@@ -1,6 +1,8 @@
 package com.apocalypse.caerulaarbor.procedures;
 
+import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.capability.Relic;
+import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
 import com.apocalypse.caerulaarbor.config.common.RelicsConfig;
 import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.init.ModGameRules;
@@ -59,27 +61,27 @@ public class KillFuncProcedure {
         double dama;
         ItemStack weapon;
         if (sourceentity instanceof Player) {
-            var cap = sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
+            var cap = sourceentity.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable());
             if (Relic.CURSED_EMELIGHT.gained(cap)) {
-                sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+                sourceentity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
                     capability.light = cap.light - Mth.nextDouble(RandomSource.create(), 0.1, 0.2);
                     capability.syncPlayerVariables(sourceentity);
                 });
             }
             if (Relic.CURSED_GLOWBODY.gained(cap)) {
-                sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+                sourceentity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
                     capability.light = cap.light - Mth.nextDouble(RandomSource.create(), 0.2, 0.3);
                     capability.syncPlayerVariables(sourceentity);
                 });
             }
             if (Relic.CURSED_RESEARCH.gained(cap)) {
-                sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+                sourceentity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
                     capability.light = cap.light - Mth.nextDouble(RandomSource.create(), 0.3, 0.5);
                     capability.syncPlayerVariables(sourceentity);
                 });
             }
             if (cap.light < 0) {
-                sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+                sourceentity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
                     capability.light = 0;
                     capability.syncPlayerVariables(sourceentity);
                 });
@@ -87,12 +89,12 @@ public class KillFuncProcedure {
             if (Relic.KING_ARMOR.gained(cap)) {
                 if (Math.random() < 0.08) {
                     if (cap.lives > 1) {
-                        sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+                        sourceentity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
                             capability.lives = cap.lives - 1;
                             capability.syncPlayerVariables(sourceentity);
                         });
                     }
-                    sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+                    sourceentity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
                         capability.shield = cap.shield + 1;
                         capability.syncPlayerVariables(sourceentity);
                     });
@@ -101,12 +103,12 @@ public class KillFuncProcedure {
             if (Relic.KING_CRYSTAL.gained(cap)) {
                 if (Math.random() < 0.1) {
                     if (cap.lives > 1) {
-                        sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+                        sourceentity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
                             capability.lives = cap.lives - 2;
                             capability.syncPlayerVariables(sourceentity);
                         });
                         if (cap.light < 1) {
-                            sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+                            sourceentity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
                                 capability.light = 1;
                                 capability.syncPlayerVariables(sourceentity);
                             });
@@ -178,8 +180,8 @@ public class KillFuncProcedure {
             }
         }
         if (entity instanceof Player) {
-            if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).player_oceanization < 3) {
-                entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+            if ((entity.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable())).player_oceanization < 3) {
+                entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
                     capability.player_oceanization = 0;
                     capability.syncPlayerVariables(entity);
                 });

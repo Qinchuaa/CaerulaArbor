@@ -1,6 +1,6 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
+import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.phys.AABB;
@@ -11,7 +11,7 @@ public class OceanizedPlayerProcedure {
         final Vec3 center = new Vec3(x, y, z);
         return world.getEntitiesOfClass(Player.class, new AABB(center, center).inflate(32 / 2d), e -> true)
                 .stream()
-                .noneMatch(player -> player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                .noneMatch(player -> player.getCapability(ModCapabilities.PLAYER_VARIABLE)
                         .map(cap -> cap.player_oceanization == 3)
                         .orElse(false)
                 );

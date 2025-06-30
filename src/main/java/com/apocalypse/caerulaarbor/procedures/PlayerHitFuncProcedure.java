@@ -1,14 +1,15 @@
 package com.apocalypse.caerulaarbor.procedures;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
+import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.capability.Relic;
+import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
 import com.apocalypse.caerulaarbor.config.common.RelicsConfig;
 import com.apocalypse.caerulaarbor.entity.CreeperFishEntity;
 import com.apocalypse.caerulaarbor.init.ModAttributes;
 import com.apocalypse.caerulaarbor.init.ModEnchantments;
 import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
@@ -65,7 +66,7 @@ public class PlayerHitFuncProcedure {
         double light_cost;
         double rate;
         double time;
-        var cap = entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
+        var cap = entity.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable());
         if (entity instanceof Player) {
             light_cost = amount * 0.01;
             if (cap.disoclusion == 1) {
@@ -165,7 +166,7 @@ public class PlayerHitFuncProcedure {
             }
             {
                 double _setval = cap.light - light_cost;
-                entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+                entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
                     capability.light = _setval;
                     capability.syncPlayerVariables(entity);
                 });
@@ -173,7 +174,7 @@ public class PlayerHitFuncProcedure {
             if (cap.light < 0) {
                 {
                     double _setval = 0;
-                    entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+                    entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
                         capability.light = _setval;
                         capability.syncPlayerVariables(entity);
                     });
@@ -181,7 +182,7 @@ public class PlayerHitFuncProcedure {
             }
         }
         if (immediatesourceentity instanceof Player) {
-            var cap1 = immediatesourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
+            var cap1 = immediatesourceentity.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable());
             if (cap1.disoclusion == 1) {
                 if (Math.random() < 0.1) {
                     item_temp = (immediatesourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).copy();
@@ -223,7 +224,7 @@ public class PlayerHitFuncProcedure {
             }
         }
         if (sourceentity instanceof Player) {
-            var cap1 = sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
+            var cap1 = sourceentity.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable());
             if (immediatesourceentity instanceof Arrow) {
                 if (Relic.HAND_STRANGLE.gained(cap1)) {
                     validItem = false;
@@ -310,7 +311,7 @@ public class PlayerHitFuncProcedure {
                 if (Math.random() < 0.05) {
                     {
                         ItemStack _setval = (sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY);
-                        sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+                        sourceentity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
                             capability.chitin_knife_selected = _setval.copy();
                             capability.syncPlayerVariables(sourceentity);
                         });

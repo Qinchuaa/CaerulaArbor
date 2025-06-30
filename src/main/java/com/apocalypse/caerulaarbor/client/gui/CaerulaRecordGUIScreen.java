@@ -1,7 +1,8 @@
 package com.apocalypse.caerulaarbor.client.gui;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
+import com.apocalypse.caerulaarbor.capability.ModCapabilities;
+import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
 import com.apocalypse.caerulaarbor.network.CaerulaRecordGUIButtonMessage;
 import com.apocalypse.caerulaarbor.procedures.*;
 import com.apocalypse.caerulaarbor.world.inventory.CaerulaRecorderMenu;
@@ -84,22 +85,22 @@ public class CaerulaRecordGUIScreen extends AbstractContainerScreen<CaerulaRecor
         if (HasDisoBloodProcedure.execute(entity)) {
             guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/disoclution_blood.png"), this.leftPos + 101, this.topPos + 90, 0, 0, 64, 64, 64, 64);
         }
-        if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+        if (entity.getCapability(ModCapabilities.PLAYER_VARIABLE)
                 .map(cap -> cap.light >= 85)
                 .orElse(false)) {
             guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/light.png"), this.leftPos + 36, this.topPos - 37, 0, 0, 64, 32, 64, 32);
         }
-        if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+        if (entity.getCapability(ModCapabilities.PLAYER_VARIABLE)
                 .map(c -> c.light < 85 && c.light >= 50)
                 .orElse(false)) {
             guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/light_waving.png"), this.leftPos + 36, this.topPos - 37, 0, 0, 64, 32, 64, 32);
         }
-        if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+        if (entity.getCapability(ModCapabilities.PLAYER_VARIABLE)
                 .map(c -> c.light >= 1 && c.light < 50)
                 .orElse(false)) {
             guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/light_dim.png"), this.leftPos + 36, this.topPos - 37, 0, 0, 64, 32, 64, 32);
         }
-        if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+        if (entity.getCapability(ModCapabilities.PLAYER_VARIABLE)
                 .map(c -> c.light < 1)
                 .orElse(false)) {
             guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/light_extinguish.png"), this.leftPos + 36, this.topPos - 37, 0, 0, 64, 32, 64, 32);
@@ -162,20 +163,20 @@ public class CaerulaRecordGUIScreen extends AbstractContainerScreen<CaerulaRecor
         guiGraphics.drawString(this.font, Component.translatable("gui.caerula_arbor.caerula_record_gui.label_disoclution"), 101, 86, -3368449, false);
         guiGraphics.drawString(this.font,
 
-                new java.text.DecimalFormat("##.##").format(entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables()).light), 100, -13, -1, false);
-        if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                new java.text.DecimalFormat("##.##").format(entity.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable()).light), 100, -13, -1, false);
+        if (entity.getCapability(ModCapabilities.PLAYER_VARIABLE)
                 .map(cap -> cap.light >= 85)
                 .orElse(false))
             guiGraphics.drawString(this.font, Component.translatable("gui.caerula_arbor.caerula_record_gui.label_lightsablaze"), 100, -29, -3342337, false);
-        if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+        if (entity.getCapability(ModCapabilities.PLAYER_VARIABLE)
                 .map(c -> c.light < 85 && c.light >= 50)
                 .orElse(false))
             guiGraphics.drawString(this.font, Component.translatable("gui.caerula_arbor.caerula_record_gui.label_lightsflickering"), 100, -29, -3342388, false);
-        if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+        if (entity.getCapability(ModCapabilities.PLAYER_VARIABLE)
                 .map(c -> c.light >= 1 && c.light < 50)
                 .orElse(false))
             guiGraphics.drawString(this.font, Component.translatable("gui.caerula_arbor.caerula_record_gui.label_lightsdim"), 100, -29, -13159, false);
-        if (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+        if (entity.getCapability(ModCapabilities.PLAYER_VARIABLE)
                 .map(c -> c.light < 1)
                 .orElse(false))
             guiGraphics.drawString(this.font, Component.translatable("gui.caerula_arbor.caerula_record_gui.label_lightstranquil"), 100, -29, -26215, false);
@@ -207,12 +208,12 @@ public class CaerulaRecordGUIScreen extends AbstractContainerScreen<CaerulaRecor
         this.addRenderableWidget(imagebutton_relic_icon);
         boolean result = false;
         if (entity != null) {
-            result = (entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).show_stats;
+            result = (entity.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable())).show_stats;
         }
         show_hud = new Checkbox(this.leftPos + 4, this.topPos + 120, 20, 20, Component.translatable("gui.caerula_arbor.caerula_record_gui.show_hud"), result);
 //        guistate.put("checkbox:show_hud", show_hud);
         this.addRenderableWidget(show_hud);
-        show_ptc = new Checkbox(this.leftPos + 4, this.topPos + 142, 20, 20, Component.translatable("gui.caerula_arbor.caerula_record_gui.show_ptc"), ((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+        show_ptc = new Checkbox(this.leftPos + 4, this.topPos + 142, 20, 20, Component.translatable("gui.caerula_arbor.caerula_record_gui.show_ptc"), ((Entity) entity).getCapability(ModCapabilities.PLAYER_VARIABLE)
                 .map(c -> c.kingShowPtc)
                 .orElse(false));
 //        guistate.put("checkbox:show_ptc", show_ptc);

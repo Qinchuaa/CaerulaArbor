@@ -3,6 +3,8 @@ package com.apocalypse.caerulaarbor;
 import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.config.CommonConfig;
 import com.apocalypse.caerulaarbor.init.*;
+import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
+import com.apocalypse.caerulaarbor.network.message.PlayerVariablesSyncMessage;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -115,5 +117,8 @@ public class CaerulaArborMod {
         event.enqueueWork(() -> BrewingRecipeRegistry.addRecipe(Ingredient.of(PotionUtils.setPotion(new ItemStack(Items.POTION), ModPotions.SANITY_CURE.get())),
                 Ingredient.of(Items.GLOWSTONE_DUST), PotionUtils.setPotion(new ItemStack(Items.POTION), ModPotions.SANITY_CURE_II.get())));
         event.enqueueWork(Relic::onRegisterItem);
+
+        CaerulaArborMod.addNetworkMessage(CaerulaArborModVariables.SavedDataSyncMessage.class, CaerulaArborModVariables.SavedDataSyncMessage::buffer, CaerulaArborModVariables.SavedDataSyncMessage::new, CaerulaArborModVariables.SavedDataSyncMessage::handler);
+        CaerulaArborMod.addNetworkMessage(PlayerVariablesSyncMessage.class, PlayerVariablesSyncMessage::buffer, PlayerVariablesSyncMessage::new, PlayerVariablesSyncMessage::handler);
     }
 }

@@ -1,6 +1,6 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
+import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundSource;
@@ -21,7 +21,7 @@ public class OceanizePlayerProcedure {
                 ampli = 2;
             }
             double finalAmpli = ampli;
-            entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+            entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
                 capability.player_oceanization = finalAmpli + 1;
                 capability.syncPlayerVariables(entity);
             });

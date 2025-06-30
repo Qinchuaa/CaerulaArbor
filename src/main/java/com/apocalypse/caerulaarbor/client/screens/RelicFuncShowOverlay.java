@@ -1,8 +1,8 @@
 
 package com.apocalypse.caerulaarbor.client.screens;
 
+import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import com.apocalypse.caerulaarbor.procedures.GetDemonIconProcedure;
 import com.apocalypse.caerulaarbor.procedures.GetKingiconProcedure;
 import net.minecraft.client.Minecraft;
@@ -21,7 +21,7 @@ public class RelicFuncShowOverlay {
         var player = Minecraft.getInstance().player;
         if (player == null) return;
 
-        if (player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+        if (player.getCapability(ModCapabilities.PLAYER_VARIABLE)
                 .map(c -> c.kingShowPtc)
                 .orElse(false)
         ) return;

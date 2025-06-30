@@ -2,7 +2,7 @@
 package com.apocalypse.caerulaarbor.command;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
+import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.mojang.brigadier.arguments.DoubleArgumentType;
 import com.mojang.brigadier.context.CommandContext;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
@@ -39,7 +39,7 @@ public class LightSetCommand {
     private static void setLight(CommandContext<CommandSourceStack> arguments, double value) {
         try {
             for (Entity entity1 : EntityArgument.getEntities(arguments, "name")) {
-                entity1.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(cap -> {
+                entity1.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(cap -> {
                     cap.light = value;
                     cap.syncPlayerVariables(entity1);
                 });
