@@ -1,6 +1,6 @@
 package com.apocalypse.caerulaarbor.network.message;
 
-import com.apocalypse.caerulaarbor.world.inventory.RelicShowcaseMenu;
+import com.apocalypse.caerulaarbor.menu.RelicShowcaseMenu;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerPlayer;

@@ -7,7 +7,7 @@ import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import com.apocalypse.caerulaarbor.network.InfoStrategyMigrationButtonMessage;
 import com.apocalypse.caerulaarbor.procedures.GetBarMigraProcedure;
 import com.apocalypse.caerulaarbor.procedures.GetPointMigraProcedure;
-import com.apocalypse.caerulaarbor.world.inventory.InfoStrategyMigrationMenu;
+import com.apocalypse.caerulaarbor.menu.InfoStrategyMigrationMenu;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;

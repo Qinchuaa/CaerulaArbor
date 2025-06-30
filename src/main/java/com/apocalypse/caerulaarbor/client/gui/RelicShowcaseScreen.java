@@ -3,7 +3,7 @@ package com.apocalypse.caerulaarbor.client.gui;
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
-import com.apocalypse.caerulaarbor.world.inventory.RelicShowcaseMenu;
+import com.apocalypse.caerulaarbor.menu.RelicShowcaseMenu;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;

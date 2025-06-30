@@ -7,7 +7,7 @@ import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import com.apocalypse.caerulaarbor.network.InfoStrategyBreedButtonMessage;
 import com.apocalypse.caerulaarbor.procedures.GetBarBreedProcedure;
 import com.apocalypse.caerulaarbor.procedures.GetPointBreedProcedure;
-import com.apocalypse.caerulaarbor.world.inventory.InfoStrategyBreedMenu;
+import com.apocalypse.caerulaarbor.menu.InfoStrategyBreedMenu;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;

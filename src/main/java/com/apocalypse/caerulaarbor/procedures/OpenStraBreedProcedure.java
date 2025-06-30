@@ -1,6 +1,6 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import com.apocalypse.caerulaarbor.world.inventory.InfoStrategyBreedMenu;
+import com.apocalypse.caerulaarbor.menu.InfoStrategyBreedMenu;
 import io.netty.buffer.Unpooled;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;

@@ -67,6 +67,8 @@ public class CaerulaArborMod {
         ModMenus.REGISTRY.register(bus);
         ModAttributes.REGISTRY.register(bus);
 
+        ModLootModifier.LOOT_MODIFIERS.register(bus);
+
         bus.addListener(this::onCommonSetup);
 
         MinecraftForge.EVENT_BUS.register(this);

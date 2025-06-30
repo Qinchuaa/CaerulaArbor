@@ -5,7 +5,7 @@ import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
 import com.apocalypse.caerulaarbor.network.message.CaerulaRecordGUIButtonMessage;
 import com.apocalypse.caerulaarbor.procedures.*;
-import com.apocalypse.caerulaarbor.world.inventory.CaerulaRecorderMenu;
+import com.apocalypse.caerulaarbor.menu.CaerulaRecorderMenu;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Checkbox;

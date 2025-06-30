@@ -5,9 +5,9 @@ import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.procedures.OpenEvoTreeProcedure;
 import com.apocalypse.caerulaarbor.procedures.OpenStraBreedProcedure;
 import com.apocalypse.caerulaarbor.procedures.OpenStraGrowProcedure;
-import com.apocalypse.caerulaarbor.world.inventory.InfoStrategyAllMenu;
-import com.apocalypse.caerulaarbor.world.inventory.InfoStrategyMigrationMenu;
-import com.apocalypse.caerulaarbor.world.inventory.InfoStrategySubsisMenu;
+import com.apocalypse.caerulaarbor.menu.InfoStrategyAllMenu;
+import com.apocalypse.caerulaarbor.menu.InfoStrategyMigrationMenu;
+import com.apocalypse.caerulaarbor.menu.InfoStrategySubsisMenu;
 import io.netty.buffer.Unpooled;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
@@ -27,7 +27,6 @@ import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
-import java.util.HashMap;
 import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)

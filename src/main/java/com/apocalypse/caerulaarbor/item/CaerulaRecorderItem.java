@@ -1,6 +1,6 @@
 package com.apocalypse.caerulaarbor.item;
 
-import com.apocalypse.caerulaarbor.world.inventory.CaerulaRecorderMenu;
+import com.apocalypse.caerulaarbor.menu.CaerulaRecorderMenu;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;

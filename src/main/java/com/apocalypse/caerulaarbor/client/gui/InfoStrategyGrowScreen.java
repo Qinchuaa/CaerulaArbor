@@ -7,7 +7,7 @@ import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import com.apocalypse.caerulaarbor.network.InfoStrategyGrowButtonMessage;
 import com.apocalypse.caerulaarbor.procedures.GetBarGrowProcedure;
 import com.apocalypse.caerulaarbor.procedures.GetPointGrowProcedure;
-import com.apocalypse.caerulaarbor.world.inventory.InfoStrategyGrowMenu;
+import com.apocalypse.caerulaarbor.menu.InfoStrategyGrowMenu;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;

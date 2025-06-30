@@ -1,6 +1,6 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import com.apocalypse.caerulaarbor.world.inventory.InfoStrategyAllMenu;
+import com.apocalypse.caerulaarbor.menu.InfoStrategyAllMenu;
 import io.netty.buffer.Unpooled;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;

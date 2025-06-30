@@ -5,7 +5,7 @@ import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
 import com.apocalypse.caerulaarbor.init.ModItems;
-import com.apocalypse.caerulaarbor.world.inventory.CaerulaRecorderMenu;
+import com.apocalypse.caerulaarbor.menu.CaerulaRecorderMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;

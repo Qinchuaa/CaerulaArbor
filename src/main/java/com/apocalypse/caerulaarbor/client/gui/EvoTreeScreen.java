@@ -3,7 +3,7 @@ package com.apocalypse.caerulaarbor.client.gui;
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import com.apocalypse.caerulaarbor.network.EvoTreeButtonMessage;
-import com.apocalypse.caerulaarbor.world.inventory.EvoTreeMenu;
+import com.apocalypse.caerulaarbor.menu.EvoTreeMenu;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;

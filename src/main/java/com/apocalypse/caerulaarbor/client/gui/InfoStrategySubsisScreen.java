@@ -7,7 +7,7 @@ import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import com.apocalypse.caerulaarbor.network.InfoStrategySubsisButtonMessage;
 import com.apocalypse.caerulaarbor.procedures.GetBarSubsisProcedure;
 import com.apocalypse.caerulaarbor.procedures.GetPointSubsisProcedure;
-import com.apocalypse.caerulaarbor.world.inventory.InfoStrategySubsisMenu;
+import com.apocalypse.caerulaarbor.menu.InfoStrategySubsisMenu;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;

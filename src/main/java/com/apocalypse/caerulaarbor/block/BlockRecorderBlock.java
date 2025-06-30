@@ -1,6 +1,6 @@
 package com.apocalypse.caerulaarbor.block;
 
-import com.apocalypse.caerulaarbor.world.inventory.CaerulaRecorderMenu;
+import com.apocalypse.caerulaarbor.menu.CaerulaRecorderMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;

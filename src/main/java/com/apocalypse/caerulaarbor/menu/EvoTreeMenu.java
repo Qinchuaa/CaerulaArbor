@@ -1,5 +1,5 @@
 
-package com.apocalypse.caerulaarbor.world.inventory;
+package com.apocalypse.caerulaarbor.menu;
 
 import com.apocalypse.caerulaarbor.init.ModMenus;
 import net.minecraft.core.BlockPos;
@@ -20,7 +20,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.function.Supplier;
 
-public class InfoStrategyAllMenu extends AbstractContainerMenu implements Supplier<Map<Integer, Slot>> {
+public class EvoTreeMenu extends AbstractContainerMenu implements Supplier<Map<Integer, Slot>> {
 	public final static HashMap<String, Object> guistate = new HashMap<>();
 	public final Level world;
 	public final Player entity;
@@ -33,8 +33,8 @@ public class InfoStrategyAllMenu extends AbstractContainerMenu implements Suppli
 	private Entity boundEntity = null;
 	private BlockEntity boundBlockEntity = null;
 
-	public InfoStrategyAllMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
-		super(ModMenus.INFO_STRATEGY_ALL.get(), id);
+	public EvoTreeMenu(int id, Inventory inv, FriendlyByteBuf extraData) {
+		super(ModMenus.EVO_TREE.get(), id);
 		this.entity = inv.player;
 		this.world = inv.player.level();
 		this.internal = new ItemStackHandler(0);

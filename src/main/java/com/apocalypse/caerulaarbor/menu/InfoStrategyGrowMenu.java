@@ -1,5 +1,5 @@
 
-package com.apocalypse.caerulaarbor.world.inventory;
+package com.apocalypse.caerulaarbor.menu;
 
 import com.apocalypse.caerulaarbor.init.ModMenus;
 import net.minecraft.core.BlockPos;
