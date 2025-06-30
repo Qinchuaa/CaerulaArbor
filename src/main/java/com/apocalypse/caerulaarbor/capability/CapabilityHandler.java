@@ -26,7 +26,7 @@ public class CapabilityHandler {
     @SubscribeEvent
     public static void registerCapabilities(AttachCapabilitiesEvent<Entity> event) {
         if (event.getObject() instanceof LivingEntity) {
-            event.addCapability(CaerulaArborMod.loc("sanity_injury"), createProvider(LazyOptional.of(SanityInjuryCapability::new), ModCapabilities.SANITY_INJURY));
+            event.addCapability(SanityInjuryCapability.ID, createProvider(LazyOptional.of(SanityInjuryCapability::new), ModCapabilities.SANITY_INJURY));
         }
         if (event.getObject() instanceof Player && !(event.getObject() instanceof FakePlayer)) {
             event.addCapability(PlayerVariable.ID, createProvider(LazyOptional.of(PlayerVariable::new), ModCapabilities.PLAYER_VARIABLE));

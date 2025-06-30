@@ -1,9 +1,13 @@
 package com.apocalypse.caerulaarbor.capability.sanity;
 
+import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import net.minecraft.nbt.CompoundTag;
+import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 
 public class SanityInjuryCapability implements ISanityInjuryCapability {
+
+    public static final ResourceLocation ID = CaerulaArborMod.loc("sanity_injury");
 
     private double value;
     private boolean immune;

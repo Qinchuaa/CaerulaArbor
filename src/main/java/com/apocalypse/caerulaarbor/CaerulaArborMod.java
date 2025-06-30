@@ -4,6 +4,7 @@ import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.config.CommonConfig;
 import com.apocalypse.caerulaarbor.init.*;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
+import com.apocalypse.caerulaarbor.network.message.CaerulaRecordGUIButtonMessage;
 import com.apocalypse.caerulaarbor.network.message.PlayerVariablesSyncMessage;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
@@ -72,7 +73,7 @@ public class CaerulaArborMod {
     }
 
     private static final String PROTOCOL_VERSION = "1";
-    public static final SimpleChannel PACKET_HANDLER = NetworkRegistry.newSimpleChannel(new ResourceLocation(MODID, MODID), () -> PROTOCOL_VERSION, PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
+    public static final SimpleChannel PACKET_HANDLER = NetworkRegistry.newSimpleChannel(loc(MODID), () -> PROTOCOL_VERSION, PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
     private static int messageID = 0;
 
     public static <T> void addNetworkMessage(Class<T> messageType, BiConsumer<T, FriendlyByteBuf> encoder, Function<FriendlyByteBuf, T> decoder, BiConsumer<T, Supplier<NetworkEvent.Context>> messageConsumer) {
@@ -120,5 +121,6 @@ public class CaerulaArborMod {
 
         CaerulaArborMod.addNetworkMessage(CaerulaArborModVariables.SavedDataSyncMessage.class, CaerulaArborModVariables.SavedDataSyncMessage::buffer, CaerulaArborModVariables.SavedDataSyncMessage::new, CaerulaArborModVariables.SavedDataSyncMessage::handler);
         CaerulaArborMod.addNetworkMessage(PlayerVariablesSyncMessage.class, PlayerVariablesSyncMessage::buffer, PlayerVariablesSyncMessage::new, PlayerVariablesSyncMessage::handler);
+        CaerulaArborMod.addNetworkMessage(CaerulaRecordGUIButtonMessage.class, CaerulaRecordGUIButtonMessage::encode, CaerulaRecordGUIButtonMessage::decode, CaerulaRecordGUIButtonMessage::handler);
     }
 }
