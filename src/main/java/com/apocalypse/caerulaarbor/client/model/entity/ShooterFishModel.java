@@ -1,6 +1,6 @@
-package com.apocalypse.caerulaarbor.entity.model;
+package com.apocalypse.caerulaarbor.client.model.entity;
 
-import com.apocalypse.caerulaarbor.entity.CreeperFishEntity;
+import com.apocalypse.caerulaarbor.entity.ShooterFishEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import software.bernie.geckolib.constant.DataTickets;
@@ -9,24 +9,24 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.model.data.EntityModelData;
 
-public class CreeperFishModel extends GeoModel<CreeperFishEntity> {
+public class ShooterFishModel extends GeoModel<ShooterFishEntity> {
 	@Override
-	public ResourceLocation getAnimationResource(CreeperFishEntity entity) {
-		return new ResourceLocation("caerula_arbor", "animations/explosivefish.animation.json");
+	public ResourceLocation getAnimationResource(ShooterFishEntity entity) {
+		return new ResourceLocation("caerula_arbor", "animations/shootfish.animation.json");
 	}
 
 	@Override
-	public ResourceLocation getModelResource(CreeperFishEntity entity) {
-		return new ResourceLocation("caerula_arbor", "geo/explosivefish.geo.json");
+	public ResourceLocation getModelResource(ShooterFishEntity entity) {
+		return new ResourceLocation("caerula_arbor", "geo/shootfish.geo.json");
 	}
 
 	@Override
-	public ResourceLocation getTextureResource(CreeperFishEntity entity) {
+	public ResourceLocation getTextureResource(ShooterFishEntity entity) {
 		return new ResourceLocation("caerula_arbor", "textures/entities/" + entity.getTexture() + ".png");
 	}
 
 	@Override
-	public void setCustomAnimations(CreeperFishEntity animatable, long instanceId, AnimationState animationState) {
+	public void setCustomAnimations(ShooterFishEntity animatable, long instanceId, AnimationState animationState) {
 		CoreGeoBone head = getAnimationProcessor().getBone("head");
 		if (head != null) {
 			EntityModelData entityData = (EntityModelData) animationState.getData(DataTickets.ENTITY_MODEL_DATA);

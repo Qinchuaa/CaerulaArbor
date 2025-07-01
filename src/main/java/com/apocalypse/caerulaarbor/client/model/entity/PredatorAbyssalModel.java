@@ -1,6 +1,6 @@
-package com.apocalypse.caerulaarbor.entity.model;
+package com.apocalypse.caerulaarbor.client.model.entity;
 
-import com.apocalypse.caerulaarbor.entity.FlyFishEntity;
+import com.apocalypse.caerulaarbor.entity.PredatorAbyssalEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import software.bernie.geckolib.constant.DataTickets;
@@ -9,25 +9,25 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.model.data.EntityModelData;
 
-public class FlyFishModel extends GeoModel<FlyFishEntity> {
+public class PredatorAbyssalModel extends GeoModel<PredatorAbyssalEntity> {
 	@Override
-	public ResourceLocation getAnimationResource(FlyFishEntity entity) {
-		return new ResourceLocation("caerula_arbor", "animations/flyfish.animation.json");
+	public ResourceLocation getAnimationResource(PredatorAbyssalEntity entity) {
+		return new ResourceLocation("caerula_arbor", "animations/predator.animation.json");
 	}
 
 	@Override
-	public ResourceLocation getModelResource(FlyFishEntity entity) {
-		return new ResourceLocation("caerula_arbor", "geo/flyfish.geo.json");
+	public ResourceLocation getModelResource(PredatorAbyssalEntity entity) {
+		return new ResourceLocation("caerula_arbor", "geo/predator.geo.json");
 	}
 
 	@Override
-	public ResourceLocation getTextureResource(FlyFishEntity entity) {
+	public ResourceLocation getTextureResource(PredatorAbyssalEntity entity) {
 		return new ResourceLocation("caerula_arbor", "textures/entities/" + entity.getTexture() + ".png");
 	}
 
 	@Override
-	public void setCustomAnimations(FlyFishEntity animatable, long instanceId, AnimationState animationState) {
-		CoreGeoBone head = getAnimationProcessor().getBone("body");
+	public void setCustomAnimations(PredatorAbyssalEntity animatable, long instanceId, AnimationState animationState) {
+		CoreGeoBone head = getAnimationProcessor().getBone("head");
 		if (head != null) {
 			EntityModelData entityData = (EntityModelData) animationState.getData(DataTickets.ENTITY_MODEL_DATA);
 			head.setRotX(entityData.headPitch() * Mth.DEG_TO_RAD);

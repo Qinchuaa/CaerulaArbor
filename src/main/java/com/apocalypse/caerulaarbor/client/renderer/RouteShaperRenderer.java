@@ -2,7 +2,7 @@
 package com.apocalypse.caerulaarbor.client.renderer;
 
 import com.apocalypse.caerulaarbor.entity.RouteShaperEntity;
-import com.apocalypse.caerulaarbor.entity.model.RouteShaperModel;
+import com.apocalypse.caerulaarbor.client.model.entity.RouteShaperModel;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.MultiBufferSource;

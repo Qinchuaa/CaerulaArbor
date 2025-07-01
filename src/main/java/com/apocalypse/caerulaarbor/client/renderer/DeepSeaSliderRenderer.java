@@ -1,7 +1,7 @@
 package com.apocalypse.caerulaarbor.client.renderer;
 
 import com.apocalypse.caerulaarbor.entity.DeepSeaSliderEntity;
-import com.apocalypse.caerulaarbor.entity.model.DeepSeaSliderModel;
+import com.apocalypse.caerulaarbor.client.model.entity.DeepSeaSliderModel;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.MultiBufferSource;

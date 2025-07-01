@@ -1,4 +1,4 @@
-package com.apocalypse.caerulaarbor.entity.model;
+package com.apocalypse.caerulaarbor.client.model.entity;
 
 import com.apocalypse.caerulaarbor.entity.ReaperFishEntity;
 import net.minecraft.resources.ResourceLocation;

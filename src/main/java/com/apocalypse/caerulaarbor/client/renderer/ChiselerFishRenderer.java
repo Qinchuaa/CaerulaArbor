@@ -2,7 +2,7 @@
 package com.apocalypse.caerulaarbor.client.renderer;
 
 import com.apocalypse.caerulaarbor.entity.ChiselerFishEntity;
-import com.apocalypse.caerulaarbor.entity.model.ChiselerFishModel;
+import com.apocalypse.caerulaarbor.client.model.entity.ChiselerFishModel;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.MultiBufferSource;

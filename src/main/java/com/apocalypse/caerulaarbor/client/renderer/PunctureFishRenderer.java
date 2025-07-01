@@ -2,7 +2,7 @@
 package com.apocalypse.caerulaarbor.client.renderer;
 
 import com.apocalypse.caerulaarbor.entity.PunctureFishEntity;
-import com.apocalypse.caerulaarbor.entity.model.PunctureFishModel;
+import com.apocalypse.caerulaarbor.client.model.entity.PunctureFishModel;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.MultiBufferSource;

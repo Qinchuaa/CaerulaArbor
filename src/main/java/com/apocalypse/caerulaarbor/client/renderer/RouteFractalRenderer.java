@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.client.renderer;
 
-import com.apocalypse.caerulaarbor.entity.model.RouteFractalModel;
+import com.apocalypse.caerulaarbor.client.model.entity.RouteFractalModel;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 

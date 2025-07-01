@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.client.renderer;
 
-import com.apocalypse.caerulaarbor.entity.model.FakeOffspringModel;
+import com.apocalypse.caerulaarbor.client.model.entity.FakeOffspringModel;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 

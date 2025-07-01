@@ -2,7 +2,7 @@
 package com.apocalypse.caerulaarbor.client.renderer;
 
 import com.apocalypse.caerulaarbor.entity.FlyFishEntity;
-import com.apocalypse.caerulaarbor.entity.model.FlyFishModel;
+import com.apocalypse.caerulaarbor.client.model.entity.FlyFishModel;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.MultiBufferSource;

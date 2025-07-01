@@ -2,7 +2,7 @@
 package com.apocalypse.caerulaarbor.client.renderer;
 
 import com.apocalypse.caerulaarbor.entity.GuideAbyssalEntity;
-import com.apocalypse.caerulaarbor.entity.model.GuideAbyssalModel;
+import com.apocalypse.caerulaarbor.client.model.entity.GuideAbyssalModel;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.MultiBufferSource;

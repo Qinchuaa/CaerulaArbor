@@ -1,7 +1,7 @@
 package com.apocalypse.caerulaarbor.client.renderer;
 
 import com.apocalypse.caerulaarbor.entity.ShellSeaRunnerEntity;
-import com.apocalypse.caerulaarbor.entity.model.ShellSeaRunnerModel;
+import com.apocalypse.caerulaarbor.client.model.entity.ShellSeaRunnerModel;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;

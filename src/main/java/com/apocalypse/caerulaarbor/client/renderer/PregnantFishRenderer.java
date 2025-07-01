@@ -2,8 +2,8 @@
 package com.apocalypse.caerulaarbor.client.renderer;
 
 import com.apocalypse.caerulaarbor.entity.PregnantFishEntity;
-import com.apocalypse.caerulaarbor.entity.layer.PregnantFishLayer;
-import com.apocalypse.caerulaarbor.entity.model.PregnantFishModel;
+import com.apocalypse.caerulaarbor.client.layer.PregnantFishLayer;
+import com.apocalypse.caerulaarbor.client.model.entity.PregnantFishModel;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.MultiBufferSource;

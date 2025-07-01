@@ -1,6 +1,6 @@
-package com.apocalypse.caerulaarbor.entity.model;
+package com.apocalypse.caerulaarbor.client.model.entity;
 
-import com.apocalypse.caerulaarbor.entity.CrackerAbyssalEntity;
+import com.apocalypse.caerulaarbor.entity.FakeOffspringEntity;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.util.Mth;
 import software.bernie.geckolib.constant.DataTickets;
@@ -9,25 +9,25 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.model.GeoModel;
 import software.bernie.geckolib.model.data.EntityModelData;
 
-public class CrackerAbyssalModel extends GeoModel<CrackerAbyssalEntity> {
+public class FakeOffspringModel extends GeoModel<FakeOffspringEntity> {
 	@Override
-	public ResourceLocation getAnimationResource(CrackerAbyssalEntity entity) {
-		return new ResourceLocation("caerula_arbor", "animations/reefcracker.animation.json");
+	public ResourceLocation getAnimationResource(FakeOffspringEntity entity) {
+		return new ResourceLocation("caerula_arbor", "animations/fakeegg.animation.json");
 	}
 
 	@Override
-	public ResourceLocation getModelResource(CrackerAbyssalEntity entity) {
-		return new ResourceLocation("caerula_arbor", "geo/reefcracker.geo.json");
+	public ResourceLocation getModelResource(FakeOffspringEntity entity) {
+		return new ResourceLocation("caerula_arbor", "geo/fakeegg.geo.json");
 	}
 
 	@Override
-	public ResourceLocation getTextureResource(CrackerAbyssalEntity entity) {
+	public ResourceLocation getTextureResource(FakeOffspringEntity entity) {
 		return new ResourceLocation("caerula_arbor", "textures/entities/" + entity.getTexture() + ".png");
 	}
 
 	@Override
-	public void setCustomAnimations(CrackerAbyssalEntity animatable, long instanceId, AnimationState animationState) {
-		CoreGeoBone head = getAnimationProcessor().getBone("head");
+	public void setCustomAnimations(FakeOffspringEntity animatable, long instanceId, AnimationState animationState) {
+		CoreGeoBone head = getAnimationProcessor().getBone("ball");
 		if (head != null) {
 			EntityModelData entityData = (EntityModelData) animationState.getData(DataTickets.ENTITY_MODEL_DATA);
 			head.setRotX(entityData.headPitch() * Mth.DEG_TO_RAD);

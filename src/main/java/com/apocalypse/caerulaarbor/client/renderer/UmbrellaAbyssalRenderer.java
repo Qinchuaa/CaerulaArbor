@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.client.renderer;
 
-import com.apocalypse.caerulaarbor.entity.model.UmbrellaAbyssalModel;
+import com.apocalypse.caerulaarbor.client.model.entity.UmbrellaAbyssalModel;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 

@@ -2,8 +2,8 @@
 package com.apocalypse.caerulaarbor.client.renderer;
 
 import com.apocalypse.caerulaarbor.entity.ReaperFishEntity;
-import com.apocalypse.caerulaarbor.entity.layer.ReaperFishLayer;
-import com.apocalypse.caerulaarbor.entity.model.ReaperFishModel;
+import com.apocalypse.caerulaarbor.client.layer.ReaperFishLayer;
+import com.apocalypse.caerulaarbor.client.model.entity.ReaperFishModel;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.MultiBufferSource;

@@ -2,8 +2,8 @@
 package com.apocalypse.caerulaarbor.client.renderer;
 
 import com.apocalypse.caerulaarbor.entity.CollectorProkaryoteEntity;
-import com.apocalypse.caerulaarbor.entity.layer.CollectorProkaryoteLayer;
-import com.apocalypse.caerulaarbor.entity.model.CollectorProkaryoteModel;
+import com.apocalypse.caerulaarbor.client.layer.CollectorProkaryoteLayer;
+import com.apocalypse.caerulaarbor.client.model.entity.CollectorProkaryoteModel;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.MultiBufferSource;

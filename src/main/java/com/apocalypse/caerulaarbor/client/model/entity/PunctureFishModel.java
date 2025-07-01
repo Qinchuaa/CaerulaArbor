@@ -1,4 +1,4 @@
-package com.apocalypse.caerulaarbor.entity.model;
+package com.apocalypse.caerulaarbor.client.model.entity;
 
 import com.apocalypse.caerulaarbor.entity.PunctureFishEntity;
 import net.minecraft.resources.ResourceLocation;
