@@ -1,16 +1,17 @@
 package com.apocalypse.caerulaarbor.entity;
 
+import com.apocalypse.caerulaarbor.entity.base.SeaMonster;
 import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageTypes;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
@@ -30,21 +31,15 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import org.jetbrains.annotations.NotNull;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class ShellSeaRunnerEntity extends Monster implements GeoEntity {
-
-    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+public class ShellSeaRunnerEntity extends SeaMonster {
 
     private boolean swinging;
     private long lastSwing;
@@ -58,11 +53,6 @@ public class ShellSeaRunnerEntity extends Monster implements GeoEntity {
         this.xpReward = 3;
         setNoAi(false);
         setMaxUpStep(1f);
-    }
-
-    @Override
-    public @NotNull Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
@@ -112,11 +102,6 @@ public class ShellSeaRunnerEntity extends Monster implements GeoEntity {
     }
 
     @Override
-    public @NotNull MobType getMobType() {
-        return MobType.WATER;
-    }
-
-    @Override
     public SoundEvent getAmbientSound() {
         return SoundEvents.PUFFER_FISH_AMBIENT;
     }
@@ -134,13 +119,6 @@ public class ShellSeaRunnerEntity extends Monster implements GeoEntity {
     @Override
     public SoundEvent getDeathSound() {
         return SoundEvents.PUFFER_FISH_DEATH;
-    }
-
-    @Override
-    public boolean hurt(DamageSource source, float amount) {
-        if (source.is(DamageTypes.DROWN))
-            return false;
-        return super.hurt(source, amount);
     }
 
     @Override
@@ -203,10 +181,5 @@ public class ShellSeaRunnerEntity extends Monster implements GeoEntity {
     public void registerControllers(AnimatableManager.ControllerRegistrar data) {
         data.add(new AnimationController<>(this, "movement", 1, this::movementPredicate));
         data.add(new AnimationController<>(this, "attacking", 1, this::attackingPredicate));
-    }
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return this.cache;
     }
 }

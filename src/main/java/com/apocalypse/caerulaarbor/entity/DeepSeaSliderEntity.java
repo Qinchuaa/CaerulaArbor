@@ -1,21 +1,16 @@
 package com.apocalypse.caerulaarbor.entity;
 
+import com.apocalypse.caerulaarbor.entity.base.SeaMonster;
 import com.apocalypse.caerulaarbor.init.ModAttributes;
 import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -38,29 +33,21 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.common.DungeonHooks;
-import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
 
-public class DeepSeaSliderEntity extends Monster implements GeoEntity {
-    public static final EntityDataAccessor<Boolean> SHOOT = SynchedEntityData.defineId(DeepSeaSliderEntity.class, EntityDataSerializers.BOOLEAN);
-    public static final EntityDataAccessor<String> ANIMATION = SynchedEntityData.defineId(DeepSeaSliderEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> TEXTURE = SynchedEntityData.defineId(DeepSeaSliderEntity.class, EntityDataSerializers.STRING);
-    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+public class DeepSeaSliderEntity extends SeaMonster {
+
     private boolean swinging;
     private long lastSwing;
-    public String animationprocedure = "empty";
 
     public DeepSeaSliderEntity(PlayMessages.SpawnEntity packet, Level world) {
         this(ModEntities.DEEP_SEA_SLIDER.get(), world);
@@ -71,27 +58,6 @@ public class DeepSeaSliderEntity extends Monster implements GeoEntity {
         xpReward = 4;
         setNoAi(false);
         setMaxUpStep(1f);
-    }
-
-    @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(SHOOT, false);
-        this.entityData.define(ANIMATION, "undefined");
-        this.entityData.define(TEXTURE, "fish");
-    }
-
-    public void setTexture(String texture) {
-        this.entityData.set(TEXTURE, texture);
-    }
-
-    public String getTexture() {
-        return this.entityData.get(TEXTURE);
-    }
-
-    @Override
-    public @NotNull Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
@@ -141,11 +107,6 @@ public class DeepSeaSliderEntity extends Monster implements GeoEntity {
     }
 
     @Override
-    public @NotNull MobType getMobType() {
-        return MobType.WATER;
-    }
-
-    @Override
     public SoundEvent getAmbientSound() {
         return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.tropical_fish.ambient"));
     }
@@ -166,13 +127,6 @@ public class DeepSeaSliderEntity extends Monster implements GeoEntity {
     }
 
     @Override
-    public boolean hurt(DamageSource source, float amount) {
-        if (source.is(DamageTypes.DROWN))
-            return false;
-        return super.hurt(source, amount);
-    }
-
-    @Override
     public SpawnGroupData finalizeSpawn(@NotNull ServerLevelAccessor world, @NotNull DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
         SpawnGroupData retval = super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
         var san = getAttribute(ModAttributes.SANITY_RATE.get());
@@ -183,27 +137,9 @@ public class DeepSeaSliderEntity extends Monster implements GeoEntity {
     }
 
     @Override
-    public void addAdditionalSaveData(@NotNull CompoundTag compound) {
-        super.addAdditionalSaveData(compound);
-        compound.putString("Texture", this.getTexture());
-    }
-
-    @Override
-    public void readAdditionalSaveData(@NotNull CompoundTag compound) {
-        super.readAdditionalSaveData(compound);
-        if (compound.contains("Texture"))
-            this.setTexture(compound.getString("Texture"));
-    }
-
-    @Override
     public void baseTick() {
         super.baseTick();
         this.refreshDimensions();
-    }
-
-    @Override
-    public @NotNull EntityDimensions getDimensions(@NotNull Pose p_33597_) {
-        return super.getDimensions(p_33597_).scale((float) 1);
     }
 
     public static void init() {
@@ -223,20 +159,13 @@ public class DeepSeaSliderEntity extends Monster implements GeoEntity {
     }
 
     private PlayState movementPredicate(AnimationState<?> event) {
-        if (this.animationprocedure.equals("empty")) {
-            if ((event.isMoving() || !(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F))
-
-            ) {
-                return event.setAndContinue(RawAnimation.begin().thenLoop("animation.slidingfish.move"));
-            }
-            return event.setAndContinue(RawAnimation.begin().thenLoop("animation.slidingfish.idle"));
+        if ((event.isMoving() || !(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F))) {
+            return event.setAndContinue(RawAnimation.begin().thenLoop("animation.slidingfish.move"));
         }
-        return PlayState.STOP;
+        return event.setAndContinue(RawAnimation.begin().thenLoop("animation.slidingfish.idle"));
     }
 
     private PlayState attackingPredicate(AnimationState<?> event) {
-        double d1 = this.getX() - this.xOld;
-        double d0 = this.getZ() - this.zOld;
         if (getAttackAnim(event.getPartialTick()) > 0f && !this.swinging) {
             this.swinging = true;
             this.lastSwing = level().getGameTime();
@@ -251,25 +180,6 @@ public class DeepSeaSliderEntity extends Monster implements GeoEntity {
         return PlayState.CONTINUE;
     }
 
-    String prevAnim = "empty";
-
-    private PlayState procedurePredicate(AnimationState<?> event) {
-        if (!animationprocedure.equals("empty") && event.getController().getAnimationState() == AnimationController.State.STOPPED || (!this.animationprocedure.equals(prevAnim) && !this.animationprocedure.equals("empty"))) {
-            if (!this.animationprocedure.equals(prevAnim))
-                event.getController().forceAnimationReset();
-            event.getController().setAnimation(RawAnimation.begin().thenPlay(this.animationprocedure));
-            if (event.getController().getAnimationState() == AnimationController.State.STOPPED) {
-                this.animationprocedure = "empty";
-                event.getController().forceAnimationReset();
-            }
-        } else if (animationprocedure.equals("empty")) {
-            prevAnim = "empty";
-            return PlayState.STOP;
-        }
-        prevAnim = this.animationprocedure;
-        return PlayState.CONTINUE;
-    }
-
     @Override
     protected void tickDeath() {
         ++this.deathTime;
@@ -279,23 +189,9 @@ public class DeepSeaSliderEntity extends Monster implements GeoEntity {
         }
     }
 
-    public String getSyncedAnimation() {
-        return this.entityData.get(ANIMATION);
-    }
-
-    public void setAnimation(String animation) {
-        this.entityData.set(ANIMATION, animation);
-    }
-
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar data) {
         data.add(new AnimationController<>(this, "movement", 10, this::movementPredicate));
         data.add(new AnimationController<>(this, "attacking", 10, this::attackingPredicate));
-        data.add(new AnimationController<>(this, "procedure", 10, this::procedurePredicate));
-    }
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return this.cache;
     }
 }
