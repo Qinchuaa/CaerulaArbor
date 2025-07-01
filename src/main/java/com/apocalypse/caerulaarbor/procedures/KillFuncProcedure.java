@@ -188,7 +188,7 @@ public class KillFuncProcedure {
             }
             if (damagesource.is(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation("caerula_arbor:oceanize_damage")))) {
                 if (world instanceof ServerLevel _level) {
-                    Entity entityToSpawn = ModEntities.SLIDER_FISH.get().spawn(_level, BlockPos.containing(x, y, z), MobSpawnType.MOB_SUMMONED);
+                    Entity entityToSpawn = ModEntities.DEEP_SEA_SLIDER.get().spawn(_level, BlockPos.containing(x, y, z), MobSpawnType.MOB_SUMMONED);
                     if (entityToSpawn != null) {
                         entityToSpawn.setDeltaMovement(0, 0.15, 0);
                     }

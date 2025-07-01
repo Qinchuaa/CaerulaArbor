@@ -91,8 +91,10 @@
   "attribute.caerula_arbor.sanity_injury_resistance": "Sanity Injury Resistance",
 
   "entity.caerula_arbor.shell_sea_runner": "Shell Sea Runner",
+  "entity.caerula_arbor.deep_sea_slider": "Deep Sea Slider",
 
   "item.caerula_arbor.shell_sea_runner_spawn_egg": "Shell Sea Runner Spawn Egg",
+  "item.caerula_arbor.deep_sea_slider_spawn_egg": "Deep Sea Slider Spawn Egg",
 
   "item.caerula_arbor.fluore_berries": "Fluore Berries",
   "subtitles.grow1": "EMBRACE MORE",
@@ -244,7 +246,6 @@
   "item.caerula_arbor.cell_cluster": "Cell Cluster",
   "advancements.to_witness_the_tide.title": "To Witness The Tide",
   "item.caerula_arbor.language_key.description_7": "私についてきて。永遠の故郷に還りましょう。",
-  "entity.caerula_arbor.slider_fish": "Slider Fish",
   "item.caerula_arbor.language_key.description_6": "じゃあ、この遠海の歌に耳を傾けて……",
   "item.caerula_arbor.language_key.description_9": "怖がらないで、同胞たち……すぐに着くから。",
   "item.caerula_arbor.language_key.description_8": "歌声が、あなたたちの心に染み込んでいくわ。",
@@ -605,7 +606,6 @@
   "item.caerula_arbor.relic_cursed_glowbody": "§cGlowbody",
   "gui.caerula_arbor.caerula_record_gui.tooltip_neuro": "Player have chance to be frozen if hit",
   "item.caerula_arbor.archfiends_flag": "Archfiend\u0027s Flag",
-  "item.caerula_arbor.slider_fish_spawn_egg": "Slider Fish Spawn Egg",
   "item.caerula_arbor.kings_armour.description_1": "§oSignifying the glorious past, but brings damage to the present",
   "item.caerula_arbor.archfiends_bed.description_1": "§oSleeping shall be an eternity for those who enthrone",
   "item.caerula_arbor.ocean_cutin": "Ocean Cutin",

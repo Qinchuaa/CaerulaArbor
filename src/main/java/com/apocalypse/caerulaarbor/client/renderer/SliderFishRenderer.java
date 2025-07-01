@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.client.renderer;
 
-import com.apocalypse.caerulaarbor.entity.SliderFishEntity;
+import com.apocalypse.caerulaarbor.entity.DeepSeaSliderEntity;
 import com.apocalypse.caerulaarbor.entity.model.SliderFishModel;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -12,20 +12,20 @@ import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class SliderFishRenderer extends GeoEntityRenderer<SliderFishEntity> {
+public class SliderFishRenderer extends GeoEntityRenderer<DeepSeaSliderEntity> {
 	public SliderFishRenderer(EntityRendererProvider.Context renderManager) {
 		super(renderManager, new SliderFishModel());
 		this.shadowRadius = 0.7f;
 	}
 
 	@Override
-	public RenderType getRenderType(SliderFishEntity animatable, ResourceLocation texture, MultiBufferSource bufferSource, float partialTick) {
+	public RenderType getRenderType(DeepSeaSliderEntity animatable, ResourceLocation texture, MultiBufferSource bufferSource, float partialTick) {
 		return RenderType.entityTranslucent(getTextureLocation(animatable));
 	}
 
 	@Override
-	public void preRender(PoseStack poseStack, SliderFishEntity entity, BakedGeoModel model, MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green,
-			float blue, float alpha) {
+	public void preRender(PoseStack poseStack, DeepSeaSliderEntity entity, BakedGeoModel model, MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green,
+                          float blue, float alpha) {
 		float scale = 1.5f;
 		this.scaleHeight = scale;
 		this.scaleWidth = scale;

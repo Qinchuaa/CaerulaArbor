@@ -55,7 +55,7 @@ public class CaerulaArborMod {
         ModBlocks.BLOCKS.register(bus);
 
         ModItems.register(bus);
-        ModEntities.REGISTRY.register(bus);
+        ModEntities.ENTITY_TYPES.register(bus);
         ModEnchantments.REGISTRY.register(bus);
         ModTabs.REGISTRY.register(bus);
 
