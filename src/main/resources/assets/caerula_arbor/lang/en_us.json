@@ -90,6 +90,10 @@
 
   "attribute.caerula_arbor.sanity_injury_resistance": "Sanity Injury Resistance",
 
+  "entity.caerula_arbor.shell_sea_runner": "Shell Sea Runner",
+
+  "item.caerula_arbor.shell_sea_runner_spawn_egg": "Shell Sea Runner Spawn Egg",
+
   "item.caerula_arbor.fluore_berries": "Fluore Berries",
   "subtitles.grow1": "EMBRACE MORE",
   "item.caerula_arbor.complex_chitin": "Complex Chitin",
@@ -367,7 +371,6 @@
   "effect.caerula_arbor.reef_cracker": "Reef Cracker",
   "item.caerula_arbor.sample_grow.description_5": "Crowd\u0027s Strategy of GROW has evolved into phase",
   "item.caerula_arbor.ocean_phloem": "Ocean Phloem",
-  "entity.caerula_arbor.run_fish": "Run Fish",
   "item.caerula_arbor.sample_grow.description_0": "Nothing changes",
   "item.caerula_arbor.ocean_chitin": "Ocean Chitin",
   "item.caerula_arbor.sample_grow.description_1": "Oceanoffspring attack +25%",
@@ -529,7 +532,6 @@
   "item.caerula_arbor.puncture_fish_spawn_egg": "Puncture Fish Spawn Egg",
   "item.caerula_arbor.chitin_knife.description_0": "§bPlayer got 5% chance to attack +100%, maxhealth +100% for 25s when hold his current weapon,and buff vanishes when he changes weapon",
   "item.minecraft.lingering_potion.effect.sanity_cure_ii": "Lingering Potion of Sanity Cure",
-  "item.caerula_arbor.run_fish_spawn_egg": "Run Fish Spawn Egg",
   "effect.caerula_arbor.sacrefice": "Sacrefice",
   "gui.caerula_arbor.caerula_record_gui.label_health": "Health:",
   "item.caerula_arbor.relic_curse_emelight": "§4Emergency Lantren",

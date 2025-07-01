@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"animation.creepingfish.idle": {
+		"animation.shell_sea_runner.idle": {
 			"loop": true,
 			"animation_length": 4,
 			"bones": {
@@ -224,7 +224,7 @@
 				}
 			}
 		},
-		"animation.creepingfish.attack": {
+		"animation.shell_sea_runner.attack": {
 			"animation_length": 1,
 			"bones": {
 				"body": {
@@ -490,7 +490,7 @@
 				}
 			}
 		},
-		"animation.creepingfish.move": {
+		"animation.shell_sea_runner.move": {
 			"loop": true,
 			"animation_length": 1,
 			"bones": {

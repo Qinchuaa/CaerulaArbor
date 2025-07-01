@@ -90,6 +90,10 @@
 
   "attribute.caerula_arbor.sanity_injury_resistance": "神经损伤减免",
 
+  "entity.caerula_arbor.shell_sea_runner": "壳海狂奔者",
+
+  "item.caerula_arbor.shell_sea_runner_spawn_egg": "壳海狂奔者刷怪蛋",
+
   "subtitles.grow1": "拥纳愈广",
   "item.caerula_arbor.fluore_berries": "荧光浆果",
   "item.caerula_arbor.complex_chitin": "复合几丁质",
@@ -367,7 +371,6 @@
   "effect.caerula_arbor.reef_cracker": "裂礁",
   "item.caerula_arbor.sample_grow.description_5": "大群的进化策略【生长】已进入阶段 ",
   "item.caerula_arbor.ocean_phloem": "深海韧皮",
-  "entity.caerula_arbor.run_fish": "壳海狂奔者",
   "item.caerula_arbor.sample_grow.description_0": "暂无变化",
   "item.caerula_arbor.ocean_chitin": "深海几丁质",
   "item.caerula_arbor.sample_grow.description_1": "海嗣攻击力+25%",
@@ -529,7 +532,6 @@
   "item.caerula_arbor.puncture_fish_spawn_egg": "始海穿刺者刷怪蛋",
   "item.caerula_arbor.chitin_knife.description_0": "§b玩家攻击时有5%概率攻击力+100%，生命值+100%，持续25秒。更换主手物品时提前结束",
   "item.minecraft.lingering_potion.effect.sanity_cure_ii": "滞留型神经抚慰药水",
-  "item.caerula_arbor.run_fish_spawn_egg": "壳海狂奔者刷怪蛋",
   "effect.caerula_arbor.sacrefice": "祭礼",
   "gui.caerula_arbor.caerula_record_gui.label_health": "生命值：",
   "item.caerula_arbor.relic_curse_emelight": "§4“应急灯”",

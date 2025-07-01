@@ -186,7 +186,7 @@ public class ModTabs {
             () -> CreativeModeTab.builder().title(Component.translatable("item_group.caerula_arbor.caerula_livings")).icon(() -> new ItemStack(ModItems.RELIC_CURSED_GLOWBODY.get())).displayItems((parameters, tabData) -> {
                 tabData.accept(ModItems.FAKE_OFFSPRING_SPAWN_EGG.get());
                 tabData.accept(ModItems.ROUTE_FRACTAL_SPAWN_EGG.get());
-                tabData.accept(ModItems.RUN_FISH_SPAWN_EGG.get());
+                tabData.accept(ModItems.SHELL_SEA_RUNNER_SPAWN_EGG.get());
                 tabData.accept(ModItems.SLIDER_FISH_SPAWN_EGG.get());
                 tabData.accept(ModItems.SHOOTER_FISH_SPAWN_EGG.get());
                 tabData.accept(ModItems.FLY_FISH_SPAWN_EGG.get());

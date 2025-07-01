@@ -17,8 +17,8 @@ import net.minecraftforge.registries.RegistryObject;
 public class ModEntities {
 
     public static final DeferredRegister<EntityType<?>> REGISTRY = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, CaerulaArborMod.MODID);
-    public static final RegistryObject<EntityType<RunFishEntity>> RUN_FISH = register("run_fish",
-            EntityType.Builder.<RunFishEntity>of(RunFishEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(RunFishEntity::new)
+    public static final RegistryObject<EntityType<ShellSeaRunnerEntity>> SHELL_SEA_RUNNER = register("shell_sea_runner",
+            EntityType.Builder.<ShellSeaRunnerEntity>of(ShellSeaRunnerEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(ShellSeaRunnerEntity::new)
                     .sized(0.4f, 0.5f));
     public static final RegistryObject<EntityType<SliderFishEntity>> SLIDER_FISH = register("slider_fish",
             EntityType.Builder.<SliderFishEntity>of(SliderFishEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(SliderFishEntity::new)
@@ -100,7 +100,7 @@ public class ModEntities {
     @SubscribeEvent
     public static void init(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            RunFishEntity.init();
+            ShellSeaRunnerEntity.init();
             SliderFishEntity.init();
             SuperSliderEntity.init();
             ShooterFishEntity.init();
@@ -127,7 +127,7 @@ public class ModEntities {
 
     @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent event) {
-        event.put(RUN_FISH.get(), RunFishEntity.createAttributes().build());
+        event.put(SHELL_SEA_RUNNER.get(), ShellSeaRunnerEntity.createAttributes().build());
         event.put(SLIDER_FISH.get(), SliderFishEntity.createAttributes().build());
         event.put(SUPER_SLIDER.get(), SuperSliderEntity.createAttributes().build());
         event.put(SHOOTER_FISH.get(), ShooterFishEntity.createAttributes().build());

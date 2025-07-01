@@ -1,7 +1,0 @@
-// 1.20.1	2025-06-11T21:23:52.3288606	Tags for minecraft:item mod id caerula_arbor
-83690e3700576512c443e7b864144a8a3c5d4622 data/caerula_arbor/tags/items/relics.json
-fd8c6103cad5e57caa6fde9f3ff68ba0ef166f73 data/caerula_arbor/tags/items/relics/archfiend.json
-a1e35e94ab69d6e26ed51ca47ff4249e355f9ecf data/caerula_arbor/tags/items/relics/cursed.json
-b64e5f913d177377786e3cb16a7c50488535538d data/caerula_arbor/tags/items/relics/hand.json
-7d81a5cd780ad2d19785a85cf7ee1a021c69dcbc data/caerula_arbor/tags/items/relics/king.json
-0e58dbff2b4be5f6eab34495e39c38a09967f93c data/caerula_arbor/tags/items/self_mendable.json

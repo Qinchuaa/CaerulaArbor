@@ -71,7 +71,8 @@ public class ModItems {
     public static final RegistryObject<Item> REDSTONEIRIS_SEEDING = block(ModBlocks.REDSTONE_IRIS_SEEDING);
     public static final RegistryObject<Item> THERMOGRAPH = ITEMS.register("thermograph", ThermographItem::new);
     public static final RegistryObject<Item> TOPONYM_TEXTOLOGY = ITEMS.register("toponym_textology", ToponymTextologyItem::new);
-    public static final RegistryObject<Item> RUN_FISH_SPAWN_EGG = ITEMS.register("run_fish_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.RUN_FISH, -16777012, -3355444, new Item.Properties()));
+
+    public static final RegistryObject<Item> SHELL_SEA_RUNNER_SPAWN_EGG = ITEMS.register("shell_sea_runner_spawn_eggs", () -> new ForgeSpawnEggItem(ModEntities.SHELL_SEA_RUNNER, -16777012, -3355444, new Item.Properties()));
     public static final RegistryObject<Item> SLIDER_FISH_SPAWN_EGG = ITEMS.register("slider_fish_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.SLIDER_FISH, -13421569, -3355444, new Item.Properties()));
     public static final RegistryObject<Item> SUPER_SLIDER_SPAWN_EGG = ITEMS.register("super_slider_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.SUPER_SLIDER, -13434778, -3355393, new Item.Properties()));
     public static final RegistryObject<Item> SHOOTER_FISH_SPAWN_EGG = ITEMS.register("shooter_fish_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.SHOOTER_FISH, -13434676, -3355444, new Item.Properties()));

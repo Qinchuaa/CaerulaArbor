@@ -11,7 +11,7 @@ public class ModRenderers {
 
     @SubscribeEvent
     public static void registerEntityRenderers(EntityRenderersEvent.RegisterRenderers event) {
-        event.registerEntityRenderer(ModEntities.RUN_FISH.get(), RunFishRenderer::new);
+        event.registerEntityRenderer(ModEntities.SHELL_SEA_RUNNER.get(), ShellSeaRunnerRenderer::new);
         event.registerEntityRenderer(ModEntities.SLIDER_FISH.get(), SliderFishRenderer::new);
         event.registerEntityRenderer(ModEntities.SUPER_SLIDER.get(), SuperSliderRenderer::new);
         event.registerEntityRenderer(ModEntities.SHOOTER_FISH.get(), ShooterFishRenderer::new);
