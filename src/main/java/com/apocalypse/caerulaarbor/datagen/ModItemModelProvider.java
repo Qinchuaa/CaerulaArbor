@@ -67,6 +67,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.OCEAN_CHITIN);
         simpleItem(ModItems.COMPLEX_CHITIN);
         simpleItem(ModItems.REDSTONE_INGOT);
+
+        // spawn eggs
+        spawnEggItem(ModItems.SHELL_SEA_RUNNER_SPAWN_EGG);
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
@@ -91,5 +94,9 @@ public class ModItemModelProvider extends ItemModelProvider {
     private ItemModelBuilder handheldItem(RegistryObject<Item> item) {
         return withExistingParent(item.getId().getPath(), new ResourceLocation("item/handheld"))
                 .texture("layer0", CaerulaArborMod.loc("item/" + item.getId().getPath()));
+    }
+
+    private ItemModelBuilder spawnEggItem(RegistryObject<Item> item) {
+        return withExistingParent(item.getId().getPath(), new ResourceLocation("item/template_spawn_egg"));
     }
 }
