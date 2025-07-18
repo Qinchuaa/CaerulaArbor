@@ -79,7 +79,7 @@ public class InfestedMobEffect extends MobEffect {
 
         if (entity instanceof Player) {
             entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
-                capability.player_oceanization = (double) Math.min(amplifier, 2) + 1;
+                capability.player_oceanization = Math.min(amplifier, 2) + 1;
                 capability.syncPlayerVariables(entity);
             });
             DeductPlayerSanityProcedure.execute(entity, 750 * (amplifier + 1));

@@ -134,7 +134,7 @@ public class PlayerTickFuncProcedure {
                         {
                             double _setval = 1;
                             entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
-                                capability.player_king_suit = _setval;
+                                capability.player_king_suit = (int) _setval;
                                 capability.syncPlayerVariables(entity);
                             });
                         }

@@ -272,7 +272,7 @@ public class MobHitFuncProcedure {
             if (sourceentity instanceof RouteShaperEntity _datEntSetI)
                 _datEntSetI.getEntityData().set(RouteShaperEntity.DATA_skillp, (int) (sklp + 1));
             if (sklp + 1 >= 8) {
-                SummonFractalProcedure.execute(world, x, y, z);
+                SummonFractalProcedure.execute(sourceentity.level(), x, y, z);
                 if (sourceentity instanceof RouteShaperEntity _datEntSetI)
                     _datEntSetI.getEntityData().set(RouteShaperEntity.DATA_skillp, 0);
             }
@@ -282,7 +282,7 @@ public class MobHitFuncProcedure {
             if (sourceentity instanceof RouteFractalEntity _datEntSetI)
                 _datEntSetI.getEntityData().set(RouteFractalEntity.DATA_skillp, (int) (sklp + 1));
             if (sklp + 1 >= 6) {
-                SummonFractalProcedure.execute(world, x, y, z);
+                SummonFractalProcedure.execute(sourceentity.level(), x, y, z);
                 if (sourceentity instanceof RouteFractalEntity _datEntSetI)
                     _datEntSetI.getEntityData().set(RouteFractalEntity.DATA_skillp, 0);
             }

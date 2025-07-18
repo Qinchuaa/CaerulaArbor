@@ -1,4 +1,3 @@
-
 package com.apocalypse.caerulaarbor.client.renderer;
 
 import com.apocalypse.caerulaarbor.entity.SuperSliderEntity;
@@ -13,22 +12,23 @@ import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
 public class SuperSliderRenderer extends GeoEntityRenderer<SuperSliderEntity> {
-	public SuperSliderRenderer(EntityRendererProvider.Context renderManager) {
-		super(renderManager, new SuperSliderModel());
-		this.shadowRadius = 0.5f;
-	}
 
-	@Override
-	public RenderType getRenderType(SuperSliderEntity animatable, ResourceLocation texture, MultiBufferSource bufferSource, float partialTick) {
-		return RenderType.entityTranslucent(getTextureLocation(animatable));
-	}
+    public SuperSliderRenderer(EntityRendererProvider.Context renderManager) {
+        super(renderManager, new SuperSliderModel());
+        this.shadowRadius = 0.5f;
+    }
 
-	@Override
-	public void preRender(PoseStack poseStack, SuperSliderEntity entity, BakedGeoModel model, MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green,
-			float blue, float alpha) {
-		float scale = 10f;
-		this.scaleHeight = scale;
-		this.scaleWidth = scale;
-		super.preRender(poseStack, entity, model, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
-	}
+    @Override
+    public RenderType getRenderType(SuperSliderEntity animatable, ResourceLocation texture, MultiBufferSource bufferSource, float partialTick) {
+        return RenderType.entityTranslucent(getTextureLocation(animatable));
+    }
+
+    @Override
+    public void preRender(PoseStack poseStack, SuperSliderEntity entity, BakedGeoModel model, MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green,
+                          float blue, float alpha) {
+        float scale = 10f;
+        this.scaleHeight = scale;
+        this.scaleWidth = scale;
+        super.preRender(poseStack, entity, model, bufferSource, buffer, isReRender, partialTick, packedLight, packedOverlay, red, green, blue, alpha);
+    }
 }

@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"animation.slidingfish.idle": {
+		"animation.deep_sea_slider.idle": {
 			"loop": true,
 			"animation_length": 4,
 			"bones": {
@@ -529,7 +529,7 @@
 				}
 			}
 		},
-		"animation.slidingfish.attack": {
+		"animation.deep_sea_slider.attack": {
 			"animation_length": 1,
 			"bones": {
 				"peduncle": {
@@ -825,7 +825,7 @@
 				}
 			}
 		},
-		"animation.slidingfish.move": {
+		"animation.deep_sea_slider.move": {
 			"loop": true,
 			"animation_length": 1.5,
 			"bones": {

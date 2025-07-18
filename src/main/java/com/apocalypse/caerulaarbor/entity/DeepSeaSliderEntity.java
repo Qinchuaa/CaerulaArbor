@@ -159,9 +159,9 @@ public class DeepSeaSliderEntity extends SeaMonster {
 
     private PlayState movementPredicate(AnimationState<?> event) {
         if ((event.isMoving() || !(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F))) {
-            return event.setAndContinue(RawAnimation.begin().thenLoop("animation.slidingfish.move"));
+            return event.setAndContinue(RawAnimation.begin().thenLoop("animation.deep_sea_slider.move"));
         }
-        return event.setAndContinue(RawAnimation.begin().thenLoop("animation.slidingfish.idle"));
+        return event.setAndContinue(RawAnimation.begin().thenLoop("animation.deep_sea_slider.idle"));
     }
 
     private PlayState attackingPredicate(AnimationState<?> event) {
@@ -174,7 +174,7 @@ public class DeepSeaSliderEntity extends SeaMonster {
         }
         if (this.swinging && event.getController().getAnimationState() == AnimationController.State.STOPPED) {
             event.getController().forceAnimationReset();
-            return event.setAndContinue(RawAnimation.begin().thenPlay("animation.slidingfish.attack"));
+            return event.setAndContinue(RawAnimation.begin().thenPlay("animation.deep_sea_slider.attack"));
         }
         return PlayState.CONTINUE;
     }

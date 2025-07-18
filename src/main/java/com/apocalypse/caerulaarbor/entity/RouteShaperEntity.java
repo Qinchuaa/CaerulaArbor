@@ -171,12 +171,11 @@ public class RouteShaperEntity extends Monster implements GeoEntity {
 
     @Override
     public boolean hurt(@NotNull DamageSource source, float amount) {
-        LevelAccessor world = this.level();
         double skillP = this.getEntityData().get(DATA_skillp);
         this.getEntityData().set(DATA_skillp, (int) (skillP + 1));
 
         if (skillP >= 7) {
-            SummonFractalProcedure.execute(world, this.getX(), this.getY(), this.getZ());
+            SummonFractalProcedure.execute(this.level(), this.getX(), this.getY(), this.getZ());
             this.getEntityData().set(DATA_skillp, 0);
         }
 

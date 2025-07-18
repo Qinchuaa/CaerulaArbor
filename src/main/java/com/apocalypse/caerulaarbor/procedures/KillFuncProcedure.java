@@ -165,7 +165,9 @@ public class KillFuncProcedure {
                 if (!world.getEntitiesOfClass(Player.class, AABB.ofSize(new Vec3(x, y, z), 128, 128, 128), e -> true).isEmpty()) {
                     CaerulaArborModVariables.MapVariables.get(world).evo_point_breed = CaerulaArborModVariables.MapVariables.get(world).evo_point_breed + (entity instanceof LivingEntity _livEnt ? _livEnt.getMaxHealth() : -1) * 0.1;
                     CaerulaArborModVariables.MapVariables.get(world).syncData(world);
-                    UpgradeBreedProcedure.execute(world);
+                    if (world instanceof Level level) {
+                        UpgradeBreedProcedure.execute(level);
+                    }
                     UpgradeSilenceProcedure.execute(world, entity, (entity instanceof LivingEntity _livEnt ? _livEnt.getMaxHealth() : -1) * 0.1);
                 }
             }
