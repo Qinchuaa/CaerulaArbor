@@ -1,15 +1,10 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import com.apocalypse.caerulaarbor.init.ModAttributes;
 import com.apocalypse.caerulaarbor.init.ModGameRules;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.init.ModTags;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -50,7 +45,7 @@ public class MobTickFuncProcedure {
             if (entity instanceof LivingEntity _entity)
                 _entity.removeEffect(ModMobEffects.TRAIL_BUFF.get());
         }
-        if (entity.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanoffspring")))) {
+        if (entity.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING)) {
             if (CaerulaArborModVariables.MapVariables.get(world).strategy_subsisting >= 3) {
                 if (!(entity instanceof LivingEntity _livEnt14 && _livEnt14.hasEffect(MobEffects.DAMAGE_RESISTANCE))) {
                     if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
@@ -70,7 +65,7 @@ public class MobTickFuncProcedure {
                                 final Vec3 _center = new Vec3(x, y, z);
                                 List<Entity> _entfound = world.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(64 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList();
                                 for (Entity entityiterator : _entfound) {
-                                    if (!(entityiterator == entity) && entityiterator.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanoffspring")))) {
+                                    if (!(entityiterator == entity) && entityiterator.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING)) {
                                         amplifi = amplifi + 2;
                                     }
                                     if (amplifi > 29) {
@@ -84,7 +79,7 @@ public class MobTickFuncProcedure {
                                 final Vec3 _center = new Vec3(x, y, z);
                                 List<Entity> _entfound = world.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(32 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList();
                                 for (Entity entityiterator : _entfound) {
-                                    if (!(entityiterator == entity) && entityiterator.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanoffspring")))) {
+                                    if (!(entityiterator == entity) && entityiterator.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING)) {
                                         amplifi = amplifi + 1;
                                     }
                                     if (amplifi > 9) {
@@ -113,9 +108,8 @@ public class MobTickFuncProcedure {
                 }
                 if (entity instanceof Mob _mobEnt32 && _mobEnt32.isAggressive()) {
                     if (!_mobEnt32.hasEffect(MobEffects.MOVEMENT_SPEED)) {
-                        LivingEntity _entity = (LivingEntity) entity;
-                        if (!_entity.level().isClientSide())
-                            _entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, (int) CaerulaArborModVariables.MapVariables.get(world).strategy_silence));
+                        if (!_mobEnt32.level().isClientSide())
+                            _mobEnt32.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, (int) CaerulaArborModVariables.MapVariables.get(world).strategy_silence));
                     }
                 }
             }

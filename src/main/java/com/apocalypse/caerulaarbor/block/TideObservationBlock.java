@@ -1,8 +1,8 @@
 
 package com.apocalypse.caerulaarbor.block;
 
+import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import com.apocalypse.caerulaarbor.procedures.OpenStraGUIProcedure;
-import com.apocalypse.caerulaarbor.procedures.WarnOfSilenceProcedure;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -23,91 +23,84 @@ import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import org.jetbrains.annotations.NotNull;
+
+import javax.annotation.ParametersAreNonnullByDefault;
 
 public class TideObservationBlock extends Block {
-	public static final IntegerProperty BLOCKSTATE = IntegerProperty.create("blockstate", 0, 1);
-	public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
+    public static final IntegerProperty BLOCKSTATE = IntegerProperty.create("blockstate", 0, 1);
+    public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
-	public TideObservationBlock() {
-		super(BlockBehaviour.Properties.of().sound(SoundType.METAL).strength(3f, 24f).lightLevel(s -> (new Object() {
-			public int getLightLevel() {
-				if (s.getValue(BLOCKSTATE) == 1)
-					return 8;
-				return 4;
-			}
-		}.getLightLevel())).pushReaction(PushReaction.BLOCK));
-		this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
-	}
+    public TideObservationBlock() {
+        super(BlockBehaviour.Properties.of()
+                .sound(SoundType.METAL)
+                .strength(3f, 24f)
+                .lightLevel(s -> s.getValue(BLOCKSTATE) == 1 ? 8 : 4)
+                .pushReaction(PushReaction.BLOCK)
+        );
+        this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
+    }
 
-	@Override
-	public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
-		return 15;
-	}
+    @Override
+    @ParametersAreNonnullByDefault
+    public int getLightBlock(BlockState state, BlockGetter worldIn, BlockPos pos) {
+        return 15;
+    }
 
-	@Override
-	public VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
-		if (state.getValue(BLOCKSTATE) == 1) {
-			return switch (state.getValue(FACING)) {
-				default -> box(0, 0, 0, 16, 16, 16);
-				case NORTH -> box(0, 0, 0, 16, 16, 16);
-				case EAST -> box(0, 0, 0, 16, 16, 16);
-				case WEST -> box(0, 0, 0, 16, 16, 16);
-			};
-		}
-		return switch (state.getValue(FACING)) {
-			default -> box(0, 0, 0, 16, 16, 16);
-			case NORTH -> box(0, 0, 0, 16, 16, 16);
-			case EAST -> box(0, 0, 0, 16, 16, 16);
-			case WEST -> box(0, 0, 0, 16, 16, 16);
-		};
-	}
+    @Override
+    @ParametersAreNonnullByDefault
+    public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
+        return box(0, 0, 0, 16, 16, 16);
+    }
 
-	@Override
-	protected void createBlockStateDefinition(StateDefinition.Builder<Block, BlockState> builder) {
-		super.createBlockStateDefinition(builder);
-		builder.add(FACING, BLOCKSTATE);
-	}
+    @Override
+    protected void createBlockStateDefinition(StateDefinition.@NotNull Builder<Block, BlockState> builder) {
+        super.createBlockStateDefinition(builder);
+        builder.add(FACING, BLOCKSTATE);
+    }
 
-	@Override
-	public BlockState getStateForPlacement(BlockPlaceContext context) {
-		return super.getStateForPlacement(context).setValue(FACING, context.getHorizontalDirection().getOpposite());
-	}
+    @Override
+    public BlockState getStateForPlacement(@NotNull BlockPlaceContext context) {
+        return super.getStateForPlacement(context).setValue(FACING, context.getHorizontalDirection().getOpposite());
+    }
 
-	public BlockState rotate(BlockState state, Rotation rot) {
-		return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
-	}
+    public @NotNull BlockState rotate(BlockState state, Rotation rot) {
+        return state.setValue(FACING, rot.rotate(state.getValue(FACING)));
+    }
 
-	public BlockState mirror(BlockState state, Mirror mirrorIn) {
-		return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
-	}
+    public @NotNull BlockState mirror(BlockState state, Mirror mirrorIn) {
+        return state.rotate(mirrorIn.getRotation(state.getValue(FACING)));
+    }
 
-	@Override
-	public void onPlace(BlockState blockstate, Level world, BlockPos pos, BlockState oldState, boolean moving) {
-		super.onPlace(blockstate, world, pos, oldState, moving);
-		world.scheduleTick(pos, this, 10);
-	}
+    @Override
+    @ParametersAreNonnullByDefault
+    public void onPlace(BlockState blockstate, Level world, BlockPos pos, BlockState oldState, boolean moving) {
+        super.onPlace(blockstate, world, pos, oldState, moving);
+        world.scheduleTick(pos, this, 10);
+    }
 
-	@Override
-	public void tick(BlockState blockstate, ServerLevel world, BlockPos pos, RandomSource random) {
-		super.tick(blockstate, world, pos, random);
-		int x = pos.getX();
-		int y = pos.getY();
-		int z = pos.getZ();
-		WarnOfSilenceProcedure.execute(world, x, y, z);
-		world.scheduleTick(pos, this, 10);
-	}
+    @Override
+    @ParametersAreNonnullByDefault
+    public void tick(BlockState blockstate, ServerLevel world, BlockPos pos, RandomSource random) {
+        super.tick(blockstate, world, pos, random);
 
-	@Override
-	public InteractionResult use(BlockState blockstate, Level world, BlockPos pos, Player entity, InteractionHand hand, BlockHitResult hit) {
-		super.use(blockstate, world, pos, entity, hand, hit);
-		int x = pos.getX();
-		int y = pos.getY();
-		int z = pos.getZ();
-		double hitX = hit.getLocation().x;
-		double hitY = hit.getLocation().y;
-		double hitZ = hit.getLocation().z;
-		Direction direction = hit.getDirection();
-		OpenStraGUIProcedure.execute(world, x, y, z, entity);
-		return InteractionResult.SUCCESS;
-	}
+        if (CaerulaArborModVariables.MapVariables.get(world).strategy_silence > 0) {
+            world.setBlock(pos, blockstate.setValue(BLOCKSTATE, 1), 3);
+        } else {
+            world.setBlock(pos, blockstate.setValue(BLOCKSTATE, 0), 3);
+        }
+        world.scheduleTick(pos, this, 10);
+    }
+
+    @Override
+    @ParametersAreNonnullByDefault
+    public @NotNull InteractionResult use(BlockState blockstate, Level world, BlockPos pos, Player entity, InteractionHand hand, BlockHitResult hit) {
+        super.use(blockstate, world, pos, entity, hand, hit);
+        int x = pos.getX();
+        int y = pos.getY();
+        int z = pos.getZ();
+
+        OpenStraGUIProcedure.execute(world, x, y, z, entity);
+        return InteractionResult.SUCCESS;
+    }
 }

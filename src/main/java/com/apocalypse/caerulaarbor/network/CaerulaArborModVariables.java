@@ -16,7 +16,6 @@ import net.minecraftforge.network.NetworkEvent;
 import net.minecraftforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 
-import java.io.File;
 import java.util.function.Supplier;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
@@ -90,7 +89,7 @@ public class CaerulaArborModVariables {
         public double strategy_grow = 0;
         public double strategy_subsisting = 0;
         public double strategy_breed = 0;
-        public double strategy_migration = 0;
+        public int strategy_migration = 0;
         public double strategy_silence = 0;
         public double evo_point_silence = 0;
         public boolean silence_enabled = false;
@@ -109,7 +108,7 @@ public class CaerulaArborModVariables {
             strategy_grow = nbt.getDouble("strategy_grow");
             strategy_subsisting = nbt.getDouble("strategy_subsisting");
             strategy_breed = nbt.getDouble("strategy_breed");
-            strategy_migration = nbt.getDouble("strategy_migration");
+            strategy_migration = nbt.getInt("strategy_migration");
             strategy_silence = nbt.getDouble("strategy_silence");
             evo_point_silence = nbt.getDouble("evo_point_silence");
             silence_enabled = nbt.getBoolean("silence_enabled");

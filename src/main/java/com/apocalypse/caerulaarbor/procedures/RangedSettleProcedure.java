@@ -1,9 +1,8 @@
 package com.apocalypse.caerulaarbor.procedures;
 
+import com.apocalypse.caerulaarbor.init.ModTags;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
@@ -19,7 +18,7 @@ public class RangedSettleProcedure {
 			return;
 		for (Entity entityiterator : world.getEntities(entity, new AABB((x - 4), (y - 0.5), (z - 4), (x + 4), (y + 2), (z + 4)))) {
 			if ((entityiterator != null ? entity.distanceTo(entityiterator) : -1) <= 4) {
-				if (entityiterator.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanoffspring")))) {
+				if (entityiterator.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING)) {
 					if (!(entityiterator == (entity instanceof Mob _mobEnt ? (Entity) _mobEnt.getTarget() : null))) {
 						continue;
 					}
@@ -33,7 +32,7 @@ public class RangedSettleProcedure {
 		if (CaerulaArborModVariables.MapVariables.get(world).strategy_grow >= 3) {
 			for (Entity entityiterator : world.getEntities(entity, new AABB((x - 7), (y - 1), (z - 7), (x + 7), (y + 3), (z + 7)))) {
 				if ((entityiterator != null ? entity.distanceTo(entityiterator) : -1) <= 7) {
-					if (entityiterator.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanoffspring")))) {
+					if (entityiterator.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING)) {
 						if (!(entityiterator == (entity instanceof Mob _mobEnt ? (Entity) _mobEnt.getTarget() : null))) {
 							continue;
 						}

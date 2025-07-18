@@ -7,6 +7,7 @@ import com.apocalypse.caerulaarbor.config.common.RelicsConfig;
 import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.init.ModGameRules;
 import com.apocalypse.caerulaarbor.init.ModItems;
+import com.apocalypse.caerulaarbor.init.ModTags;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -14,9 +15,9 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
@@ -60,7 +61,7 @@ public class KillFuncProcedure {
         boolean validweapon;
         double dama;
         ItemStack weapon;
-        if (sourceentity instanceof Player) {
+        if (sourceentity instanceof Player _livEnt) {
             var cap = sourceentity.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable());
             if (Relic.CURSED_EMELIGHT.gained(cap)) {
                 sourceentity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
@@ -125,7 +126,6 @@ public class KillFuncProcedure {
             }
             if (Relic.HAND_ENGRAVE.get(cap) >= 0 && Relic.HAND_ENGRAVE.get(cap) < 99) {
                 validweapon = false;
-                LivingEntity _livEnt = (LivingEntity) sourceentity;
                 if (_livEnt.getMainHandItem().getItem() == Items.TRIDENT) {
                     validweapon = true;
                 } else if (damagesource.is(DamageTypes.TRIDENT)) {
@@ -160,7 +160,7 @@ public class KillFuncProcedure {
                     _level.sendParticles(ParticleTypes.WAX_ON, x, y, z, 48, 0.7, 1.5, 0.7, 0.2);
             }
         }
-        if (entity.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanoffspring")))) {
+        if (entity.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING)) {
             if (world.getLevelData().getGameRules().getBoolean(ModGameRules.NATURAL_EVOLUTION)) {
                 if (!world.getEntitiesOfClass(Player.class, AABB.ofSize(new Vec3(x, y, z), 128, 128, 128), e -> true).isEmpty()) {
                     CaerulaArborModVariables.MapVariables.get(world).evo_point_breed = CaerulaArborModVariables.MapVariables.get(world).evo_point_breed + (entity instanceof LivingEntity _livEnt ? _livEnt.getMaxHealth() : -1) * 0.1;
@@ -172,7 +172,7 @@ public class KillFuncProcedure {
         }
         if ((sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).is(ItemTags.create(new ResourceLocation("caerula_arbor:self_mendable")))) {
             weapon = (sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).copy();
-            dama = weapon.getDamageValue() - Mth.nextInt(RandomSource.create(), 1, (int) (5 + weapon.getEnchantmentLevel(Enchantments.UNBREAKING)));
+            dama = weapon.getDamageValue() - Mth.nextInt(RandomSource.create(), 1, 5 + weapon.getEnchantmentLevel(Enchantments.UNBREAKING));
             if (dama <= 0) {
                 (sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).setDamageValue(0);
             } else {
@@ -195,9 +195,9 @@ public class KillFuncProcedure {
                 }
                 if (world instanceof Level _level) {
                     if (!_level.isClientSide()) {
-                        _level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.sculk_vein.place")), SoundSource.PLAYERS, (float) 0.75, 1);
+                        _level.playSound(null, BlockPos.containing(x, y, z), SoundEvents.SCULK_VEIN_PLACE, SoundSource.PLAYERS, (float) 0.75, 1);
                     } else {
-                        _level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.sculk_vein.place")), SoundSource.PLAYERS, (float) 0.75, 1, false);
+                        _level.playLocalSound(x, y, z, SoundEvents.SCULK_VEIN_PLACE, SoundSource.PLAYERS, (float) 0.75, 1, false);
                     }
                 }
             }

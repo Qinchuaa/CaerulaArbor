@@ -8,6 +8,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
@@ -209,13 +210,13 @@ public class FloatingSeaDrifterEntity extends SeaMonster implements RangedAttack
     }
 
     @Override
-    public SoundEvent getHurtSound(@NotNull DamageSource ds) {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.puffer_fish.hurt"));
+    public @NotNull SoundEvent getHurtSound(@NotNull DamageSource ds) {
+        return SoundEvents.PUFFER_FISH_HURT;
     }
 
     @Override
-    public SoundEvent getDeathSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.puffer_fish.death"));
+    public @NotNull SoundEvent getDeathSound() {
+        return SoundEvents.PUFFER_FISH_DEATH;
     }
 
     @Override
@@ -245,6 +246,7 @@ public class FloatingSeaDrifterEntity extends SeaMonster implements RangedAttack
     }
 
     @Override
+    @ParametersAreNonnullByDefault
     protected void checkFallDamage(double y, boolean onGroundIn, BlockState state, BlockPos pos) {
     }
 

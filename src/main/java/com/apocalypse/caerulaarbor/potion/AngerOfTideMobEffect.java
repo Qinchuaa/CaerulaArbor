@@ -1,12 +1,15 @@
 
 package com.apocalypse.caerulaarbor.potion;
 
-import com.apocalypse.caerulaarbor.procedures.AngerOfTidesProcedure;
+import com.apocalypse.caerulaarbor.init.ModTags;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.client.extensions.common.IClientMobEffectExtensions;
 import org.jetbrains.annotations.NotNull;
 
@@ -25,7 +28,20 @@ public class AngerOfTideMobEffect extends MobEffect {
 
     @Override
     public void applyEffectTick(@NotNull LivingEntity entity, int amplifier) {
-        AngerOfTidesProcedure.execute(entity.level(), entity.getX(), entity.getY(), entity.getZ(), entity);
+        if (!(entity instanceof Mob mob && mob.isAggressive())) {
+            final Vec3 _center = new Vec3(entity.getX(), entity.getY(), entity.getZ());
+
+            if (entity instanceof Mob mob) {
+                entity.level().getEntitiesOfClass(
+                                Mob.class,
+                                new AABB(_center, _center).inflate(64 / 2d),
+                                e -> e.getMaxHealth() >= 7 && !e.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING)
+                        )
+                        .stream()
+                        .findFirst()
+                        .ifPresent(mob::setTarget);
+            }
+        }
     }
 
     @Override

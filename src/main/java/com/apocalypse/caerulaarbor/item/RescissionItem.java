@@ -87,7 +87,7 @@ public class RescissionItem extends Item {
                                 _ent.setTame(false);
                             }
                             if ((Entity) entity instanceof Player _player && !_player.level().isClientSide())
-                                _player.displayClientMessage(Component.literal((entityiterator.getDisplayName().getString() + "" + Component.translatable("item.caerula_arbor.language_key.description_2").getString())), false);
+                                _player.displayClientMessage(Component.literal((entityiterator.getDisplayName().getString() + Component.translatable("item.caerula_arbor.language_key.description_2").getString())), false);
                             if (entityiterator instanceof LivingEntity _entity)
                                 _entity.removeEffect(ModMobEffects.UNTAME_CONFIRM.get());
                             if ((LevelAccessor) world instanceof ServerLevel _level)

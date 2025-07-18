@@ -1,13 +1,16 @@
 
 package com.apocalypse.caerulaarbor.entity;
 
+import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.config.common.GameplayConfig;
-import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.init.ModBlocks;
+import com.apocalypse.caerulaarbor.init.ModEntities;
+import com.apocalypse.caerulaarbor.init.ModMobEffects;
+import com.apocalypse.caerulaarbor.init.ModTags;
 import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
-import com.apocalypse.caerulaarbor.procedures.RangedPalmProcedure;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -17,6 +20,8 @@ import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -43,6 +48,8 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import net.minecraftforge.registries.ForgeRegistries;
@@ -106,19 +113,19 @@ public class CrackerAbyssalEntity extends Monster implements GeoEntity {
             public boolean canUse() {
                 Level world = CrackerAbyssalEntity.this.level();
                 if (!super.canUse()) return false;
-                return GameplayConfig.ENABLE_MOB_BREAK.get() && ((LevelAccessor) world).getLevelData().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING);
+                return GameplayConfig.ENABLE_MOB_BREAK.get() && world.getLevelData().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING);
             }
 
             @Override
             public boolean canContinueToUse() {
                 Level world = CrackerAbyssalEntity.this.level();
                 if (!super.canContinueToUse()) return false;
-                return GameplayConfig.ENABLE_MOB_BREAK.get() && ((LevelAccessor) world).getLevelData().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING);
+                return GameplayConfig.ENABLE_MOB_BREAK.get() && world.getLevelData().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING);
             }
         });
         this.goalSelector.addGoal(3, new MeleeAttackGoal(this, 0.4, true) {
             @Override
-            protected double getAttackReachSqr(LivingEntity entity) {
+            protected double getAttackReachSqr(@NotNull LivingEntity entity) {
                 return 12.25;
             }
         });
@@ -167,22 +174,59 @@ public class CrackerAbyssalEntity extends Monster implements GeoEntity {
 
     @Override
     public void playStepSound(@NotNull BlockPos pos, @NotNull BlockState blockIn) {
-        this.playSound(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.silverfish.step")), 0.15f, 1);
+        this.playSound(SoundEvents.SILVERFISH_STEP, 0.15f, 1);
     }
 
     @Override
-    public SoundEvent getHurtSound(@NotNull DamageSource ds) {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.puffer_fish.hurt"));
+    public @NotNull SoundEvent getHurtSound(@NotNull DamageSource ds) {
+        return SoundEvents.PUFFER_FISH_HURT;
     }
 
     @Override
-    public SoundEvent getDeathSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.puffer_fish.death"));
+    public @NotNull SoundEvent getDeathSound() {
+        return SoundEvents.PUFFER_FISH_DEATH;
     }
 
     @Override
-    public boolean hurt(DamageSource source, float amount) {
-        RangedPalmProcedure.execute(this.level(), this.getX(), this.getY(), this.getZ(), this);
+    public boolean hurt(@NotNull DamageSource source, float amount) {
+        LevelAccessor world = this.level();
+        double x = this.getX();
+        double y = this.getY();
+        double z = this.getZ();
+        double num;
+        if (!this.hasEffect(ModMobEffects.COOLDOWN_SINAL.get())) {
+            num = 0;
+            {
+                final Vec3 _center = new Vec3(x, y, z);
+                num += world.getEntitiesOfClass(LivingEntity.class, new AABB(_center, _center).inflate(3), e -> e != this && e.getMaxHealth() >= 10)
+                        .size();
+            }
+            if (num >= 2) {
+                if (this instanceof CrackerAbyssalEntity) {
+                    this.setAnimation("animation.reefcracker.spin");
+                }
+                if (!this.level().isClientSide())
+                    this.addEffect(new MobEffectInstance(ModMobEffects.COOLDOWN_SINAL.get(), 40, 0, false, false));
+                CaerulaArborMod.queueServerWork(10, () -> {
+                    if (world instanceof Level _level) {
+                        if (!_level.isClientSide()) {
+                            _level.playSound(null, BlockPos.containing(x, y, z), SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.HOSTILE, 2, 1);
+                        } else {
+                            _level.playLocalSound(x, y, z, SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.HOSTILE, 2, 1, false);
+                        }
+                    }
+                    {
+                        final Vec3 _center = new Vec3(x, y, z);
+                        for (Entity entityiterator : world.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(3), e -> !e.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING) || this.getTarget() == e)) {
+                            entityiterator.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.MOB_ATTACK), this),
+                                    (float) ((this.getAttributes().hasAttribute(Attributes.ATTACK_DAMAGE) ? this.getAttribute(Attributes.ATTACK_DAMAGE).getValue() : 0) * 1.5));
+
+                        }
+                    }
+                });
+            }
+        }
+
         if (source.is(DamageTypes.DROWN))
             return false;
         return super.hurt(source, amount);
@@ -253,8 +297,6 @@ public class CrackerAbyssalEntity extends Monster implements GeoEntity {
     }
 
     private PlayState attackingPredicate(AnimationState<?> event) {
-        double d1 = this.getX() - this.xOld;
-        double d0 = this.getZ() - this.zOld;
         if (getAttackAnim(event.getPartialTick()) > 0f && !this.swinging) {
             this.swinging = true;
             this.lastSwing = level().getGameTime();

@@ -12,6 +12,7 @@ import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.Difficulty;
@@ -255,17 +256,17 @@ public class FleeFishEntity extends Monster implements RangedAttackMob, GeoEntit
 
 	@Override
 	public SoundEvent getAmbientSound() {
-		return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.phantom.ambient"));
+		return SoundEvents.PHANTOM_AMBIENT;
 	}
 
 	@Override
-	public SoundEvent getHurtSound(@NotNull DamageSource ds) {
+	public @NotNull SoundEvent getHurtSound(@NotNull DamageSource ds) {
 		return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.phantom.hurt"));
 	}
 
 	@Override
-	public SoundEvent getDeathSound() {
-		return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.puffer_fish.hurt"));
+	public @NotNull SoundEvent getDeathSound() {
+		return SoundEvents.PUFFER_FISH_HURT;
 	}
 
 	@Override

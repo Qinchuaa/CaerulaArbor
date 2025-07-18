@@ -14,8 +14,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraftforge.registries.ForgeRegistries;
 
-import java.util.ArrayList;
-
 public class UpgradeGrowProcedure {
 	public static void execute(LevelAccessor world) {
 		double stra = 0;
@@ -24,7 +22,7 @@ public class UpgradeGrowProcedure {
 		stra = CaerulaArborModVariables.MapVariables.get(world).strategy_grow;
 		if (stra < 4) {
 			if (CaerulaArborModVariables.MapVariables.get(world).evo_point_grow >= Math.pow(stra + 1, 3) * (double) GameplayConfig.EVOLUTION_POINT_COEFFICIENT.get()) {
-				for (Entity entityiterator : new ArrayList<>(world.players())) {
+				for (Entity entityiterator : world.players()) {
 					if (entityiterator instanceof ServerPlayer _player) {
 						Advancement _adv = _player.server.getAdvancements().getAdvancement(new ResourceLocation("caerula_arbor:to_experience_evolution"));
 						AdvancementProgress _ap = _player.getAdvancements().getOrStartProgress(_adv);
@@ -41,19 +39,19 @@ public class UpgradeGrowProcedure {
 				CaerulaArborModVariables.MapVariables.get(world).syncData(world);
 				if (stra == 1) {
 					num = "I";
-					prefix = "\u00A7p";
+					prefix = "§p";
 				} else if (stra == 2) {
 					num = "II";
-					prefix = "\u00A7b";
+					prefix = "§b";
 				} else if (stra == 3) {
 					num = "III";
-					prefix = "\u00A79";
+					prefix = "§9";
 				} else if (stra == 4) {
 					num = "IV";
-					prefix = "\u00A71";
+					prefix = "§1";
 				}
 				if (GameplayConfig.ENABLE_EVOLUTION_SOUND.get()) {
-					for (Entity entityiterator : new ArrayList<>(world.players())) {
+					for (Entity entityiterator : world.players()) {
 						if (stra >= 3) {
 							if (world instanceof Level _level) {
 								if (!_level.isClientSide()) {
@@ -78,10 +76,10 @@ public class UpgradeGrowProcedure {
 					}
 				}
 				if (!world.isClientSide() && world.getServer() != null)
-					world.getServer().getPlayerList().broadcastSystemMessage(Component.literal((prefix + "" + Component.translatable("item.caerula_arbor.sample_grow.description_5").getString() + num)), false);
+					world.getServer().getPlayerList().broadcastSystemMessage(Component.literal((prefix + Component.translatable("item.caerula_arbor.sample_grow.description_5").getString() + num)), false);
 			}
 		} else {
-			for (Entity entityiterator : new ArrayList<>(world.players())) {
+			for (Entity entityiterator : world.players()) {
 				if (entityiterator instanceof ServerPlayer _player) {
 					Advancement _adv = _player.server.getAdvancements().getAdvancement(new ResourceLocation("caerula_arbor:to_terminate_evolution"));
 					AdvancementProgress _ap = _player.getAdvancements().getOrStartProgress(_adv);

@@ -1,6 +1,7 @@
 package com.apocalypse.caerulaarbor.procedures;
 
 import com.apocalypse.caerulaarbor.init.ModAttributes;
+import com.apocalypse.caerulaarbor.init.ModTags;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.tags.TagKey;
@@ -34,7 +35,7 @@ public class MobInitProcedure {
 			if (livingEntity1.getAttributes().hasAttribute(ModAttributes.SANITY_INJURY_RESISTANCE.get()))
 				livingEntity1.getAttribute(ModAttributes.SANITY_INJURY_RESISTANCE.get()).setBaseValue(0.1);
 		}
-		if (entity.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanoffspring")))) {
+		if (entity.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING)) {
 			if (entity instanceof LivingEntity _livingEntity3 && _livingEntity3.getAttributes().hasAttribute(ModAttributes.SANITY_INJURY_RESISTANCE.get()))
 				_livingEntity3.getAttribute(ModAttributes.SANITY_INJURY_RESISTANCE.get()).setBaseValue(0.33);
 		}
@@ -46,9 +47,9 @@ public class MobInitProcedure {
 			if (entity instanceof LivingEntity _livingEntity7 && _livingEntity7.getAttributes().hasAttribute(ModAttributes.SANITY_INJURY_RESISTANCE.get()))
 				_livingEntity7.getAttribute(ModAttributes.SANITY_INJURY_RESISTANCE.get()).setBaseValue(0.5);
 		}
-		if (entity instanceof Warden) {
-			if (entity instanceof LivingEntity _livingEntity9 && _livingEntity9.getAttributes().hasAttribute(ModAttributes.SANITY_INJURY_RESISTANCE.get()))
-				_livingEntity9.getAttribute(ModAttributes.SANITY_INJURY_RESISTANCE.get()).setBaseValue(0.25);
+		if (entity instanceof Warden livingEntity9) {
+			if (livingEntity9.getAttributes().hasAttribute(ModAttributes.SANITY_INJURY_RESISTANCE.get()))
+				livingEntity9.getAttribute(ModAttributes.SANITY_INJURY_RESISTANCE.get()).setBaseValue(0.25);
 		}
 	}
 }

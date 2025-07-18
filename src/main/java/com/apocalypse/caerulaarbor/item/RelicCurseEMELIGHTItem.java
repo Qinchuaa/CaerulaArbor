@@ -1,12 +1,14 @@
 
 package com.apocalypse.caerulaarbor.item;
 
+import com.apocalypse.caerulaarbor.block.EmergencyLightBlock;
 import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
-import com.apocalypse.caerulaarbor.procedures.PlaceLamternProcedure;
+import com.apocalypse.caerulaarbor.init.ModBlocks;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -14,6 +16,7 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Rarity;
@@ -31,8 +34,7 @@ public class RelicCurseEMELIGHTItem extends Item {
     }
 
     @Override
-    @ParametersAreNonnullByDefault
-    public void appendHoverText(ItemStack itemstack, Level level, List<Component> list, TooltipFlag flag) {
+    public void appendHoverText(@NotNull ItemStack itemstack, Level level, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         super.appendHoverText(itemstack, level, list, flag);
         list.add(Component.translatable("item.caerula_arbor.relic_curse_emelight.description_0"));
         list.add(Component.translatable("item.caerula_arbor.relic_curse_emelight.description_1"));
@@ -41,7 +43,39 @@ public class RelicCurseEMELIGHTItem extends Item {
     @Override
     public @NotNull InteractionResult useOn(@NotNull UseOnContext context) {
         super.useOn(context);
-        return PlaceLamternProcedure.execute(context.getLevel(), context.getClickedPos().getX(), context.getClickedPos().getY(), context.getClickedPos().getZ(), context.getClickedFace(), context.getPlayer(), context.getItemInHand());
+        var world = context.getLevel();
+        BlockPos pos = context.getClickedPos();
+        double x = pos.getX();
+        double y = pos.getY();
+        double z = pos.getZ();
+        Direction direction = context.getClickedFace();
+        Entity entity = context.getPlayer();
+        ItemStack itemstack = context.getItemInHand();
+        if (entity == null) return InteractionResult.PASS;
+
+        BlockPos targetPos = pos.relative(direction);
+
+        if (ModBlocks.EMERGENCY_LIGHT.get().defaultBlockState().canSurvive(world, targetPos)) {
+            if (world.getBlockState(targetPos.above()).isFaceSturdy(world, targetPos.above(), Direction.DOWN)) {
+                world.setBlock(targetPos, ModBlocks.EMERGENCY_LIGHT.get().defaultBlockState(), 3);
+                world.setBlock(targetPos, world.getBlockState(targetPos).setValue(EmergencyLightBlock.BLOCKSTATE, 2), 3);
+            } else {
+                world.setBlock(targetPos, ModBlocks.EMERGENCY_LIGHT.get().defaultBlockState(), 3);
+                world.setBlock(targetPos, world.getBlockState(targetPos).setValue(EmergencyLightBlock.BLOCKSTATE, 1), 3);
+            }
+
+            if (!world.isClientSide()) {
+                world.playSound(null, BlockPos.containing(x, y, z), SoundEvents.LANTERN_PLACE, SoundSource.NEUTRAL, 1, 1);
+            } else {
+                world.playLocalSound(x, y, z, SoundEvents.LANTERN_PLACE, SoundSource.NEUTRAL, 1, 1, false);
+            }
+
+            if (entity instanceof Player player && !player.isCreative()) {
+                itemstack.shrink(1);
+            }
+            return InteractionResult.SUCCESS;
+        }
+        return InteractionResult.PASS;
     }
 
     @Override

@@ -73,7 +73,7 @@ public class MobHitFuncProcedure {
             if (CaerulaArborModVariables.MapVariables.get(world).strategy_subsisting >= 3) {
                 rate = 0.9;
             }
-            if (!(livEnt4.hasEffect(ModMobEffects.DIZZY.get()) || livEnt4.hasEffect(ModMobEffects.FROZEN.get()) || livEnt4.hasEffect(MobEffects.MOVEMENT_SLOWDOWN) || entity instanceof LivingEntity _livEnt5 && _livEnt5.hasEffect(MobEffects.SLOW_FALLING)) && !(damagesource.is(DamageTypes.GENERIC_KILL) || damagesource.is(DamageTypes.FELL_OUT_OF_WORLD) || damagesource.is(DamageTypes.SONIC_BOOM) || damagesource.is(DamageTypes.WITHER))) {
+            if (!(livEnt4.hasEffect(ModMobEffects.DIZZY.get()) || livEnt4.hasEffect(ModMobEffects.FROZEN.get()) || livEnt4.hasEffect(MobEffects.MOVEMENT_SLOWDOWN) || livEnt4.hasEffect(MobEffects.SLOW_FALLING)) && !(damagesource.is(DamageTypes.GENERIC_KILL) || damagesource.is(DamageTypes.FELL_OUT_OF_WORLD) || damagesource.is(DamageTypes.SONIC_BOOM) || damagesource.is(DamageTypes.WITHER))) {
                 if (Math.random() < rate) {
                     if (entity instanceof PredatorAbyssalEntity) {
                         ((PredatorAbyssalEntity) entity).setAnimation("animation.predator.miss");
@@ -87,7 +87,7 @@ public class MobHitFuncProcedure {
             }
         }
         if (CaerulaArborModVariables.MapVariables.get(world).strategy_grow >= 3) {
-            if (sourceentity.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanoffspring"))) && !damagesource.is(DamageTypes.MAGIC)) {
+            if (sourceentity.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING) && !damagesource.is(DamageTypes.MAGIC)) {
                 CaerulaArborMod.queueServerWork(10, () -> {
                     entity.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.MAGIC), immediatesourceentity, sourceentity),
                             (float) (amount * 0.2 * (CaerulaArborModVariables.MapVariables.get(world).strategy_grow - 2)));
@@ -96,12 +96,12 @@ public class MobHitFuncProcedure {
                 });
             }
         }
-        if (entity.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanoffspring"))) && !sourceentity.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanoffspring")))) {
+        if (entity.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING) && !sourceentity.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING)) {
             if (CaerulaArborModVariables.MapVariables.get(world).strategy_migration > 0) {
                 for (Entity entityiterator : world.getEntities(entity,
                         new AABB((x - (8 + CaerulaArborModVariables.MapVariables.get(world).strategy_migration * 24)), (y - 16), (z - (8 + CaerulaArborModVariables.MapVariables.get(world).strategy_migration * 24)),
                                 (x + 8 + CaerulaArborModVariables.MapVariables.get(world).strategy_migration * 24), (y + 16), (z + 8 + CaerulaArborModVariables.MapVariables.get(world).strategy_migration * 24)))) {
-                    if (entityiterator.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanoffspring")))) {
+                    if (entityiterator.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING)) {
                         if (entityiterator == sourceentity) {
                             continue;
                         }
@@ -121,7 +121,7 @@ public class MobHitFuncProcedure {
                     for (Entity entityiterator : world.getEntities(entity,
                             new AABB((x - (8 + CaerulaArborModVariables.MapVariables.get(world).strategy_migration * 24)), (y - 16), (z - (8 + CaerulaArborModVariables.MapVariables.get(world).strategy_migration * 24)),
                                     (x + 8 + CaerulaArborModVariables.MapVariables.get(world).strategy_migration * 24), (y + 16), (z + 8 + CaerulaArborModVariables.MapVariables.get(world).strategy_migration * 24)))) {
-                        if (entityiterator.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanoffspring")))) {
+                        if (entityiterator.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING)) {
                             if (entityiterator == sourceentity) {
                                 continue;
                             }
@@ -136,7 +136,7 @@ public class MobHitFuncProcedure {
                 }
             }
         }
-        if (sourceentity.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanoffspring")))) {
+        if (sourceentity.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING)) {
             if (world.getLevelData().getGameRules().getBoolean(ModGameRules.NATURAL_EVOLUTION)) {
                 CaerulaArborModVariables.MapVariables.get(world).evo_point_grow = CaerulaArborModVariables.MapVariables.get(world).evo_point_grow + amount * 0.025;
                 CaerulaArborModVariables.MapVariables.get(world).syncData(world);
@@ -144,7 +144,7 @@ public class MobHitFuncProcedure {
                 UpgradeSilenceProcedure.execute(world, entity, amount * 0.025);
             }
         }
-        if (entity.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanoffspring")))) {
+        if (entity.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING)) {
             if (sourceentity instanceof ServerPlayer _player) {
                 Advancement _adv = _player.server.getAdvancements().getAdvancement(new ResourceLocation("caerula_arbor:encounter_from_the_ocean"));
                 AdvancementProgress _ap = _player.getAdvancements().getOrStartProgress(_adv);

@@ -1,6 +1,7 @@
 package com.apocalypse.caerulaarbor.procedures;
 
 import com.apocalypse.caerulaarbor.config.common.GameplayConfig;
+import com.apocalypse.caerulaarbor.init.ModSounds;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementProgress;
@@ -12,9 +13,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.ArrayList;
 
 public class UpgradeBreedProcedure {
 	public static void execute(LevelAccessor world) {
@@ -24,7 +22,7 @@ public class UpgradeBreedProcedure {
 		stra = CaerulaArborModVariables.MapVariables.get(world).strategy_breed;
 		if (stra < 4) {
 			if (CaerulaArborModVariables.MapVariables.get(world).evo_point_breed >= Math.pow(stra + 1, 3) * (double) GameplayConfig.EVOLUTION_POINT_COEFFICIENT.get()) {
-				for (Entity entityiterator : new ArrayList<>(world.players())) {
+				for (Entity entityiterator : world.players()) {
 					if (entityiterator instanceof ServerPlayer _player) {
 						Advancement _adv = _player.server.getAdvancements().getAdvancement(new ResourceLocation("caerula_arbor:to_experience_evolution"));
 						AdvancementProgress _ap = _player.getAdvancements().getOrStartProgress(_adv);
@@ -41,36 +39,36 @@ public class UpgradeBreedProcedure {
 				CaerulaArborModVariables.MapVariables.get(world).syncData(world);
 				if (stra == 1) {
 					num = "I";
-					prefix = "\u00A7p";
+					prefix = "§p";
 				} else if (stra == 2) {
 					num = "II";
-					prefix = "\u00A7b";
+					prefix = "§b";
 				} else if (stra == 3) {
 					num = "III";
-					prefix = "\u00A79";
+					prefix = "§9";
 				} else if (stra == 4) {
 					num = "IV";
-					prefix = "\u00A71";
+					prefix = "§1";
 				}
 				if (GameplayConfig.ENABLE_EVOLUTION_SOUND.get()) {
-					for (Entity entityiterator : new ArrayList<>(world.players())) {
+					for (Entity entityiterator : world.players()) {
 						if (stra >= 3) {
 							if (world instanceof Level _level) {
 								if (!_level.isClientSide()) {
-									_level.playSound(null, BlockPos.containing(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("caerula_arbor:breed2")),
+									_level.playSound(null, BlockPos.containing(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ()), ModSounds.BREED2.get(),
 											SoundSource.NEUTRAL, 4, 1);
 								} else {
-									_level.playLocalSound((entityiterator.getX()), (entityiterator.getY()), (entityiterator.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("caerula_arbor:breed2")), SoundSource.NEUTRAL, 4, 1,
+									_level.playLocalSound((entityiterator.getX()), (entityiterator.getY()), (entityiterator.getZ()), ModSounds.BREED2.get(), SoundSource.NEUTRAL, 4, 1,
 											false);
 								}
 							}
 						} else if (stra > 0) {
 							if (world instanceof Level _level) {
 								if (!_level.isClientSide()) {
-									_level.playSound(null, BlockPos.containing(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("caerula_arbor:breed1")),
+									_level.playSound(null, BlockPos.containing(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ()), ModSounds.BREED1.get(),
 											SoundSource.NEUTRAL, 4, 1);
 								} else {
-									_level.playLocalSound((entityiterator.getX()), (entityiterator.getY()), (entityiterator.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("caerula_arbor:breed1")), SoundSource.NEUTRAL, 4, 1,
+									_level.playLocalSound((entityiterator.getX()), (entityiterator.getY()), (entityiterator.getZ()), ModSounds.BREED1.get(), SoundSource.NEUTRAL, 4, 1,
 											false);
 								}
 							}
@@ -78,10 +76,10 @@ public class UpgradeBreedProcedure {
 					}
 				}
 				if (!world.isClientSide() && world.getServer() != null)
-					world.getServer().getPlayerList().broadcastSystemMessage(Component.literal((prefix + "" + Component.translatable("item.caerula_arbor.sample_breed.description_5").getString() + num)), false);
+					world.getServer().getPlayerList().broadcastSystemMessage(Component.literal((prefix + Component.translatable("item.caerula_arbor.sample_breed.description_5").getString() + num)), false);
 			}
 		} else {
-			for (Entity entityiterator : new ArrayList<>(world.players())) {
+			for (Entity entityiterator : world.players()) {
 				if (entityiterator instanceof ServerPlayer _player) {
 					Advancement _adv = _player.server.getAdvancements().getAdvancement(new ResourceLocation("caerula_arbor:to_terminate_evolution"));
 					AdvancementProgress _ap = _player.getAdvancements().getOrStartProgress(_adv);

@@ -1,13 +1,16 @@
 package com.apocalypse.caerulaarbor.entity;
 
+import com.apocalypse.caerulaarbor.config.common.GameplayConfig;
 import com.apocalypse.caerulaarbor.entity.base.SeaMonster;
 import com.apocalypse.caerulaarbor.init.ModAttributes;
 import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
-import com.apocalypse.caerulaarbor.procedures.DestroyBlocksProcedure;
+import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
@@ -27,8 +30,10 @@ import net.minecraft.world.entity.monster.*;
 import net.minecraft.world.entity.monster.piglin.Piglin;
 import net.minecraft.world.entity.monster.piglin.PiglinBrute;
 import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
+import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.network.PlayMessages;
@@ -65,7 +70,7 @@ public class BasinSeaReaperEntity extends SeaMonster {
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this));
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 0.8, true) {
             @Override
-            protected double getAttackReachSqr(LivingEntity entity) {
+            protected double getAttackReachSqr(@NotNull LivingEntity entity) {
                 return 4;
             }
 
@@ -91,6 +96,11 @@ public class BasinSeaReaperEntity extends SeaMonster {
     }
 
     @Override
+    public @NotNull MobType getMobType() {
+        return MobType.WATER;
+    }
+
+    @Override
     public boolean removeWhenFarAway(double distanceToClosestPlayer) {
         return false;
     }
@@ -106,18 +116,68 @@ public class BasinSeaReaperEntity extends SeaMonster {
     }
 
     @Override
-    public SoundEvent getHurtSound(@NotNull DamageSource ds) {
+    public @NotNull SoundEvent getHurtSound(@NotNull DamageSource ds) {
         return SoundEvents.PUFFER_FISH_HURT;
     }
 
     @Override
-    public SoundEvent getDeathSound() {
-        return SoundEvents.PHANTOM_DEATH;
+    public @NotNull SoundEvent getDeathSound() {
+        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.phantom.death"));
     }
 
     @Override
-    public boolean hurt(DamageSource source, float amount) {
-        DestroyBlocksProcedure.execute(this.level(), this.getX(), this.getY(), this.getZ(), this);
+    public boolean hurt(@NotNull DamageSource source, float amount) {
+        var world = this.level();
+        int x = (int) this.getX();
+        int y = (int) this.getY();
+        int z = (int) this.getZ();
+        double limithard;
+        double hardness;
+
+        limithard = -1;
+        double migrationStrategy = CaerulaArborModVariables.MapVariables.get(world).strategy_migration;
+
+        if (migrationStrategy >= 2) {
+            limithard = 3.5;
+        } else if (migrationStrategy >= 4) {
+            // TODO 什么数可以既小于2又大于等于4？
+            limithard = 5;
+        }
+        if (GameplayConfig.ENABLE_MOB_BREAK.get()
+                && world.getLevelData().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING)
+                && limithard > 0
+                && Math.random() < 0.5
+        ) {
+            for (int dx = -1; dx <= 1; dx++) {
+                for (int dz = -1; dz <= 1; dz++) {
+                    for (int dy = 1; dy <= 3; dy++) {
+                        var pos = new BlockPos(x + dx, y + dy, z + dz);
+                        var state = world.getBlockState(pos);
+
+                        hardness = state.getDestroySpeed(world, new BlockPos(0, 0, 0));
+                        if (hardness <= limithard
+                                && hardness >= 0
+                                && world.getBlockFloorHeight(pos) > 0
+                                && Math.random() < 0.75
+                        ) {
+                            Block.dropResources(state, world, this.blockPosition(), null);
+                            world.destroyBlock(pos, false);
+
+                            world.updateNeighborsAt(pos, state.getBlock());
+                        }
+                    }
+                }
+            }
+
+            if (!world.isClientSide()) {
+                world.playSound(null, BlockPos.containing(x, y, z), SoundEvents.WITHER_BREAK_BLOCK, SoundSource.NEUTRAL, 1, 1);
+            } else {
+                world.playLocalSound(x, y, z, SoundEvents.WITHER_BREAK_BLOCK, SoundSource.NEUTRAL, 1, 1, false);
+            }
+        }
+
+        if (source.is(DamageTypes.DROWN)) return false;
+
         return super.hurt(source, amount);
     }
 
