@@ -4,9 +4,6 @@ import com.apocalypse.caerulaarbor.entity.base.SeaMonster;
 import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import net.minecraft.core.BlockPos;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
@@ -46,29 +43,18 @@ import java.util.EnumSet;
 
 public class RidgeSeaSpitterEntity extends SeaMonster implements RangedAttackMob, GeoEntity {
 
-    public static final EntityDataAccessor<Boolean> SHOOT = SynchedEntityData.defineId(RidgeSeaSpitterEntity.class, EntityDataSerializers.BOOLEAN);
-    public static final EntityDataAccessor<String> ANIMATION = SynchedEntityData.defineId(RidgeSeaSpitterEntity.class, EntityDataSerializers.STRING);
-
     private boolean swinging;
     private long lastSwing;
-    public String animationprocedure = "empty";
 
-    public RidgeSeaSpitterEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(ModEntities.RIDGE_SEA_SPITTER.get(), world);
+    public RidgeSeaSpitterEntity(PlayMessages.SpawnEntity packet, Level level) {
+        this(ModEntities.RIDGE_SEA_SPITTER.get(), level);
     }
 
-    public RidgeSeaSpitterEntity(EntityType<RidgeSeaSpitterEntity> type, Level world) {
-        super(type, world);
+    public RidgeSeaSpitterEntity(EntityType<RidgeSeaSpitterEntity> type, Level level) {
+        super(type, level);
         xpReward = 4;
         setNoAi(false);
         setMaxUpStep(0.85f);
-    }
-
-    @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(SHOOT, false);
-        this.entityData.define(ANIMATION, "undefined");
     }
 
     @Override
@@ -162,7 +148,6 @@ public class RidgeSeaSpitterEntity extends SeaMonster implements RangedAttackMob
             this.target = null;
             this.seeTime = 0;
             this.attackTime = -1;
-            ((RidgeSeaSpitterEntity) rangedAttackMob).entityData.set(SHOOT, false);
         }
 
         public boolean requiresUpdateEveryTick() {
@@ -185,18 +170,15 @@ public class RidgeSeaSpitterEntity extends SeaMonster implements RangedAttackMob
             this.mob.getLookControl().setLookAt(this.target, 30.0F, 30.0F);
             if (--this.attackTime == 0) {
                 if (!flag) {
-                    ((RidgeSeaSpitterEntity) rangedAttackMob).entityData.set(SHOOT, false);
                     return;
                 }
-                ((RidgeSeaSpitterEntity) rangedAttackMob).entityData.set(SHOOT, true);
                 float f = (float) Math.sqrt(d0) / this.attackRadius;
                 float f1 = Mth.clamp(f, 0.1F, 1.0F);
                 this.rangedAttackMob.performRangedAttack(this.target, f1);
                 this.attackTime = Mth.floor(f * (float) (this.attackIntervalMax - this.attackIntervalMin) + (float) this.attackIntervalMin);
             } else if (this.attackTime < 0) {
                 this.attackTime = Mth.floor(Mth.lerp(Math.sqrt(d0) / (double) this.attackRadius, (double) this.attackIntervalMin, (double) this.attackIntervalMax));
-            } else
-                ((RidgeSeaSpitterEntity) rangedAttackMob).entityData.set(SHOOT, false);
+            }
         }
     }
 
@@ -261,29 +243,10 @@ public class RidgeSeaSpitterEntity extends SeaMonster implements RangedAttackMob
         if (this.swinging && this.lastSwing + 20L <= level().getGameTime()) {
             this.swinging = false;
         }
-        if ((this.swinging || this.entityData.get(SHOOT)) && event.getController().getAnimationState() == AnimationController.State.STOPPED) {
+        if (this.swinging && event.getController().getAnimationState() == AnimationController.State.STOPPED) {
             event.getController().forceAnimationReset();
             return event.setAndContinue(RawAnimation.begin().thenPlay("animation.ridge_sea_spitter.attack"));
         }
-        return PlayState.CONTINUE;
-    }
-
-    String prevAnim = "empty";
-
-    private PlayState procedurePredicate(AnimationState<?> event) {
-        if (!animationprocedure.equals("empty") && event.getController().getAnimationState() == AnimationController.State.STOPPED || (!this.animationprocedure.equals(prevAnim) && !this.animationprocedure.equals("empty"))) {
-            if (!this.animationprocedure.equals(prevAnim))
-                event.getController().forceAnimationReset();
-            event.getController().setAnimation(RawAnimation.begin().thenPlay(this.animationprocedure));
-            if (event.getController().getAnimationState() == AnimationController.State.STOPPED) {
-                this.animationprocedure = "empty";
-                event.getController().forceAnimationReset();
-            }
-        } else if (animationprocedure.equals("empty")) {
-            prevAnim = "empty";
-            return PlayState.STOP;
-        }
-        prevAnim = this.animationprocedure;
         return PlayState.CONTINUE;
     }
 
@@ -296,18 +259,9 @@ public class RidgeSeaSpitterEntity extends SeaMonster implements RangedAttackMob
         }
     }
 
-    public String getSyncedAnimation() {
-        return this.entityData.get(ANIMATION);
-    }
-
-    public void setAnimation(String animation) {
-        this.entityData.set(ANIMATION, animation);
-    }
-
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar data) {
         data.add(new AnimationController<>(this, "movement", 3, this::movementPredicate));
         data.add(new AnimationController<>(this, "attacking", 3, this::attackingPredicate));
-        data.add(new AnimationController<>(this, "procedure", 3, this::procedurePredicate));
     }
 }
