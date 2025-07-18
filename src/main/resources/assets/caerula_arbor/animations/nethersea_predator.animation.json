@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"animation.predator.idle": {
+		"animation.nethersea_predator.idle": {
 			"loop": true,
 			"animation_length": 1.5,
 			"bones": {
@@ -217,7 +217,7 @@
 				}
 			}
 		},
-		"animation.predator.move": {
+		"animation.nethersea_predator.move": {
 			"loop": true,
 			"animation_length": 1,
 			"bones": {
@@ -462,7 +462,7 @@
 				}
 			}
 		},
-		"animation.predator.attack": {
+		"animation.nethersea_predator.attack": {
 			"animation_length": 0.5,
 			"bones": {
 				"body": {
@@ -690,7 +690,7 @@
 				}
 			}
 		},
-		"animation.predator.miss": {
+		"animation.nethersea_predator.miss": {
 			"animation_length": 0.75,
 			"bones": {
 				"body": {

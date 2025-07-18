@@ -61,30 +61,11 @@ public class MobHitFuncProcedure {
             return;
 
         double amplifi;
-        double rate;
         double sklp;
         double limithard;
         if (entity instanceof LivingEntity _livEnt0 && _livEnt0.hasEffect(ModMobEffects.INVULNERABLE.get())) {
             if (event != null && event.isCancelable()) {
                 event.setCanceled(true);
-            }
-        }
-        if (entity instanceof PredatorAbyssalEntity livEnt4) {
-            rate = 0.8;
-            if (CaerulaArborModVariables.MapVariables.get(world).strategy_subsisting >= 3) {
-                rate = 0.9;
-            }
-            if (!(livEnt4.hasEffect(ModMobEffects.DIZZY.get()) || livEnt4.hasEffect(ModMobEffects.FROZEN.get()) || livEnt4.hasEffect(MobEffects.MOVEMENT_SLOWDOWN) || livEnt4.hasEffect(MobEffects.SLOW_FALLING)) && !(damagesource.is(DamageTypes.GENERIC_KILL) || damagesource.is(DamageTypes.FELL_OUT_OF_WORLD) || damagesource.is(DamageTypes.SONIC_BOOM) || damagesource.is(DamageTypes.WITHER))) {
-                if (Math.random() < rate) {
-                    if (entity instanceof PredatorAbyssalEntity) {
-                        ((PredatorAbyssalEntity) entity).setAnimation("animation.predator.miss");
-                    }
-                    if (world instanceof ServerLevel _level)
-                        _level.sendParticles(ModParticleTypes.MISS.get(), x, y, z, 16, 1, 1, 1, 0.1);
-                    if (event != null && event.isCancelable()) {
-                        event.setCanceled(true);
-                    }
-                }
             }
         }
         if (CaerulaArborModVariables.MapVariables.get(world).strategy_grow >= 3) {

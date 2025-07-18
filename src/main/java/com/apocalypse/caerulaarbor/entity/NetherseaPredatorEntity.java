@@ -1,17 +1,12 @@
-
 package com.apocalypse.caerulaarbor.entity;
 
-import com.apocalypse.caerulaarbor.init.ModAttributes;
-import com.apocalypse.caerulaarbor.init.ModBlocks;
-import com.apocalypse.caerulaarbor.init.ModEntities;
+import com.apocalypse.caerulaarbor.entity.base.SeaMonster;
+import com.apocalypse.caerulaarbor.init.*;
+import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Difficulty;
@@ -39,35 +34,27 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import org.jetbrains.annotations.NotNull;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
-public class PredatorAbyssalEntity extends Monster implements GeoEntity {
-    public static final EntityDataAccessor<Boolean> SHOOT = SynchedEntityData.defineId(PredatorAbyssalEntity.class, EntityDataSerializers.BOOLEAN);
-    public static final EntityDataAccessor<String> ANIMATION = SynchedEntityData.defineId(PredatorAbyssalEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> TEXTURE = SynchedEntityData.defineId(PredatorAbyssalEntity.class, EntityDataSerializers.STRING);
-    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+public class NetherseaPredatorEntity extends SeaMonster {
+
     private boolean swinging;
     private long lastSwing;
-    public String animationprocedure = "empty";
 
-    public PredatorAbyssalEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(ModEntities.PREDATOR_ABYSSAL.get(), world);
+    public NetherseaPredatorEntity(PlayMessages.SpawnEntity packet, Level world) {
+        this(ModEntities.NETHERSEA_PREDATOR.get(), world);
     }
 
-    public PredatorAbyssalEntity(EntityType<PredatorAbyssalEntity> type, Level world) {
+    public NetherseaPredatorEntity(EntityType<NetherseaPredatorEntity> type, Level world) {
         super(type, world);
         xpReward = 4;
         setNoAi(false);
@@ -75,24 +62,23 @@ public class PredatorAbyssalEntity extends Monster implements GeoEntity {
     }
 
     @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(SHOOT, false);
-        this.entityData.define(ANIMATION, "undefined");
-        this.entityData.define(TEXTURE, "abyssal");
-    }
-
-    public void setTexture(String texture) {
-        this.entityData.set(TEXTURE, texture);
-    }
-
-    public String getTexture() {
-        return this.entityData.get(TEXTURE);
-    }
-
-    @Override
-    public @NotNull Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
+    public boolean hurt(DamageSource source, float amount) {
+        double rate = 0.8;
+        var level = this.level();
+        if (CaerulaArborModVariables.MapVariables.get(level).strategy_subsisting >= 3) {
+            rate = 0.9;
+        }
+        if (!(this.hasEffect(ModMobEffects.DIZZY.get()) || this.hasEffect(ModMobEffects.FROZEN.get()) || this.hasEffect(MobEffects.MOVEMENT_SLOWDOWN) || this.hasEffect(MobEffects.SLOW_FALLING))
+                && !(source.is(DamageTypes.GENERIC_KILL) || source.is(DamageTypes.FELL_OUT_OF_WORLD) || source.is(DamageTypes.SONIC_BOOM) || source.is(DamageTypes.WITHER))) {
+            if (Math.random() < rate) {
+                this.triggerAnim("miss", "miss");
+                if (level instanceof ServerLevel serverLevel) {
+                    serverLevel.sendParticles(ModParticleTypes.MISS.get(), this.getX(), this.getY(), this.getZ(), 8, 1, 1, 1, 0.1);
+                }
+                return false;
+            }
+        }
+        return super.hurt(source, amount);
     }
 
     @Override
@@ -118,29 +104,24 @@ public class PredatorAbyssalEntity extends Monster implements GeoEntity {
         this.targetSelector.addGoal(13, new NearestAttackableTargetGoal<>(this, Player.class, false, false) {
             @Override
             public boolean canUse() {
-                double x = PredatorAbyssalEntity.this.getX();
-                double y = PredatorAbyssalEntity.this.getY();
-                double z = PredatorAbyssalEntity.this.getZ();
-                Level world = PredatorAbyssalEntity.this.level();
+                double x = NetherseaPredatorEntity.this.getX();
+                double y = NetherseaPredatorEntity.this.getY();
+                double z = NetherseaPredatorEntity.this.getZ();
+                Level world = NetherseaPredatorEntity.this.level();
                 return super.canUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
             }
 
             @Override
             public boolean canContinueToUse() {
-                double x = PredatorAbyssalEntity.this.getX();
-                double y = PredatorAbyssalEntity.this.getY();
-                double z = PredatorAbyssalEntity.this.getZ();
-                Level world = PredatorAbyssalEntity.this.level();
+                double x = NetherseaPredatorEntity.this.getX();
+                double y = NetherseaPredatorEntity.this.getY();
+                double z = NetherseaPredatorEntity.this.getZ();
+                Level world = NetherseaPredatorEntity.this.level();
                 return super.canContinueToUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
             }
         });
         this.goalSelector.addGoal(14, new RandomStrollGoal(this, 0.5));
         this.goalSelector.addGoal(15, new RandomLookAroundGoal(this));
-    }
-
-    @Override
-    public @NotNull MobType getMobType() {
-        return MobType.WATER;
     }
 
     @Override
@@ -164,13 +145,6 @@ public class PredatorAbyssalEntity extends Monster implements GeoEntity {
     }
 
     @Override
-    public boolean hurt(DamageSource source, float amount) {
-        if (source.is(DamageTypes.DROWN))
-            return false;
-        return super.hurt(source, amount);
-    }
-
-    @Override
     @ParametersAreNonnullByDefault
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
         var san = this.getAttribute(ModAttributes.SANITY_RATE.get());
@@ -179,19 +153,6 @@ public class PredatorAbyssalEntity extends Monster implements GeoEntity {
         }
 
         return super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
-    }
-
-    @Override
-    public void addAdditionalSaveData(@NotNull CompoundTag compound) {
-        super.addAdditionalSaveData(compound);
-        compound.putString("Texture", this.getTexture());
-    }
-
-    @Override
-    public void readAdditionalSaveData(@NotNull CompoundTag compound) {
-        super.readAdditionalSaveData(compound);
-        if (compound.contains("Texture"))
-            this.setTexture(compound.getString("Texture"));
     }
 
     @Override
@@ -206,13 +167,8 @@ public class PredatorAbyssalEntity extends Monster implements GeoEntity {
         this.refreshDimensions();
     }
 
-    @Override
-    public @NotNull EntityDimensions getDimensions(@NotNull Pose p_33597_) {
-        return super.getDimensions(p_33597_);
-    }
-
     public static void init() {
-        SpawnPlacements.register(ModEntities.PREDATOR_ABYSSAL.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+        SpawnPlacements.register(ModEntities.NETHERSEA_PREDATOR.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 (entityType, world, reason, pos, random) -> (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
     }
 
@@ -227,20 +183,13 @@ public class PredatorAbyssalEntity extends Monster implements GeoEntity {
     }
 
     private PlayState movementPredicate(AnimationState<?> event) {
-        if (this.animationprocedure.equals("empty")) {
-            if ((event.isMoving() || !(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F))
-
-            ) {
-                return event.setAndContinue(RawAnimation.begin().thenLoop("animation.predator.move"));
-            }
-            return event.setAndContinue(RawAnimation.begin().thenLoop("animation.predator.idle"));
+        if ((event.isMoving() || !(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F))) {
+            return event.setAndContinue(RawAnimation.begin().thenLoop("animation.nethersea_predator.move"));
         }
-        return PlayState.STOP;
+        return event.setAndContinue(RawAnimation.begin().thenLoop("animation.nethersea_predator.idle"));
     }
 
     private PlayState attackingPredicate(AnimationState<?> event) {
-        double d1 = this.getX() - this.xOld;
-        double d0 = this.getZ() - this.zOld;
         if (getAttackAnim(event.getPartialTick()) > 0f && !this.swinging) {
             this.swinging = true;
             this.lastSwing = level().getGameTime();
@@ -250,27 +199,8 @@ public class PredatorAbyssalEntity extends Monster implements GeoEntity {
         }
         if (this.swinging && event.getController().getAnimationState() == AnimationController.State.STOPPED) {
             event.getController().forceAnimationReset();
-            return event.setAndContinue(RawAnimation.begin().thenPlay("animation.predator.attack"));
+            return event.setAndContinue(RawAnimation.begin().thenPlay("animation.nethersea_predator.attack"));
         }
-        return PlayState.CONTINUE;
-    }
-
-    String prevAnim = "empty";
-
-    private PlayState procedurePredicate(AnimationState<?> event) {
-        if (!animationprocedure.equals("empty") && event.getController().getAnimationState() == AnimationController.State.STOPPED || (!this.animationprocedure.equals(prevAnim) && !this.animationprocedure.equals("empty"))) {
-            if (!this.animationprocedure.equals(prevAnim))
-                event.getController().forceAnimationReset();
-            event.getController().setAnimation(RawAnimation.begin().thenPlay(this.animationprocedure));
-            if (event.getController().getAnimationState() == AnimationController.State.STOPPED) {
-                this.animationprocedure = "empty";
-                event.getController().forceAnimationReset();
-            }
-        } else if (animationprocedure.equals("empty")) {
-            prevAnim = "empty";
-            return PlayState.STOP;
-        }
-        prevAnim = this.animationprocedure;
         return PlayState.CONTINUE;
     }
 
@@ -278,28 +208,16 @@ public class PredatorAbyssalEntity extends Monster implements GeoEntity {
     protected void tickDeath() {
         ++this.deathTime;
         if (this.deathTime == 20) {
-            this.remove(PredatorAbyssalEntity.RemovalReason.KILLED);
+            this.remove(NetherseaPredatorEntity.RemovalReason.KILLED);
             this.dropExperience();
         }
-    }
-
-    public String getSyncedAnimation() {
-        return this.entityData.get(ANIMATION);
-    }
-
-    public void setAnimation(String animation) {
-        this.entityData.set(ANIMATION, animation);
     }
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar data) {
         data.add(new AnimationController<>(this, "movement", 4, this::movementPredicate));
         data.add(new AnimationController<>(this, "attacking", 4, this::attackingPredicate));
-        data.add(new AnimationController<>(this, "procedure", 4, this::procedurePredicate));
-    }
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return this.cache;
+        data.add(new AnimationController<>(this, "miss", 4, event -> PlayState.STOP)
+                .triggerableAnim("miss", RawAnimation.begin().thenPlay("animation.nethersea_predator.miss").thenLoop("animation.nethersea_predator.idle")));
     }
 }
