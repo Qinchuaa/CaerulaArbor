@@ -19,9 +19,7 @@ import net.minecraft.world.item.TooltipFlag;
 import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -71,15 +69,9 @@ public class KingsCrystalItem extends RelicItem {
             world.setBlock(pos, ModBlocks.BLOCK_CRYSTAL.get().defaultBlockState(), 3);
 
             Direction direction = entity.getDirection().getOpposite();
-            Property<?> facing = state.getBlock().getStateDefinition().getProperty("facing");
-            if (facing instanceof DirectionProperty prop && prop.getPossibleValues().contains(direction)) {
-                world.setBlock(pos, state.setValue(prop, direction), 3);
-            } else {
-                var axis = state.getBlock().getStateDefinition().getProperty("axis");
-                if (axis instanceof EnumProperty axisEnum && axisEnum.getPossibleValues().contains(direction.getAxis()))
-                    world.setBlock(pos, state.setValue(axisEnum, direction.getAxis()), 3);
-            }
+            world.setBlock(pos, state.setValue(BlockStateProperties.FACING, direction), 3);
             stack.shrink(1);
+
             return InteractionResult.SUCCESS;
         }
         return InteractionResult.PASS;

@@ -19,9 +19,7 @@ import net.minecraft.world.item.context.UseOnContext;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -71,14 +69,8 @@ public class KingsExtensionItem extends RelicItem {
 
             Direction _dir = entity.getDirection().getOpposite();
             BlockState _bs = world.getBlockState(pos);
-            Property<?> facing = _bs.getBlock().getStateDefinition().getProperty("facing");
-            if (facing instanceof DirectionProperty _dp && _dp.getPossibleValues().contains(_dir)) {
-                world.setBlock(pos, _bs.setValue(_dp, _dir), 3);
-            } else {
-                var axis = _bs.getBlock().getStateDefinition().getProperty("axis");
-                if (axis instanceof EnumProperty _ap && _ap.getPossibleValues().contains(_dir.getAxis()))
-                    world.setBlock(pos, _bs.setValue(_ap, _dir.getAxis()), 3);
-            }
+
+            world.setBlock(pos, _bs.setValue(BlockStateProperties.FACING, _dir), 3);
 
             itemstack.shrink(1);
             return InteractionResult.SUCCESS;
