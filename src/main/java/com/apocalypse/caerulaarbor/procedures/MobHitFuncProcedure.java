@@ -210,7 +210,7 @@ public class MobHitFuncProcedure {
                                         var type = switch (Mth.nextInt(RandomSource.create(), 0, 8)) {
                                             case 0 -> ModEntities.BASELAYER_ABYSSAL;
                                             case 1 -> ModEntities.CRACKER_ABYSSAL;
-                                            case 2 -> ModEntities.CREEPER_FISH;
+                                            case 2 -> ModEntities.POCKET_SEA_CRAWLER;
                                             case 3 -> ModEntities.GUIDE_ABYSSAL;
                                             case 4 -> ModEntities.PUNCTURE_FISH;
                                             case 5 -> ModEntities.BASIN_SEA_REAPER;

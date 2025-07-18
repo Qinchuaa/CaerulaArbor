@@ -18,7 +18,7 @@ public class ModRenderers {
         event.registerEntityRenderer(ModEntities.FISH_SHOOT.get(), FishShootRenderer::new);
         event.registerEntityRenderer(ModEntities.FLOATING_SEA_DRIFTER.get(), FloatingSeaDrifterRenderer::new);
         event.registerEntityRenderer(ModEntities.BASIN_SEA_REAPER.get(), BasinSeaReaperRenderer::new);
-        event.registerEntityRenderer(ModEntities.CREEPER_FISH.get(), CreeperFishRenderer::new);
+        event.registerEntityRenderer(ModEntities.POCKET_SEA_CRAWLER.get(), PocketSeaCrawlerRenderer::new);
         event.registerEntityRenderer(ModEntities.PUNCTURE_FISH.get(), PunctureFishRenderer::new);
         event.registerEntityRenderer(ModEntities.BASELAYER_ABYSSAL.get(), BaselayerAbyssalRenderer::new);
         event.registerEntityRenderer(ModEntities.PREDATOR_ABYSSAL.get(), PredatorAbyssalRenderer::new);

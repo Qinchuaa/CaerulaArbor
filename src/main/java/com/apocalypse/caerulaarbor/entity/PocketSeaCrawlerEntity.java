@@ -1,14 +1,11 @@
-
 package com.apocalypse.caerulaarbor.entity;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
+import com.apocalypse.caerulaarbor.entity.base.SeaMonster;
 import com.apocalypse.caerulaarbor.init.ModEntities;
-import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.procedures.RangedSanityAttackProcedure;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -19,8 +16,10 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageTypes;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
@@ -36,33 +35,26 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import org.jetbrains.annotations.NotNull;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class CreeperFishEntity extends Monster implements GeoEntity {
-    public static final EntityDataAccessor<Boolean> SHOOT = SynchedEntityData.defineId(CreeperFishEntity.class, EntityDataSerializers.BOOLEAN);
-    public static final EntityDataAccessor<String> ANIMATION = SynchedEntityData.defineId(CreeperFishEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> TEXTURE = SynchedEntityData.defineId(CreeperFishEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<Integer> DATA_deal = SynchedEntityData.defineId(CreeperFishEntity.class, EntityDataSerializers.INT);
-    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
+public class PocketSeaCrawlerEntity extends SeaMonster {
+
+    public static final EntityDataAccessor<Integer> DAMAGE = SynchedEntityData.defineId(PocketSeaCrawlerEntity.class, EntityDataSerializers.INT);
+
     private boolean swinging;
     private long lastSwing;
-    public String animationprocedure = "empty";
 
-    public CreeperFishEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(ModEntities.CREEPER_FISH.get(), world);
+    public PocketSeaCrawlerEntity(PlayMessages.SpawnEntity packet, Level world) {
+        this(ModEntities.POCKET_SEA_CRAWLER.get(), world);
     }
 
-    public CreeperFishEntity(EntityType<CreeperFishEntity> type, Level world) {
+    public PocketSeaCrawlerEntity(EntityType<PocketSeaCrawlerEntity> type, Level world) {
         super(type, world);
         xpReward = 8;
         setNoAi(false);
@@ -73,23 +65,7 @@ public class CreeperFishEntity extends Monster implements GeoEntity {
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
-        this.entityData.define(SHOOT, false);
-        this.entityData.define(ANIMATION, "undefined");
-        this.entityData.define(TEXTURE, "fish2");
-        this.entityData.define(DATA_deal, 0);
-    }
-
-    public void setTexture(String texture) {
-        this.entityData.set(TEXTURE, texture);
-    }
-
-    public String getTexture() {
-        return this.entityData.get(TEXTURE);
-    }
-
-    @Override
-    public @NotNull Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
+        this.entityData.define(DAMAGE, 0);
     }
 
     @Override
@@ -109,18 +85,8 @@ public class CreeperFishEntity extends Monster implements GeoEntity {
     }
 
     @Override
-    public @NotNull MobType getMobType() {
-        return MobType.WATER;
-    }
-
-    @Override
     public boolean removeWhenFarAway(double distanceToClosestPlayer) {
         return false;
-    }
-
-    protected void dropCustomDeathLoot(@NotNull DamageSource source, int looting, boolean recentlyHitIn) {
-        super.dropCustomDeathLoot(source, looting, recentlyHitIn);
-        this.spawnAtLocation(new ItemStack(ModItems.OCEAN_CRYSTAL.get()));
     }
 
     @Override
@@ -139,26 +105,16 @@ public class CreeperFishEntity extends Monster implements GeoEntity {
     }
 
     @Override
-    public boolean hurt(DamageSource source, float amount) {
-        if (source.is(DamageTypes.DROWN))
-            return false;
-        return super.hurt(source, amount);
-    }
-
-    @Override
     public void addAdditionalSaveData(@NotNull CompoundTag compound) {
         super.addAdditionalSaveData(compound);
-        compound.putString("Texture", this.getTexture());
-        compound.putInt("Datadeal", this.entityData.get(DATA_deal));
+        compound.putInt("Datadeal", this.entityData.get(DAMAGE));
     }
 
     @Override
     public void readAdditionalSaveData(@NotNull CompoundTag compound) {
         super.readAdditionalSaveData(compound);
-        if (compound.contains("Texture"))
-            this.setTexture(compound.getString("Texture"));
         if (compound.contains("Datadeal"))
-            this.entityData.set(DATA_deal, compound.getInt("Datadeal"));
+            this.entityData.set(DAMAGE, compound.getInt("Datadeal"));
     }
 
     @Override
@@ -171,19 +127,17 @@ public class CreeperFishEntity extends Monster implements GeoEntity {
         double z = this.getZ();
         var world = this.level();
         if (itemstack.getItem() == Items.FLINT_AND_STEEL) {
-
             if (!world.isClientSide()) {
                 world.playSound(null, BlockPos.containing(x, y, z), SoundEvents.CREEPER_PRIMED, SoundSource.HOSTILE, 2, 1);
             } else {
                 world.playLocalSound(x, y, z, SoundEvents.CREEPER_PRIMED, SoundSource.HOSTILE, 2, 1, false);
             }
 
-            if (this instanceof CreeperFishEntity) {
-                this.setAnimation("animation.explosivefish.jump");
+            if (this instanceof PocketSeaCrawlerEntity) {
+//                this.setAnimation("animation.pocket_sea_crawler.jump");
             }
-
             for (int i = 0; i < 5; i++) {
-                CaerulaArborMod.queueServerWork(i * 4, () -> RangedSanityAttackProcedure.execute(world, x, y, z, CreeperFishEntity.this, CreeperFishEntity.this));
+                CaerulaArborMod.queueServerWork(i * 4, () -> RangedSanityAttackProcedure.execute(world, x, y, z, PocketSeaCrawlerEntity.this, PocketSeaCrawlerEntity.this));
             }
             return InteractionResult.SUCCESS;
         }
@@ -196,13 +150,8 @@ public class CreeperFishEntity extends Monster implements GeoEntity {
         this.refreshDimensions();
     }
 
-    @Override
-    public @NotNull EntityDimensions getDimensions(@NotNull Pose p_33597_) {
-        return super.getDimensions(p_33597_);
-    }
-
     public static void init() {
-        SpawnPlacements.register(ModEntities.CREEPER_FISH.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+        SpawnPlacements.register(ModEntities.POCKET_SEA_CRAWLER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 (entityType, world, reason, pos, random) -> (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
     }
 
@@ -218,34 +167,19 @@ public class CreeperFishEntity extends Monster implements GeoEntity {
     }
 
     private PlayState movementPredicate(AnimationState<?> event) {
-        if (this.animationprocedure.equals("empty")) {
-            if ((event.isMoving() || !(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) && !this.isVehicle() && !this.isAggressive() && !this.isSprinting()) {
-                return event.setAndContinue(RawAnimation.begin().thenLoop("animation.explosivefish.move"));
-            }
-            if (this.isDeadOrDying()) {
-                return event.setAndContinue(RawAnimation.begin().thenPlay("animation.explosivefish.die"));
-            }
-            if (this.isShiftKeyDown()) {
-                return event.setAndContinue(RawAnimation.begin().thenLoop("animation.explosivefish.move"));
-            }
-            if (this.isSprinting()) {
-                return event.setAndContinue(RawAnimation.begin().thenLoop("animation.explosivefish.move"));
-            }
-            if (this.isVehicle() && event.isMoving()) {
-                return event.setAndContinue(RawAnimation.begin().thenLoop("animation.explosivefish.move"));
-            }
-            if (this.isAggressive() && event.isMoving() && !this.isVehicle()) {
-                return event.setAndContinue(RawAnimation.begin().thenLoop("animation.explosivefish.move"));
-            }
-            return event.setAndContinue(RawAnimation.begin().thenLoop("animation.explosivefish.idle"));
+        if ((event.isMoving() || !(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) && !this.isVehicle() && !this.isAggressive() && !this.isSprinting()) {
+            return event.setAndContinue(RawAnimation.begin().thenLoop("animation.pocket_sea_crawler.move"));
         }
-        return PlayState.STOP;
+        if (this.isDeadOrDying()) {
+            return event.setAndContinue(RawAnimation.begin().thenPlay("animation.pocket_sea_crawler.die"));
+        }
+        if (this.isShiftKeyDown() || this.isSprinting() || (this.isVehicle() && event.isMoving()) || (this.isAggressive() && event.isMoving() && !this.isVehicle())) {
+            return event.setAndContinue(RawAnimation.begin().thenLoop("animation.pocket_sea_crawler.move"));
+        }
+        return event.setAndContinue(RawAnimation.begin().thenLoop("animation.pocket_sea_crawler.idle"));
     }
 
     private PlayState attackingPredicate(AnimationState<?> event) {
-        double d1 = this.getX() - this.xOld;
-        double d0 = this.getZ() - this.zOld;
-        float velocity = (float) Math.sqrt(d1 * d1 + d0 * d0);
         if (getAttackAnim(event.getPartialTick()) > 0f && !this.swinging) {
             this.swinging = true;
             this.lastSwing = level().getGameTime();
@@ -255,27 +189,8 @@ public class CreeperFishEntity extends Monster implements GeoEntity {
         }
         if (this.swinging && event.getController().getAnimationState() == AnimationController.State.STOPPED) {
             event.getController().forceAnimationReset();
-            return event.setAndContinue(RawAnimation.begin().thenPlay("animation.explosivefish.attack"));
+            return event.setAndContinue(RawAnimation.begin().thenPlay("animation.pocket_sea_crawler.attack"));
         }
-        return PlayState.CONTINUE;
-    }
-
-    String prevAnim = "empty";
-
-    private PlayState procedurePredicate(AnimationState<?> event) {
-        if (!animationprocedure.equals("empty") && event.getController().getAnimationState() == AnimationController.State.STOPPED || (!this.animationprocedure.equals(prevAnim) && !this.animationprocedure.equals("empty"))) {
-            if (!this.animationprocedure.equals(prevAnim))
-                event.getController().forceAnimationReset();
-            event.getController().setAnimation(RawAnimation.begin().thenPlay(this.animationprocedure));
-            if (event.getController().getAnimationState() == AnimationController.State.STOPPED) {
-                this.animationprocedure = "empty";
-                event.getController().forceAnimationReset();
-            }
-        } else if (animationprocedure.equals("empty")) {
-            prevAnim = "empty";
-            return PlayState.STOP;
-        }
-        prevAnim = this.animationprocedure;
         return PlayState.CONTINUE;
     }
 
@@ -283,28 +198,14 @@ public class CreeperFishEntity extends Monster implements GeoEntity {
     protected void tickDeath() {
         ++this.deathTime;
         if (this.deathTime == 20) {
-            this.remove(CreeperFishEntity.RemovalReason.KILLED);
+            this.remove(PocketSeaCrawlerEntity.RemovalReason.KILLED);
             this.dropExperience();
         }
-    }
-
-    public String getSyncedAnimation() {
-        return this.entityData.get(ANIMATION);
-    }
-
-    public void setAnimation(String animation) {
-        this.entityData.set(ANIMATION, animation);
     }
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar data) {
         data.add(new AnimationController<>(this, "movement", 2, this::movementPredicate));
         data.add(new AnimationController<>(this, "attacking", 2, this::attackingPredicate));
-        data.add(new AnimationController<>(this, "procedure", 2, this::procedurePredicate));
-    }
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return this.cache;
     }
 }

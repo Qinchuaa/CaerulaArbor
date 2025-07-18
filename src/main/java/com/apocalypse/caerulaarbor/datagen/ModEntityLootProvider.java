@@ -66,6 +66,16 @@ public class ModEntityLootProvider extends EntityLootSubProvider {
                                 )
                 )
         );
+
+        this.add(ModEntities.POCKET_SEA_CRAWLER.get(),
+                LootTable.lootTable().withPool(
+                        LootPool.lootPool().setRolls(ConstantValue.exactly(1.0f))
+                                .add(LootItem.lootTableItem(ModItems.OCEAN_CRYSTAL.get())
+                                        .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0f)))
+                                        .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))
+                                )
+                )
+        );
     }
 
     @Override

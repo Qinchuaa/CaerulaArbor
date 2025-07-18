@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"animation.explosivefish.idle": {
+		"animation.pocket_sea_crawler.idle": {
 			"loop": true,
 			"animation_length": 3,
 			"bones": {
@@ -221,7 +221,7 @@
 				}
 			}
 		},
-		"animation.explosivefish.move": {
+		"animation.pocket_sea_crawler.move": {
 			"loop": true,
 			"animation_length": 1.25,
 			"bones": {
@@ -401,7 +401,7 @@
 				}
 			}
 		},
-		"animation.explosivefish.die": {
+		"animation.pocket_sea_crawler.die": {
 			"loop": "hold_on_last_frame",
 			"animation_length": 1,
 			"bones": {
@@ -615,7 +615,7 @@
 				}
 			}
 		},
-		"animation.explosivefish.attack": {
+		"animation.pocket_sea_crawler.attack": {
 			"animation_length": 1,
 			"bones": {
 				"stem": {
@@ -722,7 +722,7 @@
 				}
 			}
 		},
-		"animation.explosivefish.jump": {
+		"animation.pocket_sea_crawler.jump": {
 			"animation_length": 1.7083,
 			"bones": {
 				"stem": {

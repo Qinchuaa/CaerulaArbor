@@ -5,7 +5,7 @@ import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
 import com.apocalypse.caerulaarbor.config.common.RelicsConfig;
-import com.apocalypse.caerulaarbor.entity.CreeperFishEntity;
+import com.apocalypse.caerulaarbor.entity.PocketSeaCrawlerEntity;
 import com.apocalypse.caerulaarbor.init.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -324,13 +324,13 @@ public class PlayerHitFuncProcedure {
                 }
             }
         }
-        if (entity instanceof CreeperFishEntity) {
-            if (entity instanceof CreeperFishEntity _datEntSetI)
-                _datEntSetI.getEntityData().set(CreeperFishEntity.DATA_deal, (int) ((entity instanceof CreeperFishEntity _datEntI ? _datEntI.getEntityData().get(CreeperFishEntity.DATA_deal) : 0) + amount));
-            if ((entity instanceof CreeperFishEntity _datEntI ? _datEntI.getEntityData().get(CreeperFishEntity.DATA_deal) : 0) >= (entity instanceof LivingEntity _livEnt ? _livEnt.getMaxHealth() : -1) * 0.15) {
+        if (entity instanceof PocketSeaCrawlerEntity) {
+            if (entity instanceof PocketSeaCrawlerEntity _datEntSetI)
+                _datEntSetI.getEntityData().set(PocketSeaCrawlerEntity.DAMAGE, (int) ((entity instanceof PocketSeaCrawlerEntity _datEntI ? _datEntI.getEntityData().get(PocketSeaCrawlerEntity.DAMAGE) : 0) + amount));
+            if ((entity instanceof PocketSeaCrawlerEntity _datEntI ? _datEntI.getEntityData().get(PocketSeaCrawlerEntity.DAMAGE) : 0) >= (entity instanceof LivingEntity _livEnt ? _livEnt.getMaxHealth() : -1) * 0.15) {
                 RangedSanityAttackProcedure.execute(world, x, y, z, entity, entity);
-                if (entity instanceof CreeperFishEntity _datEntSetI)
-                    _datEntSetI.getEntityData().set(CreeperFishEntity.DATA_deal, 0);
+                if (entity instanceof PocketSeaCrawlerEntity _datEntSetI)
+                    _datEntSetI.getEntityData().set(PocketSeaCrawlerEntity.DAMAGE, 0);
             }
         }
         if ((sourceentity instanceof LivingEntity _livingEntity122 && _livingEntity122.getAttributes().hasAttribute(ModAttributes.SANITY_RATE.get())

@@ -73,12 +73,12 @@ public class ModItems {
     public static final RegistryObject<Item> TOPONYM_TEXTOLOGY = ITEMS.register("toponym_textology", ToponymTextologyItem::new);
 
     public static final RegistryObject<Item> SHELL_SEA_RUNNER_SPAWN_EGG = ITEMS.register("shell_sea_runner_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.SHELL_SEA_RUNNER, -16777012, -3355444, new Item.Properties()));
-    public static final RegistryObject<Item> SLIDER_FISH_SPAWN_EGG = ITEMS.register("slider_fish_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.DEEP_SEA_SLIDER, -13421569, -3355444, new Item.Properties()));
+    public static final RegistryObject<Item> DEEP_SEA_SLIDER_SPAWN_EGG = ITEMS.register("deep_sea_slider_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.DEEP_SEA_SLIDER, -13421569, -3355444, new Item.Properties()));
     public static final RegistryObject<Item> SUPER_SLIDER_SPAWN_EGG = ITEMS.register("super_slider_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.SUPER_SLIDER, -13434778, -3355393, new Item.Properties()));
     public static final RegistryObject<Item> RIDGE_SEA_SPITTER_SPAWN_EGG = ITEMS.register("ridge_sea_spitter_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.RIDGE_SEA_SPITTER, -13434676, -3355444, new Item.Properties()));
     public static final RegistryObject<Item> FLOATING_SEA_DRIFTER_SPAWN_EGG = ITEMS.register("floating_sea_drifter_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.FLOATING_SEA_DRIFTER, -16737895, -3355444, new Item.Properties()));
     public static final RegistryObject<Item> BASIN_SEA_REAPER_SPAWN_EGG = ITEMS.register("basin_sea_reaper_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.BASIN_SEA_REAPER, -6710785, -3355444, new Item.Properties()));
-    public static final RegistryObject<Item> CREEPER_FISH_SPAWN_EGG = ITEMS.register("creeper_fish_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.CREEPER_FISH, -10092442, -3342337, new Item.Properties()));
+    public static final RegistryObject<Item> POCKET_SEA_CRAWLER_SPAWN_EGG = ITEMS.register("pocket_sea_crawler_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.POCKET_SEA_CRAWLER, -10092442, -3342337, new Item.Properties()));
     public static final RegistryObject<Item> PUNCTURE_FISH_SPAWN_EGG = ITEMS.register("puncture_fish_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.PUNCTURE_FISH, -16750900, -1, new Item.Properties()));
     public static final RegistryObject<Item> SEA_TRAIL_INIT = block(ModBlocks.SEA_TRAIL_INIT);
     public static final RegistryObject<Item> SEA_TRAIL_GROWING = block(ModBlocks.SEA_TRAIL_GROWING);

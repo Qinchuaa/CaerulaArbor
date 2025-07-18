@@ -17,13 +17,6 @@ public class EntityAnimationFactory {
 					syncable.animationprocedure = animation;
 				}
 			}
-			if (event.getEntity() instanceof CreeperFishEntity syncable) {
-				String animation = syncable.getSyncedAnimation();
-				if (!animation.equals("undefined")) {
-					syncable.setAnimation("undefined");
-					syncable.animationprocedure = animation;
-				}
-			}
 			if (event.getEntity() instanceof PunctureFishEntity syncable) {
 				String animation = syncable.getSyncedAnimation();
 				if (!animation.equals("undefined")) {
