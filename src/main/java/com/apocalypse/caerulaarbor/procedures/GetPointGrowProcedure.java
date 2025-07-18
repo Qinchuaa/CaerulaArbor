@@ -6,11 +6,11 @@ import net.minecraft.world.level.LevelAccessor;
 
 public class GetPointGrowProcedure {
 	public static String execute(LevelAccessor world) {
-		double rate = 0;
-		if (CaerulaArborModVariables.MapVariables.get(world).strategy_grow >= 4) {
+		var mapVar = CaerulaArborModVariables.MapVariables.get(world);
+		if (mapVar.strategy_grow >= 4) {
 			return "§bFinished";
 		}
-		return Math.round(CaerulaArborModVariables.MapVariables.get(world).evo_point_grow) + "§b/"
-				+ Math.round(Math.pow(CaerulaArborModVariables.MapVariables.get(world).strategy_grow + 1, 3) * (double) GameplayConfig.EVOLUTION_POINT_COEFFICIENT.get());
+		return Math.round(mapVar.evo_point_grow) + "§b/"
+				+ Math.round(Math.pow(mapVar.strategy_grow + 1, 3) * GameplayConfig.EVOLUTION_POINT_COEFFICIENT.get());
 	}
 }

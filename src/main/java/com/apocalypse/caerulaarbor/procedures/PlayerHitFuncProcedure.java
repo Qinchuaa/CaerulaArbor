@@ -40,7 +40,6 @@ import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
-import java.util.Comparator;
 
 @Mod.EventBusSubscriber
 public class PlayerHitFuncProcedure {
@@ -65,25 +64,23 @@ public class PlayerHitFuncProcedure {
         double rate;
         double time;
         var cap = entity.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable());
-        if (entity instanceof Player) {
+        if (entity instanceof Player ent) {
             light_cost = amount * 0.01;
             if (cap.disoclusion == 1) {
                 if (Math.random() < 0.1) {
-                    item_temp = (entity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).copy();
-                    if (entity instanceof LivingEntity _entity) {
-                        ItemStack _setstack = (entity instanceof LivingEntity _livEnt ? _livEnt.getOffhandItem() : ItemStack.EMPTY).copy();
-                        _setstack.setCount((entity instanceof LivingEntity _livEnt ? _livEnt.getOffhandItem() : ItemStack.EMPTY).getCount());
+                    item_temp = ent.getMainHandItem().copy();
+                    LivingEntity _entity = (LivingEntity) entity;
+                    {
+                        ItemStack _setstack = _entity.getOffhandItem().copy();
+                        _setstack.setCount(_entity.getOffhandItem().getCount());
                         _entity.setItemInHand(InteractionHand.MAIN_HAND, _setstack);
                         if (_entity instanceof Player _player)
                             _player.getInventory().setChanged();
                     }
-                    if (entity instanceof LivingEntity _entity) {
-                        ItemStack _setstack = item_temp.copy();
-                        _setstack.setCount(item_temp.getCount());
-                        _entity.setItemInHand(InteractionHand.OFF_HAND, _setstack);
-                        if (_entity instanceof Player _player)
-                            _player.getInventory().setChanged();
-                    }
+                    LivingEntity _entity1 = (LivingEntity) entity;
+                    _entity1.setItemInHand(InteractionHand.OFF_HAND, item_temp.copyWithCount(item_temp.getCount()));
+                    if (_entity1 instanceof Player _player)
+                        _player.getInventory().setChanged();
                 }
             }
             if (cap.disoclusion == 3) {
@@ -97,8 +94,8 @@ public class PlayerHitFuncProcedure {
                     time = 240;
                 }
                 if (Math.random() < rate) {
-                    if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-                        _entity.addEffect(new MobEffectInstance(ModMobEffects.FROZEN.get(), (int) time, 0, false, false));
+                    if (!ent.level().isClientSide())
+                        ent.addEffect(new MobEffectInstance(ModMobEffects.FROZEN.get(), (int) time, 0, false, false));
                 }
             }
             if (Relic.HAND_THORNS.gained(cap)) {
@@ -153,7 +150,7 @@ public class PlayerHitFuncProcedure {
                             }
                             if (world instanceof ServerLevel _level)
                                 _level.sendParticles(ParticleTypes.SMOKE, (sourceentity.getX()), (sourceentity.getY()), (sourceentity.getZ()), 72, 0.85, 1, 0.85, 0.2);
-                            sourceentity.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.THORNS)), entity instanceof LivingEntity _livEnt ? _livEnt.getArmorValue() : 0);
+                            sourceentity.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.THORNS)), ent.getArmorValue());
                         });
                     }
                     if (immediatesourceentity instanceof Arrow) {
@@ -179,59 +176,56 @@ public class PlayerHitFuncProcedure {
                 }
             }
         }
-        if (immediatesourceentity instanceof Player) {
+        if (immediatesourceentity instanceof Player livEnt) {
             var cap1 = immediatesourceentity.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable());
             if (cap1.disoclusion == 1) {
                 if (Math.random() < 0.1) {
-                    item_temp = (immediatesourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).copy();
-                    if (immediatesourceentity instanceof LivingEntity _entity) {
-                        ItemStack _setstack = (immediatesourceentity instanceof LivingEntity _livEnt ? _livEnt.getOffhandItem() : ItemStack.EMPTY).copy();
-                        _setstack.setCount((immediatesourceentity instanceof LivingEntity _livEnt ? _livEnt.getOffhandItem() : ItemStack.EMPTY).getCount());
+                    item_temp = livEnt.getMainHandItem().copy();
+                    LivingEntity _entity = (LivingEntity) immediatesourceentity;
+                    {
+                        ItemStack _setstack = _entity.getOffhandItem().copy();
+                        _setstack.setCount(_entity.getOffhandItem().getCount());
                         _entity.setItemInHand(InteractionHand.MAIN_HAND, _setstack);
                         if (_entity instanceof Player _player)
                             _player.getInventory().setChanged();
                     }
-                    if (immediatesourceentity instanceof LivingEntity _entity) {
-                        ItemStack _setstack = item_temp.copy();
-                        _setstack.setCount(item_temp.getCount());
-                        _entity.setItemInHand(InteractionHand.OFF_HAND, _setstack);
-                        if (_entity instanceof Player _player)
-                            _player.getInventory().setChanged();
-                    }
+                    LivingEntity _entity1 = (LivingEntity) immediatesourceentity;
+                    ItemStack _setstack = item_temp.copy();
+                    _setstack.setCount(item_temp.getCount());
+                    _entity1.setItemInHand(InteractionHand.OFF_HAND, _setstack);
+                    if (_entity1 instanceof Player _player)
+                        _player.getInventory().setChanged();
                 }
             }
-            if ((immediatesourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).is(ItemTags.create(new ResourceLocation("minecraft:hoes")))) {
+            if (livEnt.getMainHandItem().is(ItemTags.create(new ResourceLocation("minecraft:hoes")))) {
                 if (Relic.HAND_FERTILITY.gained(cap)) {
                     entity.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.MAGIC)), (float) ((entity instanceof LivingEntity _livEnt ? _livEnt.getHealth() : -1) * 0.1));
                     if (world instanceof ServerLevel _level)
                         _level.sendParticles(ParticleTypes.SQUID_INK, x, y, z, 8, 0.75, 0.9, 0.75, 0.1);
                 }
             }
-            if ((immediatesourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).is(ItemTags.create(new ResourceLocation("minecraft:swords")))) {
+            if (livEnt.getMainHandItem().is(ItemTags.create(new ResourceLocation("minecraft:swords")))) {
                 if (Relic.HAND_SWORD.gained(cap1)) {
                     if (!(entity instanceof LivingEntity _livEnt59 && _livEnt59.hasEffect(ModMobEffects.ROCK_BREAK.get()))
-                            && !!(entity instanceof LivingEntity _entity ? _entity.canBeAffected(new MobEffectInstance(ModMobEffects.ROCK_BREAK.get())) : true)) {
+                            && (!(entity instanceof LivingEntity _entity) || _entity.canBeAffected(new MobEffectInstance(ModMobEffects.ROCK_BREAK.get())))) {
                         if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
                             _entity.addEffect(new MobEffectInstance(ModMobEffects.ROCK_BREAK.get(), 120, 0));
                     }
-                    if (immediatesourceentity instanceof LivingEntity _entity)
-                        _entity.setHealth((float) ((immediatesourceentity instanceof LivingEntity _livEnt ? _livEnt.getHealth() : -1) + (immediatesourceentity instanceof LivingEntity _livEnt ? _livEnt.getMaxHealth() : -1) * 0.1));
-                    if (immediatesourceentity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-                        _entity.addEffect(new MobEffectInstance(ModMobEffects.ADD_REACH.get(), 120, 3, false, false));
+                    livEnt.setHealth((float) (livEnt.getHealth() + livEnt.getMaxHealth() * 0.1));
+                    if (!livEnt.level().isClientSide())
+                        livEnt.addEffect(new MobEffectInstance(ModMobEffects.ADD_REACH.get(), 120, 3, false, false));
                 }
             }
         }
-        if (sourceentity instanceof Player) {
+        if (sourceentity instanceof Player _livEnt1) {
             var cap1 = sourceentity.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable());
             if (immediatesourceentity instanceof Arrow) {
                 if (Relic.HAND_STRANGLE.gained(cap1)) {
                     validItem = false;
-                    LivingEntity _livEnt11 = (LivingEntity) sourceentity;
-                    if (_livEnt11.getMainHandItem().getItem() == Items.CROSSBOW) {
+                    if (_livEnt1.getMainHandItem().getItem() == Items.CROSSBOW) {
                         validItem = true;
                     } else {
                         for (String stringiterator : RelicsConfig.HAND_OF_CHOKER.get()) {
-                            LivingEntity _livEnt1 = (LivingEntity) sourceentity;
                             if ((ForgeRegistries.ITEMS.getKey(_livEnt1.getMainHandItem().getItem()).toString()).equals(stringiterator)) {
                                 validItem = true;
                                 break;
@@ -242,7 +236,7 @@ public class PlayerHitFuncProcedure {
                         CaerulaArborMod.queueServerWork(5, () -> {
                             if (entity.isAlive()) {
                                 entity.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.GENERIC_KILL), sourceentity),
-                                        (float) ((entity instanceof LivingEntity _livEnt ? _livEnt.getMaxHealth() : -1) * 99));
+                                        (entity instanceof LivingEntity _livEnt ? _livEnt.getMaxHealth() : -1) * 99);
                                 if (world instanceof ServerLevel _level)
                                     _level.sendParticles(ParticleTypes.GLOW_SQUID_INK, (entity.getX()), (entity.getY()), (entity.getZ()), 128, 1, 1, 1, 0.33);
                                 if (world instanceof Level _level) {
@@ -258,17 +252,21 @@ public class PlayerHitFuncProcedure {
                 }
                 if (Relic.HAND_FIREWORK.gained(cap1)) {
                     validItem = false;
-                    if ((sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == Items.BOW) {
-                        validItem = true;
-                    } else if ((sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem() == ModItems.PHLOEM_BOW.get()) {
-                        validItem = true;
-                    } else if ((sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).is(ItemTags.create(new ResourceLocation("forge:tools/bows")))) {
+                    if (_livEnt1.getMainHandItem().getItem() == Items.BOW) {
                         validItem = true;
                     } else {
-                        for (String stringiterator : RelicsConfig.HAND_FIREWORK.get()) {
-                            if ((ForgeRegistries.ITEMS.getKey((sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem()).toString()).equals(stringiterator)) {
+                        if (_livEnt1.getMainHandItem().getItem() == ModItems.PHLOEM_BOW.get()) {
+                            validItem = true;
+                        } else {
+                            if (_livEnt1.getMainHandItem().is(ItemTags.create(new ResourceLocation("forge:tools/bows")))) {
                                 validItem = true;
-                                break;
+                            } else {
+                                for (String stringiterator : RelicsConfig.HAND_FIREWORK.get()) {
+                                    if ((ForgeRegistries.ITEMS.getKey((sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getItem()).toString()).equals(stringiterator)) {
+                                        validItem = true;
+                                        break;
+                                    }
+                                }
                             }
                         }
                     }
@@ -294,9 +292,8 @@ public class PlayerHitFuncProcedure {
                             }
                             {
                                 final Vec3 _center = new Vec3(x, y, z);
-                                for (Entity entityiterator : world.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(5 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList()) {
-                                    if (((ForgeRegistries.ENTITY_TYPES.getKey(entityiterator.getType()).toString()).equals(ForgeRegistries.ENTITY_TYPES.getKey(entity.getType()).toString()) || entityiterator instanceof Monster)
-                                            && !(entityiterator == sourceentity)) {
+                                for (var entityiterator : world.getEntitiesOfClass(Monster.class, new AABB(_center, _center).inflate(5 / 2d), e -> true)) {
+                                    if (((ForgeRegistries.ENTITY_TYPES.getKey(entityiterator.getType()).toString()).equals(ForgeRegistries.ENTITY_TYPES.getKey(entity.getType()).toString())) && entityiterator != sourceentity) {
                                         entityiterator.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.FIREWORKS), sourceentity), (float) (amount * 3));
                                     }
                                 }
@@ -305,21 +302,16 @@ public class PlayerHitFuncProcedure {
                     }
                 }
             }
-            if (Relic.LEGEND_CHITIN.gained(cap1)) {
-                if (Math.random() < 0.05) {
-                    {
-                        ItemStack _setval = (sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY);
-                        sourceentity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
-                            capability.chitin_knife_selected = _setval.copy();
-                            capability.syncPlayerVariables(sourceentity);
-                        });
-                    }
-                    if (sourceentity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-                        _entity.addEffect(new MobEffectInstance(ModMobEffects.TIDE_OF_CHITIN.get(), 500, 0, false, false));
-                    if (world instanceof Level _level) {
-                        if (_level.isClientSide()) {
-                            _level.playLocalSound(x, y, z, SoundEvents.BEACON_ACTIVATE, SoundSource.NEUTRAL, 3.2F, 1, false);
-                        }
+            if (Relic.LEGEND_CHITIN.gained(cap1) && Math.random() < 0.05) {
+                sourceentity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
+                    capability.chitin_knife_selected = _livEnt1.getMainHandItem().copy();
+                    capability.syncPlayerVariables(sourceentity);
+                });
+                if (!_livEnt1.level().isClientSide())
+                    _livEnt1.addEffect(new MobEffectInstance(ModMobEffects.TIDE_OF_CHITIN.get(), 500, 0, false, false));
+                if (world instanceof Level _level) {
+                    if (_level.isClientSide()) {
+                        _level.playLocalSound(x, y, z, SoundEvents.BEACON_ACTIVATE, SoundSource.NEUTRAL, 3.2F, 1, false);
                     }
                 }
             }
@@ -372,7 +364,7 @@ public class PlayerHitFuncProcedure {
                 void timedLoop(int timedloopiterator, int timedlooptotal, int ticks) {
                     if (world instanceof ServerLevel _level)
                         _level.sendParticles(ParticleTypes.ELECTRIC_SPARK, x, (y + entity.getBbHeight() * 0.5), z,
-                                (int) (8 * (sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getEnchantmentLevel(ModEnchantments.SANITY_REAPER.get())), 1.2, 1.5, 1.2, 0.1);
+                                8 * (sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).getEnchantmentLevel(ModEnchantments.SANITY_REAPER.get()), 1.2, 1.5, 1.2, 0.1);
                     final int tick2 = ticks;
                     CaerulaArborMod.queueServerWork(tick2, () -> {
                         if (timedlooptotal > timedloopiterator + 1) {

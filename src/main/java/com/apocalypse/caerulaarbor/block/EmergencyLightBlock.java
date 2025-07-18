@@ -2,7 +2,6 @@
 package com.apocalypse.caerulaarbor.block;
 
 import com.apocalypse.caerulaarbor.init.ModItems;
-import com.apocalypse.caerulaarbor.procedures.HangOrLandProcedure;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.network.chat.Component;
@@ -105,10 +104,8 @@ public class EmergencyLightBlock extends Block implements SimpleWaterloggedBlock
     @ParametersAreNonnullByDefault
     public boolean canSurvive(BlockState blockstate, LevelReader worldIn, BlockPos pos) {
         if (worldIn instanceof LevelAccessor world) {
-            int x = pos.getX();
-            int y = pos.getY();
-            int z = pos.getZ();
-            return HangOrLandProcedure.execute(world, x, y, z);
+            return world.getBlockState(pos.above()).isFaceSturdy(world, pos.above(), Direction.DOWN)
+                    || world.getBlockState(pos.below()).isFaceSturdy(world, pos.below(), Direction.UP);
         }
         return super.canSurvive(blockstate, worldIn, pos);
     }

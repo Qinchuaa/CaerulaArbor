@@ -4,14 +4,14 @@ import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.item.*;
 import com.apocalypse.caerulaarbor.item.equipment.*;
 import com.apocalypse.caerulaarbor.item.relic.epic.*;
-import com.apocalypse.caerulaarbor.item.relic.normal.SeaweedSaladItem;
 import com.apocalypse.caerulaarbor.item.relic.normal.FeaturedCannedMeatItem;
 import com.apocalypse.caerulaarbor.item.relic.normal.HotWaterKettleItem;
+import com.apocalypse.caerulaarbor.item.relic.normal.SeaweedSaladItem;
 import com.apocalypse.caerulaarbor.item.relic.rare.*;
-import com.apocalypse.caerulaarbor.procedures.GetMusicboxPlayerProcedure;
 import com.apocalypse.caerulaarbor.tiers.ModArmorMaterial;
 import net.minecraft.client.renderer.item.ItemProperties;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ArmorItem;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -50,7 +50,7 @@ public class ModItems {
     public static final RegistryObject<Item> BLOCK_CRYSTAL = block(ModBlocks.BLOCK_CRYSTAL);
     public static final RegistryObject<Item> REDSTONE_INGOT = ITEMS.register("redstone_ingot", () -> new Item(new Item.Properties()));
     public static final RegistryObject<Item> THE_SPEAR = ITEMS.register("the_spear", TheSpearItem::new);
-    public static final RegistryObject<Item> WEARABLE_CHEST_CHESTPLATE = ITEMS.register("wearable_chest_chestplate", () -> new WearableChestItem.Chestplate());
+    public static final RegistryObject<Item> WEARABLE_CHEST_CHESTPLATE = ITEMS.register("wearable_chest_chestplate", WearableChestItem.Chestplate::new);
     public static final RegistryObject<WearableCrownItem> WEARABLE_CROWN_HELMET = ITEMS.register("wearable_crown_helmet", () -> new WearableCrownItem(ArmorItem.Type.HELMET, new Item.Properties().fireResistant()));
     public static final RegistryObject<Item> FLUORE_BERRIES = ITEMS.register("fluore_berries", FluoreBerriesItem::new);
     public static final RegistryObject<Item> RADIANT_BERRIES = ITEMS.register("radiant_berries", RadiantBerriesItem::new);
@@ -257,6 +257,11 @@ public class ModItems {
     @SubscribeEvent
     public static void clientLoad(FMLClientSetupEvent event) {
         event.enqueueWork(() -> ItemProperties.register(MUSIC_BOX_FIXED.get(), new ResourceLocation("caerula_arbor:music_box_fixed_playing"),
-                (itemStackToRender, clientWorld, entity, itemEntityId) -> (float) GetMusicboxPlayerProcedure.execute(entity, itemStackToRender)));
+                (stack, clientWorld, entity, itemEntityId) -> {
+                    if (entity instanceof Player player && player.getCooldowns().isOnCooldown(stack.getItem())) {
+                        return 1;
+                    }
+                    return 0;
+                }));
     }
 }
