@@ -93,10 +93,12 @@
   "entity.caerula_arbor.shell_sea_runner": "Shell Sea Runner",
   "entity.caerula_arbor.deep_sea_slider": "Deep Sea Slider",
   "entity.caerula_arbor.ridge_sea_spitter": "Ridge Sea Spitter",
+  "entity.caerula_arbor.floating_sea_drifter": "Floating Sea Drifter",
 
   "item.caerula_arbor.shell_sea_runner_spawn_egg": "Shell Sea Runner Spawn Egg",
   "item.caerula_arbor.deep_sea_slider_spawn_egg": "Deep Sea Slider Spawn Egg",
   "item.caerula_arbor.ridge_sea_spitter_spawn_egg": "Ridge Sea Spitter Spawn Egg",
+  "item.caerula_arbor.floating_sea_drifter_spawn_egg": "Floating Sea Drifter Spawn Egg",
 
   "item.caerula_arbor.fluore_berries": "Fluore Berries",
   "subtitles.grow1": "EMBRACE MORE",
@@ -168,7 +170,6 @@
   "block.caerula_arbor.trail_cake": "Trail Cake",
   "item.caerula_arbor.hand_of_fertiliy": "Hand Of Fertiliy",
   "item.caerula_arbor.paper_bag": "Paper Bag",
-  "item.caerula_arbor.fly_fish_spawn_egg": "Fly Fish Spawn Egg",
   "item.caerula_arbor.trailed_diamond_sword.description_0": "§7Deals additional Sanity Damage",
   "item.caerula_arbor.ocean_machine": "Ocean Machine",
   "item.caerula_arbor.trailed_diamond_sword.description_1": "§7Self-mend when kill",
@@ -187,7 +188,6 @@
   "item.caerula_arbor.royal_fate.description_0": "§bShield +3, transfer MaxLife to Shield, the former set to 1",
   "effect.caerula_arbor.power_of_anchor": "Power Of Anchor",
   "item.caerula_arbor.royal_fate.description_1": "§oDifferent fates of those kings",
-  "entity.caerula_arbor.fly_fish": "Fly Fish",
   "item.caerula_arbor.redstone_iris_flower.description_1": "§oLuxuriant flower",
   "item.caerula_arbor.broken_cell_cluster.description_1": "§7Right?",
   "item.caerula_arbor.redstone_iris_flower.description_0": "§bGain 64 exp when used",

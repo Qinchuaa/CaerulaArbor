@@ -93,10 +93,12 @@
   "entity.caerula_arbor.shell_sea_runner": "壳海狂奔者",
   "entity.caerula_arbor.deep_sea_slider": "底海滑动者",
   "entity.caerula_arbor.ridge_sea_spitter": "脊海喷吐者",
+  "entity.caerula_arbor.floating_sea_drifter": "浮海飘航者",
 
   "item.caerula_arbor.shell_sea_runner_spawn_egg": "壳海狂奔者刷怪蛋",
   "item.caerula_arbor.deep_sea_slider_spawn_egg": "底海滑动者刷怪蛋",
   "item.caerula_arbor.ridge_sea_spitter_spawn_egg": "脊海喷吐者刷怪蛋",
+  "item.caerula_arbor.floating_sea_drifter_spawn_egg": "浮海飘航者刷怪蛋",
 
   "subtitles.grow1": "拥纳愈广",
   "item.caerula_arbor.fluore_berries": "荧光浆果",
@@ -168,7 +170,6 @@
   "block.caerula_arbor.trail_cake": "原味深溟蛋糕",
   "item.caerula_arbor.hand_of_fertiliy": "丰饶之手",
   "item.caerula_arbor.paper_bag": "纸质包装",
-  "item.caerula_arbor.fly_fish_spawn_egg": "浮海飘航者刷怪蛋",
   "item.caerula_arbor.trailed_diamond_sword.description_0": "§7攻击造成额外神经损伤",
   "item.caerula_arbor.ocean_machine": "海嗣机核",
   "item.caerula_arbor.trailed_diamond_sword.description_1": "§7杀敌时自我修复",
@@ -186,7 +187,6 @@
   "item.caerula_arbor.relic_cursed_glowbody.description_1": "§o脏器溶解并发光的垂死个体，终将哺育大群",
   "item.caerula_arbor.royal_fate.description_0": "§b护盾值+3，将目标生命上限转化为护盾，然后将目标生命上限变为1",
   "effect.caerula_arbor.power_of_anchor": "锚定现实",
-  "entity.caerula_arbor.fly_fish": "浮海飘航者",
   "item.caerula_arbor.royal_fate.description_1": "§o王各有命，形亦不同",
   "item.caerula_arbor.redstone_iris_flower.description_1": "§o极尽奢华的花朵",
   "item.caerula_arbor.broken_cell_cluster.description_1": "§7……对吧？",

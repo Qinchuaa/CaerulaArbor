@@ -28,12 +28,11 @@ public class RidgeSeaSpitterModel extends GeoModel<RidgeSeaSpitterEntity> {
     }
 
     @Override
-    public void setCustomAnimations(RidgeSeaSpitterEntity animatable, long instanceId, AnimationState animationState) {
+    public void setCustomAnimations(RidgeSeaSpitterEntity animatable, long instanceId, AnimationState<RidgeSeaSpitterEntity> animationState) {
         CoreGeoBone head = getAnimationProcessor().getBone("head");
-        if (head != null) {
-            EntityModelData entityData = (EntityModelData) animationState.getData(DataTickets.ENTITY_MODEL_DATA);
-            head.setRotX(entityData.headPitch() * Mth.DEG_TO_RAD);
-            head.setRotY(entityData.netHeadYaw() * Mth.DEG_TO_RAD);
-        }
+        if (head == null) return;
+        EntityModelData entityData = animationState.getData(DataTickets.ENTITY_MODEL_DATA);
+        head.setRotX(entityData.headPitch() * Mth.DEG_TO_RAD);
+        head.setRotY(entityData.netHeadYaw() * Mth.DEG_TO_RAD);
     }
 }
