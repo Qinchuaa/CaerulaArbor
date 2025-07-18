@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"animation.reaperfish.idle": {
+		"animation.basin_sea_reaper.idle": {
 			"loop": true,
 			"animation_length": 4,
 			"bones": {
@@ -744,7 +744,7 @@
 				}
 			}
 		},
-		"animation.reaperfish.move": {
+		"animation.basin_sea_reaper.move": {
 			"loop": true,
 			"animation_length": 2.0833,
 			"bones": {
@@ -1390,7 +1390,7 @@
 				}
 			}
 		},
-		"animation.reaperfish.sprint": {
+		"animation.basin_sea_reaper.sprint": {
 			"loop": true,
 			"animation_length": 1,
 			"bones": {
@@ -2096,7 +2096,7 @@
 				}
 			}
 		},
-		"animation.reaperfish.attack": {
+		"animation.basin_sea_reaper.attack": {
 			"animation_length": 0.75,
 			"bones": {
 				"tail": {

@@ -1,7 +1,7 @@
 package com.apocalypse.caerulaarbor.procedures;
 
 import com.apocalypse.caerulaarbor.config.common.GameplayConfig;
-import com.apocalypse.caerulaarbor.entity.ReaperFishEntity;
+import com.apocalypse.caerulaarbor.entity.BasinSeaReaperEntity;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.core.BlockPos;
 import net.minecraft.resources.ResourceLocation;
@@ -23,7 +23,7 @@ public class DestroyBlocksProcedure {
 		double limithard = 0;
 		double hardness = 0;
 		boolean once = false;
-		if (entity instanceof ReaperFishEntity) {
+		if (entity instanceof BasinSeaReaperEntity) {
 			limithard = -1;
 			if (CaerulaArborModVariables.MapVariables.get(world).strategy_migration >= 2) {
 				limithard = 3.5;

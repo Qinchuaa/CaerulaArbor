@@ -1,7 +1,7 @@
 package com.apocalypse.caerulaarbor.client.gui;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
-import com.apocalypse.caerulaarbor.entity.ReaperFishEntity;
+import com.apocalypse.caerulaarbor.entity.BasinSeaReaperEntity;
 import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import com.apocalypse.caerulaarbor.network.InfoStrategyGrowButtonMessage;
@@ -48,7 +48,7 @@ public class InfoStrategyGrowScreen extends AbstractContainerScreen<InfoStrategy
     public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         this.renderBackground(guiGraphics);
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
-        if ((Entity) new ReaperFishEntity(ModEntities.REAPER_FISH.get(), world) instanceof LivingEntity livingEntity) {
+        if ((Entity) new BasinSeaReaperEntity(ModEntities.BASIN_SEA_REAPER.get(), world) instanceof LivingEntity livingEntity) {
             InventoryScreen.renderEntityInInventoryFollowsAngle(guiGraphics, this.leftPos + 29, this.topPos + 96, 20, 0f + (float) Math.atan((this.leftPos + 29 - mouseX) / 40.0), (float) Math.atan((this.topPos + 47 - mouseY) / 40.0), livingEntity);
         }
         this.renderTooltip(guiGraphics, mouseX, mouseY);

@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.EnumSet;
 
-public class FloatingSeaDrifterEntity extends SeaMonster implements RangedAttackMob, GeoEntity {
+public class FloatingSeaDrifterEntity extends SeaMonster implements RangedAttackMob {
 
     private boolean swinging;
     private long lastSwing;

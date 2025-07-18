@@ -41,7 +41,7 @@ import software.bernie.geckolib.core.object.PlayState;
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 
-public class RidgeSeaSpitterEntity extends SeaMonster implements RangedAttackMob, GeoEntity {
+public class RidgeSeaSpitterEntity extends SeaMonster implements RangedAttackMob {
 
     private boolean swinging;
     private long lastSwing;

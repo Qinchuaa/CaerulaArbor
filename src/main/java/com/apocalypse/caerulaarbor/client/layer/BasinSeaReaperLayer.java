@@ -1,6 +1,7 @@
 package com.apocalypse.caerulaarbor.client.layer;
 
-import com.apocalypse.caerulaarbor.entity.ReaperFishEntity;
+import com.apocalypse.caerulaarbor.CaerulaArborMod;
+import com.apocalypse.caerulaarbor.entity.BasinSeaReaperEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import net.minecraft.client.renderer.MultiBufferSource;
@@ -11,15 +12,16 @@ import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.renderer.GeoRenderer;
 import software.bernie.geckolib.renderer.layer.GeoRenderLayer;
 
-public class ReaperFishLayer extends GeoRenderLayer<ReaperFishEntity> {
-	private static final ResourceLocation LAYER = new ResourceLocation("caerula_arbor", "textures/entities/fish2lit.png");
+public class BasinSeaReaperLayer extends GeoRenderLayer<BasinSeaReaperEntity> {
 
-	public ReaperFishLayer(GeoRenderer<ReaperFishEntity> entityRenderer) {
+	private static final ResourceLocation LAYER = CaerulaArborMod.loc("textures/entity/basin_sea_reaper_layer.png");
+
+	public BasinSeaReaperLayer(GeoRenderer<BasinSeaReaperEntity> entityRenderer) {
 		super(entityRenderer);
 	}
 
 	@Override
-	public void render(PoseStack poseStack, ReaperFishEntity animatable, BakedGeoModel bakedModel, RenderType renderType, MultiBufferSource bufferSource, VertexConsumer buffer, float partialTick, int packedLight, int packedOverlay) {
+	public void render(PoseStack poseStack, BasinSeaReaperEntity animatable, BakedGeoModel bakedModel, RenderType renderType, MultiBufferSource bufferSource, VertexConsumer buffer, float partialTick, int packedLight, int packedOverlay) {
 		RenderType glowRenderType = RenderType.eyes(LAYER);
 		getRenderer().reRender(getDefaultBakedModel(animatable), poseStack, bufferSource, animatable, glowRenderType, bufferSource.getBuffer(glowRenderType), partialTick, packedLight, OverlayTexture.NO_OVERLAY, 1, 1, 1, 1);
 	}

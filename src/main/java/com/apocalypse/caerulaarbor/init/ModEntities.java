@@ -34,8 +34,8 @@ public class ModEntities {
     public static final RegistryObject<EntityType<FloatingSeaDrifterEntity>> FLOATING_SEA_DRIFTER = register("floating_sea_drifter",
             EntityType.Builder.<FloatingSeaDrifterEntity>of(FloatingSeaDrifterEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(FloatingSeaDrifterEntity::new)
                     .sized(0.6f, 0.9f));
-    public static final RegistryObject<EntityType<ReaperFishEntity>> REAPER_FISH = register("reaper_fish",
-            EntityType.Builder.<ReaperFishEntity>of(ReaperFishEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(ReaperFishEntity::new)
+    public static final RegistryObject<EntityType<BasinSeaReaperEntity>> BASIN_SEA_REAPER = register("basin_sea_reaper",
+            EntityType.Builder.<BasinSeaReaperEntity>of(BasinSeaReaperEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(BasinSeaReaperEntity::new)
                     .sized(1.2f, 2.8f));
     public static final RegistryObject<EntityType<CreeperFishEntity>> CREEPER_FISH = register("creeper_fish",
             EntityType.Builder.<CreeperFishEntity>of(CreeperFishEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(CreeperFishEntity::new)
@@ -108,7 +108,7 @@ public class ModEntities {
             DeepSeaSliderEntity.init();
             RidgeSeaSpitterEntity.init();
             FloatingSeaDrifterEntity.init();
-            ReaperFishEntity.init();
+            BasinSeaReaperEntity.init();
             CreeperFishEntity.init();
             PunctureFishEntity.init();
             BaselayerAbyssalEntity.init();
@@ -135,7 +135,7 @@ public class ModEntities {
         event.put(SUPER_SLIDER.get(), SuperSliderEntity.createAttributes().build());
         event.put(RIDGE_SEA_SPITTER.get(), RidgeSeaSpitterEntity.createAttributes().build());
         event.put(FLOATING_SEA_DRIFTER.get(), FloatingSeaDrifterEntity.createAttributes().build());
-        event.put(REAPER_FISH.get(), ReaperFishEntity.createAttributes().build());
+        event.put(BASIN_SEA_REAPER.get(), BasinSeaReaperEntity.createAttributes().build());
         event.put(CREEPER_FISH.get(), CreeperFishEntity.createAttributes().build());
         event.put(PUNCTURE_FISH.get(), PunctureFishEntity.createAttributes().build());
         event.put(BASELAYER_ABYSSAL.get(), BaselayerAbyssalEntity.createAttributes().build());

@@ -213,7 +213,7 @@ public class MobHitFuncProcedure {
                                             case 2 -> ModEntities.CREEPER_FISH;
                                             case 3 -> ModEntities.GUIDE_ABYSSAL;
                                             case 4 -> ModEntities.PUNCTURE_FISH;
-                                            case 5 -> ModEntities.REAPER_FISH;
+                                            case 5 -> ModEntities.BASIN_SEA_REAPER;
                                             case 6 -> ModEntities.UMBRELLA_ABYSSAL;
                                             case 7 -> ModEntities.PREGNANT_FISH;
                                             case 8 -> ModEntities.FLEE_FISH;
