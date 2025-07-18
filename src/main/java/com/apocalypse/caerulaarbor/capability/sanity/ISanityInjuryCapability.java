@@ -7,5 +7,6 @@ import net.minecraftforge.common.util.INBTSerializable;
 @AutoRegisterCapability
 public interface ISanityInjuryCapability extends INBTSerializable<DoubleTag> {
     boolean hurt(double amount);
+
     void heal(double amount);
 }
