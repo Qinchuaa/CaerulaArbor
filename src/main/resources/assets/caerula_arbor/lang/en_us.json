@@ -97,6 +97,7 @@
   "entity.caerula_arbor.basin_sea_reaper": "Basin Sea Reaper",
   "entity.caerula_arbor.pocket_sea_crawler": "Pocket Sea Crawler",
   "entity.caerula_arbor.primal_sea_piercer": "Primal Sea Piercer",
+  "entity.caerula_arbor.nethersea_founder": "Nethersea Founder",
 
   "item.caerula_arbor.shell_sea_runner_spawn_egg": "Shell Sea Runner Spawn Egg",
   "item.caerula_arbor.deep_sea_slider_spawn_egg": "Deep Sea Slider Spawn Egg",
@@ -105,6 +106,7 @@
   "item.caerula_arbor.basin_sea_reaper_spawn_egg": "Basin Sea Reaper Spawn Egg",
   "item.caerula_arbor.pocket_sea_crawler_spawn_egg": "Pocket Sea Crawler Spawn Egg",
   "item.caerula_arbor.primal_sea_piercer_spawn_egg": "Primal Sea Piercer Spawn Egg",
+  "item.caerula_arbor.nethersea_founder_spawn_egg": "Nethersea Founder Spawn Egg",
 
   "item.caerula_arbor.fluore_berries": "Fluore Berries",
   "subtitles.grow1": "EMBRACE MORE",
@@ -297,7 +299,6 @@
   "item.caerula_arbor.trailed_netherite_sword": "Trailed Wooden Sword",
   "gui.caerula_arbor.caerula_record_gui.label_sanity": "Sanity:",
   "gui.caerula_arbor.caerula_record_gui.tooltip_playershield": "PlayerShield",
-  "item.caerula_arbor.baselayer_abyssal_spawn_egg": "Baselayer Abyssal Spawn Egg",
   "item.minecraft.potion.effect.sanity_cure": "Potion of Sanity Cure",
   "item.caerula_arbor.ocean_peduncle.description_0": "§7Limbs of some oceanoffspr, still striking in your hand.",
   "item.caerula_arbor.hand_of_fertiliy.description_1": "§oLittle by little and unstopable",
@@ -600,7 +601,6 @@
   "effect.caerula_arbor.kings_boost": "Kings Boost",
   "item.caerula_arbor.trailed_stone_sword.description_0": "§7Deals additional Sanity Damage",
   "gui.caerula_arbor.caerula_record_gui.label_deformity": "Deformity",
-  "entity.caerula_arbor.baselayer_abyssal": "Baselayer Abyssal",
   "effect.caerula_arbor.sanidy_defender": "Sanidy Defender",
   "gui.caerula_arbor.evo_tree.label_strategy_subsisting": "Strategy Subsisting",
   "item.caerula_arbor.relic_cursed_glowbody": "§cGlowbody",

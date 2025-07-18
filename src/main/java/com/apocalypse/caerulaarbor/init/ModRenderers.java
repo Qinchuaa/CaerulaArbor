@@ -20,7 +20,7 @@ public class ModRenderers {
         event.registerEntityRenderer(ModEntities.BASIN_SEA_REAPER.get(), BasinSeaReaperRenderer::new);
         event.registerEntityRenderer(ModEntities.POCKET_SEA_CRAWLER.get(), PocketSeaCrawlerRenderer::new);
         event.registerEntityRenderer(ModEntities.PRIMAL_SEA_PIERCER.get(), PrimalSeaPiercerRenderer::new);
-        event.registerEntityRenderer(ModEntities.BASELAYER_ABYSSAL.get(), BaselayerAbyssalRenderer::new);
+        event.registerEntityRenderer(ModEntities.NETHERSEA_FOUNDER.get(), NetherseaFounderRenderer::new);
         event.registerEntityRenderer(ModEntities.PREDATOR_ABYSSAL.get(), PredatorAbyssalRenderer::new);
         event.registerEntityRenderer(ModEntities.GUIDE_ABYSSAL.get(), GuideAbyssalRenderer::new);
         event.registerEntityRenderer(ModEntities.SPLASHER_ABYSSAL.get(), SplasherAbyssalRenderer::new);

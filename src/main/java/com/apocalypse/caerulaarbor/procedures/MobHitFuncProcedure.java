@@ -208,7 +208,7 @@ public class MobHitFuncProcedure {
                                 if (Math.random() < 0.5) {
                                     if (world instanceof ServerLevel server) {
                                         var type = switch (Mth.nextInt(RandomSource.create(), 0, 8)) {
-                                            case 0 -> ModEntities.BASELAYER_ABYSSAL;
+                                            case 0 -> ModEntities.NETHERSEA_FOUNDER;
                                             case 1 -> ModEntities.CRACKER_ABYSSAL;
                                             case 2 -> ModEntities.POCKET_SEA_CRAWLER;
                                             case 3 -> ModEntities.GUIDE_ABYSSAL;

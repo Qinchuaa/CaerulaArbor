@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"animation.baselayer.idle": {
+		"animation.nethersea_founder.idle": {
 			"loop": true,
 			"animation_length": 2,
 			"bones": {
@@ -82,7 +82,7 @@
 				}
 			}
 		},
-		"animation.baselayer.move": {
+		"animation.nethersea_founder.move": {
 			"loop": true,
 			"animation_length": 2,
 			"bones": {
@@ -177,7 +177,7 @@
 				}
 			}
 		},
-		"animation.baselayer.attack": {
+		"animation.nethersea_founder.attack": {
 			"animation_length": 0.75,
 			"bones": {
 				"body": {
@@ -270,7 +270,7 @@
 				}
 			}
 		},
-		"animation.baselayer.die": {
+		"animation.nethersea_founder.die": {
 			"loop": "hold_on_last_frame",
 			"animation_length": 1,
 			"bones": {
