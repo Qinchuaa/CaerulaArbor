@@ -92,9 +92,11 @@
 
   "entity.caerula_arbor.shell_sea_runner": "Shell Sea Runner",
   "entity.caerula_arbor.deep_sea_slider": "Deep Sea Slider",
+  "entity.caerula_arbor.ridge_sea_spitter": "Ridge Sea Spitter",
 
   "item.caerula_arbor.shell_sea_runner_spawn_egg": "Shell Sea Runner Spawn Egg",
   "item.caerula_arbor.deep_sea_slider_spawn_egg": "Deep Sea Slider Spawn Egg",
+  "item.caerula_arbor.ridge_sea_spitter_spawn_egg": "Ridge Sea Spitter Spawn Egg",
 
   "item.caerula_arbor.fluore_berries": "Fluore Berries",
   "subtitles.grow1": "EMBRACE MORE",
@@ -540,7 +542,6 @@
   "item.caerula_arbor.bone_shard": "Bone Shard",
   "item.minecraft.potion.effect.sanity_cure_ii": "Potion of Sanity Cure",
   "enchantment.caerula_arbor.sanity_reaper.desc": "Deals sanity damage when attacking",
-  "entity.caerula_arbor.shooter_fish": "Shooter Fish",
   "item.caerula_arbor.sword_ocean_crystal": "Sword Ocean Crystal",
   "item.caerula_arbor.broken_ocean_cell": "Broken Ocean Cell",
   "entity.caerula_arbor.puncture_fish": "Puncture Fish",
@@ -585,7 +586,6 @@
   "item.caerula_arbor.relic_crown.description_1": "§oOh Your Late Majesty, I pray that you protect our Land",
   "item.caerula_arbor.ocean_trim_template": "Ocean Trim Template",
   "item.caerula_arbor.caramel_mor": "Caramel Mor",
-  "item.caerula_arbor.shooter_fish_spawn_egg": "Shooter Fish Spawn Egg",
   "gui.caerula_arbor.caerula_record_gui.show_ptc": "relic particle",
   "gui.caerula_arbor.evo_tree.label_strategy_migration": "Strategy Migration",
   "block.caerula_arbor.complex_chitin_block": "Complex Chitin Block",

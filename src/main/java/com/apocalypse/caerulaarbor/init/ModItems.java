@@ -75,7 +75,7 @@ public class ModItems {
     public static final RegistryObject<Item> SHELL_SEA_RUNNER_SPAWN_EGG = ITEMS.register("shell_sea_runner_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.SHELL_SEA_RUNNER, -16777012, -3355444, new Item.Properties()));
     public static final RegistryObject<Item> SLIDER_FISH_SPAWN_EGG = ITEMS.register("slider_fish_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.DEEP_SEA_SLIDER, -13421569, -3355444, new Item.Properties()));
     public static final RegistryObject<Item> SUPER_SLIDER_SPAWN_EGG = ITEMS.register("super_slider_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.SUPER_SLIDER, -13434778, -3355393, new Item.Properties()));
-    public static final RegistryObject<Item> SHOOTER_FISH_SPAWN_EGG = ITEMS.register("shooter_fish_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.SHOOTER_FISH, -13434676, -3355444, new Item.Properties()));
+    public static final RegistryObject<Item> RIDGE_SEA_SPITTER_SPAWN_EGG = ITEMS.register("ridge_sea_spitter_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.RIDGE_SEA_SPITTER, -13434676, -3355444, new Item.Properties()));
     public static final RegistryObject<Item> FLY_FISH_SPAWN_EGG = ITEMS.register("fly_fish_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.FLY_FISH, -16737895, -3355444, new Item.Properties()));
     public static final RegistryObject<Item> REAPER_FISH_SPAWN_EGG = ITEMS.register("reaper_fish_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.REAPER_FISH, -6710785, -3355444, new Item.Properties()));
     public static final RegistryObject<Item> CREEPER_FISH_SPAWN_EGG = ITEMS.register("creeper_fish_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.CREEPER_FISH, -10092442, -3342337, new Item.Properties()));

@@ -92,9 +92,11 @@
 
   "entity.caerula_arbor.shell_sea_runner": "壳海狂奔者",
   "entity.caerula_arbor.deep_sea_slider": "底海滑动者",
+  "entity.caerula_arbor.ridge_sea_spitter": "脊海喷吐者",
 
   "item.caerula_arbor.shell_sea_runner_spawn_egg": "壳海狂奔者刷怪蛋",
   "item.caerula_arbor.deep_sea_slider_spawn_egg": "底海滑动者刷怪蛋",
+  "item.caerula_arbor.ridge_sea_spitter_spawn_egg": "脊海喷吐者刷怪蛋",
 
   "subtitles.grow1": "拥纳愈广",
   "item.caerula_arbor.fluore_berries": "荧光浆果",
@@ -540,7 +542,6 @@
   "item.caerula_arbor.bone_shard": "碎骨片",
   "item.minecraft.potion.effect.sanity_cure_ii": "神经抚慰药水",
   "enchantment.caerula_arbor.sanity_reaper.desc": "攻击造成神经损伤",
-  "entity.caerula_arbor.shooter_fish": "脊海喷吐者",
   "item.caerula_arbor.sword_ocean_crystal": "深海棱晶剑",
   "item.caerula_arbor.broken_ocean_cell": "残损深海细胞",
   "entity.caerula_arbor.puncture_fish": "始海穿刺者",
@@ -585,7 +586,6 @@
   "item.caerula_arbor.relic_crown.description_1": "§o无名的诸王啊，愿你们保佑这片大地",
   "item.caerula_arbor.ocean_trim_template": "溟海锻造模版",
   "item.caerula_arbor.caramel_mor": "焦糖腐质",
-  "item.caerula_arbor.shooter_fish_spawn_egg": "脊海喷吐者刷怪蛋",
   "gui.caerula_arbor.caerula_record_gui.show_ptc": "收藏品粒子",
   "gui.caerula_arbor.evo_tree.label_strategy_migration": "策略 - 迁徙",
   "block.caerula_arbor.complex_chitin_block": "复合几丁质方块",

@@ -4,7 +4,7 @@ import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.init.ModAttributes;
 import com.apocalypse.caerulaarbor.init.ModDamageTypes;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
-import net.minecraft.nbt.DoubleTag;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
@@ -97,12 +97,14 @@ public class SanityInjuryCapability implements ISanityInjuryCapability {
     }
 
     @Override
-    public DoubleTag serializeNBT() {
-        return DoubleTag.valueOf(this.value);
+    public CompoundTag serializeNBT() {
+        CompoundTag tag = new CompoundTag();
+        tag.putDouble("SanityInjury", this.value);
+        return tag;
     }
 
     @Override
-    public void deserializeNBT(DoubleTag nbt) {
-        this.value = nbt.getAsDouble();
+    public void deserializeNBT(CompoundTag nbt) {
+        this.value = nbt.getDouble("SanityInjury");
     }
 }

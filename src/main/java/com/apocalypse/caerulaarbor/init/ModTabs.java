@@ -188,7 +188,7 @@ public class ModTabs {
                 tabData.accept(ModItems.ROUTE_FRACTAL_SPAWN_EGG.get());
                 tabData.accept(ModItems.SHELL_SEA_RUNNER_SPAWN_EGG.get());
                 tabData.accept(ModItems.SLIDER_FISH_SPAWN_EGG.get());
-                tabData.accept(ModItems.SHOOTER_FISH_SPAWN_EGG.get());
+                tabData.accept(ModItems.RIDGE_SEA_SPITTER_SPAWN_EGG.get());
                 tabData.accept(ModItems.FLY_FISH_SPAWN_EGG.get());
                 tabData.accept(ModItems.REAPER_FISH_SPAWN_EGG.get());
                 tabData.accept(ModItems.CREEPER_FISH_SPAWN_EGG.get());
