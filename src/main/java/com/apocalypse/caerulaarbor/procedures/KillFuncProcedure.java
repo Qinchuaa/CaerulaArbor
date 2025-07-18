@@ -195,9 +195,9 @@ public class KillFuncProcedure {
                 }
                 if (world instanceof Level _level) {
                     if (!_level.isClientSide()) {
-                        _level.playSound(null, BlockPos.containing(x, y, z), SoundEvents.SCULK_VEIN_PLACE, SoundSource.PLAYERS, (float) 0.75, 1);
+                        _level.playSound(null, BlockPos.containing(x, y, z), SoundEvents.SCULK_VEIN_PLACE, SoundSource.PLAYERS, 0.75F, 1);
                     } else {
-                        _level.playLocalSound(x, y, z, SoundEvents.SCULK_VEIN_PLACE, SoundSource.PLAYERS, (float) 0.75, 1, false);
+                        _level.playLocalSound(x, y, z, SoundEvents.SCULK_VEIN_PLACE, SoundSource.PLAYERS, 0.75F, 1, false);
                     }
                 }
             }

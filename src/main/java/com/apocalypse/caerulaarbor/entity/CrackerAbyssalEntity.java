@@ -17,7 +17,6 @@ import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -52,7 +51,6 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -169,7 +167,7 @@ public class CrackerAbyssalEntity extends Monster implements GeoEntity {
 
     @Override
     public SoundEvent getAmbientSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.parrot.imitate.silverfish"));
+        return SoundEvents.PARROT_IMITATE_SILVERFISH;
     }
 
     @Override
@@ -265,7 +263,7 @@ public class CrackerAbyssalEntity extends Monster implements GeoEntity {
 
     @Override
     public @NotNull EntityDimensions getDimensions(@NotNull Pose p_33597_) {
-        return super.getDimensions(p_33597_).scale((float) 1);
+        return super.getDimensions(p_33597_);
     }
 
     public static void init() {

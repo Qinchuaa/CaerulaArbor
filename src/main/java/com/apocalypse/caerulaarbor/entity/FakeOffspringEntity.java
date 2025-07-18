@@ -11,9 +11,9 @@ import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
@@ -40,7 +40,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -138,7 +137,7 @@ public class FakeOffspringEntity extends Monster implements GeoEntity {
                 return super.canContinueToUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
             }
         });
-        this.goalSelector.addGoal(14, new LeapAtTargetGoal(this, (float) 0.2));
+        this.goalSelector.addGoal(14, new LeapAtTargetGoal(this, 0.2F));
     }
 
     @Override
@@ -148,17 +147,17 @@ public class FakeOffspringEntity extends Monster implements GeoEntity {
 
     @Override
     public SoundEvent getAmbientSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.parrot.imitate.slime"));
+        return SoundEvents.PARROT_IMITATE_SLIME;
     }
 
     @Override
-    public SoundEvent getHurtSound(@NotNull DamageSource source) {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.hurt"));
+    public @NotNull SoundEvent getHurtSound(@NotNull DamageSource source) {
+        return SoundEvents.SLIME_HURT;
     }
 
     @Override
-    public SoundEvent getDeathSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.slime.death"));
+    public @NotNull SoundEvent getDeathSound() {
+        return SoundEvents.SLIME_DEATH;
     }
 
     @Override
@@ -220,7 +219,7 @@ public class FakeOffspringEntity extends Monster implements GeoEntity {
 
     @Override
     public @NotNull EntityDimensions getDimensions(@NotNull Pose pose) {
-        return super.getDimensions(pose).scale((float) 1);
+        return super.getDimensions(pose);
     }
 
     @Override

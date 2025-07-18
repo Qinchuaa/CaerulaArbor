@@ -1,6 +1,7 @@
 package com.apocalypse.caerulaarbor.procedures;
 
 import com.apocalypse.caerulaarbor.config.common.GameplayConfig;
+import com.apocalypse.caerulaarbor.init.ModSounds;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementProgress;
@@ -12,7 +13,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class UpgradeGrowProcedure {
 	public static void execute(LevelAccessor world) {
@@ -55,20 +55,20 @@ public class UpgradeGrowProcedure {
 						if (stra >= 3) {
 							if (world instanceof Level _level) {
 								if (!_level.isClientSide()) {
-									_level.playSound(null, BlockPos.containing(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("caerula_arbor:grow2")),
+									_level.playSound(null, BlockPos.containing(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ()), ModSounds.GROW2.get(),
 											SoundSource.NEUTRAL, 4, 1);
 								} else {
-									_level.playLocalSound((entityiterator.getX()), (entityiterator.getY()), (entityiterator.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("caerula_arbor:grow2")), SoundSource.NEUTRAL, 4, 1,
+									_level.playLocalSound((entityiterator.getX()), (entityiterator.getY()), (entityiterator.getZ()), ModSounds.GROW2.get(), SoundSource.NEUTRAL, 4, 1,
 											false);
 								}
 							}
 						} else if (stra > 0) {
 							if (world instanceof Level _level) {
 								if (!_level.isClientSide()) {
-									_level.playSound(null, BlockPos.containing(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("caerula_arbor:grow1")),
+									_level.playSound(null, BlockPos.containing(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ()), ModSounds.GROW1.get(),
 											SoundSource.NEUTRAL, 4, 1);
 								} else {
-									_level.playLocalSound((entityiterator.getX()), (entityiterator.getY()), (entityiterator.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("caerula_arbor:grow1")), SoundSource.NEUTRAL, 4, 1,
+									_level.playLocalSound((entityiterator.getX()), (entityiterator.getY()), (entityiterator.getZ()), ModSounds.GROW1.get(), SoundSource.NEUTRAL, 4, 1,
 											false);
 								}
 							}

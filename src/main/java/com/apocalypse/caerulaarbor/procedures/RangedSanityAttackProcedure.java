@@ -35,9 +35,9 @@ public class RangedSanityAttackProcedure {
 		}.timedLoop(0, 5, 2);
 //		if (world instanceof Level _level) {
 //			if (!_level.isClientSide()) {
-//				_level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("intentionally_empty")), SoundSource.NEUTRAL, 3, (float) 1.2);
+//				_level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("intentionally_empty")), SoundSource.NEUTRAL, 3, 1.2F);
 //			} else {
-//				_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("intentionally_empty")), SoundSource.NEUTRAL, 3, (float) 1.2, false);
+//				_level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("intentionally_empty")), SoundSource.NEUTRAL, 3, 1.2F, false);
 //			}
 //		}
 		{

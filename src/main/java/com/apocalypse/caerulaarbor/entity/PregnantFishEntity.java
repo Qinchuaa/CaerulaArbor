@@ -280,7 +280,7 @@ public class PregnantFishEntity extends Monster implements RangedAttackMob, GeoE
 
     @Override
     public @NotNull EntityDimensions getDimensions(@NotNull Pose p_33597_) {
-        return super.getDimensions(p_33597_).scale((float) 1);
+        return super.getDimensions(p_33597_);
     }
 
     @Override

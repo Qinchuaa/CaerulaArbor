@@ -47,9 +47,9 @@ public class MusicBoxFixedItem extends Item {
     @ParametersAreNonnullByDefault
     public @NotNull ItemStack finishUsingItem(ItemStack itemstack, Level world, LivingEntity entity) {
         if (!world.isClientSide()) {
-            world.playSound(null, entity.blockPosition(), ModSounds.PCEANWISH.get(), SoundSource.MUSIC, (float) 2.5, 1);
+            world.playSound(null, entity.blockPosition(), ModSounds.PCEANWISH.get(), SoundSource.MUSIC, 2.5F, 1);
         } else {
-            world.playLocalSound(entity.blockPosition(), ModSounds.PCEANWISH.get(), SoundSource.MUSIC, (float) 2.5, 1, false);
+            world.playLocalSound(entity.blockPosition(), ModSounds.PCEANWISH.get(), SoundSource.MUSIC, 2.5F, 1, false);
         }
 
         if (entity instanceof Player player) {

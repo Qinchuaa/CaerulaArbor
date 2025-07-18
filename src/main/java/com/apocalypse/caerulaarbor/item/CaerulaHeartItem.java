@@ -66,10 +66,10 @@ public class CaerulaHeartItem extends Item {
             CaerulaArborModVariables.MapVariables.get(world).silence_enabled = true;
             CaerulaArborModVariables.MapVariables.get(world).syncData(world);
             if (world instanceof ServerLevel) {
-                world.playSound(null, BlockPos.containing(x, y, z), SoundEvents.END_PORTAL_SPAWN, SoundSource.MASTER, 4, (float) 0.85);
+                world.playSound(null, BlockPos.containing(x, y, z), SoundEvents.END_PORTAL_SPAWN, SoundSource.MASTER, 4, 0.85F);
                 world.getServer().getPlayerList().broadcastSystemMessage(Component.literal((Component.translatable("item.caerula_arbor.language_key.description_14").getString())), false);
             } else {
-                world.playLocalSound(x, y, z, SoundEvents.END_PORTAL_SPAWN, SoundSource.MASTER, 4, (float) 0.85, false);
+                world.playLocalSound(x, y, z, SoundEvents.END_PORTAL_SPAWN, SoundSource.MASTER, 4, 0.85F, false);
             }
             itemstack.shrink(1);
         }

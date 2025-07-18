@@ -5,8 +5,8 @@ import com.apocalypse.caerulaarbor.init.ModEnchantments;
 import com.apocalypse.caerulaarbor.init.ModItems;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.entity.Entity;
@@ -21,7 +21,6 @@ import net.minecraft.world.item.enchantment.EnchantmentHelper;
 import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraftforge.registries.ForgeRegistries;
 
 public class ShootarrowProcedure {
     public static void execute(LevelAccessor world, double x, double y, double z, Entity entity, ItemStack itemstack) {
@@ -43,9 +42,9 @@ public class ShootarrowProcedure {
                     || (entity instanceof LivingEntity _livEnt ? _livEnt.getOffhandItem() : ItemStack.EMPTY).getItem() == itemstack.getItem())) {
                 if (world instanceof Level _level) {
                     if (!_level.isClientSide()) {
-                        _level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.arrow.shoot")), SoundSource.PLAYERS, (float) 1.8, 1);
+                        _level.playSound(null, BlockPos.containing(x, y, z), SoundEvents.ARROW_SHOOT, SoundSource.PLAYERS, 1.8F, 1);
                     } else {
-                        _level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.arrow.shoot")), SoundSource.PLAYERS, (float) 1.8, 1, false);
+                        _level.playLocalSound(x, y, z, SoundEvents.ARROW_SHOOT, SoundSource.PLAYERS, 1.8F, 1, false);
                     }
                 }
                 if (itemstack.hurt(1, RandomSource.create(), null)) {
@@ -67,7 +66,7 @@ public class ShootarrowProcedure {
                                 entityToSpawn.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
                                 return entityToSpawn;
                             }
-                        }.getArrow(projectileLevel, entity, (float) (7 + 1.5 * itemstack.getEnchantmentLevel(ModEnchantments.REFLECTION.get())), (int) 0.5, (byte) 1);
+                        }.getArrow(projectileLevel, entity, (float) (7 + 1.5 * itemstack.getEnchantmentLevel(ModEnchantments.REFLECTION.get())), 0, (byte) 1);
                         _entityToSpawn.setPos(entity.getX(), entity.getEyeY() - 0.1, entity.getZ());
                         _entityToSpawn.shoot(entity.getLookAngle().x, entity.getLookAngle().y, entity.getLookAngle().z, (float) (3 + 0.2 * itemstack.getEnchantmentLevel(ModEnchantments.REFLECTION.get())), 0);
                         projectileLevel.addFreshEntity(_entityToSpawn);
@@ -100,7 +99,7 @@ public class ShootarrowProcedure {
                                     entityToSpawn.pickup = AbstractArrow.Pickup.ALLOWED;
                                     return entityToSpawn;
                                 }
-                            }.getArrow(projectileLevel, entity, (float) (7 + 1.5 * itemstack.getEnchantmentLevel(ModEnchantments.REFLECTION.get())), (int) 0.5, (byte) 1);
+                            }.getArrow(projectileLevel, entity, (float) (7 + 1.5 * itemstack.getEnchantmentLevel(ModEnchantments.REFLECTION.get())), 0, (byte) 1);
                             _entityToSpawn.setPos(entity.getX(), entity.getEyeY() - 0.1, entity.getZ());
                             _entityToSpawn.shoot(entity.getLookAngle().x, entity.getLookAngle().y, entity.getLookAngle().z, (float) (3 + 0.2 * itemstack.getEnchantmentLevel(ModEnchantments.REFLECTION.get())), 0);
                             projectileLevel.addFreshEntity(_entityToSpawn);
@@ -119,7 +118,7 @@ public class ShootarrowProcedure {
                                     entityToSpawn.pickup = AbstractArrow.Pickup.CREATIVE_ONLY;
                                     return entityToSpawn;
                                 }
-                            }.getArrow(projectileLevel, entity, (float) (7 + 1.5 * itemstack.getEnchantmentLevel(ModEnchantments.REFLECTION.get())), (int) 0.5, (byte) 1);
+                            }.getArrow(projectileLevel, entity, (float) (7 + 1.5 * itemstack.getEnchantmentLevel(ModEnchantments.REFLECTION.get())), 0, (byte) 1);
                             _entityToSpawn.setPos(entity.getX(), entity.getEyeY() - 0.1, entity.getZ());
                             _entityToSpawn.shoot(entity.getLookAngle().x, entity.getLookAngle().y, entity.getLookAngle().z, (float) (3 + 0.2 * itemstack.getEnchantmentLevel(ModEnchantments.REFLECTION.get())), 0);
                             projectileLevel.addFreshEntity(_entityToSpawn);

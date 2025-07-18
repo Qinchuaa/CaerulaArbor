@@ -12,7 +12,6 @@ import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
@@ -42,7 +41,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -241,12 +239,12 @@ public class ChiselerFishEntity extends Monster implements RangedAttackMob, GeoE
 
     @Override
     public SoundEvent getAmbientSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.turtle.ambient_land"));
+        return SoundEvents.TURTLE_AMBIENT_LAND;
     }
 
     @Override
     public void playStepSound(@NotNull BlockPos pos, @NotNull BlockState blockIn) {
-        this.playSound(ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.spider.step")), 0.15f, 1);
+        this.playSound(SoundEvents.SPIDER_STEP, 0.15f, 1);
     }
 
     @Override
@@ -256,7 +254,7 @@ public class ChiselerFishEntity extends Monster implements RangedAttackMob, GeoE
 
     @Override
     public @NotNull SoundEvent getDeathSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.turtle.death"));
+        return SoundEvents.TURTLE_DEATH;
     }
 
     @Override
@@ -294,7 +292,7 @@ public class ChiselerFishEntity extends Monster implements RangedAttackMob, GeoE
 
     @Override
     public @NotNull EntityDimensions getDimensions(@NotNull Pose p_33597_) {
-        return super.getDimensions(p_33597_).scale((float) 1);
+        return super.getDimensions(p_33597_);
     }
 
     @Override

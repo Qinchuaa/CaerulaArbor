@@ -17,6 +17,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
@@ -169,9 +170,9 @@ public class MobHitFuncProcedure {
                             void timedLoop(int timedloopiterator, int timedlooptotal, int ticks) {
                                 if (world instanceof Level _level) {
                                     if (!_level.isClientSide()) {
-                                        _level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.generic.eat")), SoundSource.NEUTRAL, 1, 1);
+                                        _level.playSound(null, BlockPos.containing(x, y, z), SoundEvents.GENERIC_EAT, SoundSource.NEUTRAL, 1, 1);
                                     } else {
-                                        _level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.generic.eat")), SoundSource.NEUTRAL, 1, 1, false);
+                                        _level.playLocalSound(x, y, z, SoundEvents.GENERIC_EAT, SoundSource.NEUTRAL, 1, 1, false);
                                     }
                                 }
                                 final int tick2 = ticks;
@@ -194,11 +195,10 @@ public class MobHitFuncProcedure {
                                 ? _livingEntity50.getAttribute(ModAttributes.SUMMONABLE.get()).getBaseValue()
                                 : 0) == 1) {
                             {
-                                Entity _ent = entity;
-                                if (!_ent.level().isClientSide() && _ent.getServer() != null) {
-                                    _ent.getServer().getCommands().performPrefixedCommand(
-                                            new CommandSourceStack(CommandSource.NULL, _ent.position(), _ent.getRotationVector(), _ent.level() instanceof ServerLevel ? (ServerLevel) _ent.level() : null, 4, _ent.getName().getString(),
-                                                    _ent.getDisplayName(), _ent.level().getServer(), _ent),
+                                if (!entity.level().isClientSide() && entity.getServer() != null) {
+                                    entity.getServer().getCommands().performPrefixedCommand(
+                                            new CommandSourceStack(CommandSource.NULL, entity.position(), entity.getRotationVector(), entity.level() instanceof ServerLevel ? (ServerLevel) entity.level() : null, 4, entity.getName().getString(),
+                                                    entity.getDisplayName(), entity.level().getServer(), entity),
                                             ("summon " + ForgeRegistries.ENTITY_TYPES.getKey(entity.getType()).toString() + " ~" + Mth.nextDouble(RandomSource.create(), -1, 1) + " ~ ~" + Mth.nextDouble(RandomSource.create(), -1, 1)));
                                 }
                             }
@@ -221,7 +221,7 @@ public class MobHitFuncProcedure {
                                         };
 
                                         if (type != null) {
-                                            var entityToSpawn = ((RegistryObject<? extends EntityType<?>>) type).get().spawn((ServerLevel) world, BlockPos.containing(Mth.nextDouble(RandomSource.create(), -1, 1) + x, y, Mth.nextDouble(RandomSource.create(), -1, 1) + z), MobSpawnType.MOB_SUMMONED);
+                                            var entityToSpawn = ((RegistryObject<? extends EntityType<?>>) type).get().spawn(server, BlockPos.containing(Mth.nextDouble(RandomSource.create(), -1, 1) + x, y, Mth.nextDouble(RandomSource.create(), -1, 1) + z), MobSpawnType.MOB_SUMMONED);
                                             if (entityToSpawn != null) {
                                                 entityToSpawn.setYRot(world.getRandom().nextFloat() * 360F);
                                             }
@@ -250,18 +250,15 @@ public class MobHitFuncProcedure {
             amplifi = livEnt.hasEffect(ModMobEffects.REEF_CRACKER.get()) ? livEnt.getEffect(ModMobEffects.REEF_CRACKER.get()).getAmplifier() : 0;
             if (livEnt.hasEffect(ModMobEffects.REEF_CRACKER.get())) {
                 if (amplifi < 14) {
-                    LivingEntity _entity = (LivingEntity) sourceentity;
-                    if (!_entity.level().isClientSide())
-                        _entity.addEffect(new MobEffectInstance(ModMobEffects.REEF_CRACKER.get(), 120, (int) (amplifi + 1), false, false));
+                    if (!livEnt.level().isClientSide())
+                        livEnt.addEffect(new MobEffectInstance(ModMobEffects.REEF_CRACKER.get(), 120, (int) (amplifi + 1), false, false));
                 } else {
-                    LivingEntity _entity = (LivingEntity) sourceentity;
-                    if (!_entity.level().isClientSide())
-                        _entity.addEffect(new MobEffectInstance(ModMobEffects.REEF_CRACKER.get(), 120, 14, false, false));
+                    if (!livEnt.level().isClientSide())
+                        livEnt.addEffect(new MobEffectInstance(ModMobEffects.REEF_CRACKER.get(), 120, 14, false, false));
                 }
             } else {
-                LivingEntity _entity = (LivingEntity) sourceentity;
-                if (!_entity.level().isClientSide())
-                    _entity.addEffect(new MobEffectInstance(ModMobEffects.REEF_CRACKER.get(), 120, 0, false, false));
+                if (!livEnt.level().isClientSide())
+                    livEnt.addEffect(new MobEffectInstance(ModMobEffects.REEF_CRACKER.get(), 120, 0, false, false));
             }
         }
         if (sourceentity instanceof BoneFishEntity) {

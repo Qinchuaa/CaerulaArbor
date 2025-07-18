@@ -292,7 +292,7 @@ public class SplasherAbyssalEntity extends Monster implements RangedAttackMob, G
 
     @Override
     public @NotNull EntityDimensions getDimensions(@NotNull Pose p_33597_) {
-        return super.getDimensions(p_33597_).scale((float) 1);
+        return super.getDimensions(p_33597_);
     }
 
     @Override

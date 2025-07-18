@@ -6,17 +6,14 @@ import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
 import com.apocalypse.caerulaarbor.config.common.RelicsConfig;
 import com.apocalypse.caerulaarbor.entity.CreeperFishEntity;
-import com.apocalypse.caerulaarbor.init.ModAttributes;
-import com.apocalypse.caerulaarbor.init.ModEnchantments;
-import com.apocalypse.caerulaarbor.init.ModItems;
-import com.apocalypse.caerulaarbor.init.ModMobEffects;
-import com.apocalypse.caerulaarbor.init.ModTags;
+import com.apocalypse.caerulaarbor.init.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
@@ -108,9 +105,9 @@ public class PlayerHitFuncProcedure {
                 CaerulaArborMod.queueServerWork(10, () -> {
                     if (world instanceof Level _level) {
                         if (!_level.isClientSide()) {
-                            _level.playSound(null, BlockPos.containing(sourceentity.getX(), sourceentity.getY(), sourceentity.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("enchant.thorns.hit")), SoundSource.NEUTRAL, 2, 1);
+                            _level.playSound(null, BlockPos.containing(sourceentity.getX(), sourceentity.getY(), sourceentity.getZ()), SoundEvents.THORNS_HIT, SoundSource.NEUTRAL, 2, 1);
                         } else {
-                            _level.playLocalSound((sourceentity.getX()), (sourceentity.getY()), (sourceentity.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("enchant.thorns.hit")), SoundSource.NEUTRAL, 2, 1, false);
+                            _level.playLocalSound((sourceentity.getX()), (sourceentity.getY()), (sourceentity.getZ()), SoundEvents.THORNS_HIT, SoundSource.NEUTRAL, 2, 1, false);
                         }
                     }
                     if (world instanceof ServerLevel _level)
@@ -137,9 +134,9 @@ public class PlayerHitFuncProcedure {
                     }
                     if (world instanceof Level _level) {
                         if (!_level.isClientSide()) {
-                            _level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.lava.extinguish")), SoundSource.PLAYERS, 1, 1);
+                            _level.playSound(null, BlockPos.containing(x, y, z), SoundEvents.LAVA_EXTINGUISH, SoundSource.PLAYERS, 1, 1);
                         } else {
-                            _level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.lava.extinguish")), SoundSource.PLAYERS, 1, 1, false);
+                            _level.playLocalSound(x, y, z, SoundEvents.LAVA_EXTINGUISH, SoundSource.PLAYERS, 1, 1, false);
                         }
                     }
                     if (world instanceof ServerLevel _level)
@@ -148,10 +145,10 @@ public class PlayerHitFuncProcedure {
                         CaerulaArborMod.queueServerWork(10, () -> {
                             if (world instanceof Level _level) {
                                 if (!_level.isClientSide()) {
-                                    _level.playSound(null, BlockPos.containing(sourceentity.getX(), sourceentity.getY(), sourceentity.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("enchant.thorns.hit")), SoundSource.NEUTRAL, 2,
+                                    _level.playSound(null, BlockPos.containing(sourceentity.getX(), sourceentity.getY(), sourceentity.getZ()), SoundEvents.THORNS_HIT, SoundSource.NEUTRAL, 2,
                                             1);
                                 } else {
-                                    _level.playLocalSound((sourceentity.getX()), (sourceentity.getY()), (sourceentity.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("enchant.thorns.hit")), SoundSource.NEUTRAL, 2, 1, false);
+                                    _level.playLocalSound((sourceentity.getX()), (sourceentity.getY()), (sourceentity.getZ()), SoundEvents.THORNS_HIT, SoundSource.NEUTRAL, 2, 1, false);
                                 }
                             }
                             if (world instanceof ServerLevel _level)
@@ -250,9 +247,9 @@ public class PlayerHitFuncProcedure {
                                     _level.sendParticles(ParticleTypes.GLOW_SQUID_INK, (entity.getX()), (entity.getY()), (entity.getZ()), 128, 1, 1, 1, 0.33);
                                 if (world instanceof Level _level) {
                                     if (!_level.isClientSide()) {
-                                        _level.playSound(null, BlockPos.containing(entity.getX(), entity.getY(), entity.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.wither.hurt")), SoundSource.NEUTRAL, 2, 1);
+                                        _level.playSound(null, BlockPos.containing(entity.getX(), entity.getY(), entity.getZ()), SoundEvents.WITHER_HURT, SoundSource.NEUTRAL, 2, 1);
                                     } else {
-                                        _level.playLocalSound((entity.getX()), (entity.getY()), (entity.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.wither.hurt")), SoundSource.NEUTRAL, 2, 1, false);
+                                        _level.playLocalSound((entity.getX()), (entity.getY()), (entity.getZ()), SoundEvents.WITHER_HURT, SoundSource.NEUTRAL, 2, 1, false);
                                     }
                                 }
                             }
@@ -278,10 +275,10 @@ public class PlayerHitFuncProcedure {
                     if (validItem && Math.random() < 0.33) {
                         if (world instanceof Level _level) {
                             if (!_level.isClientSide()) {
-                                _level.playSound(null, BlockPos.containing(sourceentity.getX(), sourceentity.getY(), sourceentity.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.firework_rocket.launch")),
-                                        SoundSource.PLAYERS, (float) 3.6, 1);
+                                _level.playSound(null, BlockPos.containing(sourceentity.getX(), sourceentity.getY(), sourceentity.getZ()), SoundEvents.FIREWORK_ROCKET_LAUNCH,
+                                        SoundSource.PLAYERS, 3.6F, 1);
                             } else {
-                                _level.playLocalSound((sourceentity.getX()), (sourceentity.getY()), (sourceentity.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.firework_rocket.launch")), SoundSource.PLAYERS, (float) 3.6,
+                                _level.playLocalSound((sourceentity.getX()), (sourceentity.getY()), (sourceentity.getZ()), SoundEvents.FIREWORK_ROCKET_LAUNCH, SoundSource.PLAYERS, 3.6F,
                                         1, false);
                             }
                         }
@@ -290,9 +287,9 @@ public class PlayerHitFuncProcedure {
                                 _level.sendParticles(ParticleTypes.FIREWORK, x, y, z, 85, 2, 2, 2, 0.22);
                             if (world instanceof Level _level) {
                                 if (!_level.isClientSide()) {
-                                    _level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.firework_rocket.twinkle")), SoundSource.PLAYERS, (float) 3.6, 1);
+                                    _level.playSound(null, BlockPos.containing(x, y, z), SoundEvents.FIREWORK_ROCKET_TWINKLE, SoundSource.PLAYERS, 3.6F, 1);
                                 } else {
-                                    _level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.firework_rocket.twinkle")), SoundSource.PLAYERS, (float) 3.6, 1, false);
+                                    _level.playLocalSound(x, y, z, SoundEvents.FIREWORK_ROCKET_TWINKLE, SoundSource.PLAYERS, 3.6F, 1, false);
                                 }
                             }
                             {
@@ -321,7 +318,7 @@ public class PlayerHitFuncProcedure {
                         _entity.addEffect(new MobEffectInstance(ModMobEffects.TIDE_OF_CHITIN.get(), 500, 0, false, false));
                     if (world instanceof Level _level) {
                         if (_level.isClientSide()) {
-                            _level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.beacon.activate")), SoundSource.NEUTRAL, (float) 3.2, 1, false);
+                            _level.playLocalSound(x, y, z, SoundEvents.BEACON_ACTIVATE, SoundSource.NEUTRAL, 3.2F, 1, false);
                         }
                     }
                 }

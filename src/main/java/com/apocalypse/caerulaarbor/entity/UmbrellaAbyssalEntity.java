@@ -13,7 +13,6 @@ import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -46,7 +45,6 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.common.DungeonHooks;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -146,7 +144,7 @@ public class UmbrellaAbyssalEntity extends Monster implements GeoEntity {
 
     @Override
     public SoundEvent getAmbientSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.glow_squid.ambient"));
+        return SoundEvents.GLOW_SQUID_AMBIENT;
     }
 
     @Override
@@ -156,7 +154,7 @@ public class UmbrellaAbyssalEntity extends Monster implements GeoEntity {
 
     @Override
     public @NotNull SoundEvent getHurtSound(@NotNull DamageSource ds) {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.glow_squid.hurt"));
+        return SoundEvents.GLOW_SQUID_HURT;
     }
 
     @Override
@@ -223,7 +221,7 @@ public class UmbrellaAbyssalEntity extends Monster implements GeoEntity {
 
     @Override
     public @NotNull EntityDimensions getDimensions(@NotNull Pose p_33597_) {
-        return super.getDimensions(p_33597_).scale((float) 1);
+        return super.getDimensions(p_33597_);
     }
 
     public static void init() {

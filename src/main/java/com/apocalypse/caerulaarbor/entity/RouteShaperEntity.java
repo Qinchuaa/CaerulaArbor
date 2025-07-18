@@ -46,7 +46,6 @@ import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -157,16 +156,16 @@ public class RouteShaperEntity extends Monster implements GeoEntity {
 
     @Override
     public SoundEvent getAmbientSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.zombie_villager.ambient"));
+        return SoundEvents.ZOMBIE_VILLAGER_AMBIENT;
     }
 
     @Override
-    public SoundEvent getHurtSound(@NotNull DamageSource source) {
+    public @NotNull SoundEvent getHurtSound(@NotNull DamageSource source) {
         return SoundEvents.RAVAGER_HURT;
     }
 
     @Override
-    public SoundEvent getDeathSound() {
+    public @NotNull SoundEvent getDeathSound() {
         return SoundEvents.RAVAGER_DEATH;
     }
 
@@ -222,7 +221,7 @@ public class RouteShaperEntity extends Monster implements GeoEntity {
 
     @Override
     public @NotNull EntityDimensions getDimensions(@NotNull Pose pose) {
-        return super.getDimensions(pose).scale((float) 1);
+        return super.getDimensions(pose);
     }
 
     @Override

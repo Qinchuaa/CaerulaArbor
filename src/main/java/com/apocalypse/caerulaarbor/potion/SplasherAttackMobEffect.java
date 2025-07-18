@@ -75,7 +75,7 @@ public class SplasherAttackMobEffect extends MobEffect {
                         }
                     }.getArrow(projectileLevel, (Entity) entity, 5, 0);
                     _entityToSpawn.setPos((entityiterator.getX()), (entityiterator.getY() + rand), (entityiterator.getZ()));
-                    _entityToSpawn.shoot(0, (-1), 0, (float) 1.5, 0);
+                    _entityToSpawn.shoot(0, (-1), 0, 1.5F, 0);
                     projectileLevel.addFreshEntity(_entityToSpawn);
                 }
                 num += 1;

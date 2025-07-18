@@ -162,12 +162,12 @@ public class PunctureFishEntity extends Monster implements GeoEntity {
     }
 
     @Override
-    public SoundEvent getHurtSound(@NotNull DamageSource ds) {
+    public @NotNull SoundEvent getHurtSound(@NotNull DamageSource ds) {
         return SoundEvents.PUFFER_FISH_HURT;
     }
 
     @Override
-    public SoundEvent getDeathSound() {
+    public @NotNull SoundEvent getDeathSound() {
         return SoundEvents.PUFFER_FISH_DEATH;
     }
 
@@ -202,7 +202,7 @@ public class PunctureFishEntity extends Monster implements GeoEntity {
 
     @Override
     public @NotNull EntityDimensions getDimensions(@NotNull Pose p_33597_) {
-        return super.getDimensions(p_33597_).scale((float) 1);
+        return super.getDimensions(p_33597_);
     }
 
     public static void init() {
