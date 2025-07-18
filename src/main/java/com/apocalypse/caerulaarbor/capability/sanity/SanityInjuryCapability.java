@@ -52,10 +52,13 @@ public class SanityInjuryCapability implements ISanityInjuryCapability {
                     owner.getSoundSource(), 2.2f, 1, false);
         } else {
             owner.addEffect(new MobEffectInstance(ModMobEffects.SANITY_IMMUNE.get(), 200, 0, false, false));
-            if (owner instanceof Player) {
-                owner.addEffect(new MobEffectInstance(ModMobEffects.DIZZY.get(), 200, 0, false, false));
-                owner.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 200, 0, false, true));
-                owner.hurt(ModDamageTypes.causeNervousImpairmentDamage(owner.level().registryAccess(), null), 12);
+            // 创造模式玩家不受影响，可以考虑是否使用配置来开启?
+            if (owner instanceof Player player) {
+                if (!player.isCreative()) {
+                    player.addEffect(new MobEffectInstance(ModMobEffects.DIZZY.get(), 200, 0, false, false));
+                    player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 200, 0, false, true));
+                    player.hurt(ModDamageTypes.causeNervousImpairmentDamage(player.level().registryAccess(), null), 12);
+                }
             } else {
                 // TODO 改为麻痹（以下是具体实现）
                 /*

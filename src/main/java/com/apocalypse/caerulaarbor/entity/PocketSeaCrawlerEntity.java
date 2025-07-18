@@ -1,14 +1,16 @@
 package com.apocalypse.caerulaarbor.entity;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
+import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.entity.base.SeaMonster;
 import com.apocalypse.caerulaarbor.init.ModEntities;
-import com.apocalypse.caerulaarbor.procedures.RangedSanityAttackProcedure;
-import net.minecraft.core.BlockPos;
+import com.apocalypse.caerulaarbor.init.ModTags;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -16,10 +18,7 @@ import net.minecraft.world.Difficulty;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.SpawnPlacements;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
@@ -35,6 +34,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraft.world.phys.AABB;
 import net.minecraftforge.network.PlayMessages;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.core.animation.AnimatableManager;
@@ -43,9 +43,11 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 
+import java.util.List;
+
 public class PocketSeaCrawlerEntity extends SeaMonster {
 
-    public static final EntityDataAccessor<Integer> DAMAGE = SynchedEntityData.defineId(PocketSeaCrawlerEntity.class, EntityDataSerializers.INT);
+    public static final EntityDataAccessor<Float> DAMAGE = SynchedEntityData.defineId(PocketSeaCrawlerEntity.class, EntityDataSerializers.FLOAT);
 
     private boolean swinging;
     private long lastSwing;
@@ -63,9 +65,16 @@ public class PocketSeaCrawlerEntity extends SeaMonster {
     }
 
     @Override
+    public boolean hurt(DamageSource source, float amount) {
+        float damage = this.getEntityData().get(DAMAGE);
+        this.getEntityData().set(DAMAGE, damage + amount);
+        return super.hurt(source, amount);
+    }
+
+    @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
-        this.entityData.define(DAMAGE, 0);
+        this.entityData.define(DAMAGE, 0f);
     }
 
     @Override
@@ -107,37 +116,33 @@ public class PocketSeaCrawlerEntity extends SeaMonster {
     @Override
     public void addAdditionalSaveData(@NotNull CompoundTag compound) {
         super.addAdditionalSaveData(compound);
-        compound.putInt("Datadeal", this.entityData.get(DAMAGE));
+        compound.putFloat("Damage", this.entityData.get(DAMAGE));
     }
 
     @Override
     public void readAdditionalSaveData(@NotNull CompoundTag compound) {
         super.readAdditionalSaveData(compound);
-        if (compound.contains("Datadeal"))
-            this.entityData.set(DAMAGE, compound.getInt("Datadeal"));
+        if (compound.contains("Damage")) {
+            this.entityData.set(DAMAGE, compound.getFloat("Damage"));
+        }
     }
 
     @Override
-    public @NotNull InteractionResult mobInteract(@NotNull Player sourceentity, @NotNull InteractionHand hand) {
-        super.mobInteract(sourceentity, hand);
-        ItemStack itemstack = sourceentity.getItemInHand(hand);
+    public @NotNull InteractionResult mobInteract(@NotNull Player pPlayer, @NotNull InteractionHand hand) {
+        super.mobInteract(pPlayer, hand);
+        ItemStack itemstack = pPlayer.getItemInHand(hand);
 
-        double x = this.getX();
-        double y = this.getY();
-        double z = this.getZ();
-        var world = this.level();
+        var level = this.level();
         if (itemstack.getItem() == Items.FLINT_AND_STEEL) {
-            if (!world.isClientSide()) {
-                world.playSound(null, BlockPos.containing(x, y, z), SoundEvents.CREEPER_PRIMED, SoundSource.HOSTILE, 2, 1);
+            if (!level.isClientSide()) {
+                level.playSound(null, this.getOnPos(), SoundEvents.CREEPER_PRIMED, SoundSource.HOSTILE, 2, 1);
             } else {
-                world.playLocalSound(x, y, z, SoundEvents.CREEPER_PRIMED, SoundSource.HOSTILE, 2, 1, false);
+                level.playLocalSound(this.getOnPos(), SoundEvents.CREEPER_PRIMED, SoundSource.HOSTILE, 2, 1, false);
+                this.triggerAnim("jump", "jump");
             }
 
-            if (this instanceof PocketSeaCrawlerEntity) {
-//                this.setAnimation("animation.pocket_sea_crawler.jump");
-            }
             for (int i = 0; i < 5; i++) {
-                CaerulaArborMod.queueServerWork(i * 4, () -> RangedSanityAttackProcedure.execute(world, x, y, z, PocketSeaCrawlerEntity.this, PocketSeaCrawlerEntity.this));
+                CaerulaArborMod.queueServerWork(i * 4, this::selfExplosion);
             }
             return InteractionResult.SUCCESS;
         }
@@ -148,6 +153,12 @@ public class PocketSeaCrawlerEntity extends SeaMonster {
     public void baseTick() {
         super.baseTick();
         this.refreshDimensions();
+
+        float damage = this.getEntityData().get(DAMAGE);
+        if (damage >= this.getMaxHealth() * 0.15f) {
+            this.selfExplosion();
+            this.getEntityData().set(DAMAGE, 0f);
+        }
     }
 
     public static void init() {
@@ -207,5 +218,30 @@ public class PocketSeaCrawlerEntity extends SeaMonster {
     public void registerControllers(AnimatableManager.ControllerRegistrar data) {
         data.add(new AnimationController<>(this, "movement", 2, this::movementPredicate));
         data.add(new AnimationController<>(this, "attacking", 2, this::attackingPredicate));
+        data.add(new AnimationController<>(this, "jump", 2, event -> PlayState.STOP)
+                .triggerableAnim("jump", RawAnimation.begin().thenPlay("animation.pocket_sea_crawler.jump").thenLoop("animation.pocket_sea_crawler.idle")));
+    }
+
+    public void selfExplosion() {
+        var level = this.level();
+        for (int i = 0; i < 5; i++) {
+            CaerulaArborMod.queueServerWork(i * 2, () -> {
+                if (level instanceof ServerLevel serverLevel) {
+                    serverLevel.sendParticles(ParticleTypes.ELECTRIC_SPARK, this.getX(), this.getY(), this.getZ(), 32, 4, 4, 4, 0.1);
+                }
+            });
+        }
+        var attr = this.getAttribute(Attributes.ATTACK_DAMAGE);
+        if (attr == null) return;
+        double damage = attr.getValue();
+
+        List<Entity> entities = level.getEntitiesOfClass(Entity.class, new AABB(this.getOnPos()).inflate(4), e -> true);
+        for (var e : entities) {
+            if (e == this || e.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING)) {
+                continue;
+            }
+            e.hurt(level().damageSources().magic(), (float) (damage * 3));
+            e.getCapability(ModCapabilities.SANITY_INJURY).ifPresent(cap -> cap.hurt(damage * 150));
+        }
     }
 }

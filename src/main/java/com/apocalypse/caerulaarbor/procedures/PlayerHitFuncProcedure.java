@@ -316,15 +316,6 @@ public class PlayerHitFuncProcedure {
                 }
             }
         }
-        if (entity instanceof PocketSeaCrawlerEntity) {
-            if (entity instanceof PocketSeaCrawlerEntity _datEntSetI)
-                _datEntSetI.getEntityData().set(PocketSeaCrawlerEntity.DAMAGE, (int) ((entity instanceof PocketSeaCrawlerEntity _datEntI ? _datEntI.getEntityData().get(PocketSeaCrawlerEntity.DAMAGE) : 0) + amount));
-            if ((entity instanceof PocketSeaCrawlerEntity _datEntI ? _datEntI.getEntityData().get(PocketSeaCrawlerEntity.DAMAGE) : 0) >= (entity instanceof LivingEntity _livEnt ? _livEnt.getMaxHealth() : -1) * 0.15) {
-                RangedSanityAttackProcedure.execute(world, x, y, z, entity, entity);
-                if (entity instanceof PocketSeaCrawlerEntity _datEntSetI)
-                    _datEntSetI.getEntityData().set(PocketSeaCrawlerEntity.DAMAGE, 0);
-            }
-        }
         if ((sourceentity instanceof LivingEntity _livingEntity122 && _livingEntity122.getAttributes().hasAttribute(ModAttributes.SANITY_RATE.get())
                 ? _livingEntity122.getAttribute(ModAttributes.SANITY_RATE.get()).getValue()
                 : 0) > 0) {
