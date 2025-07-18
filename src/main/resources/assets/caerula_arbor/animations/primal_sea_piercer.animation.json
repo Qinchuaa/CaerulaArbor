@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"animation.puncturefish.idle": {
+		"animation.primal_sea_piercer.idle": {
 			"loop": true,
 			"animation_length": 4,
 			"bones": {
@@ -238,7 +238,7 @@
 				}
 			}
 		},
-		"animation.puncturefish.attack": {
+		"animation.primal_sea_piercer.attack": {
 			"animation_length": 1,
 			"start_delay": -5,
 			"bones": {
@@ -602,7 +602,7 @@
 				}
 			}
 		},
-		"animation.puncturefish.move": {
+		"animation.primal_sea_piercer.move": {
 			"loop": true,
 			"animation_length": 1,
 			"bones": {
@@ -1010,7 +1010,7 @@
 				}
 			}
 		},
-		"animation.puncturefish.die": {
+		"animation.primal_sea_piercer.die": {
 			"loop": "hold_on_last_frame",
 			"animation_length": 1,
 			"bones": {

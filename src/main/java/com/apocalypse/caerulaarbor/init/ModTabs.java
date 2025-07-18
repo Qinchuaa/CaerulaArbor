@@ -183,29 +183,9 @@ public class ModTabs {
 //				tabData.accept(CaerulaArborModItems.PROOF_OF_LONGEVITY.get());
 
     public static final RegistryObject<CreativeModeTab> CAERULA_LIVINGS = REGISTRY.register("caerula_livings",
-            () -> CreativeModeTab.builder().title(Component.translatable("item_group.caerula_arbor.caerula_livings")).icon(() -> new ItemStack(ModItems.RELIC_CURSED_GLOWBODY.get())).displayItems((parameters, tabData) -> {
-                tabData.accept(ModItems.FAKE_OFFSPRING_SPAWN_EGG.get());
-                tabData.accept(ModItems.ROUTE_FRACTAL_SPAWN_EGG.get());
-                tabData.accept(ModItems.SHELL_SEA_RUNNER_SPAWN_EGG.get());
-                tabData.accept(ModItems.DEEP_SEA_SLIDER_SPAWN_EGG.get());
-                tabData.accept(ModItems.RIDGE_SEA_SPITTER_SPAWN_EGG.get());
-                tabData.accept(ModItems.FLOATING_SEA_DRIFTER_SPAWN_EGG.get());
-                tabData.accept(ModItems.BASIN_SEA_REAPER_SPAWN_EGG.get());
-                tabData.accept(ModItems.POCKET_SEA_CRAWLER_SPAWN_EGG.get());
-                tabData.accept(ModItems.PUNCTURE_FISH_SPAWN_EGG.get());
-                tabData.accept(ModItems.BASELAYER_ABYSSAL_SPAWN_EGG.get());
-                tabData.accept(ModItems.PREDATOR_ABYSSAL_SPAWN_EGG.get());
-                tabData.accept(ModItems.GUIDE_ABYSSAL_SPAWN_EGG.get());
-                tabData.accept(ModItems.SPLASHER_ABYSSAL_SPAWN_EGG.get());
-                tabData.accept(ModItems.UMBRELLA_ABYSSAL_SPAWN_EGG.get());
-                tabData.accept(ModItems.CRACKER_ABYSSAL_SPAWN_EGG.get());
-                tabData.accept(ModItems.COLLECTOR_PROKARYOTE_SPAWN_EGG.get());
-                tabData.accept(ModItems.BONE_FISH_SPAWN_EGG.get());
-                tabData.accept(ModItems.CHISELER_FISH_SPAWN_EGG.get());
-                tabData.accept(ModItems.PREGNANT_FISH_SPAWN_EGG.get());
-                tabData.accept(ModItems.FLEE_FISH_SPAWN_EGG.get());
-                tabData.accept(ModItems.ROUTE_SHAPER_SPAWN_EGG.get());
-            }).withTabsBefore(CAERULA_RELICS.getId()).build());
+            () -> CreativeModeTab.builder().title(Component.translatable("item_group.caerula_arbor.caerula_livings")).icon(() -> new ItemStack(ModItems.RELIC_CURSED_GLOWBODY.get()))
+                    .displayItems((param, output) -> ModItems.SPAWN_EGGS.getEntries().forEach(registryObject -> output.accept(registryObject.get())))
+                    .withTabsBefore(CAERULA_RELICS.getId()).build());
 
     @SubscribeEvent
     public static void buildTabContentsVanilla(BuildCreativeModeTabContentsEvent tabData) {

@@ -96,6 +96,7 @@
   "entity.caerula_arbor.floating_sea_drifter": "浮海飘航者",
   "entity.caerula_arbor.basin_sea_reaper": "钵海收割者",
   "entity.caerula_arbor.pocket_sea_crawler": "囊海爬行者",
+  "entity.caerula_arbor.primal_sea_piercer": "始海穿刺者",
 
   "item.caerula_arbor.shell_sea_runner_spawn_egg": "壳海狂奔者刷怪蛋",
   "item.caerula_arbor.deep_sea_slider_spawn_egg": "底海滑动者刷怪蛋",
@@ -103,6 +104,7 @@
   "item.caerula_arbor.floating_sea_drifter_spawn_egg": "浮海飘航者刷怪蛋",
   "item.caerula_arbor.basin_sea_reaper_spawn_egg": "钵海收割者刷怪蛋",
   "item.caerula_arbor.pocket_sea_crawler_spawn_egg": "囊海爬行者刷怪蛋",
+  "item.caerula_arbor.primal_sea_piercer_spawn_egg": "始海穿刺者刷怪蛋",
 
   "subtitles.grow1": "拥纳愈广",
   "item.caerula_arbor.fluore_berries": "荧光浆果",
@@ -533,7 +535,6 @@
   "item.caerula_arbor.sample_migration": "Sample Migration",
   "effect.caerula_arbor.kings_breath": "诸王之息",
   "gui.caerula_arbor.caerula_record_gui.tooltip_discon": "玩家在攻击或受击时有概率交换双手物品",
-  "item.caerula_arbor.puncture_fish_spawn_egg": "始海穿刺者刷怪蛋",
   "item.caerula_arbor.chitin_knife.description_0": "§b玩家攻击时有5%概率攻击力+100%，生命值+100%，持续25秒。更换主手物品时提前结束",
   "item.minecraft.lingering_potion.effect.sanity_cure_ii": "滞留型神经抚慰药水",
   "effect.caerula_arbor.sacrefice": "祭礼",
@@ -545,7 +546,6 @@
   "enchantment.caerula_arbor.sanity_reaper.desc": "攻击造成神经损伤",
   "item.caerula_arbor.sword_ocean_crystal": "深海棱晶剑",
   "item.caerula_arbor.broken_ocean_cell": "残损深海细胞",
-  "entity.caerula_arbor.puncture_fish": "始海穿刺者",
   "item.caerula_arbor.canned_lava": "一罐熔岩",
   "item.caerula_arbor.caffeine": "咖啡因",
   "subtitles.target_damaged": "损失目标生命",

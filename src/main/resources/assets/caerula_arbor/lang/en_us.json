@@ -96,6 +96,7 @@
   "entity.caerula_arbor.floating_sea_drifter": "Floating Sea Drifter",
   "entity.caerula_arbor.basin_sea_reaper": "Basin Sea Reaper",
   "entity.caerula_arbor.pocket_sea_crawler": "Pocket Sea Crawler",
+  "entity.caerula_arbor.primal_sea_piercer": "Primal Sea Piercer",
 
   "item.caerula_arbor.shell_sea_runner_spawn_egg": "Shell Sea Runner Spawn Egg",
   "item.caerula_arbor.deep_sea_slider_spawn_egg": "Deep Sea Slider Spawn Egg",
@@ -103,6 +104,7 @@
   "item.caerula_arbor.floating_sea_drifter_spawn_egg": "Floating Sea Drifter Spawn Egg",
   "item.caerula_arbor.basin_sea_reaper_spawn_egg": "Basin Sea Reaper Spawn Egg",
   "item.caerula_arbor.pocket_sea_crawler_spawn_egg": "Pocket Sea Crawler Spawn Egg",
+  "item.caerula_arbor.primal_sea_piercer_spawn_egg": "Primal Sea Piercer Spawn Egg",
 
   "item.caerula_arbor.fluore_berries": "Fluore Berries",
   "subtitles.grow1": "EMBRACE MORE",
@@ -533,7 +535,6 @@
   "item.caerula_arbor.sample_migration": "Sample Migration",
   "effect.caerula_arbor.kings_breath": "Kings Breath",
   "gui.caerula_arbor.caerula_record_gui.tooltip_discon": "Player got chance to exchange both hand items when attacking our hit",
-  "item.caerula_arbor.puncture_fish_spawn_egg": "Puncture Fish Spawn Egg",
   "item.caerula_arbor.chitin_knife.description_0": "§bPlayer got 5% chance to attack +100%, maxhealth +100% for 25s when hold his current weapon,and buff vanishes when he changes weapon",
   "item.minecraft.lingering_potion.effect.sanity_cure_ii": "Lingering Potion of Sanity Cure",
   "effect.caerula_arbor.sacrefice": "Sacrefice",
@@ -545,7 +546,6 @@
   "enchantment.caerula_arbor.sanity_reaper.desc": "Deals sanity damage when attacking",
   "item.caerula_arbor.sword_ocean_crystal": "Sword Ocean Crystal",
   "item.caerula_arbor.broken_ocean_cell": "Broken Ocean Cell",
-  "entity.caerula_arbor.puncture_fish": "Puncture Fish",
   "item.caerula_arbor.canned_lava": "Canned Lava",
   "item.caerula_arbor.caffeine": "Caffeine",
   "subtitles.target_damaged": "",

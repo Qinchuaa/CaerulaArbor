@@ -40,8 +40,8 @@ public class ModEntities {
     public static final RegistryObject<EntityType<PocketSeaCrawlerEntity>> POCKET_SEA_CRAWLER = register("pocket_sea_crawler",
             EntityType.Builder.<PocketSeaCrawlerEntity>of(PocketSeaCrawlerEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(PocketSeaCrawlerEntity::new)
                     .sized(0.8f, 1.5f));
-    public static final RegistryObject<EntityType<PunctureFishEntity>> PUNCTURE_FISH = register("puncture_fish",
-            EntityType.Builder.<PunctureFishEntity>of(PunctureFishEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(PunctureFishEntity::new)
+    public static final RegistryObject<EntityType<PrimalSeaPiercerEntity>> PRIMAL_SEA_PIERCER = register("primal_sea_piercer",
+            EntityType.Builder.<PrimalSeaPiercerEntity>of(PrimalSeaPiercerEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(PrimalSeaPiercerEntity::new)
                     .sized(0.9f, 2.7f));
     public static final RegistryObject<EntityType<BaselayerAbyssalEntity>> BASELAYER_ABYSSAL = register("baselayer_abyssal",
             EntityType.Builder.<BaselayerAbyssalEntity>of(BaselayerAbyssalEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(BaselayerAbyssalEntity::new)
@@ -110,7 +110,7 @@ public class ModEntities {
             FloatingSeaDrifterEntity.init();
             BasinSeaReaperEntity.init();
             PocketSeaCrawlerEntity.init();
-            PunctureFishEntity.init();
+            PrimalSeaPiercerEntity.init();
             BaselayerAbyssalEntity.init();
             PredatorAbyssalEntity.init();
             GuideAbyssalEntity.init();
@@ -137,7 +137,7 @@ public class ModEntities {
         event.put(FLOATING_SEA_DRIFTER.get(), FloatingSeaDrifterEntity.createAttributes().build());
         event.put(BASIN_SEA_REAPER.get(), BasinSeaReaperEntity.createAttributes().build());
         event.put(POCKET_SEA_CRAWLER.get(), PocketSeaCrawlerEntity.createAttributes().build());
-        event.put(PUNCTURE_FISH.get(), PunctureFishEntity.createAttributes().build());
+        event.put(PRIMAL_SEA_PIERCER.get(), PrimalSeaPiercerEntity.createAttributes().build());
         event.put(BASELAYER_ABYSSAL.get(), BaselayerAbyssalEntity.createAttributes().build());
         event.put(PREDATOR_ABYSSAL.get(), PredatorAbyssalEntity.createAttributes().build());
         event.put(GUIDE_ABYSSAL.get(), GuideAbyssalEntity.createAttributes().build());

@@ -72,14 +72,6 @@ public class ModItems {
     public static final RegistryObject<Item> THERMOGRAPH = ITEMS.register("thermograph", ThermographItem::new);
     public static final RegistryObject<Item> TOPONYM_TEXTOLOGY = ITEMS.register("toponym_textology", ToponymTextologyItem::new);
 
-    public static final RegistryObject<Item> SHELL_SEA_RUNNER_SPAWN_EGG = ITEMS.register("shell_sea_runner_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.SHELL_SEA_RUNNER, -16777012, -3355444, new Item.Properties()));
-    public static final RegistryObject<Item> DEEP_SEA_SLIDER_SPAWN_EGG = ITEMS.register("deep_sea_slider_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.DEEP_SEA_SLIDER, -13421569, -3355444, new Item.Properties()));
-    public static final RegistryObject<Item> SUPER_SLIDER_SPAWN_EGG = ITEMS.register("super_slider_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.SUPER_SLIDER, -13434778, -3355393, new Item.Properties()));
-    public static final RegistryObject<Item> RIDGE_SEA_SPITTER_SPAWN_EGG = ITEMS.register("ridge_sea_spitter_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.RIDGE_SEA_SPITTER, -13434676, -3355444, new Item.Properties()));
-    public static final RegistryObject<Item> FLOATING_SEA_DRIFTER_SPAWN_EGG = ITEMS.register("floating_sea_drifter_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.FLOATING_SEA_DRIFTER, -16737895, -3355444, new Item.Properties()));
-    public static final RegistryObject<Item> BASIN_SEA_REAPER_SPAWN_EGG = ITEMS.register("basin_sea_reaper_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.BASIN_SEA_REAPER, -6710785, -3355444, new Item.Properties()));
-    public static final RegistryObject<Item> POCKET_SEA_CRAWLER_SPAWN_EGG = ITEMS.register("pocket_sea_crawler_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.POCKET_SEA_CRAWLER, -10092442, -3342337, new Item.Properties()));
-    public static final RegistryObject<Item> PUNCTURE_FISH_SPAWN_EGG = ITEMS.register("puncture_fish_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.PUNCTURE_FISH, -16750900, -1, new Item.Properties()));
     public static final RegistryObject<Item> SEA_TRAIL_INIT = block(ModBlocks.SEA_TRAIL_INIT);
     public static final RegistryObject<Item> SEA_TRAIL_GROWING = block(ModBlocks.SEA_TRAIL_GROWING);
     public static final RegistryObject<Item> SEA_TRAIL_GROWN = block(ModBlocks.SEA_TRAIL_GROWN);
@@ -94,7 +86,6 @@ public class ModItems {
     public static final RegistryObject<Item> OCEAN_CRYSTAL = ITEMS.register("ocean_crystal", OceanCrystalItem::new);
     public static final RegistryObject<Item> OCEAN_CUTIN = ITEMS.register("ocean_cutin", OceanCutinItem::new);
     public static final RegistryObject<Item> COOKED_FIBRE = ITEMS.register("cooked_fibre", CookedFibreItem::new);
-    public static final RegistryObject<Item> BASELAYER_ABYSSAL_SPAWN_EGG = ITEMS.register("baselayer_abyssal_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.BASELAYER_ABYSSAL, -16776961, -2056595, new Item.Properties()));
     public static final RegistryObject<Item> OCEAN_GLASS = block(ModBlocks.OCEAN_GLASS);
     public static final RegistryObject<Item> OCEAN_GLASSPANE = block(ModBlocks.OCEAN_GLASSPANE);
     public static final RegistryObject<Item> OCEAN_CHITIN = ITEMS.register("ocean_chitin", OceanChitinItem::new);
@@ -115,7 +106,6 @@ public class ModItems {
     public static final RegistryObject<Item> SHOVEL_OCEAN_CRYSTAL = ITEMS.register("shovel_ocean_crystal", OceanthornShovelItem::new);
     public static final RegistryObject<Item> HOE_OCEAN_CRYSTAL = ITEMS.register("hoe_ocean_crystal", OceanthornHoeItem::new);
     public static final RegistryObject<Item> CUTIN_STICK = ITEMS.register("cutin_stick", CutinStickItem::new);
-    public static final RegistryObject<Item> PREDATOR_ABYSSAL_SPAWN_EGG = ITEMS.register("predator_abyssal_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.PREDATOR_ABYSSAL, -16777063, -2056595, new Item.Properties()));
     public static final RegistryObject<Item> BLOCK_KETTLE = block(ModBlocks.BLOCK_KETTLE);
     public static final RegistryObject<Item> INSTANT_NOODLE = ITEMS.register("instant_noodle", InstantNoodleItem::new);
     public static final RegistryObject<Item> CANNED_NOODLE = ITEMS.register("canned_noodle", CannedNoodleItem::new);
@@ -149,8 +139,6 @@ public class ModItems {
     public static final RegistryObject<Item> CARAMEL_CAKE = block(ModBlocks.CARAMEL_CAKE);
     public static final RegistryObject<Item> CARAMEL_CAKE_PIECE = ITEMS.register("caramel_cake_piece", CaramelCakePieceItem::new);
     public static final RegistryObject<Item> CARAMEL_MOR = ITEMS.register("caramel_mor", CaramelMorItem::new);
-    public static final RegistryObject<Item> GUIDE_ABYSSAL_SPAWN_EGG = ITEMS.register("guide_abyssal_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.GUIDE_ABYSSAL, -13434778, -2056595, new Item.Properties()));
-    public static final RegistryObject<Item> SPLASHER_ABYSSAL_SPAWN_EGG = ITEMS.register("splasher_abyssal_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.SPLASHER_ABYSSAL, -16777012, -2056595, new Item.Properties()));
     public static final RegistryObject<Item> FAKE_EGG = ITEMS.register("fake_egg", FakeEggItem::new);
     public static final RegistryObject<Item> REAL_EGG = ITEMS.register("real_egg", RealEggItem::new);
     public static final RegistryObject<Item> FERMENTED_OCEAN_EYE = ITEMS.register("fermented_ocean_eye", FermentedOceanEyeItem::new);
@@ -167,7 +155,6 @@ public class ModItems {
     public static final RegistryObject<Item> ANCHOR_LOWER = block(ModBlocks.ANCHOR_LOWER);
     public static final RegistryObject<Item> ANCHOR_MEDIUM = block(ModBlocks.ANCHOR_MEDIUM);
     public static final RegistryObject<Item> ANCHOR_UPPER = block(ModBlocks.ANCHOR_UPPER);
-    public static final RegistryObject<Item> UMBRELLA_ABYSSAL_SPAWN_EGG = ITEMS.register("umbrella_abyssal_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.UMBRELLA_ABYSSAL, -10066177, -2056595, new Item.Properties()));
     public static final RegistryObject<Item> TRAILED_WOODEN_SWORD = ITEMS.register("trailed_wooden_sword", TrailedWoodenSwordItem::new);
     public static final RegistryObject<Item> TRAILED_STONE_SWORD = ITEMS.register("trailed_stone_sword", TrailedStoneSwordItem::new);
     public static final RegistryObject<Item> TRAILED_IRON_SWORD = ITEMS.register("trailed_iron_sword", TrailedIronSwordItem::new);
@@ -175,9 +162,7 @@ public class ModItems {
     public static final RegistryObject<Item> TRAILED_NETHERITE_SWORD = ITEMS.register("trailed_netherite_sword", TrailedNetheriteSwordItem::new);
     public static final RegistryObject<Item> TRAILED_GOLDEN_SWORD = ITEMS.register("trailed_golden_sword", TrailedGoldenSwordItem::new);
     public static final RegistryObject<Item> TRAIL_CREAM = ITEMS.register("trail_cream", TrailCreamItem::new);
-    public static final RegistryObject<Item> CRACKER_ABYSSAL_SPAWN_EGG = ITEMS.register("cracker_abyssal_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.CRACKER_ABYSSAL, -16777012, -2056595, new Item.Properties()));
     public static final RegistryObject<Item> DISPATCH_STICK = ITEMS.register("dispatch_stick", DispatchStickItem::new);
-    public static final RegistryObject<Item> COLLECTOR_PROKARYOTE_SPAWN_EGG = ITEMS.register("collector_prokaryote_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.COLLECTOR_PROKARYOTE, -16776961, -16316408, new Item.Properties()));
     public static final RegistryObject<Item> BROKEN_OCEAN_CELL = ITEMS.register("broken_ocean_cell", BrokenOceanCellItem::new);
     public static final RegistryObject<Item> BROKEN_CELL_CLUSTER = ITEMS.register("broken_cell_cluster", BrokenCellClusterItem::new);
     public static final RegistryObject<Item> OCEAN_CELL = ITEMS.register("ocean_cell", OceanCellItem::new);
@@ -185,14 +170,7 @@ public class ModItems {
     public static final RegistryObject<Item> COOKED_BROKEN_CELL_CLUSTER = ITEMS.register("cooked_broken_cell_cluster", CookedBrokenCellClusterItem::new);
     public static final RegistryObject<Item> COOKED_CELL_CLUSTER = ITEMS.register("cooked_cell_cluster", CookedCellClusterItem::new);
     public static final RegistryObject<Item> TRANSFORM_CELL = ITEMS.register("transform_cell", TransformCellItem::new);
-    public static final RegistryObject<Item> BONE_FISH_SPAWN_EGG = ITEMS.register("bone_fish_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.BONE_FISH, -10066177, -1, new Item.Properties()));
     public static final RegistryObject<Item> BLOCK_RECORDER = block(ModBlocks.BLOCK_RECORDER);
-    public static final RegistryObject<Item> CHISELER_FISH_SPAWN_EGG = ITEMS.register("chiseler_fish_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.CHISELER_FISH, -10053121, -1, new Item.Properties()));
-    public static final RegistryObject<Item> PREGNANT_FISH_SPAWN_EGG = ITEMS.register("pregnant_fish_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.PREGNANT_FISH, -10066177, -1, new Item.Properties()));
-    public static final RegistryObject<Item> FAKE_OFFSPRING_SPAWN_EGG = ITEMS.register("fake_offspring_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.FAKE_OFFSPRING, -856596, -6711916, new Item.Properties()));
-    public static final RegistryObject<Item> FLEE_FISH_SPAWN_EGG = ITEMS.register("flee_fish_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.FLEE_FISH, -16764007, -1, new Item.Properties()));
-    public static final RegistryObject<Item> ROUTE_SHAPER_SPAWN_EGG = ITEMS.register("route_shaper_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.ROUTE_SHAPER, -16764007, -10040065, new Item.Properties()));
-    public static final RegistryObject<Item> ROUTE_FRACTAL_SPAWN_EGG = ITEMS.register("route_fractal_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.ROUTE_FRACTAL, -16777165, -16764109, new Item.Properties()));
     public static final RegistryObject<Item> SEA_TRAIL_SOLID = block(ModBlocks.SEA_TRAIL_SOLID);
     public static final RegistryObject<Item> TRAIL_BRICK = block(ModBlocks.TRAIL_BRICK);
     public static final RegistryObject<Item> TRAIL_SLAB = block(ModBlocks.TRAIL_SLAB);
@@ -243,6 +221,29 @@ public class ModItems {
      * Spawn Eggs
      */
     public static final DeferredRegister<Item> SPAWN_EGGS = DeferredRegister.create(ForgeRegistries.ITEMS, CaerulaArborMod.MODID);
+
+    public static final RegistryObject<Item> SHELL_SEA_RUNNER_SPAWN_EGG = SPAWN_EGGS.register("shell_sea_runner_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.SHELL_SEA_RUNNER, -16777012, -3355444, new Item.Properties()));
+    public static final RegistryObject<Item> DEEP_SEA_SLIDER_SPAWN_EGG = SPAWN_EGGS.register("deep_sea_slider_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.DEEP_SEA_SLIDER, -13421569, -3355444, new Item.Properties()));
+    public static final RegistryObject<Item> SUPER_SLIDER_SPAWN_EGG = SPAWN_EGGS.register("super_slider_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.SUPER_SLIDER, -13434778, -3355393, new Item.Properties()));
+    public static final RegistryObject<Item> RIDGE_SEA_SPITTER_SPAWN_EGG = SPAWN_EGGS.register("ridge_sea_spitter_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.RIDGE_SEA_SPITTER, -13434676, -3355444, new Item.Properties()));
+    public static final RegistryObject<Item> FLOATING_SEA_DRIFTER_SPAWN_EGG = SPAWN_EGGS.register("floating_sea_drifter_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.FLOATING_SEA_DRIFTER, -16737895, -3355444, new Item.Properties()));
+    public static final RegistryObject<Item> BASIN_SEA_REAPER_SPAWN_EGG = SPAWN_EGGS.register("basin_sea_reaper_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.BASIN_SEA_REAPER, -6710785, -3355444, new Item.Properties()));
+    public static final RegistryObject<Item> POCKET_SEA_CRAWLER_SPAWN_EGG = SPAWN_EGGS.register("pocket_sea_crawler_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.POCKET_SEA_CRAWLER, -10092442, -3342337, new Item.Properties()));
+    public static final RegistryObject<Item> PRIMAL_SEA_PIERCER_SPAWN_EGG = SPAWN_EGGS.register("primal_sea_piercer_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.PRIMAL_SEA_PIERCER, -16750900, -1, new Item.Properties()));
+    public static final RegistryObject<Item> BASELAYER_ABYSSAL_SPAWN_EGG = SPAWN_EGGS.register("baselayer_abyssal_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.BASELAYER_ABYSSAL, -16776961, -2056595, new Item.Properties()));
+    public static final RegistryObject<Item> PREDATOR_ABYSSAL_SPAWN_EGG = SPAWN_EGGS.register("predator_abyssal_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.PREDATOR_ABYSSAL, -16777063, -2056595, new Item.Properties()));
+    public static final RegistryObject<Item> GUIDE_ABYSSAL_SPAWN_EGG = SPAWN_EGGS.register("guide_abyssal_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.GUIDE_ABYSSAL, -13434778, -2056595, new Item.Properties()));
+    public static final RegistryObject<Item> SPLASHER_ABYSSAL_SPAWN_EGG = SPAWN_EGGS.register("splasher_abyssal_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.SPLASHER_ABYSSAL, -16777012, -2056595, new Item.Properties()));
+    public static final RegistryObject<Item> UMBRELLA_ABYSSAL_SPAWN_EGG = SPAWN_EGGS.register("umbrella_abyssal_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.UMBRELLA_ABYSSAL, -10066177, -2056595, new Item.Properties()));
+    public static final RegistryObject<Item> CRACKER_ABYSSAL_SPAWN_EGG = SPAWN_EGGS.register("cracker_abyssal_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.CRACKER_ABYSSAL, -16777012, -2056595, new Item.Properties()));
+    public static final RegistryObject<Item> COLLECTOR_PROKARYOTE_SPAWN_EGG = SPAWN_EGGS.register("collector_prokaryote_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.COLLECTOR_PROKARYOTE, -16776961, -16316408, new Item.Properties()));
+    public static final RegistryObject<Item> BONE_FISH_SPAWN_EGG = SPAWN_EGGS.register("bone_fish_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.BONE_FISH, -10066177, -1, new Item.Properties()));
+    public static final RegistryObject<Item> CHISELER_FISH_SPAWN_EGG = SPAWN_EGGS.register("chiseler_fish_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.CHISELER_FISH, -10053121, -1, new Item.Properties()));
+    public static final RegistryObject<Item> PREGNANT_FISH_SPAWN_EGG = SPAWN_EGGS.register("pregnant_fish_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.PREGNANT_FISH, -10066177, -1, new Item.Properties()));
+    public static final RegistryObject<Item> FAKE_OFFSPRING_SPAWN_EGG = SPAWN_EGGS.register("fake_offspring_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.FAKE_OFFSPRING, -856596, -6711916, new Item.Properties()));
+    public static final RegistryObject<Item> FLEE_FISH_SPAWN_EGG = SPAWN_EGGS.register("flee_fish_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.FLEE_FISH, -16764007, -1, new Item.Properties()));
+    public static final RegistryObject<Item> ROUTE_SHAPER_SPAWN_EGG = SPAWN_EGGS.register("route_shaper_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.ROUTE_SHAPER, -16764007, -10040065, new Item.Properties()));
+    public static final RegistryObject<Item> ROUTE_FRACTAL_SPAWN_EGG = SPAWN_EGGS.register("route_fractal_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.ROUTE_FRACTAL, -16777165, -16764109, new Item.Properties()));
 
     private static RegistryObject<Item> block(RegistryObject<Block> block) {
         return ITEMS.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties()));

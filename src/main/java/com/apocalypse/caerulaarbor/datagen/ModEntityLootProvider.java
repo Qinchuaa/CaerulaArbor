@@ -47,7 +47,15 @@ public class ModEntityLootProvider extends EntityLootSubProvider {
                                 )
                 )
         );
-
+        this.add(ModEntities.SUPER_SLIDER.get(),
+                LootTable.lootTable().withPool(
+                        LootPool.lootPool().setRolls(ConstantValue.exactly(1.0f))
+                                .add(LootItem.lootTableItem(ModItems.OCEAN_PEDUNCLE.get())
+                                        .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0f)))
+                                        .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))
+                                )
+                )
+        );
         this.add(ModEntities.RIDGE_SEA_SPITTER.get(),
                 LootTable.lootTable().withPool(
                         LootPool.lootPool().setRolls(ConstantValue.exactly(1.0f))
