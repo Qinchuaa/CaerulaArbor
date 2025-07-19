@@ -189,7 +189,7 @@ public class MobHitFuncProcedure {
                                     if (world instanceof ServerLevel server) {
                                         var type = switch (Mth.nextInt(RandomSource.create(), 0, 8)) {
                                             case 0 -> ModEntities.NETHERSEA_FOUNDER;
-                                            case 1 -> ModEntities.CRACKER_ABYSSAL;
+                                            case 1 -> ModEntities.NETHERSEA_REEFBREAKER;
                                             case 2 -> ModEntities.POCKET_SEA_CRAWLER;
                                             case 3 -> ModEntities.NETHERSEA_BRANDGUIDER;
                                             case 4 -> ModEntities.PRIMAL_SEA_PIERCER;
@@ -226,7 +226,7 @@ public class MobHitFuncProcedure {
             if (entity instanceof LivingEntity _livingEntity60 && _livingEntity60.getAttributes().hasAttribute(ModAttributes.EVOLVED.get()))
                 _livingEntity60.getAttribute(ModAttributes.EVOLVED.get()).setBaseValue(1);
         }
-        if (sourceentity instanceof CrackerAbyssalEntity livEnt) {
+        if (sourceentity instanceof NetherseaReefbreakerEntity livEnt) {
             amplifi = livEnt.hasEffect(ModMobEffects.REEF_CRACKER.get()) ? livEnt.getEffect(ModMobEffects.REEF_CRACKER.get()).getAmplifier() : 0;
             if (livEnt.hasEffect(ModMobEffects.REEF_CRACKER.get())) {
                 if (amplifi < 14) {

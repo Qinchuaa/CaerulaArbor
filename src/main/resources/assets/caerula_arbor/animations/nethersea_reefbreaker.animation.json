@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"animation.reefcracker.idle": {
+		"animation.nethersea_reefbreaker.idle": {
 			"loop": true,
 			"animation_length": 1.5,
 			"bones": {
@@ -329,7 +329,7 @@
 				}
 			}
 		},
-		"animation.reefcracker.move": {
+		"animation.nethersea_reefbreaker.move": {
 			"loop": true,
 			"animation_length": 1.5,
 			"bones": {
@@ -642,7 +642,7 @@
 				}
 			}
 		},
-		"animation.reefcracker.attack": {
+		"animation.nethersea_reefbreaker.attack": {
 			"animation_length": 1,
 			"bones": {
 				"neck": {
@@ -831,7 +831,7 @@
 				}
 			}
 		},
-		"animation.reefcracker.spin": {
+		"animation.nethersea_reefbreaker.spin": {
 			"animation_length": 1,
 			"override_previous_animation": true,
 			"bones": {
