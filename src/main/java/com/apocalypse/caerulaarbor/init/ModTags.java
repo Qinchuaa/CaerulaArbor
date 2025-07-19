@@ -12,7 +12,6 @@ import net.minecraft.world.level.block.Block;
 public class ModTags {
 
     public static class Items {
-
         public static final TagKey<Item> RELICS = tag("relics");
         public static final TagKey<Item> HAND_RELICS = tag("relics/hand");
         public static final TagKey<Item> KING_RELICS = tag("relics/king");
@@ -29,14 +28,17 @@ public class ModTags {
     public static class Blocks {
         public static final TagKey<Block> ERRODABLE = tag("errodable");
         public static final TagKey<Block> SEA_TRAIL = tag("sea_trail");
+
         private static TagKey<Block> tag(String name) {
             return BlockTags.create(CaerulaArborMod.loc(name));
         }
     }
 
     public static class EntityTypes {
-        public static final TagKey<EntityType<?>> OCEAN_OFFSPRING = tag("oceanoffspring");
-        public static final TagKey<EntityType<?>> OCEAN_SPAWN = tag("oceanspawn");
+        public static final TagKey<EntityType<?>> SEA_BORN = tag("sea_born");
+        public static final TagKey<EntityType<?>> SEA_BORN_CREATURE = tag("sea_born_creature");
+        public static final TagKey<EntityType<?>> SEA_BORN_BOSS = tag("sea_born_boss");
+
         private static TagKey<EntityType<?>> tag(String name) {
             return TagKey.create(Registries.ENTITY_TYPE, CaerulaArborMod.loc(name));
         }

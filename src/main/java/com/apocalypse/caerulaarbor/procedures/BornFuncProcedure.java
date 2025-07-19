@@ -3,25 +3,21 @@ package com.apocalypse.caerulaarbor.procedures;
 import com.apocalypse.caerulaarbor.init.ModAttributes;
 import com.apocalypse.caerulaarbor.init.ModTags;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.fml.common.Mod;
-import net.minecraftforge.eventbus.api.SubscribeEvent;
-import net.minecraftforge.eventbus.api.Event;
-import net.minecraftforge.event.entity.EntityJoinLevelEvent;
-import net.minecraftforge.common.ForgeMod;
-
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.util.RandomSource;
-import net.minecraft.util.Mth;
-import net.minecraft.tags.TagKey;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.commands.CommandSource;
+import net.minecraft.commands.CommandSourceStack;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
+import net.minecraft.world.entity.Entity;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraftforge.common.ForgeMod;
+import net.minecraftforge.event.entity.EntityJoinLevelEvent;
+import net.minecraftforge.eventbus.api.Event;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
+import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 
@@ -39,7 +35,7 @@ public class BornFuncProcedure {
 	private static void execute(@Nullable Event event, LevelAccessor world, Entity entity) {
 		if (entity == null)
 			return;
-        if (entity.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING)) {
+        if (entity.getType().is(ModTags.EntityTypes.SEA_BORN)) {
 			if (entity instanceof LivingEntity _livingEntity2 && _livingEntity2.getAttributes().hasAttribute(ForgeMod.SWIM_SPEED.get()))
 				_livingEntity2.getAttribute(ForgeMod.SWIM_SPEED.get())
 						.setBaseValue(((entity instanceof LivingEntity _livingEntity1 && _livingEntity1.getAttributes().hasAttribute(Attributes.MOVEMENT_SPEED) ? _livingEntity1.getAttribute(Attributes.MOVEMENT_SPEED).getBaseValue() : 0) * 10));
@@ -63,7 +59,7 @@ public class BornFuncProcedure {
 							.setBaseValue(((entity instanceof LivingEntity _livingEntity12 && _livingEntity12.getAttributes().hasAttribute(Attributes.ATTACK_DAMAGE) ? _livingEntity12.getAttribute(Attributes.ATTACK_DAMAGE).getBaseValue() : 0)
 									* (1 + 0.25 * CaerulaArborModVariables.MapVariables.get(world).strategy_grow)));
 				if (CaerulaArborModVariables.MapVariables.get(world).strategy_breed > 0) {
-					if (!entity.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING) && !entity.getType().is(ModTags.EntityTypes.OCEAN_SPAWN)) {
+					if (!entity.getType().is(ModTags.EntityTypes.SEA_BORN) && !entity.getType().is(ModTags.EntityTypes.SEA_BORN_CREATURE)) {
 						if (Math.random() < 0.05 + 0.05 * CaerulaArborModVariables.MapVariables.get(world).strategy_breed) {
 							{
 								Entity _ent = entity;

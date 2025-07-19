@@ -35,7 +35,7 @@ public class AngerOfTideMobEffect extends MobEffect {
                 entity.level().getEntitiesOfClass(
                                 Mob.class,
                                 new AABB(_center, _center).inflate(64 / 2d),
-                                e -> e.getMaxHealth() >= 7 && !e.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING)
+                                e -> e.getMaxHealth() >= 7 && !e.getType().is(ModTags.EntityTypes.SEA_BORN)
                         )
                         .stream()
                         .findFirst()

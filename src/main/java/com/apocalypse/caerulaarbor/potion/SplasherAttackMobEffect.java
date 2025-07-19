@@ -52,7 +52,7 @@ public class SplasherAttackMobEffect extends MobEffect {
             if ((entityiterator instanceof LivingEntity _livEnt ? _livEnt.getMaxHealth() : -1) < 5) {
                 continue;
             }
-            if (entityiterator.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING)) {
+            if (entityiterator.getType().is(ModTags.EntityTypes.SEA_BORN)) {
                 continue;
             }
             if (entityiterator instanceof Player) {

@@ -160,7 +160,7 @@ public class KillFuncProcedure {
                     _level.sendParticles(ParticleTypes.WAX_ON, x, y, z, 48, 0.7, 1.5, 0.7, 0.2);
             }
         }
-        if (entity.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING)) {
+        if (entity.getType().is(ModTags.EntityTypes.SEA_BORN)) {
             if (world.getLevelData().getGameRules().getBoolean(ModGameRules.NATURAL_EVOLUTION)) {
                 if (!world.getEntitiesOfClass(Player.class, AABB.ofSize(new Vec3(x, y, z), 128, 128, 128), e -> true).isEmpty()) {
                     CaerulaArborModVariables.MapVariables.get(world).evo_point_breed = CaerulaArborModVariables.MapVariables.get(world).evo_point_breed + (entity instanceof LivingEntity _livEnt ? _livEnt.getMaxHealth() : -1) * 0.1;

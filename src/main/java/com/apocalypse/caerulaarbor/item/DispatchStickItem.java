@@ -41,7 +41,7 @@ public class DispatchStickItem extends Item {
         for (var entityiterator : world.getEntitiesOfClass(LivingEntity.class,
                 new AABB(center, center).inflate(32), e -> true)
         ) {
-            if (entityiterator.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING)
+            if (entityiterator.getType().is(ModTags.EntityTypes.SEA_BORN)
                     && !entityiterator.level().isClientSide()
             ) {
                 entityiterator.addEffect(new MobEffectInstance(ModMobEffects.ANGER_OF_TIDE.get(), 131072, 0, false, true));
@@ -57,7 +57,7 @@ public class DispatchStickItem extends Item {
         for (var entity : target.level()
                 .getEntitiesOfClass(Mob.class, new AABB(center, center).inflate(64 / 2d), e -> true)
         ) {
-            if (entity.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING)
+            if (entity.getType().is(ModTags.EntityTypes.SEA_BORN)
                     && target != entity
             ) {
                 entity.setTarget(target);

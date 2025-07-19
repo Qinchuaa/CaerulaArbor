@@ -35,7 +35,7 @@ public class MobInitProcedure {
 			if (livingEntity1.getAttributes().hasAttribute(ModAttributes.SANITY_INJURY_RESISTANCE.get()))
 				livingEntity1.getAttribute(ModAttributes.SANITY_INJURY_RESISTANCE.get()).setBaseValue(0.1);
 		}
-		if (entity.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING)) {
+		if (entity.getType().is(ModTags.EntityTypes.SEA_BORN)) {
 			if (entity instanceof LivingEntity _livingEntity3 && _livingEntity3.getAttributes().hasAttribute(ModAttributes.SANITY_INJURY_RESISTANCE.get()))
 				_livingEntity3.getAttribute(ModAttributes.SANITY_INJURY_RESISTANCE.get()).setBaseValue(0.33);
 		}

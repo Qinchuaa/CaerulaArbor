@@ -45,7 +45,7 @@ public class MobTickFuncProcedure {
             if (entity instanceof LivingEntity _entity)
                 _entity.removeEffect(ModMobEffects.TRAIL_BUFF.get());
         }
-        if (entity.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING)) {
+        if (entity.getType().is(ModTags.EntityTypes.SEA_BORN)) {
             if (CaerulaArborModVariables.MapVariables.get(world).strategy_subsisting >= 3) {
                 if (!(entity instanceof LivingEntity _livEnt14 && _livEnt14.hasEffect(MobEffects.DAMAGE_RESISTANCE))) {
                     if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
@@ -65,7 +65,7 @@ public class MobTickFuncProcedure {
                                 final Vec3 _center = new Vec3(x, y, z);
                                 List<Entity> _entfound = world.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(64 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList();
                                 for (Entity entityiterator : _entfound) {
-                                    if (!(entityiterator == entity) && entityiterator.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING)) {
+                                    if (!(entityiterator == entity) && entityiterator.getType().is(ModTags.EntityTypes.SEA_BORN)) {
                                         amplifi = amplifi + 2;
                                     }
                                     if (amplifi > 29) {
@@ -79,7 +79,7 @@ public class MobTickFuncProcedure {
                                 final Vec3 _center = new Vec3(x, y, z);
                                 List<Entity> _entfound = world.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(32 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList();
                                 for (Entity entityiterator : _entfound) {
-                                    if (!(entityiterator == entity) && entityiterator.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING)) {
+                                    if (!(entityiterator == entity) && entityiterator.getType().is(ModTags.EntityTypes.SEA_BORN)) {
                                         amplifi = amplifi + 1;
                                     }
                                     if (amplifi > 9) {

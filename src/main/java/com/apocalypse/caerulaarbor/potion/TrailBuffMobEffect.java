@@ -38,7 +38,7 @@ public class TrailBuffMobEffect extends MobEffect {
 	public void applyEffectTick(@NotNull LivingEntity entity, int amplifier) {
 		LevelAccessor world = entity.level();
 
-		if (!entity.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING)) {
+		if (!entity.getType().is(ModTags.EntityTypes.SEA_BORN)) {
 			if (!(entity instanceof Player && (entity.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable())).player_oceanization == 3)) {
 				entity.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.MAGIC)), 2);
 				DeductPlayerSanityProcedure.execute(entity, 20);

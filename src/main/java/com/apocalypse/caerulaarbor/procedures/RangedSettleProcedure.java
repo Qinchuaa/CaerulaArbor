@@ -18,7 +18,7 @@ public class RangedSettleProcedure {
 			return;
 		for (Entity entityiterator : world.getEntities(entity, new AABB((x - 4), (y - 0.5), (z - 4), (x + 4), (y + 2), (z + 4)))) {
 			if ((entityiterator != null ? entity.distanceTo(entityiterator) : -1) <= 4) {
-				if (entityiterator.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING)) {
+				if (entityiterator.getType().is(ModTags.EntityTypes.SEA_BORN)) {
 					if (!(entityiterator == (entity instanceof Mob _mobEnt ? (Entity) _mobEnt.getTarget() : null))) {
 						continue;
 					}
@@ -32,7 +32,7 @@ public class RangedSettleProcedure {
 		if (CaerulaArborModVariables.MapVariables.get(world).strategy_grow >= 3) {
 			for (Entity entityiterator : world.getEntities(entity, new AABB((x - 7), (y - 1), (z - 7), (x + 7), (y + 3), (z + 7)))) {
 				if ((entityiterator != null ? entity.distanceTo(entityiterator) : -1) <= 7) {
-					if (entityiterator.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING)) {
+					if (entityiterator.getType().is(ModTags.EntityTypes.SEA_BORN)) {
 						if (!(entityiterator == (entity instanceof Mob _mobEnt ? (Entity) _mobEnt.getTarget() : null))) {
 							continue;
 						}

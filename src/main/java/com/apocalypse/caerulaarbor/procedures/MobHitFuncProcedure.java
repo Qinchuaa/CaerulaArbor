@@ -68,7 +68,7 @@ public class MobHitFuncProcedure {
             }
         }
         if (CaerulaArborModVariables.MapVariables.get(world).strategy_grow >= 3) {
-            if (sourceentity.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING) && !damagesource.is(DamageTypes.MAGIC)) {
+            if (sourceentity.getType().is(ModTags.EntityTypes.SEA_BORN) && !damagesource.is(DamageTypes.MAGIC)) {
                 CaerulaArborMod.queueServerWork(10, () -> {
                     entity.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.MAGIC), immediatesourceentity, sourceentity),
                             (float) (amount * 0.2 * (CaerulaArborModVariables.MapVariables.get(world).strategy_grow - 2)));
@@ -77,12 +77,12 @@ public class MobHitFuncProcedure {
                 });
             }
         }
-        if (entity.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING) && !sourceentity.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING)) {
+        if (entity.getType().is(ModTags.EntityTypes.SEA_BORN) && !sourceentity.getType().is(ModTags.EntityTypes.SEA_BORN)) {
             if (CaerulaArborModVariables.MapVariables.get(world).strategy_migration > 0) {
                 for (Entity entityiterator : world.getEntities(entity,
                         new AABB((x - (8 + CaerulaArborModVariables.MapVariables.get(world).strategy_migration * 24)), (y - 16), (z - (8 + CaerulaArborModVariables.MapVariables.get(world).strategy_migration * 24)),
                                 (x + 8 + CaerulaArborModVariables.MapVariables.get(world).strategy_migration * 24), (y + 16), (z + 8 + CaerulaArborModVariables.MapVariables.get(world).strategy_migration * 24)))) {
-                    if (entityiterator.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING)) {
+                    if (entityiterator.getType().is(ModTags.EntityTypes.SEA_BORN)) {
                         if (entityiterator == sourceentity) {
                             continue;
                         }
@@ -102,7 +102,7 @@ public class MobHitFuncProcedure {
                     for (Entity entityiterator : world.getEntities(entity,
                             new AABB((x - (8 + CaerulaArborModVariables.MapVariables.get(world).strategy_migration * 24)), (y - 16), (z - (8 + CaerulaArborModVariables.MapVariables.get(world).strategy_migration * 24)),
                                     (x + 8 + CaerulaArborModVariables.MapVariables.get(world).strategy_migration * 24), (y + 16), (z + 8 + CaerulaArborModVariables.MapVariables.get(world).strategy_migration * 24)))) {
-                        if (entityiterator.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING)) {
+                        if (entityiterator.getType().is(ModTags.EntityTypes.SEA_BORN)) {
                             if (entityiterator == sourceentity) {
                                 continue;
                             }
@@ -117,7 +117,7 @@ public class MobHitFuncProcedure {
                 }
             }
         }
-        if (sourceentity.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING)) {
+        if (sourceentity.getType().is(ModTags.EntityTypes.SEA_BORN)) {
             if (world.getLevelData().getGameRules().getBoolean(ModGameRules.NATURAL_EVOLUTION)) {
                 CaerulaArborModVariables.MapVariables.get(world).evo_point_grow = CaerulaArborModVariables.MapVariables.get(world).evo_point_grow + amount * 0.025;
                 CaerulaArborModVariables.MapVariables.get(world).syncData(world);
@@ -125,7 +125,7 @@ public class MobHitFuncProcedure {
                 UpgradeSilenceProcedure.execute(world, entity, amount * 0.025);
             }
         }
-        if (entity.getType().is(ModTags.EntityTypes.OCEAN_OFFSPRING)) {
+        if (entity.getType().is(ModTags.EntityTypes.SEA_BORN)) {
             if (sourceentity instanceof ServerPlayer _player) {
                 Advancement _adv = _player.server.getAdvancements().getAdvancement(new ResourceLocation("caerula_arbor:encounter_from_the_ocean"));
                 AdvancementProgress _ap = _player.getAdvancements().getOrStartProgress(_adv);

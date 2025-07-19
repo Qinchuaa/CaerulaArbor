@@ -1,7 +1,6 @@
 {
-  "replace": false,
   "values": [
     "caerula_arbor:super_slider",
-    "caerula_arbor:route_shaper"
+    "caerula_arbor:path_shaper"
   ]
 }
