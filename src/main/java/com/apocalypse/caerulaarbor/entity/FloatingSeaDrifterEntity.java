@@ -1,16 +1,15 @@
 package com.apocalypse.caerulaarbor.entity;
 
+import com.apocalypse.caerulaarbor.entity.ai.goal.SeaMonsterAttackableTargetGoal;
 import com.apocalypse.caerulaarbor.entity.base.SeaMonster;
 import com.apocalypse.caerulaarbor.init.ModAttributes;
 import com.apocalypse.caerulaarbor.init.ModEntities;
-import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
@@ -32,7 +31,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.PlayMessages;
 import org.jetbrains.annotations.NotNull;
@@ -68,25 +66,7 @@ public class FloatingSeaDrifterEntity extends SeaMonster implements RangedAttack
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, false, false) {
-            @Override
-            public boolean canUse() {
-                double x = FloatingSeaDrifterEntity.this.getX();
-                double y = FloatingSeaDrifterEntity.this.getY();
-                double z = FloatingSeaDrifterEntity.this.getZ();
-                Level world = FloatingSeaDrifterEntity.this.level();
-                return super.canUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
-            }
-
-            @Override
-            public boolean canContinueToUse() {
-                double x = FloatingSeaDrifterEntity.this.getX();
-                double y = FloatingSeaDrifterEntity.this.getY();
-                double z = FloatingSeaDrifterEntity.this.getZ();
-                Level world = FloatingSeaDrifterEntity.this.level();
-                return super.canContinueToUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
-            }
-        });
+        this.targetSelector.addGoal(1, new SeaMonsterAttackableTargetGoal<>(this, Player.class, false, false));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, IronGolem.class, false, false));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, SnowGolem.class, false, false));
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Villager.class, false, false));

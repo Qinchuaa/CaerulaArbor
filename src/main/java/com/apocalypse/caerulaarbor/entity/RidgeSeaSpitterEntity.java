@@ -1,18 +1,16 @@
 package com.apocalypse.caerulaarbor.entity;
 
+import com.apocalypse.caerulaarbor.entity.ai.goal.SeaMonsterAttackableTargetGoal;
 import com.apocalypse.caerulaarbor.entity.base.SeaMonster;
 import com.apocalypse.caerulaarbor.init.ModEntities;
-import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
-import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.FloatGoal;
@@ -28,7 +26,6 @@ import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.network.PlayMessages;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.core.animation.AnimatableManager;
@@ -56,25 +53,7 @@ public class RidgeSeaSpitterEntity extends SeaMonster implements RangedAttackMob
     @Override
     protected void registerGoals() {
         super.registerGoals();
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, false, false) {
-            @Override
-            public boolean canUse() {
-                double x = RidgeSeaSpitterEntity.this.getX();
-                double y = RidgeSeaSpitterEntity.this.getY();
-                double z = RidgeSeaSpitterEntity.this.getZ();
-                Level world = RidgeSeaSpitterEntity.this.level();
-                return super.canUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
-            }
-
-            @Override
-            public boolean canContinueToUse() {
-                double x = RidgeSeaSpitterEntity.this.getX();
-                double y = RidgeSeaSpitterEntity.this.getY();
-                double z = RidgeSeaSpitterEntity.this.getZ();
-                Level world = RidgeSeaSpitterEntity.this.level();
-                return super.canContinueToUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
-            }
-        });
+        this.targetSelector.addGoal(1, new SeaMonsterAttackableTargetGoal<>(this, Player.class, false, false));
         this.targetSelector.addGoal(2, new NearestAttackableTargetGoal<>(this, IronGolem.class, false, false));
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, SnowGolem.class, false, false));
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Villager.class, false, false));

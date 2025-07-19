@@ -1,10 +1,10 @@
 package com.apocalypse.caerulaarbor.entity;
 
+import com.apocalypse.caerulaarbor.entity.ai.goal.SeaMonsterAttackableTargetGoal;
 import com.apocalypse.caerulaarbor.entity.base.SeaMonster;
 import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
-import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
@@ -91,25 +91,7 @@ public class BalefulBroodlingEntity extends SeaMonster {
         this.targetSelector.addGoal(10, new NearestAttackableTargetGoal<>(this, Piglin.class, false, false));
         this.targetSelector.addGoal(11, new NearestAttackableTargetGoal<>(this, PiglinBrute.class, false, false));
         this.targetSelector.addGoal(12, new NearestAttackableTargetGoal<>(this, ZombifiedPiglin.class, false, false));
-        this.targetSelector.addGoal(13, new NearestAttackableTargetGoal<>(this, Player.class, false, false) {
-            @Override
-            public boolean canUse() {
-                double x = BalefulBroodlingEntity.this.getX();
-                double y = BalefulBroodlingEntity.this.getY();
-                double z = BalefulBroodlingEntity.this.getZ();
-                Level world = BalefulBroodlingEntity.this.level();
-                return super.canUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
-            }
-
-            @Override
-            public boolean canContinueToUse() {
-                double x = BalefulBroodlingEntity.this.getX();
-                double y = BalefulBroodlingEntity.this.getY();
-                double z = BalefulBroodlingEntity.this.getZ();
-                Level world = BalefulBroodlingEntity.this.level();
-                return super.canContinueToUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
-            }
-        });
+        this.targetSelector.addGoal(13, new SeaMonsterAttackableTargetGoal<>(this, Player.class, false, false));
         this.goalSelector.addGoal(14, new LeapAtTargetGoal(this, 0.2F));
     }
 

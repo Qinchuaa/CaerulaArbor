@@ -1,14 +1,13 @@
 package com.apocalypse.caerulaarbor.entity;
 
+import com.apocalypse.caerulaarbor.entity.ai.goal.SeaMonsterAttackableTargetGoal;
 import com.apocalypse.caerulaarbor.entity.base.SeaMonster;
 import com.apocalypse.caerulaarbor.init.ModAttributes;
 import com.apocalypse.caerulaarbor.init.ModEntities;
-import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
@@ -23,7 +22,6 @@ import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.animal.SnowGolem;
 import net.minecraft.world.entity.monster.Illusioner;
-import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Pillager;
 import net.minecraft.world.entity.monster.Vindicator;
 import net.minecraft.world.entity.npc.Villager;
@@ -31,8 +29,6 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraftforge.common.DungeonHooks;
 import net.minecraftforge.network.PlayMessages;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.core.animation.AnimatableManager;
@@ -71,25 +67,7 @@ public class DeepSeaSliderEntity extends SeaMonster {
                 return 1;
             }
         });
-        this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, Player.class, false, false) {
-            @Override
-            public boolean canUse() {
-                double x = DeepSeaSliderEntity.this.getX();
-                double y = DeepSeaSliderEntity.this.getY();
-                double z = DeepSeaSliderEntity.this.getZ();
-                Level world = DeepSeaSliderEntity.this.level();
-                return super.canUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
-            }
-
-            @Override
-            public boolean canContinueToUse() {
-                double x = DeepSeaSliderEntity.this.getX();
-                double y = DeepSeaSliderEntity.this.getY();
-                double z = DeepSeaSliderEntity.this.getZ();
-                Level world = DeepSeaSliderEntity.this.level();
-                return super.canContinueToUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
-            }
-        });
+        this.targetSelector.addGoal(3, new SeaMonsterAttackableTargetGoal<>(this, Player.class, false, false));
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, IronGolem.class, false, false));
         this.targetSelector.addGoal(5, new NearestAttackableTargetGoal<>(this, SnowGolem.class, false, false));
         this.targetSelector.addGoal(6, new NearestAttackableTargetGoal<>(this, Villager.class, false, false));

@@ -1,14 +1,13 @@
 package com.apocalypse.caerulaarbor.entity;
 
+import com.apocalypse.caerulaarbor.entity.ai.goal.SeaMonsterAttackableTargetGoal;
 import com.apocalypse.caerulaarbor.entity.base.SeaMonster;
 import com.apocalypse.caerulaarbor.init.ModAttributes;
 import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.procedures.LayTrailProcedure;
-import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
-import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -29,8 +28,6 @@ import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraftforge.common.DungeonHooks;
 import net.minecraftforge.network.PlayMessages;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.core.animation.AnimatableManager;
@@ -75,25 +72,7 @@ public class NetherseaFounderEntity extends SeaMonster {
         this.targetSelector.addGoal(10, new NearestAttackableTargetGoal<>(this, Piglin.class, false, false));
         this.targetSelector.addGoal(11, new NearestAttackableTargetGoal<>(this, PiglinBrute.class, false, false));
         this.targetSelector.addGoal(12, new NearestAttackableTargetGoal<>(this, ZombifiedPiglin.class, false, false));
-        this.targetSelector.addGoal(13, new NearestAttackableTargetGoal<>(this, Player.class, false, false) {
-            @Override
-            public boolean canUse() {
-                double x = NetherseaFounderEntity.this.getX();
-                double y = NetherseaFounderEntity.this.getY();
-                double z = NetherseaFounderEntity.this.getZ();
-                Level world = NetherseaFounderEntity.this.level();
-                return super.canUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
-            }
-
-            @Override
-            public boolean canContinueToUse() {
-                double x = NetherseaFounderEntity.this.getX();
-                double y = NetherseaFounderEntity.this.getY();
-                double z = NetherseaFounderEntity.this.getZ();
-                Level world = NetherseaFounderEntity.this.level();
-                return super.canContinueToUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
-            }
-        });
+        this.targetSelector.addGoal(13, new SeaMonsterAttackableTargetGoal<>(this, Player.class, false, false));
         this.goalSelector.addGoal(14, new RandomStrollGoal(this, 0.4));
         this.goalSelector.addGoal(15, new RandomLookAroundGoal(this));
     }

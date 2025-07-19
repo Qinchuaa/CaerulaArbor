@@ -1,8 +1,8 @@
 package com.apocalypse.caerulaarbor.entity;
 
+import com.apocalypse.caerulaarbor.entity.ai.goal.SeaMonsterAttackableTargetGoal;
 import com.apocalypse.caerulaarbor.entity.base.SeaMonster;
 import com.apocalypse.caerulaarbor.init.ModEntities;
-import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
@@ -87,25 +87,7 @@ public class PathshaperFractalEntity extends SeaMonster {
         this.targetSelector.addGoal(10, new NearestAttackableTargetGoal<>(this, Piglin.class, false, false));
         this.targetSelector.addGoal(11, new NearestAttackableTargetGoal<>(this, PiglinBrute.class, false, false));
         this.targetSelector.addGoal(12, new NearestAttackableTargetGoal<>(this, ZombifiedPiglin.class, false, false));
-        this.targetSelector.addGoal(13, new NearestAttackableTargetGoal<>(this, Player.class, false, false) {
-            @Override
-            public boolean canUse() {
-                double x = PathshaperFractalEntity.this.getX();
-                double y = PathshaperFractalEntity.this.getY();
-                double z = PathshaperFractalEntity.this.getZ();
-                Level world = PathshaperFractalEntity.this.level();
-                return super.canUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
-            }
-
-            @Override
-            public boolean canContinueToUse() {
-                double x = PathshaperFractalEntity.this.getX();
-                double y = PathshaperFractalEntity.this.getY();
-                double z = PathshaperFractalEntity.this.getZ();
-                Level world = PathshaperFractalEntity.this.level();
-                return super.canContinueToUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
-            }
-        });
+        this.targetSelector.addGoal(13, new SeaMonsterAttackableTargetGoal<>(this, Player.class, false, false));
         this.goalSelector.addGoal(14, new RandomStrollGoal(this, 0.5));
         this.goalSelector.addGoal(15, new RandomLookAroundGoal(this));
     }

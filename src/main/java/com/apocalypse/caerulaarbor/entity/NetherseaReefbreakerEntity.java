@@ -2,12 +2,12 @@ package com.apocalypse.caerulaarbor.entity;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.config.common.GameplayConfig;
+import com.apocalypse.caerulaarbor.entity.ai.goal.SeaMonsterAttackableTargetGoal;
 import com.apocalypse.caerulaarbor.entity.base.SeaMonster;
 import com.apocalypse.caerulaarbor.init.ModBlocks;
 import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.init.ModTags;
-import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
@@ -15,7 +15,6 @@ import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -40,7 +39,6 @@ import net.minecraft.world.level.GameRules;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.PlayMessages;
@@ -99,25 +97,7 @@ public class NetherseaReefbreakerEntity extends SeaMonster {
         this.targetSelector.addGoal(11, new NearestAttackableTargetGoal<>(this, Piglin.class, false, false));
         this.targetSelector.addGoal(12, new NearestAttackableTargetGoal<>(this, PiglinBrute.class, false, false));
         this.targetSelector.addGoal(13, new NearestAttackableTargetGoal<>(this, ZombifiedPiglin.class, false, false));
-        this.targetSelector.addGoal(14, new NearestAttackableTargetGoal<>(this, Player.class, false, false) {
-            @Override
-            public boolean canUse() {
-                double x = NetherseaReefbreakerEntity.this.getX();
-                double y = NetherseaReefbreakerEntity.this.getY();
-                double z = NetherseaReefbreakerEntity.this.getZ();
-                Level world = NetherseaReefbreakerEntity.this.level();
-                return super.canUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
-            }
-
-            @Override
-            public boolean canContinueToUse() {
-                double x = NetherseaReefbreakerEntity.this.getX();
-                double y = NetherseaReefbreakerEntity.this.getY();
-                double z = NetherseaReefbreakerEntity.this.getZ();
-                Level world = NetherseaReefbreakerEntity.this.level();
-                return super.canContinueToUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
-            }
-        });
+        this.targetSelector.addGoal(14, new SeaMonsterAttackableTargetGoal<>(this, Player.class, false, false));
         this.goalSelector.addGoal(15, new RandomStrollGoal(this, 0.4));
         this.goalSelector.addGoal(16, new RandomLookAroundGoal(this));
     }

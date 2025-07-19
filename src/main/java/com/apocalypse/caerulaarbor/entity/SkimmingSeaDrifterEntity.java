@@ -1,14 +1,13 @@
 package com.apocalypse.caerulaarbor.entity;
 
+import com.apocalypse.caerulaarbor.entity.ai.goal.SeaMonsterAttackableTargetGoal;
 import com.apocalypse.caerulaarbor.entity.base.SeaMonster;
 import com.apocalypse.caerulaarbor.init.ModEntities;
-import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
-import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -30,9 +29,7 @@ import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.common.DungeonHooks;
 import net.minecraftforge.network.PlayMessages;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.core.animation.AnimatableManager;
@@ -81,25 +78,7 @@ public class SkimmingSeaDrifterEntity extends SeaMonster implements RangedAttack
         this.targetSelector.addGoal(8, new NearestAttackableTargetGoal<>(this, Piglin.class, false, false));
         this.targetSelector.addGoal(9, new NearestAttackableTargetGoal<>(this, PiglinBrute.class, false, false));
         this.targetSelector.addGoal(10, new NearestAttackableTargetGoal<>(this, ZombifiedPiglin.class, false, false));
-        this.targetSelector.addGoal(11, new NearestAttackableTargetGoal<>(this, Player.class, false, false) {
-            @Override
-            public boolean canUse() {
-                double x = SkimmingSeaDrifterEntity.this.getX();
-                double y = SkimmingSeaDrifterEntity.this.getY();
-                double z = SkimmingSeaDrifterEntity.this.getZ();
-                Level world = SkimmingSeaDrifterEntity.this.level();
-                return super.canUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
-            }
-
-            @Override
-            public boolean canContinueToUse() {
-                double x = SkimmingSeaDrifterEntity.this.getX();
-                double y = SkimmingSeaDrifterEntity.this.getY();
-                double z = SkimmingSeaDrifterEntity.this.getZ();
-                Level world = SkimmingSeaDrifterEntity.this.level();
-                return super.canContinueToUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
-            }
-        });
+        this.targetSelector.addGoal(11, new SeaMonsterAttackableTargetGoal<>(this, Player.class, false, false));
         this.targetSelector.addGoal(12, new HurtByTargetGoal(this));
         this.goalSelector.addGoal(13, new RandomStrollGoal(this, 0.7, 20) {
             @Override
