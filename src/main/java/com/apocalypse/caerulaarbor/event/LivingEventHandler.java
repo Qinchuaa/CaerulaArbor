@@ -1,21 +1,28 @@
 package com.apocalypse.caerulaarbor.event;
 
+import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.api.event.RelicEvent;
 import com.apocalypse.caerulaarbor.block.SeaTrailBaseBlock;
 import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.capability.sanity.SanityInjuryCapability;
+import com.apocalypse.caerulaarbor.init.ModAttributes;
+import com.apocalypse.caerulaarbor.init.ModTags;
 import com.apocalypse.caerulaarbor.item.relic.IRelic;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.animal.IronGolem;
+import net.minecraft.world.entity.monster.warden.Warden;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.living.MobSpawnEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -103,6 +110,27 @@ public class LivingEventHandler {
             if (state.getBlock() instanceof SeaTrailBaseBlock seaTrailBaseBlock) {
                 seaTrailBaseBlock.onEntityDeathNearby(serverLevel, pos, state);
             }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onFinalizeSpawn(MobSpawnEvent.FinalizeSpawn event) {
+        var entity = event.getEntity();
+        var attribute = entity.getAttribute(ModAttributes.SANITY_INJURY_RESISTANCE.get());
+        if (attribute == null) return;
+        if (entity.getType().is(ModTags.EntityTypes.SEA_BORN_BOSS)) {
+            attribute.addPermanentModifier(new AttributeModifier(CaerulaArborMod.ATTRIBUTE_MODIFIER, 85, AttributeModifier.Operation.ADDITION));
+        } else if (entity.getType().is(ModTags.EntityTypes.SEA_BORN)) {
+            attribute.addPermanentModifier(new AttributeModifier(CaerulaArborMod.ATTRIBUTE_MODIFIER, 60, AttributeModifier.Operation.ADDITION));
+        }
+        if (entity instanceof IronGolem) {
+            attribute.addPermanentModifier(new AttributeModifier(CaerulaArborMod.ATTRIBUTE_MODIFIER, 90, AttributeModifier.Operation.ADDITION));
+        }
+        if (entity instanceof Warden) {
+            attribute.addPermanentModifier(new AttributeModifier(CaerulaArborMod.ATTRIBUTE_MODIFIER, 75, AttributeModifier.Operation.ADDITION));
+        }
+        if (entity.getMobType() == MobType.UNDEAD) {
+            attribute.addPermanentModifier(new AttributeModifier(CaerulaArborMod.ATTRIBUTE_MODIFIER, 50, AttributeModifier.Operation.ADDITION));
         }
     }
 }
