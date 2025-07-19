@@ -79,11 +79,11 @@ public class ModEntities {
     public static final RegistryObject<EntityType<SkimmingSeaDrifterEntity>> SKIMMING_SEA_DRIFTER = register("skimming_sea_drifter",
             EntityType.Builder.<SkimmingSeaDrifterEntity>of(SkimmingSeaDrifterEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(SkimmingSeaDrifterEntity::new)
                     .sized(0.8f, 1.1f));
-    public static final RegistryObject<EntityType<RouteShaperEntity>> ROUTE_SHAPER = register("route_shaper",
-            EntityType.Builder.<RouteShaperEntity>of(RouteShaperEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(RouteShaperEntity::new)
+    public static final RegistryObject<EntityType<PathShaperEntity>> PATH_SHAPER = register("path_shaper",
+            EntityType.Builder.<PathShaperEntity>of(PathShaperEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(PathShaperEntity::new)
                     .sized(1.8f, 4f));
-    public static final RegistryObject<EntityType<RouteFractalEntity>> ROUTE_FRACTAL = register("route_fractal",
-            EntityType.Builder.<RouteFractalEntity>of(RouteFractalEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(RouteFractalEntity::new)
+    public static final RegistryObject<EntityType<PathshaperFractalEntity>> PATHSHAPER_FRACTAL = register("pathshaper_fractal",
+            EntityType.Builder.<PathshaperFractalEntity>of(PathshaperFractalEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(PathshaperFractalEntity::new)
                     .sized(0.7f, 1.5f));
 
     // Projectiles
@@ -121,8 +121,8 @@ public class ModEntities {
             OceanStonecutterEntity.init();
             RetchingBroodmotherEntity.init();
             SkimmingSeaDrifterEntity.init();
-            RouteShaperEntity.init();
-            RouteFractalEntity.init();
+            PathShaperEntity.init();
+            PathshaperFractalEntity.init();
         });
     }
 
@@ -148,7 +148,7 @@ public class ModEntities {
         event.put(RETCHING_BROODMOTHER.get(), RetchingBroodmotherEntity.createAttributes().build());
         event.put(BALEFUL_BROODLING.get(), BalefulBroodlingEntity.createAttributes().build());
         event.put(SKIMMING_SEA_DRIFTER.get(), SkimmingSeaDrifterEntity.createAttributes().build());
-        event.put(ROUTE_SHAPER.get(), RouteShaperEntity.createAttributes().build());
-        event.put(ROUTE_FRACTAL.get(), RouteFractalEntity.createAttributes().build());
+        event.put(PATH_SHAPER.get(), PathShaperEntity.createAttributes().build());
+        event.put(PATHSHAPER_FRACTAL.get(), PathshaperFractalEntity.createAttributes().build());
     }
 }

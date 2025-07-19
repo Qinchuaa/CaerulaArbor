@@ -1,13 +1,11 @@
-
 package com.apocalypse.caerulaarbor.entity;
 
+import com.apocalypse.caerulaarbor.entity.base.SeaMonster;
 import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import com.apocalypse.caerulaarbor.procedures.SummonFractalProcedure;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -20,7 +18,10 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
@@ -38,40 +39,30 @@ import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.storage.loot.LootParams;
 import net.minecraft.world.level.storage.loot.parameters.LootContextParamSets;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
-import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import org.jetbrains.annotations.NotNull;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.util.GeckoLibUtil;
 
-public class RouteShaperEntity extends Monster implements GeoEntity {
-    public static final EntityDataAccessor<Boolean> SHOOT = SynchedEntityData.defineId(RouteShaperEntity.class, EntityDataSerializers.BOOLEAN);
-    public static final EntityDataAccessor<String> ANIMATION = SynchedEntityData.defineId(RouteShaperEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> TEXTURE = SynchedEntityData.defineId(RouteShaperEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<Integer> DATA_skillp = SynchedEntityData.defineId(RouteShaperEntity.class, EntityDataSerializers.INT);
-    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
-    private boolean swinging;
-    private long lastSwing;
-    public String animationprocedure = "empty";
+public class PathShaperEntity extends SeaMonster {
+
+    public static final EntityDataAccessor<Integer> DATA_skillp = SynchedEntityData.defineId(PathShaperEntity.class, EntityDataSerializers.INT);
+
     private final ServerBossEvent bossInfo = new ServerBossEvent(this.getDisplayName(), ServerBossEvent.BossBarColor.BLUE, ServerBossEvent.BossBarOverlay.PROGRESS);
 
-    public RouteShaperEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(ModEntities.ROUTE_SHAPER.get(), world);
+    public PathShaperEntity(PlayMessages.SpawnEntity packet, Level world) {
+        this(ModEntities.PATH_SHAPER.get(), world);
     }
 
-    public RouteShaperEntity(EntityType<RouteShaperEntity> type, Level world) {
+    public PathShaperEntity(EntityType<PathShaperEntity> type, Level world) {
         super(type, world);
         xpReward = 32;
         setNoAi(false);
@@ -82,23 +73,7 @@ public class RouteShaperEntity extends Monster implements GeoEntity {
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
-        this.entityData.define(SHOOT, false);
-        this.entityData.define(ANIMATION, "undefined");
-        this.entityData.define(TEXTURE, "routeshaper");
         this.entityData.define(DATA_skillp, 0);
-    }
-
-    public void setTexture(String texture) {
-        this.entityData.set(TEXTURE, texture);
-    }
-
-    public String getTexture() {
-        return this.entityData.get(TEXTURE);
-    }
-
-    @Override
-    public @NotNull Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
@@ -124,29 +99,24 @@ public class RouteShaperEntity extends Monster implements GeoEntity {
         this.targetSelector.addGoal(13, new NearestAttackableTargetGoal<>(this, Player.class, false, false) {
             @Override
             public boolean canUse() {
-                double x = RouteShaperEntity.this.getX();
-                double y = RouteShaperEntity.this.getY();
-                double z = RouteShaperEntity.this.getZ();
-                Level world = RouteShaperEntity.this.level();
+                double x = PathShaperEntity.this.getX();
+                double y = PathShaperEntity.this.getY();
+                double z = PathShaperEntity.this.getZ();
+                Level world = PathShaperEntity.this.level();
                 return super.canUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
             }
 
             @Override
             public boolean canContinueToUse() {
-                double x = RouteShaperEntity.this.getX();
-                double y = RouteShaperEntity.this.getY();
-                double z = RouteShaperEntity.this.getZ();
-                Level world = RouteShaperEntity.this.level();
+                double x = PathShaperEntity.this.getX();
+                double y = PathShaperEntity.this.getY();
+                double z = PathShaperEntity.this.getZ();
+                Level world = PathShaperEntity.this.level();
                 return super.canContinueToUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
             }
         });
         this.goalSelector.addGoal(14, new RandomStrollGoal(this, 0.5));
         this.goalSelector.addGoal(15, new RandomLookAroundGoal(this));
-    }
-
-    @Override
-    public @NotNull MobType getMobType() {
-        return MobType.WATER;
     }
 
     @Override
@@ -181,8 +151,6 @@ public class RouteShaperEntity extends Monster implements GeoEntity {
 
         if (source.is(DamageTypes.FALL))
             return false;
-        if (source.is(DamageTypes.DROWN))
-            return false;
         return super.hurt(source, amount);
     }
 
@@ -191,7 +159,7 @@ public class RouteShaperEntity extends Monster implements GeoEntity {
         super.die(source);
 
         final Vec3 center = new Vec3(this.getX(), this.getY(), this.getZ());
-        for (var entity : this.level().getEntitiesOfClass(RouteFractalEntity.class, new AABB(center, center).inflate(32), e -> true)) {
+        for (var entity : this.level().getEntitiesOfClass(PathshaperFractalEntity.class, new AABB(center, center).inflate(32), e -> true)) {
             entity.hurt(new DamageSource(this.level().registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.FELL_OUT_OF_WORLD)), 999999);
         }
     }
@@ -199,15 +167,12 @@ public class RouteShaperEntity extends Monster implements GeoEntity {
     @Override
     public void addAdditionalSaveData(@NotNull CompoundTag compound) {
         super.addAdditionalSaveData(compound);
-        compound.putString("Texture", this.getTexture());
         compound.putInt("Dataskillp", this.entityData.get(DATA_skillp));
     }
 
     @Override
     public void readAdditionalSaveData(@NotNull CompoundTag compound) {
         super.readAdditionalSaveData(compound);
-        if (compound.contains("Texture"))
-            this.setTexture(compound.getString("Texture"));
         if (compound.contains("Dataskillp"))
             this.entityData.set(DATA_skillp, compound.getInt("Dataskillp"));
     }
@@ -216,11 +181,6 @@ public class RouteShaperEntity extends Monster implements GeoEntity {
     public void baseTick() {
         super.baseTick();
         this.refreshDimensions();
-    }
-
-    @Override
-    public @NotNull EntityDimensions getDimensions(@NotNull Pose pose) {
-        return super.getDimensions(pose);
     }
 
     @Override
@@ -247,7 +207,7 @@ public class RouteShaperEntity extends Monster implements GeoEntity {
     }
 
     public static void init() {
-        SpawnPlacements.register(ModEntities.ROUTE_SHAPER.get(),
+        SpawnPlacements.register(ModEntities.PATH_SHAPER.get(),
                 SpawnPlacements.Type.ON_GROUND,
                 Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 (entityType, world, reason, pos, random) -> (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
@@ -265,25 +225,22 @@ public class RouteShaperEntity extends Monster implements GeoEntity {
     }
 
     private PlayState movementPredicate(AnimationState<?> event) {
-        if (this.animationprocedure.equals("empty")) {
-            if ((event.isMoving() || !(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) && !this.isVehicle() && !this.isAggressive() && !this.isSprinting()) {
-                return event.setAndContinue(RawAnimation.begin().thenLoop("animation.routeshaper.move"));
-            }
-            if (this.isDeadOrDying()) {
-                return event.setAndContinue(RawAnimation.begin().thenPlay("animation.routeshaper.die"));
-            }
-            if (this.isSprinting()) {
-                return event.setAndContinue(RawAnimation.begin().thenLoop("animation.routeshaper.move"));
-            }
-            if (this.isVehicle() && event.isMoving()) {
-                return event.setAndContinue(RawAnimation.begin().thenLoop("animation.routeshaper.move"));
-            }
-            if (this.isAggressive() && event.isMoving() && !this.isVehicle()) {
-                return event.setAndContinue(RawAnimation.begin().thenLoop("animation.routeshaper.move"));
-            }
-            return event.setAndContinue(RawAnimation.begin().thenLoop("animation.routeshaper.idle"));
+        if ((event.isMoving() || !(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) && !this.isVehicle() && !this.isAggressive() && !this.isSprinting()) {
+            return event.setAndContinue(RawAnimation.begin().thenLoop("animation.path_shaper.move"));
         }
-        return PlayState.STOP;
+        if (this.isDeadOrDying()) {
+            return event.setAndContinue(RawAnimation.begin().thenPlay("animation.path_shaper.die"));
+        }
+        if (this.isSprinting()) {
+            return event.setAndContinue(RawAnimation.begin().thenLoop("animation.path_shaper.move"));
+        }
+        if (this.isVehicle() && event.isMoving()) {
+            return event.setAndContinue(RawAnimation.begin().thenLoop("animation.path_shaper.move"));
+        }
+        if (this.isAggressive() && event.isMoving() && !this.isVehicle()) {
+            return event.setAndContinue(RawAnimation.begin().thenLoop("animation.path_shaper.move"));
+        }
+        return event.setAndContinue(RawAnimation.begin().thenLoop("animation.path_shaper.idle"));
     }
 
     private PlayState attackingPredicate(AnimationState<?> event) {
@@ -296,27 +253,8 @@ public class RouteShaperEntity extends Monster implements GeoEntity {
         }
         if (this.swinging && event.getController().getAnimationState() == AnimationController.State.STOPPED) {
             event.getController().forceAnimationReset();
-            return event.setAndContinue(RawAnimation.begin().thenPlay("animation.routeshaper.attack"));
+            return event.setAndContinue(RawAnimation.begin().thenPlay("animation.path_shaper.attack"));
         }
-        return PlayState.CONTINUE;
-    }
-
-    String prevAnim = "empty";
-
-    private PlayState procedurePredicate(AnimationState<?> event) {
-        if (!animationprocedure.equals("empty") && event.getController().getAnimationState() == AnimationController.State.STOPPED || (!this.animationprocedure.equals(prevAnim) && !this.animationprocedure.equals("empty"))) {
-            if (!this.animationprocedure.equals(prevAnim))
-                event.getController().forceAnimationReset();
-            event.getController().setAnimation(RawAnimation.begin().thenPlay(this.animationprocedure));
-            if (event.getController().getAnimationState() == AnimationController.State.STOPPED) {
-                this.animationprocedure = "empty";
-                event.getController().forceAnimationReset();
-            }
-        } else if (animationprocedure.equals("empty")) {
-            prevAnim = "empty";
-            return PlayState.STOP;
-        }
-        prevAnim = this.animationprocedure;
         return PlayState.CONTINUE;
     }
 
@@ -325,7 +263,7 @@ public class RouteShaperEntity extends Monster implements GeoEntity {
         ++this.deathTime;
         if (this.deathTime != 20) return;
 
-        this.remove(RouteShaperEntity.RemovalReason.KILLED);
+        this.remove(PathShaperEntity.RemovalReason.KILLED);
         this.dropExperience();
 
         if (this.level() instanceof ServerLevel serverLevel && this.level().getServer() != null) {
@@ -338,23 +276,9 @@ public class RouteShaperEntity extends Monster implements GeoEntity {
         }
     }
 
-    public String getSyncedAnimation() {
-        return this.entityData.get(ANIMATION);
-    }
-
-    public void setAnimation(String animation) {
-        this.entityData.set(ANIMATION, animation);
-    }
-
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar data) {
         data.add(new AnimationController<>(this, "movement", 3, this::movementPredicate));
         data.add(new AnimationController<>(this, "attacking", 3, this::attackingPredicate));
-        data.add(new AnimationController<>(this, "procedure", 3, this::procedurePredicate));
-    }
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return this.cache;
     }
 }

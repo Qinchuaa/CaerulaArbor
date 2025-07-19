@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"animation.routeshaper.idle": {
+		"animation.path_shaper.idle": {
 			"loop": true,
 			"animation_length": 3,
 			"bones": {
@@ -579,7 +579,7 @@
 				}
 			}
 		},
-		"animation.routeshaper.attack": {
+		"animation.path_shaper.attack": {
 			"animation_length": 1,
 			"bones": {
 				"body": {
@@ -1104,7 +1104,7 @@
 				}
 			}
 		},
-		"animation.routeshaper.move": {
+		"animation.path_shaper.move": {
 			"loop": true,
 			"animation_length": 1.5,
 			"bones": {
@@ -1532,7 +1532,7 @@
 				}
 			}
 		},
-		"animation.routeshaper.skill": {
+		"animation.path_shaper.skill": {
 			"animation_length": 1,
 			"bones": {
 				"chest": {
@@ -1692,7 +1692,7 @@
 				}
 			}
 		},
-		"animation.routeshaper.die": {
+		"animation.path_shaper.die": {
 			"loop": "hold_on_last_frame",
 			"animation_length": 1,
 			"bones": {
@@ -2049,7 +2049,7 @@
 				}
 			}
 		},
-		"animation.routeshaper.start": {
+		"animation.path_shaper.start": {
 			"animation_length": 0.5,
 			"bones": {
 				"body": {

@@ -247,24 +247,24 @@ public class MobHitFuncProcedure {
         if (sourceentity instanceof BalefulBroodlingEntity) {
             GiveLessArmorProcedure.execute(entity, 2);
         }
-        if (sourceentity instanceof RouteShaperEntity) {
-            sklp = sourceentity instanceof RouteShaperEntity _datEntI ? _datEntI.getEntityData().get(RouteShaperEntity.DATA_skillp) : 0;
-            if (sourceentity instanceof RouteShaperEntity _datEntSetI)
-                _datEntSetI.getEntityData().set(RouteShaperEntity.DATA_skillp, (int) (sklp + 1));
+        if (sourceentity instanceof PathShaperEntity) {
+            sklp = sourceentity instanceof PathShaperEntity _datEntI ? _datEntI.getEntityData().get(PathShaperEntity.DATA_skillp) : 0;
+            if (sourceentity instanceof PathShaperEntity _datEntSetI)
+                _datEntSetI.getEntityData().set(PathShaperEntity.DATA_skillp, (int) (sklp + 1));
             if (sklp + 1 >= 8) {
                 SummonFractalProcedure.execute(sourceentity.level(), x, y, z);
-                if (sourceentity instanceof RouteShaperEntity _datEntSetI)
-                    _datEntSetI.getEntityData().set(RouteShaperEntity.DATA_skillp, 0);
+                if (sourceentity instanceof PathShaperEntity _datEntSetI)
+                    _datEntSetI.getEntityData().set(PathShaperEntity.DATA_skillp, 0);
             }
         }
-        if (sourceentity instanceof RouteFractalEntity) {
-            sklp = sourceentity instanceof RouteFractalEntity _datEntI ? _datEntI.getEntityData().get(RouteFractalEntity.DATA_skillp) : 0;
-            if (sourceentity instanceof RouteFractalEntity _datEntSetI)
-                _datEntSetI.getEntityData().set(RouteFractalEntity.DATA_skillp, (int) (sklp + 1));
+        if (sourceentity instanceof PathshaperFractalEntity) {
+            sklp = sourceentity instanceof PathshaperFractalEntity _datEntI ? _datEntI.getEntityData().get(PathshaperFractalEntity.DATA_skillp) : 0;
+            if (sourceentity instanceof PathshaperFractalEntity _datEntSetI)
+                _datEntSetI.getEntityData().set(PathshaperFractalEntity.DATA_skillp, (int) (sklp + 1));
             if (sklp + 1 >= 6) {
                 SummonFractalProcedure.execute(sourceentity.level(), x, y, z);
-                if (sourceentity instanceof RouteFractalEntity _datEntSetI)
-                    _datEntSetI.getEntityData().set(RouteFractalEntity.DATA_skillp, 0);
+                if (sourceentity instanceof PathshaperFractalEntity _datEntSetI)
+                    _datEntSetI.getEntityData().set(PathshaperFractalEntity.DATA_skillp, 0);
             }
         }
     }

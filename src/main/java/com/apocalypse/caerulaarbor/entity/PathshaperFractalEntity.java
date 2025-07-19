@@ -49,22 +49,22 @@ import software.bernie.geckolib.util.GeckoLibUtil;
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
-public class RouteFractalEntity extends Monster implements GeoEntity {
-    public static final EntityDataAccessor<Boolean> SHOOT = SynchedEntityData.defineId(RouteFractalEntity.class, EntityDataSerializers.BOOLEAN);
-    public static final EntityDataAccessor<String> ANIMATION = SynchedEntityData.defineId(RouteFractalEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> TEXTURE = SynchedEntityData.defineId(RouteFractalEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<Integer> DATA_skillp = SynchedEntityData.defineId(RouteFractalEntity.class, EntityDataSerializers.INT);
-    public static final EntityDataAccessor<Integer> DATA_time_left = SynchedEntityData.defineId(RouteFractalEntity.class, EntityDataSerializers.INT);
+public class PathshaperFractalEntity extends Monster implements GeoEntity {
+    public static final EntityDataAccessor<Boolean> SHOOT = SynchedEntityData.defineId(PathshaperFractalEntity.class, EntityDataSerializers.BOOLEAN);
+    public static final EntityDataAccessor<String> ANIMATION = SynchedEntityData.defineId(PathshaperFractalEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<String> TEXTURE = SynchedEntityData.defineId(PathshaperFractalEntity.class, EntityDataSerializers.STRING);
+    public static final EntityDataAccessor<Integer> DATA_skillp = SynchedEntityData.defineId(PathshaperFractalEntity.class, EntityDataSerializers.INT);
+    public static final EntityDataAccessor<Integer> DATA_time_left = SynchedEntityData.defineId(PathshaperFractalEntity.class, EntityDataSerializers.INT);
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
     private boolean swinging;
     private long lastSwing;
     public String animationprocedure = "empty";
 
-    public RouteFractalEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(ModEntities.ROUTE_FRACTAL.get(), world);
+    public PathshaperFractalEntity(PlayMessages.SpawnEntity packet, Level world) {
+        this(ModEntities.PATHSHAPER_FRACTAL.get(), world);
     }
 
-    public RouteFractalEntity(EntityType<RouteFractalEntity> type, Level world) {
+    public PathshaperFractalEntity(EntityType<PathshaperFractalEntity> type, Level world) {
         super(type, world);
         xpReward = 8;
         setNoAi(false);
@@ -118,21 +118,21 @@ public class RouteFractalEntity extends Monster implements GeoEntity {
         this.targetSelector.addGoal(13, new NearestAttackableTargetGoal<>(this, Player.class, false, false) {
             @Override
             public boolean canUse() {
-                double x = RouteFractalEntity.this.getX();
-                double y = RouteFractalEntity.this.getY();
-                double z = RouteFractalEntity.this.getZ();
-                Entity entity = RouteFractalEntity.this;
-                Level world = RouteFractalEntity.this.level();
+                double x = PathshaperFractalEntity.this.getX();
+                double y = PathshaperFractalEntity.this.getY();
+                double z = PathshaperFractalEntity.this.getZ();
+                Entity entity = PathshaperFractalEntity.this;
+                Level world = PathshaperFractalEntity.this.level();
                 return super.canUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
             }
 
             @Override
             public boolean canContinueToUse() {
-                double x = RouteFractalEntity.this.getX();
-                double y = RouteFractalEntity.this.getY();
-                double z = RouteFractalEntity.this.getZ();
-                Entity entity = RouteFractalEntity.this;
-                Level world = RouteFractalEntity.this.level();
+                double x = PathshaperFractalEntity.this.getX();
+                double y = PathshaperFractalEntity.this.getY();
+                double z = PathshaperFractalEntity.this.getZ();
+                Entity entity = PathshaperFractalEntity.this;
+                Level world = PathshaperFractalEntity.this.level();
                 return super.canContinueToUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
             }
         });
@@ -292,7 +292,7 @@ public class RouteFractalEntity extends Monster implements GeoEntity {
     protected void tickDeath() {
         ++this.deathTime;
         if (this.deathTime == 20) {
-            this.remove(RouteFractalEntity.RemovalReason.KILLED);
+            this.remove(PathshaperFractalEntity.RemovalReason.KILLED);
             this.dropExperience();
         }
     }
