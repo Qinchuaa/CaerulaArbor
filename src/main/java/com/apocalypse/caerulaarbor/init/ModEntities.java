@@ -2,10 +2,14 @@ package com.apocalypse.caerulaarbor.init;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.entity.*;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.Difficulty;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraftforge.common.DungeonHooks;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
+import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -103,26 +107,47 @@ public class ModEntities {
     @SubscribeEvent
     public static void init(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            ShellSeaRunnerEntity.init();
-            DeepSeaSliderEntity.init();
-            RidgeSeaSpitterEntity.init();
-            FloatingSeaDrifterEntity.init();
-            BasinSeaReaperEntity.init();
-            PocketSeaCrawlerEntity.init();
-            PrimalSeaPiercerEntity.init();
-            NetherseaFounderEntity.init();
-            NetherseaPredatorEntity.init();
-            NetherseaBrandguiderEntity.init();
-            NetherseaSpewerEntity.init();
-            NetherseaSwarmcallerEntity.init();
-            NetherseaReefbreakerEntity.init();
-            UnicellularPredatorEntity.init();
-            BoneSeaDrifterEntity.init();
-            OceanStonecutterEntity.init();
-            RetchingBroodmotherEntity.init();
-            SkimmingSeaDrifterEntity.init();
-            PathShaperEntity.init();
+            DungeonHooks.addDungeonMob(ModEntities.DEEP_SEA_SLIDER.get(), 50);
+            DungeonHooks.addDungeonMob(ModEntities.NETHERSEA_FOUNDER.get(), 50);
+            DungeonHooks.addDungeonMob(ModEntities.NETHERSEA_SPEWER.get(), 50);
+            DungeonHooks.addDungeonMob(ModEntities.NETHERSEA_SWARMCALLER.get(), 50);
+            DungeonHooks.addDungeonMob(ModEntities.SKIMMING_SEA_DRIFTER.get(), 50);
         });
+    }
+
+    @SubscribeEvent
+    public static void onRegisterSpawnPlacement(SpawnPlacementRegisterEvent event) {
+        registerBasicSeaMonster(ModEntities.SHELL_SEA_RUNNER.get(), event);
+        registerBasicSeaMonster(ModEntities.DEEP_SEA_SLIDER.get(), event);
+        registerBasicSeaMonster(ModEntities.RIDGE_SEA_SPITTER.get(), event);
+        registerBasicSeaMonster(ModEntities.FLOATING_SEA_DRIFTER.get(), event);
+        registerBasicSeaMonster(ModEntities.BASIN_SEA_REAPER.get(), event);
+        registerBasicSeaMonster(ModEntities.POCKET_SEA_CRAWLER.get(), event);
+        registerBasicSeaMonster(ModEntities.PRIMAL_SEA_PIERCER.get(), event);
+        registerBasicSeaMonster(ModEntities.NETHERSEA_FOUNDER.get(), event);
+        registerBasicSeaMonster(ModEntities.NETHERSEA_PREDATOR.get(), event);
+        registerBasicSeaMonster(ModEntities.NETHERSEA_BRANDGUIDER.get(), event);
+        registerBasicSeaMonster(ModEntities.NETHERSEA_SPEWER.get(), event);
+        registerBasicSeaMonster(ModEntities.NETHERSEA_SWARMCALLER.get(), event);
+        registerBasicSeaMonster(ModEntities.NETHERSEA_REEFBREAKER.get(), event);
+        registerWaterSeaMonster(ModEntities.UNICELLULAR_PREDATOR.get(), event);
+        registerWaterSeaMonster(ModEntities.BONE_SEA_DRIFTER.get(), event);
+        registerBasicSeaMonster(ModEntities.OCEAN_STONECUTTER.get(), event);
+        registerBasicSeaMonster(ModEntities.RETCHING_BROODMOTHER.get(), event);
+        registerBasicSeaMonster(ModEntities.SKIMMING_SEA_DRIFTER.get(), event);
+        registerBasicSeaMonster(ModEntities.PATHSHAPER_FRACTAL.get(), event);
+    }
+
+    public static <T extends Mob> void registerBasicSeaMonster(EntityType<T> type, SpawnPlacementRegisterEvent event) {
+        event.register(type, SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                (entityType, world, reason, pos, random) -> (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)),
+                SpawnPlacementRegisterEvent.Operation.OR);
+    }
+
+    public static <T extends Mob> void registerWaterSeaMonster(EntityType<T> type, SpawnPlacementRegisterEvent event) {
+        event.register(type, SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                (entityType, world, reason, pos, random) -> (world.getBlockState(pos).is(Blocks.WATER) && world.getBlockState(pos.above()).is(Blocks.WATER)),
+                SpawnPlacementRegisterEvent.Operation.OR);
     }
 
     @SubscribeEvent

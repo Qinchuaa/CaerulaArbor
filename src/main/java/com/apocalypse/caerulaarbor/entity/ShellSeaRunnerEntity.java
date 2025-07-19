@@ -124,11 +124,6 @@ public class ShellSeaRunnerEntity extends SeaMonster {
         this.refreshDimensions();
     }
 
-    public static void init() {
-        SpawnPlacements.register(ModEntities.SHELL_SEA_RUNNER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                (entityType, world, reason, pos, random) -> (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
-    }
-
     public static AttributeSupplier.Builder createAttributes() {
         AttributeSupplier.Builder builder = Mob.createMobAttributes();
         builder = builder.add(Attributes.MOVEMENT_SPEED, 0.5);
@@ -140,11 +135,7 @@ public class ShellSeaRunnerEntity extends SeaMonster {
     }
 
     private PlayState movementPredicate(AnimationState<?> event) {
-        if ((event.isMoving() || !(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F))
-                && !this.isSprinting()) {
-            return event.setAndContinue(RawAnimation.begin().thenLoop("animation.shell_sea_runner.move"));
-        }
-        if (this.isSprinting()) {
+        if (event.isMoving() || !(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) {
             return event.setAndContinue(RawAnimation.begin().thenLoop("animation.shell_sea_runner.move"));
         }
         return event.setAndContinue(RawAnimation.begin().thenLoop("animation.shell_sea_runner.idle"));

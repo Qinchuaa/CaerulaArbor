@@ -163,11 +163,6 @@ public class UnicellularPredatorEntity extends SeaMonster {
         return false;
     }
 
-    public static void init() {
-        SpawnPlacements.register(ModEntities.UNICELLULAR_PREDATOR.get(), SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
-                (entityType, world, reason, pos, random) -> (world.getBlockState(pos).is(Blocks.WATER) && world.getBlockState(pos.above()).is(Blocks.WATER)));
-    }
-
     public static AttributeSupplier.Builder createAttributes() {
         AttributeSupplier.Builder builder = Mob.createMobAttributes();
         builder = builder.add(Attributes.MOVEMENT_SPEED, 0.8);
