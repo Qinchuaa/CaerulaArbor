@@ -244,7 +244,7 @@ public class MobHitFuncProcedure {
         if (sourceentity instanceof BoneSeaDrifterEntity) {
             GiveLessArmorProcedure.execute(entity, 1);
         }
-        if (sourceentity instanceof FakeOffspringEntity) {
+        if (sourceentity instanceof BalefulBroodlingEntity) {
             GiveLessArmorProcedure.execute(entity, 2);
         }
         if (sourceentity instanceof RouteShaperEntity) {

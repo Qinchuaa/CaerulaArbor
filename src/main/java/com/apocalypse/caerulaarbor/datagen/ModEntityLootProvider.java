@@ -121,6 +121,7 @@ public class ModEntityLootProvider extends EntityLootSubProvider {
                                 )
                 )
         );
+        this.add(ModEntities.BALEFUL_BROODLING.get(), LootTable.lootTable());
     }
 
     @Override

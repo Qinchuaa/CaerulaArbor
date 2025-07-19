@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"animation.fakeegg.idle": {
+		"animation.baleful_broodling.idle": {
 			"loop": true,
 			"animation_length": 1,
 			"bones": {
@@ -35,7 +35,7 @@
 				}
 			}
 		},
-		"animation.fakeegg.attack": {
+		"animation.baleful_broodling.attack": {
 			"animation_length": 1,
 			"bones": {
 				"ball": {
@@ -76,7 +76,7 @@
 				}
 			}
 		},
-		"animation.fakeegg.die": {
+		"animation.baleful_broodling.die": {
 			"loop": "hold_on_last_frame",
 			"animation_length": 1,
 			"bones": {

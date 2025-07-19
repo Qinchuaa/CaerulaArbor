@@ -80,7 +80,7 @@ public class FakerggShootEntity extends AbstractArrow implements ItemSupplier {
         if (sourceentity == null) return;
 
         if (entity != sourceentity && world instanceof ServerLevel server) {
-            Entity entityToSpawn = ModEntities.FAKE_OFFSPRING.get().spawn(server, BlockPos.containing(this.getX() + Mth.nextDouble(RandomSource.create(), -0.5, 0.5), this.getY(), this.getZ() + Mth.nextDouble(RandomSource.create(), -0.5, 0.5)),
+            Entity entityToSpawn = ModEntities.BALEFUL_BROODLING.get().spawn(server, BlockPos.containing(this.getX() + Mth.nextDouble(RandomSource.create(), -0.5, 0.5), this.getY(), this.getZ() + Mth.nextDouble(RandomSource.create(), -0.5, 0.5)),
                     MobSpawnType.MOB_SUMMONED);
             if (entityToSpawn != null) {
                 entityToSpawn.setYRot(world.getRandom().nextFloat() * 360F);
@@ -96,7 +96,7 @@ public class FakerggShootEntity extends AbstractArrow implements ItemSupplier {
         double z = blockHitResult.getBlockPos().getZ();
 
         if (this.level() instanceof ServerLevel server) {
-            Entity entityToSpawn = ModEntities.FAKE_OFFSPRING.get().spawn(server, BlockPos.containing(x + Mth.nextDouble(RandomSource.create(), 0, 1), y + 1, z + Mth.nextDouble(RandomSource.create(), 0, 1)), MobSpawnType.MOB_SUMMONED);
+            Entity entityToSpawn = ModEntities.BALEFUL_BROODLING.get().spawn(server, BlockPos.containing(x + Mth.nextDouble(RandomSource.create(), 0, 1), y + 1, z + Mth.nextDouble(RandomSource.create(), 0, 1)), MobSpawnType.MOB_SUMMONED);
             if (entityToSpawn != null) {
                 entityToSpawn.setYRot(this.level().getRandom().nextFloat() * 360F);
             }

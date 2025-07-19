@@ -1,13 +1,11 @@
-
 package com.apocalypse.caerulaarbor.entity;
 
+import com.apocalypse.caerulaarbor.entity.base.SeaMonster;
 import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
@@ -38,37 +36,28 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import org.jetbrains.annotations.NotNull;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 
-public class FakeOffspringEntity extends Monster implements GeoEntity {
-    public static final EntityDataAccessor<Boolean> SHOOT = SynchedEntityData.defineId(FakeOffspringEntity.class, EntityDataSerializers.BOOLEAN);
-    public static final EntityDataAccessor<String> ANIMATION = SynchedEntityData.defineId(FakeOffspringEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> TEXTURE = SynchedEntityData.defineId(FakeOffspringEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<Integer> DATA_dx = SynchedEntityData.defineId(FakeOffspringEntity.class, EntityDataSerializers.INT);
-    public static final EntityDataAccessor<Integer> DATA_dz = SynchedEntityData.defineId(FakeOffspringEntity.class, EntityDataSerializers.INT);
-    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
-    private boolean swinging;
-    private long lastSwing;
-    public String animationprocedure = "empty";
+public class BalefulBroodlingEntity extends SeaMonster {
 
-    public FakeOffspringEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(ModEntities.FAKE_OFFSPRING.get(), world);
+    // TODO 修改随机角度旋转的实现方式
+    public static final EntityDataAccessor<Integer> DATA_dx = SynchedEntityData.defineId(BalefulBroodlingEntity.class, EntityDataSerializers.INT);
+    public static final EntityDataAccessor<Integer> DATA_dz = SynchedEntityData.defineId(BalefulBroodlingEntity.class, EntityDataSerializers.INT);
+
+    public BalefulBroodlingEntity(PlayMessages.SpawnEntity packet, Level world) {
+        this(ModEntities.BALEFUL_BROODLING.get(), world);
     }
 
-    public FakeOffspringEntity(EntityType<FakeOffspringEntity> type, Level world) {
+    public BalefulBroodlingEntity(EntityType<BalefulBroodlingEntity> type, Level world) {
         super(type, world);
         xpReward = 0;
         setNoAi(false);
@@ -78,24 +67,8 @@ public class FakeOffspringEntity extends Monster implements GeoEntity {
     @Override
     protected void defineSynchedData() {
         super.defineSynchedData();
-        this.entityData.define(SHOOT, false);
-        this.entityData.define(ANIMATION, "undefined");
-        this.entityData.define(TEXTURE, "prokaryote1");
         this.entityData.define(DATA_dx, 0);
         this.entityData.define(DATA_dz, 0);
-    }
-
-    public void setTexture(String texture) {
-        this.entityData.set(TEXTURE, texture);
-    }
-
-    public String getTexture() {
-        return this.entityData.get(TEXTURE);
-    }
-
-    @Override
-    public @NotNull Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
@@ -121,28 +94,23 @@ public class FakeOffspringEntity extends Monster implements GeoEntity {
         this.targetSelector.addGoal(13, new NearestAttackableTargetGoal<>(this, Player.class, false, false) {
             @Override
             public boolean canUse() {
-                double x = FakeOffspringEntity.this.getX();
-                double y = FakeOffspringEntity.this.getY();
-                double z = FakeOffspringEntity.this.getZ();
-                Level world = FakeOffspringEntity.this.level();
+                double x = BalefulBroodlingEntity.this.getX();
+                double y = BalefulBroodlingEntity.this.getY();
+                double z = BalefulBroodlingEntity.this.getZ();
+                Level world = BalefulBroodlingEntity.this.level();
                 return super.canUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
             }
 
             @Override
             public boolean canContinueToUse() {
-                double x = FakeOffspringEntity.this.getX();
-                double y = FakeOffspringEntity.this.getY();
-                double z = FakeOffspringEntity.this.getZ();
-                Level world = FakeOffspringEntity.this.level();
+                double x = BalefulBroodlingEntity.this.getX();
+                double y = BalefulBroodlingEntity.this.getY();
+                double z = BalefulBroodlingEntity.this.getZ();
+                Level world = BalefulBroodlingEntity.this.level();
                 return super.canContinueToUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
             }
         });
         this.goalSelector.addGoal(14, new LeapAtTargetGoal(this, 0.2F));
-    }
-
-    @Override
-    public @NotNull MobType getMobType() {
-        return MobType.WATER;
     }
 
     @Override
@@ -164,8 +132,6 @@ public class FakeOffspringEntity extends Monster implements GeoEntity {
     public boolean hurt(DamageSource source, float amount) {
         if (source.is(DamageTypes.FALL))
             return false;
-        if (source.is(DamageTypes.DROWN))
-            return false;
         return super.hurt(source, amount);
     }
 
@@ -185,7 +151,6 @@ public class FakeOffspringEntity extends Monster implements GeoEntity {
     @Override
     public void addAdditionalSaveData(@NotNull CompoundTag compound) {
         super.addAdditionalSaveData(compound);
-        compound.putString("Texture", this.getTexture());
         compound.putInt("Datadx", this.entityData.get(DATA_dx));
         compound.putInt("Datadz", this.entityData.get(DATA_dz));
     }
@@ -193,8 +158,6 @@ public class FakeOffspringEntity extends Monster implements GeoEntity {
     @Override
     public void readAdditionalSaveData(@NotNull CompoundTag compound) {
         super.readAdditionalSaveData(compound);
-        if (compound.contains("Texture"))
-            this.setTexture(compound.getString("Texture"));
         if (compound.contains("Datadx"))
             this.entityData.set(DATA_dx, compound.getInt("Datadx"));
         if (compound.contains("Datadz"))
@@ -218,11 +181,6 @@ public class FakeOffspringEntity extends Monster implements GeoEntity {
     }
 
     @Override
-    public @NotNull EntityDimensions getDimensions(@NotNull Pose pose) {
-        return super.getDimensions(pose);
-    }
-
-    @Override
     public boolean isPushable() {
         return false;
     }
@@ -233,9 +191,6 @@ public class FakeOffspringEntity extends Monster implements GeoEntity {
 
     @Override
     protected void pushEntities() {
-    }
-
-    public static void init() {
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -249,18 +204,13 @@ public class FakeOffspringEntity extends Monster implements GeoEntity {
     }
 
     private PlayState movementPredicate(AnimationState<?> event) {
-        if (this.animationprocedure.equals("empty")) {
-            if (this.isDeadOrDying()) {
-                return event.setAndContinue(RawAnimation.begin().thenPlay("animation.fakeegg.die"));
-            }
-            return event.setAndContinue(RawAnimation.begin().thenLoop("animation.fakeegg.idle"));
+        if (this.isDeadOrDying()) {
+            return event.setAndContinue(RawAnimation.begin().thenPlay("animation.baleful_broodling.die"));
         }
-        return PlayState.STOP;
+        return event.setAndContinue(RawAnimation.begin().thenLoop("animation.baleful_broodling.idle"));
     }
 
     private PlayState attackingPredicate(AnimationState<?> event) {
-        double d1 = this.getX() - this.xOld;
-        double d0 = this.getZ() - this.zOld;
         if (getAttackAnim(event.getPartialTick()) > 0f && !this.swinging) {
             this.swinging = true;
             this.lastSwing = level().getGameTime();
@@ -270,27 +220,8 @@ public class FakeOffspringEntity extends Monster implements GeoEntity {
         }
         if (this.swinging && event.getController().getAnimationState() == AnimationController.State.STOPPED) {
             event.getController().forceAnimationReset();
-            return event.setAndContinue(RawAnimation.begin().thenPlay("animation.fakeegg.attack"));
+            return event.setAndContinue(RawAnimation.begin().thenPlay("animation.baleful_broodling.attack"));
         }
-        return PlayState.CONTINUE;
-    }
-
-    String prevAnim = "empty";
-
-    private PlayState procedurePredicate(AnimationState<?> event) {
-        if (!animationprocedure.equals("empty") && event.getController().getAnimationState() == AnimationController.State.STOPPED || (!this.animationprocedure.equals(prevAnim) && !this.animationprocedure.equals("empty"))) {
-            if (!this.animationprocedure.equals(prevAnim))
-                event.getController().forceAnimationReset();
-            event.getController().setAnimation(RawAnimation.begin().thenPlay(this.animationprocedure));
-            if (event.getController().getAnimationState() == AnimationController.State.STOPPED) {
-                this.animationprocedure = "empty";
-                event.getController().forceAnimationReset();
-            }
-        } else if (animationprocedure.equals("empty")) {
-            prevAnim = "empty";
-            return PlayState.STOP;
-        }
-        prevAnim = this.animationprocedure;
         return PlayState.CONTINUE;
     }
 
@@ -299,7 +230,7 @@ public class FakeOffspringEntity extends Monster implements GeoEntity {
         ++this.deathTime;
         if (this.deathTime != 20) return;
 
-        this.remove(FakeOffspringEntity.RemovalReason.KILLED);
+        this.remove(BalefulBroodlingEntity.RemovalReason.KILLED);
         this.dropExperience();
 
         if (Math.random() < 0.2 && this.level() instanceof ServerLevel serverLevel) {
@@ -309,23 +240,9 @@ public class FakeOffspringEntity extends Monster implements GeoEntity {
         }
     }
 
-    public String getSyncedAnimation() {
-        return this.entityData.get(ANIMATION);
-    }
-
-    public void setAnimation(String animation) {
-        this.entityData.set(ANIMATION, animation);
-    }
-
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar data) {
         data.add(new AnimationController<>(this, "movement", 4, this::movementPredicate));
         data.add(new AnimationController<>(this, "attacking", 4, this::attackingPredicate));
-        data.add(new AnimationController<>(this, "procedure", 4, this::procedurePredicate));
-    }
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return this.cache;
     }
 }

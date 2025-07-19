@@ -108,6 +108,7 @@
   "entity.caerula_arbor.bone_sea_drifter": "骨海漂流体",
   "entity.caerula_arbor.ocean_stonecutter": "固海凿石者",
   "entity.caerula_arbor.retching_broodmother": "投嗣育母",
+  "entity.caerula_arbor.baleful_broodling": "注亡拟嗣",
 
   "item.caerula_arbor.shell_sea_runner_spawn_egg": "壳海狂奔者刷怪蛋",
   "item.caerula_arbor.deep_sea_slider_spawn_egg": "底海滑动者刷怪蛋",
@@ -127,6 +128,7 @@
   "item.caerula_arbor.bone_sea_drifter_spawn_egg": "骨海漂流体刷怪蛋",
   "item.caerula_arbor.ocean_stonecutter_spawn_egg": "固海凿石者刷怪蛋",
   "item.caerula_arbor.retching_broodmother_spawn_egg": "投嗣育母刷怪蛋",
+  "item.caerula_arbor.baleful_broodling_spawn_egg": "注亡拟嗣刷怪蛋",
 
   "subtitles.grow1": "拥纳愈广",
   "item.caerula_arbor.fluore_berries": "荧光浆果",
@@ -480,7 +482,6 @@
   "item.caerula_arbor.dispatch_stick": "调度棒",
   "item.caerula_arbor.toponym_textology": "《风袭高地地名源流考》",
   "item.minecraft.potion.effect.inst_sanity_ii": "神经损伤药水",
-  "entity.caerula_arbor.fake_offspring": "注亡拟嗣",
   "item.caerula_arbor.kings_extension": "国王的延伸",
   "gui.caerula_arbor.caerula_record_gui.tooltip_occupy_warn": "可能很占视野",
   "item.caerula_arbor.shovel_ocean_crystal": "深海棱晶锹",
@@ -556,7 +557,6 @@
   "block.caerula_arbor.chitin_block": "几丁质块",
   "entity.caerula_arbor.route_fractal": "塑路者分形",
   "gui.caerula_arbor.evo_tree.button_return": "返回",
-  "item.caerula_arbor.fake_offspring_spawn_egg": "注亡拟嗣刷怪蛋",
   "gui.caerula_arbor.info_strategy_subsis.label_proceed": "海嗣受伤时累积进化点数。",
   "gui.caerula_arbor.info_strategy_migration.button_return": "返回",
   "effect.caerula_arbor.dizzy": "晕眩",
