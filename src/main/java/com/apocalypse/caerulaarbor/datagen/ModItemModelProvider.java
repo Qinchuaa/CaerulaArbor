@@ -69,7 +69,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.REDSTONE_INGOT);
 
         // spawn eggs
-        spawnEggItem(ModItems.SHELL_SEA_RUNNER_SPAWN_EGG);
+        ModItems.SPAWN_EGGS.getEntries().forEach(this::spawnEggItem);
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
