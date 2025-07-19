@@ -231,13 +231,7 @@ public class PathShaperEntity extends SeaMonster {
         if (this.isDeadOrDying()) {
             return event.setAndContinue(RawAnimation.begin().thenPlay("animation.path_shaper.die"));
         }
-        if (this.isSprinting()) {
-            return event.setAndContinue(RawAnimation.begin().thenLoop("animation.path_shaper.move"));
-        }
-        if (this.isVehicle() && event.isMoving()) {
-            return event.setAndContinue(RawAnimation.begin().thenLoop("animation.path_shaper.move"));
-        }
-        if (this.isAggressive() && event.isMoving() && !this.isVehicle()) {
+        if (this.isSprinting() || (this.isVehicle() && event.isMoving()) || (this.isAggressive() && event.isMoving() && !this.isVehicle())) {
             return event.setAndContinue(RawAnimation.begin().thenLoop("animation.path_shaper.move"));
         }
         return event.setAndContinue(RawAnimation.begin().thenLoop("animation.path_shaper.idle"));

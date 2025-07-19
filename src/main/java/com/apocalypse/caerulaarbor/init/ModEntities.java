@@ -122,7 +122,6 @@ public class ModEntities {
             RetchingBroodmotherEntity.init();
             SkimmingSeaDrifterEntity.init();
             PathShaperEntity.init();
-            PathshaperFractalEntity.init();
         });
     }
 
