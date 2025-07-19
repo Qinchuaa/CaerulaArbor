@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"animation.tracerabyssal.idle": {
+		"animation.nethersea_brandguider.idle": {
 			"loop": true,
 			"animation_length": 2,
 			"bones": {
@@ -232,7 +232,7 @@
 				}
 			}
 		},
-		"animation.tracerabyssal.move": {
+		"animation.nethersea_brandguider.move": {
 			"loop": true,
 			"animation_length": 2,
 			"bones": {
@@ -558,7 +558,7 @@
 				}
 			}
 		},
-		"animation.tracerabyssal.attack": {
+		"animation.nethersea_brandguider.attack": {
 			"animation_length": 1,
 			"bones": {
 				"body": {
@@ -843,7 +843,7 @@
 				}
 			}
 		},
-		"animation.tracerabyssal.die": {
+		"animation.nethersea_brandguider.die": {
 			"loop": "hold_on_last_frame",
 			"animation_length": 1,
 			"bones": {

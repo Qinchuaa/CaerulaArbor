@@ -206,27 +206,15 @@ public class NetherseaBrandguiderEntity extends SeaMonster {
 
     private PlayState movementPredicate(AnimationState<?> event) {
         if ((event.isMoving() || !(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F)) && !this.isVehicle() && !this.isAggressive() && !this.isSprinting()) {
-            return event.setAndContinue(RawAnimation.begin().thenLoop("animation.tracerabyssal.move"));
+            return event.setAndContinue(RawAnimation.begin().thenLoop("animation.nethersea_brandguider.move"));
         }
         if (this.isDeadOrDying()) {
-            return event.setAndContinue(RawAnimation.begin().thenPlay("animation.tracerabyssal.die"));
+            return event.setAndContinue(RawAnimation.begin().thenPlay("animation.nethersea_brandguider.die"));
         }
-        if (this.isInWaterOrBubble()) {
-            return event.setAndContinue(RawAnimation.begin().thenLoop("animation.tracerabyssal.move"));
+        if (this.isInWaterOrBubble() || this.isSprinting() || (this.isVehicle() && event.isMoving()) || (this.isAggressive() && event.isMoving() && !this.isVehicle())) {
+            return event.setAndContinue(RawAnimation.begin().thenLoop("animation.nethersea_brandguider.move"));
         }
-        if (this.isShiftKeyDown()) {
-            return event.setAndContinue(RawAnimation.begin().thenLoop("animation.tracerabyssal.move"));
-        }
-        if (this.isSprinting()) {
-            return event.setAndContinue(RawAnimation.begin().thenLoop("animation.tracerabyssal.move"));
-        }
-        if (this.isVehicle() && event.isMoving()) {
-            return event.setAndContinue(RawAnimation.begin().thenLoop("animation.tracerabyssal.move"));
-        }
-        if (this.isAggressive() && event.isMoving() && !this.isVehicle()) {
-            return event.setAndContinue(RawAnimation.begin().thenLoop("animation.tracerabyssal.move"));
-        }
-        return event.setAndContinue(RawAnimation.begin().thenLoop("animation.tracerabyssal.idle"));
+        return event.setAndContinue(RawAnimation.begin().thenLoop("animation.nethersea_brandguider.idle"));
     }
 
     private PlayState attackingPredicate(AnimationState<?> event) {
@@ -239,7 +227,7 @@ public class NetherseaBrandguiderEntity extends SeaMonster {
         }
         if (this.swinging && event.getController().getAnimationState() == AnimationController.State.STOPPED) {
             event.getController().forceAnimationReset();
-            return event.setAndContinue(RawAnimation.begin().thenPlay("animation.tracerabyssal.attack"));
+            return event.setAndContinue(RawAnimation.begin().thenPlay("animation.nethersea_brandguider.attack"));
         }
         return PlayState.CONTINUE;
     }
