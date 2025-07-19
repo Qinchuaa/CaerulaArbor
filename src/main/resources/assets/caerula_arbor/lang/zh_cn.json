@@ -105,6 +105,7 @@
   "entity.caerula_arbor.nethersea_swarmcaller": "深溟巢涌者",
   "entity.caerula_arbor.nethersea_reefbreaker": "深溟裂礁者",
   "entity.caerula_arbor.unicellular_predator": "单核掠食者",
+  "entity.caerula_arbor.bone_sea_drifter": "骨海漂流体",
 
   "item.caerula_arbor.shell_sea_runner_spawn_egg": "壳海狂奔者刷怪蛋",
   "item.caerula_arbor.deep_sea_slider_spawn_egg": "底海滑动者刷怪蛋",
@@ -121,6 +122,7 @@
   "item.caerula_arbor.nethersea_swarmcaller_spawn_egg": "深溟巢涌者刷怪蛋",
   "item.caerula_arbor.nethersea_reefbreaker_spawn_egg": "深溟裂礁者刷怪蛋",
   "item.caerula_arbor.unicellular_predator_spawn_egg": "单核掠食者刷怪蛋",
+  "item.caerula_arbor.bone_sea_drifter_spawn_egg": "骨海漂流体刷怪蛋",
 
   "subtitles.grow1": "拥纳愈广",
   "item.caerula_arbor.fluore_berries": "荧光浆果",
@@ -142,7 +144,6 @@
   "gui.caerula_arbor.caerula_record_gui.label_health1": "生命值：",
   "advancements.enthusiast_of_chitin.descr": "合成复合几丁质。",
   "item.caerula_arbor.relic_cursed_research": "§4主教的研究",
-  "item.caerula_arbor.bone_fish_spawn_egg": "骨海漂流体刷怪蛋",
   "advancements.to_observe_evolution.title": "我见进化之姿",
   "subtitles.silence4": "",
   "gui.caerula_arbor.caerula_record_gui.label_attack": "攻击力：",
@@ -359,7 +360,6 @@
   "block.caerula_arbor.sea_trail_growing": "蔓延的溟痕",
   "item.caerula_arbor.bone_shard.description_0": "§7海嗣破碎的骨片。在不断的进化中，海嗣的骨骼逐渐不见踪影",
   "item.caerula_arbor.ocean_crystal.description_0": "§7海嗣身上极为锋利的部分，强度比一些金属还大",
-  "entity.caerula_arbor.bone_fish": "骨海漂流体",
   "gui.caerula_arbor.caerula_record_gui.show_hud": "在HUD中显示",
   "block.caerula_arbor.tide_observation": "海潮观测站",
   "item.caerula_arbor.wearable_crown_chestplate": "Wearable Crown胸甲",

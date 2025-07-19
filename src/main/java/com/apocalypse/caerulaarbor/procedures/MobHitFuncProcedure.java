@@ -241,7 +241,7 @@ public class MobHitFuncProcedure {
                     livEnt.addEffect(new MobEffectInstance(ModMobEffects.REEF_CRACKER.get(), 120, 0, false, false));
             }
         }
-        if (sourceentity instanceof BoneFishEntity) {
+        if (sourceentity instanceof BoneSeaDrifterEntity) {
             GiveLessArmorProcedure.execute(entity, 1);
         }
         if (sourceentity instanceof FakeOffspringEntity) {

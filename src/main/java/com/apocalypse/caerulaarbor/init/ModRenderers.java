@@ -28,7 +28,7 @@ public class ModRenderers {
         event.registerEntityRenderer(ModEntities.NETHERSEA_SWARMCALLER.get(), NetherseaSwarmcallerRenderer::new);
         event.registerEntityRenderer(ModEntities.NETHERSEA_REEFBREAKER.get(), NetherseaReefbreakerRenderer::new);
         event.registerEntityRenderer(ModEntities.UNICELLULAR_PREDATOR.get(), UnicellularPredatorRenderer::new);
-        event.registerEntityRenderer(ModEntities.BONE_FISH.get(), BoneFishRenderer::new);
+        event.registerEntityRenderer(ModEntities.BONE_SEA_DRIFTER.get(), BoneSeaDrifterRenderer::new);
         event.registerEntityRenderer(ModEntities.CHISELER_FISH.get(), ChiselerFishRenderer::new);
         event.registerEntityRenderer(ModEntities.FAKERGG_SHOOT.get(), FakerggShootRenderer::new);
         event.registerEntityRenderer(ModEntities.PREGNANT_FISH.get(), PregnantFishRenderer::new);
