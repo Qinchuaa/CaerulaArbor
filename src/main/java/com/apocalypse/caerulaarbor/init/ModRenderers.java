@@ -23,7 +23,7 @@ public class ModRenderers {
         event.registerEntityRenderer(ModEntities.NETHERSEA_FOUNDER.get(), NetherseaFounderRenderer::new);
         event.registerEntityRenderer(ModEntities.NETHERSEA_PREDATOR.get(), NetherseaPredatorRenderer::new);
         event.registerEntityRenderer(ModEntities.NETHERSEA_BRANDGUIDER.get(), NetherseaBrandguiderRenderer::new);
-        event.registerEntityRenderer(ModEntities.SPLASHER_ABYSSAL.get(), SplasherAbyssalRenderer::new);
+        event.registerEntityRenderer(ModEntities.NETHERSEA_SPEWER.get(), NetherseaSpewerRenderer::new);
         event.registerEntityRenderer(ModEntities.FISH_SPLASH.get(), FishSplashRenderer::new);
         event.registerEntityRenderer(ModEntities.UMBRELLA_ABYSSAL.get(), UmbrellaAbyssalRenderer::new);
         event.registerEntityRenderer(ModEntities.CRACKER_ABYSSAL.get(), CrackerAbyssalRenderer::new);

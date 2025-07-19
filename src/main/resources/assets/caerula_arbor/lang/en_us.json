@@ -101,6 +101,7 @@
   "entity.caerula_arbor.nethersea_founder": "Nethersea Founder",
   "entity.caerula_arbor.nethersea_predator": "Nethersea Predator",
   "entity.caerula_arbor.nethersea_brandguider": "Nethersea Brandguider",
+  "entity.caerula_arbor.nethersea_spewer": "Nethersea Spewer",
 
   "item.caerula_arbor.shell_sea_runner_spawn_egg": "Shell Sea Runner Spawn Egg",
   "item.caerula_arbor.deep_sea_slider_spawn_egg": "Deep Sea Slider Spawn Egg",
@@ -113,6 +114,7 @@
   "item.caerula_arbor.nethersea_founder_spawn_egg": "Nethersea Founder Spawn Egg",
   "item.caerula_arbor.nethersea_predator_spawn_egg": "Nethersea Predator Spawn Egg",
   "item.caerula_arbor.nethersea_brandguider_spawn_egg": "Nethersea Brandguider Spawn Egg",
+  "item.caerula_arbor.nethersea_spewer_spawn_egg": "Nethersea Spewer Spawn Egg",
 
   "item.caerula_arbor.fluore_berries": "Fluore Berries",
   "subtitles.grow1": "EMBRACE MORE",
@@ -359,7 +361,6 @@
   "item.caerula_arbor.wearable_crown_chestplate": "Wearable Crown胸甲",
   "block.caerula_arbor.block_crown": "Block Crown",
   "advancements.its_deal.title": "It\u0027s Deal !",
-  "item.caerula_arbor.splasher_abyssal_spawn_egg": "Splasher Abyssal Spawn Egg",
   "block.caerula_arbor.sea_trail_init": "Sea Trail Init",
   "gamerule.targetLifeFunction.description": "If true, your death will be stopped with the consumption of player Life or Shield.",
   "gui.caerula_arbor.info_strategy_migration.label_strategy_migration": "Strategy MIGRATION",
@@ -519,7 +520,6 @@
   "advancements.embrace_the_sea.descr": "Equip yourself with complex chitin armor",
   "item.caerula_arbor.ocean_crystal": "Ocean Crystal",
   "attribute.caerula_arbor.sanity": "Sanity",
-  "entity.caerula_arbor.splasher_abyssal": "Splasher Abyssal",
   "gui.caerula_arbor.info_strategy_grow.label_strategy_grow": "Strategy GROW",
   "item.caerula_arbor.wearable_crown_leggings": "Wearable Crown护腿",
   "block.caerula_arbor.trail_pressure_plate": "Trail Pressure Plate",

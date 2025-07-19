@@ -1,24 +1,18 @@
-
 package com.apocalypse.caerulaarbor.entity;
 
+import com.apocalypse.caerulaarbor.entity.base.SeaMonster;
 import com.apocalypse.caerulaarbor.init.ModAttributes;
 import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
@@ -40,61 +34,29 @@ import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.common.DungeonHooks;
-import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import org.jetbrains.annotations.NotNull;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.EnumSet;
 
-public class SplasherAbyssalEntity extends Monster implements RangedAttackMob, GeoEntity {
-    public static final EntityDataAccessor<Boolean> SHOOT = SynchedEntityData.defineId(SplasherAbyssalEntity.class, EntityDataSerializers.BOOLEAN);
-    public static final EntityDataAccessor<String> ANIMATION = SynchedEntityData.defineId(SplasherAbyssalEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> TEXTURE = SynchedEntityData.defineId(SplasherAbyssalEntity.class, EntityDataSerializers.STRING);
-    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
-    private boolean swinging;
-    private long lastSwing;
-    public String animationprocedure = "empty";
+public class NetherseaSpewerEntity extends SeaMonster implements RangedAttackMob {
 
-    public SplasherAbyssalEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(ModEntities.SPLASHER_ABYSSAL.get(), world);
+    public NetherseaSpewerEntity(PlayMessages.SpawnEntity packet, Level world) {
+        this(ModEntities.NETHERSEA_SPEWER.get(), world);
     }
 
-    public SplasherAbyssalEntity(EntityType<SplasherAbyssalEntity> type, Level world) {
+    public NetherseaSpewerEntity(EntityType<NetherseaSpewerEntity> type, Level world) {
         super(type, world);
         xpReward = 4;
         setNoAi(false);
         setMaxUpStep(0.85f);
-    }
-
-    @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(SHOOT, false);
-        this.entityData.define(ANIMATION, "undefined");
-        this.entityData.define(TEXTURE, "abyssal3");
-    }
-
-    public void setTexture(String texture) {
-        this.entityData.set(TEXTURE, texture);
-    }
-
-    public String getTexture() {
-        return this.entityData.get(TEXTURE);
-    }
-
-    @Override
-    public @NotNull Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
@@ -114,25 +76,25 @@ public class SplasherAbyssalEntity extends Monster implements RangedAttackMob, G
         this.targetSelector.addGoal(12, new NearestAttackableTargetGoal<>(this, Player.class, false, false) {
             @Override
             public boolean canUse() {
-                double x = SplasherAbyssalEntity.this.getX();
-                double y = SplasherAbyssalEntity.this.getY();
-                double z = SplasherAbyssalEntity.this.getZ();
-                Level world = SplasherAbyssalEntity.this.level();
+                double x = NetherseaSpewerEntity.this.getX();
+                double y = NetherseaSpewerEntity.this.getY();
+                double z = NetherseaSpewerEntity.this.getZ();
+                Level world = NetherseaSpewerEntity.this.level();
                 return super.canUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
             }
 
             @Override
             public boolean canContinueToUse() {
-                double x = SplasherAbyssalEntity.this.getX();
-                double y = SplasherAbyssalEntity.this.getY();
-                double z = SplasherAbyssalEntity.this.getZ();
-                Level world = SplasherAbyssalEntity.this.level();
+                double x = NetherseaSpewerEntity.this.getX();
+                double y = NetherseaSpewerEntity.this.getY();
+                double z = NetherseaSpewerEntity.this.getZ();
+                Level world = NetherseaSpewerEntity.this.level();
                 return super.canContinueToUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
             }
         });
         this.goalSelector.addGoal(13, new RandomStrollGoal(this, 0.3));
         this.goalSelector.addGoal(14, new RandomLookAroundGoal(this));
-        this.goalSelector.addGoal(1, new SplasherAbyssalEntity.RangedAttackGoal(this, 1.25, 40, 9.8f) {
+        this.goalSelector.addGoal(1, new NetherseaSpewerEntity.RangedAttackGoal(this, 1.25, 40, 9.8f) {
             @Override
             public boolean canContinueToUse() {
                 return this.canUse();
@@ -190,7 +152,6 @@ public class SplasherAbyssalEntity extends Monster implements RangedAttackMob, G
             this.target = null;
             this.seeTime = 0;
             this.attackTime = -1;
-            ((SplasherAbyssalEntity) rangedAttackMob).entityData.set(SHOOT, false);
         }
 
         public boolean requiresUpdateEveryTick() {
@@ -213,24 +174,16 @@ public class SplasherAbyssalEntity extends Monster implements RangedAttackMob, G
             this.mob.getLookControl().setLookAt(this.target, 30.0F, 30.0F);
             if (--this.attackTime == 0) {
                 if (!flag) {
-                    ((SplasherAbyssalEntity) rangedAttackMob).entityData.set(SHOOT, false);
                     return;
                 }
-                ((SplasherAbyssalEntity) rangedAttackMob).entityData.set(SHOOT, true);
                 float f = (float) Math.sqrt(d0) / this.attackRadius;
                 float f1 = Mth.clamp(f, 0.1F, 1.0F);
                 this.rangedAttackMob.performRangedAttack(this.target, f1);
                 this.attackTime = Mth.floor(f * (float) (this.attackIntervalMax - this.attackIntervalMin) + (float) this.attackIntervalMin);
             } else if (this.attackTime < 0) {
                 this.attackTime = Mth.floor(Mth.lerp(Math.sqrt(d0) / (double) this.attackRadius, (double) this.attackIntervalMin, (double) this.attackIntervalMax));
-            } else
-                ((SplasherAbyssalEntity) rangedAttackMob).entityData.set(SHOOT, false);
+            }
         }
-    }
-
-    @Override
-    public @NotNull MobType getMobType() {
-        return MobType.WATER;
     }
 
     @Override
@@ -254,31 +207,11 @@ public class SplasherAbyssalEntity extends Monster implements RangedAttackMob, G
     }
 
     @Override
-    public boolean hurt(DamageSource source, float amount) {
-        if (source.is(DamageTypes.DROWN))
-            return false;
-        return super.hurt(source, amount);
-    }
-
-    @Override
     @ParametersAreNonnullByDefault
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
         if (this.getAttributes().hasAttribute(ModAttributes.SANITY_RATE.get()))
             this.getAttribute(ModAttributes.SANITY_RATE.get()).setBaseValue(2);
         return super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
-    }
-
-    @Override
-    public void addAdditionalSaveData(@NotNull CompoundTag compound) {
-        super.addAdditionalSaveData(compound);
-        compound.putString("Texture", this.getTexture());
-    }
-
-    @Override
-    public void readAdditionalSaveData(@NotNull CompoundTag compound) {
-        super.readAdditionalSaveData(compound);
-        if (compound.contains("Texture"))
-            this.setTexture(compound.getString("Texture"));
     }
 
     @Override
@@ -291,19 +224,14 @@ public class SplasherAbyssalEntity extends Monster implements RangedAttackMob, G
     }
 
     @Override
-    public @NotNull EntityDimensions getDimensions(@NotNull Pose p_33597_) {
-        return super.getDimensions(p_33597_);
-    }
-
-    @Override
     public void performRangedAttack(@NotNull LivingEntity target, float flval) {
         FishShootEntity.shoot(this, target);
     }
 
     public static void init() {
-        SpawnPlacements.register(ModEntities.SPLASHER_ABYSSAL.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+        SpawnPlacements.register(ModEntities.NETHERSEA_SPEWER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 (entityType, world, reason, pos, random) -> (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
-        DungeonHooks.addDungeonMob(ModEntities.SPLASHER_ABYSSAL.get(), 180);
+        DungeonHooks.addDungeonMob(ModEntities.NETHERSEA_SPEWER.get(), 180);
     }
 
     public static AttributeSupplier.Builder createAttributes() {
@@ -317,15 +245,10 @@ public class SplasherAbyssalEntity extends Monster implements RangedAttackMob, G
     }
 
     private PlayState movementPredicate(AnimationState<?> event) {
-        if (this.animationprocedure.equals("empty")) {
-            if ((event.isMoving() || !(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F))
-
-            ) {
-                return event.setAndContinue(RawAnimation.begin().thenLoop("animation.splasher.move"));
-            }
-            return event.setAndContinue(RawAnimation.begin().thenLoop("animation.splasher.idle"));
+        if ((event.isMoving() || !(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F))) {
+            return event.setAndContinue(RawAnimation.begin().thenLoop("animation.splasher.move"));
         }
-        return PlayState.STOP;
+        return event.setAndContinue(RawAnimation.begin().thenLoop("animation.splasher.idle"));
     }
 
     private PlayState attackingPredicate(AnimationState<?> event) {
@@ -336,29 +259,10 @@ public class SplasherAbyssalEntity extends Monster implements RangedAttackMob, G
         if (this.swinging && this.lastSwing + 10L <= level().getGameTime()) {
             this.swinging = false;
         }
-        if ((this.swinging || this.entityData.get(SHOOT)) && event.getController().getAnimationState() == AnimationController.State.STOPPED) {
+        if (this.swinging && event.getController().getAnimationState() == AnimationController.State.STOPPED) {
             event.getController().forceAnimationReset();
             return event.setAndContinue(RawAnimation.begin().thenPlay("animation.splasher.attack"));
         }
-        return PlayState.CONTINUE;
-    }
-
-    String prevAnim = "empty";
-
-    private PlayState procedurePredicate(AnimationState<?> event) {
-        if (!animationprocedure.equals("empty") && event.getController().getAnimationState() == AnimationController.State.STOPPED || (!this.animationprocedure.equals(prevAnim) && !this.animationprocedure.equals("empty"))) {
-            if (!this.animationprocedure.equals(prevAnim))
-                event.getController().forceAnimationReset();
-            event.getController().setAnimation(RawAnimation.begin().thenPlay(this.animationprocedure));
-            if (event.getController().getAnimationState() == AnimationController.State.STOPPED) {
-                this.animationprocedure = "empty";
-                event.getController().forceAnimationReset();
-            }
-        } else if (animationprocedure.equals("empty")) {
-            prevAnim = "empty";
-            return PlayState.STOP;
-        }
-        prevAnim = this.animationprocedure;
         return PlayState.CONTINUE;
     }
 
@@ -366,28 +270,14 @@ public class SplasherAbyssalEntity extends Monster implements RangedAttackMob, G
     protected void tickDeath() {
         ++this.deathTime;
         if (this.deathTime == 20) {
-            this.remove(SplasherAbyssalEntity.RemovalReason.KILLED);
+            this.remove(NetherseaSpewerEntity.RemovalReason.KILLED);
             this.dropExperience();
         }
-    }
-
-    public String getSyncedAnimation() {
-        return this.entityData.get(ANIMATION);
-    }
-
-    public void setAnimation(String animation) {
-        this.entityData.set(ANIMATION, animation);
     }
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar data) {
         data.add(new AnimationController<>(this, "movement", 4, this::movementPredicate));
         data.add(new AnimationController<>(this, "attacking", 4, this::attackingPredicate));
-        data.add(new AnimationController<>(this, "procedure", 4, this::procedurePredicate));
-    }
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return this.cache;
     }
 }

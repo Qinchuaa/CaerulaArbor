@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"animation.splasher.move": {
+		"animation.nethersea_spewer.move": {
 			"loop": true,
 			"animation_length": 1.5,
 			"bones": {
@@ -193,7 +193,7 @@
 				}
 			}
 		},
-		"animation.splasher.idle": {
+		"animation.nethersea_spewer.idle": {
 			"loop": true,
 			"animation_length": 1.5,
 			"bones": {
@@ -390,7 +390,7 @@
 				}
 			}
 		},
-		"animation.splasher.attack": {
+		"animation.nethersea_spewer.attack": {
 			"animation_length": 0.5,
 			"bones": {
 				"body": {

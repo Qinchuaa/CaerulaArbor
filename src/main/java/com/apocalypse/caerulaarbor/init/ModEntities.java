@@ -52,8 +52,8 @@ public class ModEntities {
     public static final RegistryObject<EntityType<NetherseaBrandguiderEntity>> NETHERSEA_BRANDGUIDER = register("nethersea_brandguider",
             EntityType.Builder.<NetherseaBrandguiderEntity>of(NetherseaBrandguiderEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(NetherseaBrandguiderEntity::new)
                     .sized(0.88f, 2.2f));
-    public static final RegistryObject<EntityType<SplasherAbyssalEntity>> SPLASHER_ABYSSAL = register("splasher_abyssal",
-            EntityType.Builder.<SplasherAbyssalEntity>of(SplasherAbyssalEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(SplasherAbyssalEntity::new)
+    public static final RegistryObject<EntityType<NetherseaSpewerEntity>> NETHERSEA_SPEWER = register("nethersea_spewer",
+            EntityType.Builder.<NetherseaSpewerEntity>of(NetherseaSpewerEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(NetherseaSpewerEntity::new)
                     .sized(0.6f, 1.1f));
     public static final RegistryObject<EntityType<FishSplashEntity>> FISH_SPLASH = register("fish_splash",
             EntityType.Builder.<FishSplashEntity>of(FishSplashEntity::new, MobCategory.MISC).setCustomClientFactory(FishSplashEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).sized(0.3f, 0.3f));
@@ -114,7 +114,7 @@ public class ModEntities {
             NetherseaFounderEntity.init();
             NetherseaPredatorEntity.init();
             NetherseaBrandguiderEntity.init();
-            SplasherAbyssalEntity.init();
+            NetherseaSpewerEntity.init();
             UmbrellaAbyssalEntity.init();
             CrackerAbyssalEntity.init();
             CollectorProkaryoteEntity.init();
@@ -141,7 +141,7 @@ public class ModEntities {
         event.put(NETHERSEA_FOUNDER.get(), NetherseaFounderEntity.createAttributes().build());
         event.put(NETHERSEA_PREDATOR.get(), NetherseaPredatorEntity.createAttributes().build());
         event.put(NETHERSEA_BRANDGUIDER.get(), NetherseaBrandguiderEntity.createAttributes().build());
-        event.put(SPLASHER_ABYSSAL.get(), SplasherAbyssalEntity.createAttributes().build());
+        event.put(NETHERSEA_SPEWER.get(), NetherseaSpewerEntity.createAttributes().build());
         event.put(UMBRELLA_ABYSSAL.get(), UmbrellaAbyssalEntity.createAttributes().build());
         event.put(CRACKER_ABYSSAL.get(), CrackerAbyssalEntity.createAttributes().build());
         event.put(COLLECTOR_PROKARYOTE.get(), CollectorProkaryoteEntity.createAttributes().build());
