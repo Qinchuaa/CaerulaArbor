@@ -8,10 +8,10 @@ public class GetBarSubsisProcedure {
 	public static double execute(LevelAccessor world) {
 		double rate;
 		var mapVar = CaerulaArborModVariables.MapVariables.get(world);
-		if (mapVar.strategy_subsisting >= 4) {
+		if (mapVar.strategySubsisting >= 4) {
 			return 18;
 		}
-		rate = mapVar.evo_point_subsisting / (Math.pow(mapVar.strategy_subsisting + 1, 3) * GameplayConfig.EVOLUTION_POINT_COEFFICIENT.get());
+		rate = mapVar.evo_point_subsisting / (Math.pow(mapVar.strategySubsisting + 1, 3) * GameplayConfig.EVOLUTION_POINT_COEFFICIENT.get());
 		if (rate > 1) {
 			rate = 1;
 		}

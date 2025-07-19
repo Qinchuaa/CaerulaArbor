@@ -15,7 +15,7 @@ public class UpgradeBreedProcedure {
         String num = "";
         String prefix = "";
         var mapVar = CaerulaArborModVariables.MapVariables.get(world);
-        stra = mapVar.strategy_breed;
+        stra = mapVar.strategyBreed;
         if (stra < 4) {
             if (mapVar.evo_point_breed >= Math.pow(stra + 1, 3) * GameplayConfig.EVOLUTION_POINT_COEFFICIENT.get()) {
                 for (var player : world.players()) {
@@ -28,10 +28,10 @@ public class UpgradeBreedProcedure {
                         }
                     }
                 }
-                mapVar.strategy_breed = stra + 1;
+                mapVar.strategyBreed = stra + 1;
                 mapVar.evo_point_breed = 0;
 
-                stra = mapVar.strategy_breed;
+                stra = mapVar.strategyBreed;
                 if (stra == 1) {
                     num = "I";
                     prefix = "§p";

@@ -60,7 +60,7 @@ public class NetherseaPredatorEntity extends SeaMonster {
     public boolean hurt(DamageSource source, float amount) {
         double rate = 0.8;
         var level = this.level();
-        if (CaerulaArborModVariables.MapVariables.get(level).strategy_subsisting >= 3) {
+        if (CaerulaArborModVariables.MapVariables.get(level).strategySubsisting >= 3) {
             rate = 0.9;
         }
         if (!(this.hasEffect(ModMobEffects.DIZZY.get()) || this.hasEffect(ModMobEffects.FROZEN.get()) || this.hasEffect(MobEffects.MOVEMENT_SLOWDOWN) || this.hasEffect(MobEffects.SLOW_FALLING))

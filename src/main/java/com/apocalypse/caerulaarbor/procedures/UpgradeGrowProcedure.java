@@ -19,7 +19,7 @@ public class UpgradeGrowProcedure {
 		double stra = 0;
 		String num = "";
 		String prefix = "";
-		stra = CaerulaArborModVariables.MapVariables.get(world).strategy_grow;
+		stra = CaerulaArborModVariables.MapVariables.get(world).strategyGrow;
 		if (stra < 4) {
 			if (CaerulaArborModVariables.MapVariables.get(world).evo_point_grow >= Math.pow(stra + 1, 3) * (double) GameplayConfig.EVOLUTION_POINT_COEFFICIENT.get()) {
 				for (Entity entityiterator : world.players()) {
@@ -32,9 +32,9 @@ public class UpgradeGrowProcedure {
 						}
 					}
 				}
-				CaerulaArborModVariables.MapVariables.get(world).strategy_grow = stra + 1;
+				CaerulaArborModVariables.MapVariables.get(world).strategyGrow = stra + 1;
 				CaerulaArborModVariables.MapVariables.get(world).syncData(world);
-				stra = CaerulaArborModVariables.MapVariables.get(world).strategy_grow;
+				stra = CaerulaArborModVariables.MapVariables.get(world).strategyGrow;
 				CaerulaArborModVariables.MapVariables.get(world).evo_point_grow = 0;
 				CaerulaArborModVariables.MapVariables.get(world).syncData(world);
 				if (stra == 1) {

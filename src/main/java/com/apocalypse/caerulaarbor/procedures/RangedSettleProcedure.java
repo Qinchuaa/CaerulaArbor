@@ -29,7 +29,7 @@ public class RangedSettleProcedure {
 						(float) (entity instanceof LivingEntity _livingEntity5 && _livingEntity5.getAttributes().hasAttribute(Attributes.ATTACK_DAMAGE) ? _livingEntity5.getAttribute(Attributes.ATTACK_DAMAGE).getValue() : 0));
 			}
 		}
-		if (CaerulaArborModVariables.MapVariables.get(world).strategy_grow >= 3) {
+		if (CaerulaArborModVariables.MapVariables.get(world).strategyGrow >= 3) {
 			for (Entity entityiterator : world.getEntities(entity, new AABB((x - 7), (y - 1), (z - 7), (x + 7), (y + 3), (z + 7)))) {
 				if ((entityiterator != null ? entity.distanceTo(entityiterator) : -1) <= 7) {
 					if (entityiterator.getType().is(ModTags.EntityTypes.SEA_BORN)) {

@@ -3,11 +3,11 @@ package com.apocalypse.caerulaarbor.client.gui;
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.entity.BasinSeaReaperEntity;
 import com.apocalypse.caerulaarbor.init.ModEntities;
+import com.apocalypse.caerulaarbor.menu.InfoStrategyBreedMenu;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import com.apocalypse.caerulaarbor.network.InfoStrategyBreedButtonMessage;
 import com.apocalypse.caerulaarbor.procedures.GetBarBreedProcedure;
 import com.apocalypse.caerulaarbor.procedures.GetPointBreedProcedure;
-import com.apocalypse.caerulaarbor.menu.InfoStrategyBreedMenu;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
@@ -63,7 +63,7 @@ public class InfoStrategyBreedScreen extends AbstractContainerScreen<InfoStrateg
         RenderSystem.defaultBlendFunc();
 
         guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/sidebar.png"), this.leftPos - 3, this.topPos - 3, 0, 0, 262, 174, 262, 174);
-        guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/bg_breed.png"), this.leftPos, this.topPos, Mth.clamp((int) CaerulaArborModVariables.MapVariables.get(world).strategy_breed * 256, 0, 1024), 0, 256, 168, 1280, 168);
+        guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/bg_breed.png"), this.leftPos, this.topPos, Mth.clamp((int) CaerulaArborModVariables.MapVariables.get(world).strategyBreed * 256, 0, 1024), 0, 256, 168, 1280, 168);
         guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/barevo.png"), this.leftPos + 244, this.topPos + 20, Mth.clamp((int) GetBarBreedProcedure.execute(world) * 8, 0, 144), 0, 8, 72, 152, 72);
 
         RenderSystem.disableBlend();
@@ -82,7 +82,7 @@ public class InfoStrategyBreedScreen extends AbstractContainerScreen<InfoStrateg
     protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
         guiGraphics.drawString(this.font, Component.translatable("gui.caerula_arbor.info_strategy_breed.label_strategy_breed"), 1, -12, -16717080, false);
         guiGraphics.drawString(this.font, Component.translatable("gui.caerula_arbor.info_strategy_breed.label_to_breed"), 1, 4, -1, false);
-        guiGraphics.drawString(this.font, Component.translatable(("item.caerula_arbor.sample_breed.description_" + Math.round(CaerulaArborModVariables.MapVariables.get(world).strategy_breed))).getString(), 1, 100, -1, false);
+        guiGraphics.drawString(this.font, Component.translatable(("item.caerula_arbor.sample_breed.description_" + Math.round(CaerulaArborModVariables.MapVariables.get(world).strategyBreed))).getString(), 1, 100, -1, false);
         guiGraphics.drawString(this.font, Component.translatable("gui.caerula_arbor.info_strategy_breed.label_proceed"), 1, 172, -1, false);
         if (CaerulaArborModVariables.MapVariables.get(world).strategy_silence > 0)
             guiGraphics.drawString(this.font, Component.translatable(("item.caerula_arbor.sample_breed.description_" + Math.round(CaerulaArborModVariables.MapVariables.get(world).strategy_silence + 5))).getString(), 1, 116, -3407872, false);

@@ -19,7 +19,7 @@ public class UpgradeMigraProcedure {
         int stra;
         String num = "";
         String prefix = "";
-        stra = CaerulaArborModVariables.MapVariables.get(world).strategy_migration;
+        stra = CaerulaArborModVariables.MapVariables.get(world).strategyMigration;
         if (stra < 4) {
             if (CaerulaArborModVariables.MapVariables.get(world).evo_point_migration >= Math.pow(stra + 1, 3) * GameplayConfig.EVOLUTION_POINT_COEFFICIENT.get()) {
                 for (Entity entityiterator : world.players()) {
@@ -32,9 +32,9 @@ public class UpgradeMigraProcedure {
                         }
                     }
                 }
-                CaerulaArborModVariables.MapVariables.get(world).strategy_migration = stra + 1;
+                CaerulaArborModVariables.MapVariables.get(world).strategyMigration = stra + 1;
                 CaerulaArborModVariables.MapVariables.get(world).syncData(world);
-                stra = CaerulaArborModVariables.MapVariables.get(world).strategy_migration;
+                stra = CaerulaArborModVariables.MapVariables.get(world).strategyMigration;
                 CaerulaArborModVariables.MapVariables.get(world).evo_point_migration = 0;
                 CaerulaArborModVariables.MapVariables.get(world).syncData(world);
                 if (stra == 1) {

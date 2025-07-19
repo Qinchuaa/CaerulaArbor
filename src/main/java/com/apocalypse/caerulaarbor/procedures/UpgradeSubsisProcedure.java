@@ -19,7 +19,7 @@ public class UpgradeSubsisProcedure {
 		double stra;
 		String num = "";
 		String prefix = "";
-		stra = CaerulaArborModVariables.MapVariables.get(world).strategy_subsisting;
+		stra = CaerulaArborModVariables.MapVariables.get(world).strategySubsisting;
 		if (stra < 4) {
 			if (CaerulaArborModVariables.MapVariables.get(world).evo_point_subsisting >= Math.pow(stra + 1, 3) * (double) GameplayConfig.EVOLUTION_POINT_COEFFICIENT.get()) {
 				for (Entity entityiterator : world.players()) {
@@ -32,9 +32,9 @@ public class UpgradeSubsisProcedure {
 						}
 					}
 				}
-				CaerulaArborModVariables.MapVariables.get(world).strategy_subsisting = stra + 1;
+				CaerulaArborModVariables.MapVariables.get(world).strategySubsisting = stra + 1;
 				CaerulaArborModVariables.MapVariables.get(world).syncData(world);
-				stra = CaerulaArborModVariables.MapVariables.get(world).strategy_subsisting;
+				stra = CaerulaArborModVariables.MapVariables.get(world).strategySubsisting;
 				CaerulaArborModVariables.MapVariables.get(world).evo_point_subsisting = 0;
 				CaerulaArborModVariables.MapVariables.get(world).syncData(world);
 				if (stra == 1) {

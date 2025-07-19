@@ -43,24 +43,24 @@ public class BornFuncProcedure {
 				if (entity instanceof LivingEntity _livingEntity5 && _livingEntity5.getAttributes().hasAttribute(Attributes.MAX_HEALTH))
 					_livingEntity5.getAttribute(Attributes.MAX_HEALTH)
 							.setBaseValue(((entity instanceof LivingEntity _livingEntity4 && _livingEntity4.getAttributes().hasAttribute(Attributes.MAX_HEALTH) ? _livingEntity4.getAttribute(Attributes.MAX_HEALTH).getBaseValue() : 0)
-									* (1 + 0.3 * CaerulaArborModVariables.MapVariables.get(world).strategy_subsisting)));
+									* (1 + 0.3 * CaerulaArborModVariables.MapVariables.get(world).strategySubsisting)));
 				if (entity instanceof LivingEntity _entity)
 					_entity.setHealth((float) (entity instanceof LivingEntity _livingEntity6 && _livingEntity6.getAttributes().hasAttribute(Attributes.MAX_HEALTH) ? _livingEntity6.getAttribute(Attributes.MAX_HEALTH).getValue() : 0));
 				if (entity instanceof LivingEntity _livingEntity9 && _livingEntity9.getAttributes().hasAttribute(Attributes.ARMOR))
 					_livingEntity9.getAttribute(Attributes.ARMOR)
 							.setBaseValue(((entity instanceof LivingEntity _livingEntity8 && _livingEntity8.getAttributes().hasAttribute(Attributes.ARMOR) ? _livingEntity8.getAttribute(Attributes.ARMOR).getBaseValue() : 0)
-									+ 2 * CaerulaArborModVariables.MapVariables.get(world).strategy_subsisting));
+									+ 2 * CaerulaArborModVariables.MapVariables.get(world).strategySubsisting));
 				if (entity instanceof LivingEntity _livingEntity11 && _livingEntity11.getAttributes().hasAttribute(Attributes.ARMOR_TOUGHNESS))
 					_livingEntity11.getAttribute(Attributes.ARMOR_TOUGHNESS)
 							.setBaseValue(((entity instanceof LivingEntity _livingEntity10 && _livingEntity10.getAttributes().hasAttribute(Attributes.ARMOR_TOUGHNESS) ? _livingEntity10.getAttribute(Attributes.ARMOR_TOUGHNESS).getBaseValue() : 0)
-									+ 2 * CaerulaArborModVariables.MapVariables.get(world).strategy_subsisting));
+									+ 2 * CaerulaArborModVariables.MapVariables.get(world).strategySubsisting));
 				if (entity instanceof LivingEntity _livingEntity13 && _livingEntity13.getAttributes().hasAttribute(Attributes.ATTACK_DAMAGE))
 					_livingEntity13.getAttribute(Attributes.ATTACK_DAMAGE)
 							.setBaseValue(((entity instanceof LivingEntity _livingEntity12 && _livingEntity12.getAttributes().hasAttribute(Attributes.ATTACK_DAMAGE) ? _livingEntity12.getAttribute(Attributes.ATTACK_DAMAGE).getBaseValue() : 0)
-									* (1 + 0.25 * CaerulaArborModVariables.MapVariables.get(world).strategy_grow)));
-				if (CaerulaArborModVariables.MapVariables.get(world).strategy_breed > 0) {
+									* (1 + 0.25 * CaerulaArborModVariables.MapVariables.get(world).strategyGrow)));
+				if (CaerulaArborModVariables.MapVariables.get(world).strategyBreed > 0) {
 					if (!entity.getType().is(ModTags.EntityTypes.SEA_BORN) && !entity.getType().is(ModTags.EntityTypes.SEA_BORN_CREATURE)) {
-						if (Math.random() < 0.05 + 0.05 * CaerulaArborModVariables.MapVariables.get(world).strategy_breed) {
+						if (Math.random() < 0.05 + 0.05 * CaerulaArborModVariables.MapVariables.get(world).strategyBreed) {
 							{
 								Entity _ent = entity;
 								if (!_ent.level().isClientSide() && _ent.getServer() != null) {
@@ -71,8 +71,8 @@ public class BornFuncProcedure {
 								}
 							}
 						}
-						if (CaerulaArborModVariables.MapVariables.get(world).strategy_breed >= 3) {
-							if (Math.random() < 0.05 * (CaerulaArborModVariables.MapVariables.get(world).strategy_breed - 2)) {
+						if (CaerulaArborModVariables.MapVariables.get(world).strategyBreed >= 3) {
+							if (Math.random() < 0.05 * (CaerulaArborModVariables.MapVariables.get(world).strategyBreed - 2)) {
 								for (int index0 = 0; index0 < 2; index0++) {
 									{
 										Entity _ent = entity;

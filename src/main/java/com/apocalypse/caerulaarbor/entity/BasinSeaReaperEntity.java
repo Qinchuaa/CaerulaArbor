@@ -11,7 +11,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.Difficulty;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -35,7 +34,6 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
 import net.minecraft.world.level.block.Block;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.network.PlayMessages;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.core.animation.AnimatableManager;
@@ -127,7 +125,7 @@ public class BasinSeaReaperEntity extends SeaMonster {
         double hardness;
 
         limithard = -1;
-        double migrationStrategy = CaerulaArborModVariables.MapVariables.get(world).strategy_migration;
+        double migrationStrategy = CaerulaArborModVariables.MapVariables.get(world).strategyMigration;
 
         if (migrationStrategy >= 2) {
             limithard = 3.5;

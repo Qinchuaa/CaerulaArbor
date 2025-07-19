@@ -120,7 +120,7 @@ public class NetherseaSwarmcallerEntity extends SeaMonster {
                 server.sendParticles(ParticleTypes.ELECTRIC_SPARK, x + 3.9 * Math.sin(angle), y + 0.4, z + 3.9 * Math.cos(angle), 2, 0.1, 0.1, 0.1, 0.1);
             }
 
-            if (CaerulaArborModVariables.MapVariables.get(world).strategy_grow >= 3) {
+            if (CaerulaArborModVariables.MapVariables.get(world).strategyGrow >= 3) {
                 for (int index1 = 0; index1 < 14; index1++) {
                     angle = Mth.nextDouble(RandomSource.create(), 0, 6.283);
                     server.sendParticles(ParticleTypes.BUBBLE_COLUMN_UP, x + 6.9 * Math.sin(angle), y + 0.4, z + 6.9 * Math.cos(angle), 2, 0.15, 0.15, 0.15, 0.1);

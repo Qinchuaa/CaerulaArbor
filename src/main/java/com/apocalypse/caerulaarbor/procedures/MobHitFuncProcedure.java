@@ -67,21 +67,21 @@ public class MobHitFuncProcedure {
                 event.setCanceled(true);
             }
         }
-        if (CaerulaArborModVariables.MapVariables.get(world).strategy_grow >= 3) {
+        if (CaerulaArborModVariables.MapVariables.get(world).strategyGrow >= 3) {
             if (sourceentity.getType().is(ModTags.EntityTypes.SEA_BORN) && !damagesource.is(DamageTypes.MAGIC)) {
                 CaerulaArborMod.queueServerWork(10, () -> {
                     entity.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.MAGIC), immediatesourceentity, sourceentity),
-                            (float) (amount * 0.2 * (CaerulaArborModVariables.MapVariables.get(world).strategy_grow - 2)));
+                            (float) (amount * 0.2 * (CaerulaArborModVariables.MapVariables.get(world).strategyGrow - 2)));
                     if (world instanceof ServerLevel _level)
                         _level.sendParticles(ParticleTypes.ENCHANTED_HIT, x, (y + 1), z, 48, 1.5, 1.5, 1.5, 0.2);
                 });
             }
         }
         if (entity.getType().is(ModTags.EntityTypes.SEA_BORN) && !sourceentity.getType().is(ModTags.EntityTypes.SEA_BORN)) {
-            if (CaerulaArborModVariables.MapVariables.get(world).strategy_migration > 0) {
+            if (CaerulaArborModVariables.MapVariables.get(world).strategyMigration > 0) {
                 for (Entity entityiterator : world.getEntities(entity,
-                        new AABB((x - (8 + CaerulaArborModVariables.MapVariables.get(world).strategy_migration * 24)), (y - 16), (z - (8 + CaerulaArborModVariables.MapVariables.get(world).strategy_migration * 24)),
-                                (x + 8 + CaerulaArborModVariables.MapVariables.get(world).strategy_migration * 24), (y + 16), (z + 8 + CaerulaArborModVariables.MapVariables.get(world).strategy_migration * 24)))) {
+                        new AABB((x - (8 + CaerulaArborModVariables.MapVariables.get(world).strategyMigration * 24)), (y - 16), (z - (8 + CaerulaArborModVariables.MapVariables.get(world).strategyMigration * 24)),
+                                (x + 8 + CaerulaArborModVariables.MapVariables.get(world).strategyMigration * 24), (y + 16), (z + 8 + CaerulaArborModVariables.MapVariables.get(world).strategyMigration * 24)))) {
                     if (entityiterator.getType().is(ModTags.EntityTypes.SEA_BORN)) {
                         if (entityiterator == sourceentity) {
                             continue;
@@ -98,10 +98,10 @@ public class MobHitFuncProcedure {
         }
         if (entity instanceof Player) {
             if ((entity.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable())).player_oceanization >= 3) {
-                if (CaerulaArborModVariables.MapVariables.get(world).strategy_migration > 0) {
+                if (CaerulaArborModVariables.MapVariables.get(world).strategyMigration > 0) {
                     for (Entity entityiterator : world.getEntities(entity,
-                            new AABB((x - (8 + CaerulaArborModVariables.MapVariables.get(world).strategy_migration * 24)), (y - 16), (z - (8 + CaerulaArborModVariables.MapVariables.get(world).strategy_migration * 24)),
-                                    (x + 8 + CaerulaArborModVariables.MapVariables.get(world).strategy_migration * 24), (y + 16), (z + 8 + CaerulaArborModVariables.MapVariables.get(world).strategy_migration * 24)))) {
+                            new AABB((x - (8 + CaerulaArborModVariables.MapVariables.get(world).strategyMigration * 24)), (y - 16), (z - (8 + CaerulaArborModVariables.MapVariables.get(world).strategyMigration * 24)),
+                                    (x + 8 + CaerulaArborModVariables.MapVariables.get(world).strategyMigration * 24), (y + 16), (z + 8 + CaerulaArborModVariables.MapVariables.get(world).strategyMigration * 24)))) {
                         if (entityiterator.getType().is(ModTags.EntityTypes.SEA_BORN)) {
                             if (entityiterator == sourceentity) {
                                 continue;
@@ -143,7 +143,7 @@ public class MobHitFuncProcedure {
             if (entity.isPassenger() && GameplayConfig.ENABLE_MOB_BREAK.get() && world.getLevelData().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING)) {
                 (entity.getVehicle()).hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.MOB_ATTACK), entity), 8);
             }
-            if (CaerulaArborModVariables.MapVariables.get(world).strategy_subsisting >= 3 && Math.random() < 0.5) {
+            if (CaerulaArborModVariables.MapVariables.get(world).strategySubsisting >= 3 && Math.random() < 0.5) {
                 if (GameplayConfig.ENABLE_MOB_BREAK.get() && world.getLevelData().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING)) {
                     if (!entity.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanspawn"))) && DetectForTrailProcedure.execute(world, x, y, z)) {
                         new Object() {

@@ -46,10 +46,10 @@ public class MobTickFuncProcedure {
                 _entity.removeEffect(ModMobEffects.TRAIL_BUFF.get());
         }
         if (entity.getType().is(ModTags.EntityTypes.SEA_BORN)) {
-            if (CaerulaArborModVariables.MapVariables.get(world).strategy_subsisting >= 3) {
+            if (CaerulaArborModVariables.MapVariables.get(world).strategySubsisting >= 3) {
                 if (!(entity instanceof LivingEntity _livEnt14 && _livEnt14.hasEffect(MobEffects.DAMAGE_RESISTANCE))) {
                     if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-                        _entity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 20, (int) (CaerulaArborModVariables.MapVariables.get(world).strategy_subsisting - 3)));
+                        _entity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 20, (int) (CaerulaArborModVariables.MapVariables.get(world).strategySubsisting - 3)));
                 }
             }
             if (CaerulaArborModVariables.MapVariables.get(world).strategy_silence > 0) {
