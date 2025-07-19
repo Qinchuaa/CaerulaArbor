@@ -20,7 +20,7 @@ public class ModAttributes {
     public static final RegistryObject<Attribute> SANITY_INJURY_RESISTANCE = REGISTRY.register("sanity_injury_resistance", () -> new RangedAttribute("attribute.caerula_arbor.sanity_injury_resistance", 0, 0, 100).setSyncable(true));
     public static final RegistryObject<Attribute> SANITY_REGENERATE = REGISTRY.register("sanity_regenerate", () -> new RangedAttribute("attribute.caerula_arbor.sanity_regenerate", 0, 0, 1000).setSyncable(true));
     public static final RegistryObject<Attribute> SANITY_RATE = REGISTRY.register("sanity_rate", () -> new RangedAttribute("attribute.caerula_arbor.sanity_rate", 0, 0, 999).setSyncable(true));
-    public static final RegistryObject<Attribute> EVOLVED = REGISTRY.register("evolved", () -> new RangedAttribute("attribute.caerula_arbor.evolved", 0, 0, 1).setSyncable(true));
+
     public static final RegistryObject<Attribute> MISS_CHANCE = REGISTRY.register("miss_chance", () -> new RangedAttribute("attribute.caerula_arbor.miss_chance", 0, 0, 100).setSyncable(true));
     public static final RegistryObject<Attribute> SUMMONABLE = REGISTRY.register("summonable", () -> new RangedAttribute("attribute.caerula_arbor.summonable", 1, 0, 1).setSyncable(true));
 
@@ -30,7 +30,6 @@ public class ModAttributes {
             event.add(entity, SANITY_INJURY_RESISTANCE.get());
             event.add(entity, SANITY_REGENERATE.get());
             event.add(entity, SANITY_RATE.get());
-            event.add(entity, EVOLVED.get());
             event.add(entity, MISS_CHANCE.get());
             event.add(entity, SUMMONABLE.get());
         });
@@ -44,7 +43,6 @@ public class ModAttributes {
             Player newPlayer = event.getEntity();
             newPlayer.getAttribute(SANITY_INJURY_RESISTANCE.get()).setBaseValue(oldPlayer.getAttribute(SANITY_INJURY_RESISTANCE.get()).getBaseValue());
             newPlayer.getAttribute(SANITY_RATE.get()).setBaseValue(oldPlayer.getAttribute(SANITY_RATE.get()).getBaseValue());
-            newPlayer.getAttribute(EVOLVED.get()).setBaseValue(oldPlayer.getAttribute(EVOLVED.get()).getBaseValue());
             newPlayer.getAttribute(MISS_CHANCE.get()).setBaseValue(oldPlayer.getAttribute(MISS_CHANCE.get()).getBaseValue());
             newPlayer.getAttribute(SUMMONABLE.get()).setBaseValue(oldPlayer.getAttribute(SUMMONABLE.get()).getBaseValue());
         }

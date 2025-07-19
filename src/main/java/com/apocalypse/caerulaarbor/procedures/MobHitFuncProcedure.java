@@ -223,8 +223,6 @@ public class MobHitFuncProcedure {
                     }
                 }
             }
-            if (entity instanceof LivingEntity _livingEntity60 && _livingEntity60.getAttributes().hasAttribute(ModAttributes.EVOLVED.get()))
-                _livingEntity60.getAttribute(ModAttributes.EVOLVED.get()).setBaseValue(1);
         }
         if (sourceentity instanceof NetherseaReefbreakerEntity livEnt) {
             amplifi = livEnt.hasEffect(ModMobEffects.REEF_CRACKER.get()) ? livEnt.getEffect(ModMobEffects.REEF_CRACKER.get()).getAmplifier() : 0;
