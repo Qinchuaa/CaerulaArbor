@@ -34,7 +34,7 @@ public class ModRenderers {
         event.registerEntityRenderer(ModEntities.RETCHING_BROODMOTHER.get(), RetchingBroodmotherRenderer::new);
         event.registerEntityRenderer(ModEntities.BALEFUL_BROODLING.get(), BalefulBroodlingRenderer::new);
         event.registerEntityRenderer(ModEntities.FLEEFISH_BULLET.get(), FleefishBulletRenderer::new);
-        event.registerEntityRenderer(ModEntities.FLEE_FISH.get(), FleeFishRenderer::new);
+        event.registerEntityRenderer(ModEntities.SKIMMING_SEA_DRIFTER.get(), SkimmingSeaDrifterRenderer::new);
         event.registerEntityRenderer(ModEntities.ROUTE_SHAPER.get(), RouteShaperRenderer::new);
         event.registerEntityRenderer(ModEntities.ROUTE_FRACTAL.get(), RouteFractalRenderer::new);
     }

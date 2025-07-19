@@ -241,7 +241,7 @@ public class ModItems {
     public static final RegistryObject<Item> OCEAN_STONECUTTER_SPAWN_EGG = SPAWN_EGGS.register("ocean_stonecutter_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.OCEAN_STONECUTTER, -10053121, -1, new Item.Properties()));
     public static final RegistryObject<Item> RETCHING_BROODMOTHER_SPAWN_EGG = SPAWN_EGGS.register("retching_broodmother_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.RETCHING_BROODMOTHER, -10066177, -1, new Item.Properties()));
     public static final RegistryObject<Item> BALEFUL_BROODLING_SPAWN_EGG = SPAWN_EGGS.register("baleful_broodling_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.BALEFUL_BROODLING, -856596, -6711916, new Item.Properties()));
-    public static final RegistryObject<Item> FLEE_FISH_SPAWN_EGG = SPAWN_EGGS.register("flee_fish_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.FLEE_FISH, -16764007, -1, new Item.Properties()));
+    public static final RegistryObject<Item> SKIMMING_SEA_DRIFTER_SPAWN_EGG = SPAWN_EGGS.register("skimming_sea_drifter_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.SKIMMING_SEA_DRIFTER, -16764007, -1, new Item.Properties()));
     public static final RegistryObject<Item> ROUTE_SHAPER_SPAWN_EGG = SPAWN_EGGS.register("route_shaper_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.ROUTE_SHAPER, -16764007, -10040065, new Item.Properties()));
     public static final RegistryObject<Item> ROUTE_FRACTAL_SPAWN_EGG = SPAWN_EGGS.register("route_fractal_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.ROUTE_FRACTAL, -16777165, -16764109, new Item.Properties()));
 

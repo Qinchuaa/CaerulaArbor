@@ -109,6 +109,7 @@
   "entity.caerula_arbor.ocean_stonecutter": "Ocean Stonecutter",
   "entity.caerula_arbor.retching_broodmother": "Retching Broodmother",
   "entity.caerula_arbor.baleful_broodling": "Baleful Broodling",
+  "entity.caerula_arbor.skimming_sea_drifter": "Skimming Sea Drifter",
 
   "item.caerula_arbor.shell_sea_runner_spawn_egg": "Shell Sea Runner Spawn Egg",
   "item.caerula_arbor.deep_sea_slider_spawn_egg": "Deep Sea Slider Spawn Egg",
@@ -129,6 +130,7 @@
   "item.caerula_arbor.ocean_stonecutter_spawn_egg": "Ocean Stonecutter Spawn Egg",
   "item.caerula_arbor.retching_broodmother_spawn_egg": "Retching Broodmother Spawn Egg",
   "item.caerula_arbor.baleful_broodling_spawn_egg": "Baleful Broodling Spawn Egg",
+  "item.caerula_arbor.skimming_sea_drifter_spawn_egg": "Skimming Sea Drifter Spawn Egg",
 
   "item.caerula_arbor.fluore_berries": "Fluore Berries",
   "subtitles.grow1": "EMBRACE MORE",
@@ -206,7 +208,6 @@
   "item.caerula_arbor.chitin_knife": "Chitin Knife",
   "item.caerula_arbor.music_box_fixed.description_0": "§bRight-click to play",
   "gui.caerula_arbor.info_strategy_subsis.button_return": "return",
-  "item.caerula_arbor.flee_fish_spawn_egg": "Flee Fish Spawn Egg",
   "item.caerula_arbor.dispatch_stick.description_1": "§6Right click to make all oceanofspr around attack",
   "effect.caerula_arbor.rock_break": "Rock Break",
   "gui.caerula_arbor.info_strategy_all.label_tide_observation": "Tide Observation",
@@ -579,7 +580,6 @@
   "item.caerula_arbor.hand_of_spotless": "Hand Of Swipe",
   "item.caerula_arbor.royal_fate": "Royal Fate with Civilian Shape",
   "item.caerula_arbor.canned_water": "Canned Water",
-  "entity.caerula_arbor.flee_fish": "Flee Fish",
   "item.caerula_arbor.ocean_eye": "Ocean Eye",
   "enchantment.caerula_arbor.oceanospr_killer.desc": "Deals additional damage to Oceanoffsprs",
   "block.caerula_arbor.caramel_cake": "Trail Cake",
