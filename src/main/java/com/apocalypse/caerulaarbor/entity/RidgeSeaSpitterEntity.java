@@ -31,7 +31,6 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraftforge.network.PlayMessages;
 import org.jetbrains.annotations.NotNull;
-import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.AnimationState;
@@ -42,9 +41,6 @@ import javax.annotation.Nullable;
 import java.util.EnumSet;
 
 public class RidgeSeaSpitterEntity extends SeaMonster implements RangedAttackMob {
-
-    private boolean swinging;
-    private long lastSwing;
 
     public RidgeSeaSpitterEntity(PlayMessages.SpawnEntity packet, Level level) {
         this(ModEntities.RIDGE_SEA_SPITTER.get(), level);

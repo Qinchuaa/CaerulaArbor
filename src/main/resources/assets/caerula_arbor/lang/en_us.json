@@ -100,6 +100,7 @@
   "entity.caerula_arbor.primal_sea_piercer": "Primal Sea Piercer",
   "entity.caerula_arbor.nethersea_founder": "Nethersea Founder",
   "entity.caerula_arbor.nethersea_predator": "Nethersea Predator",
+  "entity.caerula_arbor.nethersea_brandguider": "Nethersea Brandguider",
 
   "item.caerula_arbor.shell_sea_runner_spawn_egg": "Shell Sea Runner Spawn Egg",
   "item.caerula_arbor.deep_sea_slider_spawn_egg": "Deep Sea Slider Spawn Egg",
@@ -111,6 +112,7 @@
   "item.caerula_arbor.primal_sea_piercer_spawn_egg": "Primal Sea Piercer Spawn Egg",
   "item.caerula_arbor.nethersea_founder_spawn_egg": "Nethersea Founder Spawn Egg",
   "item.caerula_arbor.nethersea_predator_spawn_egg": "Nethersea Predator Spawn Egg",
+  "item.caerula_arbor.nethersea_brandguider_spawn_egg": "Nethersea Brandguider Spawn Egg",
 
   "item.caerula_arbor.fluore_berries": "Fluore Berries",
   "subtitles.grow1": "EMBRACE MORE",
@@ -235,7 +237,6 @@
   "block.caerula_arbor.sea_trail_solid": "Sea Trail Solid",
   "effect.caerula_arbor.less_armor": "Less Armor",
   "effect.caerula_arbor.deduct_one_sanity": "Deduct One Sanity",
-  "entity.caerula_arbor.guide_abyssal": "Guide Abyssal",
   "item.caerula_arbor.archfiends_artifact.description_1": "§oProsperity is virtual to those who enthroned",
   "item.caerula_arbor.kings_crystal.description_1": "§oFirst day when they meet Oceanoffspring, on ne thinks that they\u0027re a disaster",
   "block.caerula_arbor.allay_block": "Allay Block",
@@ -518,7 +519,6 @@
   "advancements.embrace_the_sea.descr": "Equip yourself with complex chitin armor",
   "item.caerula_arbor.ocean_crystal": "Ocean Crystal",
   "attribute.caerula_arbor.sanity": "Sanity",
-  "item.caerula_arbor.guide_abyssal_spawn_egg": "Guide Abyssal Spawn Egg",
   "entity.caerula_arbor.splasher_abyssal": "Splasher Abyssal",
   "gui.caerula_arbor.info_strategy_grow.label_strategy_grow": "Strategy GROW",
   "item.caerula_arbor.wearable_crown_leggings": "Wearable Crown护腿",

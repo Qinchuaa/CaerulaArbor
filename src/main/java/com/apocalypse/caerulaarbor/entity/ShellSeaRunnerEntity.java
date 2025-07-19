@@ -41,9 +41,6 @@ import software.bernie.geckolib.core.object.PlayState;
 
 public class ShellSeaRunnerEntity extends SeaMonster {
 
-    private boolean swinging;
-    private long lastSwing;
-
     public ShellSeaRunnerEntity(PlayMessages.SpawnEntity packet, Level world) {
         this(ModEntities.SHELL_SEA_RUNNER.get(), world);
     }

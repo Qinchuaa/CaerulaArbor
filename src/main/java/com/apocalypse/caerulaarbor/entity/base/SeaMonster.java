@@ -18,6 +18,9 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
 
     private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
 
+    protected boolean swinging;
+    protected long lastSwing;
+
     protected SeaMonster(EntityType<? extends Monster> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
     }

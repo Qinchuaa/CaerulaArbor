@@ -45,8 +45,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 public class SuperSliderEntity extends SeaMonster {
 
-    private boolean swinging;
-    private long lastSwing;
     private final ServerBossEvent bossInfo = new ServerBossEvent(this.getDisplayName(), ServerBossEvent.BossBarColor.BLUE, ServerBossEvent.BossBarOverlay.PROGRESS);
 
     public SuperSliderEntity(PlayMessages.SpawnEntity packet, Level world) {

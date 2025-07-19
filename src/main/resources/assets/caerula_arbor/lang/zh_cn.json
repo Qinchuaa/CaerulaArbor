@@ -100,6 +100,7 @@
   "entity.caerula_arbor.primal_sea_piercer": "始海穿刺者",
   "entity.caerula_arbor.nethersea_founder": "深溟奠基者",
   "entity.caerula_arbor.nethersea_predator": "深溟猎食者",
+  "entity.caerula_arbor.nethersea_brandguider": "深溟引痕者",
 
   "item.caerula_arbor.shell_sea_runner_spawn_egg": "壳海狂奔者刷怪蛋",
   "item.caerula_arbor.deep_sea_slider_spawn_egg": "底海滑动者刷怪蛋",
@@ -111,6 +112,7 @@
   "item.caerula_arbor.primal_sea_piercer_spawn_egg": "始海穿刺者刷怪蛋",
   "item.caerula_arbor.nethersea_founder_spawn_egg": "深溟奠基者刷怪蛋",
   "item.caerula_arbor.nethersea_predator_spawn_egg": "深溟猎食者刷怪蛋",
+  "item.caerula_arbor.nethersea_brandguider_spawn_egg": "深溟引痕者刷怪蛋",
 
   "subtitles.grow1": "拥纳愈广",
   "item.caerula_arbor.fluore_berries": "荧光浆果",
@@ -235,7 +237,6 @@
   "block.caerula_arbor.sea_trail_solid": "深蚀的溟痕",
   "effect.caerula_arbor.less_armor": "侵蚀",
   "effect.caerula_arbor.deduct_one_sanity": "宝箱的肉之诅咒",
-  "entity.caerula_arbor.guide_abyssal": "深溟引痕者",
   "item.caerula_arbor.archfiends_artifact.description_1": "§o身居此位者，兴盛仅是泡影",
   "item.caerula_arbor.kings_crystal.description_1": "§o当他们第一次见到海嗣时，没人在意这些灾难",
   "block.caerula_arbor.allay_block": "悦灵塑像",
@@ -518,7 +519,6 @@
   "advancements.embrace_the_sea.descr": "穿上全套复合几丁质护甲。",
   "item.caerula_arbor.ocean_crystal": "深海棱晶",
   "attribute.caerula_arbor.sanity": "神经丰度",
-  "item.caerula_arbor.guide_abyssal_spawn_egg": "深溟引痕者刷怪蛋",
   "entity.caerula_arbor.splasher_abyssal": "深溟喷溅者",
   "gui.caerula_arbor.info_strategy_grow.label_strategy_grow": "策略——生长",
   "item.caerula_arbor.wearable_crown_leggings": "Wearable Crown护腿",

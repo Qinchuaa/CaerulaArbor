@@ -49,9 +49,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 public class BasinSeaReaperEntity extends SeaMonster {
 
-    private boolean swinging;
-    private long lastSwing;
-
     public BasinSeaReaperEntity(PlayMessages.SpawnEntity packet, Level level) {
         this(ModEntities.BASIN_SEA_REAPER.get(), level);
     }
@@ -93,11 +90,6 @@ public class BasinSeaReaperEntity extends SeaMonster {
         this.targetSelector.addGoal(12, new NearestAttackableTargetGoal<>(this, ZombifiedPiglin.class, false, false));
         this.goalSelector.addGoal(13, new RandomStrollGoal(this, 0.3));
         this.goalSelector.addGoal(14, new RandomLookAroundGoal(this));
-    }
-
-    @Override
-    public @NotNull MobType getMobType() {
-        return MobType.WATER;
     }
 
     @Override

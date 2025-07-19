@@ -36,9 +36,6 @@ import software.bernie.geckolib.core.object.PlayState;
 
 public class PrimalSeaPiercerEntity extends SeaMonster {
 
-    private boolean swinging;
-    private long lastSwing;
-
     public PrimalSeaPiercerEntity(PlayMessages.SpawnEntity packet, Level world) {
         this(ModEntities.PRIMAL_SEA_PIERCER.get(), world);
     }

@@ -48,9 +48,6 @@ import java.util.EnumSet;
 
 public class FloatingSeaDrifterEntity extends SeaMonster implements RangedAttackMob {
 
-    private boolean swinging;
-    private long lastSwing;
-
     public FloatingSeaDrifterEntity(PlayMessages.SpawnEntity packet, Level world) {
         this(ModEntities.FLOATING_SEA_DRIFTER.get(), world);
     }

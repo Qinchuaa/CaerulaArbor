@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.client.renderer;
 
-import com.apocalypse.caerulaarbor.entity.GuideAbyssalEntity;
+import com.apocalypse.caerulaarbor.entity.NetherseaBrandguiderEntity;
 import com.apocalypse.caerulaarbor.client.model.entity.GuideAbyssalModel;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
@@ -12,20 +12,20 @@ import net.minecraft.resources.ResourceLocation;
 import software.bernie.geckolib.cache.object.BakedGeoModel;
 import software.bernie.geckolib.renderer.GeoEntityRenderer;
 
-public class GuideAbyssalRenderer extends GeoEntityRenderer<GuideAbyssalEntity> {
+public class GuideAbyssalRenderer extends GeoEntityRenderer<NetherseaBrandguiderEntity> {
 	public GuideAbyssalRenderer(EntityRendererProvider.Context renderManager) {
 		super(renderManager, new GuideAbyssalModel());
 		this.shadowRadius = 0.6f;
 	}
 
 	@Override
-	public RenderType getRenderType(GuideAbyssalEntity animatable, ResourceLocation texture, MultiBufferSource bufferSource, float partialTick) {
+	public RenderType getRenderType(NetherseaBrandguiderEntity animatable, ResourceLocation texture, MultiBufferSource bufferSource, float partialTick) {
 		return RenderType.entityTranslucent(getTextureLocation(animatable));
 	}
 
 	@Override
-	public void preRender(PoseStack poseStack, GuideAbyssalEntity entity, BakedGeoModel model, MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green,
-			float blue, float alpha) {
+	public void preRender(PoseStack poseStack, NetherseaBrandguiderEntity entity, BakedGeoModel model, MultiBufferSource bufferSource, VertexConsumer buffer, boolean isReRender, float partialTick, int packedLight, int packedOverlay, float red, float green,
+                          float blue, float alpha) {
 		float scale = 1.5f;
 		this.scaleHeight = scale;
 		this.scaleWidth = scale;
@@ -33,7 +33,7 @@ public class GuideAbyssalRenderer extends GeoEntityRenderer<GuideAbyssalEntity> 
 	}
 
 	@Override
-	protected float getDeathMaxRotation(GuideAbyssalEntity entityLivingBaseIn) {
+	protected float getDeathMaxRotation(NetherseaBrandguiderEntity entityLivingBaseIn) {
 		return 0.0F;
 	}
 }

@@ -49,9 +49,9 @@ public class ModEntities {
     public static final RegistryObject<EntityType<NetherseaPredatorEntity>> NETHERSEA_PREDATOR = register("nethersea_predator",
             EntityType.Builder.<NetherseaPredatorEntity>of(NetherseaPredatorEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(NetherseaPredatorEntity::new)
                     .sized(0.6f, 1.4f));
-    public static final RegistryObject<EntityType<GuideAbyssalEntity>> GUIDE_ABYSSAL = register("guide_abyssal",
-            EntityType.Builder.<GuideAbyssalEntity>of(GuideAbyssalEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(GuideAbyssalEntity::new)
-                    .sized(0.8f, 2f));
+    public static final RegistryObject<EntityType<NetherseaBrandguiderEntity>> NETHERSEA_BRANDGUIDER = register("nethersea_brandguider",
+            EntityType.Builder.<NetherseaBrandguiderEntity>of(NetherseaBrandguiderEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(NetherseaBrandguiderEntity::new)
+                    .sized(0.88f, 2.2f));
     public static final RegistryObject<EntityType<SplasherAbyssalEntity>> SPLASHER_ABYSSAL = register("splasher_abyssal",
             EntityType.Builder.<SplasherAbyssalEntity>of(SplasherAbyssalEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(SplasherAbyssalEntity::new)
                     .sized(0.6f, 1.1f));
@@ -113,7 +113,7 @@ public class ModEntities {
             PrimalSeaPiercerEntity.init();
             NetherseaFounderEntity.init();
             NetherseaPredatorEntity.init();
-            GuideAbyssalEntity.init();
+            NetherseaBrandguiderEntity.init();
             SplasherAbyssalEntity.init();
             UmbrellaAbyssalEntity.init();
             CrackerAbyssalEntity.init();
@@ -140,7 +140,7 @@ public class ModEntities {
         event.put(PRIMAL_SEA_PIERCER.get(), PrimalSeaPiercerEntity.createAttributes().build());
         event.put(NETHERSEA_FOUNDER.get(), NetherseaFounderEntity.createAttributes().build());
         event.put(NETHERSEA_PREDATOR.get(), NetherseaPredatorEntity.createAttributes().build());
-        event.put(GUIDE_ABYSSAL.get(), GuideAbyssalEntity.createAttributes().build());
+        event.put(NETHERSEA_BRANDGUIDER.get(), NetherseaBrandguiderEntity.createAttributes().build());
         event.put(SPLASHER_ABYSSAL.get(), SplasherAbyssalEntity.createAttributes().build());
         event.put(UMBRELLA_ABYSSAL.get(), UmbrellaAbyssalEntity.createAttributes().build());
         event.put(CRACKER_ABYSSAL.get(), CrackerAbyssalEntity.createAttributes().build());

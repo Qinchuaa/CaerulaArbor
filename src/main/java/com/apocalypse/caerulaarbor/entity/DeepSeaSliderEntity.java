@@ -45,9 +45,6 @@ import javax.annotation.Nullable;
 
 public class DeepSeaSliderEntity extends SeaMonster {
 
-    private boolean swinging;
-    private long lastSwing;
-
     public DeepSeaSliderEntity(PlayMessages.SpawnEntity packet, Level world) {
         this(ModEntities.DEEP_SEA_SLIDER.get(), world);
     }

@@ -47,9 +47,6 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 public class NetherseaPredatorEntity extends SeaMonster {
 
-    private boolean swinging;
-    private long lastSwing;
-
     public NetherseaPredatorEntity(PlayMessages.SpawnEntity packet, Level world) {
         this(ModEntities.NETHERSEA_PREDATOR.get(), world);
     }

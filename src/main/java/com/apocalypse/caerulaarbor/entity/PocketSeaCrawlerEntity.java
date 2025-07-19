@@ -49,9 +49,6 @@ public class PocketSeaCrawlerEntity extends SeaMonster {
 
     public static final EntityDataAccessor<Float> DAMAGE = SynchedEntityData.defineId(PocketSeaCrawlerEntity.class, EntityDataSerializers.FLOAT);
 
-    private boolean swinging;
-    private long lastSwing;
-
     public PocketSeaCrawlerEntity(PlayMessages.SpawnEntity packet, Level world) {
         this(ModEntities.POCKET_SEA_CRAWLER.get(), world);
     }
