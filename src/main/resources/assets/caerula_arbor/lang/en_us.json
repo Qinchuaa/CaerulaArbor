@@ -107,6 +107,7 @@
   "entity.caerula_arbor.unicellular_predator": "Unicellular Predator",
   "entity.caerula_arbor.bone_sea_drifter": "Bone Sea Drifter",
   "entity.caerula_arbor.ocean_stonecutter": "Ocean Stonecutter",
+  "entity.caerula_arbor.retching_broodmother": "Retching Broodmother",
 
   "item.caerula_arbor.shell_sea_runner_spawn_egg": "Shell Sea Runner Spawn Egg",
   "item.caerula_arbor.deep_sea_slider_spawn_egg": "Deep Sea Slider Spawn Egg",
@@ -125,6 +126,7 @@
   "item.caerula_arbor.unicellular_predator_spawn_egg": "Unicellular Predator Spawn Egg",
   "item.caerula_arbor.bone_sea_drifter_spawn_egg": "Bone Sea Drifter Spawn Egg",
   "item.caerula_arbor.ocean_stonecutter_spawn_egg": "Ocean Stonecutter Spawn Egg",
+  "item.caerula_arbor.retching_broodmother_spawn_egg": "Retching Broodmother Spawn Egg",
 
   "item.caerula_arbor.fluore_berries": "Fluore Berries",
   "subtitles.grow1": "EMBRACE MORE",
@@ -219,7 +221,6 @@
   "item.caerula_arbor.trailed_iron_sword": "Trailed Wooden Sword",
   "item.caerula_arbor.broken_cell_cluster.description_0": "§7A cluster of cells, no one will want to eat it...",
   "effect.caerula_arbor.untame_confirm": "Untame Confirm",
-  "item.caerula_arbor.pregnant_fish_spawn_egg": "Pregnant Fish Spawn Egg",
   "gui.caerula_arbor.caerula_record_gui.tooltip_playerlife": "PlayerLife",
   "item.caerula_arbor.ocean_eye.description_0": "§7An eye of oceanoffspring, their first means to view this world",
   "item.caerula_arbor.transform_cell": "Transform Cell",
@@ -431,7 +432,6 @@
   "gui.caerula_arbor.light_show.label_light3": "LIGHT",
   "gui.caerula_arbor.light_show.label_light2": "LIGHT",
   "item.caerula_arbor.empty_can": "Empty Can",
-  "entity.caerula_arbor.pregnant_fish": "Pregnant Fish",
   "effect.caerula_arbor.haemophilia": "Haemophilia",
   "effect.caerula_arbor.sanity_protect": "Sanity Protect",
   "gui.caerula_arbor.info_strategy_all.tooltip_breed": "Strategy - Breed",

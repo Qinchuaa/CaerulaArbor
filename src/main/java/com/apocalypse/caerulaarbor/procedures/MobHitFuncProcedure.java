@@ -195,7 +195,7 @@ public class MobHitFuncProcedure {
                                             case 4 -> ModEntities.PRIMAL_SEA_PIERCER;
                                             case 5 -> ModEntities.BASIN_SEA_REAPER;
                                             case 6 -> ModEntities.NETHERSEA_SWARMCALLER;
-                                            case 7 -> ModEntities.PREGNANT_FISH;
+                                            case 7 -> ModEntities.RETCHING_BROODMOTHER;
                                             case 8 -> ModEntities.FLEE_FISH;
                                             default -> null;
                                         };
