@@ -102,6 +102,7 @@
   "entity.caerula_arbor.nethersea_predator": "深溟猎食者",
   "entity.caerula_arbor.nethersea_brandguider": "深溟引痕者",
   "entity.caerula_arbor.nethersea_spewer": "深溟喷溅者",
+  "entity.caerula_arbor.nethersea_swarmcaller": "深溟巢涌者",
 
   "item.caerula_arbor.shell_sea_runner_spawn_egg": "壳海狂奔者刷怪蛋",
   "item.caerula_arbor.deep_sea_slider_spawn_egg": "底海滑动者刷怪蛋",
@@ -115,6 +116,7 @@
   "item.caerula_arbor.nethersea_predator_spawn_egg": "深溟猎食者刷怪蛋",
   "item.caerula_arbor.nethersea_brandguider_spawn_egg": "深溟引痕者刷怪蛋",
   "item.caerula_arbor.nethersea_spewer_spawn_egg": "深溟喷溅者刷怪蛋",
+  "item.caerula_arbor.nethersea_swarmcaller_spawn_egg": "深溟巢涌者刷怪蛋",
 
   "subtitles.grow1": "拥纳愈广",
   "item.caerula_arbor.fluore_berries": "荧光浆果",
@@ -340,7 +342,6 @@
   "item.caerula_arbor.sample_migration.description_3": "海嗣被攻击时呼叫远处同胞",
   "item.caerula_arbor.sample_migration.description_4": "海嗣被攻击时呼叫大量同胞",
   "item.caerula_arbor.trail_cake_piece": "一块原味深溟蛋糕",
-  "item.caerula_arbor.umbrella_abyssal_spawn_egg": "深溟巢涌者刷怪蛋",
   "item.caerula_arbor.ocean_peduncle": "深海腕足",
   "item.caerula_arbor.cooked_peduncle": "Cooked Peduncle",
   "gui.caerula_arbor.caerula_record_gui.label_neurodegression": "神经退行",
@@ -405,7 +406,6 @@
   "item.minecraft.splash_potion.effect.inst_sanity_ii": "喷溅型神经损伤药水",
   "death.attack.oceanize_damage": "%1$s 被增生的海嗣组织撕碎了",
   "advancements.sparkling_shell.descr": "获得深海角素。你可以从囊海爬行者那获取。",
-  "entity.caerula_arbor.umbrella_abyssal": "深溟巢涌者",
   "item.caerula_arbor.relic_curse_emelight.description_0": "§c玩家在击杀生物时损失0.1~0.2灯火",
   "item.caerula_arbor.relic_curse_emelight.description_1": "§o锁在灯笼里的发光恐鱼，随时间变为了难以名状的黑色胶质",
   "block.caerula_arbor.block_batbed": "蝙蝠寝床",

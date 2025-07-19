@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"animation.umbrella.idle": {
+		"animation.nethersea_swarmcaller.idle": {
 			"loop": true,
 			"animation_length": 2,
 			"bones": {
@@ -37,7 +37,7 @@
 						}
 					}
 				},
-				"umbrella": {
+				"nethersea_swarmcaller": {
 					"position": {
 						"0.0": {
 							"vector": [0, 0, 0]
@@ -190,7 +190,7 @@
 				}
 			}
 		},
-		"animation.umbrella.move": {
+		"animation.nethersea_swarmcaller.move": {
 			"loop": true,
 			"animation_length": 2,
 			"bones": {
@@ -286,7 +286,7 @@
 						}
 					}
 				},
-				"umbrella": {
+				"nethersea_swarmcaller": {
 					"position": {
 						"0.0": {
 							"vector": [0, 0, 0]
@@ -439,7 +439,7 @@
 				}
 			}
 		},
-		"animation.umbrella.die": {
+		"animation.nethersea_swarmcaller.die": {
 			"loop": "hold_on_last_frame",
 			"animation_length": 1,
 			"bones": {
@@ -454,7 +454,7 @@
 						}
 					}
 				},
-				"umbrella": {
+				"nethersea_swarmcaller": {
 					"position": {
 						"0.0": {
 							"vector": [0, 0, 0]
