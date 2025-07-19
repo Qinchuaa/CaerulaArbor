@@ -163,7 +163,7 @@ public class LivingEventHandler {
         }
         var armorToughness = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
         if (armorToughness != null) {
-            armorToughness.addPermanentModifier(new AttributeModifier(CaerulaArborMod.ATTRIBUTE_MODIFIER, subsisting, AttributeModifier.Operation.ADDITION));
+            armorToughness.addPermanentModifier(new AttributeModifier(CaerulaArborMod.ATTRIBUTE_MODIFIER, 2 * subsisting, AttributeModifier.Operation.ADDITION));
         }
 
         var attackDamage = entity.getAttribute(Attributes.ATTACK_DAMAGE);
@@ -171,7 +171,7 @@ public class LivingEventHandler {
             attackDamage.addPermanentModifier(new AttributeModifier(CaerulaArborMod.ATTRIBUTE_MODIFIER, 0.25 * grow, AttributeModifier.Operation.MULTIPLY_BASE));
         }
 
-        if (breed > 0 && !entity.getType().is(ModTags.EntityTypes.SEA_BORN_CREATURE)) {
+        if (breed > 0 && !entity.getType().is(ModTags.EntityTypes.SEA_BORN_CREATURE) && !entity.getType().is(ModTags.EntityTypes.SEA_BORN_BOSS)) {
             double random = Math.random();
             if (random < 0.05 + 0.05 * breed) {
                 var copyEntity = entity.getType().create(level);
@@ -182,12 +182,10 @@ public class LivingEventHandler {
             }
             if (breed >= 3) {
                 if (random < 0.05 * (breed - 2)) {
-                    for (int index0 = 0; index0 < 2; index0++) {
-                        var copyEntity = entity.getType().create(level);
-                        if (copyEntity != null) {
-                            copyEntity.setPos(entity.getX() + Mth.nextDouble(level.random, -1, 1), entity.getY(), entity.getZ() + Mth.nextDouble(level.random, -1, 1));
-                            level.addFreshEntity(copyEntity);
-                        }
+                    var copyEntity = entity.getType().create(level);
+                    if (copyEntity != null) {
+                        copyEntity.setPos(entity.getX() + Mth.nextDouble(level.random, -1, 1), entity.getY(), entity.getZ() + Mth.nextDouble(level.random, -1, 1));
+                        level.addFreshEntity(copyEntity);
                     }
                 }
             }
