@@ -61,9 +61,8 @@ public class ModEntities {
     public static final RegistryObject<EntityType<NetherseaReefbreakerEntity>> NETHERSEA_REEFBREAKER = register("nethersea_reefbreaker",
             EntityType.Builder.<NetherseaReefbreakerEntity>of(NetherseaReefbreakerEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(NetherseaReefbreakerEntity::new)
                     .sized(0.7f, 1.8f));
-    public static final RegistryObject<EntityType<CollectorProkaryoteEntity>> COLLECTOR_PROKARYOTE = register("collector_prokaryote",
-            EntityType.Builder.<CollectorProkaryoteEntity>of(CollectorProkaryoteEntity::new, MobCategory.WATER_CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(32).setUpdateInterval(3)
-                    .setCustomClientFactory(CollectorProkaryoteEntity::new)
+    public static final RegistryObject<EntityType<UnicellularPredatorEntity>> UNICELLULAR_PREDATOR = register("unicellular_predator",
+            EntityType.Builder.<UnicellularPredatorEntity>of(UnicellularPredatorEntity::new, MobCategory.WATER_CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(32).setUpdateInterval(3).setCustomClientFactory(UnicellularPredatorEntity::new)
                     .sized(0.5f, 0.5f));
     public static final RegistryObject<EntityType<BoneFishEntity>> BONE_FISH = register("bone_fish",
             EntityType.Builder.<BoneFishEntity>of(BoneFishEntity::new, MobCategory.WATER_CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(24).setUpdateInterval(3).setCustomClientFactory(BoneFishEntity::new)
@@ -117,7 +116,7 @@ public class ModEntities {
             NetherseaSpewerEntity.init();
             NetherseaSwarmcallerEntity.init();
             NetherseaReefbreakerEntity.init();
-            CollectorProkaryoteEntity.init();
+            UnicellularPredatorEntity.init();
             BoneFishEntity.init();
             ChiselerFishEntity.init();
             PregnantFishEntity.init();
@@ -144,7 +143,7 @@ public class ModEntities {
         event.put(NETHERSEA_SPEWER.get(), NetherseaSpewerEntity.createAttributes().build());
         event.put(NETHERSEA_SWARMCALLER.get(), NetherseaSwarmcallerEntity.createAttributes().build());
         event.put(NETHERSEA_REEFBREAKER.get(), NetherseaReefbreakerEntity.createAttributes().build());
-        event.put(COLLECTOR_PROKARYOTE.get(), CollectorProkaryoteEntity.createAttributes().build());
+        event.put(UNICELLULAR_PREDATOR.get(), UnicellularPredatorEntity.createAttributes().build());
         event.put(BONE_FISH.get(), BoneFishEntity.createAttributes().build());
         event.put(CHISELER_FISH.get(), ChiselerFishEntity.createAttributes().build());
         event.put(PREGNANT_FISH.get(), PregnantFishEntity.createAttributes().build());
