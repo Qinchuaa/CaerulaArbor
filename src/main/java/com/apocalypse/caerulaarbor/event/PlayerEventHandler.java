@@ -12,6 +12,8 @@ import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
+import net.minecraft.util.Mth;
+import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -21,6 +23,7 @@ import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.CriticalHitEvent;
+import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -145,5 +148,13 @@ public class PlayerEventHandler {
             level.playLocalSound(pos, ModSounds.TARGET_DAMAGED.get(), SoundSource.PLAYERS, 1, 1, false);
             level.playLocalSound(pos, SoundEvents.TOTEM_USE, SoundSource.PLAYERS, 1, 1, false);
         }
+    }
+
+    @SubscribeEvent
+    public static void onPlayerWakeUp(PlayerWakeUpEvent event) {
+        var player = event.getEntity();
+        var cap = player.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable());
+        cap.light = Mth.clamp(cap.light + Mth.nextInt(RandomSource.create(), 1, 3), 0, 100);
+        cap.syncPlayerVariables(player);
     }
 }
