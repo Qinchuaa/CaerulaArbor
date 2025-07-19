@@ -106,6 +106,7 @@
   "entity.caerula_arbor.nethersea_reefbreaker": "Nethersea Reefbreaker",
   "entity.caerula_arbor.unicellular_predator": "Unicellular Predator",
   "entity.caerula_arbor.bone_sea_drifter": "Bone Sea Drifter",
+  "entity.caerula_arbor.ocean_stonecutter": "Ocean Stonecutter",
 
   "item.caerula_arbor.shell_sea_runner_spawn_egg": "Shell Sea Runner Spawn Egg",
   "item.caerula_arbor.deep_sea_slider_spawn_egg": "Deep Sea Slider Spawn Egg",
@@ -123,6 +124,7 @@
   "item.caerula_arbor.nethersea_reefbreaker_spawn_egg": "Nethersea Reefbreaker Spawn Egg",
   "item.caerula_arbor.unicellular_predator_spawn_egg": "Unicellular Predator Spawn Egg",
   "item.caerula_arbor.bone_sea_drifter_spawn_egg": "Bone Sea Drifter Spawn Egg",
+  "item.caerula_arbor.ocean_stonecutter_spawn_egg": "Ocean Stonecutter Spawn Egg",
 
   "item.caerula_arbor.fluore_berries": "Fluore Berries",
   "subtitles.grow1": "EMBRACE MORE",
@@ -480,7 +482,6 @@
   "item.minecraft.potion.effect.inst_sanity_ii": "Potion of Inst Sanity",
   "entity.caerula_arbor.fake_offspring": "Fake Offspring",
   "item.caerula_arbor.kings_extension": "Kings Extension",
-  "item.caerula_arbor.chiseler_fish_spawn_egg": "Chiseler Fish Spawn Egg",
   "gui.caerula_arbor.caerula_record_gui.tooltip_occupy_warn": "May occupy a lot of apace",
   "item.caerula_arbor.shovel_ocean_crystal": "Axe Ocean Crystal",
   "block.caerula_arbor.anchor_lower": "  Ishar-mla Collector",
@@ -507,7 +508,6 @@
   "item.caerula_arbor.elite_peduncle.description_0": "§7Well decorated peduncle, looks yammy!",
   "block.caerula_arbor.block_extension": "Block Extension",
   "item.caerula_arbor.omni_key.description_1": "§oA key used to open any door",
-  "entity.caerula_arbor.chiseler_fish": "Chiseler Fish",
   "item.caerula_arbor.elite_peduncle": "Elite Peduncle",
   "block.caerula_arbor.redstoneiris_seeding": "Redstone Iris Seeding",
   "item.caerula_arbor.omni_key.description_0": "§bPlayer get 3 levels of exp when used",

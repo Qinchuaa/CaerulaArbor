@@ -67,8 +67,8 @@ public class ModEntities {
     public static final RegistryObject<EntityType<BoneSeaDrifterEntity>> BONE_SEA_DRIFTER = register("bone_sea_drifter",
             EntityType.Builder.<BoneSeaDrifterEntity>of(BoneSeaDrifterEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(24).setUpdateInterval(3).setCustomClientFactory(BoneSeaDrifterEntity::new)
                     .sized(0.7f, 0.7f));
-    public static final RegistryObject<EntityType<ChiselerFishEntity>> CHISELER_FISH = register("chiseler_fish",
-            EntityType.Builder.<ChiselerFishEntity>of(ChiselerFishEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(ChiselerFishEntity::new)
+    public static final RegistryObject<EntityType<OceanStonecutterEntity>> OCEAN_STONECUTTER = register("ocean_stonecutter",
+            EntityType.Builder.<OceanStonecutterEntity>of(OceanStonecutterEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(OceanStonecutterEntity::new)
                     .sized(0.6f, 0.6f));
     public static final RegistryObject<EntityType<PregnantFishEntity>> PREGNANT_FISH = register("pregnant_fish",
             EntityType.Builder.<PregnantFishEntity>of(PregnantFishEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(PregnantFishEntity::new)
@@ -118,7 +118,7 @@ public class ModEntities {
             NetherseaReefbreakerEntity.init();
             UnicellularPredatorEntity.init();
             BoneSeaDrifterEntity.init();
-            ChiselerFishEntity.init();
+            OceanStonecutterEntity.init();
             PregnantFishEntity.init();
             FakeOffspringEntity.init();
             FleeFishEntity.init();
@@ -145,7 +145,7 @@ public class ModEntities {
         event.put(NETHERSEA_REEFBREAKER.get(), NetherseaReefbreakerEntity.createAttributes().build());
         event.put(UNICELLULAR_PREDATOR.get(), UnicellularPredatorEntity.createAttributes().build());
         event.put(BONE_SEA_DRIFTER.get(), BoneSeaDrifterEntity.createAttributes().build());
-        event.put(CHISELER_FISH.get(), ChiselerFishEntity.createAttributes().build());
+        event.put(OCEAN_STONECUTTER.get(), OceanStonecutterEntity.createAttributes().build());
         event.put(PREGNANT_FISH.get(), PregnantFishEntity.createAttributes().build());
         event.put(FAKE_OFFSPRING.get(), FakeOffspringEntity.createAttributes().build());
         event.put(FLEE_FISH.get(), FleeFishEntity.createAttributes().build());

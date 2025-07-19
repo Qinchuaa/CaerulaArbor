@@ -106,6 +106,7 @@
   "entity.caerula_arbor.nethersea_reefbreaker": "深溟裂礁者",
   "entity.caerula_arbor.unicellular_predator": "单核掠食者",
   "entity.caerula_arbor.bone_sea_drifter": "骨海漂流体",
+  "entity.caerula_arbor.ocean_stonecutter": "固海凿石者",
 
   "item.caerula_arbor.shell_sea_runner_spawn_egg": "壳海狂奔者刷怪蛋",
   "item.caerula_arbor.deep_sea_slider_spawn_egg": "底海滑动者刷怪蛋",
@@ -123,6 +124,7 @@
   "item.caerula_arbor.nethersea_reefbreaker_spawn_egg": "深溟裂礁者刷怪蛋",
   "item.caerula_arbor.unicellular_predator_spawn_egg": "单核掠食者刷怪蛋",
   "item.caerula_arbor.bone_sea_drifter_spawn_egg": "骨海漂流体刷怪蛋",
+  "item.caerula_arbor.ocean_stonecutter_spawn_egg": "固海凿石者刷怪蛋",
 
   "subtitles.grow1": "拥纳愈广",
   "item.caerula_arbor.fluore_berries": "荧光浆果",
@@ -480,7 +482,6 @@
   "item.minecraft.potion.effect.inst_sanity_ii": "神经损伤药水",
   "entity.caerula_arbor.fake_offspring": "注亡拟嗣",
   "item.caerula_arbor.kings_extension": "国王的延伸",
-  "item.caerula_arbor.chiseler_fish_spawn_egg": "固海凿石者刷怪蛋",
   "gui.caerula_arbor.caerula_record_gui.tooltip_occupy_warn": "可能很占视野",
   "item.caerula_arbor.shovel_ocean_crystal": "深海棱晶锹",
   "block.caerula_arbor.anchor_lower": "伊莎玛拉扰动监视器",
@@ -507,7 +508,6 @@
   "item.caerula_arbor.elite_peduncle.description_0": "§7外表华美的腕足，看起来就好吃！",
   "block.caerula_arbor.block_extension": "延伸的容纳",
   "item.caerula_arbor.omni_key.description_1": "§o银质的老旧钥匙，可以用它打开任何一扇铁门",
-  "entity.caerula_arbor.chiseler_fish": "固海凿石者",
   "item.caerula_arbor.elite_peduncle": "精制腕足",
   "block.caerula_arbor.redstoneiris_seeding": "红石鸢尾幼苗",
   "item.caerula_arbor.omni_key.description_0": "§b使用后获得3级经验值",

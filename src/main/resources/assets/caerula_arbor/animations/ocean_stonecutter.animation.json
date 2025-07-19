@@ -1,7 +1,7 @@
 {
 	"format_version": "1.8.0",
 	"animations": {
-		"animation.chiseler.idle": {
+		"animation.ocean_stonecutter.idle": {
 			"loop": true,
 			"animation_length": 2,
 			"bones": {
@@ -127,7 +127,7 @@
 				}
 			}
 		},
-		"animation.chiseler.move": {
+		"animation.ocean_stonecutter.move": {
 			"loop": true,
 			"animation_length": 1,
 			"override_previous_animation": true,
@@ -282,7 +282,7 @@
 				}
 			}
 		},
-		"animation.chiseler.attack": {
+		"animation.ocean_stonecutter.attack": {
 			"animation_length": 0.5,
 			"bones": {
 				"body": {
@@ -433,7 +433,7 @@
 				}
 			}
 		},
-		"animation.chiseler.die": {
+		"animation.ocean_stonecutter.die": {
 			"loop": "hold_on_last_frame",
 			"animation_length": 1,
 			"bones": {

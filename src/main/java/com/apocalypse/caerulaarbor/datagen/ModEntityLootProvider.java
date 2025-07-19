@@ -5,11 +5,13 @@ import com.apocalypse.caerulaarbor.init.ModItems;
 import net.minecraft.data.loot.EntityLootSubProvider;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.flag.FeatureFlags;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.storage.loot.LootPool;
 import net.minecraft.world.level.storage.loot.LootTable;
 import net.minecraft.world.level.storage.loot.entries.LootItem;
 import net.minecraft.world.level.storage.loot.functions.LootingEnchantFunction;
 import net.minecraft.world.level.storage.loot.functions.SetItemCountFunction;
+import net.minecraft.world.level.storage.loot.predicates.LootItemRandomChanceCondition;
 import net.minecraft.world.level.storage.loot.providers.number.ConstantValue;
 import net.minecraft.world.level.storage.loot.providers.number.UniformGenerator;
 import net.minecraftforge.registries.RegistryObject;
@@ -98,6 +100,22 @@ public class ModEntityLootProvider extends EntityLootSubProvider {
                 LootTable.lootTable().withPool(
                         LootPool.lootPool().setRolls(ConstantValue.exactly(1.0f))
                                 .add(LootItem.lootTableItem(ModItems.BONE_SHARD.get())
+                                        .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0f)))
+                                        .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))
+                                )
+                )
+        );
+        this.add(ModEntities.OCEAN_STONECUTTER.get(),
+                LootTable.lootTable().withPool(
+                        LootPool.lootPool().setRolls(ConstantValue.exactly(1.0f))
+                                .add(LootItem.lootTableItem(ModItems.OCEAN_CHITIN.get())
+                                        .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0f)))
+                                        .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))
+                                )
+                ).withPool(
+                        LootPool.lootPool().setRolls(ConstantValue.exactly(1.0f))
+                                .add(LootItem.lootTableItem(Items.STONECUTTER)
+                                        .when(LootItemRandomChanceCondition.randomChance(0.05f))
                                         .apply(SetItemCountFunction.setCount(ConstantValue.exactly(1.0f)))
                                         .apply(LootingEnchantFunction.lootingMultiplier(UniformGenerator.between(0.0F, 1.0F)))
                                 )

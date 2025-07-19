@@ -1,26 +1,21 @@
-
 package com.apocalypse.caerulaarbor.entity;
 
+import com.apocalypse.caerulaarbor.entity.base.SeaMonster;
 import com.apocalypse.caerulaarbor.init.ModEntities;
-import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.procedures.OceanizedPlayerProcedure;
 import net.minecraft.core.BlockPos;
-import net.minecraft.nbt.CompoundTag;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.SynchedEntityData;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.util.Mth;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
-import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.SpawnPlacements;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.Goal;
@@ -35,65 +30,31 @@ import net.minecraft.world.entity.monster.piglin.Piglin;
 import net.minecraft.world.entity.monster.piglin.PiglinBrute;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.item.ItemStack;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.levelgen.Heightmap;
-import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
 import org.jetbrains.annotations.NotNull;
-import software.bernie.geckolib.animatable.GeoEntity;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
 import java.util.EnumSet;
 
-public class ChiselerFishEntity extends Monster implements RangedAttackMob, GeoEntity {
-    public static final EntityDataAccessor<Boolean> SHOOT = SynchedEntityData.defineId(ChiselerFishEntity.class, EntityDataSerializers.BOOLEAN);
-    public static final EntityDataAccessor<String> ANIMATION = SynchedEntityData.defineId(ChiselerFishEntity.class, EntityDataSerializers.STRING);
-    public static final EntityDataAccessor<String> TEXTURE = SynchedEntityData.defineId(ChiselerFishEntity.class, EntityDataSerializers.STRING);
-    private final AnimatableInstanceCache cache = GeckoLibUtil.createInstanceCache(this);
-    private boolean swinging;
-    private boolean lastloop;
-    private long lastSwing;
-    public String animationprocedure = "empty";
+public class OceanStonecutterEntity extends SeaMonster implements RangedAttackMob {
 
-    public ChiselerFishEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(ModEntities.CHISELER_FISH.get(), world);
+    public OceanStonecutterEntity(PlayMessages.SpawnEntity packet, Level world) {
+        this(ModEntities.OCEAN_STONECUTTER.get(), world);
     }
 
-    public ChiselerFishEntity(EntityType<ChiselerFishEntity> type, Level world) {
+    public OceanStonecutterEntity(EntityType<OceanStonecutterEntity> type, Level world) {
         super(type, world);
         xpReward = 4;
         setNoAi(false);
         setMaxUpStep(0.6f);
-    }
-
-    @Override
-    protected void defineSynchedData() {
-        super.defineSynchedData();
-        this.entityData.define(SHOOT, false);
-        this.entityData.define(ANIMATION, "undefined");
-        this.entityData.define(TEXTURE, "prokaryote");
-    }
-
-    public void setTexture(String texture) {
-        this.entityData.set(TEXTURE, texture);
-    }
-
-    public String getTexture() {
-        return this.entityData.get(TEXTURE);
-    }
-
-    @Override
-    public @NotNull Packet<ClientGamePacketListener> getAddEntityPacket() {
-        return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
@@ -113,25 +74,25 @@ public class ChiselerFishEntity extends Monster implements RangedAttackMob, GeoE
         this.targetSelector.addGoal(12, new NearestAttackableTargetGoal<>(this, Player.class, false, false) {
             @Override
             public boolean canUse() {
-                double x = ChiselerFishEntity.this.getX();
-                double y = ChiselerFishEntity.this.getY();
-                double z = ChiselerFishEntity.this.getZ();
-                Level world = ChiselerFishEntity.this.level();
+                double x = OceanStonecutterEntity.this.getX();
+                double y = OceanStonecutterEntity.this.getY();
+                double z = OceanStonecutterEntity.this.getZ();
+                Level world = OceanStonecutterEntity.this.level();
                 return super.canUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
             }
 
             @Override
             public boolean canContinueToUse() {
-                double x = ChiselerFishEntity.this.getX();
-                double y = ChiselerFishEntity.this.getY();
-                double z = ChiselerFishEntity.this.getZ();
-                Level world = ChiselerFishEntity.this.level();
+                double x = OceanStonecutterEntity.this.getX();
+                double y = OceanStonecutterEntity.this.getY();
+                double z = OceanStonecutterEntity.this.getZ();
+                Level world = OceanStonecutterEntity.this.level();
                 return super.canContinueToUse() && OceanizedPlayerProcedure.execute(world, x, y, z);
             }
         });
         this.goalSelector.addGoal(13, new RandomStrollGoal(this, 0.4));
         this.goalSelector.addGoal(14, new RandomLookAroundGoal(this));
-        this.goalSelector.addGoal(1, new ChiselerFishEntity.RangedAttackGoal(this, 1.25, 50, 18f) {
+        this.goalSelector.addGoal(1, new OceanStonecutterEntity.RangedAttackGoal(this, 1.25, 50, 18f) {
             @Override
             public boolean canContinueToUse() {
                 return this.canUse();
@@ -189,7 +150,6 @@ public class ChiselerFishEntity extends Monster implements RangedAttackMob, GeoE
             this.target = null;
             this.seeTime = 0;
             this.attackTime = -1;
-            ((ChiselerFishEntity) rangedAttackMob).entityData.set(SHOOT, false);
         }
 
         public boolean requiresUpdateEveryTick() {
@@ -212,29 +172,16 @@ public class ChiselerFishEntity extends Monster implements RangedAttackMob, GeoE
             this.mob.getLookControl().setLookAt(this.target, 30.0F, 30.0F);
             if (--this.attackTime == 0) {
                 if (!flag) {
-                    ((ChiselerFishEntity) rangedAttackMob).entityData.set(SHOOT, false);
                     return;
                 }
-                ((ChiselerFishEntity) rangedAttackMob).entityData.set(SHOOT, true);
                 float f = (float) Math.sqrt(d0) / this.attackRadius;
                 float f1 = Mth.clamp(f, 0.1F, 1.0F);
                 this.rangedAttackMob.performRangedAttack(this.target, f1);
                 this.attackTime = Mth.floor(f * (float) (this.attackIntervalMax - this.attackIntervalMin) + (float) this.attackIntervalMin);
             } else if (this.attackTime < 0) {
                 this.attackTime = Mth.floor(Mth.lerp(Math.sqrt(d0) / (double) this.attackRadius, this.attackIntervalMin, this.attackIntervalMax));
-            } else
-                ((ChiselerFishEntity) rangedAttackMob).entityData.set(SHOOT, false);
+            }
         }
-    }
-
-    @Override
-    public @NotNull MobType getMobType() {
-        return MobType.WATER;
-    }
-
-    protected void dropCustomDeathLoot(@NotNull DamageSource source, int looting, boolean recentlyHitIn) {
-        super.dropCustomDeathLoot(source, looting, recentlyHitIn);
-        this.spawnAtLocation(new ItemStack(ModItems.OCEAN_CHITIN.get()));
     }
 
     @Override
@@ -258,26 +205,6 @@ public class ChiselerFishEntity extends Monster implements RangedAttackMob, GeoE
     }
 
     @Override
-    public boolean hurt(DamageSource source, float amount) {
-        if (source.is(DamageTypes.DROWN))
-            return false;
-        return super.hurt(source, amount);
-    }
-
-    @Override
-    public void addAdditionalSaveData(@NotNull CompoundTag compound) {
-        super.addAdditionalSaveData(compound);
-        compound.putString("Texture", this.getTexture());
-    }
-
-    @Override
-    public void readAdditionalSaveData(@NotNull CompoundTag compound) {
-        super.readAdditionalSaveData(compound);
-        if (compound.contains("Texture"))
-            this.setTexture(compound.getString("Texture"));
-    }
-
-    @Override
     public void baseTick() {
         super.baseTick();
 
@@ -291,17 +218,12 @@ public class ChiselerFishEntity extends Monster implements RangedAttackMob, GeoE
     }
 
     @Override
-    public @NotNull EntityDimensions getDimensions(@NotNull Pose p_33597_) {
-        return super.getDimensions(p_33597_);
-    }
-
-    @Override
     public void performRangedAttack(@NotNull LivingEntity target, float flval) {
         FishShootEntity.shoot(this, target);
     }
 
     public static void init() {
-        SpawnPlacements.register(ModEntities.CHISELER_FISH.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+        SpawnPlacements.register(ModEntities.OCEAN_STONECUTTER.get(), SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
                 (entityType, world, reason, pos, random) -> (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)));
     }
 
@@ -317,23 +239,16 @@ public class ChiselerFishEntity extends Monster implements RangedAttackMob, GeoE
     }
 
     private PlayState movementPredicate(AnimationState<?> event) {
-        if (this.animationprocedure.equals("empty")) {
-            if ((event.isMoving() || !(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F))
-
-            ) {
-                return event.setAndContinue(RawAnimation.begin().thenLoop("animation.chiseler.move"));
-            }
-            if (this.isDeadOrDying()) {
-                return event.setAndContinue(RawAnimation.begin().thenPlay("animation.chiseler.die"));
-            }
-            return event.setAndContinue(RawAnimation.begin().thenLoop("animation.chiseler.idle"));
+        if ((event.isMoving() || !(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F))) {
+            return event.setAndContinue(RawAnimation.begin().thenLoop("animation.ocean_stonecutter.move"));
         }
-        return PlayState.STOP;
+        if (this.isDeadOrDying()) {
+            return event.setAndContinue(RawAnimation.begin().thenPlay("animation.ocean_stonecutter.die"));
+        }
+        return event.setAndContinue(RawAnimation.begin().thenLoop("animation.ocean_stonecutter.idle"));
     }
 
     private PlayState attackingPredicate(AnimationState<?> event) {
-        double d1 = this.getX() - this.xOld;
-        double d0 = this.getZ() - this.zOld;
         if (getAttackAnim(event.getPartialTick()) > 0f && !this.swinging) {
             this.swinging = true;
             this.lastSwing = level().getGameTime();
@@ -341,29 +256,10 @@ public class ChiselerFishEntity extends Monster implements RangedAttackMob, GeoE
         if (this.swinging && this.lastSwing + 7L <= level().getGameTime()) {
             this.swinging = false;
         }
-        if ((this.swinging || this.entityData.get(SHOOT)) && event.getController().getAnimationState() == AnimationController.State.STOPPED) {
+        if (this.swinging && event.getController().getAnimationState() == AnimationController.State.STOPPED) {
             event.getController().forceAnimationReset();
-            return event.setAndContinue(RawAnimation.begin().thenPlay("animation.chiseler.attack"));
+            return event.setAndContinue(RawAnimation.begin().thenPlay("animation.ocean_stonecutter.attack"));
         }
-        return PlayState.CONTINUE;
-    }
-
-    String prevAnim = "empty";
-
-    private PlayState procedurePredicate(AnimationState<?> event) {
-        if (!animationprocedure.equals("empty") && event.getController().getAnimationState() == AnimationController.State.STOPPED || (!this.animationprocedure.equals(prevAnim) && !this.animationprocedure.equals("empty"))) {
-            if (!this.animationprocedure.equals(prevAnim))
-                event.getController().forceAnimationReset();
-            event.getController().setAnimation(RawAnimation.begin().thenPlay(this.animationprocedure));
-            if (event.getController().getAnimationState() == AnimationController.State.STOPPED) {
-                this.animationprocedure = "empty";
-                event.getController().forceAnimationReset();
-            }
-        } else if (animationprocedure.equals("empty")) {
-            prevAnim = "empty";
-            return PlayState.STOP;
-        }
-        prevAnim = this.animationprocedure;
         return PlayState.CONTINUE;
     }
 
@@ -371,28 +267,14 @@ public class ChiselerFishEntity extends Monster implements RangedAttackMob, GeoE
     protected void tickDeath() {
         ++this.deathTime;
         if (this.deathTime == 20) {
-            this.remove(ChiselerFishEntity.RemovalReason.KILLED);
+            this.remove(OceanStonecutterEntity.RemovalReason.KILLED);
             this.dropExperience();
         }
-    }
-
-    public String getSyncedAnimation() {
-        return this.entityData.get(ANIMATION);
-    }
-
-    public void setAnimation(String animation) {
-        this.entityData.set(ANIMATION, animation);
     }
 
     @Override
     public void registerControllers(AnimatableManager.ControllerRegistrar data) {
         data.add(new AnimationController<>(this, "movement", 2, this::movementPredicate));
         data.add(new AnimationController<>(this, "attacking", 2, this::attackingPredicate));
-        data.add(new AnimationController<>(this, "procedure", 2, this::procedurePredicate));
-    }
-
-    @Override
-    public AnimatableInstanceCache getAnimatableInstanceCache() {
-        return this.cache;
     }
 }
