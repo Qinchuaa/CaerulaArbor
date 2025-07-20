@@ -62,22 +62,7 @@ public class MobHitFuncProcedure {
 
         double amplifi;
         double sklp;
-        double limithard;
-        if (entity instanceof LivingEntity _livEnt0 && _livEnt0.hasEffect(ModMobEffects.INVULNERABLE.get())) {
-            if (event != null && event.isCancelable()) {
-                event.setCanceled(true);
-            }
-        }
-        if (CaerulaArborModVariables.MapVariables.get(world).strategyGrow >= 3) {
-            if (sourceentity.getType().is(ModTags.EntityTypes.SEA_BORN) && !damagesource.is(DamageTypes.MAGIC)) {
-                CaerulaArborMod.queueServerWork(10, () -> {
-                    entity.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.MAGIC), immediatesourceentity, sourceentity),
-                            (float) (amount * 0.2 * (CaerulaArborModVariables.MapVariables.get(world).strategyGrow - 2)));
-                    if (world instanceof ServerLevel _level)
-                        _level.sendParticles(ParticleTypes.ENCHANTED_HIT, x, (y + 1), z, 48, 1.5, 1.5, 1.5, 0.2);
-                });
-            }
-        }
+
         if (entity.getType().is(ModTags.EntityTypes.SEA_BORN) && !sourceentity.getType().is(ModTags.EntityTypes.SEA_BORN)) {
             if (CaerulaArborModVariables.MapVariables.get(world).strategyMigration > 0) {
                 for (Entity entityiterator : world.getEntities(entity,

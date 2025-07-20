@@ -2,7 +2,6 @@ package com.apocalypse.caerulaarbor.entity;
 
 //孩子不懂事复制写着玩的
 
-import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
@@ -87,8 +86,6 @@ public class SeabornEntity extends Monster {
     @Override
     public boolean hurt(DamageSource source, float amount) {
         if (source.is(DamageTypes.DROWN))
-            return false;
-        if (SeabornEntity.this.hasEffect(ModMobEffects.INVULNERABLE.get()))
             return false;
         return super.hurt(source, amount);
     }
