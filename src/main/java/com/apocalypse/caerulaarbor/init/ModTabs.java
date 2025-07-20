@@ -144,10 +144,14 @@ public class ModTabs {
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("item_group.caerula_arbor.caerula_relics"))
                     .icon(() -> new ItemStack(ModItems.LUMINOUS_CORPSE.get()))
-                    .displayItems((parameters, tabData) -> {
-                        // 这一堆是藏品，放这看一下
+                    .displayItems((param, output) -> ModItems.RELICS.getEntries().forEach(registryObject -> output.accept(registryObject.get())))
+                    .withTabsBefore(CAERULA_ITEMS.getId())
+                    .build());
+
+
+    // 这一堆是藏品，放这看一下
 //    tabData.accept(CaerulaArborModItems.RELIC_CURSE_EMELIGHT.get());
-                        tabData.accept(ModItems.LUMINOUS_CORPSE.get());
+//                        tabData.accept(ModItems.LUMINOUS_CORPSE.get());
 //				tabData.accept(CaerulaArborModItems.RELIC_CURSED_RESEARCH.get());
 //				tabData.accept(CaerulaArborModItems.CAERULA_HEART.get());
 //				tabData.accept(CaerulaArborModItems.RELIC_CROWN.get());
@@ -177,12 +181,12 @@ public class ModTabs {
 //				tabData.accept(CaerulaArborModItems.REDSTONE_IRIS_FLOWER.get());
 //				tabData.accept(CaerulaArborModItems.RESCISSION.get());
 //				tabData.accept(CaerulaArborModItems.SCORE.get());
-                        tabData.accept(ModItems.UNIVERSAL_KEY.get());
-                        tabData.accept(ModItems.BANSHEE_KISS.get());
-                        tabData.accept(ModItems.GAULISH_TOPONYM_ORIGINS.get());
-                        tabData.accept(ModItems.STONE_GARGOYLE.get());
-                        tabData.accept(ModItems.PROOF_OF_LONGEVITY.get());
-                    }).build());
+//                        tabData.accept(ModItems.UNIVERSAL_KEY.get());
+//                        tabData.accept(ModItems.BANSHEE_KISS.get());
+//                        tabData.accept(ModItems.GAULISH_TOPONYM_ORIGINS.get());
+//                        tabData.accept(ModItems.STONE_GARGOYLE.get());
+//                        tabData.accept(ModItems.PROOF_OF_LONGEVITY.get());
+
     public static final RegistryObject<CreativeModeTab> CAERULA_LIVINGS = REGISTRY.register("caerula_livings",
             () -> CreativeModeTab.builder().title(Component.translatable("item_group.caerula_arbor.caerula_livings")).icon(() -> new ItemStack(ModItems.LUMINOUS_CORPSE.get()))
                     .displayItems((param, output) -> ModItems.SPAWN_EGGS.getEntries().forEach(registryObject -> output.accept(registryObject.get())))
