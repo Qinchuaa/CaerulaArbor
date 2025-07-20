@@ -72,15 +72,18 @@
   "item.caerula_arbor.complex_chitin_shovel": "复合几丁质锹",
   "item.caerula_arbor.complex_chitin_hoe": "复合几丁质锄",
   "item.caerula_arbor.complex_chitin_tool.des": "攻击造成神经损伤",
+
   "effect.caerula_arbor.sanity_immune": "损伤免疫",
   "effect.caerula_arbor.sanity_immune.description": "免疫神经损伤，且每秒恢复100",
   "item.minecraft.potion.effect.sanity_immune_potion": "损伤免疫药水",
   "item.minecraft.splash_potion.effect.sanity_immune_potion": "喷溅型损伤免疫药水",
   "item.minecraft.lingering_potion.effect.sanity_immune_potion": "滞留型损伤免疫药水",
   "item.minecraft.tipped_arrow.effect.sanity_immune_potion": "损伤免疫之箭",
+
   "death.attack.nervous_impairment": "%1$s沉入溟海",
   "death.attack.nervous_impairment.item": "%1$s沉入溟海",
   "death.attack.nervous_impairment.player": "%1$s沉入溟海",
+
   "attribute.caerula_arbor.sanity_injury_resistance": "神经损伤减免",
 
   "entity.caerula_arbor.shell_sea_runner": "壳海狂奔者",
