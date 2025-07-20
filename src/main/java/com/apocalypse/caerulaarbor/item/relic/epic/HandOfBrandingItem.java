@@ -1,10 +1,11 @@
 
-package com.apocalypse.caerulaarbor.item;
+package com.apocalypse.caerulaarbor.item.relic.epic;
 
 import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
 import com.apocalypse.caerulaarbor.item.relic.RelicItem;
+import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -26,16 +27,16 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
-public class HandOfEngraveItem extends RelicItem {
-    public HandOfEngraveItem() {
+public class HandOfBrandingItem extends RelicItem {
+    public HandOfBrandingItem() {
         super(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC));
     }
 
     @Override
     public void appendHoverText(ItemStack itemstack, Level level, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         super.appendHoverText(itemstack, level, list, flag);
-        list.add(Component.translatable("item.caerula_arbor.hand_of_engrave.description_0"));
-        list.add(Component.translatable("item.caerula_arbor.hand_of_engrave.description_1"));
+        list.add(Component.translatable("item.caerula_arbor.hand_of_branding.description_0").withStyle(ChatFormatting.AQUA));
+        list.add(Component.translatable("item.caerula_arbor.hand_of_branding.description_1").withStyle(ChatFormatting.GRAY));
     }
 
     @Override
@@ -59,7 +60,7 @@ public class HandOfEngraveItem extends RelicItem {
             }
             if ((LevelAccessor) world instanceof ServerLevel _level)
                 _level.sendParticles(ParticleTypes.CLOUD, x, y, z, 72, 1, 1, 1, 1);
-            if (((LevelAccessor) world).isClientSide())
+            if (world.isClientSide())
                 Minecraft.getInstance().gameRenderer.displayItemActivation(itemstack);
 
             Relic.HAND_ENGRAVE.reset(cap);
