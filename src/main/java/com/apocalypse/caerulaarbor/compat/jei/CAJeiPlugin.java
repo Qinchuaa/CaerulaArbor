@@ -37,7 +37,7 @@ public class CAJeiPlugin implements IModPlugin {
     private static List<IJeiAnvilRecipe> getAnvilRecipes(IVanillaRecipeFactory factory) {
         List<IJeiAnvilRecipe> anvilRecipes = new ArrayList<>();
 
-        anvilRecipes.add(factory.createAnvilRecipe(new ItemStack(Items.IRON_HELMET), List.of(new ItemStack(ModItems.RELIC_CROWN.get())),
+        anvilRecipes.add(factory.createAnvilRecipe(new ItemStack(Items.IRON_HELMET), List.of(new ItemStack(ModItems.KINGS_CROWN.get())),
                 List.of(new ItemStack(ModItems.WEARABLE_CROWN_HELMET.get())), CaerulaArborMod.loc("wearable_crown_helmet")));
         anvilRecipes.add(factory.createAnvilRecipe(new ItemStack(Items.IRON_CHESTPLATE), List.of(new ItemStack(ModItems.KINGS_ARMOUR.get())),
                 List.of(new ItemStack(ModItems.WEARABLE_CHEST_CHESTPLATE.get())), CaerulaArborMod.loc("wearable_chestplate")));

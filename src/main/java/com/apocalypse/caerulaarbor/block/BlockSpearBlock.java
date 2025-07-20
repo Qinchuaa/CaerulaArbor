@@ -115,7 +115,7 @@ public class BlockSpearBlock extends Block implements SimpleWaterloggedBlock {
         int z = pos.getZ();
 
         if (world instanceof ServerLevel serverLevel) {
-            ItemEntity entityToSpawn = new ItemEntity(serverLevel, (x + 0.5), (y + 0.75), (z + 0.5), new ItemStack(ModItems.KINGS_SPEAR.get()));
+            ItemEntity entityToSpawn = new ItemEntity(serverLevel, (x + 0.5), (y + 0.75), (z + 0.5), new ItemStack(ModItems.KINGS_NEW_LANCE.get()));
             entityToSpawn.setPickUpDelay(10);
             serverLevel.addFreshEntity(entityToSpawn);
         }

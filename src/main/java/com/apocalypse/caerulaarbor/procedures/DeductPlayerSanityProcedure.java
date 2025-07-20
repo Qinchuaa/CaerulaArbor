@@ -17,7 +17,7 @@ public class DeductPlayerSanityProcedure {
         var sanModifier = sanModifierAttribute == null ? 0 : sanModifierAttribute.getValue();
 
         if (sanAttribute != null) {
-            sanAttribute.setBaseValue(Mth.clamp(san - value * sanModifier, -1, 1000));
+            sanAttribute.setBaseValue(Mth.clamp(san - value * (100 - sanModifier) * 0.01, -1, 1000));
         }
     }
 }

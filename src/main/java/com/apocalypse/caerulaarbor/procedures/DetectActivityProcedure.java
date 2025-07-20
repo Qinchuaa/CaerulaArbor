@@ -1,8 +1,10 @@
 package com.apocalypse.caerulaarbor.procedures;
 
 // TODO 为什么这个会报错？这是干啥的？
+// 不知道哪冒出来的 onAnvilUpdate
+// 666方法全都解析不了，重写吧
 public class DetectActivityProcedure {
-//    public static void onAnvilUpdate(LevelAccessor world, double x, double y, double z, BlockState blockstate) {
+//    public static void execute(LevelAccessor world, double x, double y, double z, BlockState blockstate) {
 //        double dx;
 //        double dy;
 //        double dz;

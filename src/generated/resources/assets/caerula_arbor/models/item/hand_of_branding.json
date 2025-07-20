@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "caerula_arbor:item/hand_of_branding"
+  }
+}

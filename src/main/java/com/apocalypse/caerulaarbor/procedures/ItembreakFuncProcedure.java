@@ -26,7 +26,7 @@ public class ItembreakFuncProcedure {
 	private static void execute(@Nullable Event event, LevelAccessor world, double x, double y, double z, ItemStack itemstack) {
 		if (itemstack.getItem() == ModItems.THE_SPEAR.get()) {
 			if (world instanceof ServerLevel _level) {
-				ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack(ModItems.KINGS_SPEAR.get()));
+				ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack(ModItems.KINGS_NEW_LANCE.get()));
 				entityToSpawn.setPickUpDelay(10);
 				entityToSpawn.setUnlimitedLifetime();
 				_level.addFreshEntity(entityToSpawn);
@@ -42,7 +42,7 @@ public class ItembreakFuncProcedure {
 		}
 		if (itemstack.getItem() == ModItems.WEARABLE_CROWN_HELMET.get()) {
 			if (world instanceof ServerLevel _level) {
-				ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack(ModItems.RELIC_CROWN.get()));
+				ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack(ModItems.KINGS_CROWN.get()));
 				entityToSpawn.setPickUpDelay(10);
 				entityToSpawn.setUnlimitedLifetime();
 				_level.addFreshEntity(entityToSpawn);
@@ -50,7 +50,7 @@ public class ItembreakFuncProcedure {
 		}
 		if (itemstack.getItem() == ModItems.LEGENDARY_SPEAR.get()) {
 			if (world instanceof ServerLevel _level) {
-				ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack(ModItems.CHITIN_KNIFE.get()));
+				ItemEntity entityToSpawn = new ItemEntity(_level, x, y, z, new ItemStack(ModItems.CHITINOUS_RIPPER.get()));
 				entityToSpawn.setPickUpDelay(10);
 				entityToSpawn.setUnlimitedLifetime();
 				_level.addFreshEntity(entityToSpawn);

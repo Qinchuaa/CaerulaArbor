@@ -31,14 +31,14 @@ public class ModItemTagProvider extends ItemTagsProvider {
                 .addTags(ModTags.Items.ARCHFIEND_RELICS, ModTags.Items.KING_RELICS, ModTags.Items.CURSED_RELICS, ModTags.Items.HAND_RELICS);
 
         this.tag(ModTags.Items.CURSED_RELICS)
-                .add(ModItems.RELIC_CURSE_EMELIGHT.get(), ModItems.RELIC_CURSED_RESEARCH.get(), ModItems.RELIC_CURSED_GLOWBODY.get());
+                .add(ModItems.RELIC_CURSE_EMELIGHT.get(), ModItems.RELIC_CURSED_RESEARCH.get(), ModItems.LUMINOUS_CORPSE.get(),ModItems.CAERULA_ANIMUS.get());
         this.tag(ModTags.Items.HAND_RELICS)
-                .add(ModItems.HAND_OF_PULVERIZATION.get(), ModItems.HAND_OF_ENGRAVE.get(), ModItems.HAND_OF_FERTILIY.get(), ModItems.HAND_OF_SPEED.get(),
-                        ModItems.HAND_OF_FIREWORK.get(), ModItems.HAND_OF_SPOTLESS.get(), ModItems.HAND_OF_STRANGLE.get(), ModItems.HAND_OF_THORNS.get());
-        this.tag(ModTags.Items.KING_RELICS).add(ModItems.KINGS_ARMOR.get(), ModItems.KINGS_SPEAR.get(), ModItems.KINGS_CRYSTAL.get(),
-                ModItems.KINGS_EXTENSION.get(), ModItems.RELIC_CROWN.get());
-        this.tag(ModTags.Items.ARCHFIEND_RELICS).add(ModItems.ARCHFIENDS_ARTIFACT.get(), ModItems.HAND_OF_FIREWORK.get(), ModItems.ARCHFIENDS_FLAG.get(),
-                ModItems.ARCHFIENDS_BED.get(), ModItems.ROYAL_FATE.get());
+                .add(ModItems.HAND_OF_PULVERIZATION.get(), ModItems.HAND_OF_BRANDING.get(), ModItems.HAND_OF_FERTILIY.get(), ModItems.HAND_OF_SUPERSPEED.get(),
+                        ModItems.HAND_OF_FIREWORK.get(), ModItems.HAND_OF_SPOTLESS.get(), ModItems.HAND_OF_CHOKER.get(), ModItems.HAND_OF_SPIKES.get());
+        this.tag(ModTags.Items.KING_RELICS).add(ModItems.KINGS_ARMOR.get(), ModItems.KINGS_NEW_LANCE.get(), ModItems.KINGS_CRYSTAL.get(),
+                ModItems.KINGS_LEGACY.get(), ModItems.KINGS_CROWN.get());
+        this.tag(ModTags.Items.ARCHFIEND_RELICS).add(ModItems.SARKAZ_KINGS_TORN_BANNER.get(), ModItems.KING_OF_SARKAZ_VESSEL.get(),
+                ModItems.SARKARZ_KINGS_REGAL_REST.get(), ModItems.ROYAL_FATE.get());
         this.tag(ModTags.Items.SELF_MENDABLE).add(ModItems.COMPLEX_CHITIN_AXE.get(), ModItems.COMPLEX_CHITIN_HOE.get(), ModItems.COMPLEX_CHITIN_PICKAXE.get(),
                 ModItems.COMPLEX_CHITIN_SHOVEL.get(), ModItems.COMPLEX_CHITIN_SWORD.get(), ModItems.LEGENDARY_SPEAR.get(), ModItems.TRAILED_WOODEN_SWORD.get(),
                 ModItems.TRAILED_STONE_SWORD.get(), ModItems.TRAILED_IRON_SWORD.get(), ModItems.TRAILED_DIAMOND_SWORD.get(), ModItems.TRAILED_NETHERITE_SWORD.get(),

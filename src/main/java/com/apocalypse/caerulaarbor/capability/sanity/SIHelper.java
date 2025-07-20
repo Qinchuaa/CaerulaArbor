@@ -7,6 +7,7 @@ import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.LivingEntity;
+import net.minecraftforge.eventbus.api.SubscribeEvent;
 
 public class SIHelper {
 

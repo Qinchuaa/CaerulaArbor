@@ -188,7 +188,7 @@ public class BoneFishEntity extends Monster implements GeoEntity {
 	}
 
 	@Override
-	public SoundEvent getDeathSound() {
+	public @NotNull SoundEvent getDeathSound() {
 		return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.salmon.death"));
 	}
 
@@ -196,6 +196,7 @@ public class BoneFishEntity extends Monster implements GeoEntity {
 	public boolean hurt(DamageSource source, float amount) {
 		if (source.is(DamageTypes.DROWN))
 			return false;
+		//this.setTarget( null );
 		return super.hurt(source, amount);
 	}
 

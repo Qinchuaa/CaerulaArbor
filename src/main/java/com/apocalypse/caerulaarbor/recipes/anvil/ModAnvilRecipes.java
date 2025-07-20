@@ -12,7 +12,7 @@ public class ModAnvilRecipes {
 
     @SubscribeEvent
     public static void onAnvilUpdate(AnvilUpdateEvent event) {
-        if ((event.getLeft().getItem() == Items.IRON_HELMET) && (event.getRight().getItem() == ModItems.RELIC_CROWN.get())) {
+        if ((event.getLeft().getItem() == Items.IRON_HELMET) && (event.getRight().getItem() == ModItems.KINGS_CROWN.get())) {
             if ((event.getLeft().getCount() == 1) && (event.getRight().getCount() >= 1)) {
                 event.setMaterialCost(1);
                 event.setCost(5);

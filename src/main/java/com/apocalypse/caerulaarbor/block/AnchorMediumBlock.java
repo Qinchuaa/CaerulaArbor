@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.block;
 
-import com.apocalypse.caerulaarbor.procedures.ActivateAnchorProcedure;
+import com.apocalypse.caerulaarbor.procedures.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -95,7 +95,7 @@ public class AnchorMediumBlock extends Block {
 		int y = pos.getY();
 		int z = pos.getZ();
 		// TODO 这是什么玩意 为什么会报错 还没有标红
-//		DetectActivityProcedure.onAnvilUpdate(world, x, y, z, blockstate);
+//		DetectActivityProcedure.execute(world, x, y, z, blockstate);
 		world.scheduleTick(pos, this, 10);
 	}
 
