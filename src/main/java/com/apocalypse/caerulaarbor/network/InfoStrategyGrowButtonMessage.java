@@ -3,7 +3,7 @@ package com.apocalypse.caerulaarbor.network;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.procedures.OpenStraGUIProcedure;
-import com.apocalypse.caerulaarbor.world.inventory.InfoStrategyGrowMenu;
+import com.apocalypse.caerulaarbor.menu.InfoStrategyGrowMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.world.entity.player.Player;

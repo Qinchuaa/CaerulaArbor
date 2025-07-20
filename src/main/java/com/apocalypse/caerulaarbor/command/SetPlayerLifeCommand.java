@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.command;
 
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
+import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.mojang.brigadier.arguments.DoubleArgumentType;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
@@ -18,16 +18,16 @@ public class SetPlayerLifeCommand {
             Entity entity = EntityArgument.getEntity(arguments, "name");
 
             if (DoubleArgumentType.getDouble(arguments, "life") <
-                    entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+                    entity.getCapability(ModCapabilities.PLAYER_VARIABLE)
                             .map(c -> c.maxLive)
                             .orElse(0.0)
             ) {
-                entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(cap -> {
+                entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(cap -> {
                     cap.lives = DoubleArgumentType.getDouble(arguments, "life");
                     cap.syncPlayerVariables(entity);
                 });
             } else {
-                entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(cap -> {
+                entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(cap -> {
                     cap.lives = cap.maxLive;
                     cap.syncPlayerVariables(entity);
                 });

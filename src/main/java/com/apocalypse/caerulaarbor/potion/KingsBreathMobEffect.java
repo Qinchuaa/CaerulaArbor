@@ -1,8 +1,9 @@
 
 package com.apocalypse.caerulaarbor.potion;
 
+import com.apocalypse.caerulaarbor.capability.ModCapabilities;
+import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
 import com.apocalypse.caerulaarbor.init.ModParticleTypes;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.inventory.EffectRenderingInventoryScreen;
 import net.minecraft.util.Mth;
@@ -38,7 +39,7 @@ public class KingsBreathMobEffect extends MobEffect {
 		double x = entity.getX();
 		double y = entity.getY();
 		double z = entity.getZ();
-		if (((Entity) entity).getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables()).kingShowPtc) {
+		if (((Entity) entity).getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable()).kingShowPtc) {
 			if ((double) amplifier < 1) {
 				world.addParticle(ModParticleTypes.KING_SLAY.get(),
 						x + Mth.nextDouble(RandomSource.create(), -0.55, 0.55),

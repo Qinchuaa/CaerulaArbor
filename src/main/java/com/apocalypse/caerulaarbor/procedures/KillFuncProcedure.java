@@ -1,10 +1,13 @@
 package com.apocalypse.caerulaarbor.procedures;
 
+import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.capability.Relic;
+import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
 import com.apocalypse.caerulaarbor.config.common.RelicsConfig;
 import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.init.ModGameRules;
 import com.apocalypse.caerulaarbor.init.ModItems;
+import com.apocalypse.caerulaarbor.init.ModTags;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -12,9 +15,9 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.ItemTags;
-import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
@@ -58,28 +61,28 @@ public class KillFuncProcedure {
         boolean validweapon;
         double dama;
         ItemStack weapon;
-        if (sourceentity instanceof Player) {
-            var cap = sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
+        if (sourceentity instanceof Player _livEnt) {
+            var cap = sourceentity.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable());
             if (Relic.CURSED_EMELIGHT.gained(cap)) {
-                sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+                sourceentity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
                     capability.light = cap.light - Mth.nextDouble(RandomSource.create(), 0.1, 0.2);
                     capability.syncPlayerVariables(sourceentity);
                 });
             }
             if (Relic.CURSED_GLOWBODY.gained(cap)) {
-                sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+                sourceentity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
                     capability.light = cap.light - Mth.nextDouble(RandomSource.create(), 0.2, 0.3);
                     capability.syncPlayerVariables(sourceentity);
                 });
             }
             if (Relic.CURSED_RESEARCH.gained(cap)) {
-                sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+                sourceentity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
                     capability.light = cap.light - Mth.nextDouble(RandomSource.create(), 0.3, 0.5);
                     capability.syncPlayerVariables(sourceentity);
                 });
             }
             if (cap.light < 0) {
-                sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+                sourceentity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
                     capability.light = 0;
                     capability.syncPlayerVariables(sourceentity);
                 });
@@ -87,12 +90,12 @@ public class KillFuncProcedure {
             if (Relic.KING_ARMOR.gained(cap)) {
                 if (Math.random() < 0.08) {
                     if (cap.lives > 1) {
-                        sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+                        sourceentity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
                             capability.lives = cap.lives - 1;
                             capability.syncPlayerVariables(sourceentity);
                         });
                     }
-                    sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+                    sourceentity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
                         capability.shield = cap.shield + 1;
                         capability.syncPlayerVariables(sourceentity);
                     });
@@ -101,12 +104,12 @@ public class KillFuncProcedure {
             if (Relic.KING_CRYSTAL.gained(cap)) {
                 if (Math.random() < 0.1) {
                     if (cap.lives > 1) {
-                        sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+                        sourceentity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
                             capability.lives = cap.lives - 2;
                             capability.syncPlayerVariables(sourceentity);
                         });
                         if (cap.light < 1) {
-                            sourceentity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+                            sourceentity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
                                 capability.light = 1;
                                 capability.syncPlayerVariables(sourceentity);
                             });
@@ -123,7 +126,6 @@ public class KillFuncProcedure {
             }
             if (Relic.HAND_ENGRAVE.get(cap) >= 0 && Relic.HAND_ENGRAVE.get(cap) < 99) {
                 validweapon = false;
-                LivingEntity _livEnt = (LivingEntity) sourceentity;
                 if (_livEnt.getMainHandItem().getItem() == Items.TRIDENT) {
                     validweapon = true;
                 } else if (damagesource.is(DamageTypes.TRIDENT)) {
@@ -158,19 +160,21 @@ public class KillFuncProcedure {
                     _level.sendParticles(ParticleTypes.WAX_ON, x, y, z, 48, 0.7, 1.5, 0.7, 0.2);
             }
         }
-        if (entity.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanoffspring")))) {
+        if (entity.getType().is(ModTags.EntityTypes.SEA_BORN)) {
             if (world.getLevelData().getGameRules().getBoolean(ModGameRules.NATURAL_EVOLUTION)) {
                 if (!world.getEntitiesOfClass(Player.class, AABB.ofSize(new Vec3(x, y, z), 128, 128, 128), e -> true).isEmpty()) {
                     CaerulaArborModVariables.MapVariables.get(world).evo_point_breed = CaerulaArborModVariables.MapVariables.get(world).evo_point_breed + (entity instanceof LivingEntity _livEnt ? _livEnt.getMaxHealth() : -1) * 0.1;
                     CaerulaArborModVariables.MapVariables.get(world).syncData(world);
-                    UpgradeBreedProcedure.execute(world);
+                    if (world instanceof Level level) {
+                        UpgradeBreedProcedure.execute(level);
+                    }
                     UpgradeSilenceProcedure.execute(world, entity, (entity instanceof LivingEntity _livEnt ? _livEnt.getMaxHealth() : -1) * 0.1);
                 }
             }
         }
         if ((sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).is(ItemTags.create(new ResourceLocation("caerula_arbor:self_mendable")))) {
             weapon = (sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).copy();
-            dama = weapon.getDamageValue() - Mth.nextInt(RandomSource.create(), 1, (int) (5 + weapon.getEnchantmentLevel(Enchantments.UNBREAKING)));
+            dama = weapon.getDamageValue() - Mth.nextInt(RandomSource.create(), 1, 5 + weapon.getEnchantmentLevel(Enchantments.UNBREAKING));
             if (dama <= 0) {
                 (sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).setDamageValue(0);
             } else {
@@ -178,24 +182,24 @@ public class KillFuncProcedure {
             }
         }
         if (entity instanceof Player) {
-            if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).player_oceanization < 3) {
-                entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+            if ((entity.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable())).player_oceanization < 3) {
+                entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
                     capability.player_oceanization = 0;
                     capability.syncPlayerVariables(entity);
                 });
             }
             if (damagesource.is(ResourceKey.create(Registries.DAMAGE_TYPE, new ResourceLocation("caerula_arbor:oceanize_damage")))) {
                 if (world instanceof ServerLevel _level) {
-                    Entity entityToSpawn = ModEntities.SLIDER_FISH.get().spawn(_level, BlockPos.containing(x, y, z), MobSpawnType.MOB_SUMMONED);
+                    Entity entityToSpawn = ModEntities.DEEP_SEA_SLIDER.get().spawn(_level, BlockPos.containing(x, y, z), MobSpawnType.MOB_SUMMONED);
                     if (entityToSpawn != null) {
                         entityToSpawn.setDeltaMovement(0, 0.15, 0);
                     }
                 }
                 if (world instanceof Level _level) {
                     if (!_level.isClientSide()) {
-                        _level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.sculk_vein.place")), SoundSource.PLAYERS, (float) 0.75, 1);
+                        _level.playSound(null, BlockPos.containing(x, y, z), SoundEvents.SCULK_VEIN_PLACE, SoundSource.PLAYERS, 0.75F, 1);
                     } else {
-                        _level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("block.sculk_vein.place")), SoundSource.PLAYERS, (float) 0.75, 1, false);
+                        _level.playLocalSound(x, y, z, SoundEvents.SCULK_VEIN_PLACE, SoundSource.PLAYERS, 0.75F, 1, false);
                     }
                 }
             }

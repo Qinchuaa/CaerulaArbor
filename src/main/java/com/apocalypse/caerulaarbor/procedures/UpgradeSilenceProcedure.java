@@ -1,6 +1,7 @@
 package com.apocalypse.caerulaarbor.procedures;
 
 import com.apocalypse.caerulaarbor.config.common.GameplayConfig;
+import com.apocalypse.caerulaarbor.init.ModSounds;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementProgress;
@@ -13,9 +14,6 @@ import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.ArrayList;
 
 public class UpgradeSilenceProcedure {
 	public static void execute(LevelAccessor world, Entity entity, double point) {
@@ -30,7 +28,7 @@ public class UpgradeSilenceProcedure {
 			CaerulaArborModVariables.MapVariables.get(world).syncData(world);
 			if (stra < 4) {
 				if (CaerulaArborModVariables.MapVariables.get(world).evo_point_silence >= Math.pow(stra + 1, 3) * (double) GameplayConfig.EVOLUTION_POINT_COEFFICIENT.get() * 4) {
-					for (Entity entityiterator : new ArrayList<>(world.players())) {
+					for (Entity entityiterator : world.players()) {
 						if (entity instanceof ServerPlayer _player) {
 							Advancement _adv = _player.server.getAdvancements().getAdvancement(new ResourceLocation("caerula_arbor:she_coming"));
 							AdvancementProgress _ap = _player.getAdvancements().getOrStartProgress(_adv);
@@ -47,26 +45,26 @@ public class UpgradeSilenceProcedure {
 					CaerulaArborModVariables.MapVariables.get(world).syncData(world);
 					if (stra == 1) {
 						num = "I";
-						prefix = "\u00A7p";
+						prefix = "§p";
 					} else if (stra == 2) {
 						num = "II";
-						prefix = "\u00A7p";
+						prefix = "§p";
 					} else if (stra == 3) {
 						num = "III";
-						prefix = "\u00A7c";
+						prefix = "§c";
 					} else if (stra == 4) {
 						num = "IV";
-						prefix = "\u00A74";
+						prefix = "§4";
 					}
 					if (GameplayConfig.ENABLE_EVOLUTION_SOUND.get()) {
-						for (Entity entityiterator : new ArrayList<>(world.players())) {
+						for (Entity entityiterator : world.players()) {
 							if (stra == 1) {
 								if (world instanceof Level _level) {
 									if (!_level.isClientSide()) {
-										_level.playSound(null, BlockPos.containing(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("caerula_arbor:silence1")),
+										_level.playSound(null, BlockPos.containing(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ()), ModSounds.SILENCE1.get(),
 												SoundSource.NEUTRAL, 4, 1);
 									} else {
-										_level.playLocalSound((entityiterator.getX()), (entityiterator.getY()), (entityiterator.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("caerula_arbor:silence1")), SoundSource.NEUTRAL, 4, 1,
+										_level.playLocalSound((entityiterator.getX()), (entityiterator.getY()), (entityiterator.getZ()), ModSounds.SILENCE1.get(), SoundSource.NEUTRAL, 4, 1,
 												false);
 									}
 								}
@@ -75,10 +73,10 @@ public class UpgradeSilenceProcedure {
 							} else if (stra == 2) {
 								if (world instanceof Level _level) {
 									if (!_level.isClientSide()) {
-										_level.playSound(null, BlockPos.containing(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("caerula_arbor:silence2")),
+										_level.playSound(null, BlockPos.containing(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ()), ModSounds.SILENCE2.get(),
 												SoundSource.NEUTRAL, 4, 1);
 									} else {
-										_level.playLocalSound((entityiterator.getX()), (entityiterator.getY()), (entityiterator.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("caerula_arbor:silence2")), SoundSource.NEUTRAL, 4, 1,
+										_level.playLocalSound((entityiterator.getX()), (entityiterator.getY()), (entityiterator.getZ()), ModSounds.SILENCE2.get(), SoundSource.NEUTRAL, 4, 1,
 												false);
 									}
 								}
@@ -87,10 +85,10 @@ public class UpgradeSilenceProcedure {
 							} else if (stra == 3) {
 								if (world instanceof Level _level) {
 									if (!_level.isClientSide()) {
-										_level.playSound(null, BlockPos.containing(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("caerula_arbor:silence3")),
+										_level.playSound(null, BlockPos.containing(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ()), ModSounds.SILENCE3.get(),
 												SoundSource.NEUTRAL, 4, 1);
 									} else {
-										_level.playLocalSound((entityiterator.getX()), (entityiterator.getY()), (entityiterator.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("caerula_arbor:silence3")), SoundSource.NEUTRAL, 4, 1,
+										_level.playLocalSound((entityiterator.getX()), (entityiterator.getY()), (entityiterator.getZ()), ModSounds.SILENCE3.get(), SoundSource.NEUTRAL, 4, 1,
 												false);
 									}
 								}
@@ -99,10 +97,10 @@ public class UpgradeSilenceProcedure {
 							} else if (stra == 4) {
 								if (world instanceof Level _level) {
 									if (!_level.isClientSide()) {
-										_level.playSound(null, BlockPos.containing(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("caerula_arbor:silence4")),
+										_level.playSound(null, BlockPos.containing(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ()), ModSounds.SILENCE4.get(),
 												SoundSource.NEUTRAL, 4, 1);
 									} else {
-										_level.playLocalSound((entityiterator.getX()), (entityiterator.getY()), (entityiterator.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("caerula_arbor:silence4")), SoundSource.NEUTRAL, 4, 1,
+										_level.playLocalSound((entityiterator.getX()), (entityiterator.getY()), (entityiterator.getZ()), ModSounds.SILENCE4.get(), SoundSource.NEUTRAL, 4, 1,
 												false);
 									}
 								}
@@ -112,12 +110,12 @@ public class UpgradeSilenceProcedure {
 						}
 					}
 					if (!world.isClientSide() && world.getServer() != null)
-						world.getServer().getPlayerList().broadcastSystemMessage(Component.literal((prefix + "" + Component.translatable("item.caerula_arbor.language_key.description_4").getString() + num)), false);
+						world.getServer().getPlayerList().broadcastSystemMessage(Component.literal((prefix + Component.translatable("item.caerula_arbor.language_key.description_4").getString() + num)), false);
 				}
 			} else {
 				CaerulaArborModVariables.MapVariables.get(world).evo_point_silence = 0;
 				CaerulaArborModVariables.MapVariables.get(world).syncData(world);
-				for (Entity entityiterator : new ArrayList<>(world.players())) {
+				for (Entity entityiterator : world.players()) {
 					if (entity instanceof ServerPlayer _player) {
 						Advancement _adv = _player.server.getAdvancements().getAdvancement(new ResourceLocation("caerula_arbor:hymn_of_land"));
 						AdvancementProgress _ap = _player.getAdvancements().getOrStartProgress(_adv);

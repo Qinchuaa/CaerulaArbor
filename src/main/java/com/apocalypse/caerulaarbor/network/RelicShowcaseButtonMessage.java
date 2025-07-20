@@ -1,9 +1,11 @@
 package com.apocalypse.caerulaarbor.network;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
+import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.capability.Relic;
+import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
 import com.apocalypse.caerulaarbor.init.ModItems;
-import com.apocalypse.caerulaarbor.world.inventory.CaerulaRecorderMenu;
+import com.apocalypse.caerulaarbor.menu.CaerulaRecorderMenu;
 import net.minecraft.core.BlockPos;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.network.chat.Component;
@@ -97,7 +99,7 @@ public class RelicShowcaseButtonMessage {
     public static void unGainRelic(Relic relic, Player player) {
         ItemStack togive = ItemStack.EMPTY;
 
-        var cap = player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
+        var cap = player.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable());
 
         if (player.getInventory().contains(new ItemStack(ModItems.COIN_OF_TRADE.get()))) {
             if (relic.gained(cap)) {

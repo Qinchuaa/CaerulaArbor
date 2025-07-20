@@ -5,7 +5,7 @@ import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import com.apocalypse.caerulaarbor.network.InfoStrategyAllButtonMessage;
 import com.apocalypse.caerulaarbor.procedures.GetPointSilenceProcedure;
 import com.apocalypse.caerulaarbor.procedures.IfCanSilenceProcedure;
-import com.apocalypse.caerulaarbor.world.inventory.InfoStrategyAllMenu;
+import com.apocalypse.caerulaarbor.menu.InfoStrategyAllMenu;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;

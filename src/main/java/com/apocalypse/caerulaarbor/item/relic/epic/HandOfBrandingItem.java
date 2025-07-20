@@ -1,10 +1,10 @@
 
-package com.apocalypse.caerulaarbor.item.relic.epic;
+package com.apocalypse.caerulaarbor.item;
 
+import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.capability.Relic;
+import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
 import com.apocalypse.caerulaarbor.item.relic.RelicItem;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -26,16 +26,16 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
-public class HandOfBrandingItem extends RelicItem {
-    public HandOfBrandingItem() {
+public class HandOfEngraveItem extends RelicItem {
+    public HandOfEngraveItem() {
         super(new Item.Properties().stacksTo(1).rarity(Rarity.EPIC));
     }
 
     @Override
     public void appendHoverText(ItemStack itemstack, Level level, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         super.appendHoverText(itemstack, level, list, flag);
-        list.add(Component.translatable("item.caerula_arbor.hand_of_branding.description_0").withStyle(ChatFormatting.AQUA));
-        list.add(Component.translatable("item.caerula_arbor.hand_of_branding.description_1").withStyle(ChatFormatting.GRAY));
+        list.add(Component.translatable("item.caerula_arbor.hand_of_engrave.description_0"));
+        list.add(Component.translatable("item.caerula_arbor.hand_of_engrave.description_1"));
     }
 
     @Override
@@ -48,7 +48,7 @@ public class HandOfBrandingItem extends RelicItem {
         ItemStack itemstack = ar.getObject();
 
         // TODO 优化获取实现方式
-        var cap = entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
+        var cap = entity.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable());
         if (Relic.HAND_ENGRAVE.get(cap) < 0) {
             if ((LevelAccessor) world instanceof Level _level) {
                 if (!_level.isClientSide()) {

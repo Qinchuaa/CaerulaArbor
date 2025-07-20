@@ -2,10 +2,14 @@ package com.apocalypse.caerulaarbor.init;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.entity.*;
-import net.minecraft.world.entity.Entity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.Difficulty;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraftforge.common.DungeonHooks;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
+import net.minecraftforge.event.entity.SpawnPlacementRegisterEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.event.lifecycle.FMLCommonSetupEvent;
@@ -16,138 +20,159 @@ import net.minecraftforge.registries.RegistryObject;
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.MOD)
 public class ModEntities {
 
-    public static final DeferredRegister<EntityType<?>> REGISTRY = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, CaerulaArborMod.MODID);
-    public static final RegistryObject<EntityType<RunFishEntity>> RUN_FISH = register("run_fish",
-            EntityType.Builder.<RunFishEntity>of(RunFishEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(RunFishEntity::new)
+    public static final DeferredRegister<EntityType<?>> ENTITY_TYPES = DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, CaerulaArborMod.MODID);
+
+    // Living Entities
+    public static final RegistryObject<EntityType<ShellSeaRunnerEntity>> SHELL_SEA_RUNNER = register("shell_sea_runner",
+            EntityType.Builder.<ShellSeaRunnerEntity>of(ShellSeaRunnerEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(ShellSeaRunnerEntity::new)
                     .sized(0.4f, 0.5f));
-    public static final RegistryObject<EntityType<SliderFishEntity>> SLIDER_FISH = register("slider_fish",
-            EntityType.Builder.<SliderFishEntity>of(SliderFishEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(SliderFishEntity::new)
+    public static final RegistryObject<EntityType<DeepSeaSliderEntity>> DEEP_SEA_SLIDER = register("deep_sea_slider",
+            EntityType.Builder.<DeepSeaSliderEntity>of(DeepSeaSliderEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(DeepSeaSliderEntity::new)
                     .sized(0.5f, 0.8f));
     public static final RegistryObject<EntityType<SuperSliderEntity>> SUPER_SLIDER = register("super_slider",
             EntityType.Builder.<SuperSliderEntity>of(SuperSliderEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(SuperSliderEntity::new)
-                    .sized(0.3f, 0.8f));
-    public static final RegistryObject<EntityType<ShooterFishEntity>> SHOOTER_FISH = register("shooter_fish",
-            EntityType.Builder.<ShooterFishEntity>of(ShooterFishEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(ShooterFishEntity::new)
+                    .sized(1.8f, 4.8f));
+    public static final RegistryObject<EntityType<RidgeSeaSpitterEntity>> RIDGE_SEA_SPITTER = register("ridge_sea_spitter",
+            EntityType.Builder.<RidgeSeaSpitterEntity>of(RidgeSeaSpitterEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(RidgeSeaSpitterEntity::new)
                     .sized(0.6f, 1.2f));
-    public static final RegistryObject<EntityType<FishShootEntity>> FISH_SHOOT = register("fish_shoot",
-            EntityType.Builder.<FishShootEntity>of(FishShootEntity::new, MobCategory.MISC).setCustomClientFactory(FishShootEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).sized(0.3f, 0.3f));
-    public static final RegistryObject<EntityType<FlyFishEntity>> FLY_FISH = register("fly_fish",
-            EntityType.Builder.<FlyFishEntity>of(FlyFishEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(FlyFishEntity::new)
+    public static final RegistryObject<EntityType<FloatingSeaDrifterEntity>> FLOATING_SEA_DRIFTER = register("floating_sea_drifter",
+            EntityType.Builder.<FloatingSeaDrifterEntity>of(FloatingSeaDrifterEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(FloatingSeaDrifterEntity::new)
                     .sized(0.6f, 0.9f));
-    public static final RegistryObject<EntityType<ReaperFishEntity>> REAPER_FISH = register("reaper_fish",
-            EntityType.Builder.<ReaperFishEntity>of(ReaperFishEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(ReaperFishEntity::new)
+    public static final RegistryObject<EntityType<BasinSeaReaperEntity>> BASIN_SEA_REAPER = register("basin_sea_reaper",
+            EntityType.Builder.<BasinSeaReaperEntity>of(BasinSeaReaperEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(BasinSeaReaperEntity::new)
                     .sized(1.2f, 2.8f));
-    public static final RegistryObject<EntityType<CreeperFishEntity>> CREEPER_FISH = register("creeper_fish",
-            EntityType.Builder.<CreeperFishEntity>of(CreeperFishEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(CreeperFishEntity::new)
+    public static final RegistryObject<EntityType<PocketSeaCrawlerEntity>> POCKET_SEA_CRAWLER = register("pocket_sea_crawler",
+            EntityType.Builder.<PocketSeaCrawlerEntity>of(PocketSeaCrawlerEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(PocketSeaCrawlerEntity::new)
                     .sized(0.8f, 1.5f));
-    public static final RegistryObject<EntityType<PunctureFishEntity>> PUNCTURE_FISH = register("puncture_fish",
-            EntityType.Builder.<PunctureFishEntity>of(PunctureFishEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(PunctureFishEntity::new)
+    public static final RegistryObject<EntityType<PrimalSeaPiercerEntity>> PRIMAL_SEA_PIERCER = register("primal_sea_piercer",
+            EntityType.Builder.<PrimalSeaPiercerEntity>of(PrimalSeaPiercerEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(PrimalSeaPiercerEntity::new)
                     .sized(0.9f, 2.7f));
-    public static final RegistryObject<EntityType<BaselayerAbyssalEntity>> BASELAYER_ABYSSAL = register("baselayer_abyssal",
-            EntityType.Builder.<BaselayerAbyssalEntity>of(BaselayerAbyssalEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(BaselayerAbyssalEntity::new)
+    public static final RegistryObject<EntityType<NetherseaFounderEntity>> NETHERSEA_FOUNDER = register("nethersea_founder",
+            EntityType.Builder.<NetherseaFounderEntity>of(NetherseaFounderEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(NetherseaFounderEntity::new)
                     .sized(0.7f, 1.5f));
-    public static final RegistryObject<EntityType<PredatorAbyssalEntity>> PREDATOR_ABYSSAL = register("predator_abyssal",
-            EntityType.Builder.<PredatorAbyssalEntity>of(PredatorAbyssalEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(PredatorAbyssalEntity::new)
+    public static final RegistryObject<EntityType<NetherseaPredatorEntity>> NETHERSEA_PREDATOR = register("nethersea_predator",
+            EntityType.Builder.<NetherseaPredatorEntity>of(NetherseaPredatorEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(NetherseaPredatorEntity::new)
                     .sized(0.6f, 1.4f));
-    public static final RegistryObject<EntityType<GuideAbyssalEntity>> GUIDE_ABYSSAL = register("guide_abyssal",
-            EntityType.Builder.<GuideAbyssalEntity>of(GuideAbyssalEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(GuideAbyssalEntity::new)
-                    .sized(0.8f, 2f));
-    public static final RegistryObject<EntityType<SplasherAbyssalEntity>> SPLASHER_ABYSSAL = register("splasher_abyssal",
-            EntityType.Builder.<SplasherAbyssalEntity>of(SplasherAbyssalEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(SplasherAbyssalEntity::new)
+    public static final RegistryObject<EntityType<NetherseaBrandguiderEntity>> NETHERSEA_BRANDGUIDER = register("nethersea_brandguider",
+            EntityType.Builder.<NetherseaBrandguiderEntity>of(NetherseaBrandguiderEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(NetherseaBrandguiderEntity::new)
+                    .sized(0.88f, 2.2f));
+    public static final RegistryObject<EntityType<NetherseaSpewerEntity>> NETHERSEA_SPEWER = register("nethersea_spewer",
+            EntityType.Builder.<NetherseaSpewerEntity>of(NetherseaSpewerEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(NetherseaSpewerEntity::new)
                     .sized(0.6f, 1.1f));
-    public static final RegistryObject<EntityType<FishSplashEntity>> FISH_SPLASH = register("fish_splash",
-            EntityType.Builder.<FishSplashEntity>of(FishSplashEntity::new, MobCategory.MISC).setCustomClientFactory(FishSplashEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).sized(0.3f, 0.3f));
-    public static final RegistryObject<EntityType<UmbrellaAbyssalEntity>> UMBRELLA_ABYSSAL = register("umbrella_abyssal",
-            EntityType.Builder.<UmbrellaAbyssalEntity>of(UmbrellaAbyssalEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(UmbrellaAbyssalEntity::new)
+    public static final RegistryObject<EntityType<NetherseaSwarmcallerEntity>> NETHERSEA_SWARMCALLER = register("nethersea_swarmcaller",
+            EntityType.Builder.<NetherseaSwarmcallerEntity>of(NetherseaSwarmcallerEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(NetherseaSwarmcallerEntity::new)
                     .sized(0.8f, 1.5f));
-    public static final RegistryObject<EntityType<CrackerAbyssalEntity>> CRACKER_ABYSSAL = register("cracker_abyssal",
-            EntityType.Builder.<CrackerAbyssalEntity>of(CrackerAbyssalEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(CrackerAbyssalEntity::new)
+    public static final RegistryObject<EntityType<NetherseaReefbreakerEntity>> NETHERSEA_REEFBREAKER = register("nethersea_reefbreaker",
+            EntityType.Builder.<NetherseaReefbreakerEntity>of(NetherseaReefbreakerEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(NetherseaReefbreakerEntity::new)
                     .sized(0.7f, 1.8f));
-    public static final RegistryObject<EntityType<CollectorProkaryoteEntity>> COLLECTOR_PROKARYOTE = register("collector_prokaryote",
-            EntityType.Builder.<CollectorProkaryoteEntity>of(CollectorProkaryoteEntity::new, MobCategory.WATER_CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(32).setUpdateInterval(3)
-                    .setCustomClientFactory(CollectorProkaryoteEntity::new)
+    public static final RegistryObject<EntityType<UnicellularPredatorEntity>> UNICELLULAR_PREDATOR = register("unicellular_predator",
+            EntityType.Builder.<UnicellularPredatorEntity>of(UnicellularPredatorEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(32).setUpdateInterval(3).setCustomClientFactory(UnicellularPredatorEntity::new)
                     .sized(0.5f, 0.5f));
-    public static final RegistryObject<EntityType<BoneFishEntity>> BONE_FISH = register("bone_fish",
-            EntityType.Builder.<BoneFishEntity>of(BoneFishEntity::new, MobCategory.WATER_CREATURE).setShouldReceiveVelocityUpdates(true).setTrackingRange(24).setUpdateInterval(3).setCustomClientFactory(BoneFishEntity::new)
+    public static final RegistryObject<EntityType<BoneSeaDrifterEntity>> BONE_SEA_DRIFTER = register("bone_sea_drifter",
+            EntityType.Builder.<BoneSeaDrifterEntity>of(BoneSeaDrifterEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(24).setUpdateInterval(3).setCustomClientFactory(BoneSeaDrifterEntity::new)
                     .sized(0.7f, 0.7f));
-    public static final RegistryObject<EntityType<ChiselerFishEntity>> CHISELER_FISH = register("chiseler_fish",
-            EntityType.Builder.<ChiselerFishEntity>of(ChiselerFishEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(ChiselerFishEntity::new)
+    public static final RegistryObject<EntityType<OceanStonecutterEntity>> OCEAN_STONECUTTER = register("ocean_stonecutter",
+            EntityType.Builder.<OceanStonecutterEntity>of(OceanStonecutterEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(OceanStonecutterEntity::new)
                     .sized(0.6f, 0.6f));
-    public static final RegistryObject<EntityType<FakerggShootEntity>> FAKERGG_SHOOT = register("fakergg_shoot",
-            EntityType.Builder.<FakerggShootEntity>of(FakerggShootEntity::new, MobCategory.MISC).setCustomClientFactory(FakerggShootEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).sized(0.4f, 0.4f));
-    public static final RegistryObject<EntityType<PregnantFishEntity>> PREGNANT_FISH = register("pregnant_fish",
-            EntityType.Builder.<PregnantFishEntity>of(PregnantFishEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(PregnantFishEntity::new)
+    public static final RegistryObject<EntityType<RetchingBroodmotherEntity>> RETCHING_BROODMOTHER = register("retching_broodmother",
+            EntityType.Builder.<RetchingBroodmotherEntity>of(RetchingBroodmotherEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(RetchingBroodmotherEntity::new)
                     .sized(0.7f, 1.1f));
-    public static final RegistryObject<EntityType<FakeOffspringEntity>> FAKE_OFFSPRING = register("fake_offspring",
-            EntityType.Builder.<FakeOffspringEntity>of(FakeOffspringEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(FakeOffspringEntity::new)
+    public static final RegistryObject<EntityType<BalefulBroodlingEntity>> BALEFUL_BROODLING = register("baleful_broodling",
+            EntityType.Builder.<BalefulBroodlingEntity>of(BalefulBroodlingEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(BalefulBroodlingEntity::new)
                     .sized(0.6f, 0.6f));
-    public static final RegistryObject<EntityType<FleefishBulletEntity>> FLEEFISH_BULLET = register("fleefish_bullet",
-            EntityType.Builder.<FleefishBulletEntity>of(FleefishBulletEntity::new, MobCategory.MISC).setCustomClientFactory(FleefishBulletEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).sized(0.4f, 0.4f));
-    public static final RegistryObject<EntityType<FleeFishEntity>> FLEE_FISH = register("flee_fish",
-            EntityType.Builder.<FleeFishEntity>of(FleeFishEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(FleeFishEntity::new)
+    public static final RegistryObject<EntityType<SkimmingSeaDrifterEntity>> SKIMMING_SEA_DRIFTER = register("skimming_sea_drifter",
+            EntityType.Builder.<SkimmingSeaDrifterEntity>of(SkimmingSeaDrifterEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(SkimmingSeaDrifterEntity::new)
                     .sized(0.8f, 1.1f));
-    public static final RegistryObject<EntityType<RouteShaperEntity>> ROUTE_SHAPER = register("route_shaper",
-            EntityType.Builder.<RouteShaperEntity>of(RouteShaperEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(RouteShaperEntity::new)
+    public static final RegistryObject<EntityType<PathShaperEntity>> PATH_SHAPER = register("path_shaper",
+            EntityType.Builder.<PathShaperEntity>of(PathShaperEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(PathShaperEntity::new)
                     .sized(1.8f, 4f));
-    public static final RegistryObject<EntityType<RouteFractalEntity>> ROUTE_FRACTAL = register("route_fractal",
-            EntityType.Builder.<RouteFractalEntity>of(RouteFractalEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(RouteFractalEntity::new)
+    public static final RegistryObject<EntityType<PathshaperFractalEntity>> PATHSHAPER_FRACTAL = register("pathshaper_fractal",
+            EntityType.Builder.<PathshaperFractalEntity>of(PathshaperFractalEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(PathshaperFractalEntity::new)
                     .sized(0.7f, 1.5f));
 
+    // Projectiles
+    public static final RegistryObject<EntityType<FishShootEntity>> FISH_SHOOT = register("fish_shoot",
+            EntityType.Builder.<FishShootEntity>of(FishShootEntity::new, MobCategory.MISC).setCustomClientFactory(FishShootEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).sized(0.3f, 0.3f));
+    public static final RegistryObject<EntityType<FishSplashEntity>> FISH_SPLASH = register("fish_splash",
+            EntityType.Builder.<FishSplashEntity>of(FishSplashEntity::new, MobCategory.MISC).setCustomClientFactory(FishSplashEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).sized(0.3f, 0.3f));
+    public static final RegistryObject<EntityType<FakerggShootEntity>> FAKERGG_SHOOT = register("fakergg_shoot",
+            EntityType.Builder.<FakerggShootEntity>of(FakerggShootEntity::new, MobCategory.MISC).setCustomClientFactory(FakerggShootEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).sized(0.4f, 0.4f));
+    public static final RegistryObject<EntityType<FleefishBulletEntity>> FLEEFISH_BULLET = register("fleefish_bullet",
+            EntityType.Builder.<FleefishBulletEntity>of(FleefishBulletEntity::new, MobCategory.MISC).setCustomClientFactory(FleefishBulletEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).sized(0.4f, 0.4f));
+
     private static <T extends Entity> RegistryObject<EntityType<T>> register(String name, EntityType.Builder<T> entityTypeBuilder) {
-        return REGISTRY.register(name, () -> entityTypeBuilder.build(name));
+        return ENTITY_TYPES.register(name, () -> entityTypeBuilder.build(name));
     }
 
     @SubscribeEvent
     public static void init(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            RunFishEntity.init();
-            SliderFishEntity.init();
-            SuperSliderEntity.init();
-            ShooterFishEntity.init();
-            FlyFishEntity.init();
-            ReaperFishEntity.init();
-            CreeperFishEntity.init();
-            PunctureFishEntity.init();
-            BaselayerAbyssalEntity.init();
-            PredatorAbyssalEntity.init();
-            GuideAbyssalEntity.init();
-            SplasherAbyssalEntity.init();
-            UmbrellaAbyssalEntity.init();
-            CrackerAbyssalEntity.init();
-            CollectorProkaryoteEntity.init();
-            BoneFishEntity.init();
-            ChiselerFishEntity.init();
-            PregnantFishEntity.init();
-            FakeOffspringEntity.init();
-            FleeFishEntity.init();
-            RouteShaperEntity.init();
-            RouteFractalEntity.init();
+            DungeonHooks.addDungeonMob(ModEntities.DEEP_SEA_SLIDER.get(), 50);
+            DungeonHooks.addDungeonMob(ModEntities.NETHERSEA_FOUNDER.get(), 50);
+            DungeonHooks.addDungeonMob(ModEntities.NETHERSEA_SPEWER.get(), 50);
+            DungeonHooks.addDungeonMob(ModEntities.NETHERSEA_SWARMCALLER.get(), 50);
+            DungeonHooks.addDungeonMob(ModEntities.SKIMMING_SEA_DRIFTER.get(), 50);
         });
     }
 
     @SubscribeEvent
+    public static void onRegisterSpawnPlacement(SpawnPlacementRegisterEvent event) {
+        registerBasicSeaMonster(ModEntities.SHELL_SEA_RUNNER.get(), event);
+        registerBasicSeaMonster(ModEntities.DEEP_SEA_SLIDER.get(), event);
+        registerBasicSeaMonster(ModEntities.RIDGE_SEA_SPITTER.get(), event);
+        registerBasicSeaMonster(ModEntities.FLOATING_SEA_DRIFTER.get(), event);
+        registerBasicSeaMonster(ModEntities.BASIN_SEA_REAPER.get(), event);
+        registerBasicSeaMonster(ModEntities.POCKET_SEA_CRAWLER.get(), event);
+        registerBasicSeaMonster(ModEntities.PRIMAL_SEA_PIERCER.get(), event);
+        registerBasicSeaMonster(ModEntities.NETHERSEA_FOUNDER.get(), event);
+        registerBasicSeaMonster(ModEntities.NETHERSEA_PREDATOR.get(), event);
+        registerBasicSeaMonster(ModEntities.NETHERSEA_BRANDGUIDER.get(), event);
+        registerBasicSeaMonster(ModEntities.NETHERSEA_SPEWER.get(), event);
+        registerBasicSeaMonster(ModEntities.NETHERSEA_SWARMCALLER.get(), event);
+        registerBasicSeaMonster(ModEntities.NETHERSEA_REEFBREAKER.get(), event);
+        registerWaterSeaMonster(ModEntities.UNICELLULAR_PREDATOR.get(), event);
+        registerWaterSeaMonster(ModEntities.BONE_SEA_DRIFTER.get(), event);
+        registerBasicSeaMonster(ModEntities.OCEAN_STONECUTTER.get(), event);
+        registerBasicSeaMonster(ModEntities.RETCHING_BROODMOTHER.get(), event);
+        registerBasicSeaMonster(ModEntities.SKIMMING_SEA_DRIFTER.get(), event);
+        registerBasicSeaMonster(ModEntities.PATHSHAPER_FRACTAL.get(), event);
+    }
+
+    public static <T extends Mob> void registerBasicSeaMonster(EntityType<T> type, SpawnPlacementRegisterEvent event) {
+        event.register(type, SpawnPlacements.Type.ON_GROUND, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                (entityType, world, reason, pos, random) -> (world.getDifficulty() != Difficulty.PEACEFUL && Monster.isDarkEnoughToSpawn(world, pos, random) && Mob.checkMobSpawnRules(entityType, world, reason, pos, random)),
+                SpawnPlacementRegisterEvent.Operation.OR);
+    }
+
+    public static <T extends Mob> void registerWaterSeaMonster(EntityType<T> type, SpawnPlacementRegisterEvent event) {
+        event.register(type, SpawnPlacements.Type.IN_WATER, Heightmap.Types.MOTION_BLOCKING_NO_LEAVES,
+                (entityType, world, reason, pos, random) -> (world.getBlockState(pos).is(Blocks.WATER) && world.getBlockState(pos.above()).is(Blocks.WATER)),
+                SpawnPlacementRegisterEvent.Operation.OR);
+    }
+
+    @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent event) {
-        event.put(RUN_FISH.get(), RunFishEntity.createAttributes().build());
-        event.put(SLIDER_FISH.get(), SliderFishEntity.createAttributes().build());
+        event.put(SHELL_SEA_RUNNER.get(), ShellSeaRunnerEntity.createAttributes().build());
+        event.put(DEEP_SEA_SLIDER.get(), DeepSeaSliderEntity.createAttributes().build());
         event.put(SUPER_SLIDER.get(), SuperSliderEntity.createAttributes().build());
-        event.put(SHOOTER_FISH.get(), ShooterFishEntity.createAttributes().build());
-        event.put(FLY_FISH.get(), FlyFishEntity.createAttributes().build());
-        event.put(REAPER_FISH.get(), ReaperFishEntity.createAttributes().build());
-        event.put(CREEPER_FISH.get(), CreeperFishEntity.createAttributes().build());
-        event.put(PUNCTURE_FISH.get(), PunctureFishEntity.createAttributes().build());
-        event.put(BASELAYER_ABYSSAL.get(), BaselayerAbyssalEntity.createAttributes().build());
-        event.put(PREDATOR_ABYSSAL.get(), PredatorAbyssalEntity.createAttributes().build());
-        event.put(GUIDE_ABYSSAL.get(), GuideAbyssalEntity.createAttributes().build());
-        event.put(SPLASHER_ABYSSAL.get(), SplasherAbyssalEntity.createAttributes().build());
-        event.put(UMBRELLA_ABYSSAL.get(), UmbrellaAbyssalEntity.createAttributes().build());
-        event.put(CRACKER_ABYSSAL.get(), CrackerAbyssalEntity.createAttributes().build());
-        event.put(COLLECTOR_PROKARYOTE.get(), CollectorProkaryoteEntity.createAttributes().build());
-        event.put(BONE_FISH.get(), BoneFishEntity.createAttributes().build());
-        event.put(CHISELER_FISH.get(), ChiselerFishEntity.createAttributes().build());
-        event.put(PREGNANT_FISH.get(), PregnantFishEntity.createAttributes().build());
-        event.put(FAKE_OFFSPRING.get(), FakeOffspringEntity.createAttributes().build());
-        event.put(FLEE_FISH.get(), FleeFishEntity.createAttributes().build());
-        event.put(ROUTE_SHAPER.get(), RouteShaperEntity.createAttributes().build());
-        event.put(ROUTE_FRACTAL.get(), RouteFractalEntity.createAttributes().build());
+        event.put(RIDGE_SEA_SPITTER.get(), RidgeSeaSpitterEntity.createAttributes().build());
+        event.put(FLOATING_SEA_DRIFTER.get(), FloatingSeaDrifterEntity.createAttributes().build());
+        event.put(BASIN_SEA_REAPER.get(), BasinSeaReaperEntity.createAttributes().build());
+        event.put(POCKET_SEA_CRAWLER.get(), PocketSeaCrawlerEntity.createAttributes().build());
+        event.put(PRIMAL_SEA_PIERCER.get(), PrimalSeaPiercerEntity.createAttributes().build());
+        event.put(NETHERSEA_FOUNDER.get(), NetherseaFounderEntity.createAttributes().build());
+        event.put(NETHERSEA_PREDATOR.get(), NetherseaPredatorEntity.createAttributes().build());
+        event.put(NETHERSEA_BRANDGUIDER.get(), NetherseaBrandguiderEntity.createAttributes().build());
+        event.put(NETHERSEA_SPEWER.get(), NetherseaSpewerEntity.createAttributes().build());
+        event.put(NETHERSEA_SWARMCALLER.get(), NetherseaSwarmcallerEntity.createAttributes().build());
+        event.put(NETHERSEA_REEFBREAKER.get(), NetherseaReefbreakerEntity.createAttributes().build());
+        event.put(UNICELLULAR_PREDATOR.get(), UnicellularPredatorEntity.createAttributes().build());
+        event.put(BONE_SEA_DRIFTER.get(), BoneSeaDrifterEntity.createAttributes().build());
+        event.put(OCEAN_STONECUTTER.get(), OceanStonecutterEntity.createAttributes().build());
+        event.put(RETCHING_BROODMOTHER.get(), RetchingBroodmotherEntity.createAttributes().build());
+        event.put(BALEFUL_BROODLING.get(), BalefulBroodlingEntity.createAttributes().build());
+        event.put(SKIMMING_SEA_DRIFTER.get(), SkimmingSeaDrifterEntity.createAttributes().build());
+        event.put(PATH_SHAPER.get(), PathShaperEntity.createAttributes().build());
+        event.put(PATHSHAPER_FRACTAL.get(), PathshaperFractalEntity.createAttributes().build());
     }
 }

@@ -1,6 +1,8 @@
 package com.apocalypse.caerulaarbor.procedures;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
+import com.apocalypse.caerulaarbor.capability.ModCapabilities;
+import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
 import com.apocalypse.caerulaarbor.config.common.GameplayConfig;
 import com.apocalypse.caerulaarbor.entity.*;
 import com.apocalypse.caerulaarbor.init.*;
@@ -15,6 +17,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
@@ -22,7 +25,6 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
@@ -58,7 +60,6 @@ public class MobHitFuncProcedure {
             return;
 
         double amplifi;
-        double rate;
         double sklp;
         double limithard;
         if (entity instanceof LivingEntity _livEnt0 && _livEnt0.hasEffect(ModMobEffects.INVULNERABLE.get())) {
@@ -66,40 +67,22 @@ public class MobHitFuncProcedure {
                 event.setCanceled(true);
             }
         }
-        if (entity instanceof PredatorAbyssalEntity livEnt4) {
-            rate = 0.8;
-            if (CaerulaArborModVariables.MapVariables.get(world).strategy_subsisting >= 3) {
-                rate = 0.9;
-            }
-            if (!(livEnt4.hasEffect(ModMobEffects.DIZZY.get()) || livEnt4.hasEffect(ModMobEffects.FROZEN.get()) || livEnt4.hasEffect(MobEffects.MOVEMENT_SLOWDOWN) || entity instanceof LivingEntity _livEnt5 && _livEnt5.hasEffect(MobEffects.SLOW_FALLING)) && !(damagesource.is(DamageTypes.GENERIC_KILL) || damagesource.is(DamageTypes.FELL_OUT_OF_WORLD) || damagesource.is(DamageTypes.SONIC_BOOM) || damagesource.is(DamageTypes.WITHER))) {
-                if (Math.random() < rate) {
-                    if (entity instanceof PredatorAbyssalEntity) {
-                        ((PredatorAbyssalEntity) entity).setAnimation("animation.predator.miss");
-                    }
-                    if (world instanceof ServerLevel _level)
-                        _level.sendParticles(ModParticleTypes.MISS.get(), x, y, z, 16, 1, 1, 1, 0.1);
-                    if (event != null && event.isCancelable()) {
-                        event.setCanceled(true);
-                    }
-                }
-            }
-        }
-        if (CaerulaArborModVariables.MapVariables.get(world).strategy_grow >= 3) {
-            if (sourceentity.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanoffspring"))) && !damagesource.is(DamageTypes.MAGIC)) {
+        if (CaerulaArborModVariables.MapVariables.get(world).strategyGrow >= 3) {
+            if (sourceentity.getType().is(ModTags.EntityTypes.SEA_BORN) && !damagesource.is(DamageTypes.MAGIC)) {
                 CaerulaArborMod.queueServerWork(10, () -> {
                     entity.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.MAGIC), immediatesourceentity, sourceentity),
-                            (float) (amount * 0.2 * (CaerulaArborModVariables.MapVariables.get(world).strategy_grow - 2)));
+                            (float) (amount * 0.2 * (CaerulaArborModVariables.MapVariables.get(world).strategyGrow - 2)));
                     if (world instanceof ServerLevel _level)
                         _level.sendParticles(ParticleTypes.ENCHANTED_HIT, x, (y + 1), z, 48, 1.5, 1.5, 1.5, 0.2);
                 });
             }
         }
-        if (entity.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanoffspring"))) && !sourceentity.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanoffspring")))) {
-            if (CaerulaArborModVariables.MapVariables.get(world).strategy_migration > 0) {
+        if (entity.getType().is(ModTags.EntityTypes.SEA_BORN) && !sourceentity.getType().is(ModTags.EntityTypes.SEA_BORN)) {
+            if (CaerulaArborModVariables.MapVariables.get(world).strategyMigration > 0) {
                 for (Entity entityiterator : world.getEntities(entity,
-                        new AABB((x - (8 + CaerulaArborModVariables.MapVariables.get(world).strategy_migration * 24)), (y - 16), (z - (8 + CaerulaArborModVariables.MapVariables.get(world).strategy_migration * 24)),
-                                (x + 8 + CaerulaArborModVariables.MapVariables.get(world).strategy_migration * 24), (y + 16), (z + 8 + CaerulaArborModVariables.MapVariables.get(world).strategy_migration * 24)))) {
-                    if (entityiterator.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanoffspring")))) {
+                        new AABB((x - (8 + CaerulaArborModVariables.MapVariables.get(world).strategyMigration * 24)), (y - 16), (z - (8 + CaerulaArborModVariables.MapVariables.get(world).strategyMigration * 24)),
+                                (x + 8 + CaerulaArborModVariables.MapVariables.get(world).strategyMigration * 24), (y + 16), (z + 8 + CaerulaArborModVariables.MapVariables.get(world).strategyMigration * 24)))) {
+                    if (entityiterator.getType().is(ModTags.EntityTypes.SEA_BORN)) {
                         if (entityiterator == sourceentity) {
                             continue;
                         }
@@ -114,12 +97,12 @@ public class MobHitFuncProcedure {
             }
         }
         if (entity instanceof Player) {
-            if ((entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables())).player_oceanization >= 3) {
-                if (CaerulaArborModVariables.MapVariables.get(world).strategy_migration > 0) {
+            if ((entity.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable())).player_oceanization >= 3) {
+                if (CaerulaArborModVariables.MapVariables.get(world).strategyMigration > 0) {
                     for (Entity entityiterator : world.getEntities(entity,
-                            new AABB((x - (8 + CaerulaArborModVariables.MapVariables.get(world).strategy_migration * 24)), (y - 16), (z - (8 + CaerulaArborModVariables.MapVariables.get(world).strategy_migration * 24)),
-                                    (x + 8 + CaerulaArborModVariables.MapVariables.get(world).strategy_migration * 24), (y + 16), (z + 8 + CaerulaArborModVariables.MapVariables.get(world).strategy_migration * 24)))) {
-                        if (entityiterator.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanoffspring")))) {
+                            new AABB((x - (8 + CaerulaArborModVariables.MapVariables.get(world).strategyMigration * 24)), (y - 16), (z - (8 + CaerulaArborModVariables.MapVariables.get(world).strategyMigration * 24)),
+                                    (x + 8 + CaerulaArborModVariables.MapVariables.get(world).strategyMigration * 24), (y + 16), (z + 8 + CaerulaArborModVariables.MapVariables.get(world).strategyMigration * 24)))) {
+                        if (entityiterator.getType().is(ModTags.EntityTypes.SEA_BORN)) {
                             if (entityiterator == sourceentity) {
                                 continue;
                             }
@@ -134,7 +117,7 @@ public class MobHitFuncProcedure {
                 }
             }
         }
-        if (sourceentity.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanoffspring")))) {
+        if (sourceentity.getType().is(ModTags.EntityTypes.SEA_BORN)) {
             if (world.getLevelData().getGameRules().getBoolean(ModGameRules.NATURAL_EVOLUTION)) {
                 CaerulaArborModVariables.MapVariables.get(world).evo_point_grow = CaerulaArborModVariables.MapVariables.get(world).evo_point_grow + amount * 0.025;
                 CaerulaArborModVariables.MapVariables.get(world).syncData(world);
@@ -142,7 +125,7 @@ public class MobHitFuncProcedure {
                 UpgradeSilenceProcedure.execute(world, entity, amount * 0.025);
             }
         }
-        if (entity.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanoffspring")))) {
+        if (entity.getType().is(ModTags.EntityTypes.SEA_BORN)) {
             if (sourceentity instanceof ServerPlayer _player) {
                 Advancement _adv = _player.server.getAdvancements().getAdvancement(new ResourceLocation("caerula_arbor:encounter_from_the_ocean"));
                 AdvancementProgress _ap = _player.getAdvancements().getOrStartProgress(_adv);
@@ -160,16 +143,16 @@ public class MobHitFuncProcedure {
             if (entity.isPassenger() && GameplayConfig.ENABLE_MOB_BREAK.get() && world.getLevelData().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING)) {
                 (entity.getVehicle()).hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.MOB_ATTACK), entity), 8);
             }
-            if (CaerulaArborModVariables.MapVariables.get(world).strategy_subsisting >= 3 && Math.random() < 0.5) {
+            if (CaerulaArborModVariables.MapVariables.get(world).strategySubsisting >= 3 && Math.random() < 0.5) {
                 if (GameplayConfig.ENABLE_MOB_BREAK.get() && world.getLevelData().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING)) {
                     if (!entity.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanspawn"))) && DetectForTrailProcedure.execute(world, x, y, z)) {
                         new Object() {
                             void timedLoop(int timedloopiterator, int timedlooptotal, int ticks) {
                                 if (world instanceof Level _level) {
                                     if (!_level.isClientSide()) {
-                                        _level.playSound(null, BlockPos.containing(x, y, z), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.generic.eat")), SoundSource.NEUTRAL, 1, 1);
+                                        _level.playSound(null, BlockPos.containing(x, y, z), SoundEvents.GENERIC_EAT, SoundSource.NEUTRAL, 1, 1);
                                     } else {
-                                        _level.playLocalSound(x, y, z, ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.generic.eat")), SoundSource.NEUTRAL, 1, 1, false);
+                                        _level.playLocalSound(x, y, z, SoundEvents.GENERIC_EAT, SoundSource.NEUTRAL, 1, 1, false);
                                     }
                                 }
                                 final int tick2 = ticks;
@@ -192,11 +175,10 @@ public class MobHitFuncProcedure {
                                 ? _livingEntity50.getAttribute(ModAttributes.SUMMONABLE.get()).getBaseValue()
                                 : 0) == 1) {
                             {
-                                Entity _ent = entity;
-                                if (!_ent.level().isClientSide() && _ent.getServer() != null) {
-                                    _ent.getServer().getCommands().performPrefixedCommand(
-                                            new CommandSourceStack(CommandSource.NULL, _ent.position(), _ent.getRotationVector(), _ent.level() instanceof ServerLevel ? (ServerLevel) _ent.level() : null, 4, _ent.getName().getString(),
-                                                    _ent.getDisplayName(), _ent.level().getServer(), _ent),
+                                if (!entity.level().isClientSide() && entity.getServer() != null) {
+                                    entity.getServer().getCommands().performPrefixedCommand(
+                                            new CommandSourceStack(CommandSource.NULL, entity.position(), entity.getRotationVector(), entity.level() instanceof ServerLevel ? (ServerLevel) entity.level() : null, 4, entity.getName().getString(),
+                                                    entity.getDisplayName(), entity.level().getServer(), entity),
                                             ("summon " + ForgeRegistries.ENTITY_TYPES.getKey(entity.getType()).toString() + " ~" + Mth.nextDouble(RandomSource.create(), -1, 1) + " ~ ~" + Mth.nextDouble(RandomSource.create(), -1, 1)));
                                 }
                             }
@@ -206,20 +188,20 @@ public class MobHitFuncProcedure {
                                 if (Math.random() < 0.5) {
                                     if (world instanceof ServerLevel server) {
                                         var type = switch (Mth.nextInt(RandomSource.create(), 0, 8)) {
-                                            case 0 -> ModEntities.BASELAYER_ABYSSAL;
-                                            case 1 -> ModEntities.CRACKER_ABYSSAL;
-                                            case 2 -> ModEntities.CREEPER_FISH;
-                                            case 3 -> ModEntities.GUIDE_ABYSSAL;
-                                            case 4 -> ModEntities.PUNCTURE_FISH;
-                                            case 5 -> ModEntities.REAPER_FISH;
-                                            case 6 -> ModEntities.UMBRELLA_ABYSSAL;
-                                            case 7 -> ModEntities.PREGNANT_FISH;
-                                            case 8 -> ModEntities.FLEE_FISH;
+                                            case 0 -> ModEntities.NETHERSEA_FOUNDER;
+                                            case 1 -> ModEntities.NETHERSEA_REEFBREAKER;
+                                            case 2 -> ModEntities.POCKET_SEA_CRAWLER;
+                                            case 3 -> ModEntities.NETHERSEA_BRANDGUIDER;
+                                            case 4 -> ModEntities.PRIMAL_SEA_PIERCER;
+                                            case 5 -> ModEntities.BASIN_SEA_REAPER;
+                                            case 6 -> ModEntities.NETHERSEA_SWARMCALLER;
+                                            case 7 -> ModEntities.RETCHING_BROODMOTHER;
+                                            case 8 -> ModEntities.SKIMMING_SEA_DRIFTER;
                                             default -> null;
                                         };
 
                                         if (type != null) {
-                                            var entityToSpawn = ((RegistryObject<? extends EntityType<?>>) type).get().spawn((ServerLevel) world, BlockPos.containing(Mth.nextDouble(RandomSource.create(), -1, 1) + x, y, Mth.nextDouble(RandomSource.create(), -1, 1) + z), MobSpawnType.MOB_SUMMONED);
+                                            var entityToSpawn = ((RegistryObject<? extends EntityType<?>>) type).get().spawn(server, BlockPos.containing(Mth.nextDouble(RandomSource.create(), -1, 1) + x, y, Mth.nextDouble(RandomSource.create(), -1, 1) + z), MobSpawnType.MOB_SUMMONED);
                                             if (entityToSpawn != null) {
                                                 entityToSpawn.setYRot(world.getRandom().nextFloat() * 360F);
                                             }
@@ -241,51 +223,46 @@ public class MobHitFuncProcedure {
                     }
                 }
             }
-            if (entity instanceof LivingEntity _livingEntity60 && _livingEntity60.getAttributes().hasAttribute(ModAttributes.EVOLVED.get()))
-                _livingEntity60.getAttribute(ModAttributes.EVOLVED.get()).setBaseValue(1);
         }
-        if (sourceentity instanceof CrackerAbyssalEntity livEnt) {
+        if (sourceentity instanceof NetherseaReefbreakerEntity livEnt) {
             amplifi = livEnt.hasEffect(ModMobEffects.REEF_CRACKER.get()) ? livEnt.getEffect(ModMobEffects.REEF_CRACKER.get()).getAmplifier() : 0;
             if (livEnt.hasEffect(ModMobEffects.REEF_CRACKER.get())) {
                 if (amplifi < 14) {
-                    LivingEntity _entity = (LivingEntity) sourceentity;
-                    if (!_entity.level().isClientSide())
-                        _entity.addEffect(new MobEffectInstance(ModMobEffects.REEF_CRACKER.get(), 120, (int) (amplifi + 1), false, false));
+                    if (!livEnt.level().isClientSide())
+                        livEnt.addEffect(new MobEffectInstance(ModMobEffects.REEF_CRACKER.get(), 120, (int) (amplifi + 1), false, false));
                 } else {
-                    LivingEntity _entity = (LivingEntity) sourceentity;
-                    if (!_entity.level().isClientSide())
-                        _entity.addEffect(new MobEffectInstance(ModMobEffects.REEF_CRACKER.get(), 120, 14, false, false));
+                    if (!livEnt.level().isClientSide())
+                        livEnt.addEffect(new MobEffectInstance(ModMobEffects.REEF_CRACKER.get(), 120, 14, false, false));
                 }
             } else {
-                LivingEntity _entity = (LivingEntity) sourceentity;
-                if (!_entity.level().isClientSide())
-                    _entity.addEffect(new MobEffectInstance(ModMobEffects.REEF_CRACKER.get(), 120, 0, false, false));
+                if (!livEnt.level().isClientSide())
+                    livEnt.addEffect(new MobEffectInstance(ModMobEffects.REEF_CRACKER.get(), 120, 0, false, false));
             }
         }
-        if (sourceentity instanceof BoneFishEntity) {
+        if (sourceentity instanceof BoneSeaDrifterEntity) {
             GiveLessArmorProcedure.execute(entity, 1);
         }
-        if (sourceentity instanceof FakeOffspringEntity) {
+        if (sourceentity instanceof BalefulBroodlingEntity) {
             GiveLessArmorProcedure.execute(entity, 2);
         }
-        if (sourceentity instanceof RouteShaperEntity) {
-            sklp = sourceentity instanceof RouteShaperEntity _datEntI ? _datEntI.getEntityData().get(RouteShaperEntity.DATA_skillp) : 0;
-            if (sourceentity instanceof RouteShaperEntity _datEntSetI)
-                _datEntSetI.getEntityData().set(RouteShaperEntity.DATA_skillp, (int) (sklp + 1));
+        if (sourceentity instanceof PathShaperEntity) {
+            sklp = sourceentity instanceof PathShaperEntity _datEntI ? _datEntI.getEntityData().get(PathShaperEntity.DATA_skillp) : 0;
+            if (sourceentity instanceof PathShaperEntity _datEntSetI)
+                _datEntSetI.getEntityData().set(PathShaperEntity.DATA_skillp, (int) (sklp + 1));
             if (sklp + 1 >= 8) {
-                SummonFractalProcedure.execute(world, x, y, z);
-                if (sourceentity instanceof RouteShaperEntity _datEntSetI)
-                    _datEntSetI.getEntityData().set(RouteShaperEntity.DATA_skillp, 0);
+                SummonFractalProcedure.execute(sourceentity.level(), x, y, z);
+                if (sourceentity instanceof PathShaperEntity _datEntSetI)
+                    _datEntSetI.getEntityData().set(PathShaperEntity.DATA_skillp, 0);
             }
         }
-        if (sourceentity instanceof RouteFractalEntity) {
-            sklp = sourceentity instanceof RouteFractalEntity _datEntI ? _datEntI.getEntityData().get(RouteFractalEntity.DATA_skillp) : 0;
-            if (sourceentity instanceof RouteFractalEntity _datEntSetI)
-                _datEntSetI.getEntityData().set(RouteFractalEntity.DATA_skillp, (int) (sklp + 1));
+        if (sourceentity instanceof PathshaperFractalEntity) {
+            sklp = sourceentity instanceof PathshaperFractalEntity _datEntI ? _datEntI.getEntityData().get(PathshaperFractalEntity.DATA_skillp) : 0;
+            if (sourceentity instanceof PathshaperFractalEntity _datEntSetI)
+                _datEntSetI.getEntityData().set(PathshaperFractalEntity.DATA_skillp, (int) (sklp + 1));
             if (sklp + 1 >= 6) {
-                SummonFractalProcedure.execute(world, x, y, z);
-                if (sourceentity instanceof RouteFractalEntity _datEntSetI)
-                    _datEntSetI.getEntityData().set(RouteFractalEntity.DATA_skillp, 0);
+                SummonFractalProcedure.execute(sourceentity.level(), x, y, z);
+                if (sourceentity instanceof PathshaperFractalEntity _datEntSetI)
+                    _datEntSetI.getEntityData().set(PathshaperFractalEntity.DATA_skillp, 0);
             }
         }
     }

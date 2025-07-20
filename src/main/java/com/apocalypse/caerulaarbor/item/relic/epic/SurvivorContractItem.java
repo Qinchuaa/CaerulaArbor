@@ -1,8 +1,8 @@
 package com.apocalypse.caerulaarbor.item.relic.epic;
 
+import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.item.relic.RelicItem;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.ChatFormatting;
 import net.minecraft.core.particles.ParticleOptions;
 import net.minecraft.core.particles.ParticleTypes;
@@ -41,7 +41,7 @@ public class SurvivorContractItem extends RelicItem {
         if (Relic.SURVIVOR_CONTRACT.get(entity) < 0) {
             Relic.SURVIVOR_CONTRACT.set(entity, 0);
 
-            entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(c -> c.syncPlayerVariables(entity));
+            entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(c -> c.syncPlayerVariables(entity));
             return super.use(world, entity, hand);
         }
         return InteractionResultHolder.fail(itemstack);

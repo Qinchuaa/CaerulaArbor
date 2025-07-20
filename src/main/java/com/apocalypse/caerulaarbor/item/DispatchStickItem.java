@@ -2,10 +2,8 @@
 package com.apocalypse.caerulaarbor.item;
 
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
-import net.minecraft.core.registries.Registries;
+import com.apocalypse.caerulaarbor.init.ModTags;
 import net.minecraft.network.chat.Component;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.TagKey;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -43,7 +41,7 @@ public class DispatchStickItem extends Item {
         for (var entityiterator : world.getEntitiesOfClass(LivingEntity.class,
                 new AABB(center, center).inflate(32), e -> true)
         ) {
-            if (entityiterator.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanoffspring")))
+            if (entityiterator.getType().is(ModTags.EntityTypes.SEA_BORN)
                     && !entityiterator.level().isClientSide()
             ) {
                 entityiterator.addEffect(new MobEffectInstance(ModMobEffects.ANGER_OF_TIDE.get(), 131072, 0, false, true));
@@ -59,7 +57,7 @@ public class DispatchStickItem extends Item {
         for (var entity : target.level()
                 .getEntitiesOfClass(Mob.class, new AABB(center, center).inflate(64 / 2d), e -> true)
         ) {
-            if (entity.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanoffspring")))
+            if (entity.getType().is(ModTags.EntityTypes.SEA_BORN)
                     && target != entity
             ) {
                 entity.setTarget(target);

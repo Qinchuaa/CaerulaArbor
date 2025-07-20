@@ -1,13 +1,13 @@
 package com.apocalypse.caerulaarbor.client.gui;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
-import com.apocalypse.caerulaarbor.entity.ReaperFishEntity;
+import com.apocalypse.caerulaarbor.entity.BasinSeaReaperEntity;
 import com.apocalypse.caerulaarbor.init.ModEntities;
+import com.apocalypse.caerulaarbor.menu.InfoStrategyMigrationMenu;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import com.apocalypse.caerulaarbor.network.InfoStrategyMigrationButtonMessage;
 import com.apocalypse.caerulaarbor.procedures.GetBarMigraProcedure;
 import com.apocalypse.caerulaarbor.procedures.GetPointMigraProcedure;
-import com.apocalypse.caerulaarbor.world.inventory.InfoStrategyMigrationMenu;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
@@ -48,7 +48,7 @@ public class InfoStrategyMigrationScreen extends AbstractContainerScreen<InfoStr
     public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         this.renderBackground(guiGraphics);
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
-        if ((Entity) new ReaperFishEntity(ModEntities.REAPER_FISH.get(), world) instanceof LivingEntity livingEntity) {
+        if ((Entity) new BasinSeaReaperEntity(ModEntities.BASIN_SEA_REAPER.get(), world) instanceof LivingEntity livingEntity) {
             InventoryScreen.renderEntityInInventoryFollowsAngle(guiGraphics, this.leftPos + 29, this.topPos + 96, 20, 0f + (float) Math.atan((this.leftPos + 29 - mouseX) / 40.0), (float) Math.atan((this.topPos + 47 - mouseY) / 40.0), livingEntity);
         }
         this.renderTooltip(guiGraphics, mouseX, mouseY);
@@ -63,7 +63,7 @@ public class InfoStrategyMigrationScreen extends AbstractContainerScreen<InfoStr
         RenderSystem.defaultBlendFunc();
 
         guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/sidebar.png"), this.leftPos - 3, this.topPos - 3, 0, 0, 262, 174, 262, 174);
-        guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/bg_migration.png"), this.leftPos, this.topPos, Mth.clamp((int) CaerulaArborModVariables.MapVariables.get(world).strategy_migration * 256, 0, 1024), 0, 256, 168, 1280, 168);
+        guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/bg_migration.png"), this.leftPos, this.topPos, Mth.clamp((int) CaerulaArborModVariables.MapVariables.get(world).strategyMigration * 256, 0, 1024), 0, 256, 168, 1280, 168);
         guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/barevo.png"), this.leftPos + 244, this.topPos + 20, Mth.clamp((int) GetBarMigraProcedure.execute(world) * 8, 0, 144), 0, 8, 72, 152, 72);
 
         RenderSystem.disableBlend();
@@ -81,7 +81,7 @@ public class InfoStrategyMigrationScreen extends AbstractContainerScreen<InfoStr
     @Override
     protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
         guiGraphics.drawString(this.font, Component.translatable("gui.caerula_arbor.info_strategy_migration.label_strategy_migration"), 1, -12, -16717080, false);
-        guiGraphics.drawString(this.font, Component.translatable(("item.caerula_arbor.sample_migration.description_" + Math.round(CaerulaArborModVariables.MapVariables.get(world).strategy_migration))).getString(), 1, 100, -1, false);
+        guiGraphics.drawString(this.font, Component.translatable(("item.caerula_arbor.sample_migration.description_" + Math.round(CaerulaArborModVariables.MapVariables.get(world).strategyMigration))).getString(), 1, 100, -1, false);
         guiGraphics.drawString(this.font, Component.translatable("gui.caerula_arbor.info_strategy_migration.label_nothings_eternal_so_migrating"), 1, 4, -1, false);
         guiGraphics.drawString(this.font, Component.translatable("gui.caerula_arbor.info_strategy_migration.label_proceed"), 1, 172, -1, false);
         if (CaerulaArborModVariables.MapVariables.get(world).strategy_silence > 0)

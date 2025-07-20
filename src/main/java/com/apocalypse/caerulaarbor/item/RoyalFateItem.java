@@ -1,12 +1,12 @@
 
 package com.apocalypse.caerulaarbor.item;
 
+import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.capability.Relic;
+import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
 import com.apocalypse.caerulaarbor.init.ModBlocks;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -26,9 +26,7 @@ import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.Blocks;
 import net.minecraft.world.level.block.state.BlockState;
-import net.minecraft.world.level.block.state.properties.DirectionProperty;
-import net.minecraft.world.level.block.state.properties.EnumProperty;
-import net.minecraft.world.level.block.state.properties.Property;
+import net.minecraft.world.level.block.state.properties.BlockStateProperties;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 import org.jetbrains.annotations.NotNull;
@@ -63,7 +61,7 @@ public class RoyalFateItem extends Item {
         double z = entity.getZ();
         ItemStack stack = ar.getObject();
 
-        var cap = entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
+        var cap = entity.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable());
         if (cap.maxLive > 1) {
             if (!world.isClientSide()) {
                 world.playSound(null, BlockPos.containing(x, y, z), SoundEvents.WARDEN_DEATH, SoundSource.NEUTRAL, 2, 1);
@@ -91,31 +89,19 @@ public class RoyalFateItem extends Item {
     public @NotNull InteractionResult useOn(@NotNull UseOnContext context) {
         super.useOn(context);
         LevelAccessor world = context.getLevel();
-        double x = context.getClickedPos().getX();
-        double y = context.getClickedPos().getY();
-        double z = context.getClickedPos().getZ();
-        BlockState blockstate = context.getLevel().getBlockState(context.getClickedPos());
+        BlockPos pos = context.getClickedPos();
+
+        BlockState blockstate = context.getLevel().getBlockState(pos);
         Entity entity = context.getPlayer();
         ItemStack itemstack = context.getItemInHand();
 
-        if (entity == null)
-            return InteractionResult.PASS;
+        if (entity == null) return InteractionResult.PASS;
 
         if (blockstate.getBlock() == Blocks.DEEPSLATE_BRICK_SLAB) {
-            world.setBlock(BlockPos.containing(x, y, z), ModBlocks.BLOCK_FATE.get().defaultBlockState(), 3);
-            {
-                Direction _dir = ((entity.getDirection()).getOpposite());
-                BlockPos _pos = BlockPos.containing(x, y, z);
-                BlockState _bs = world.getBlockState(_pos);
-                Property<?> _property = _bs.getBlock().getStateDefinition().getProperty("facing");
-                if (_property instanceof DirectionProperty _dp && _dp.getPossibleValues().contains(_dir)) {
-                    world.setBlock(_pos, _bs.setValue(_dp, _dir), 3);
-                } else {
-                    _property = _bs.getBlock().getStateDefinition().getProperty("axis");
-                    if (_property instanceof EnumProperty _ap && _ap.getPossibleValues().contains(_dir.getAxis()))
-                        world.setBlock(_pos, _bs.setValue(_ap, _dir.getAxis()), 3);
-                }
-            }
+            world.setBlock(pos, ModBlocks.BLOCK_FATE.get().defaultBlockState(), 3);
+            BlockState _bs = world.getBlockState(pos);
+            world.setBlock(pos, _bs.setValue(BlockStateProperties.FACING, entity.getDirection().getOpposite()), 3);
+
             itemstack.shrink(1);
             return InteractionResult.CONSUME;
         }

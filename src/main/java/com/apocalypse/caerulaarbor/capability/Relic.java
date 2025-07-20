@@ -1,8 +1,8 @@
 package com.apocalypse.caerulaarbor.capability;
 
 import com.apocalypse.caerulaarbor.api.event.RelicEvent;
+import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
 import com.apocalypse.caerulaarbor.init.ModItems;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.item.Item;
@@ -76,35 +76,35 @@ public enum Relic {
     }
 
     public int get(Entity player) {
-        return player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+        return player.getCapability(ModCapabilities.PLAYER_VARIABLE)
                 .map(this::get)
                 .orElse(defaultLevel);
     }
 
-    public int get(CaerulaArborModVariables.PlayerVariables variables) {
+    public int get(PlayerVariable variables) {
         return variables.relics.getOrDefault(this, defaultLevel);
     }
 
     public boolean gained(Entity player) {
-        return player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+        return player.getCapability(ModCapabilities.PLAYER_VARIABLE)
                 .map(this::gained)
                 .orElse(false);
     }
 
-    public boolean gained(CaerulaArborModVariables.PlayerVariables variables) {
+    public boolean gained(PlayerVariable variables) {
         return this.get(variables) != defaultLevel;
     }
 
     public void reset(Entity player) {
-        player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(this::reset);
+        player.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(this::reset);
     }
 
-    public void reset(CaerulaArborModVariables.PlayerVariables variables) {
+    public void reset(PlayerVariable variables) {
         variables.relics.remove(this);
     }
 
     public void set(Entity player, int level) {
-        player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+        player.getCapability(ModCapabilities.PLAYER_VARIABLE)
                 .ifPresent(c -> {
                     if (level == this.defaultLevel) {
                         remove(player);
@@ -115,7 +115,7 @@ public enum Relic {
                 });
     }
 
-    public void set(CaerulaArborModVariables.PlayerVariables variables, int level) {
+    public void set(PlayerVariable variables, int level) {
         variables.relics.put(this, Mth.clamp(level, minLevel, maxLevel));
     }
 
@@ -125,49 +125,49 @@ public enum Relic {
     }
 
     // TODO 尽量不用这个，需要发event
-    public void gain(CaerulaArborModVariables.PlayerVariables variables) {
+    public void gain(PlayerVariable variables) {
         set(variables, 1);
     }
 
     public void remove(Entity player) {
-        player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+        player.getCapability(ModCapabilities.PLAYER_VARIABLE)
                 .ifPresent(this::remove);
         MinecraftForge.EVENT_BUS.post(new RelicEvent.Remove(player, this));
     }
 
-    public void remove(CaerulaArborModVariables.PlayerVariables variables) {
+    public void remove(PlayerVariable variables) {
         variables.relics.remove(this);
     }
 
-    public static void modify(Entity player, Consumer<CaerulaArborModVariables.PlayerVariables> operation) {
-        player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(cap -> modify(cap, player, operation));
+    public static void modify(Entity player, Consumer<PlayerVariable> operation) {
+        player.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(cap -> modify(cap, player, operation));
     }
 
-    public static void modify(CaerulaArborModVariables.PlayerVariables cap, Entity player, Consumer<CaerulaArborModVariables.PlayerVariables> operation) {
+    public static void modify(PlayerVariable cap, Entity player, Consumer<PlayerVariable> operation) {
         operation.accept(cap);
         cap.syncPlayerVariables(player);
     }
 
     public static int getLevel(Entity player, Relic relic) {
-        return player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY)
+        return player.getCapability(ModCapabilities.PLAYER_VARIABLE)
                 .map(relic::get)
                 .orElse(relic.defaultLevel);
     }
 
     public void modify(Entity player, int value) {
-        player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(cap -> modify(cap, player, value));
+        player.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(cap -> modify(cap, player, value));
     }
 
-    public void modify(CaerulaArborModVariables.PlayerVariables cap, Entity player, int value) {
+    public void modify(PlayerVariable cap, Entity player, int value) {
         this.set(cap, value);
         cap.syncPlayerVariables(player);
     }
 
     public void gainAndSync(Entity player) {
-        player.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(cap -> gainAndSync(cap, player));
+        player.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(cap -> gainAndSync(cap, player));
     }
 
-    public void gainAndSync(CaerulaArborModVariables.PlayerVariables cap, Entity player) {
+    public void gainAndSync(PlayerVariable cap, Entity player) {
         this.set(cap, 1);
         cap.syncPlayerVariables(player);
     }

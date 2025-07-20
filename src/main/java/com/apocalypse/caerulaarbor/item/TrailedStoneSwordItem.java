@@ -13,6 +13,7 @@ import net.minecraft.world.item.*;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.item.enchantment.Enchantments;
 import net.minecraft.world.level.Level;
+import org.jetbrains.annotations.NotNull;
 
 import java.util.List;
 
@@ -39,14 +40,14 @@ public class TrailedStoneSwordItem extends SwordItem {
                 return 7;
             }
 
-            public Ingredient getRepairIngredient() {
+            public @NotNull Ingredient getRepairIngredient() {
                 return Ingredient.of(ItemTags.create(new ResourceLocation("forge:stone")));
             }
         }, 3, -2.4f, new Item.Properties());
     }
 
     @Override
-    public boolean hurtEnemy(ItemStack itemstack, LivingEntity entity, LivingEntity sourceentity) {
+    public boolean hurtEnemy(ItemStack itemstack, LivingEntity entity, @NotNull LivingEntity sourceentity) {
         var world = entity.level();
         double dam = 50 + 10 * itemstack.getEnchantmentLevel(Enchantments.SHARPNESS);
         DeductPlayerSanityProcedure.execute(entity, dam);
@@ -84,12 +85,12 @@ public class TrailedStoneSwordItem extends SwordItem {
     }
 
     @Override
-    public boolean isRepairable(ItemStack itemstack) {
+    public boolean isRepairable(@NotNull ItemStack itemstack) {
         return false;
     }
 
     @Override
-    public void appendHoverText(ItemStack itemstack, Level level, List<Component> list, TooltipFlag flag) {
+    public void appendHoverText(@NotNull ItemStack itemstack, Level level, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         super.appendHoverText(itemstack, level, list, flag);
         list.add(Component.translatable("item.caerula_arbor.trailed_stone_sword.description_0"));
         list.add(Component.translatable("item.caerula_arbor.trailed_stone_sword.description_1"));

@@ -1,14 +1,10 @@
 package com.apocalypse.caerulaarbor.procedures;
 
-import com.apocalypse.caerulaarbor.init.ModAttributes;
 import com.apocalypse.caerulaarbor.init.ModGameRules;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
+import com.apocalypse.caerulaarbor.init.ModTags;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.core.BlockPos;
-import net.minecraft.core.registries.Registries;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.tags.BlockTags;
-import net.minecraft.tags.TagKey;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -45,22 +41,15 @@ public class MobTickFuncProcedure {
             return;
         double amplifi;
         double pnt;
-        if ((entity instanceof LivingEntity living && living.getAttributes().hasAttribute(ModAttributes.SANITY.get()) ? living.getAttribute(ModAttributes.SANITY.get()).getBaseValue() : 0) < 0) {
-            LivingEntity _entity = (LivingEntity) entity;
-            if (!_entity.canBeAffected(new MobEffectInstance(ModMobEffects.SANITY_IMMUNE.get()))) {
-                if (entity instanceof LivingEntity _livingEntity9 && _livingEntity9.getAttributes().hasAttribute(ModAttributes.SANITY.get()))
-                    _livingEntity9.getAttribute(ModAttributes.SANITY.get()).setBaseValue(1000);
-            }
-        }
-        if (!(world.getBlockState(BlockPos.containing(x, y, z))).is(BlockTags.create(new ResourceLocation("caerula_arbor:sea_trail")))) {
+        if (!(world.getBlockState(BlockPos.containing(x, y, z))).is(ModTags.Blocks.SEA_TRAIL)) {
             if (entity instanceof LivingEntity _entity)
                 _entity.removeEffect(ModMobEffects.TRAIL_BUFF.get());
         }
-        if (entity.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanoffspring")))) {
-            if (CaerulaArborModVariables.MapVariables.get(world).strategy_subsisting >= 3) {
+        if (entity.getType().is(ModTags.EntityTypes.SEA_BORN)) {
+            if (CaerulaArborModVariables.MapVariables.get(world).strategySubsisting >= 3) {
                 if (!(entity instanceof LivingEntity _livEnt14 && _livEnt14.hasEffect(MobEffects.DAMAGE_RESISTANCE))) {
                     if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-                        _entity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 20, (int) (CaerulaArborModVariables.MapVariables.get(world).strategy_subsisting - 3)));
+                        _entity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 20, (int) (CaerulaArborModVariables.MapVariables.get(world).strategySubsisting - 3)));
                 }
             }
             if (CaerulaArborModVariables.MapVariables.get(world).strategy_silence > 0) {
@@ -76,7 +65,7 @@ public class MobTickFuncProcedure {
                                 final Vec3 _center = new Vec3(x, y, z);
                                 List<Entity> _entfound = world.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(64 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList();
                                 for (Entity entityiterator : _entfound) {
-                                    if (!(entityiterator == entity) && entityiterator.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanoffspring")))) {
+                                    if (!(entityiterator == entity) && entityiterator.getType().is(ModTags.EntityTypes.SEA_BORN)) {
                                         amplifi = amplifi + 2;
                                     }
                                     if (amplifi > 29) {
@@ -90,7 +79,7 @@ public class MobTickFuncProcedure {
                                 final Vec3 _center = new Vec3(x, y, z);
                                 List<Entity> _entfound = world.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(32 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList();
                                 for (Entity entityiterator : _entfound) {
-                                    if (!(entityiterator == entity) && entityiterator.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanoffspring")))) {
+                                    if (!(entityiterator == entity) && entityiterator.getType().is(ModTags.EntityTypes.SEA_BORN)) {
                                         amplifi = amplifi + 1;
                                     }
                                     if (amplifi > 9) {
@@ -119,9 +108,8 @@ public class MobTickFuncProcedure {
                 }
                 if (entity instanceof Mob _mobEnt32 && _mobEnt32.isAggressive()) {
                     if (!_mobEnt32.hasEffect(MobEffects.MOVEMENT_SPEED)) {
-                        LivingEntity _entity = (LivingEntity) entity;
-                        if (!_entity.level().isClientSide())
-                            _entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, (int) CaerulaArborModVariables.MapVariables.get(world).strategy_silence));
+                        if (!_mobEnt32.level().isClientSide())
+                            _mobEnt32.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, (int) CaerulaArborModVariables.MapVariables.get(world).strategy_silence));
                     }
                 }
             }

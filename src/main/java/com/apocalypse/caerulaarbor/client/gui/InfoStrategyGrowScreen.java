@@ -1,13 +1,13 @@
 package com.apocalypse.caerulaarbor.client.gui;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
-import com.apocalypse.caerulaarbor.entity.ReaperFishEntity;
+import com.apocalypse.caerulaarbor.entity.BasinSeaReaperEntity;
 import com.apocalypse.caerulaarbor.init.ModEntities;
+import com.apocalypse.caerulaarbor.menu.InfoStrategyGrowMenu;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import com.apocalypse.caerulaarbor.network.InfoStrategyGrowButtonMessage;
 import com.apocalypse.caerulaarbor.procedures.GetBarGrowProcedure;
 import com.apocalypse.caerulaarbor.procedures.GetPointGrowProcedure;
-import com.apocalypse.caerulaarbor.world.inventory.InfoStrategyGrowMenu;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
@@ -48,7 +48,7 @@ public class InfoStrategyGrowScreen extends AbstractContainerScreen<InfoStrategy
     public void render(@NotNull GuiGraphics guiGraphics, int mouseX, int mouseY, float partialTicks) {
         this.renderBackground(guiGraphics);
         super.render(guiGraphics, mouseX, mouseY, partialTicks);
-        if ((Entity) new ReaperFishEntity(ModEntities.REAPER_FISH.get(), world) instanceof LivingEntity livingEntity) {
+        if ((Entity) new BasinSeaReaperEntity(ModEntities.BASIN_SEA_REAPER.get(), world) instanceof LivingEntity livingEntity) {
             InventoryScreen.renderEntityInInventoryFollowsAngle(guiGraphics, this.leftPos + 29, this.topPos + 96, 20, 0f + (float) Math.atan((this.leftPos + 29 - mouseX) / 40.0), (float) Math.atan((this.topPos + 47 - mouseY) / 40.0), livingEntity);
         }
         this.renderTooltip(guiGraphics, mouseX, mouseY);
@@ -63,7 +63,7 @@ public class InfoStrategyGrowScreen extends AbstractContainerScreen<InfoStrategy
         RenderSystem.defaultBlendFunc();
 
         guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/sidebar.png"), this.leftPos - 3, this.topPos - 3, 0, 0, 262, 174, 262, 174);
-        guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/bg_grow.png"), this.leftPos, this.topPos, Mth.clamp((int) CaerulaArborModVariables.MapVariables.get(world).strategy_grow * 256, 0, 1024), 0, 256, 168, 1280, 168);
+        guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/bg_grow.png"), this.leftPos, this.topPos, Mth.clamp((int) CaerulaArborModVariables.MapVariables.get(world).strategyGrow * 256, 0, 1024), 0, 256, 168, 1280, 168);
         guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/barevo.png"), this.leftPos + 244, this.topPos + 20, Mth.clamp((int) GetBarGrowProcedure.execute(world) * 8, 0, 144), 0, 8, 72, 152, 72);
 
         RenderSystem.disableBlend();
@@ -82,7 +82,7 @@ public class InfoStrategyGrowScreen extends AbstractContainerScreen<InfoStrategy
     protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
         guiGraphics.drawString(this.font, Component.translatable("gui.caerula_arbor.info_strategy_grow.label_strategy_grow"), 1, -12, -16717080, false);
         guiGraphics.drawString(this.font, Component.translatable("gui.caerula_arbor.info_strategy_grow.label_grow"), 1, 4, -1, false);
-        guiGraphics.drawString(this.font, Component.translatable(("item.caerula_arbor.sample_grow.description_" + Math.round(CaerulaArborModVariables.MapVariables.get(world).strategy_grow))).getString(), 1, 100, -1, false);
+        guiGraphics.drawString(this.font, Component.translatable(("item.caerula_arbor.sample_grow.description_" + Math.round(CaerulaArborModVariables.MapVariables.get(world).strategyGrow))).getString(), 1, 100, -1, false);
         guiGraphics.drawString(this.font, Component.translatable("gui.caerula_arbor.info_strategy_grow.label_proceed"), 1, 172, -1, false);
         if (CaerulaArborModVariables.MapVariables.get(world).strategy_silence > 0)
             guiGraphics.drawString(this.font, Component.translatable(("item.caerula_arbor.sample_grow.description_" + Math.round(CaerulaArborModVariables.MapVariables.get(world).strategy_silence + 5))).getString(), 1, 116, -3407872, false);

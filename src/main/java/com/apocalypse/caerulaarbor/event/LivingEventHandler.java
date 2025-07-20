@@ -1,19 +1,31 @@
 package com.apocalypse.caerulaarbor.event;
 
+import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.api.event.RelicEvent;
+import com.apocalypse.caerulaarbor.block.SeaTrailBaseBlock;
 import com.apocalypse.caerulaarbor.capability.ModCapabilities;
-import com.apocalypse.caerulaarbor.init.ModDamageTypes;
-import com.apocalypse.caerulaarbor.init.ModMobEffects;
+import com.apocalypse.caerulaarbor.capability.sanity.SanityInjuryCapability;
+import com.apocalypse.caerulaarbor.init.ModAttributes;
+import com.apocalypse.caerulaarbor.init.ModTags;
 import com.apocalypse.caerulaarbor.item.relic.IRelic;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
+import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
+import net.minecraft.core.BlockPos;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.util.Mth;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.ai.attributes.Attribute;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.animal.IronGolem;
+import net.minecraft.world.entity.monster.warden.Warden;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraftforge.event.entity.living.LivingDeathEvent;
 import net.minecraftforge.event.entity.living.LivingEvent;
+import net.minecraftforge.event.entity.living.MobSpawnEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -26,36 +38,9 @@ public class LivingEventHandler {
     public static void onEntityTick(LivingEvent.LivingTickEvent event) {
         var living = event.getEntity();
 
-        living.getCapability(ModCapabilities.SANITY_INJURY).ifPresent(
-                cap -> {
-                    if (cap.isImmune()) {
-                        cap.regenerate(5);
-                        return;
-                    }
-
-                    if (cap.getValue() < 0) {
-                        if (living.level().isClientSide) {
-                            living.level().playLocalSound(living.getX(), living.getY(), living.getZ(), SoundEvents.ELDER_GUARDIAN_CURSE,
-                                    SoundSource.NEUTRAL, 2.2f, 1, false);
-                        } else {
-                            if (living instanceof Player) {
-                                living.addEffect(new MobEffectInstance(ModMobEffects.DIZZY.get(), 200, 0, false, false));
-                                living.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 200, 0, false, true));
-                                living.hurt(ModDamageTypes.causeNervousImpairmentDamage(living.level().registryAccess(), null), 12);
-                            } else {
-                                living.addEffect(new MobEffectInstance(ModMobEffects.DIZZY.get(), 60, 0, false, false));
-                                living.hurt(ModDamageTypes.causeNervousImpairmentDamage(living.level().registryAccess(), null),
-                                        Math.min(72, living.getMaxHealth() * 0.8f));
-                            }
-
-                            living.level().playSound(null, living.getX(), living.getY(), living.getZ(), SoundEvents.ELDER_GUARDIAN_CURSE,
-                                    SoundSource.NEUTRAL, 2.2f, 1);
-                        }
-
-                        cap.setImmune(true);
-                    }
-                }
-        );
+        living.getCapability(ModCapabilities.SANITY_INJURY).ifPresent(cap -> {
+            if (cap instanceof SanityInjuryCapability capImpl) capImpl.tick();
+        });
     }
 
     @SubscribeEvent
@@ -109,6 +94,100 @@ public class LivingEventHandler {
             AttributeInstance attributeinstance = player.getAttributes().getInstance(entry.getKey());
             if (attributeinstance != null) {
                 attributeinstance.removeModifier(entry.getValue());
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onLivingDeath(LivingDeathEvent event) {
+        LivingEntity entity = event.getEntity();
+        Level level = entity.level();
+        if (!(level instanceof ServerLevel serverLevel)) return;
+        BlockPos entityPos = entity.blockPosition();
+        Iterable<BlockPos> iter = BlockPos.betweenClosed(
+                entityPos.offset(-1, -1, -1),
+                entityPos.offset(1, 1, 1));
+        for (BlockPos pos : iter) {
+            if (!level.isInWorldBounds(pos)) continue;
+            BlockState state = level.getBlockState(pos);
+            if (state.getBlock() instanceof SeaTrailBaseBlock seaTrailBaseBlock) {
+                seaTrailBaseBlock.onEntityDeathNearby(serverLevel, pos, state);
+            }
+        }
+    }
+
+    @SubscribeEvent
+    public static void onFinalizeSpawn(MobSpawnEvent.FinalizeSpawn event) {
+        var entity = event.getEntity();
+        handleSanityInjuryResistance(entity);
+        handleSeaBornSpawn(entity);
+    }
+
+    private static void handleSanityInjuryResistance(LivingEntity entity) {
+        var attribute = entity.getAttribute(ModAttributes.SANITY_INJURY_RESISTANCE.get());
+        if (attribute == null) return;
+        if (entity.getType().is(ModTags.EntityTypes.SEA_BORN_BOSS)) {
+            attribute.addPermanentModifier(new AttributeModifier(CaerulaArborMod.ATTRIBUTE_MODIFIER, 85, AttributeModifier.Operation.ADDITION));
+        } else if (entity.getType().is(ModTags.EntityTypes.SEA_BORN)) {
+            attribute.addPermanentModifier(new AttributeModifier(CaerulaArborMod.ATTRIBUTE_MODIFIER, 60, AttributeModifier.Operation.ADDITION));
+        }
+        if (entity instanceof IronGolem) {
+            attribute.addPermanentModifier(new AttributeModifier(CaerulaArborMod.ATTRIBUTE_MODIFIER, 90, AttributeModifier.Operation.ADDITION));
+        }
+        if (entity instanceof Warden) {
+            attribute.addPermanentModifier(new AttributeModifier(CaerulaArborMod.ATTRIBUTE_MODIFIER, 75, AttributeModifier.Operation.ADDITION));
+        }
+        if (entity.getMobType() == MobType.UNDEAD) {
+            attribute.addPermanentModifier(new AttributeModifier(CaerulaArborMod.ATTRIBUTE_MODIFIER, 50, AttributeModifier.Operation.ADDITION));
+        }
+    }
+
+    private static void handleSeaBornSpawn(LivingEntity entity) {
+        if (!entity.getType().is(ModTags.EntityTypes.SEA_BORN)) return;
+        var level = entity.level();
+        double subsisting = CaerulaArborModVariables.MapVariables.get(level).strategySubsisting;
+        double breed = CaerulaArborModVariables.MapVariables.get(level).strategyBreed;
+        double grow = CaerulaArborModVariables.MapVariables.get(level).strategyGrow;
+
+        var swimSpeed = entity.getAttribute(Attributes.MOVEMENT_SPEED);
+        if (swimSpeed != null) {
+            swimSpeed.addPermanentModifier(new AttributeModifier(CaerulaArborMod.ATTRIBUTE_MODIFIER, 2, AttributeModifier.Operation.MULTIPLY_BASE));
+        }
+        var maxHealth = entity.getAttribute(Attributes.MAX_HEALTH);
+        if (maxHealth != null) {
+            maxHealth.addPermanentModifier(new AttributeModifier(CaerulaArborMod.ATTRIBUTE_MODIFIER, 0.3 * subsisting, AttributeModifier.Operation.MULTIPLY_BASE));
+        }
+        var armor = entity.getAttribute(Attributes.ARMOR);
+        if (armor != null) {
+            armor.addPermanentModifier(new AttributeModifier(CaerulaArborMod.ATTRIBUTE_MODIFIER, 2 * subsisting, AttributeModifier.Operation.ADDITION));
+        }
+        var armorToughness = entity.getAttribute(Attributes.ARMOR_TOUGHNESS);
+        if (armorToughness != null) {
+            armorToughness.addPermanentModifier(new AttributeModifier(CaerulaArborMod.ATTRIBUTE_MODIFIER, 2 * subsisting, AttributeModifier.Operation.ADDITION));
+        }
+
+        var attackDamage = entity.getAttribute(Attributes.ATTACK_DAMAGE);
+        if (attackDamage != null) {
+            attackDamage.addPermanentModifier(new AttributeModifier(CaerulaArborMod.ATTRIBUTE_MODIFIER, 0.25 * grow, AttributeModifier.Operation.MULTIPLY_BASE));
+        }
+
+        if (breed > 0 && !entity.getType().is(ModTags.EntityTypes.SEA_BORN_CREATURE) && !entity.getType().is(ModTags.EntityTypes.SEA_BORN_BOSS)) {
+            double random = Math.random();
+            if (random < 0.05 + 0.05 * breed) {
+                var copyEntity = entity.getType().create(level);
+                if (copyEntity != null) {
+                    copyEntity.setPos(entity.getX() + Mth.nextDouble(level.random, -1, 1), entity.getY(), entity.getZ() + Mth.nextDouble(level.random, -1, 1));
+                    level.addFreshEntity(copyEntity);
+                }
+            }
+            if (breed >= 3) {
+                if (random < 0.05 * (breed - 2)) {
+                    var copyEntity = entity.getType().create(level);
+                    if (copyEntity != null) {
+                        copyEntity.setPos(entity.getX() + Mth.nextDouble(level.random, -1, 1), entity.getY(), entity.getZ() + Mth.nextDouble(level.random, -1, 1));
+                        level.addFreshEntity(copyEntity);
+                    }
+                }
             }
         }
     }

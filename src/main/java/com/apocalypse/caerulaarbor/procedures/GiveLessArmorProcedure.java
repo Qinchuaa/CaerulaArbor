@@ -13,7 +13,7 @@ public class GiveLessArmorProcedure {
 			if ((obj instanceof LivingEntity _livEnt && _livEnt.hasEffect(ModMobEffects.LESS_ARMOR.get()) ? _livEnt.getEffect(ModMobEffects.LESS_ARMOR.get()).getAmplifier() : 0) < limit) {
 				if (obj instanceof LivingEntity _entity && !_entity.level().isClientSide())
 					_entity.addEffect(new MobEffectInstance(ModMobEffects.LESS_ARMOR.get(), 300,
-							(int) ((obj instanceof LivingEntity _livEnt && _livEnt.hasEffect(ModMobEffects.LESS_ARMOR.get()) ? _livEnt.getEffect(ModMobEffects.LESS_ARMOR.get()).getAmplifier() : 0) + 1), false, true));
+							(obj instanceof LivingEntity _livEnt && _livEnt.hasEffect(ModMobEffects.LESS_ARMOR.get()) ? _livEnt.getEffect(ModMobEffects.LESS_ARMOR.get()).getAmplifier() : 0) + 1, false, true));
 			}
 		} else {
 			if (obj instanceof LivingEntity _entity && !_entity.level().isClientSide())

@@ -1,8 +1,0 @@
-{
-  "_fv": 73,
-  "_type": "lootmodifier",
-  "definition": {
-    "modifiedTable": "minecraft:chests/underwater_ruin_big",
-    "modifierTable": "AppendixTemplate"
-  }
-}

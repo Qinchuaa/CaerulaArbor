@@ -1,11 +1,11 @@
 
-package com.apocalypse.caerulaarbor.item.relic.normal;
+package com.apocalypse.caerulaarbor.item;
 
+import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.capability.Relic;
+import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
 import com.apocalypse.caerulaarbor.init.ModBlocks;
 import com.apocalypse.caerulaarbor.item.relic.RelicItem;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
-import net.minecraft.ChatFormatting;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -27,16 +27,16 @@ import org.jetbrains.annotations.NotNull;
 import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 
-public class StoneGargoyleItem extends RelicItem {
-    public StoneGargoyleItem() {
+public class AlleySculptureItem extends RelicItem {
+    public AlleySculptureItem() {
         super(new Item.Properties().stacksTo(1).rarity(Rarity.COMMON));
     }
 
     @Override
     public void appendHoverText(ItemStack itemstack, Level level, @NotNull List<Component> list, @NotNull TooltipFlag flag) {
         super.appendHoverText(itemstack, level, list, flag);
-        list.add(Component.translatable("item.caerula_arbor.stone_gargoyle.description_0").withStyle(ChatFormatting.AQUA));
-        list.add(Component.translatable("item.caerula_arbor.stone_gargoyle.description_1").withStyle(ChatFormatting.GRAY));
+        list.add(Component.translatable("item.caerula_arbor.allay_sculpture.description_0"));
+        list.add(Component.translatable("item.caerula_arbor.allay_sculpture.description_1"));
     }
 
     @Override
@@ -56,7 +56,7 @@ public class StoneGargoyleItem extends RelicItem {
             Minecraft.getInstance().gameRenderer.displayItemActivation(stack);
         }
 
-        var cap = entity.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).orElse(new CaerulaArborModVariables.PlayerVariables());
+        var cap = entity.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable());
 
         Relic.UTIL_ALLEY.gain(cap);
         cap.maxLive += 3;

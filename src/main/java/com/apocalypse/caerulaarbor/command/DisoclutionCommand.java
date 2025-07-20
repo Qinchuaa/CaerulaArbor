@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.command;
 
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
+import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.mojang.brigadier.exceptions.CommandSyntaxException;
 import net.minecraft.commands.Commands;
 import net.minecraft.commands.arguments.EntityArgument;
@@ -33,7 +33,7 @@ public class DisoclutionCommand {
 
     public static void setDisoclusion(com.mojang.brigadier.context.CommandContext<net.minecraft.commands.CommandSourceStack> arguments, int value) throws CommandSyntaxException {
         var target = EntityArgument.getEntity(arguments, "name");
-        target.getCapability(CaerulaArborModVariables.PLAYER_VARIABLES_CAPABILITY).ifPresent(capability -> {
+        target.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
             capability.disoclusion = value;
             capability.syncPlayerVariables(target);
         });

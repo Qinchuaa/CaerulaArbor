@@ -1,6 +1,7 @@
 package com.apocalypse.caerulaarbor.procedures;
 
 import com.apocalypse.caerulaarbor.config.common.GameplayConfig;
+import com.apocalypse.caerulaarbor.init.ModSounds;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementProgress;
@@ -12,19 +13,16 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.LevelAccessor;
-import net.minecraftforge.registries.ForgeRegistries;
-
-import java.util.ArrayList;
 
 public class UpgradeSubsisProcedure {
 	public static void execute(LevelAccessor world) {
-		double stra = 0;
+		double stra;
 		String num = "";
 		String prefix = "";
-		stra = CaerulaArborModVariables.MapVariables.get(world).strategy_subsisting;
+		stra = CaerulaArborModVariables.MapVariables.get(world).strategySubsisting;
 		if (stra < 4) {
 			if (CaerulaArborModVariables.MapVariables.get(world).evo_point_subsisting >= Math.pow(stra + 1, 3) * (double) GameplayConfig.EVOLUTION_POINT_COEFFICIENT.get()) {
-				for (Entity entityiterator : new ArrayList<>(world.players())) {
+				for (Entity entityiterator : world.players()) {
 					if (entityiterator instanceof ServerPlayer _player) {
 						Advancement _adv = _player.server.getAdvancements().getAdvancement(new ResourceLocation("caerula_arbor:to_experience_evolution"));
 						AdvancementProgress _ap = _player.getAdvancements().getOrStartProgress(_adv);
@@ -34,43 +32,43 @@ public class UpgradeSubsisProcedure {
 						}
 					}
 				}
-				CaerulaArborModVariables.MapVariables.get(world).strategy_subsisting = stra + 1;
+				CaerulaArborModVariables.MapVariables.get(world).strategySubsisting = stra + 1;
 				CaerulaArborModVariables.MapVariables.get(world).syncData(world);
-				stra = CaerulaArborModVariables.MapVariables.get(world).strategy_subsisting;
+				stra = CaerulaArborModVariables.MapVariables.get(world).strategySubsisting;
 				CaerulaArborModVariables.MapVariables.get(world).evo_point_subsisting = 0;
 				CaerulaArborModVariables.MapVariables.get(world).syncData(world);
 				if (stra == 1) {
 					num = "I";
-					prefix = "\u00A7p";
+					prefix = "§p";
 				} else if (stra == 2) {
 					num = "II";
-					prefix = "\u00A7b";
+					prefix = "§b";
 				} else if (stra == 3) {
 					num = "III";
-					prefix = "\u00A79";
+					prefix = "§9";
 				} else if (stra == 4) {
 					num = "IV";
-					prefix = "\u00A71";
+					prefix = "§1";
 				}
 				if (GameplayConfig.ENABLE_EVOLUTION_SOUND.get()) {
-					for (Entity entityiterator : new ArrayList<>(world.players())) {
+					for (Entity entityiterator : world.players()) {
 						if (stra >= 3) {
 							if (world instanceof Level _level) {
 								if (!_level.isClientSide()) {
-									_level.playSound(null, BlockPos.containing(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("caerula_arbor:subsisting2")),
+									_level.playSound(null, BlockPos.containing(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ()), ModSounds.SUBSISTING2.get(),
 											SoundSource.NEUTRAL, 4, 1);
 								} else {
-									_level.playLocalSound((entityiterator.getX()), (entityiterator.getY()), (entityiterator.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("caerula_arbor:subsisting2")), SoundSource.NEUTRAL, 4, 1,
+									_level.playLocalSound((entityiterator.getX()), (entityiterator.getY()), (entityiterator.getZ()), ModSounds.SUBSISTING2.get(), SoundSource.NEUTRAL, 4, 1,
 											false);
 								}
 							}
 						} else if (stra > 0) {
 							if (world instanceof Level _level) {
 								if (!_level.isClientSide()) {
-									_level.playSound(null, BlockPos.containing(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("caerula_arbor:subsisting1")),
+									_level.playSound(null, BlockPos.containing(entityiterator.getX(), entityiterator.getY(), entityiterator.getZ()), ModSounds.SUBSISTING1.get(),
 											SoundSource.NEUTRAL, 4, 1);
 								} else {
-									_level.playLocalSound((entityiterator.getX()), (entityiterator.getY()), (entityiterator.getZ()), ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("caerula_arbor:subsisting1")), SoundSource.NEUTRAL, 4, 1,
+									_level.playLocalSound((entityiterator.getX()), (entityiterator.getY()), (entityiterator.getZ()), ModSounds.SUBSISTING1.get(), SoundSource.NEUTRAL, 4, 1,
 											false);
 								}
 							}
@@ -78,10 +76,10 @@ public class UpgradeSubsisProcedure {
 					}
 				}
 				if (!world.isClientSide() && world.getServer() != null)
-					world.getServer().getPlayerList().broadcastSystemMessage(Component.literal((prefix + "" + Component.translatable("item.caerula_arbor.sample_subsisting.description_5").getString() + num)), false);
+					world.getServer().getPlayerList().broadcastSystemMessage(Component.literal((prefix + Component.translatable("item.caerula_arbor.sample_subsisting.description_5").getString() + num)), false);
 			}
 		} else {
-			for (Entity entityiterator : new ArrayList<>(world.players())) {
+			for (Entity entityiterator : world.players()) {
 				if (entityiterator instanceof ServerPlayer _player) {
 					Advancement _adv = _player.server.getAdvancements().getAdvancement(new ResourceLocation("caerula_arbor:to_terminate_evolution"));
 					AdvancementProgress _ap = _player.getAdvancements().getOrStartProgress(_adv);

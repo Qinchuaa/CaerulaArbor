@@ -123,3 +123,4 @@ run/
 .mcreator
 *.bbmodel
 /run/
+/src/generated/resources/.cache/
