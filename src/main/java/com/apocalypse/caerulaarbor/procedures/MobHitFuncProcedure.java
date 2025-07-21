@@ -4,8 +4,10 @@ import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
 import com.apocalypse.caerulaarbor.config.common.GameplayConfig;
-import com.apocalypse.caerulaarbor.entity.NetherseaReefbreakerEntity;
-import com.apocalypse.caerulaarbor.init.*;
+import com.apocalypse.caerulaarbor.init.ModAttributes;
+import com.apocalypse.caerulaarbor.init.ModEntities;
+import com.apocalypse.caerulaarbor.init.ModGameRules;
+import com.apocalypse.caerulaarbor.init.ModTags;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.commands.CommandSource;
 import net.minecraft.commands.CommandSourceStack;
@@ -21,7 +23,6 @@ import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
-import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.player.Player;
@@ -197,21 +198,6 @@ public class MobHitFuncProcedure {
                                 (float) ((entity instanceof LivingEntity _livingEntity57 && _livingEntity57.getAttributes().hasAttribute(Attributes.ATTACK_DAMAGE) ? _livingEntity57.getAttribute(Attributes.ATTACK_DAMAGE).getValue() : 0) * 0.5));
                     }
                 }
-            }
-        }
-        if (sourceentity instanceof NetherseaReefbreakerEntity livEnt) {
-            amplifi = livEnt.hasEffect(ModMobEffects.REEF_CRACKER.get()) ? livEnt.getEffect(ModMobEffects.REEF_CRACKER.get()).getAmplifier() : 0;
-            if (livEnt.hasEffect(ModMobEffects.REEF_CRACKER.get())) {
-                if (amplifi < 14) {
-                    if (!livEnt.level().isClientSide())
-                        livEnt.addEffect(new MobEffectInstance(ModMobEffects.REEF_CRACKER.get(), 120, (int) (amplifi + 1), false, false));
-                } else {
-                    if (!livEnt.level().isClientSide())
-                        livEnt.addEffect(new MobEffectInstance(ModMobEffects.REEF_CRACKER.get(), 120, 14, false, false));
-                }
-            } else {
-                if (!livEnt.level().isClientSide())
-                    livEnt.addEffect(new MobEffectInstance(ModMobEffects.REEF_CRACKER.get(), 120, 0, false, false));
             }
         }
     }

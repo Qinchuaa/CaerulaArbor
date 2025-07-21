@@ -41,7 +41,6 @@ public class ModMobEffects {
 	public static final RegistryObject<MobEffect> POWER_OF_ANCHOR = REGISTRY.register("power_of_anchor", () -> new PowerOfAnchorMobEffect());
 	public static final RegistryObject<MobEffect> UMBRELLA_SETTLE = REGISTRY.register("umbrella_settle", () -> new UmbrellaSettleMobEffect());
 	public static final RegistryObject<MobEffect> COOLDOWN_SINAL = REGISTRY.register("cooldown_sinal", () -> new CooldownSinalMobEffect());
-	public static final RegistryObject<MobEffect> REEF_CRACKER = REGISTRY.register("reef_cracker", () -> new ReefCrackerMobEffect());
 	public static final RegistryObject<MobEffect> FLESHDEFORMITY = REGISTRY.register("fleshdeformity", () -> new FleshdeformityMobEffect());
 	public static final RegistryObject<MobEffect> BOOST_OF_SILENCE = REGISTRY.register("boost_of_silence", () -> new BoostOfSilenceMobEffect());
 	public static final RegistryObject<MobEffect> STRENGTH_OF_CROWD = REGISTRY.register("strength_of_crowd", () -> new StrengthOfCrowdMobEffect());

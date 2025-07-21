@@ -1,10 +1,12 @@
 package com.apocalypse.caerulaarbor.entity;
 
+import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.config.common.GameplayConfig;
 import com.apocalypse.caerulaarbor.entity.ai.goal.SeaMonsterAttackableTargetGoal;
 import com.apocalypse.caerulaarbor.entity.base.SeaMonster;
 import com.apocalypse.caerulaarbor.init.ModBlocks;
 import com.apocalypse.caerulaarbor.init.ModEntities;
+import com.apocalypse.caerulaarbor.init.ModParticleTypes;
 import com.apocalypse.caerulaarbor.init.ModTags;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -16,9 +18,12 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
+import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.BreakDoorGoal;
@@ -46,9 +51,15 @@ import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
 
+import java.util.UUID;
+
 public class NetherseaReefbreakerEntity extends SeaMonster {
 
+    public static final String MODIFIER_UUID = "4bf1ea4a-c7f0-37b3-8940-7ab10737ff32";
+
     private int skillCooldown = 0;
+    private int bonusTime = 0;
+    private int bonusCount = 0;
 
     public NetherseaReefbreakerEntity(PlayMessages.SpawnEntity packet, Level world) {
         this(ModEntities.NETHERSEA_REEFBREAKER.get(), world);
@@ -159,11 +170,62 @@ public class NetherseaReefbreakerEntity extends SeaMonster {
     }
 
     @Override
+    public boolean doHurtTarget(Entity pEntity) {
+        boolean flag = super.doHurtTarget(pEntity);
+        if (flag) {
+            this.bonusTime = 70;
+            if (this.bonusCount < 15) {
+                this.bonusCount++;
+            }
+            this.addBonusAttackModifier(this.bonusCount);
+        }
+        return flag;
+    }
+
+    private void addBonusAttackModifier(int level) {
+        if (level <= 0) return;
+        AttributeInstance attributeinstance = this.getAttributes().getInstance(Attributes.ATTACK_DAMAGE);
+        if (attributeinstance != null) {
+            attributeinstance.removeModifier(UUID.fromString(MODIFIER_UUID));
+            attributeinstance.addPermanentModifier(new AttributeModifier(
+                    UUID.fromString(MODIFIER_UUID),
+                    CaerulaArborMod.ATTRIBUTE_MODIFIER,
+                    this.bonusCount * 0.15,
+                    AttributeModifier.Operation.MULTIPLY_BASE
+            ));
+        }
+    }
+
+    private void removeBonusAttackModifier() {
+        AttributeInstance attributeinstance = this.getAttributes().getInstance(Attributes.ATTACK_DAMAGE);
+        if (attributeinstance != null) {
+            attributeinstance.removeModifier(UUID.fromString(MODIFIER_UUID));
+        }
+    }
+
+    @Override
     public void baseTick() {
         super.baseTick();
 
         if (this.skillCooldown > 0) {
             this.skillCooldown--;
+        }
+        if (this.bonusTime > 0) {
+            this.bonusTime--;
+        } else {
+            this.removeBonusAttackModifier();
+            this.bonusCount = 0;
+        }
+
+        if (this.level() instanceof ServerLevel serverLevel) {
+            serverLevel.sendParticles(ModParticleTypes.CRACKER_BUFF_0.get(),
+                    this.getX(), this.getY() + this.getBbHeight() * 0.5, this.getZ(),
+                    this.bonusCount + 1, 0.8, 1.5, 0.8, 0.3);
+            if (this.bonusCount > 6) {
+                serverLevel.sendParticles(ModParticleTypes.CRACKER_BUFF_1.get(),
+                        this.getX(), this.getY(), this.getZ(),
+                        3, 1, 0.5, 1, 0.3);
+            }
         }
 
         LevelAccessor world = this.level();
