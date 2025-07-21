@@ -11,9 +11,12 @@ public class ModMobEffects {
 
 	public static final DeferredRegister<MobEffect> REGISTRY = DeferredRegister.create(ForgeRegistries.MOB_EFFECTS, CaerulaArborMod.MODID);
 
-	public static final RegistryObject<MobEffect> HAEMOPHILIA = REGISTRY.register("haemophilia", HaemophiliaMobEffect::new);
 	public static final RegistryObject<MobEffect> SANITY_IMMUNE = REGISTRY.register("sanity_immune", SanityImmuneMobEffect::new);
 	public static final RegistryObject<MobEffect> DIZZY = REGISTRY.register("dizzy", DizzyMobEffect::new);
+	public static final RegistryObject<MobEffect> ARMOR_BREAKING = REGISTRY.register("armor_breaking", ArmorBreakingEffect::new);
+
+	public static final RegistryObject<MobEffect> HAEMOPHILIA = REGISTRY.register("haemophilia", HaemophiliaMobEffect::new);
+
 	public static final RegistryObject<MobEffect> KINGS_BREATH = REGISTRY.register("kings_breath", KingsBreathMobEffect::new);
 	public static final RegistryObject<MobEffect> KINGS_BOOST = REGISTRY.register("kings_boost", KingsBoostMobEffect::new);
 	public static final RegistryObject<MobEffect> SPEAR_FIGHT = REGISTRY.register("spear_fight", SpearFightMobEffect::new);
@@ -43,7 +46,6 @@ public class ModMobEffects {
 	public static final RegistryObject<MobEffect> BOOST_OF_SILENCE = REGISTRY.register("boost_of_silence", () -> new BoostOfSilenceMobEffect());
 	public static final RegistryObject<MobEffect> STRENGTH_OF_CROWD = REGISTRY.register("strength_of_crowd", () -> new StrengthOfCrowdMobEffect());
 	public static final RegistryObject<MobEffect> INFESTED = REGISTRY.register("infested", () -> new InfestedMobEffect());
-	public static final RegistryObject<MobEffect> LESS_ARMOR = REGISTRY.register("less_armor", () -> new LessArmorMobEffect());
 	public static final RegistryObject<MobEffect> SELF_KILL = REGISTRY.register("self_kill", () -> new SelfKillMobEffect());
 	public static final RegistryObject<MobEffect> ANGER_OF_TIDE = REGISTRY.register("anger_of_tide", () -> new AngerOfTideMobEffect());
 	public static final RegistryObject<MobEffect> DEDUCT_ONE_SANITY = REGISTRY.register("deduct_one_sanity", () -> new DeductOneSanityMobEffect());

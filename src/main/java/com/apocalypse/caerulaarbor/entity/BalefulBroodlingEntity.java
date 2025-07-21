@@ -227,4 +227,13 @@ public class BalefulBroodlingEntity extends SeaMonster {
         data.add(new AnimationController<>(this, "movement", 4, this::movementPredicate));
         data.add(new AnimationController<>(this, "attacking", 4, this::attackingPredicate));
     }
+
+    @Override
+    public boolean doHurtTarget(Entity pEntity) {
+        boolean flag = super.doHurtTarget(pEntity);
+        if (flag && pEntity instanceof LivingEntity living && !living.level().isClientSide) {
+            living.addEffect(new MobEffectInstance(ModMobEffects.ARMOR_BREAKING.get(), 300, 2), this);
+        }
+        return flag;
+    }
 }

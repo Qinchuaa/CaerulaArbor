@@ -62,6 +62,9 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
         double grow = CaerulaArborModVariables.MapVariables.get(level).strategyGrow;
         if (grow >= 3) {
             boolean flag = pEntity.hurt(level.damageSources().indirectMagic(this, this), (float) (damage * 0.2 * (grow - 2)));
+            if (flag) {
+                pEntity.invulnerableTime = 0;
+            }
             if (level instanceof ServerLevel serverLevel) {
                 serverLevel.sendParticles(ParticleTypes.ENCHANTED_HIT, pEntity.getX(), pEntity.getY() + 1, pEntity.getZ(), 48, 1.5, 1.5, 1.5, 0.2);
             }

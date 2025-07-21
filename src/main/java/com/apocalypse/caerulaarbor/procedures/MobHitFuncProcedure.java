@@ -4,11 +4,11 @@ import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
 import com.apocalypse.caerulaarbor.config.common.GameplayConfig;
-import com.apocalypse.caerulaarbor.entity.*;
+import com.apocalypse.caerulaarbor.entity.NetherseaReefbreakerEntity;
+import com.apocalypse.caerulaarbor.entity.PathShaperEntity;
+import com.apocalypse.caerulaarbor.entity.PathshaperFractalEntity;
 import com.apocalypse.caerulaarbor.init.*;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
-import net.minecraft.advancements.Advancement;
-import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.commands.CommandSource;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;
@@ -16,7 +16,6 @@ import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.TagKey;
@@ -112,14 +111,6 @@ public class MobHitFuncProcedure {
             }
         }
         if (entity.getType().is(ModTags.EntityTypes.SEA_BORN)) {
-            if (sourceentity instanceof ServerPlayer _player) {
-                Advancement _adv = _player.server.getAdvancements().getAdvancement(new ResourceLocation("caerula_arbor:encounter_from_the_ocean"));
-                AdvancementProgress _ap = _player.getAdvancements().getOrStartProgress(_adv);
-                if (!_ap.isDone()) {
-                    for (String criteria : _ap.getRemainingCriteria())
-                        _player.getAdvancements().award(_adv, criteria);
-                }
-            }
             if (world.getLevelData().getGameRules().getBoolean(ModGameRules.NATURAL_EVOLUTION)) {
                 CaerulaArborModVariables.MapVariables.get(world).evo_point_subsisting = CaerulaArborModVariables.MapVariables.get(world).evo_point_subsisting + amount * 0.025;
                 CaerulaArborModVariables.MapVariables.get(world).syncData(world);
@@ -224,12 +215,6 @@ public class MobHitFuncProcedure {
                 if (!livEnt.level().isClientSide())
                     livEnt.addEffect(new MobEffectInstance(ModMobEffects.REEF_CRACKER.get(), 120, 0, false, false));
             }
-        }
-        if (sourceentity instanceof BoneSeaDrifterEntity) {
-            GiveLessArmorProcedure.execute(entity, 1);
-        }
-        if (sourceentity instanceof BalefulBroodlingEntity) {
-            GiveLessArmorProcedure.execute(entity, 2);
         }
         if (sourceentity instanceof PathShaperEntity) {
             sklp = sourceentity instanceof PathShaperEntity _datEntI ? _datEntI.getEntityData().get(PathShaperEntity.DATA_skillp) : 0;
