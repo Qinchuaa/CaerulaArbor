@@ -45,7 +45,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 
 public class PathshaperFractalEntity extends SeaMonster {
 
-    private int skillCooldown = 0;
+    private int attackCount = 0;
     private int life = 1800;
 
     public PathshaperFractalEntity(PlayMessages.SpawnEntity packet, Level level) {
@@ -124,7 +124,7 @@ public class PathshaperFractalEntity extends SeaMonster {
     @Override
     public void addAdditionalSaveData(@NotNull CompoundTag compound) {
         super.addAdditionalSaveData(compound);
-        compound.putInt("SkillCooldown", this.skillCooldown);
+        compound.putInt("SkillCooldown", this.attackCount);
         compound.putInt("Life", this.life);
     }
 
@@ -132,7 +132,7 @@ public class PathshaperFractalEntity extends SeaMonster {
     public void readAdditionalSaveData(@NotNull CompoundTag compound) {
         super.readAdditionalSaveData(compound);
         if (compound.contains("SkillCooldown")) {
-            this.skillCooldown = compound.getInt("SkillCooldown");
+            this.attackCount = compound.getInt("SkillCooldown");
         }
         if (compound.contains("Life")) {
             this.life = compound.getInt("Life");
@@ -149,18 +149,16 @@ public class PathshaperFractalEntity extends SeaMonster {
             this.kill();
         }
 
-        if (this.skillCooldown > 0) {
-            this.skillCooldown--;
-        }
-
         this.refreshDimensions();
     }
 
     @Override
     public boolean doHurtTarget(Entity pEntity) {
-        if (this.skillCooldown <= 0) {
-            this.skillCooldown = 40;
+        if (this.attackCount >= 2) {
+            this.attackCount = 0;
             this.summonFractals();
+        } else {
+            this.attackCount++;
         }
         return super.doHurtTarget(pEntity);
     }
