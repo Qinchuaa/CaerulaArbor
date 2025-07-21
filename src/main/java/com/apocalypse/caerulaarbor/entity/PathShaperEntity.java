@@ -174,7 +174,7 @@ public class PathShaperEntity extends SeaMonster {
     }
 
     private void summonFractals() {
-        var num = this.level().getEntitiesOfClass(PathshaperFractalEntity.class, new AABB(this.getOnPos()).inflate(32), e -> true).size();
+        var num = this.level().getEntitiesOfClass(PathshaperFractalEntity.class, this.getBoundingBox().inflate(32), e -> true).size();
         if (num >= 8) return;
         var dx = Mth.nextDouble(RandomSource.create(), -0.5, 0.5);
         var dz = Mth.nextDouble(RandomSource.create(), -0.5, 0.5);

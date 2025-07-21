@@ -31,7 +31,6 @@ import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.ServerLevelAccessor;
-import net.minecraft.world.phys.AABB;
 import net.minecraftforge.network.PlayMessages;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.core.animation.AnimatableManager;
@@ -164,7 +163,7 @@ public class PathshaperFractalEntity extends SeaMonster {
     }
 
     private void summonFractals() {
-        var num = this.level().getEntitiesOfClass(PathshaperFractalEntity.class, new AABB(this.getOnPos()).inflate(32), e -> true).size();
+        var num = this.level().getEntitiesOfClass(PathshaperFractalEntity.class, this.getBoundingBox().inflate(32), e -> true).size();
         if (num >= 12) return;
         var dx = Mth.nextDouble(RandomSource.create(), -0.5, 0.5);
         var dz = Mth.nextDouble(RandomSource.create(), -0.5, 0.5);
