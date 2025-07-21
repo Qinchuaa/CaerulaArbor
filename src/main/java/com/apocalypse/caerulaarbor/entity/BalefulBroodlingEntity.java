@@ -120,10 +120,6 @@ public class BalefulBroodlingEntity extends SeaMonster {
     @Override
     @ParametersAreNonnullByDefault
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
-        if (!this.level().isClientSide()) {
-            this.addEffect(new MobEffectInstance(ModMobEffects.SELF_KILL.get(), 9999, 0, false, false));
-        }
-
         this.getEntityData().set(DATA_dx, Mth.nextInt(RandomSource.create(), -50, 50));
         this.getEntityData().set(DATA_dz, Mth.nextInt(RandomSource.create(), -50, 50));
 
@@ -149,6 +145,10 @@ public class BalefulBroodlingEntity extends SeaMonster {
     @Override
     public void baseTick() {
         super.baseTick();
+
+        if (this.tickCount % 20 == 0) {
+            this.hurt(this.level().damageSources().dryOut(), 1);
+        }
 
         if (this.isAggressive()) {
             var target = this.getTarget();

@@ -46,7 +46,6 @@ public class ModMobEffects {
 	public static final RegistryObject<MobEffect> BOOST_OF_SILENCE = REGISTRY.register("boost_of_silence", () -> new BoostOfSilenceMobEffect());
 	public static final RegistryObject<MobEffect> STRENGTH_OF_CROWD = REGISTRY.register("strength_of_crowd", () -> new StrengthOfCrowdMobEffect());
 	public static final RegistryObject<MobEffect> INFESTED = REGISTRY.register("infested", () -> new InfestedMobEffect());
-	public static final RegistryObject<MobEffect> SELF_KILL = REGISTRY.register("self_kill", () -> new SelfKillMobEffect());
 	public static final RegistryObject<MobEffect> ANGER_OF_TIDE = REGISTRY.register("anger_of_tide", () -> new AngerOfTideMobEffect());
 	public static final RegistryObject<MobEffect> DEDUCT_ONE_SANITY = REGISTRY.register("deduct_one_sanity", () -> new DeductOneSanityMobEffect());
 	public static final RegistryObject<MobEffect> ADD_ATTACK_PERCLY = REGISTRY.register("add_attack_percly", () -> new AddAttackPerclyMobEffect());
