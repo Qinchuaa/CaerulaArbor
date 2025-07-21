@@ -183,6 +183,7 @@ public class PathShaperEntity extends SeaMonster {
             var entity = new PathshaperFractalEntity(serverLevel);
             entity.setPos(this.getX() + dx, this.getY(), this.getZ() + dz);
             entity.setYRot(this.level().random.nextFloat() * 360F);
+            entity.setHealth(entity.getMaxHealth() * (this.getHealth() / this.getMaxHealth()));
             serverLevel.addFreshEntity(entity);
             serverLevel.sendParticles(ParticleTypes.CLOUD, this.getX() + dx, this.getY(), this.getZ() + dz, 24, 0.5, 1, 0.5, 0.1);
         }
