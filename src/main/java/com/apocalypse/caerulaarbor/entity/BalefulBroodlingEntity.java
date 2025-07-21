@@ -147,7 +147,12 @@ public class BalefulBroodlingEntity extends SeaMonster {
         super.baseTick();
 
         if (this.tickCount % 20 == 0) {
-            this.hurt(this.level().damageSources().dryOut(), 1);
+            float damage = this.getMaxHealth() / 8f;
+            if (this.getHealth() > damage) {
+                this.setHealth(this.getHealth() - damage);
+            } else {
+                this.kill();
+            }
         }
 
         if (this.isAggressive()) {

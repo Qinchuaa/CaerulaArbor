@@ -5,7 +5,6 @@ import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
 import com.apocalypse.caerulaarbor.config.common.GameplayConfig;
 import com.apocalypse.caerulaarbor.entity.NetherseaReefbreakerEntity;
-import com.apocalypse.caerulaarbor.entity.PathShaperEntity;
 import com.apocalypse.caerulaarbor.entity.PathshaperFractalEntity;
 import com.apocalypse.caerulaarbor.init.*;
 import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
@@ -214,16 +213,6 @@ public class MobHitFuncProcedure {
             } else {
                 if (!livEnt.level().isClientSide())
                     livEnt.addEffect(new MobEffectInstance(ModMobEffects.REEF_CRACKER.get(), 120, 0, false, false));
-            }
-        }
-        if (sourceentity instanceof PathShaperEntity) {
-            sklp = sourceentity instanceof PathShaperEntity _datEntI ? _datEntI.getEntityData().get(PathShaperEntity.DATA_skillp) : 0;
-            if (sourceentity instanceof PathShaperEntity _datEntSetI)
-                _datEntSetI.getEntityData().set(PathShaperEntity.DATA_skillp, (int) (sklp + 1));
-            if (sklp + 1 >= 8) {
-                SummonFractalProcedure.execute(sourceentity.level(), x, y, z);
-                if (sourceentity instanceof PathShaperEntity _datEntSetI)
-                    _datEntSetI.getEntityData().set(PathShaperEntity.DATA_skillp, 0);
             }
         }
         if (sourceentity instanceof PathshaperFractalEntity) {

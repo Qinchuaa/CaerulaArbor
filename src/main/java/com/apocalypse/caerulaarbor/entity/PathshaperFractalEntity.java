@@ -48,12 +48,16 @@ public class PathshaperFractalEntity extends SeaMonster {
     public static final EntityDataAccessor<Integer> DATA_skillp = SynchedEntityData.defineId(PathshaperFractalEntity.class, EntityDataSerializers.INT);
     public static final EntityDataAccessor<Integer> DATA_time_left = SynchedEntityData.defineId(PathshaperFractalEntity.class, EntityDataSerializers.INT);
 
-    public PathshaperFractalEntity(PlayMessages.SpawnEntity packet, Level world) {
-        this(ModEntities.PATHSHAPER_FRACTAL.get(), world);
+    public PathshaperFractalEntity(PlayMessages.SpawnEntity packet, Level level) {
+        this(ModEntities.PATHSHAPER_FRACTAL.get(), level);
     }
 
-    public PathshaperFractalEntity(EntityType<PathshaperFractalEntity> type, Level world) {
-        super(type, world);
+    public PathshaperFractalEntity(Level level) {
+        this(ModEntities.PATHSHAPER_FRACTAL.get(), level);
+    }
+
+    public PathshaperFractalEntity(EntityType<PathshaperFractalEntity> type, Level level) {
+        super(type, level);
         xpReward = 8;
         setNoAi(false);
         setMaxUpStep(1f);
