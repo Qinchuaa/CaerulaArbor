@@ -12,9 +12,10 @@ public class MapVariablesHandler {
 
     /**
      * 增加策略的进化点数
+     *
      * @param strategy 进化策略类型
-     * @param level 实体所在的世界
-     * @param point 待增加的点数
+     * @param level    实体所在的世界
+     * @param point    待增加的点数
      */
     public static void addEvoPoint(MapVariables.StrategyType strategy, Level level, double point) {
         var mapVariables = MapVariables.get(level);
@@ -22,6 +23,7 @@ public class MapVariablesHandler {
         if (strategyLevel >= 4) return;
 
         if (strategy == MapVariables.StrategyType.SILENCE) {
+            if (!mapVariables.enabledStrategySilence) return;
             if (mapVariables.strategyGrow < 4 || mapVariables.strategySubsisting < 4 || mapVariables.strategyBreed < 4 || mapVariables.strategyMigration < 4) {
                 return;
             }
@@ -38,13 +40,8 @@ public class MapVariablesHandler {
 
     public static boolean upgradeStrategy(MapVariables.StrategyType strategy, Level level) {
         var mapVariables = MapVariables.get(level);
-        var currentLevel = switch (strategy) {
-            case GROW -> mapVariables.strategyGrow;
-            case SUBSISTING -> mapVariables.strategySubsisting;
-            case BREED -> mapVariables.strategyBreed;
-            case MIGRATION -> mapVariables.strategyMigration;
-            case SILENCE -> mapVariables.strategySilence;
-        };
+        if (strategy == MapVariables.StrategyType.SILENCE && !mapVariables.enabledStrategySilence) return false;
+        var currentLevel = mapVariables.getStrategyLevel(strategy);
         if (currentLevel >= 4) return false;
         return setStrategyLevel(strategy, currentLevel + 1, level);
     }
@@ -52,16 +49,11 @@ public class MapVariablesHandler {
     // TODO 在这里添加一个进度的trigger
     public static boolean setStrategyLevel(MapVariables.StrategyType strategy, int strategyLevel, Level level) {
         var mapVariables = MapVariables.get(level);
-        var currentLevel = switch (strategy) {
-            case GROW -> mapVariables.strategyGrow;
-            case SUBSISTING -> mapVariables.strategySubsisting;
-            case BREED -> mapVariables.strategyBreed;
-            case MIGRATION -> mapVariables.strategyMigration;
-            case SILENCE -> mapVariables.strategySilence;
-        };
+        var currentLevel = mapVariables.getStrategyLevel(strategy);
         if (currentLevel == strategyLevel) {
             return false;
         }
+        if (strategy == MapVariables.StrategyType.SILENCE && !mapVariables.enabledStrategySilence) return false;
         if (strategyLevel < 4 && strategy != MapVariables.StrategyType.SILENCE) {
             mapVariables.strategySilence = 0;
             mapVariables.evoPointSilence = 0;
