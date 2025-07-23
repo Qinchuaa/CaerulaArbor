@@ -88,4 +88,8 @@ public class MapVariables extends SavedData {
             return clientSide;
         }
     }
+
+    public enum StrategyType {
+        GROW, SUBSISTING, BREED, MIGRATION, SILENCE;
+    }
 }

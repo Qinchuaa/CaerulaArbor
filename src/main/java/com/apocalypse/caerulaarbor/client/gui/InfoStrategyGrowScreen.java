@@ -6,8 +6,6 @@ import com.apocalypse.caerulaarbor.entity.BasinSeaReaperEntity;
 import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.menu.InfoStrategyGrowMenu;
 import com.apocalypse.caerulaarbor.network.InfoStrategyGrowButtonMessage;
-import com.apocalypse.caerulaarbor.procedures.GetBarGrowProcedure;
-import com.apocalypse.caerulaarbor.procedures.GetPointGrowProcedure;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
@@ -52,8 +50,8 @@ public class InfoStrategyGrowScreen extends AbstractContainerScreen<InfoStrategy
             InventoryScreen.renderEntityInInventoryFollowsAngle(guiGraphics, this.leftPos + 29, this.topPos + 96, 20, 0f + (float) Math.atan((this.leftPos + 29 - mouseX) / 40.0), (float) Math.atan((this.topPos + 47 - mouseY) / 40.0), livingEntity);
         }
         this.renderTooltip(guiGraphics, mouseX, mouseY);
-        if (mouseX > leftPos + 244 && mouseX < leftPos + 253 && mouseY > topPos + 20 && mouseY < topPos + 92)
-            guiGraphics.renderTooltip(font, Component.literal(GetPointGrowProcedure.execute(world)), mouseX, mouseY);
+//        if (mouseX > leftPos + 244 && mouseX < leftPos + 253 && mouseY > topPos + 20 && mouseY < topPos + 92)
+//            guiGraphics.renderTooltip(font, Component.literal(GetPointGrowProcedure.execute(world)), mouseX, mouseY);
     }
 
     @Override
@@ -64,7 +62,7 @@ public class InfoStrategyGrowScreen extends AbstractContainerScreen<InfoStrategy
 
         guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/sidebar.png"), this.leftPos - 3, this.topPos - 3, 0, 0, 262, 174, 262, 174);
         guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/bg_grow.png"), this.leftPos, this.topPos, Mth.clamp((int) MapVariables.get(world).strategyGrow * 256, 0, 1024), 0, 256, 168, 1280, 168);
-        guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/barevo.png"), this.leftPos + 244, this.topPos + 20, Mth.clamp((int) GetBarGrowProcedure.execute(world) * 8, 0, 144), 0, 8, 72, 152, 72);
+//        guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/barevo.png"), this.leftPos + 244, this.topPos + 20, Mth.clamp((int) GetBarGrowProcedure.execute(world) * 8, 0, 144), 0, 8, 72, 152, 72);
 
         RenderSystem.disableBlend();
     }

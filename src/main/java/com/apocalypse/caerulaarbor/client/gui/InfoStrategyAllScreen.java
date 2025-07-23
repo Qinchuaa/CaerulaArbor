@@ -4,8 +4,6 @@ import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.capability.map.MapVariables;
 import com.apocalypse.caerulaarbor.menu.InfoStrategyAllMenu;
 import com.apocalypse.caerulaarbor.network.InfoStrategyAllButtonMessage;
-import com.apocalypse.caerulaarbor.procedures.GetPointSilenceProcedure;
-import com.apocalypse.caerulaarbor.procedures.IfCanSilenceProcedure;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
@@ -57,9 +55,9 @@ public class InfoStrategyAllScreen extends AbstractContainerScreen<InfoStrategyA
             guiGraphics.renderTooltip(font, Component.translatable("gui.caerula_arbor.info_strategy_all.tooltip_breed"), mouseX, mouseY);
         if (mouseX > leftPos + 179 && mouseX < leftPos + 234 && mouseY > topPos + 101 && mouseY < topPos + 164)
             guiGraphics.renderTooltip(font, Component.translatable("gui.caerula_arbor.info_strategy_all.tooltip_mig"), mouseX, mouseY);
-        if (IfCanSilenceProcedure.execute(world))
-            if (mouseX > leftPos - 14 && mouseX < leftPos + 10 && mouseY > topPos - 12 && mouseY < topPos + 12)
-                guiGraphics.renderTooltip(font, Component.literal(GetPointSilenceProcedure.execute(world)), mouseX, mouseY);
+//        if (IfCanSilenceProcedure.execute(world))
+//            if (mouseX > leftPos - 14 && mouseX < leftPos + 10 && mouseY > topPos - 12 && mouseY < topPos + 12)
+//                guiGraphics.renderTooltip(font, Component.literal(GetPointSilenceProcedure.execute(world)), mouseX, mouseY);
     }
 
     @Override

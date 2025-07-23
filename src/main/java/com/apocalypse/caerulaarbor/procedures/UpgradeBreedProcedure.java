@@ -28,7 +28,7 @@ public class UpgradeBreedProcedure {
                         }
                     }
                 }
-                mapVar.strategyBreed = stra + 1;
+//                mapVar.strategyBreed = stra + 1;
                 mapVar.evoPointBreed = 0;
 
                 stra = mapVar.strategyBreed;

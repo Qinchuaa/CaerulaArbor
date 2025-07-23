@@ -67,6 +67,7 @@ public class CaerulaArborMod {
         ModMenus.REGISTRY.register(bus);
         ModAttributes.REGISTRY.register(bus);
 
+        ModCommandArguments.COMMAND_ARGUMENT_TYPES.register(bus);
         ModLootModifier.LOOT_MODIFIERS.register(bus);
 
         bus.addListener(this::onCommonSetup);

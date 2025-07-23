@@ -89,6 +89,8 @@
 
   "attribute.caerula_arbor.sanity_injury_resistance": "Sanity Injury Resistance",
 
+  "commands.caerula_arbor.arguments.lower_enum.invalid": "Enum constant must be one of {0}, found {1}",
+
   "entity.caerula_arbor.shell_sea_runner": "Shell Sea Runner",
   "entity.caerula_arbor.deep_sea_slider": "Deep Sea Slider",
   "entity.caerula_arbor.super_slider": "Super Slider",

@@ -101,7 +101,7 @@ public class CapabilityEventHandler {
     }
 
     public static <S extends Tag, T extends INBTSerializable<S>> ICapabilitySerializable<S> createProvider(LazyOptional<T> instance, Capability<T> capability) {
-        return new ICapabilitySerializable<S>() {
+        return new ICapabilitySerializable<>() {
             @Override
             public @NotNull <C> LazyOptional<C> getCapability(@NotNull Capability<C> cap, @Nullable Direction side) {
                 return capability.orEmpty(cap, instance.cast());

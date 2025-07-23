@@ -33,7 +33,6 @@ import net.minecraft.world.entity.monster.piglin.PiglinBrute;
 import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
-import net.minecraft.world.level.LevelAccessor;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.network.PlayMessages;
 import org.jetbrains.annotations.NotNull;
@@ -104,7 +103,7 @@ public class NetherseaSwarmcallerEntity extends SeaMonster {
     @Override
     public void baseTick() {
         super.baseTick();
-        LevelAccessor world = this.level();
+        var world = this.level();
         double x = this.getX();
         double y = this.getY();
         double z = this.getZ();
