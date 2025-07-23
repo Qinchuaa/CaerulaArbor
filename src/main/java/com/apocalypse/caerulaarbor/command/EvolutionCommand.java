@@ -26,8 +26,15 @@ public class EvolutionCommand {
                     var strategy = arguments.getArgument("strategy", MapVariables.StrategyType.class);
                     int strategyLevel = IntegerArgumentType.getInteger(arguments, "level");
                     var level = arguments.getSource().getUnsidedLevel();
+                    String levelText = switch (strategyLevel) {
+                        default -> "";
+                        case 1 -> "I";
+                        case 2 -> "II";
+                        case 3 -> "III";
+                        case 4 -> "IV";
+                    };
                     if (MapVariablesHandler.setStrategyLevel(strategy, strategyLevel, level)) {
-                        arguments.getSource().sendSuccess(() -> Component.translatable("command.caerula_arbor.evolution.set.success", Component.translatable(strategy.name), strategyLevel), true);
+                        arguments.getSource().sendSuccess(() -> Component.translatable("command.caerula_arbor.evolution.set.success", Component.translatable(strategy.name), levelText), true);
                         return 0;
                     }
                     arguments.getSource().sendFailure(Component.translatable("command.caerula_arbor.evolution.set.failure", Component.translatable(strategy.name)));

@@ -89,6 +89,36 @@ public class MapVariables extends SavedData {
         }
     }
 
+    public int getStrategyLevel(StrategyType strategy) {
+        return switch (strategy) {
+            case GROW -> strategyGrow;
+            case SUBSISTING -> strategySubsisting;
+            case BREED -> strategyBreed;
+            case MIGRATION -> strategyMigration;
+            case SILENCE -> strategySilence;
+        };
+    }
+
+    public double getEvoPoint(StrategyType strategy) {
+        return switch (strategy) {
+            case GROW -> evoPointGrow;
+            case SUBSISTING -> evoPointSubsisting;
+            case BREED -> evoPointBreed;
+            case MIGRATION -> evoPointMigration;
+            case SILENCE -> evoPointSilence;
+        };
+    }
+
+    public void setEvoPoint(StrategyType strategy, double point) {
+        switch (strategy) {
+            case GROW -> evoPointGrow = point;
+            case SUBSISTING -> evoPointSubsisting = point;
+            case BREED -> evoPointBreed = point;
+            case MIGRATION -> evoPointMigration = point;
+            case SILENCE -> evoPointSilence = point;
+        }
+    }
+
     public enum StrategyType {
         GROW("caerula_arbor.strategy.grow"),
         SUBSISTING("caerula_arbor.strategy.subsisting"),

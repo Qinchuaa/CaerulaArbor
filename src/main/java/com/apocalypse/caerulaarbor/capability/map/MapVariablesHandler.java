@@ -10,6 +10,32 @@ import net.minecraft.world.level.Level;
 
 public class MapVariablesHandler {
 
+    /**
+     * 增加策略的进化点数
+     * @param strategy 进化策略类型
+     * @param level 实体所在的世界
+     * @param point 待增加的点数
+     */
+    public static void addEvoPoint(MapVariables.StrategyType strategy, Level level, double point) {
+        var mapVariables = MapVariables.get(level);
+        int strategyLevel = mapVariables.getStrategyLevel(strategy);
+        if (strategyLevel >= 4) return;
+
+        if (strategy == MapVariables.StrategyType.SILENCE) {
+            if (mapVariables.strategyGrow < 4 || mapVariables.strategySubsisting < 4 || mapVariables.strategyBreed < 4 || mapVariables.strategyMigration < 4) {
+                return;
+            }
+        }
+
+        double currentPoint = mapVariables.getEvoPoint(strategy) + point;
+        if (currentPoint >= Math.pow(strategyLevel + 1, 3) * GameplayConfig.EVOLUTION_POINT_COEFFICIENT.get()) {
+            upgradeStrategy(strategy, level);
+        } else {
+            mapVariables.setEvoPoint(strategy, currentPoint);
+            mapVariables.syncData(level);
+        }
+    }
+
     public static boolean upgradeStrategy(MapVariables.StrategyType strategy, Level level) {
         var mapVariables = MapVariables.get(level);
         var currentLevel = switch (strategy) {
@@ -38,6 +64,7 @@ public class MapVariablesHandler {
         }
         if (strategyLevel < 4 && strategy != MapVariables.StrategyType.SILENCE) {
             mapVariables.strategySilence = 0;
+            mapVariables.evoPointSilence = 0;
         }
         switch (strategy) {
             case GROW -> {
