@@ -96,6 +96,11 @@
   "caerula_arbor.strategy.silence": "Silence",
   "des.caerula_arbor.strategy.upgrade": "Crowd's Strategy of [%1$s] has evolved into phase %2$s",
 
+  "command.caerula_arbor.evolution.upgrade.success": "Crowd's Strategy of [%1$s] has evolved into a new phase",
+  "command.caerula_arbor.evolution.upgrade.failure": "Failed to upgrade Crowd's Strategy of [%1$s]",
+  "command.caerula_arbor.evolution.set.success": "Crowd's Strategy of [%1$s] has been set to phase %2$s",
+  "command.caerula_arbor.evolution.set.failure": "Failed to set Crowd's Strategy of [%1$s]",
+
   "entity.caerula_arbor.shell_sea_runner": "Shell Sea Runner",
   "entity.caerula_arbor.deep_sea_slider": "Deep Sea Slider",
   "entity.caerula_arbor.super_slider": "Super Slider",

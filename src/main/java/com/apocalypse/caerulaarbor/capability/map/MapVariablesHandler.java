@@ -11,11 +11,19 @@ import net.minecraft.world.level.Level;
 public class MapVariablesHandler {
 
     public static boolean upgradeStrategy(MapVariables.StrategyType strategy, Level level) {
-
-
-        return false;
+        var mapVariables = MapVariables.get(level);
+        var currentLevel = switch (strategy) {
+            case GROW -> mapVariables.strategyGrow;
+            case SUBSISTING -> mapVariables.strategySubsisting;
+            case BREED -> mapVariables.strategyBreed;
+            case MIGRATION -> mapVariables.strategyMigration;
+            case SILENCE -> mapVariables.strategySilence;
+        };
+        if (currentLevel >= 4) return false;
+        return setStrategyLevel(strategy, currentLevel + 1, level);
     }
 
+    // TODO 在这里添加一个进度的trigger
     public static boolean setStrategyLevel(MapVariables.StrategyType strategy, int strategyLevel, Level level) {
         var mapVariables = MapVariables.get(level);
         var currentLevel = switch (strategy) {
@@ -32,16 +40,33 @@ public class MapVariablesHandler {
             mapVariables.strategySilence = 0;
         }
         switch (strategy) {
-            case GROW -> mapVariables.evoPointGrow = 0;
-            case SUBSISTING -> mapVariables.evoPointSubsisting = 0;
-            case BREED -> mapVariables.evoPointBreed = 0;
-            case MIGRATION -> mapVariables.evoPointMigration = 0;
-            case SILENCE -> mapVariables.evoPointSilence = 0;
+            case GROW -> {
+                mapVariables.evoPointGrow = 0;
+                mapVariables.strategyGrow = strategyLevel;
+            }
+            case SUBSISTING -> {
+                mapVariables.evoPointSubsisting = 0;
+                mapVariables.strategySubsisting = strategyLevel;
+            }
+            case BREED -> {
+                mapVariables.evoPointBreed = 0;
+                mapVariables.strategyBreed = strategyLevel;
+            }
+            case MIGRATION -> {
+                mapVariables.evoPointMigration = 0;
+                mapVariables.strategyMigration = strategyLevel;
+            }
+            case SILENCE -> {
+                mapVariables.evoPointSilence = 0;
+                mapVariables.strategySilence = strategyLevel;
+            }
         }
 
         mapVariables.syncData(level);
 
-        displayUpgradeEffects(strategy, strategyLevel, level);
+        if (strategyLevel > 0) {
+            displayUpgradeEffects(strategy, strategyLevel, level);
+        }
 
         return true;
     }

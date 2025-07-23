@@ -10,17 +10,16 @@ import net.minecraft.network.chat.Component;
 
 public class EvolutionCommand {
 
-    // TODO 补全命令提示
     public static LiteralArgumentBuilder<CommandSourceStack> get() {
         return Commands.literal("evolution").requires(s -> s.hasPermission(2))
                 .then(Commands.literal("upgrade").then(Commands.argument("strategy", LowerCamelCaseEnumArgument.enumArgument(MapVariables.StrategyType.class)).executes(arguments -> {
                     var strategy = arguments.getArgument("strategy", MapVariables.StrategyType.class);
                     var level = arguments.getSource().getUnsidedLevel();
                     if (MapVariablesHandler.upgradeStrategy(strategy, level)) {
-                        arguments.getSource().sendSuccess(() -> Component.literal("upgrade " + strategy), true);
+                        arguments.getSource().sendSuccess(() -> Component.translatable("command.caerula_arbor.evolution.upgrade.success", Component.translatable(strategy.name)), true);
                         return 0;
                     }
-                    arguments.getSource().sendFailure(Component.literal("failed to upgrade " + strategy));
+                    arguments.getSource().sendFailure(Component.translatable("command.caerula_arbor.evolution.upgrade.failure", Component.translatable(strategy.name)));
                     return 0;
                 })))
                 .then(Commands.literal("set").then(Commands.argument("strategy", LowerCamelCaseEnumArgument.enumArgument(MapVariables.StrategyType.class)).then(Commands.argument("level", IntegerArgumentType.integer(0, 4)).executes(arguments -> {
@@ -28,10 +27,10 @@ public class EvolutionCommand {
                     int strategyLevel = IntegerArgumentType.getInteger(arguments, "level");
                     var level = arguments.getSource().getUnsidedLevel();
                     if (MapVariablesHandler.setStrategyLevel(strategy, strategyLevel, level)) {
-                        arguments.getSource().sendSuccess(() -> Component.literal("set level of " + strategy + " to " + strategyLevel), true);
+                        arguments.getSource().sendSuccess(() -> Component.translatable("command.caerula_arbor.evolution.set.success", Component.translatable(strategy.name), strategyLevel), true);
                         return 0;
                     }
-                    arguments.getSource().sendFailure(Component.literal("failed to set level of " + strategy));
+                    arguments.getSource().sendFailure(Component.translatable("command.caerula_arbor.evolution.set.failure", Component.translatable(strategy.name)));
                     return 0;
                 }))));
     }
