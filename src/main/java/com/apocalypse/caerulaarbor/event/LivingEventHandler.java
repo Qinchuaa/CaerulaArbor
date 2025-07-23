@@ -3,8 +3,7 @@ package com.apocalypse.caerulaarbor.event;
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.api.event.RelicEvent;
 import com.apocalypse.caerulaarbor.block.SeaTrailBaseBlock;
-import com.apocalypse.caerulaarbor.capability.ModCapabilities;
-import com.apocalypse.caerulaarbor.capability.sanity.SanityInjuryCapability;
+import com.apocalypse.caerulaarbor.capability.CapabilityHandler;
 import com.apocalypse.caerulaarbor.init.ModAttributes;
 import com.apocalypse.caerulaarbor.init.ModTags;
 import com.apocalypse.caerulaarbor.item.relic.IRelic;
@@ -36,11 +35,7 @@ public class LivingEventHandler {
 
     @SubscribeEvent
     public static void onEntityTick(LivingEvent.LivingTickEvent event) {
-        var living = event.getEntity();
-
-        living.getCapability(ModCapabilities.SANITY_INJURY).ifPresent(cap -> {
-            if (cap instanceof SanityInjuryCapability capImpl) capImpl.tick();
-        });
+        CapabilityHandler.getSanityInjury(event.getEntity()).tick();
     }
 
     @SubscribeEvent

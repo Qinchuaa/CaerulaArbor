@@ -1,7 +1,7 @@
 package com.apocalypse.caerulaarbor.entity;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
-import com.apocalypse.caerulaarbor.capability.ModCapabilities;
+import com.apocalypse.caerulaarbor.capability.CapabilityHandler;
 import com.apocalypse.caerulaarbor.entity.base.SeaMonster;
 import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.init.ModTags;
@@ -17,7 +17,6 @@ import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResult;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -227,13 +226,13 @@ public class PocketSeaCrawlerEntity extends SeaMonster {
         if (attr == null) return;
         double damage = attr.getValue();
 
-        List<Entity> entities = level.getEntitiesOfClass(Entity.class, new AABB(this.getOnPos()).inflate(4), e -> true);
+        List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, new AABB(this.getOnPos()).inflate(4), e -> true);
         for (var e : entities) {
             if (e == this || e.getType().is(ModTags.EntityTypes.SEA_BORN)) {
                 continue;
             }
             e.hurt(level().damageSources().magic(), (float) (damage * 3));
-            e.getCapability(ModCapabilities.SANITY_INJURY).ifPresent(cap -> cap.hurt(damage * 150));
+            CapabilityHandler.getSanityInjury(e).hurt(damage * 150);
         }
     }
 }

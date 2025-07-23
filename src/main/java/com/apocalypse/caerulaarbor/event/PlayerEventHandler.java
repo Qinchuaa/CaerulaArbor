@@ -135,8 +135,7 @@ public class PlayerEventHandler {
         if (shouldCancel && level.getGameRules().getBoolean(ModGameRules.TARGET_LIFE_FUNCTION)) {
             event.setCanceled(true);
             player.setHealth(player.getMaxHealth() * 0.5f);
-            player.getCapability(ModCapabilities.SANITY_INJURY)
-                    .ifPresent(capability -> capability.heal(1000));
+            CapabilityHandler.getSanityInjury(player).heal(1000);
         }
     }
 
