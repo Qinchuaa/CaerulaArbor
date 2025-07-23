@@ -20,7 +20,10 @@ import java.util.Locale;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
-public class LowerEnumArgument<T extends Enum<T>> implements ArgumentType<T> {
+/**
+ * 用于指令的枚举类型参数，会把枚举常量的名称转换为小驼峰形式
+ */
+public class LowerCamelCaseEnumArgument<T extends Enum<T>> implements ArgumentType<T> {
 
     private static final Dynamic2CommandExceptionType INVALID_ENUM =
             new Dynamic2CommandExceptionType((found, constants) -> Component.translatable("commands.forge.arguments.enum.invalid", constants, found));
@@ -50,12 +53,12 @@ public class LowerEnumArgument<T extends Enum<T>> implements ArgumentType<T> {
 
     private final Class<T> enumClass;
 
-    private LowerEnumArgument(Class<T> enumClass) {
+    private LowerCamelCaseEnumArgument(Class<T> enumClass) {
         this.enumClass = enumClass;
     }
 
-    public static <T extends Enum<T>> LowerEnumArgument<T> enumArgument(Class<T> enumClass) {
-        return new LowerEnumArgument<>(enumClass);
+    public static <T extends Enum<T>> LowerCamelCaseEnumArgument<T> enumArgument(Class<T> enumClass) {
+        return new LowerCamelCaseEnumArgument<>(enumClass);
     }
 
     @Override
@@ -80,7 +83,7 @@ public class LowerEnumArgument<T extends Enum<T>> implements ArgumentType<T> {
         return Arrays.stream(enumClass.getEnumConstants()).map(valueMapper).toList();
     }
 
-    public static class Info<T extends Enum<T>> implements ArgumentTypeInfo<LowerEnumArgument<T>, Info<T>.Template> {
+    public static class Info<T extends Enum<T>> implements ArgumentTypeInfo<LowerCamelCaseEnumArgument<T>, Info<T>.Template> {
         @Override
         public void serializeToNetwork(Template template, FriendlyByteBuf buffer) {
             buffer.writeUtf(template.enumClass.getName());
@@ -103,11 +106,11 @@ public class LowerEnumArgument<T extends Enum<T>> implements ArgumentType<T> {
         }
 
         @Override
-        public Template unpack(LowerEnumArgument<T> argument) {
+        public Template unpack(LowerCamelCaseEnumArgument<T> argument) {
             return new Template(argument.enumClass);
         }
 
-        public class Template implements ArgumentTypeInfo.Template<LowerEnumArgument<T>> {
+        public class Template implements ArgumentTypeInfo.Template<LowerCamelCaseEnumArgument<T>> {
             final Class<T> enumClass;
 
             Template(Class<T> enumClass) {
@@ -115,12 +118,12 @@ public class LowerEnumArgument<T extends Enum<T>> implements ArgumentType<T> {
             }
 
             @Override
-            public LowerEnumArgument<T> instantiate(CommandBuildContext pStructure) {
-                return new LowerEnumArgument<>(this.enumClass);
+            public LowerCamelCaseEnumArgument<T> instantiate(CommandBuildContext pStructure) {
+                return new LowerCamelCaseEnumArgument<>(this.enumClass);
             }
 
             @Override
-            public ArgumentTypeInfo<LowerEnumArgument<T>, ?> type() {
+            public ArgumentTypeInfo<LowerCamelCaseEnumArgument<T>, ?> type() {
                 return Info.this;
             }
         }

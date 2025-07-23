@@ -1,6 +1,7 @@
 package com.apocalypse.caerulaarbor.command;
 
 import com.apocalypse.caerulaarbor.capability.map.MapVariables;
+import com.apocalypse.caerulaarbor.capability.map.MapVariablesHandler;
 import com.mojang.brigadier.arguments.DoubleArgumentType;
 import com.mojang.brigadier.arguments.StringArgumentType;
 import com.mojang.brigadier.builder.LiteralArgumentBuilder;
@@ -12,12 +13,15 @@ public class EvolutionCommand {
 
     public static LiteralArgumentBuilder<CommandSourceStack> get() {
         return Commands.literal("evolution").requires(s -> s.hasPermission(2))
-                .then(Commands.literal("upgrade").then(Commands.argument("strategy", LowerEnumArgument.enumArgument(MapVariables.StrategyType.class)).executes(arguments -> {
+                .then(Commands.literal("upgrade").then(Commands.argument("strategy", LowerCamelCaseEnumArgument.enumArgument(MapVariables.StrategyType.class)).executes(arguments -> {
                     var strategy = arguments.getArgument("strategy", MapVariables.StrategyType.class);
-                    arguments.getSource().sendSuccess(() -> Component.literal("upgrade " + strategy), true);
+                    if (MapVariablesHandler.upgradeStrategy(strategy)) {
+                        arguments.getSource().sendSuccess(() -> Component.literal("upgrade " + strategy), true);
+                    }
+                    arguments.getSource().sendFailure(Component.literal("failed to upgrade " + strategy));
                     return 0;
                 })))
-                .then(Commands.literal("set").then(Commands.argument("strategy", LowerEnumArgument.enumArgument(MapVariables.StrategyType.class)).then(Commands.argument("level", DoubleArgumentType.doubleArg(0, 4))).executes(arguments -> {
+                .then(Commands.literal("set").then(Commands.argument("strategy", LowerCamelCaseEnumArgument.enumArgument(MapVariables.StrategyType.class)).then(Commands.argument("level", DoubleArgumentType.doubleArg(0, 4))).executes(arguments -> {
                     var strategy = StringArgumentType.getString(arguments, "strategy");
                     System.out.println("set " + strategy + " to " + DoubleArgumentType.getDouble(arguments, "level"));
                     return 1;
