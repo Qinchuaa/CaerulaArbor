@@ -1,10 +1,10 @@
 package com.apocalypse.caerulaarbor.client.gui;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
+import com.apocalypse.caerulaarbor.capability.map.MapVariables;
 import com.apocalypse.caerulaarbor.entity.BasinSeaReaperEntity;
 import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.menu.InfoStrategySubsisMenu;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import com.apocalypse.caerulaarbor.network.InfoStrategySubsisButtonMessage;
 import com.apocalypse.caerulaarbor.procedures.GetBarSubsisProcedure;
 import com.apocalypse.caerulaarbor.procedures.GetPointSubsisProcedure;
@@ -63,7 +63,7 @@ public class InfoStrategySubsisScreen extends AbstractContainerScreen<InfoStrate
         RenderSystem.defaultBlendFunc();
 
         guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/sidebar.png"), this.leftPos - 3, this.topPos - 3, 0, 0, 262, 174, 262, 174);
-        guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/bg_subsis.png"), this.leftPos, this.topPos, Mth.clamp((int) CaerulaArborModVariables.MapVariables.get(world).strategySubsisting * 256, 0, 1024), 0, 256, 168, 1280, 168);
+        guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/bg_subsis.png"), this.leftPos, this.topPos, Mth.clamp((int) MapVariables.get(world).strategySubsisting * 256, 0, 1024), 0, 256, 168, 1280, 168);
         guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/barevo.png"), this.leftPos + 244, this.topPos + 20, Mth.clamp((int) GetBarSubsisProcedure.execute(world) * 8, 0, 144), 0, 8, 72, 152, 72);
 
         RenderSystem.disableBlend();
@@ -82,10 +82,10 @@ public class InfoStrategySubsisScreen extends AbstractContainerScreen<InfoStrate
     protected void renderLabels(GuiGraphics guiGraphics, int mouseX, int mouseY) {
         guiGraphics.drawString(this.font, Component.translatable("gui.caerula_arbor.info_strategy_subsis.label_strategy_subsisting"), 1, -12, -16717080, false);
         guiGraphics.drawString(this.font, Component.translatable("gui.caerula_arbor.info_strategy_subsis.label_to_subsist_is_fundamental"), 1, 4, -1, false);
-        guiGraphics.drawString(this.font, Component.translatable(("item.caerula_arbor.sample_subsisting.description_" + Math.round(CaerulaArborModVariables.MapVariables.get(world).strategySubsisting))).getString(), 1, 100, -1, false);
+        guiGraphics.drawString(this.font, Component.translatable(("item.caerula_arbor.sample_subsisting.description_" + Math.round(MapVariables.get(world).strategySubsisting))).getString(), 1, 100, -1, false);
         guiGraphics.drawString(this.font, Component.translatable("gui.caerula_arbor.info_strategy_subsis.label_proceed"), 1, 172, -1, false);
-        if (CaerulaArborModVariables.MapVariables.get(world).strategy_silence > 0)
-            guiGraphics.drawString(this.font, Component.translatable(("item.caerula_arbor.sample_subsisting.description_" + Math.round(CaerulaArborModVariables.MapVariables.get(world).strategy_silence + 5))).getString(), 1, 116, -3407872, false);
+        if (MapVariables.get(world).strategySilence > 0)
+            guiGraphics.drawString(this.font, Component.translatable(("item.caerula_arbor.sample_subsisting.description_" + Math.round(MapVariables.get(world).strategySilence + 5))).getString(), 1, 116, -3407872, false);
     }
 
     @Override

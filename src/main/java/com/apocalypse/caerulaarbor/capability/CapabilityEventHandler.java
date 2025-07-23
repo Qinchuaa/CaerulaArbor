@@ -1,10 +1,13 @@
 package com.apocalypse.caerulaarbor.capability;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
+import com.apocalypse.caerulaarbor.capability.map.MapVariables;
 import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
 import com.apocalypse.caerulaarbor.capability.sanity.SanityInjuryCapability;
+import com.apocalypse.caerulaarbor.network.message.s2c.SavedDataSyncMessage;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.Tag;
+import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
@@ -17,6 +20,7 @@ import net.minecraftforge.event.AttachCapabilitiesEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
+import net.minecraftforge.network.PacketDistributor;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -35,8 +39,12 @@ public class CapabilityEventHandler {
 
     @SubscribeEvent
     public static void onPlayerLoggedInSyncPlayerVariables(PlayerEvent.PlayerLoggedInEvent event) {
-        if (!event.getEntity().level().isClientSide())
+        if (!event.getEntity().level().isClientSide()) {
             event.getEntity().getCapability(ModCapabilities.PLAYER_VARIABLE, null).orElse(new PlayerVariable()).syncPlayerVariables(event.getEntity());
+
+            var mapVariables = MapVariables.get(event.getEntity().level());
+            CaerulaArborMod.PACKET_HANDLER.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) event.getEntity()), new SavedDataSyncMessage(mapVariables));
+        }
     }
 
     @SubscribeEvent

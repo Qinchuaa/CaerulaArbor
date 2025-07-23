@@ -1,9 +1,9 @@
 package com.apocalypse.caerulaarbor.procedures;
 
+import com.apocalypse.caerulaarbor.capability.map.MapVariables;
 import com.apocalypse.caerulaarbor.init.ModGameRules;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.init.ModTags;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.core.BlockPos;
 import net.minecraft.util.Mth;
 import net.minecraft.util.RandomSource;
@@ -46,21 +46,21 @@ public class MobTickFuncProcedure {
                 _entity.removeEffect(ModMobEffects.TRAIL_BUFF.get());
         }
         if (entity.getType().is(ModTags.EntityTypes.SEA_BORN)) {
-            if (CaerulaArborModVariables.MapVariables.get(world).strategySubsisting >= 3) {
+            if (MapVariables.get(world).strategySubsisting >= 3) {
                 if (!(entity instanceof LivingEntity _livEnt14 && _livEnt14.hasEffect(MobEffects.DAMAGE_RESISTANCE))) {
                     if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-                        _entity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 20, (int) (CaerulaArborModVariables.MapVariables.get(world).strategySubsisting - 3)));
+                        _entity.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 20, (int) (MapVariables.get(world).strategySubsisting - 3)));
                 }
             }
-            if (CaerulaArborModVariables.MapVariables.get(world).strategy_silence > 0) {
-                if (CaerulaArborModVariables.MapVariables.get(world).strategy_silence >= 3) {
+            if (MapVariables.get(world).strategySilence > 0) {
+                if (MapVariables.get(world).strategySilence >= 3) {
                     if (!(entity instanceof LivingEntity _livEnt16 && _livEnt16.hasEffect(ModMobEffects.BOOST_OF_SILENCE.get()))) {
                         if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-                            _entity.addEffect(new MobEffectInstance(ModMobEffects.BOOST_OF_SILENCE.get(), 20, (int) (CaerulaArborModVariables.MapVariables.get(world).strategy_silence - 1)));
+                            _entity.addEffect(new MobEffectInstance(ModMobEffects.BOOST_OF_SILENCE.get(), 20, (int) (MapVariables.get(world).strategySilence - 1)));
                     }
                     if (!(entity instanceof LivingEntity _livEnt18 && _livEnt18.hasEffect(ModMobEffects.STRENGTH_OF_CROWD.get()))) {
                         amplifi = -1;
-                        if (CaerulaArborModVariables.MapVariables.get(world).strategy_silence >= 4) {
+                        if (MapVariables.get(world).strategySilence >= 4) {
                             {
                                 final Vec3 _center = new Vec3(x, y, z);
                                 List<Entity> _entfound = world.getEntitiesOfClass(Entity.class, new AABB(_center, _center).inflate(64 / 2d), e -> true).stream().sorted(Comparator.comparingDouble(_entcnd -> _entcnd.distanceToSqr(_center))).toList();
@@ -98,26 +98,26 @@ public class MobTickFuncProcedure {
                     if ((entity instanceof LivingEntity _livEnt ? _livEnt.getHealth() : -1) < (entity instanceof LivingEntity _livEnt ? _livEnt.getMaxHealth() : -1) * 0.5) {
                         if (!(entity instanceof LivingEntity _livEnt28 && _livEnt28.hasEffect(ModMobEffects.BOOST_OF_SILENCE.get()))) {
                             if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-                                _entity.addEffect(new MobEffectInstance(ModMobEffects.BOOST_OF_SILENCE.get(), 20, (int) (CaerulaArborModVariables.MapVariables.get(world).strategy_silence - 1)));
+                                _entity.addEffect(new MobEffectInstance(ModMobEffects.BOOST_OF_SILENCE.get(), 20, (int) (MapVariables.get(world).strategySilence - 1)));
                         }
                     }
                 }
                 if (!(entity instanceof LivingEntity _livEnt30 && _livEnt30.hasEffect(MobEffects.REGENERATION))) {
                     if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-                        _entity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 20, (int) CaerulaArborModVariables.MapVariables.get(world).strategy_silence));
+                        _entity.addEffect(new MobEffectInstance(MobEffects.REGENERATION, 20, (int) MapVariables.get(world).strategySilence));
                 }
                 if (entity instanceof Mob _mobEnt32 && _mobEnt32.isAggressive()) {
                     if (!_mobEnt32.hasEffect(MobEffects.MOVEMENT_SPEED)) {
                         if (!_mobEnt32.level().isClientSide())
-                            _mobEnt32.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, (int) CaerulaArborModVariables.MapVariables.get(world).strategy_silence));
+                            _mobEnt32.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 20, (int) MapVariables.get(world).strategySilence));
                     }
                 }
             }
             if (world.getLevelData().getGameRules().getBoolean(ModGameRules.NATURAL_EVOLUTION)) {
                 if (Math.random() < 0.008 && !world.getEntitiesOfClass(Player.class, AABB.ofSize(new Vec3(x, y, z), 96, 96, 96), e -> true).isEmpty()) {
                     pnt = Mth.nextDouble(RandomSource.create(), 0, 0.05);
-                    CaerulaArborModVariables.MapVariables.get(world).evo_point_migration = CaerulaArborModVariables.MapVariables.get(world).evo_point_migration + pnt;
-                    CaerulaArborModVariables.MapVariables.get(world).syncData(world);
+                    MapVariables.get(world).evoPointMigration = MapVariables.get(world).evoPointMigration + pnt;
+                    MapVariables.get(world).syncData(world);
                     UpgradeMigraProcedure.execute(world);
                     UpgradeSilenceProcedure.execute(world, entity, pnt);
                 }

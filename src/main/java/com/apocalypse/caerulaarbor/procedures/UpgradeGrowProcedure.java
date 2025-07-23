@@ -1,8 +1,8 @@
 package com.apocalypse.caerulaarbor.procedures;
 
+import com.apocalypse.caerulaarbor.capability.map.MapVariables;
 import com.apocalypse.caerulaarbor.config.common.GameplayConfig;
 import com.apocalypse.caerulaarbor.init.ModSounds;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.core.BlockPos;
@@ -19,9 +19,9 @@ public class UpgradeGrowProcedure {
 		double stra = 0;
 		String num = "";
 		String prefix = "";
-		stra = CaerulaArborModVariables.MapVariables.get(world).strategyGrow;
+		stra = MapVariables.get(world).strategyGrow;
 		if (stra < 4) {
-			if (CaerulaArborModVariables.MapVariables.get(world).evo_point_grow >= Math.pow(stra + 1, 3) * (double) GameplayConfig.EVOLUTION_POINT_COEFFICIENT.get()) {
+			if (MapVariables.get(world).evoPointGrow >= Math.pow(stra + 1, 3) * (double) GameplayConfig.EVOLUTION_POINT_COEFFICIENT.get()) {
 				for (Entity entityiterator : world.players()) {
 					if (entityiterator instanceof ServerPlayer _player) {
 						Advancement _adv = _player.server.getAdvancements().getAdvancement(new ResourceLocation("caerula_arbor:to_experience_evolution"));
@@ -32,11 +32,11 @@ public class UpgradeGrowProcedure {
 						}
 					}
 				}
-				CaerulaArborModVariables.MapVariables.get(world).strategyGrow = stra + 1;
-				CaerulaArborModVariables.MapVariables.get(world).syncData(world);
-				stra = CaerulaArborModVariables.MapVariables.get(world).strategyGrow;
-				CaerulaArborModVariables.MapVariables.get(world).evo_point_grow = 0;
-				CaerulaArborModVariables.MapVariables.get(world).syncData(world);
+				MapVariables.get(world).strategyGrow = stra + 1;
+				MapVariables.get(world).syncData(world);
+				stra = MapVariables.get(world).strategyGrow;
+				MapVariables.get(world).evoPointGrow = 0;
+				MapVariables.get(world).syncData(world);
 				if (stra == 1) {
 					num = "I";
 					prefix = "§p";
@@ -89,8 +89,8 @@ public class UpgradeGrowProcedure {
 					}
 				}
 			}
-			CaerulaArborModVariables.MapVariables.get(world).evo_point_grow = 1;
-			CaerulaArborModVariables.MapVariables.get(world).syncData(world);
+			MapVariables.get(world).evoPointGrow = 1;
+			MapVariables.get(world).syncData(world);
 		}
 	}
 }

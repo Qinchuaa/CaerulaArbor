@@ -1,8 +1,8 @@
 package com.apocalypse.caerulaarbor.procedures;
 
+import com.apocalypse.caerulaarbor.capability.map.MapVariables;
 import com.apocalypse.caerulaarbor.config.common.GameplayConfig;
 import com.apocalypse.caerulaarbor.init.ModSounds;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.advancements.Advancement;
 import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.core.BlockPos;
@@ -19,9 +19,9 @@ public class UpgradeMigraProcedure {
         int stra;
         String num = "";
         String prefix = "";
-        stra = CaerulaArborModVariables.MapVariables.get(world).strategyMigration;
+        stra = MapVariables.get(world).strategyMigration;
         if (stra < 4) {
-            if (CaerulaArborModVariables.MapVariables.get(world).evo_point_migration >= Math.pow(stra + 1, 3) * GameplayConfig.EVOLUTION_POINT_COEFFICIENT.get()) {
+            if (MapVariables.get(world).evoPointMigration >= Math.pow(stra + 1, 3) * GameplayConfig.EVOLUTION_POINT_COEFFICIENT.get()) {
                 for (Entity entityiterator : world.players()) {
                     if (entityiterator instanceof ServerPlayer _player) {
                         Advancement _adv = _player.server.getAdvancements().getAdvancement(new ResourceLocation("caerula_arbor:to_experience_evolution"));
@@ -32,11 +32,11 @@ public class UpgradeMigraProcedure {
                         }
                     }
                 }
-                CaerulaArborModVariables.MapVariables.get(world).strategyMigration = stra + 1;
-                CaerulaArborModVariables.MapVariables.get(world).syncData(world);
-                stra = CaerulaArborModVariables.MapVariables.get(world).strategyMigration;
-                CaerulaArborModVariables.MapVariables.get(world).evo_point_migration = 0;
-                CaerulaArborModVariables.MapVariables.get(world).syncData(world);
+                MapVariables.get(world).strategyMigration = stra + 1;
+                MapVariables.get(world).syncData(world);
+                stra = MapVariables.get(world).strategyMigration;
+                MapVariables.get(world).evoPointMigration = 0;
+                MapVariables.get(world).syncData(world);
                 if (stra == 1) {
                     num = "I";
                     prefix = "§p";
@@ -89,8 +89,8 @@ public class UpgradeMigraProcedure {
                     }
                 }
             }
-            CaerulaArborModVariables.MapVariables.get(world).evo_point_migration = 0;
-            CaerulaArborModVariables.MapVariables.get(world).syncData(world);
+            MapVariables.get(world).evoPointMigration = 0;
+            MapVariables.get(world).syncData(world);
         }
     }
 }

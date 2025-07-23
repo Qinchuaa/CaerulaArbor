@@ -1,6 +1,6 @@
 package com.apocalypse.caerulaarbor.entity.base;
 
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
+import com.apocalypse.caerulaarbor.capability.map.MapVariables;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -59,7 +59,7 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
     public boolean doHurtTarget(Entity pEntity) {
         float damage = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
         var level = this.level();
-        double grow = CaerulaArborModVariables.MapVariables.get(level).strategyGrow;
+        double grow = MapVariables.get(level).strategyGrow;
         if (grow >= 3) {
             boolean flag = pEntity.hurt(level.damageSources().indirectMagic(this, this), (float) (damage * 0.2 * (grow - 2)));
             if (flag) {

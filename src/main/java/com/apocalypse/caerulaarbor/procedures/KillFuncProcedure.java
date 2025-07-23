@@ -2,13 +2,13 @@ package com.apocalypse.caerulaarbor.procedures;
 
 import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.capability.Relic;
+import com.apocalypse.caerulaarbor.capability.map.MapVariables;
 import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
 import com.apocalypse.caerulaarbor.config.common.RelicsConfig;
 import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.init.ModGameRules;
 import com.apocalypse.caerulaarbor.init.ModItems;
 import com.apocalypse.caerulaarbor.init.ModTags;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
@@ -163,8 +163,8 @@ public class KillFuncProcedure {
         if (entity.getType().is(ModTags.EntityTypes.SEA_BORN)) {
             if (world.getLevelData().getGameRules().getBoolean(ModGameRules.NATURAL_EVOLUTION)) {
                 if (!world.getEntitiesOfClass(Player.class, AABB.ofSize(new Vec3(x, y, z), 128, 128, 128), e -> true).isEmpty()) {
-                    CaerulaArborModVariables.MapVariables.get(world).evo_point_breed = CaerulaArborModVariables.MapVariables.get(world).evo_point_breed + (entity instanceof LivingEntity _livEnt ? _livEnt.getMaxHealth() : -1) * 0.1;
-                    CaerulaArborModVariables.MapVariables.get(world).syncData(world);
+                    MapVariables.get(world).evoPointBreed = MapVariables.get(world).evoPointBreed + (entity instanceof LivingEntity _livEnt ? _livEnt.getMaxHealth() : -1) * 0.1;
+                    MapVariables.get(world).syncData(world);
                     if (world instanceof Level level) {
                         UpgradeBreedProcedure.execute(level);
                     }

@@ -4,10 +4,10 @@ import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.api.event.RelicEvent;
 import com.apocalypse.caerulaarbor.block.SeaTrailBaseBlock;
 import com.apocalypse.caerulaarbor.capability.ModCapabilities;
+import com.apocalypse.caerulaarbor.capability.map.MapVariables;
 import com.apocalypse.caerulaarbor.init.ModAttributes;
 import com.apocalypse.caerulaarbor.init.ModTags;
 import com.apocalypse.caerulaarbor.item.relic.IRelic;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
@@ -146,9 +146,9 @@ public class LivingEventHandler {
     private static void handleSeaBornSpawn(LivingEntity entity) {
         if (!entity.getType().is(ModTags.EntityTypes.SEA_BORN)) return;
         var level = entity.level();
-        double subsisting = CaerulaArborModVariables.MapVariables.get(level).strategySubsisting;
-        double breed = CaerulaArborModVariables.MapVariables.get(level).strategyBreed;
-        double grow = CaerulaArborModVariables.MapVariables.get(level).strategyGrow;
+        double subsisting = MapVariables.get(level).strategySubsisting;
+        double breed = MapVariables.get(level).strategyBreed;
+        double grow = MapVariables.get(level).strategyGrow;
 
         var swimSpeed = entity.getAttribute(Attributes.MOVEMENT_SPEED);
         if (swimSpeed != null) {

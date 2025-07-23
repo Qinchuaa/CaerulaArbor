@@ -1,8 +1,8 @@
 package com.apocalypse.caerulaarbor.procedures;
 
+import com.apocalypse.caerulaarbor.capability.map.MapVariables;
 import com.apocalypse.caerulaarbor.config.common.GameplayConfig;
 import com.apocalypse.caerulaarbor.init.ModSounds;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -14,10 +14,10 @@ public class UpgradeBreedProcedure {
         double stra;
         String num = "";
         String prefix = "";
-        var mapVar = CaerulaArborModVariables.MapVariables.get(world);
+        var mapVar = MapVariables.get(world);
         stra = mapVar.strategyBreed;
         if (stra < 4) {
-            if (mapVar.evo_point_breed >= Math.pow(stra + 1, 3) * GameplayConfig.EVOLUTION_POINT_COEFFICIENT.get()) {
+            if (mapVar.evoPointBreed >= Math.pow(stra + 1, 3) * GameplayConfig.EVOLUTION_POINT_COEFFICIENT.get()) {
                 for (var player : world.players()) {
                     if (player instanceof ServerPlayer serverPlayer) {
                         var advancement = serverPlayer.server.getAdvancements().getAdvancement(new ResourceLocation("caerula_arbor:to_experience_evolution"));
@@ -29,7 +29,7 @@ public class UpgradeBreedProcedure {
                     }
                 }
                 mapVar.strategyBreed = stra + 1;
-                mapVar.evo_point_breed = 0;
+                mapVar.evoPointBreed = 0;
 
                 stra = mapVar.strategyBreed;
                 if (stra == 1) {
@@ -77,7 +77,7 @@ public class UpgradeBreedProcedure {
                     }
                 }
             }
-            mapVar.evo_point_breed = 1;
+            mapVar.evoPointBreed = 1;
         }
         mapVar.syncData(world);
     }

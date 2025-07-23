@@ -1,7 +1,7 @@
 package com.apocalypse.caerulaarbor.procedures;
 
+import com.apocalypse.caerulaarbor.capability.map.MapVariables;
 import com.apocalypse.caerulaarbor.init.ModSounds;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import com.mojang.brigadier.arguments.DoubleArgumentType;
 import com.mojang.brigadier.arguments.IntegerArgumentType;
 import com.mojang.brigadier.context.CommandContext;
@@ -13,8 +13,8 @@ import net.minecraft.world.level.LevelAccessor;
 
 public class EvoLvlMigraProcedure {
 	public static void execute(LevelAccessor world, double x, double y, double z, CommandContext<CommandSourceStack> arguments) {
-		CaerulaArborModVariables.MapVariables.get(world).strategyMigration = IntegerArgumentType.getInteger(arguments, "lvl");
-		CaerulaArborModVariables.MapVariables.get(world).syncData(world);
+		MapVariables.get(world).strategyMigration = IntegerArgumentType.getInteger(arguments, "lvl");
+		MapVariables.get(world).syncData(world);
 		if (DoubleArgumentType.getDouble(arguments, "lvl") >= 3) {
 			if (world instanceof Level _level) {
 				if (!_level.isClientSide()) {
@@ -33,8 +33,8 @@ public class EvoLvlMigraProcedure {
 			}
 		}
 		if (DoubleArgumentType.getDouble(arguments, "lvl") < 4) {
-			CaerulaArborModVariables.MapVariables.get(world).strategy_silence = 0;
-			CaerulaArborModVariables.MapVariables.get(world).syncData(world);
+			MapVariables.get(world).strategySilence = 0;
+			MapVariables.get(world).syncData(world);
 		}
 	}
 }

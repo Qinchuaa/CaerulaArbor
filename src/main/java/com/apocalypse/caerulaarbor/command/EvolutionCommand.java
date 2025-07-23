@@ -1,8 +1,8 @@
 
 package com.apocalypse.caerulaarbor.command;
 
+import com.apocalypse.caerulaarbor.capability.map.MapVariables;
 import com.apocalypse.caerulaarbor.init.ModSounds;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import com.apocalypse.caerulaarbor.procedures.*;
 import com.mojang.brigadier.arguments.DoubleArgumentType;
 import net.minecraft.commands.Commands;
@@ -147,8 +147,8 @@ public class EvolutionCommand {
 
 			if (entity != null) {
 				if (IfCanSilenceProcedure.execute(world)) {
-					CaerulaArborModVariables.MapVariables.get(world).strategy_silence = DoubleArgumentType.getDouble(arguments, "lvl");
-					CaerulaArborModVariables.MapVariables.get(world).syncData(world);
+					MapVariables.get(world).strategySilence = DoubleArgumentType.getDouble(arguments, "lvl");
+					MapVariables.get(world).syncData(world);
 					if (DoubleArgumentType.getDouble(arguments, "lvl") == 1) {
 						if ((LevelAccessor) world instanceof Level _level) {
 							if (!_level.isClientSide()) {

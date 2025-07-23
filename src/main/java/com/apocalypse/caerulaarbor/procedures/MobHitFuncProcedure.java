@@ -2,13 +2,13 @@ package com.apocalypse.caerulaarbor.procedures;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.capability.ModCapabilities;
+import com.apocalypse.caerulaarbor.capability.map.MapVariables;
 import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
 import com.apocalypse.caerulaarbor.config.common.GameplayConfig;
 import com.apocalypse.caerulaarbor.init.ModAttributes;
 import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.init.ModGameRules;
 import com.apocalypse.caerulaarbor.init.ModTags;
-import com.apocalypse.caerulaarbor.network.CaerulaArborModVariables;
 import net.minecraft.commands.CommandSource;
 import net.minecraft.commands.CommandSourceStack;
 import net.minecraft.core.BlockPos;
@@ -62,10 +62,10 @@ public class MobHitFuncProcedure {
         double sklp;
 
         if (entity.getType().is(ModTags.EntityTypes.SEA_BORN) && !sourceentity.getType().is(ModTags.EntityTypes.SEA_BORN)) {
-            if (CaerulaArborModVariables.MapVariables.get(world).strategyMigration > 0) {
+            if (MapVariables.get(world).strategyMigration > 0) {
                 for (Entity entityiterator : world.getEntities(entity,
-                        new AABB((x - (8 + CaerulaArborModVariables.MapVariables.get(world).strategyMigration * 24)), (y - 16), (z - (8 + CaerulaArborModVariables.MapVariables.get(world).strategyMigration * 24)),
-                                (x + 8 + CaerulaArborModVariables.MapVariables.get(world).strategyMigration * 24), (y + 16), (z + 8 + CaerulaArborModVariables.MapVariables.get(world).strategyMigration * 24)))) {
+                        new AABB((x - (8 + MapVariables.get(world).strategyMigration * 24)), (y - 16), (z - (8 + MapVariables.get(world).strategyMigration * 24)),
+                                (x + 8 + MapVariables.get(world).strategyMigration * 24), (y + 16), (z + 8 + MapVariables.get(world).strategyMigration * 24)))) {
                     if (entityiterator.getType().is(ModTags.EntityTypes.SEA_BORN)) {
                         if (entityiterator == sourceentity) {
                             continue;
@@ -82,10 +82,10 @@ public class MobHitFuncProcedure {
         }
         if (entity instanceof Player) {
             if ((entity.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable())).player_oceanization >= 3) {
-                if (CaerulaArborModVariables.MapVariables.get(world).strategyMigration > 0) {
+                if (MapVariables.get(world).strategyMigration > 0) {
                     for (Entity entityiterator : world.getEntities(entity,
-                            new AABB((x - (8 + CaerulaArborModVariables.MapVariables.get(world).strategyMigration * 24)), (y - 16), (z - (8 + CaerulaArborModVariables.MapVariables.get(world).strategyMigration * 24)),
-                                    (x + 8 + CaerulaArborModVariables.MapVariables.get(world).strategyMigration * 24), (y + 16), (z + 8 + CaerulaArborModVariables.MapVariables.get(world).strategyMigration * 24)))) {
+                            new AABB((x - (8 + MapVariables.get(world).strategyMigration * 24)), (y - 16), (z - (8 + MapVariables.get(world).strategyMigration * 24)),
+                                    (x + 8 + MapVariables.get(world).strategyMigration * 24), (y + 16), (z + 8 + MapVariables.get(world).strategyMigration * 24)))) {
                         if (entityiterator.getType().is(ModTags.EntityTypes.SEA_BORN)) {
                             if (entityiterator == sourceentity) {
                                 continue;
@@ -103,23 +103,23 @@ public class MobHitFuncProcedure {
         }
         if (sourceentity.getType().is(ModTags.EntityTypes.SEA_BORN)) {
             if (world.getLevelData().getGameRules().getBoolean(ModGameRules.NATURAL_EVOLUTION)) {
-                CaerulaArborModVariables.MapVariables.get(world).evo_point_grow = CaerulaArborModVariables.MapVariables.get(world).evo_point_grow + amount * 0.025;
-                CaerulaArborModVariables.MapVariables.get(world).syncData(world);
+                MapVariables.get(world).evoPointGrow = MapVariables.get(world).evoPointGrow + amount * 0.025;
+                MapVariables.get(world).syncData(world);
                 UpgradeGrowProcedure.execute(world);
                 UpgradeSilenceProcedure.execute(world, entity, amount * 0.025);
             }
         }
         if (entity.getType().is(ModTags.EntityTypes.SEA_BORN)) {
             if (world.getLevelData().getGameRules().getBoolean(ModGameRules.NATURAL_EVOLUTION)) {
-                CaerulaArborModVariables.MapVariables.get(world).evo_point_subsisting = CaerulaArborModVariables.MapVariables.get(world).evo_point_subsisting + amount * 0.025;
-                CaerulaArborModVariables.MapVariables.get(world).syncData(world);
+                MapVariables.get(world).evoPointSubsisting = MapVariables.get(world).evoPointSubsisting + amount * 0.025;
+                MapVariables.get(world).syncData(world);
                 UpgradeSubsisProcedure.execute(world);
                 UpgradeSilenceProcedure.execute(world, entity, amount * 0.025);
             }
             if (entity.isPassenger() && GameplayConfig.ENABLE_MOB_BREAK.get() && world.getLevelData().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING)) {
                 (entity.getVehicle()).hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.MOB_ATTACK), entity), 8);
             }
-            if (CaerulaArborModVariables.MapVariables.get(world).strategySubsisting >= 3 && Math.random() < 0.5) {
+            if (MapVariables.get(world).strategySubsisting >= 3 && Math.random() < 0.5) {
                 if (GameplayConfig.ENABLE_MOB_BREAK.get() && world.getLevelData().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING)) {
                     if (!entity.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanspawn"))) && DetectForTrailProcedure.execute(world, x, y, z)) {
                         new Object() {
@@ -144,9 +144,9 @@ public class MobHitFuncProcedure {
                     }
                 }
             }
-            if (CaerulaArborModVariables.MapVariables.get(world).strategy_silence > 0) {
+            if (MapVariables.get(world).strategySilence > 0) {
                 if (!entity.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:bossoffspring"))) && !entity.getType().is(TagKey.create(Registries.ENTITY_TYPE, new ResourceLocation("caerula_arbor:oceanspawn")))) {
-                    if (Math.random() < -0.01 + 0.02 * CaerulaArborModVariables.MapVariables.get(world).strategy_silence && !(sourceentity == entity)) {
+                    if (Math.random() < -0.01 + 0.02 * MapVariables.get(world).strategySilence && !(sourceentity == entity)) {
                         if ((entity instanceof LivingEntity _livingEntity50 && _livingEntity50.getAttributes().hasAttribute(ModAttributes.SUMMONABLE.get())
                                 ? _livingEntity50.getAttribute(ModAttributes.SUMMONABLE.get()).getBaseValue()
                                 : 0) == 1) {
@@ -160,7 +160,7 @@ public class MobHitFuncProcedure {
                             }
                             if (world instanceof ServerLevel _level)
                                 _level.sendParticles(ParticleTypes.CLOUD, x, y, z, 64, 1.5, 2, 1.5, 0.1);
-                            if (CaerulaArborModVariables.MapVariables.get(world).strategy_silence >= 3) {
+                            if (MapVariables.get(world).strategySilence >= 3) {
                                 if (Math.random() < 0.5) {
                                     if (world instanceof ServerLevel server) {
                                         var type = switch (Mth.nextInt(RandomSource.create(), 0, 8)) {
@@ -192,8 +192,8 @@ public class MobHitFuncProcedure {
                         }
                     }
                 }
-                if (CaerulaArborModVariables.MapVariables.get(world).strategy_silence >= 3) {
-                    if (Math.random() < -0.4 + CaerulaArborModVariables.MapVariables.get(world).strategy_silence * 0.2) {
+                if (MapVariables.get(world).strategySilence >= 3) {
+                    if (Math.random() < -0.4 + MapVariables.get(world).strategySilence * 0.2) {
                         sourceentity.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.THORNS)),
                                 (float) ((entity instanceof LivingEntity _livingEntity57 && _livingEntity57.getAttributes().hasAttribute(Attributes.ATTACK_DAMAGE) ? _livingEntity57.getAttribute(Attributes.ATTACK_DAMAGE).getValue() : 0) * 0.5));
                     }
