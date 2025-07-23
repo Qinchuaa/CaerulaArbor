@@ -62,8 +62,8 @@ public class CapabilityEventHandler {
     }
 
     private static void handleSanityCap(Player player, Player oldPlayer) {
-        var oldInjury = CapabilityHandler.getSanityInjury(oldPlayer);
-        var newInjury = CapabilityHandler.getSanityInjury(player);
+        var oldInjury = ModCapabilities.getSanityInjury(oldPlayer);
+        var newInjury = ModCapabilities.getSanityInjury(player);
         newInjury.deserializeNBT(oldInjury.serializeNBT());
     }
 

@@ -1,7 +1,7 @@
 package com.apocalypse.caerulaarbor.entity;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
-import com.apocalypse.caerulaarbor.capability.CapabilityHandler;
+import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.entity.base.SeaMonster;
 import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.init.ModTags;
@@ -232,7 +232,7 @@ public class PocketSeaCrawlerEntity extends SeaMonster {
                 continue;
             }
             e.hurt(level().damageSources().magic(), (float) (damage * 3));
-            CapabilityHandler.getSanityInjury(e).hurt(damage * 150);
+            ModCapabilities.getSanityInjury(e).hurt(damage * 150);
         }
     }
 }

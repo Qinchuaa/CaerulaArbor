@@ -1,6 +1,5 @@
 package com.apocalypse.caerulaarbor.event;
 
-import com.apocalypse.caerulaarbor.capability.CapabilityHandler;
 import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
@@ -135,7 +134,7 @@ public class PlayerEventHandler {
         if (shouldCancel && level.getGameRules().getBoolean(ModGameRules.TARGET_LIFE_FUNCTION)) {
             event.setCanceled(true);
             player.setHealth(player.getMaxHealth() * 0.5f);
-            CapabilityHandler.getSanityInjury(player).heal(1000);
+            ModCapabilities.getSanityInjury(player).heal(1000);
         }
     }
 
@@ -154,7 +153,7 @@ public class PlayerEventHandler {
     public static void onPlayerWakeUp(PlayerWakeUpEvent event) {
         var player = event.getEntity();
         if (event.wakeImmediately() || event.updateLevel()) return;
-        var cap = CapabilityHandler.getPlayerVariables(player);
+        var cap = ModCapabilities.getPlayerVariables(player);
         cap.light = Mth.clamp(cap.light + Mth.nextInt(RandomSource.create(), 1, 3), 0, 100);
         cap.syncPlayerVariables(player);
     }

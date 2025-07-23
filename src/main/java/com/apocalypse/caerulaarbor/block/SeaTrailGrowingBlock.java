@@ -1,6 +1,6 @@
 package com.apocalypse.caerulaarbor.block;
 
-import com.apocalypse.caerulaarbor.capability.CapabilityHandler;
+import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.init.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -82,7 +82,7 @@ public class SeaTrailGrowingBlock extends SeaTrailBaseBlock {
     }
 
     private void tryCauseSanityDamage(Player player) {
-        if (CapabilityHandler.getPlayerVariables(player).player_oceanization >= 3) return;
-        CapabilityHandler.getSanityInjury(player).hurt(player.getRandom().nextInt(16, 32));
+        if (ModCapabilities.getPlayerVariables(player).player_oceanization >= 3) return;
+        ModCapabilities.getSanityInjury(player).hurt(player.getRandom().nextInt(16, 32));
     }
 }
