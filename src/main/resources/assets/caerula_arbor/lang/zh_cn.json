@@ -132,7 +132,12 @@
   "item.caerula_arbor.path_shaper_spawn_egg": "塑路者刷怪蛋",
   "item.caerula_arbor.pathshaper_fractal_spawn_egg": "塑路者分形刷怪蛋",
 
-  "commands.caerula_arbor.arguments.lower_enum.invalid": "枚举常量必须是 {0} 之一，实际为 {1}",
+  "caerula_arbor.strategy.subsisting": "存续",
+  "caerula_arbor.strategy.grow": "生长",
+  "caerula_arbor.strategy.breed": "繁育",
+  "caerula_arbor.strategy.migration": "迁徙",
+  "caerula_arbor.strategy.silence": "静谧",
+  "des.caerula_arbor.strategy.upgrade": "大群的进化策略[%1$s]已进入阶段%2$s",
 
   "subtitles.grow1": "拥纳愈广",
   "item.caerula_arbor.fluore_berries": "荧光浆果",

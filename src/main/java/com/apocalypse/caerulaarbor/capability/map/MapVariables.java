@@ -90,6 +90,17 @@ public class MapVariables extends SavedData {
     }
 
     public enum StrategyType {
-        GROW, SUBSISTING, BREED, MIGRATION, SILENCE;
+        GROW("caerula_arbor.strategy.grow"),
+        SUBSISTING("caerula_arbor.strategy.subsisting"),
+        BREED("caerula_arbor.strategy.breed"),
+        MIGRATION("caerula_arbor.strategy.migration"),
+        SILENCE("caerula_arbor.strategy.silence"),
+        ;
+
+        public final String name;
+
+        StrategyType(String name) {
+            this.name = name;
+        }
     }
 }

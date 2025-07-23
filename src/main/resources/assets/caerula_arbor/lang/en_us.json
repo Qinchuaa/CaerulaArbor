@@ -89,7 +89,12 @@
 
   "attribute.caerula_arbor.sanity_injury_resistance": "Sanity Injury Resistance",
 
-  "commands.caerula_arbor.arguments.lower_enum.invalid": "Enum constant must be one of {0}, found {1}",
+  "caerula_arbor.strategy.subsisting": "Subsisting",
+  "caerula_arbor.strategy.grow": "Grow",
+  "caerula_arbor.strategy.breed": "Breed",
+  "caerula_arbor.strategy.migration": "Migration",
+  "caerula_arbor.strategy.silence": "Silence",
+  "des.caerula_arbor.strategy.upgrade": "Crowd's Strategy of [%1$s] has evolved into phase %2$s",
 
   "entity.caerula_arbor.shell_sea_runner": "Shell Sea Runner",
   "entity.caerula_arbor.deep_sea_slider": "Deep Sea Slider",
