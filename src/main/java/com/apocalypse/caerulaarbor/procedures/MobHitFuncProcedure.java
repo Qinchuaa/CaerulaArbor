@@ -110,12 +110,6 @@
 //            }
 //        }
 //        if (entity.getType().is(ModTags.EntityTypes.SEA_BORN)) {
-//            if (world.getLevelData().getGameRules().getBoolean(ModGameRules.NATURAL_EVOLUTION)) {
-//                MapVariables.get(world).evoPointSubsisting = MapVariables.get(world).evoPointSubsisting + amount * 0.025;
-//                MapVariables.get(world).syncData(world);
-//                UpgradeSubsisProcedure.execute(world);
-//                UpgradeSilenceProcedure.execute(world, entity, amount * 0.025);
-//            }
 //            if (entity.isPassenger() && GameplayConfig.ENABLE_MOB_BREAK.get() && world.getLevelData().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING)) {
 //                (entity.getVehicle()).hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.MOB_ATTACK), entity), 8);
 //            }

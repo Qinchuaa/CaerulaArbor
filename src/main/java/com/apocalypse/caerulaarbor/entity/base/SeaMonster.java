@@ -1,6 +1,8 @@
 package com.apocalypse.caerulaarbor.entity.base;
 
 import com.apocalypse.caerulaarbor.capability.map.MapVariables;
+import com.apocalypse.caerulaarbor.capability.map.MapVariablesHandler;
+import com.apocalypse.caerulaarbor.init.ModGameRules;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -37,9 +39,15 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
 
     @Override
     public boolean hurt(DamageSource source, float amount) {
-        if (source.is(DamageTypes.DROWN))
+        boolean flag = super.hurt(source, amount);
+        if (source.is(DamageTypes.DROWN)) {
             return false;
-        return super.hurt(source, amount);
+        }
+        if (this.level().getLevelData().getGameRules().getBoolean(ModGameRules.NATURAL_EVOLUTION) && source.getEntity() != null) {
+            MapVariablesHandler.addEvoPoint(MapVariables.StrategyType.SUBSISTING, this.level(), Math.min(amount * 0.025, this.getMaxHealth()));
+            MapVariablesHandler.addEvoPoint(MapVariables.StrategyType.SILENCE, this.level(), Math.min(amount * 0.025, this.getMaxHealth()));
+        }
+        return flag;
     }
 
     @Override

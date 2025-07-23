@@ -30,7 +30,8 @@ public class MapVariablesHandler {
         }
 
         double currentPoint = mapVariables.getEvoPoint(strategy) + point;
-        if (currentPoint >= Math.pow(strategyLevel + 1, 3) * GameplayConfig.EVOLUTION_POINT_COEFFICIENT.get()) {
+        double required = Math.pow(strategyLevel + 1, 3) * GameplayConfig.EVOLUTION_POINT_COEFFICIENT.get();
+        if (currentPoint >= (strategy == MapVariables.StrategyType.SILENCE ? required * 4 : required)) {
             upgradeStrategy(strategy, level);
         } else {
             mapVariables.setEvoPoint(strategy, currentPoint);
@@ -90,6 +91,7 @@ public class MapVariablesHandler {
         return true;
     }
 
+    // TODO 补齐每种策略进化时的效果提示，静谧添加单独判定
     public static void displayUpgradeEffects(MapVariables.StrategyType strategy, int strategyLevel, Level level) {
         SoundEvent lowLevelSound = switch (strategy) {
             case GROW -> ModSounds.GROW1.get();
@@ -130,8 +132,10 @@ public class MapVariablesHandler {
                     level.playLocalSound(player.getX(), player.getY(), player.getZ(), strategyLevel > 2 ? highLevelSound : lowLevelSound, SoundSource.NEUTRAL, 1, 1, false);
                 }
             }
-            player.displayClientMessage(Component.translatable("des.caerula_arbor.strategy.upgrade", Component.translatable(strategy.name), levelText).withStyle(Style.EMPTY.withColor(color)), false);
-            player.displayClientMessage(Component.translatable("des." + strategy.name + "_" + strategyLevel), false);
+            if (!level.isClientSide) {
+                player.displayClientMessage(Component.translatable("des.caerula_arbor.strategy.upgrade", Component.translatable(strategy.name), levelText).withStyle(Style.EMPTY.withColor(color)), false);
+                player.displayClientMessage(Component.translatable("des." + strategy.name + "_" + strategyLevel), false);
+            }
         }
     }
 }
