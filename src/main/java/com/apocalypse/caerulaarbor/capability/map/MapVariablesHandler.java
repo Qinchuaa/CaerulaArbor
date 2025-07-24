@@ -2,7 +2,6 @@ package com.apocalypse.caerulaarbor.capability.map;
 
 import com.apocalypse.caerulaarbor.client.font.ModFontHelper;
 import com.apocalypse.caerulaarbor.config.common.GameplayConfig;
-import com.apocalypse.caerulaarbor.config.server.MiscConfig;
 import com.apocalypse.caerulaarbor.init.ModSounds;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
@@ -133,18 +132,16 @@ public class MapVariablesHandler {
             case 3 -> 0x50C2ED;
             case 4 -> 0x484CCE;
         };
-        if (MiscConfig.USE_SEABORN_LANGUAGE.get()) {
-            return ModFontHelper.randomInvert(getStrategyEvoInfo(type, level), level % 2 == 0).withStyle(Style.EMPTY.withColor(color));
-        } else {
-            String levelText = switch (level) {
-                default -> "0";
-                case 1 -> "I";
-                case 2 -> "II";
-                case 3 -> "III";
-                case 4 -> "IV";
-            };
-            return Component.translatable("des.caerula_arbor.strategy.upgrade", Component.translatable(type.name), levelText).withStyle(Style.EMPTY.withColor(color));
-        }
+        String levelText = switch (level) {
+            default -> "0";
+            case 1 -> "I";
+            case 2 -> "II";
+            case 3 -> "III";
+            case 4 -> "IV";
+        };
+        return ModFontHelper.seabornText(getStrategyEvoInfo(type, level), level % 2 == 0,
+                        Component.translatable("des.caerula_arbor.strategy.upgrade", Component.translatable(type.name), levelText))
+                .withStyle(Style.EMPTY.withColor(color));
     }
 
     public static String getStrategyEvoInfo(MapVariables.StrategyType type, int level) {

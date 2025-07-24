@@ -1,7 +1,9 @@
 package com.apocalypse.caerulaarbor.client.font;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
+import com.apocalypse.caerulaarbor.config.server.MiscConfig;
 import net.minecraft.network.chat.Component;
+import net.minecraft.network.chat.HoverEvent;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
 
@@ -23,6 +25,10 @@ public class ModFontHelper {
         return new Random(seed);
     }
 
+    public static MutableComponent randomInvert(String text) {
+        return randomInvert(text, false);
+    }
+
     public static MutableComponent randomInvert(String text, boolean invert) {
         Random random = getRandom(text);
         MutableComponent component = Component.literal("");
@@ -41,5 +47,17 @@ public class ModFontHelper {
             }
         }
         return component;
+    }
+
+    public static MutableComponent seabornText(String text, Component realText) {
+        return seabornText(text, false, realText);
+    }
+
+    public static MutableComponent seabornText(String text, boolean invert, Component realText) {
+        if (MiscConfig.USE_SEABORN_LANGUAGE.get()) {
+            return randomInvert(text, invert).withStyle(Style.EMPTY.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, realText)));
+        } else {
+            return Component.literal("").append(realText);
+        }
     }
 }

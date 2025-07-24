@@ -1,9 +1,12 @@
 package com.apocalypse.caerulaarbor.entity.base;
 
+import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.capability.map.MapVariables;
 import com.apocalypse.caerulaarbor.capability.map.MapVariablesHandler;
+import com.apocalypse.caerulaarbor.client.font.ModFontHelper;
 import com.apocalypse.caerulaarbor.init.ModGameRules;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.server.level.ServerLevel;
@@ -20,6 +23,9 @@ import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
+
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 public abstract class SeaMonster extends Monster implements GeoEntity {
 
@@ -79,5 +85,19 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
             return flag && super.doHurtTarget(pEntity);
         }
         return super.doHurtTarget(pEntity);
+    }
+
+    @Override
+    public Component getDisplayName() {
+        String name = this.getType().getDescriptionId();
+        var split = name.split(CaerulaArborMod.MODID + ".");
+        if (split.length > 1) {
+            var desName = Arrays.stream(split[1].split("_"))
+                    .filter(word -> !word.isEmpty())
+                    .map(word -> word.substring(0, 1).toUpperCase() + word.substring(1).toLowerCase())
+                    .collect(Collectors.joining(" "));
+            return ModFontHelper.seabornText(desName, this.uuid.getLeastSignificantBits() % 2 == 0, super.getDisplayName());
+        }
+        return super.getDisplayName();
     }
 }
