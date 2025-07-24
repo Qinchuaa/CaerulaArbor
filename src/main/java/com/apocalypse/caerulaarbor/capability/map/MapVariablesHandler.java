@@ -1,6 +1,8 @@
 package com.apocalypse.caerulaarbor.capability.map;
 
+import com.apocalypse.caerulaarbor.client.font.ModFont;
 import com.apocalypse.caerulaarbor.config.common.GameplayConfig;
+import com.apocalypse.caerulaarbor.config.server.MiscConfig;
 import com.apocalypse.caerulaarbor.init.ModSounds;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
@@ -109,21 +111,6 @@ public class MapVariablesHandler {
             case SILENCE -> strategyLevel == 3 ? ModSounds.SILENCE3.get() : ModSounds.SILENCE4.get();
         };
 
-        String levelText = switch (strategyLevel) {
-            default -> "";
-            case 1 -> "I";
-            case 2 -> "II";
-            case 3 -> "III";
-            case 4 -> "IV";
-        };
-
-        int color = switch (strategyLevel) {
-            default -> 0xFFFFFF;
-            case 2 -> 0x54CFCF;
-            case 3 -> 0x50C2ED;
-            case 4 -> 0x484CCE;
-        };
-
         for (var player : level.players()) {
             if (GameplayConfig.ENABLE_EVOLUTION_SOUND.get()) {
                 if (!level.isClientSide()) {
@@ -133,9 +120,55 @@ public class MapVariablesHandler {
                 }
             }
             if (!level.isClientSide) {
-                player.displayClientMessage(Component.translatable("des.caerula_arbor.strategy.upgrade", Component.translatable(strategy.name), levelText).withStyle(Style.EMPTY.withColor(color)), false);
-                player.displayClientMessage(Component.translatable("des." + strategy.name + "_" + strategyLevel), false);
+                player.displayClientMessage(getEvoInfo(strategy, strategyLevel), false);
+//                player.displayClientMessage(Component.translatable("des." + strategy.name + "_" + strategyLevel), false);
             }
         }
+    }
+
+    private static Component getEvoInfo(MapVariables.StrategyType type, int level) {
+        int color = switch (level) {
+            default -> 0xFFFFFF;
+            case 2 -> 0x54CFCF;
+            case 3 -> 0x50C2ED;
+            case 4 -> 0x484CCE;
+        };
+        if (MiscConfig.USE_SEABORN_LANGUAGE.get()) {
+            return Component.literal(getStrategyEvoInfo(type, level)).withStyle(level % 2 == 0 ? ModFont.SEABORN_LANGUAGE_INVERTED : ModFont.SEABORN_LANGUAGE).withStyle(Style.EMPTY.withColor(color));
+        } else {
+            String levelText = switch (level) {
+                default -> "";
+                case 1 -> "I";
+                case 2 -> "II";
+                case 3 -> "III";
+                case 4 -> "IV";
+            };
+            return Component.translatable("des.caerula_arbor.strategy.upgrade", Component.translatable(type.name), levelText).withStyle(Style.EMPTY.withColor(color));
+        }
+    }
+
+    public static String getStrategyEvoInfo(MapVariables.StrategyType type, int level) {
+        return switch (type) {
+            case GROW -> switch (level) {
+                default -> "Grow Embrace More";
+                case 3, 4 -> "Grow Assimilate More";
+            };
+            case SUBSISTING -> switch (level) {
+                default -> "Subsisting We the Anima";
+                case 3, 4 -> "Subsisting We the Vicissitudes";
+            };
+            case BREED -> switch (level) {
+                default -> "Breed Creed beyond our death";
+                case 3, 4 -> "Breed Arise among the Colony";
+            };
+            case MIGRATION -> switch (level) {
+                default -> "Migration Every trench we fill in";
+                case 3, 4 -> "Migration In predation we proliferate";
+            };
+            case SILENCE -> switch (level) {
+                default -> "Silence Now come with me";
+                case 3, 4 -> "Silence Now come with me back to our eternal hometown";
+            };
+        };
     }
 }

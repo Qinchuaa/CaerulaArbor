@@ -2,6 +2,7 @@ package com.apocalypse.caerulaarbor;
 
 import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.config.CommonConfig;
+import com.apocalypse.caerulaarbor.config.ServerConfig;
 import com.apocalypse.caerulaarbor.init.*;
 import com.apocalypse.caerulaarbor.network.message.CaerulaRecordGUIButtonMessage;
 import com.apocalypse.caerulaarbor.network.message.PlayerVariablesSyncMessage;
@@ -48,6 +49,7 @@ public class CaerulaArborMod {
 
     public CaerulaArborMod() {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.init());
+        ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ServerConfig.init());
 
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 
