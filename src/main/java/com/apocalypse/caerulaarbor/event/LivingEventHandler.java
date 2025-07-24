@@ -5,6 +5,7 @@ import com.apocalypse.caerulaarbor.api.event.RelicEvent;
 import com.apocalypse.caerulaarbor.block.SeaTrailBaseBlock;
 import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.capability.map.MapVariables;
+import com.apocalypse.caerulaarbor.capability.sanity.ISanityInjuryCapability;
 import com.apocalypse.caerulaarbor.init.ModAttributes;
 import com.apocalypse.caerulaarbor.init.ModTags;
 import com.apocalypse.caerulaarbor.item.relic.IRelic;
@@ -38,7 +39,8 @@ public class LivingEventHandler {
 
     @SubscribeEvent
     public static void onEntityTick(LivingEvent.LivingTickEvent event) {
-        ModCapabilities.getSanityInjury(event.getEntity()).tick();
+        // 这个不能改成ModCapabilities.getSanityInjury，重生时候需要重新复制一遍cap
+        event.getEntity().getCapability(ModCapabilities.SANITY_INJURY).ifPresent(ISanityInjuryCapability::tick);
     }
 
     @SubscribeEvent
