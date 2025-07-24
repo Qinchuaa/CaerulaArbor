@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.item;
 
-import com.apocalypse.caerulaarbor.client.font.ModFont;
+import com.apocalypse.caerulaarbor.client.font.ModFontHelper;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -20,7 +20,7 @@ public class CaffeineItem extends Item {
     public void appendHoverText(ItemStack itemstack, Level level, List<Component> list, TooltipFlag flag) {
         super.appendHoverText(itemstack, level, list, flag);
         list.add(Component.translatable("item.caerula_arbor.caffeine.description_0"));
-        list.add(Component.literal("BREED SUBSISTING GROW MIGRATION").withStyle(ModFont.SEABORN_LANGUAGE));
-        list.add(Component.literal("BREED SUBSISTING GROW MIGRATION").withStyle(ModFont.SEABORN_LANGUAGE_INVERTED));
+        list.add(Component.literal("BREED SUBSISTING GROW MIGRATION").withStyle(ModFontHelper.SEABORN_LANGUAGE));
+        list.add(Component.literal("BREED SUBSISTING GROW MIGRATION").withStyle(ModFontHelper.SEABORN_LANGUAGE_INVERTED));
     }
 }

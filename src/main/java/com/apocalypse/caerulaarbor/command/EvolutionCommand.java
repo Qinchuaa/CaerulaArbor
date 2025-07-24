@@ -27,7 +27,7 @@ public class EvolutionCommand {
                     int strategyLevel = IntegerArgumentType.getInteger(arguments, "level");
                     var level = arguments.getSource().getUnsidedLevel();
                     String levelText = switch (strategyLevel) {
-                        default -> "";
+                        default -> "0";
                         case 1 -> "I";
                         case 2 -> "II";
                         case 3 -> "III";

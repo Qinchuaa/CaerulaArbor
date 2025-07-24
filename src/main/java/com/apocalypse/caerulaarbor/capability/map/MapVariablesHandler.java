@@ -1,6 +1,6 @@
 package com.apocalypse.caerulaarbor.capability.map;
 
-import com.apocalypse.caerulaarbor.client.font.ModFont;
+import com.apocalypse.caerulaarbor.client.font.ModFontHelper;
 import com.apocalypse.caerulaarbor.config.common.GameplayConfig;
 import com.apocalypse.caerulaarbor.config.server.MiscConfig;
 import com.apocalypse.caerulaarbor.init.ModSounds;
@@ -134,10 +134,10 @@ public class MapVariablesHandler {
             case 4 -> 0x484CCE;
         };
         if (MiscConfig.USE_SEABORN_LANGUAGE.get()) {
-            return Component.literal(getStrategyEvoInfo(type, level)).withStyle(level % 2 == 0 ? ModFont.SEABORN_LANGUAGE_INVERTED : ModFont.SEABORN_LANGUAGE).withStyle(Style.EMPTY.withColor(color));
+            return ModFontHelper.randomInvert(getStrategyEvoInfo(type, level), level % 2 == 0).withStyle(Style.EMPTY.withColor(color));
         } else {
             String levelText = switch (level) {
-                default -> "";
+                default -> "0";
                 case 1 -> "I";
                 case 2 -> "II";
                 case 3 -> "III";
