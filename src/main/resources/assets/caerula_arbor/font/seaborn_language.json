@@ -5,6 +5,10 @@
       "id": "minecraft:include/space"
     },
     {
+      "type": "reference",
+      "id": "minecraft:include/default"
+    },
+    {
       "type": "bitmap",
       "file": "caerula_arbor:font/seaborn_language.png",
       "ascent": 8,
