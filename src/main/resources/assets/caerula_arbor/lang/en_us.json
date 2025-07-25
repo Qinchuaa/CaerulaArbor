@@ -101,6 +101,11 @@
   "command.caerula_arbor.evolution.set.success": "Calls of We Many's Strategy of [%1$s] has been set to phase %2$s",
   "command.caerula_arbor.evolution.set.failure": "Failed to set Calls of We Many's Strategy of [%1$s]",
 
+  "tip.caerula_arbor.strategy.breed_1": "[Breed] Arise among the Colony",
+  "tip.caerula_arbor.strategy.breed_2": "[Breed] Arise among the Colony",
+  "tip.caerula_arbor.strategy.breed_3": "[Breed] Creed beyond our death",
+  "tip.caerula_arbor.strategy.breed_4": "[Breed] Creed beyond our death",
+
   "entity.caerula_arbor.shell_sea_runner": "Shell Sea Runner",
   "entity.caerula_arbor.deep_sea_slider": "Deep Sea Slider",
   "entity.caerula_arbor.super_slider": "Super Slider",

@@ -4,9 +4,9 @@ import com.apocalypse.caerulaarbor.client.component.ClientLanguageGetter;
 import com.apocalypse.caerulaarbor.client.component.SeabornComponent;
 import com.apocalypse.caerulaarbor.client.font.ModFontHelper;
 import net.minecraft.client.gui.components.ChatComponent;
+import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.FormattedText;
 import net.minecraft.network.chat.MutableComponent;
-import net.minecraft.network.chat.contents.TranslatableContents;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.injection.At;
 import org.spongepowered.asm.mixin.injection.ModifyArg;
@@ -22,7 +22,7 @@ public class ChatComponentMixin {
         ) {
             var key = seabornComponent.getKey();
             var enTranslation = ClientLanguageGetter.EN_US.getOrDefault(key, seabornComponent.getFallback() != null ? seabornComponent.getFallback() : key);
-            return ModFontHelper.seabornText(enTranslation, component.getStyle(), seabornComponent.invert, MutableComponent.create(new TranslatableContents(key, seabornComponent.getFallback(), seabornComponent.getArgs())));
+            return ModFontHelper.seabornText(enTranslation, component.getStyle(), seabornComponent.invert, Component.translatableWithFallback(key, seabornComponent.getFallback(), seabornComponent.getArgs()));
         }
 
         return pComponent;

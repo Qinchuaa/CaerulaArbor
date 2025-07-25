@@ -132,16 +132,7 @@ public class MapVariablesHandler {
             case 4 -> 0x484CCE;
             default -> 0xFFFFFF;
         };
-        String levelText = switch (level) {
-            case 1 -> "I";
-            case 2 -> "II";
-            case 3 -> "III";
-            case 4 -> "IV";
-            default -> "0";
-        };
-        return ModFontHelper.translatableSeaborn(getStrategyEvoInfo(type, level), level % 2 == 0,
-                        Component.translatable("des.caerula_arbor.strategy.upgrade", Component.translatable(type.name), levelText))
-                .withStyle(Style.EMPTY.withColor(color));
+        return ModFontHelper.translatableSeaborn("tip." + type.name + "_" + level, level % 2 == 0).withStyle(Style.EMPTY.withColor(color));
     }
 
     public static String getStrategyEvoInfo(MapVariables.StrategyType type, int level) {
