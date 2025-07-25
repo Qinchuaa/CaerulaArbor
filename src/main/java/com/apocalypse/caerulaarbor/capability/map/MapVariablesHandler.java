@@ -127,19 +127,19 @@ public class MapVariablesHandler {
 
     private static Component getEvoInfo(MapVariables.StrategyType type, int level) {
         int color = switch (level) {
-            default -> 0xFFFFFF;
             case 2 -> 0x54CFCF;
             case 3 -> 0x50C2ED;
             case 4 -> 0x484CCE;
+            default -> 0xFFFFFF;
         };
         String levelText = switch (level) {
-            default -> "0";
             case 1 -> "I";
             case 2 -> "II";
             case 3 -> "III";
             case 4 -> "IV";
+            default -> "0";
         };
-        return ModFontHelper.seabornText(getStrategyEvoInfo(type, level), level % 2 == 0,
+        return ModFontHelper.translatableSeaborn(getStrategyEvoInfo(type, level), level % 2 == 0,
                         Component.translatable("des.caerula_arbor.strategy.upgrade", Component.translatable(type.name), levelText))
                 .withStyle(Style.EMPTY.withColor(color));
     }
@@ -147,24 +147,24 @@ public class MapVariablesHandler {
     public static String getStrategyEvoInfo(MapVariables.StrategyType type, int level) {
         return switch (type) {
             case GROW -> switch (level) {
-                default -> "Grow Embrace More";
                 case 3, 4 -> "Grow Assimilate More";
+                default -> "Grow Embrace More";
             };
             case SUBSISTING -> switch (level) {
-                default -> "Subsisting We the Anima";
                 case 3, 4 -> "Subsisting We the Vicissitudes";
+                default -> "Subsisting We the Anima";
             };
             case BREED -> switch (level) {
-                default -> "Breed Creed beyond our death";
                 case 3, 4 -> "Breed Arise among the Colony";
+                default -> "Breed Creed beyond our death";
             };
             case MIGRATION -> switch (level) {
-                default -> "Migration Every trench we fill in";
                 case 3, 4 -> "Migration In predation we proliferate";
+                default -> "Migration Every trench we fill in";
             };
             case SILENCE -> switch (level) {
-                default -> "Silence Now come with me";
                 case 3, 4 -> "Silence Now come with me back to our eternal hometown";
+                default -> "Silence Now come with me";
             };
         };
     }
