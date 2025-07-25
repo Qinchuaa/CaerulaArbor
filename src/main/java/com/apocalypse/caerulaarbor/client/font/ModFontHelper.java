@@ -63,8 +63,8 @@ public class ModFontHelper {
     }
 
     // 请在服务端发送消息给客户端玩家时使用该方法，客户端会自动替换为对应文本
-    public static MutableComponent translatableSeaborn(String key, boolean invert, Object... args) {
-        return MutableComponent.create(new SeabornComponent(key, MiscConfig.USE_SEABORN_LANGUAGE.get(), invert, null, args));
+    public static MutableComponent translatableSeaborn(String key, boolean obfuscated, boolean invert, Object... args) {
+        return MutableComponent.create(new SeabornComponent(key, obfuscated, invert, null, args));
     }
 
     /**

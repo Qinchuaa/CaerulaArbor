@@ -2,6 +2,7 @@ package com.apocalypse.caerulaarbor.capability.map;
 
 import com.apocalypse.caerulaarbor.client.font.ModFontHelper;
 import com.apocalypse.caerulaarbor.config.common.GameplayConfig;
+import com.apocalypse.caerulaarbor.config.server.MiscConfig;
 import com.apocalypse.caerulaarbor.init.ModSounds;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.Style;
@@ -132,7 +133,7 @@ public class MapVariablesHandler {
             case 4 -> 0x484CCE;
             default -> 0xFFFFFF;
         };
-        return ModFontHelper.translatableSeaborn("tip." + type.name + "_" + level, level % 2 == 0).withStyle(Style.EMPTY.withColor(color));
+        return ModFontHelper.translatableSeaborn("tip." + type.name + "_" + level, MiscConfig.USE_SEABORN_LANGUAGE.get(), level % 2 == 0).withStyle(Style.EMPTY.withColor(color));
     }
 
     public static String getStrategyEvoInfo(MapVariables.StrategyType type, int level) {
