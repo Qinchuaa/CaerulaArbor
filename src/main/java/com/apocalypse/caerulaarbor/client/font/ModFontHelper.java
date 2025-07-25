@@ -63,12 +63,8 @@ public class ModFontHelper {
     }
 
     // 请在服务端发送消息给客户端玩家时使用该方法，客户端会自动替换为对应文本
-    public static MutableComponent translatableSeaborn(String key, Object... args) {
-        return MutableComponent.create(new SeabornComponent(key, true, null, args));
-    }
-
     public static MutableComponent translatableSeaborn(String key, boolean invert, Object... args) {
-        return MutableComponent.create(new SeabornComponent(key, invert, null, args));
+        return MutableComponent.create(new SeabornComponent(key, MiscConfig.USE_SEABORN_LANGUAGE.get(), invert, null, args));
     }
 
     /**
@@ -90,8 +86,8 @@ public class ModFontHelper {
 
     public static MutableComponent seabornText(String text, @Nullable Style defaultStyle, boolean invert, Component realText) {
         if (MiscConfig.USE_SEABORN_LANGUAGE.get()) {
-            defaultStyle = Objects.requireNonNullElse(defaultStyle, Style.EMPTY).withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, realText));
-            return randomInvert(text, defaultStyle, invert);
+            defaultStyle = Objects.requireNonNullElse(defaultStyle, Style.EMPTY);
+            return randomInvert(text, defaultStyle, invert).withStyle(defaultStyle.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, realText)));
         } else {
             return Component.literal("").append(realText);
         }
