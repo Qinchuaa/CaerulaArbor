@@ -7,8 +7,10 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.HoverEvent;
 import net.minecraft.network.chat.MutableComponent;
 import net.minecraft.network.chat.Style;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
+import java.util.Objects;
 import java.util.Random;
 import java.util.zip.CRC32;
 
@@ -27,15 +29,25 @@ public class ModFontHelper {
     }
 
     public static MutableComponent randomInvert(String text) {
-        return randomInvert(text, false);
+        return randomInvert(text, null, false);
     }
 
-    public static MutableComponent randomInvert(String text, boolean invert) {
+    public static MutableComponent randomInvert(String text, @Nullable Style defaultStyle, boolean invert) {
         Random random = getRandom(text);
         MutableComponent component = Component.literal("");
         if (INFO_CACHE.containsKey(text)) {
             for (int i = 0; i < text.length(); i++) {
-                component = component.append(Component.literal(text.charAt(i) + "").withStyle(INFO_CACHE.get(text)[i] ^ invert ? SEABORN_LANGUAGE_INVERTED : SEABORN_LANGUAGE));
+                Component componentToAppend;
+                if (defaultStyle != null) {
+                    componentToAppend = Component.literal(text.charAt(i) + "")
+                            .withStyle(defaultStyle)
+                            .withStyle(INFO_CACHE.get(text)[i] ^ invert ? SEABORN_LANGUAGE_INVERTED : SEABORN_LANGUAGE);
+                } else {
+                    componentToAppend = Component.literal(text.charAt(i) + "")
+                            .withStyle(INFO_CACHE.get(text)[i] ^ invert ? SEABORN_LANGUAGE_INVERTED : SEABORN_LANGUAGE);
+                }
+
+                component = component.append(componentToAppend);
             }
         } else {
             Boolean[] booleans = new Boolean[text.length()];
@@ -50,17 +62,32 @@ public class ModFontHelper {
         return component;
     }
 
+    // 请在服务端发送消息给客户端玩家时使用该方法，客户端会自动替换为对应文本
     public static MutableComponent translatableSeaborn(String key, Object... args) {
         return MutableComponent.create(new SeabornComponent(key, true, null, args));
     }
 
-    public static MutableComponent seabornText(String text, Component realText) {
-        return seabornText(text, false, realText);
+    /**
+     * 将指定字符串转换为海嗣文，应该在客户端进行调用
+     *
+     * @param text     目标字符串
+     * @param realText 原文组件
+     */
+    public static MutableComponent seabornText(String text, @Nullable Style defaultStyle, Component realText) {
+        return seabornText(text, defaultStyle, false, realText);
     }
 
+    /**
+     * 将指定字符串转换为海嗣文，应该在客户端进行调用
+     */
     public static MutableComponent seabornText(String text, boolean invert, Component realText) {
+        return seabornText(text, null, invert, realText);
+    }
+
+    public static MutableComponent seabornText(String text, @Nullable Style defaultStyle, boolean invert, Component realText) {
         if (MiscConfig.USE_SEABORN_LANGUAGE.get()) {
-            return randomInvert(text, invert).withStyle(Style.EMPTY.withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, realText)));
+            defaultStyle = Objects.requireNonNullElse(defaultStyle, Style.EMPTY).withHoverEvent(new HoverEvent(HoverEvent.Action.SHOW_TEXT, realText));
+            return randomInvert(text, defaultStyle, invert);
         } else {
             return Component.literal("").append(realText);
         }
