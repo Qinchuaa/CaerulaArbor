@@ -16,18 +16,13 @@ public class ChatComponentMixin {
 
     @ModifyArg(method = "addMessage(Lnet/minecraft/network/chat/Component;Lnet/minecraft/network/chat/MessageSignature;ILnet/minecraft/client/GuiMessageTag;Z)V", at = @At(value = "INVOKE", target = "Lnet/minecraft/client/gui/components/ComponentRenderUtils;wrapComponents(Lnet/minecraft/network/chat/FormattedText;ILnet/minecraft/client/gui/Font;)Ljava/util/List;"), index = 0)
     public FormattedText modifyComponent(FormattedText pComponent) {
-//        System.out.println("modify content");
-
         if (pComponent instanceof MutableComponent component
                 && component.getContents() instanceof SeabornComponent seabornComponent
                 && seabornComponent.useObfuscatedText
         ) {
             var key = seabornComponent.getKey();
             var enTranslation = ClientLanguageGetter.EN_US.getOrDefault(key, seabornComponent.getFallback() != null ? seabornComponent.getFallback() : key);
-
-//            System.out.println("enTranslation: " + enTranslation);
-
-            return ModFontHelper.seabornText(enTranslation, component.getStyle(), MutableComponent.create(new TranslatableContents(key, seabornComponent.getFallback(), seabornComponent.getArgs())));
+            return ModFontHelper.seabornText(enTranslation, component.getStyle(), seabornComponent.invert, MutableComponent.create(new TranslatableContents(key, seabornComponent.getFallback(), seabornComponent.getArgs())));
         }
 
         return pComponent;

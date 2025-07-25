@@ -67,6 +67,10 @@ public class ModFontHelper {
         return MutableComponent.create(new SeabornComponent(key, true, null, args));
     }
 
+    public static MutableComponent translatableSeaborn(String key, boolean invert, Object... args) {
+        return MutableComponent.create(new SeabornComponent(key, invert, null, args));
+    }
+
     /**
      * 将指定字符串转换为海嗣文，应该在客户端进行调用
      *
