@@ -138,6 +138,10 @@
   "caerula_arbor.strategy.migration": "迁徙",
   "caerula_arbor.strategy.silence": "静谧",
   "des.caerula_arbor.strategy.upgrade": "大群的进化策略[%1$s]已进入阶段%2$s",
+  "caerula_arbor.light.luminous": "通明",
+  "caerula_arbor.light.flickering": "摇曳",
+  "caerula_arbor.light.dim": "黯淡",
+  "caerula_arbor.light.extinguished": "寂灭",
 
   "command.caerula_arbor.evolution.upgrade.success": "大群的进化策略[%1$s]已进入新的阶段",
   "command.caerula_arbor.evolution.upgrade.failure": "升级大群的进化策略[%1$s]失败",
@@ -149,6 +153,8 @@
   "command.caerula_arbor.attribute.max_life.multiple": "成功将%1$s名玩家的最大生命值设置为%2$s",
   "command.caerula_arbor.attribute.shield.single": "成功将%1$s的护盾值设置为%2$s",
   "command.caerula_arbor.attribute.shield.multiple": "成功将%1$s名玩家的护盾值设置为%2$s",
+  "command.caerula_arbor.attribute.light.single": "成功将%1$s的灯火设置为%2$s",
+  "command.caerula_arbor.attribute.light.multiple": "成功将%1$s名玩家的灯火设置为%2$s",
 
   "tip.caerula_arbor.strategy.breed_1": "[繁育] 于繁育之地崛起……",
   "tip.caerula_arbor.strategy.breed_2": "[繁育] 于繁育之地崛起……",
