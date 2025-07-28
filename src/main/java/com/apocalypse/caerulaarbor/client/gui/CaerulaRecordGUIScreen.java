@@ -1,12 +1,12 @@
 package com.apocalypse.caerulaarbor.client.gui;
 
-import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
 import com.apocalypse.caerulaarbor.capability.sanity.SanityInjuryCapability;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.menu.CaerulaRecorderMenu;
-import com.apocalypse.caerulaarbor.network.message.CaerulaRecordGUIButtonMessage;
+import com.apocalypse.caerulaarbor.network.ModNetwork;
+import com.apocalypse.caerulaarbor.network.message.send.CaerulaRecordGUIButtonMessage;
 import com.apocalypse.caerulaarbor.procedures.GetOceanizeStateProcedure;
 import com.apocalypse.caerulaarbor.procedures.GetSanityProcedure;
 import com.mojang.blaze3d.systems.RenderSystem;
@@ -173,7 +173,7 @@ public class CaerulaRecordGUIScreen extends AbstractContainerScreen<CaerulaRecor
     @Override
     public void init() {
         super.init();
-        imagebutton_relic_icon = new ImageButton(this.leftPos + 6, this.topPos + 99, 16, 16, 0, 0, 16, new ResourceLocation("caerula_arbor:textures/screens/atlas/imagebutton_relic_icon.png"), 16, 32, e -> CaerulaArborMod.PACKET_HANDLER.sendToServer(new CaerulaRecordGUIButtonMessage(0)));
+        imagebutton_relic_icon = new ImageButton(this.leftPos + 6, this.topPos + 99, 16, 16, 0, 0, 16, new ResourceLocation("caerula_arbor:textures/screens/atlas/imagebutton_relic_icon.png"), 16, 32, e -> ModNetwork.PACKET_HANDLER.sendToServer(new CaerulaRecordGUIButtonMessage(0)));
 //        guistate.put("button:imagebutton_relic_icon", imagebutton_relic_icon);
         this.addRenderableWidget(imagebutton_relic_icon);
         boolean result = false;

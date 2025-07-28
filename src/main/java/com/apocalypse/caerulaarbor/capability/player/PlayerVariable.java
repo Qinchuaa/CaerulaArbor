@@ -2,7 +2,8 @@ package com.apocalypse.caerulaarbor.capability.player;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.capability.Relic;
-import com.apocalypse.caerulaarbor.network.message.s2c.PlayerVariablesSyncMessage;
+import com.apocalypse.caerulaarbor.network.ModNetwork;
+import com.apocalypse.caerulaarbor.network.message.receive.PlayerVariablesSyncMessage;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
@@ -11,6 +12,7 @@ import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.AutoRegisterCapability;
 import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.network.PacketDistributor;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.HashMap;
 
@@ -38,12 +40,12 @@ public class PlayerVariable implements INBTSerializable<CompoundTag> {
 
     public void syncPlayerVariables(Entity entity) {
         if (entity instanceof ServerPlayer serverPlayer)
-            CaerulaArborMod.PACKET_HANDLER.send(PacketDistributor.PLAYER.with(() -> serverPlayer), new PlayerVariablesSyncMessage(this));
+            ModNetwork.PACKET_HANDLER.send(PacketDistributor.PLAYER.with(() -> serverPlayer), new PlayerVariablesSyncMessage(this));
     }
 
     public CompoundTag writeNBT() {
         CompoundTag nbt = new CompoundTag();
-        nbt.putDouble("player_light", this.light);
+        nbt.putDouble("Light", this.light);
         nbt.putInt("Life", this.life);
         nbt.putInt("MaxLife", this.maxLive);
         nbt.putInt("Shield", this.shield);
@@ -66,8 +68,10 @@ public class PlayerVariable implements INBTSerializable<CompoundTag> {
         return nbt;
     }
 
-    public void readNBT(CompoundTag tag) {
-        this.light = tag.getDouble("player_light");
+    public void readNBT(@Nullable CompoundTag tag) {
+        if (tag == null) return;
+
+        this.light = tag.getDouble("Light");
         this.life = tag.getInt("Life");
         this.maxLive = tag.getInt("MaxLife");
         this.shield = tag.getInt("Shield");

@@ -4,7 +4,8 @@ import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.capability.map.MapVariables;
 import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
 import com.apocalypse.caerulaarbor.capability.sanity.SanityInjuryCapability;
-import com.apocalypse.caerulaarbor.network.message.s2c.SavedDataSyncMessage;
+import com.apocalypse.caerulaarbor.network.ModNetwork;
+import com.apocalypse.caerulaarbor.network.message.receive.SavedDataSyncMessage;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.Tag;
 import net.minecraft.server.level.ServerPlayer;
@@ -43,7 +44,7 @@ public class CapabilityEventHandler {
             event.getEntity().getCapability(ModCapabilities.PLAYER_VARIABLE, null).orElse(new PlayerVariable()).syncPlayerVariables(event.getEntity());
 
             var mapVariables = MapVariables.get(event.getEntity().level());
-            CaerulaArborMod.PACKET_HANDLER.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) event.getEntity()), new SavedDataSyncMessage(mapVariables));
+            ModNetwork.PACKET_HANDLER.send(PacketDistributor.PLAYER.with(() -> (ServerPlayer) event.getEntity()), new SavedDataSyncMessage(mapVariables));
         }
     }
 

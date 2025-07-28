@@ -1,4 +1,4 @@
-package com.apocalypse.caerulaarbor.network.message.s2c;
+package com.apocalypse.caerulaarbor.network.message.receive;
 
 import com.apocalypse.caerulaarbor.capability.map.MapVariables;
 import net.minecraft.nbt.CompoundTag;

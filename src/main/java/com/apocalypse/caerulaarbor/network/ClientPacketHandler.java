@@ -3,7 +3,7 @@ package com.apocalypse.caerulaarbor.network;
 import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
-import com.apocalypse.caerulaarbor.network.message.s2c.PlayerVariablesSyncMessage;
+import com.apocalypse.caerulaarbor.network.message.receive.PlayerVariablesSyncMessage;
 import net.minecraft.client.Minecraft;
 import net.minecraftforge.fml.LogicalSide;
 import net.minecraftforge.network.NetworkEvent;
