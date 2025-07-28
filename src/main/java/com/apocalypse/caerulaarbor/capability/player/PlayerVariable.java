@@ -22,11 +22,17 @@ public class PlayerVariable implements INBTSerializable<CompoundTag> {
 
     public static ResourceLocation ID = CaerulaArborMod.loc("player_variables");
 
+    // 灯火
     public double light = 100.0;
+    // 目标生命值
     public int life = 6;
+    // 最大目标生命值
     public int maxLive = 6;
+    // 护盾值
     public int shield = 0;
+    // 排异反应（0为无排异，1/2/4/8分别对应一个排异反应）
     public int rejection = 0;
+    // 海嗣化程度
     public int seabornization = 0;
 
     public boolean show_stats = false;

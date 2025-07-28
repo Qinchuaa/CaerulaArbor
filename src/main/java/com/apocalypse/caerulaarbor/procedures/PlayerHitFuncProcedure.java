@@ -56,29 +56,12 @@ public class PlayerHitFuncProcedure {
     private static void execute(@Nullable Event event, LevelAccessor world, double x, double y, double z, DamageSource damagesource, Entity entity, Entity immediatesourceentity, Entity sourceentity, double amount) {
         if (damagesource == null || entity == null || immediatesourceentity == null || sourceentity == null)
             return;
-        ItemStack item_temp;
         boolean validItem;
         double light_cost;
-        double rate;
-        double time;
         var cap = entity.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable());
         if (entity instanceof Player ent) {
             light_cost = amount * 0.01;
-//            if (cap.disoclusion == 3) {
-//                rate = 0.08;
-//                time = 160;
-//                if (world.getBiome(BlockPos.containing(x, y, z)).value().getBaseTemperature() * 100f >= 180) {
-//                    rate = 0.02;
-//                    time = 40;
-//                } else if (world.getBiome(BlockPos.containing(x, y, z)).value().getBaseTemperature() * 100f <= 10) {
-//                    rate = 0.12;
-//                    time = 240;
-//                }
-//                if (Math.random() < rate) {
-//                    if (!ent.level().isClientSide())
-//                        ent.addEffect(new MobEffectInstance(ModMobEffects.FROZEN.get(), (int) time, 0, false, false));
-//                }
-//            }
+
             if (Relic.HAND_THORNS.gained(cap)) {
                 CaerulaArborMod.queueServerWork(10, () -> {
                     if (world instanceof Level _level) {
