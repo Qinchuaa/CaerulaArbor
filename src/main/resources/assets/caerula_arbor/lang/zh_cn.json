@@ -143,6 +143,12 @@
   "command.caerula_arbor.evolution.upgrade.failure": "升级大群的进化策略[%1$s]失败",
   "command.caerula_arbor.evolution.set.success": "大群的进化策略[%1$s]已设置为阶段%2$s",
   "command.caerula_arbor.evolution.set.failure": "调整大群的进化策略[%1$s]失败",
+  "command.caerula_arbor.attribute.life.single": "成功将%1$s的生命值设置为%2$s",
+  "command.caerula_arbor.attribute.life.multiple": "成功将%1$s名玩家的生命值设置为%2$s",
+  "command.caerula_arbor.attribute.max_life.single": "成功将%1$s的最大生命值设置为%2$s",
+  "command.caerula_arbor.attribute.max_life.multiple": "成功将%1$s名玩家的最大生命值设置为%2$s",
+  "command.caerula_arbor.attribute.shield.single": "成功将%1$s的护盾值设置为%2$s",
+  "command.caerula_arbor.attribute.shield.multiple": "成功将%1$s名玩家的护盾值设置为%2$s",
 
   "tip.caerula_arbor.strategy.breed_1": "[繁育] 于繁育之地崛起……",
   "tip.caerula_arbor.strategy.breed_2": "[繁育] 于繁育之地崛起……",

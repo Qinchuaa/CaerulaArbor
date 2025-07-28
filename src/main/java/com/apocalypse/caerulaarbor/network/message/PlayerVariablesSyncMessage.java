@@ -31,7 +31,7 @@ public class PlayerVariablesSyncMessage {
             if (!context.getDirection().getReceptionSide().isServer()) {
                 PlayerVariable variables = Minecraft.getInstance().player.getCapability(ModCapabilities.PLAYER_VARIABLE, null).orElse(new PlayerVariable());
                 variables.light = message.data.light;
-                variables.lives = message.data.lives;
+                variables.life = message.data.life;
                 variables.maxLive = message.data.maxLive;
                 variables.shield = message.data.shield;
                 variables.disoclusion = message.data.disoclusion;

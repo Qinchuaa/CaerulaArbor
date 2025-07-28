@@ -135,8 +135,8 @@ public class CaerulaRecordGUIScreen extends AbstractContainerScreen<CaerulaRecor
 
         guiGraphics.drawString(this.font, twoDigit.format(entity.getHealth()) + "/" + oneDigit.format(entity.getMaxHealth()), 82, 71, -10092442, false);
         guiGraphics.drawString(this.font, twoDigit.format(entity.getHealth()) + "/" + oneDigit.format(entity.getMaxHealth()), 81, 71, -1, false);
-        guiGraphics.drawString(this.font, "" + c.lives, 18, 33, -16764058, false);
-        guiGraphics.drawString(this.font, "" + c.lives, 17, 33, -1, false);
+        guiGraphics.drawString(this.font, "" + c.life, 18, 33, -16764058, false);
+        guiGraphics.drawString(this.font, "" + c.life, 17, 33, -1, false);
         guiGraphics.drawString(this.font, "/" + c.maxLive, 36, 33, -16764058, false);
         guiGraphics.drawString(this.font, "/" + c.maxLive, 35, 33, -16724737, false);
         guiGraphics.drawString(this.font, "" + c.shield, 18, 53, -13421773, false);

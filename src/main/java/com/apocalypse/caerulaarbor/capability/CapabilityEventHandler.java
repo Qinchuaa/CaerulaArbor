@@ -79,7 +79,7 @@ public class CapabilityEventHandler {
         PlayerVariable original = oldPlayer.getCapability(ModCapabilities.PLAYER_VARIABLE, null).orElse(new PlayerVariable());
         PlayerVariable clone = player.getCapability(ModCapabilities.PLAYER_VARIABLE, null).orElse(new PlayerVariable());
         clone.light = original.light;
-        clone.lives = original.lives;
+        clone.life = original.life;
         clone.maxLive = original.maxLive;
         clone.shield = original.shield;
         clone.disoclusion = original.disoclusion;

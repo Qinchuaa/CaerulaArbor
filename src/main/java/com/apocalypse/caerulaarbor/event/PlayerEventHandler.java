@@ -109,8 +109,8 @@ public class PlayerEventHandler {
 
             sendSoundAndParticles(level, pos, ModParticleTypes.SHIELDLOSS.get());
             shouldCancel = true;
-        } else if (cap.lives > 0) {
-            cap.lives -= 1;
+        } else if (cap.life > 0) {
+            cap.life -= 1;
 
             sendSoundAndParticles(level, pos, ModParticleTypes.LIFELOSS.get());
             shouldCancel = true;

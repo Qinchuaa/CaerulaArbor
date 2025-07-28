@@ -21,9 +21,9 @@ public class PlayerVariable implements INBTSerializable<CompoundTag> {
     public static ResourceLocation ID = CaerulaArborMod.loc("player_variables");
 
     public double light = 100.0;
-    public double lives = 6.0;
-    public double maxLive = 6.0;
-    public double shield = 0;
+    public int life = 6;
+    public int maxLive = 6;
+    public int shield = 0;
     public int disoclusion = 0;
     public boolean show_stats = false;
     public boolean kingShowPtc = true;
@@ -42,9 +42,9 @@ public class PlayerVariable implements INBTSerializable<CompoundTag> {
     public CompoundTag writeNBT() {
         CompoundTag nbt = new CompoundTag();
         nbt.putDouble("player_light", light);
-        nbt.putDouble("player_lives", lives);
-        nbt.putDouble("player_maxlive", maxLive);
-        nbt.putDouble("player_shield", shield);
+        nbt.putInt("Life", life);
+        nbt.putInt("MaxLife", maxLive);
+        nbt.putInt("Shield", shield);
         nbt.putInt("disoclusion", disoclusion);
         nbt.putBoolean("show_stats", show_stats);
         nbt.putBoolean("kingShowPtc", kingShowPtc);
@@ -64,9 +64,9 @@ public class PlayerVariable implements INBTSerializable<CompoundTag> {
 
     public void readNBT(CompoundTag tag) {
         light = tag.getDouble("player_light");
-        lives = tag.getDouble("player_lives");
-        maxLive = tag.getDouble("player_maxlive");
-        shield = tag.getDouble("player_shield");
+        life = tag.getInt("Life");
+        maxLive = tag.getInt("MaxLife");
+        shield = tag.getInt("Shield");
         disoclusion = tag.getInt("disoclusion");
         show_stats = tag.getBoolean("show_stats");
         kingShowPtc = tag.getBoolean("kingShowPtc");

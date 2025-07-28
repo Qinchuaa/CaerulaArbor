@@ -102,7 +102,7 @@ public class PlayerTickFuncProcedure {
 
         if (entity instanceof LivingEntity _livingEntity8 && _livingEntity8.getAttributes().hasAttribute(ModAttributes.SANITY_INJURY_RESISTANCE.get()))
             _livingEntity8.getAttribute(ModAttributes.SANITY_INJURY_RESISTANCE.get()).setBaseValue(modifi);
-        if (cap.lives <= 1) {
+        if (cap.life <= 1) {
             suitKing = 0;
             if (Relic.KING_SPEAR.gained(cap)) {
                 suitKing = suitKing + 1;
@@ -187,7 +187,7 @@ public class PlayerTickFuncProcedure {
                     _playerHasItem.addEffect(new MobEffectInstance(ModMobEffects.WIPE_DUSTS.get(), 100, 0, false, false));
             }
         }
-        if (cap.lives >= cap.maxLive) {
+        if (cap.life >= cap.maxLive) {
             suitArchfi = 0;
             if (Relic.SARKAZ_KING_FLAG.gained(cap)) {
                 suitArchfi = suitArchfi + 1;
@@ -258,9 +258,9 @@ public class PlayerTickFuncProcedure {
                         Relic.SURVIVOR_CONTRACT.get(cap) - 1, false, false));
             }
         }
-        if (cap.lives > cap.maxLive) {
+        if (cap.life > cap.maxLive) {
             entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
-                capability.lives = cap.maxLive;
+                capability.life = cap.maxLive;
                 capability.syncPlayerVariables(entity);
             });
         }

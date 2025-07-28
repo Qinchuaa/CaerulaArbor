@@ -13,7 +13,7 @@ public class ModCommands {
     public static void registerCommand(RegisterCommandsEvent event) {
         var command = Commands.literal(CaerulaArborMod.MODID);
         command.then(EvolutionCommand.get());
-//        command.then(ConfigCommand.get());
+        command.then(AttributeCommand.get());
 
         event.getDispatcher().register(command);
     }
