@@ -135,29 +135,4 @@ public class MapVariablesHandler {
         };
         return ModFontHelper.translatableSeaborn("tip." + type.name + "_" + level, MiscConfig.USE_SEABORN_LANGUAGE.get(), level % 2 == 0).withStyle(Style.EMPTY.withColor(color));
     }
-
-    public static String getStrategyEvoInfo(MapVariables.StrategyType type, int level) {
-        return switch (type) {
-            case GROW -> switch (level) {
-                case 3, 4 -> "Grow Assimilate More";
-                default -> "Grow Embrace More";
-            };
-            case SUBSISTING -> switch (level) {
-                case 3, 4 -> "Subsisting We the Vicissitudes";
-                default -> "Subsisting We the Anima";
-            };
-            case BREED -> switch (level) {
-                case 3, 4 -> "Breed Arise among the Colony";
-                default -> "Breed Creed beyond our death";
-            };
-            case MIGRATION -> switch (level) {
-                case 3, 4 -> "Migration In predation we proliferate";
-                default -> "Migration Every trench we fill in";
-            };
-            case SILENCE -> switch (level) {
-                case 3, 4 -> "Silence Now come with me back to our eternal hometown";
-                default -> "Silence Now come with me";
-            };
-        };
-    }
 }
