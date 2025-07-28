@@ -83,8 +83,8 @@ public class CapabilityEventHandler {
         clone.life = original.life;
         clone.maxLive = original.maxLive;
         clone.shield = original.shield;
-        clone.disoclusion = original.disoclusion;
         clone.rejection = original.rejection;
+
         clone.show_stats = original.show_stats;
         clone.kingShowPtc = original.kingShowPtc;
 

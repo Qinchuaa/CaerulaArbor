@@ -64,28 +64,28 @@ public class PlayerTickFuncProcedure {
         double enchant;
         var cap = entity.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable());
 
-        if (cap.disoclusion == 2) {
-            if (!(entity instanceof LivingEntity _livEnt0 && _livEnt0.hasEffect(ModMobEffects.HAEMOPHILIA.get()))) {
-                if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-                    _entity.addEffect(new MobEffectInstance(ModMobEffects.HAEMOPHILIA.get(), 299, 0, false, false));
-            }
-        } else {
-            if (entity instanceof LivingEntity _livEnt2 && _livEnt2.hasEffect(ModMobEffects.HAEMOPHILIA.get())) {
-                if (entity instanceof LivingEntity _entity)
-                    _entity.removeEffect(ModMobEffects.HAEMOPHILIA.get());
-            }
-        }
-        if (cap.disoclusion == 4) {
-            if ((entity instanceof LivingEntity _livEnt && _livEnt.hasEffect(ModMobEffects.FLESHDEFORMITY.get()) ? _livEnt.getEffect(ModMobEffects.FLESHDEFORMITY.get()).getDuration() : 0) < 5) {
-                if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-                    _entity.addEffect(new MobEffectInstance(ModMobEffects.FLESHDEFORMITY.get(), 200, 1, false, false));
-            }
-        } else {
-            if (entity instanceof LivingEntity _livEnt6 && _livEnt6.hasEffect(ModMobEffects.FLESHDEFORMITY.get())) {
-                if (entity instanceof LivingEntity _entity)
-                    _entity.removeEffect(ModMobEffects.HAEMOPHILIA.get());
-            }
-        }
+//        if (cap.disoclusion == 2) {
+//            if (!(entity instanceof LivingEntity _livEnt0 && _livEnt0.hasEffect(ModMobEffects.HAEMOPHILIA.get()))) {
+//                if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
+//                    _entity.addEffect(new MobEffectInstance(ModMobEffects.HAEMOPHILIA.get(), 299, 0, false, false));
+//            }
+//        } else {
+//            if (entity instanceof LivingEntity _livEnt2 && _livEnt2.hasEffect(ModMobEffects.HAEMOPHILIA.get())) {
+//                if (entity instanceof LivingEntity _entity)
+//                    _entity.removeEffect(ModMobEffects.HAEMOPHILIA.get());
+//            }
+//        }
+//        if (cap.disoclusion == 4) {
+//            if ((entity instanceof LivingEntity _livEnt && _livEnt.hasEffect(ModMobEffects.FLESHDEFORMITY.get()) ? _livEnt.getEffect(ModMobEffects.FLESHDEFORMITY.get()).getDuration() : 0) < 5) {
+//                if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
+//                    _entity.addEffect(new MobEffectInstance(ModMobEffects.FLESHDEFORMITY.get(), 200, 1, false, false));
+//            }
+//        } else {
+//            if (entity instanceof LivingEntity _livEnt6 && _livEnt6.hasEffect(ModMobEffects.FLESHDEFORMITY.get())) {
+//                if (entity instanceof LivingEntity _entity)
+//                    _entity.removeEffect(ModMobEffects.HAEMOPHILIA.get());
+//            }
+//        }
         modifi = 1;
         if (entity.getCapability(ModCapabilities.PLAYER_VARIABLE)
                 .map(c -> c.light >= 1 && c.light < 50)

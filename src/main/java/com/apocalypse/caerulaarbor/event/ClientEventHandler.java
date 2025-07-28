@@ -24,6 +24,11 @@ public class ClientEventHandler {
         handleRejection(player);
     }
 
+    /**
+     * 触发排异反应“专注失调”时，有1%的概率随机触发一次左键或右键
+     *
+     * @param player 客户端玩家
+     */
     private static void handleRejection(LocalPlayer player) {
         var variable = ModCapabilities.getPlayerVariables(player);
         if (variable.isRejectionInvoked(PlayerVariable.Rejection.CONCENTRATION_DISORDER)) {

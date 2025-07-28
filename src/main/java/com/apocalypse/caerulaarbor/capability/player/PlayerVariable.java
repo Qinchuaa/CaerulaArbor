@@ -29,7 +29,6 @@ public class PlayerVariable implements INBTSerializable<CompoundTag> {
     public int rejection = 0;
     public int seabornization = 0;
 
-    public int disoclusion = 0;
     public boolean show_stats = false;
     public boolean kingShowPtc = true;
     public ItemStack chitin_knife_selected = ItemStack.EMPTY;
@@ -52,7 +51,6 @@ public class PlayerVariable implements INBTSerializable<CompoundTag> {
         nbt.putInt("Rejection", this.rejection);
         nbt.putInt("Seabornization", this.seabornization);
 
-        nbt.putInt("disoclusion", this.disoclusion);
         nbt.putBoolean("show_stats", this.show_stats);
         nbt.putBoolean("kingShowPtc", this.kingShowPtc);
 
@@ -78,7 +76,6 @@ public class PlayerVariable implements INBTSerializable<CompoundTag> {
         this.rejection = tag.getInt("Rejection");
         this.seabornization = tag.getInt("Seabornization");
 
-        this.disoclusion = tag.getInt("disoclusion");
         this.show_stats = tag.getBoolean("show_stats");
         this.kingShowPtc = tag.getBoolean("kingShowPtc");
 
