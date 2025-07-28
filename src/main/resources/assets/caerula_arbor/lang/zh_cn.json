@@ -142,6 +142,10 @@
   "caerula_arbor.light.flickering": "摇曳",
   "caerula_arbor.light.dim": "黯淡",
   "caerula_arbor.light.extinguished": "寂灭",
+  "caerula_arbor.rejection.hemopoietic_inhibition": "造血障碍",
+  "caerula_arbor.rejection.concentration_disorder": "专注失调",
+  "caerula_arbor.rejection.neurodegeneration": "神经退行",
+  "caerula_arbor.rejection.metastatic_aberration": "血肉畸变",
 
   "command.caerula_arbor.evolution.upgrade.success": "大群的进化策略[%1$s]已进入新的阶段",
   "command.caerula_arbor.evolution.upgrade.failure": "升级大群的进化策略[%1$s]失败",
@@ -157,6 +161,10 @@
   "command.caerula_arbor.attribute.light.multiple": "成功将%1$s名玩家的灯火设置为%2$s",
   "command.caerula_arbor.attribute.seabornization.single": "成功将%1$s的海嗣化程度设置为%2$s",
   "command.caerula_arbor.attribute.seabornization.multiple": "成功将%1$s名玩家的海嗣化程度设置为%2$s",
+  "command.caerula_arbor.rejection.single.enabled": "已启用%1$s的排异反应[%2$s]",
+  "command.caerula_arbor.rejection.single.disabled": "已禁用%1$s的排异反应[%2$s]",
+  "command.caerula_arbor.rejection.multiple.enabled": "已启用%1$s名玩家的排异反应[%2$s]",
+  "command.caerula_arbor.rejection.multiple.disabled": "已禁用%1$s名玩家的排异反应[%2$s]",
 
   "tip.caerula_arbor.strategy.breed_1": "[繁育] 幼子啊，你从不孤单，大群与你同在……",
   "tip.caerula_arbor.strategy.breed_2": "[繁育] 幼子啊，你从不孤单，大群与你同在……",

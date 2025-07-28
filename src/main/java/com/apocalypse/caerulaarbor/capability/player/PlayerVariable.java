@@ -24,7 +24,9 @@ public class PlayerVariable implements INBTSerializable<CompoundTag> {
     public int life = 6;
     public int maxLive = 6;
     public int shield = 0;
+    public int rejection = 0;
     public int seabornization = 0;
+
     public int disoclusion = 0;
     public boolean show_stats = false;
     public boolean kingShowPtc = true;
@@ -41,13 +43,16 @@ public class PlayerVariable implements INBTSerializable<CompoundTag> {
 
     public CompoundTag writeNBT() {
         CompoundTag nbt = new CompoundTag();
-        nbt.putDouble("player_light", light);
-        nbt.putInt("Life", life);
-        nbt.putInt("MaxLife", maxLive);
-        nbt.putInt("Shield", shield);
-        nbt.putInt("disoclusion", disoclusion);
-        nbt.putBoolean("show_stats", show_stats);
-        nbt.putBoolean("kingShowPtc", kingShowPtc);
+        nbt.putDouble("player_light", this.light);
+        nbt.putInt("Life", this.life);
+        nbt.putInt("MaxLife", this.maxLive);
+        nbt.putInt("Shield", this.shield);
+        nbt.putInt("Rejection", this.rejection);
+        nbt.putInt("Seabornization", this.seabornization);
+
+        nbt.putInt("disoclusion", this.disoclusion);
+        nbt.putBoolean("show_stats", this.show_stats);
+        nbt.putBoolean("kingShowPtc", this.kingShowPtc);
 
         for (var relic : Relic.values()) {
             if (relic.gained(this)) {
@@ -55,21 +60,23 @@ public class PlayerVariable implements INBTSerializable<CompoundTag> {
             }
         }
 
-        nbt.put("chitin_knife_selected", chitin_knife_selected.save(new CompoundTag()));
-        nbt.putInt("player_king_suit", player_king_suit);
-        nbt.putInt("player_demon_suit", player_demon_suit);
-        nbt.putInt("Seabornization", seabornization);
+        nbt.put("chitin_knife_selected", this.chitin_knife_selected.save(new CompoundTag()));
+        nbt.putInt("player_king_suit", this.player_king_suit);
+        nbt.putInt("player_demon_suit", this.player_demon_suit);
         return nbt;
     }
 
     public void readNBT(CompoundTag tag) {
-        light = tag.getDouble("player_light");
-        life = tag.getInt("Life");
-        maxLive = tag.getInt("MaxLife");
-        shield = tag.getInt("Shield");
-        disoclusion = tag.getInt("disoclusion");
-        show_stats = tag.getBoolean("show_stats");
-        kingShowPtc = tag.getBoolean("kingShowPtc");
+        this.light = tag.getDouble("player_light");
+        this.life = tag.getInt("Life");
+        this.maxLive = tag.getInt("MaxLife");
+        this.shield = tag.getInt("Shield");
+        this.rejection = tag.getInt("Rejection");
+        this.seabornization = tag.getInt("Seabornization");
+
+        this.disoclusion = tag.getInt("disoclusion");
+        this.show_stats = tag.getBoolean("show_stats");
+        this.kingShowPtc = tag.getBoolean("kingShowPtc");
 
         for (var relic : Relic.values()) {
             if (tag.contains(relic.name())) {
@@ -77,10 +84,9 @@ public class PlayerVariable implements INBTSerializable<CompoundTag> {
             }
         }
 
-        chitin_knife_selected = ItemStack.of(tag.getCompound("chitin_knife_selected"));
-        player_king_suit = tag.getInt("player_king_suit");
-        player_demon_suit = tag.getInt("player_demon_suit");
-        seabornization = tag.getInt("Seabornization");
+        this.chitin_knife_selected = ItemStack.of(tag.getCompound("chitin_knife_selected"));
+        this.player_king_suit = tag.getInt("player_king_suit");
+        this.player_demon_suit = tag.getInt("player_demon_suit");
     }
 
     @Override
@@ -91,5 +97,32 @@ public class PlayerVariable implements INBTSerializable<CompoundTag> {
     @Override
     public void deserializeNBT(CompoundTag nbt) {
         this.readNBT(nbt);
+    }
+
+    public void setRejection(Rejection rejection, boolean invoke) {
+        if (invoke) {
+            this.rejection |= rejection.bitMask;
+        } else {
+            this.rejection &= ~rejection.bitMask;
+        }
+    }
+
+    public boolean isRejectionInvoked(Rejection rejection) {
+        return (this.rejection & rejection.bitMask) != 0;
+    }
+
+    public enum Rejection {
+        HEMOPOIETIC_INHIBITION(0b0001, "caerula_arbor.rejection.hemopoietic_inhibition"),
+        CONCENTRATION_DISORDER(0b0010, "caerula_arbor.rejection.concentration_disorder"),
+        NEURODEGENERATION(0b0100, "caerula_arbor.rejection.neurodegeneration"),
+        METASTATIC_ABERRATION(0b1000, "caerula_arbor.rejection.metastatic_aberration");
+
+        public final int bitMask;
+        public final String name;
+
+        Rejection(int bitMask, String name) {
+            this.bitMask = bitMask;
+            this.name = name;
+        }
     }
 }

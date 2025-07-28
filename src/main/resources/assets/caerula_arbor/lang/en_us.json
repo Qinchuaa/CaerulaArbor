@@ -99,6 +99,10 @@
   "caerula_arbor.light.flickering": "Flickering",
   "caerula_arbor.light.dim": "Dim",
   "caerula_arbor.light.extinguished": "Extinguished",
+  "caerula_arbor.rejection.hemopoietic_inhibition": "Hemopoietic Inhibition",
+  "caerula_arbor.rejection.concentration_disorder": "Concentration Disorder",
+  "caerula_arbor.rejection.neurodegeneration": "Neurodegeneration",
+  "caerula_arbor.rejection.metastatic_aberration": "Metastatic Aberration",
 
   "command.caerula_arbor.evolution.upgrade.success": "Calls of We Many's Strategy of [%1$s] has evolved into a new phase",
   "command.caerula_arbor.evolution.upgrade.failure": "Failed to upgrade Calls of We Many's Strategy of [%1$s]",
@@ -114,6 +118,10 @@
   "command.caerula_arbor.attribute.light.multiple": "Set %1$s players' light to %2$s",
   "command.caerula_arbor.attribute.seabornization.single": "Set %1$s's seabornization state to %2$s",
   "command.caerula_arbor.attribute.seabornization.multiple": "Set %1$s players' seabornization state to %2$s",
+  "command.caerula_arbor.rejection.single.enabled": "Enabled Rejection [%2$s] for %1$s",
+  "command.caerula_arbor.rejection.single.disabled": "Disabled Rejection [%2$s] for %1$s",
+  "command.caerula_arbor.rejection.multiple.enabled": "Enabled Rejection [%2$s] for %1$s players",
+  "command.caerula_arbor.rejection.multiple.disabled": "Disabled Rejection [%2$s] for %1$s players",
 
   "tip.caerula_arbor.strategy.breed_1": "[Breed] Arise among the Colony",
   "tip.caerula_arbor.strategy.breed_2": "[Breed] Arise among the Colony",

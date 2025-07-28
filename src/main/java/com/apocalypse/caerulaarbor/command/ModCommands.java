@@ -14,6 +14,7 @@ public class ModCommands {
         var command = Commands.literal(CaerulaArborMod.MODID);
         command.then(EvolutionCommand.get());
         command.then(AttributeCommand.get());
+        command.then(RejectionCommand.get());
 
         event.getDispatcher().register(command);
     }
