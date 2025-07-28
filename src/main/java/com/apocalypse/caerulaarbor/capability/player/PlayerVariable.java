@@ -2,7 +2,7 @@ package com.apocalypse.caerulaarbor.capability.player;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.capability.Relic;
-import com.apocalypse.caerulaarbor.network.message.PlayerVariablesSyncMessage;
+import com.apocalypse.caerulaarbor.network.message.s2c.PlayerVariablesSyncMessage;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;

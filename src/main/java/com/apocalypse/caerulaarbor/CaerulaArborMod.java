@@ -4,9 +4,8 @@ import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.config.CommonConfig;
 import com.apocalypse.caerulaarbor.config.ServerConfig;
 import com.apocalypse.caerulaarbor.init.*;
+import com.apocalypse.caerulaarbor.network.ModNetwork;
 import com.apocalypse.caerulaarbor.network.message.CaerulaRecordGUIButtonMessage;
-import com.apocalypse.caerulaarbor.network.message.PlayerVariablesSyncMessage;
-import com.apocalypse.caerulaarbor.network.message.s2c.SavedDataSyncMessage;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.item.ItemStack;
@@ -79,7 +78,7 @@ public class CaerulaArborMod {
 
     private static final String PROTOCOL_VERSION = "1";
     public static final SimpleChannel PACKET_HANDLER = NetworkRegistry.newSimpleChannel(loc(MODID), () -> PROTOCOL_VERSION, PROTOCOL_VERSION::equals, PROTOCOL_VERSION::equals);
-    private static int messageID = 0;
+    public static int messageID = 0;
 
     public static <T> void addNetworkMessage(Class<T> messageType, BiConsumer<T, FriendlyByteBuf> encoder, Function<FriendlyByteBuf, T> decoder, BiConsumer<T, Supplier<NetworkEvent.Context>> messageConsumer) {
         PACKET_HANDLER.registerMessage(messageID, messageType, encoder, decoder, messageConsumer);
@@ -124,8 +123,8 @@ public class CaerulaArborMod {
                 Ingredient.of(Items.GLOWSTONE_DUST), PotionUtils.setPotion(new ItemStack(Items.POTION), ModPotions.SANITY_CURE_II.get())));
         event.enqueueWork(Relic::onRegisterItem);
 
-        CaerulaArborMod.addNetworkMessage(SavedDataSyncMessage.class, SavedDataSyncMessage::encode, SavedDataSyncMessage::decode, SavedDataSyncMessage::handler);
-        CaerulaArborMod.addNetworkMessage(PlayerVariablesSyncMessage.class, PlayerVariablesSyncMessage::buffer, PlayerVariablesSyncMessage::new, PlayerVariablesSyncMessage::handler);
+        ModNetwork.register();
+
         CaerulaArborMod.addNetworkMessage(CaerulaRecordGUIButtonMessage.class, CaerulaRecordGUIButtonMessage::encode, CaerulaRecordGUIButtonMessage::decode, CaerulaRecordGUIButtonMessage::handler);
     }
 }

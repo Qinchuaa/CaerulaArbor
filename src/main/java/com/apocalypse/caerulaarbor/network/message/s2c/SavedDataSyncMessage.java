@@ -28,7 +28,7 @@ public record SavedDataSyncMessage(SavedData data) {
     public static void handler(SavedDataSyncMessage message, Supplier<NetworkEvent.Context> contextSupplier) {
         NetworkEvent.Context context = contextSupplier.get();
         context.enqueueWork(() -> {
-            if (!context.getDirection().getReceptionSide().isServer() && message.data != null) {
+            if (context.getDirection().getReceptionSide().isClient() && message.data != null) {
                 MapVariables.clientSide = (MapVariables) message.data;
             }
         });

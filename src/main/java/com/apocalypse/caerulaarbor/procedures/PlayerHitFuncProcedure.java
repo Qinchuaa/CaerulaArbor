@@ -16,7 +16,6 @@ import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
-import net.minecraft.world.InteractionHand;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -65,23 +64,6 @@ public class PlayerHitFuncProcedure {
         var cap = entity.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable());
         if (entity instanceof Player ent) {
             light_cost = amount * 0.01;
-            if (cap.disoclusion == 1) {
-                if (Math.random() < 0.1) {
-                    item_temp = ent.getMainHandItem().copy();
-                    LivingEntity _entity = (LivingEntity) entity;
-                    {
-                        ItemStack _setstack = _entity.getOffhandItem().copy();
-                        _setstack.setCount(_entity.getOffhandItem().getCount());
-                        _entity.setItemInHand(InteractionHand.MAIN_HAND, _setstack);
-                        if (_entity instanceof Player _player)
-                            _player.getInventory().setChanged();
-                    }
-                    LivingEntity _entity1 = (LivingEntity) entity;
-                    _entity1.setItemInHand(InteractionHand.OFF_HAND, item_temp.copyWithCount(item_temp.getCount()));
-                    if (_entity1 instanceof Player _player)
-                        _player.getInventory().setChanged();
-                }
-            }
             if (cap.disoclusion == 3) {
                 rate = 0.08;
                 time = 160;
@@ -177,25 +159,6 @@ public class PlayerHitFuncProcedure {
         }
         if (immediatesourceentity instanceof Player livEnt) {
             var cap1 = immediatesourceentity.getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable());
-            if (cap1.disoclusion == 1) {
-                if (Math.random() < 0.1) {
-                    item_temp = livEnt.getMainHandItem().copy();
-                    LivingEntity _entity = (LivingEntity) immediatesourceentity;
-                    {
-                        ItemStack _setstack = _entity.getOffhandItem().copy();
-                        _setstack.setCount(_entity.getOffhandItem().getCount());
-                        _entity.setItemInHand(InteractionHand.MAIN_HAND, _setstack);
-                        if (_entity instanceof Player _player)
-                            _player.getInventory().setChanged();
-                    }
-                    LivingEntity _entity1 = (LivingEntity) immediatesourceentity;
-                    ItemStack _setstack = item_temp.copy();
-                    _setstack.setCount(item_temp.getCount());
-                    _entity1.setItemInHand(InteractionHand.OFF_HAND, _setstack);
-                    if (_entity1 instanceof Player _player)
-                        _player.getInventory().setChanged();
-                }
-            }
             if (livEnt.getMainHandItem().is(ItemTags.create(new ResourceLocation("minecraft:hoes")))) {
                 if (Relic.HAND_FERTILITY.gained(cap)) {
                     entity.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.MAGIC)), (float) ((entity instanceof LivingEntity _livEnt ? _livEnt.getHealth() : -1) * 0.1));
