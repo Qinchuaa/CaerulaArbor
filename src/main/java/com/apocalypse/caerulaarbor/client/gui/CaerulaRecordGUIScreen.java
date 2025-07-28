@@ -109,7 +109,7 @@ public class CaerulaRecordGUIScreen extends AbstractContainerScreen<CaerulaRecor
                     guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/disoclution_flesh.png"), this.leftPos + 99, this.topPos + 92, 0, 0, 64, 64, 64, 64);
         }
 
-        guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/oceanize_icon.png"), this.leftPos + 137, this.topPos + 7, Mth.clamp(cap.player_oceanization * 24, 0, 72), 0, 24, 20, 96, 20);
+        guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/oceanize_icon.png"), this.leftPos + 137, this.topPos + 7, Mth.clamp(cap.seabornization * 24, 0, 72), 0, 24, 20, 96, 20);
 
         RenderSystem.disableBlend();
     }

@@ -112,6 +112,8 @@
   "command.caerula_arbor.attribute.shield.multiple": "Set %1$s players' shield to %2$s",
   "command.caerula_arbor.attribute.light.single": "Set %1$s's light to %2$s",
   "command.caerula_arbor.attribute.light.multiple": "Set %1$s players' light to %2$s",
+  "command.caerula_arbor.attribute.seabornization.single": "Set %1$s's seabornization state to %2$s",
+  "command.caerula_arbor.attribute.seabornization.multiple": "Set %1$s players' seabornization state to %2$s",
 
   "tip.caerula_arbor.strategy.breed_1": "[Breed] Arise among the Colony",
   "tip.caerula_arbor.strategy.breed_2": "[Breed] Arise among the Colony",

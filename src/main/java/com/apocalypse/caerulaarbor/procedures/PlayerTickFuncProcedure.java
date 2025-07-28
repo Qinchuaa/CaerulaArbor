@@ -96,7 +96,7 @@ public class PlayerTickFuncProcedure {
                 .orElse(false)) {
             modifi = 1.5;
         }
-        if (cap.player_oceanization >= 3) {
+        if (cap.seabornization >= 3) {
             modifi = 0.33;
         }
 

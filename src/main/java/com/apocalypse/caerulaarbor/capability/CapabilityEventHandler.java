@@ -94,7 +94,7 @@ public class CapabilityEventHandler {
 
         clone.player_king_suit = original.player_king_suit;
         clone.player_demon_suit = original.player_demon_suit;
-        clone.player_oceanization = original.player_oceanization;
+        clone.seabornization = original.seabornization;
         if (!isWasDeath) {
             clone.chitin_knife_selected = original.chitin_knife_selected;
         }

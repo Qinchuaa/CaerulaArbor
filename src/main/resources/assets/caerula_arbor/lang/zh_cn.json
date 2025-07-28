@@ -155,6 +155,8 @@
   "command.caerula_arbor.attribute.shield.multiple": "成功将%1$s名玩家的护盾值设置为%2$s",
   "command.caerula_arbor.attribute.light.single": "成功将%1$s的灯火设置为%2$s",
   "command.caerula_arbor.attribute.light.multiple": "成功将%1$s名玩家的灯火设置为%2$s",
+  "command.caerula_arbor.attribute.seabornization.single": "成功将%1$s的海嗣化程度设置为%2$s",
+  "command.caerula_arbor.attribute.seabornization.multiple": "成功将%1$s名玩家的海嗣化程度设置为%2$s",
 
   "tip.caerula_arbor.strategy.breed_1": "[繁育] 于繁育之地崛起……",
   "tip.caerula_arbor.strategy.breed_2": "[繁育] 于繁育之地崛起……",

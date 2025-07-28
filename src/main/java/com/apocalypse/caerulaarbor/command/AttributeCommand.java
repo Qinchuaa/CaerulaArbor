@@ -96,6 +96,24 @@ public class AttributeCommand {
                                             }
                                             return 0;
                                         })))
+                        .then(Commands.literal("seabornization").then(Commands.argument("value", IntegerArgumentType.integer(0, 3))
+                                .executes(arguments -> {
+                                    var players = EntityArgument.getPlayers(arguments, "player");
+                                    int value = IntegerArgumentType.getInteger(arguments, "value");
+
+                                    for (var player : players) {
+                                        var variables = ModCapabilities.getPlayerVariables(player);
+                                        variables.seabornization = value;
+                                        variables.syncPlayerVariables(player);
+                                    }
+
+                                    if (players.size() == 1) {
+                                        arguments.getSource().sendSuccess(() -> Component.translatable("command.caerula_arbor.attribute.seabornization.single", players.iterator().next().getDisplayName(), value), true);
+                                    } else {
+                                        arguments.getSource().sendSuccess(() -> Component.translatable("command.caerula_arbor.attribute.seabornization.multiple", players.size(), value), true);
+                                    }
+                                    return 0;
+                                })))
                 );
     }
 

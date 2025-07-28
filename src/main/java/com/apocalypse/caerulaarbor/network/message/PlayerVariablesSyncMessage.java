@@ -45,7 +45,7 @@ public class PlayerVariablesSyncMessage {
                 variables.chitin_knife_selected = message.data.chitin_knife_selected;
                 variables.player_king_suit = message.data.player_king_suit;
                 variables.player_demon_suit = message.data.player_demon_suit;
-                variables.player_oceanization = message.data.player_oceanization;
+                variables.seabornization = message.data.seabornization;
             }
         });
         context.setPacketHandled(true);

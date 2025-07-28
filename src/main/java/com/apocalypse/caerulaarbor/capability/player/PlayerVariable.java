@@ -24,13 +24,13 @@ public class PlayerVariable implements INBTSerializable<CompoundTag> {
     public int life = 6;
     public int maxLive = 6;
     public int shield = 0;
+    public int seabornization = 0;
     public int disoclusion = 0;
     public boolean show_stats = false;
     public boolean kingShowPtc = true;
     public ItemStack chitin_knife_selected = ItemStack.EMPTY;
     public int player_king_suit = 0;
     public int player_demon_suit = 0;
-    public int player_oceanization = 0;
 
     public HashMap<Relic, Integer> relics = new HashMap<>();
 
@@ -58,7 +58,7 @@ public class PlayerVariable implements INBTSerializable<CompoundTag> {
         nbt.put("chitin_knife_selected", chitin_knife_selected.save(new CompoundTag()));
         nbt.putInt("player_king_suit", player_king_suit);
         nbt.putInt("player_demon_suit", player_demon_suit);
-        nbt.putInt("player_oceanization", player_oceanization);
+        nbt.putInt("Seabornization", seabornization);
         return nbt;
     }
 
@@ -80,7 +80,7 @@ public class PlayerVariable implements INBTSerializable<CompoundTag> {
         chitin_knife_selected = ItemStack.of(tag.getCompound("chitin_knife_selected"));
         player_king_suit = tag.getInt("player_king_suit");
         player_demon_suit = tag.getInt("player_demon_suit");
-        player_oceanization = tag.getInt("player_oceanization");
+        seabornization = tag.getInt("Seabornization");
     }
 
     @Override
