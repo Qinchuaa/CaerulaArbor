@@ -201,7 +201,7 @@ public class ModEntities {
         event.put(PATHSHAPER_FRACTAL.get(), PathshaperFractalEntity.createAttributes().build());
         //event.put(DIVICELLULAR_CLONE.get(),DivicellularCloneEntity.createAttributes().build());
         event.put(EXOCELLULAR_DEPOSITER.get(),ExocellularDepositerEntity.createAttributes().build());
-        event.put(DIVICELLULAR_HOARDER.get(),DivicellularCloneEntity.createAttributes().build());
+        event.put(DIVICELLULAR_HOARDER.get(),DivicellularHoarderEntity.createAttributes().build());
         event.put(TOXOCELLULAR_DRIFTER.get(),ToxocellularDrifterEntity.createAttributes().build());
         event.put(MATROCELLULAR_NURSE.get(), MatrocellularNurseEntity.createAttributes().build());
         event.put(MULTICELLULAR_HERALD.get(), MulticellularHeraldEntity.createAttributes().build());
