@@ -187,10 +187,10 @@
   "tip.caerula_arbor.strategy.migration_2": "[迁徙] 我们不需要界限",
   "tip.caerula_arbor.strategy.migration_3": "[迁徙] 威胁我们的便要驱逐",
   "tip.caerula_arbor.strategy.migration_4": "[迁徙] 威胁我们的便要驱逐",
-  "tip.caerula_arbor.strategy.silence_1": "[静谧] 随我走吧，随我回去我们永恒的故乡",
+  "tip.caerula_arbor.strategy.silence_1": "[静谧] 那么，就请听听这远海的歌吧......",
   "tip.caerula_arbor.strategy.silence_2": "[静谧] 随我走吧，随我回去我们永恒的故乡",
-  "tip.caerula_arbor.strategy.silence_3": "[静谧] 让一切安息在永恒的静谧之中吧",
-  "tip.caerula_arbor.strategy.silence_4": "[静谧] 让一切安息在永恒的静谧之中吧",
+  "tip.caerula_arbor.strategy.silence_3": "[静谧] 歌声会沁入你们的心灵。",
+  "tip.caerula_arbor.strategy.silence_4": "[静谧] 别害怕，我的同胞们......很快就要到了。",
 
   "subtitles.grow1": "拥纳愈广",
   "item.caerula_arbor.fluore_berries": "荧光浆果",
@@ -685,5 +685,13 @@
   "item.caerula_arbor.sarkaz_kings_regal_rest.description_0": "目标生命达到上限时，玩家盔甲值+3，盔甲韧性+2",
   "item.caerula_arbor.kings_armour.description_0": "§b护盾+3，将剩余目标生命值转化为护盾，每杀死一个生物有8%的概率目标生命值-1，护盾值+1",
   "item.minecraft.lingering_potion.effect.inst_sanity_ii": "滞留型神经损伤药水",
-  "item.caerula_arbor.hand_sword": "裂岩之手"
+  "item.caerula_arbor.hand_sword": "裂岩之手",
+  "item.caerula_arbor.redstone_iris_flower.description_1": "§oLuxuriant flower",
+  "entity.caerula_arbor.predator_abyssal": "Predator Abyssal",
+  "item.caerula_arbor.creeper_fish_spawn_egg": "Creeper Fish Spawn Egg",
+  "item.caerula_arbor.splasher_abyssal_spawn_egg": "Splasher Abyssal Spawn Egg",
+  "item.caerula_arbor.route_shaper_spawn_egg": "Route Shaper Spawn Egg",
+
+  "effect.caerula_arbor.palsy": "麻痹",
+  "effect.caerula_arbor.palsying": "麻痹震颤"
 }
