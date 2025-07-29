@@ -694,6 +694,8 @@
   "item.caerula_arbor.kings_armour.description_0": "§btransfer all Lives to Shield, and 10% chance to gain 1 Shield and cost 1 Life when kill a mob",
   "item.minecraft.lingering_potion.effect.inst_sanity_ii": "Lingering Potion of Inst Sanity",
   "item.caerula_arbor.hand_sword": "Hand Sword",
+  "block.caerula_arbor.ocean_ovary": "Ocean Ovary",
+  "block.caerula_arbor.red_ovary": "Red Ocean Ovary",
 
   "effect.caerula_arbor.palsy": "Paralysis",
   "effect.caerula_arbor.palsying": "Paralysis Stun"

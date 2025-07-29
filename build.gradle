@@ -113,6 +113,12 @@ repositories {
     }
 }
 
+processResources {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    // 或者根据需要使用其他策略
+    // duplicatesStrategy = DuplicatesStrategy.IGNORE
+}
+
 dependencies {
     minecraft 'net.minecraftforge:forge:1.20.1-47.2.0'
     annotationProcessor 'org.spongepowered:mixin:0.8.5:processor'
