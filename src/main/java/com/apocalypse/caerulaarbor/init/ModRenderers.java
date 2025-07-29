@@ -37,5 +37,8 @@ public class ModRenderers {
         event.registerEntityRenderer(ModEntities.SKIMMING_SEA_DRIFTER.get(), SkimmingSeaDrifterRenderer::new);
         event.registerEntityRenderer(ModEntities.PATH_SHAPER.get(), PathShaperRenderer::new);
         event.registerEntityRenderer(ModEntities.PATHSHAPER_FRACTAL.get(), PathshaperFractalRenderer::new);
+
+        event.registerEntityRenderer(ModEntities.MULTICELLULAR_HERALD.get(), MulticellularHeraldRenderer::new);
+        event.registerEntityRenderer(ModEntities.MATROCELLULAR_NURSE.get(), MatrocellularNurseRenderer::new);
     }
 }

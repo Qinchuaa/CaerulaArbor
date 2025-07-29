@@ -89,6 +89,12 @@ public class ModEntities {
     public static final RegistryObject<EntityType<PathshaperFractalEntity>> PATHSHAPER_FRACTAL = register("pathshaper_fractal",
             EntityType.Builder.<PathshaperFractalEntity>of(PathshaperFractalEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(PathshaperFractalEntity::new)
                     .sized(0.7f, 1.5f));
+    public static final RegistryObject<EntityType<MulticellularHeraldEntity>> MULTICELLULAR_HERALD = register("multicellular_herald",
+            EntityType.Builder.<MulticellularHeraldEntity>of(MulticellularHeraldEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(16).setUpdateInterval(3).setCustomClientFactory(MulticellularHeraldEntity::new)
+                    .sized(0.6f, 1.7f));
+    public static final RegistryObject<EntityType<MatrocellularNurseEntity>> MATROCELLULAR_NURSE = register("matrocellular_nurse",
+            EntityType.Builder.<MatrocellularNurseEntity>of(MatrocellularNurseEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(16).setUpdateInterval(3).setCustomClientFactory(MatrocellularNurseEntity::new)
+                    .sized(0.8f, 1.1f));
 
     // Projectiles
     public static final RegistryObject<EntityType<FishShootEntity>> FISH_SHOOT = register("fish_shoot",
@@ -174,5 +180,7 @@ public class ModEntities {
         event.put(SKIMMING_SEA_DRIFTER.get(), SkimmingSeaDrifterEntity.createAttributes().build());
         event.put(PATH_SHAPER.get(), PathShaperEntity.createAttributes().build());
         event.put(PATHSHAPER_FRACTAL.get(), PathshaperFractalEntity.createAttributes().build());
+        event.put(MATROCELLULAR_NURSE.get(), MatrocellularNurseEntity.createAttributes().build());
+        event.put(MULTICELLULAR_HERALD.get(), MulticellularHeraldEntity.createAttributes().build());
     }
 }
