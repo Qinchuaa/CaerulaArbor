@@ -38,14 +38,15 @@ import net.minecraftforge.registries.ForgeRegistries;
 
 import javax.annotation.Nullable;
 
+// TODO 把这坨铲了
 @Mod.EventBusSubscriber
 public class PlayerHitFuncProcedure {
     @SubscribeEvent
     public static void onEntityAttacked(LivingAttackEvent event) {
-        if (event != null && event.getEntity() != null) {
-            execute(event, event.getEntity().level(), event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), event.getSource(), event.getEntity(), event.getSource().getDirectEntity(), event.getSource().getEntity(),
-                    event.getAmount());
-        }
+//        if (event != null && event.getEntity() != null) {
+//            execute(event, event.getEntity().level(), event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), event.getSource(), event.getEntity(), event.getSource().getDirectEntity(), event.getSource().getEntity(),
+//                    event.getAmount());
+//        }
     }
 
     public static void execute(LevelAccessor world, double x, double y, double z, DamageSource damagesource, Entity entity, Entity immediatesourceentity, Entity sourceentity, double amount) {

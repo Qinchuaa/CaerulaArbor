@@ -49,46 +49,6 @@
 //        double amplifi;
 //        double sklp;
 //
-//        if (entity.getType().is(ModTags.EntityTypes.SEA_BORN) && !sourceentity.getType().is(ModTags.EntityTypes.SEA_BORN)) {
-//            if (MapVariables.get(world).strategyMigration > 0) {
-//                for (Entity entityiterator : world.getEntities(entity,
-//                        new AABB((x - (8 + MapVariables.get(world).strategyMigration * 24)), (y - 16), (z - (8 + MapVariables.get(world).strategyMigration * 24)),
-//                                (x + 8 + MapVariables.get(world).strategyMigration * 24), (y + 16), (z + 8 + MapVariables.get(world).strategyMigration * 24)))) {
-//                    if (entityiterator.getType().is(ModTags.EntityTypes.SEA_BORN)) {
-//                        if (entityiterator == sourceentity) {
-//                            continue;
-//                        }
-//                        if (entityiterator instanceof Mob _entity) {
-//                            _entity.getNavigation().moveTo(x, y, z,
-//                                    (_entity.getAttributes().hasAttribute(Attributes.MOVEMENT_SPEED) ? _entity.getAttribute(Attributes.MOVEMENT_SPEED).getValue() : 0) * 1.2);
-//                        }
-//                        if (entityiterator instanceof Mob _entity && sourceentity instanceof LivingEntity _ent)
-//                            _entity.setTarget(_ent);
-//                    }
-//                }
-//            }
-//        }
-//        if (entity instanceof Player) {
-//            if ((ModCapabilities.getPlayerVariables(entity)).player_oceanization >= 3) {
-//                if (MapVariables.get(world).strategyMigration > 0) {
-//                    for (Entity entityiterator : world.getEntities(entity,
-//                            new AABB((x - (8 + MapVariables.get(world).strategyMigration * 24)), (y - 16), (z - (8 + MapVariables.get(world).strategyMigration * 24)),
-//                                    (x + 8 + MapVariables.get(world).strategyMigration * 24), (y + 16), (z + 8 + MapVariables.get(world).strategyMigration * 24)))) {
-//                        if (entityiterator.getType().is(ModTags.EntityTypes.SEA_BORN)) {
-//                            if (entityiterator == sourceentity) {
-//                                continue;
-//                            }
-//                            if (entityiterator instanceof Mob _entity) {
-//                                _entity.getNavigation().moveTo(x, y, z,
-//                                        _entity.getAttributes().hasAttribute(Attributes.MOVEMENT_SPEED) ? _entity.getAttribute(Attributes.MOVEMENT_SPEED).getValue() : 0);
-//                            }
-//                            if (entityiterator instanceof Mob _entity && sourceentity instanceof LivingEntity _ent)
-//                                _entity.setTarget(_ent);
-//                        }
-//                    }
-//                }
-//            }
-//        }
 //        if (entity.getType().is(ModTags.EntityTypes.SEA_BORN)) {
 //            if (entity.isPassenger() && GameplayConfig.ENABLE_MOB_BREAK.get() && world.getLevelData().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING)) {
 //                (entity.getVehicle()).hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.MOB_ATTACK), entity), 8);

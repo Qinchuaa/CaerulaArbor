@@ -1,11 +1,14 @@
 package com.apocalypse.caerulaarbor.entity.base;
 
+import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.capability.map.MapVariables;
 import com.apocalypse.caerulaarbor.capability.map.MapVariablesHandler;
 import com.apocalypse.caerulaarbor.client.font.ModFontHelper;
 import com.apocalypse.caerulaarbor.config.server.MiscConfig;
 import com.apocalypse.caerulaarbor.init.ModGameRules;
+import com.apocalypse.caerulaarbor.init.ModTags;
 import net.minecraft.core.particles.ParticleTypes;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
@@ -14,15 +17,20 @@ import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
+import net.minecraft.world.phys.AABB;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
+
+import java.util.Random;
 
 public abstract class SeaMonster extends Monster implements GeoEntity {
 
@@ -30,6 +38,8 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
 
     protected boolean swinging;
     protected long lastSwing;
+    // 策略-迁徙的摇人冷却
+    public int migrationCooldown;
 
     protected SeaMonster(EntityType<? extends Monster> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -38,6 +48,18 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
     @Override
     public AnimatableInstanceCache getAnimatableInstanceCache() {
         return this.cache;
+    }
+
+    @Override
+    public void addAdditionalSaveData(CompoundTag pCompound) {
+        super.addAdditionalSaveData(pCompound);
+        pCompound.putInt("MigrationCooldown", this.migrationCooldown);
+    }
+
+    @Override
+    public void readAdditionalSaveData(CompoundTag pCompound) {
+        super.readAdditionalSaveData(pCompound);
+        this.migrationCooldown = pCompound.getInt("MigrationCooldown");
     }
 
     @Override
@@ -50,7 +72,51 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
             MapVariablesHandler.addEvoPoint(MapVariables.StrategyType.SUBSISTING, this.level(), Math.min(amount * 0.025, this.getMaxHealth()));
             MapVariablesHandler.addEvoPoint(MapVariables.StrategyType.SILENCE, this.level(), Math.min(amount * 0.025, this.getMaxHealth()));
         }
+
+        // 策略-迁徙等级大于0时，被有来源的伤害攻击后，会召唤附近海嗣锁定目标
+        int migrationLevel = MapVariables.get(this.level()).strategyMigration;
+        if (migrationLevel > 0 && this.migrationCooldown <= 0) {
+            if (!(source.getEntity() instanceof LivingEntity living)) return flag;
+            if (living == this) return flag;
+
+            int radius = migrationLevel * 32;
+            this.level().getEntities(this,
+                    new AABB(
+                            this.getX() - radius, this.getY() - 16, this.getZ() - radius,
+                            this.getX() + radius, this.getY() + 16, this.getZ() + radius
+                    ),
+                    entity -> entity.getType().is(ModTags.EntityTypes.SEA_BORN) && entity != this
+            ).forEach(entity -> {
+                if (entity instanceof SeaMonster seaMonster) {
+                    seaMonster.getNavigation().moveTo(this, 1 + 0.1 * migrationLevel);
+                    seaMonster.setTarget(living);
+                }
+            });
+            this.migrationCooldown = 200;
+        }
         return flag;
+    }
+
+    @Override
+    public void tick() {
+        super.tick();
+
+        // 策略-迁徙，在有目标的情况下，有概率增长迁徙进化点数
+        if (this.tickCount % 10 == 0) {
+            if (this.getTarget() != null && this.level().getLevelData().getGameRules().getBoolean(ModGameRules.NATURAL_EVOLUTION)) {
+                if (this.getTarget() instanceof Player player && ModCapabilities.getPlayerVariables(player).seabornization >= 3) {
+                    return;
+                }
+                if (this.random.nextDouble() < 0.08) {
+                    double amount = new Random().nextDouble(0, 0.05);
+                    MapVariablesHandler.addEvoPoint(MapVariables.StrategyType.SUBSISTING, this.level(), amount);
+                    MapVariablesHandler.addEvoPoint(MapVariables.StrategyType.SILENCE, this.level(), amount);
+                }
+            }
+        }
+        if (this.migrationCooldown > 0) {
+            this.migrationCooldown--;
+        }
     }
 
     @Override
