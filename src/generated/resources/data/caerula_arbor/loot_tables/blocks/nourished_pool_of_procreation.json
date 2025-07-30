@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "caerula_arbor:red_ovary"
+          "name": "caerula_arbor:nourished_pool_of_procreation"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "caerula_arbor:blocks/red_ovary"
+  "random_sequence": "caerula_arbor:blocks/nourished_pool_of_procreation"
 }

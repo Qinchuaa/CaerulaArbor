@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "caerula_arbor:ocean_ovary"
+          "name": "caerula_arbor:pool_of_procreation"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "caerula_arbor:blocks/ocean_ovary"
+  "random_sequence": "caerula_arbor:blocks/pool_of_procreation"
 }

@@ -182,8 +182,8 @@ public class ModItems {
     public static final RegistryObject<Item> ELITE_PEDUNCLE = ITEMS.register("elite_peduncle", ElitePeduncleItem::new);
     public static final RegistryObject<Item> COOKED_PEDUNCLE = ITEMS.register("cooked_peduncle", CookedPeduncleItem::new);
     public static final RegistryObject<Item> OCEAN_ARROW = ITEMS.register("ocean_arrow", OceanArrowItem::new);
-    public static final RegistryObject<Item> OCEAN_OVARY = block(ModBlocks.OCEAN_OVARY);
-    public static final RegistryObject<Item> RED_OVARY = block(ModBlocks.RED_OVARY);
+    public static final RegistryObject<Item> OCEAN_OVARY = block(ModBlocks.POOL_OF_PROCREATION);
+    public static final RegistryObject<Item> RED_OVARY = block(ModBlocks.NOURISHED_POOL_OF_PROCREATION);
 
     /**
      * Relics

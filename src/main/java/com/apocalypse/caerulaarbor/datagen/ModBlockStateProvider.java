@@ -21,6 +21,19 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         horizontalBlock(ModBlocks.SCREAMING_CHERRY.get(), new ModelFile.UncheckedModelFile(modLoc("block/screaming_cherry")));
+
+        simpleBlock(ModBlocks.POOL_OF_PROCREATION.get(),
+                models().withExistingParent(name(ModBlocks.POOL_OF_PROCREATION.get()), modLoc("block/base/pool_of_procreation"))
+                        .texture("0", modLoc("block/pool_of_procreation"))
+                        .texture("particle", modLoc("block/pool_of_procreation"))
+                        .renderType("cutout")
+        );
+        simpleBlock(ModBlocks.NOURISHED_POOL_OF_PROCREATION.get(),
+                models().withExistingParent(name(ModBlocks.NOURISHED_POOL_OF_PROCREATION.get()), modLoc("block/base/pool_of_procreation"))
+                        .texture("0", modLoc("block/nourished_pool_of_procreation"))
+                        .texture("particle", modLoc("block/nourished_pool_of_procreation"))
+                        .renderType("cutout")
+        );
     }
 
     private String name(Block block) {

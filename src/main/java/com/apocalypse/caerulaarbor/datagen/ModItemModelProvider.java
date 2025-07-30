@@ -1,6 +1,7 @@
 package com.apocalypse.caerulaarbor.datagen;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
+import com.apocalypse.caerulaarbor.init.ModBlocks;
 import com.apocalypse.caerulaarbor.init.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
@@ -70,6 +71,10 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         // spawn eggs
         ModItems.SPAWN_EGGS.getEntries().forEach(this::spawnEggItem);
+
+        // blocks
+        evenSimplerBlockItem(ModBlocks.POOL_OF_PROCREATION);
+        evenSimplerBlockItem(ModBlocks.NOURISHED_POOL_OF_PROCREATION);
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {

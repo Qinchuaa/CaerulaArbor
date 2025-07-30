@@ -24,13 +24,13 @@ import javax.annotation.ParametersAreNonnullByDefault;
 import java.util.List;
 import java.util.Optional;
 
-public class OvaryBlockEntity extends BlockEntity {
-    int delay;
-    boolean active;
+public class PoolOfProcreationBlockEntity extends BlockEntity {
+    private int delay;
+    private boolean active;
 
-    public OvaryBlockEntity(BlockPos pPos, BlockState pBlockState) {
-        super(ModBlockEntityTypes.OVARY.get(), pPos, pBlockState);
-        delay = getRandomDelay(pBlockState.is(ModBlocks.RED_OVARY.get()));
+    public PoolOfProcreationBlockEntity(BlockPos pPos, BlockState pBlockState) {
+        super(ModBlockEntityTypes.POOL_OF_PROCREATION.get(), pPos, pBlockState);
+        delay = getRandomDelay(pBlockState.is(ModBlocks.NOURISHED_POOL_OF_PROCREATION.get()));
         active = true;
     }
 
@@ -48,12 +48,12 @@ public class OvaryBlockEntity extends BlockEntity {
         active = true;
     }
 
-    public static void tick(Level pLevel, BlockPos pPos, BlockState pState, OvaryBlockEntity pBlockEntity) {
+    public static void tick(Level pLevel, BlockPos pPos, BlockState pState, PoolOfProcreationBlockEntity pBlockEntity) {
         if (!pLevel.isClientSide()) pBlockEntity.serverTick((ServerLevel) pLevel, pPos, pState);
     }
 
     public void serverTick(ServerLevel level, BlockPos blockPos, BlockState blockState) {
-        final boolean isRed = blockState.is(ModBlocks.RED_OVARY.get());
+        final boolean isRed = blockState.is(ModBlocks.NOURISHED_POOL_OF_PROCREATION.get());
         if (!isRed && !active) return;
         if (delay > 0) {
             --delay;
@@ -73,7 +73,7 @@ public class OvaryBlockEntity extends BlockEntity {
     private static boolean spawnMob(ServerLevel level, BlockPos posToSpawn, boolean isRed) {
         boolean spawnElite = level.random.nextFloat() < getEliteChance(level, isRed);
         TagKey<EntityType<?>> entityTagToSpawn =
-                 spawnElite ? ModTags.EntityTypes.SEA_BORN : ModTags.EntityTypes.SEABORN_ELITE;
+                spawnElite ? ModTags.EntityTypes.SEA_BORN : ModTags.EntityTypes.SEABORN_ELITE;
         Optional<EntityType<?>> optionalEntityType = randomEntityTypeInTag(level, entityTagToSpawn);
         if (optionalEntityType.isEmpty()) return false;
         EntityType<?> entityType = optionalEntityType.get();
@@ -82,7 +82,7 @@ public class OvaryBlockEntity extends BlockEntity {
         return entityType.spawn(level, posToSpawn, MobSpawnType.SPAWNER) != null;
     }
 
-    public static float getEliteChance(Level level, boolean isRed){
+    public static float getEliteChance(Level level, boolean isRed) {
         int breed = MapVariables.get(level).strategyBreed;
         if (breed >= 4) return isRed ? 0.7F : 0.1F;
         if (breed >= 2) return isRed ? 0.65F : 0.08F;

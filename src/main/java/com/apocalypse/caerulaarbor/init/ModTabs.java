@@ -87,8 +87,8 @@ public class ModTabs {
                         tabData.accept(ModBlocks.COMPLEX_CHITIN_BLOCK.get().asItem());
                         tabData.accept(ModBlocks.OCEAN_GLASS.get().asItem());
                         tabData.accept(ModBlocks.OCEAN_GLASSPANE.get().asItem());
-                        tabData.accept(ModBlocks.OCEAN_OVARY.get().asItem());
-                        tabData.accept(ModBlocks.RED_OVARY.get().asItem());
+                        tabData.accept(ModBlocks.POOL_OF_PROCREATION.get().asItem());
+                        tabData.accept(ModBlocks.NOURISHED_POOL_OF_PROCREATION.get().asItem());
                         tabData.accept(ModBlocks.SEA_TRAIL_SOLID.get().asItem());
                         tabData.accept(ModBlocks.TRAIL_BRICK.get().asItem());
                         tabData.accept(ModBlocks.TRAIL_TILE.get().asItem());
