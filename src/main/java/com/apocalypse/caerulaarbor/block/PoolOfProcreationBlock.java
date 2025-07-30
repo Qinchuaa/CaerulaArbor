@@ -23,7 +23,6 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-// TODO 得给激活状态渲染出来，要不用方块实体渲染？
 @SuppressWarnings("deprecation")
 public class PoolOfProcreationBlock extends BaseEntityBlock implements SimpleWaterloggedBlock {
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
@@ -35,7 +34,7 @@ public class PoolOfProcreationBlock extends BaseEntityBlock implements SimpleWat
     public PoolOfProcreationBlock() {
         super(Properties.of().sound(SoundType.SCULK_SENSOR)
                 .strength(6f, 18f)
-                .lightLevel(s -> 4)
+                .lightLevel(s -> s.getValue(POWERED) ? 4 : 0)
                 .requiresCorrectToolForDrops()
                 .speedFactor(0.9f)
                 .jumpFactor(0.9f)
