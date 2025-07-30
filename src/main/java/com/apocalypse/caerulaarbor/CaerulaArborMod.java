@@ -46,6 +46,7 @@ public class CaerulaArborMod {
 
         ModSounds.REGISTRY.register(bus);
         ModBlocks.BLOCKS.register(bus);
+        ModBlockEntityTypes.BLOCK_ENTITIES.register(bus);
 
         ModItems.register(bus);
         ModEntities.ENTITY_TYPES.register(bus);

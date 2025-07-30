@@ -50,5 +50,5 @@ public class ModBlocks {
 	public static final RegistryObject<Block> TRAIL_PRESSURE_PLATE = BLOCKS.register("trail_pressure_plate", TrailPressurePlateBlock::new);
 	public static final RegistryObject<Block> TRAIL_TILE = BLOCKS.register("trail_tile", TrailTileBlock::new);
 	public static final RegistryObject<Block> OCEAN_OVARY = BLOCKS.register("ocean_ovary", OceanOvaryBlock::new);
-	public static final RegistryObject<Block> RED_OVARY = BLOCKS.register("red_ovary", RedOvaryBlock::new);
+	public static final RegistryObject<Block> RED_OVARY = BLOCKS.register("red_ovary", OceanOvaryBlock::new);
 }

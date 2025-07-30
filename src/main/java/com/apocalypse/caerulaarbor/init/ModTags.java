@@ -38,6 +38,7 @@ public class ModTags {
         public static final TagKey<EntityType<?>> SEA_BORN = tag("sea_born");
         public static final TagKey<EntityType<?>> SEA_BORN_CREATURE = tag("sea_born_creature");
         public static final TagKey<EntityType<?>> SEA_BORN_BOSS = tag("sea_born_boss");
+        public static final TagKey<EntityType<?>> SEABORN_ELITE = tag("seaborn_elite"); // TODO 改名+添加TagProvider
 
         private static TagKey<EntityType<?>> tag(String name) {
             return TagKey.create(Registries.ENTITY_TYPE, CaerulaArborMod.loc(name));
