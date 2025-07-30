@@ -175,4 +175,16 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
         return ModFontHelper.translatableSeaborn(this.getType().getDescriptionId(), MiscConfig.USE_SEABORN_LANGUAGE.get(), this.uuid.getLeastSignificantBits() % 2 == 0)
                 .withStyle(style -> style.withHoverEvent(this.createHoverEvent()).withInsertion(this.getStringUUID()).withColor(this.getTeamColor()));
     }
+
+    @Override
+    public void die(DamageSource pDamageSource) {
+        // 如果开启自然进化，被玩家击杀后，获得一定的策略-繁育进化点数
+        if (this.level().getLevelData().getGameRules().getBoolean(ModGameRules.NATURAL_EVOLUTION)) {
+            if (pDamageSource.getEntity() instanceof Player) {
+                MapVariablesHandler.addEvoPoint(MapVariables.StrategyType.BREED, this.level(), 0.1 * this.getMaxHealth());
+                MapVariablesHandler.addEvoPoint(MapVariables.StrategyType.SILENCE, this.level(), 0.1 * this.getMaxHealth());
+            }
+        }
+        super.die(pDamageSource);
+    }
 }

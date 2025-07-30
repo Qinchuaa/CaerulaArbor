@@ -160,18 +160,6 @@
 //                    _level.sendParticles(ParticleTypes.WAX_ON, x, y, z, 48, 0.7, 1.5, 0.7, 0.2);
 //            }
 //        }
-//        if (entity.getType().is(ModTags.EntityTypes.SEA_BORN)) {
-//            if (world.getLevelData().getGameRules().getBoolean(ModGameRules.NATURAL_EVOLUTION)) {
-//                if (!world.getEntitiesOfClass(Player.class, AABB.ofSize(new Vec3(x, y, z), 128, 128, 128), e -> true).isEmpty()) {
-//                    MapVariables.get(world).evoPointBreed = MapVariables.get(world).evoPointBreed + (entity instanceof LivingEntity _livEnt ? _livEnt.getMaxHealth() : -1) * 0.1;
-//                    MapVariables.get(world).syncData(world);
-//                    if (world instanceof Level level) {
-//                        UpgradeBreedProcedure.execute(level);
-//                    }
-//                    UpgradeSilenceProcedure.execute(world, entity, (entity instanceof LivingEntity _livEnt ? _livEnt.getMaxHealth() : -1) * 0.1);
-//                }
-//            }
-//        }
 //        if ((sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).is(ItemTags.create(new ResourceLocation("caerula_arbor:self_mendable")))) {
 //            weapon = (sourceentity instanceof LivingEntity _livEnt ? _livEnt.getMainHandItem() : ItemStack.EMPTY).copy();
 //            dama = weapon.getDamageValue() - Mth.nextInt(RandomSource.create(), 1, 5 + weapon.getEnchantmentLevel(Enchantments.UNBREAKING));
