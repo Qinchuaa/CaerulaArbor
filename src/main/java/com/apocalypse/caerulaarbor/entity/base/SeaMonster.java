@@ -101,21 +101,40 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
     public void tick() {
         super.tick();
 
-        // 策略-迁徙，在有目标的情况下，有概率增长迁徙进化点数
+        this.naturalRegeneration();
         if (this.tickCount % 10 == 0) {
-            if (this.getTarget() != null && this.level().getLevelData().getGameRules().getBoolean(ModGameRules.NATURAL_EVOLUTION)) {
-                if (this.getTarget() instanceof Player player && ModCapabilities.getPlayerVariables(player).seabornization >= 3) {
-                    return;
-                }
-                if (this.random.nextDouble() < 0.08) {
-                    double amount = new Random().nextDouble(0, 0.05);
-                    MapVariablesHandler.addEvoPoint(MapVariables.StrategyType.SUBSISTING, this.level(), amount);
-                    MapVariablesHandler.addEvoPoint(MapVariables.StrategyType.SILENCE, this.level(), amount);
-                }
-            }
+            this.addMigrationEvoPoint();
         }
         if (this.migrationCooldown > 0) {
             this.migrationCooldown--;
+        }
+    }
+
+    /**
+     * 策略-迁徙，在有目标的情况下，有概率增长迁徙进化点数
+     */
+    private void addMigrationEvoPoint() {
+        if (this.getTarget() != null && this.level().getLevelData().getGameRules().getBoolean(ModGameRules.NATURAL_EVOLUTION)) {
+            if (this.getTarget() instanceof Player player && ModCapabilities.getPlayerVariables(player).seabornization >= 3) {
+                return;
+            }
+            if (this.random.nextDouble() < 0.08) {
+                double amount = new Random().nextDouble(0, 0.05);
+                MapVariablesHandler.addEvoPoint(MapVariables.StrategyType.SUBSISTING, this.level(), amount);
+                MapVariablesHandler.addEvoPoint(MapVariables.StrategyType.SILENCE, this.level(), amount);
+            }
+        }
+    }
+
+    /**
+     * 静谧-存续，在没有受击的情况下，快速恢复生命值
+     */
+    private void naturalRegeneration() {
+        if (this.getLastAttacker() != null) return;
+
+        var mapVariables = MapVariables.get(this.level());
+        if (mapVariables.enabledStrategySilence && mapVariables.strategySilence > 0) {
+            this.heal(0.0025f * mapVariables.strategySilence * this.getMaxHealth());
         }
     }
 
