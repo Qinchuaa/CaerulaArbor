@@ -137,6 +137,9 @@
   "item.caerula_arbor.path_shaper_spawn_egg": "塑路者刷怪蛋",
   "item.caerula_arbor.pathshaper_fractal_spawn_egg": "塑路者分形刷怪蛋",
 
+  "block.caerula_arbor.pool_of_procreation": "育生池",
+  "block.caerula_arbor.nourished_pool_of_procreation": "富营养的育生池",
+
   "caerula_arbor.strategy.subsisting": "存续",
   "caerula_arbor.strategy.grow": "生长",
   "caerula_arbor.strategy.breed": "繁育",
@@ -691,9 +694,6 @@
   "item.caerula_arbor.creeper_fish_spawn_egg": "Creeper Fish Spawn Egg",
   "item.caerula_arbor.splasher_abyssal_spawn_egg": "Splasher Abyssal Spawn Egg",
   "item.caerula_arbor.route_shaper_spawn_egg": "Route Shaper Spawn Egg",
-
-  "block.caerula_arbor.ocean_ovary": "育生池",
-  "block.caerula_arbor.red_ovary": "溟海育生池",
 
   "effect.caerula_arbor.palsy": "麻痹",
   "effect.caerula_arbor.palsying": "麻痹震颤"
