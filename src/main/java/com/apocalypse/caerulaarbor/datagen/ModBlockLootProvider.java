@@ -78,6 +78,10 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
         this.dropOther(ModBlocks.SCREAMING_CHERRY.get(), ModItems.SCREAMING_CHERRY.get());
         this.dropOther(ModBlocks.EMERGENCY_LIGHT.get(), ModItems.RELIC_CURSE_EMELIGHT.get());
         this.dropOther(ModBlocks.OCEAN_FARMLAND.get(), Items.DIRT);
+
+        // TODO 修改成正确的战利品表
+        this.dropSelf(ModBlocks.OCEAN_OVARY.get());
+        this.dropSelf(ModBlocks.RED_OVARY.get());
     }
 
     @Override

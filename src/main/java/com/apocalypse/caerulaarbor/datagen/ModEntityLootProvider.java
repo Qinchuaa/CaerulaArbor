@@ -428,6 +428,13 @@ public class ModEntityLootProvider extends EntityLootSubProvider {
                 )
         );
         this.add(ModEntities.PATHSHAPER_FRACTAL.get(), LootTable.lootTable());
+
+        // TODO 补齐战利品表
+        this.add(ModEntities.MULTICELLULAR_HERALD.get(), LootTable.lootTable());
+        this.add(ModEntities.MATROCELLULAR_NURSE.get(), LootTable.lootTable());
+        this.add(ModEntities.EXOCELLULAR_DEPOSITER.get(), LootTable.lootTable());
+        this.add(ModEntities.DIVICELLULAR_HOARDER.get(), LootTable.lootTable());
+        this.add(ModEntities.TOXOCELLULAR_DRIFTER.get(), LootTable.lootTable());
     }
 
     @Override
