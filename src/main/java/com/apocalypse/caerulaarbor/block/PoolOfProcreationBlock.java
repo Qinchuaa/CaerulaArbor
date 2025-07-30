@@ -87,20 +87,25 @@ public class PoolOfProcreationBlock extends BaseEntityBlock implements SimpleWat
     public void neighborChanged(BlockState pState, Level pLevel, BlockPos pPos, Block pNeighborBlock, BlockPos pNeighborPos, boolean pMovedByPiston) {
         super.neighborChanged(pState, pLevel, pPos, pNeighborBlock, pNeighborPos, pMovedByPiston);
         boolean hasSignal = pLevel.hasNeighborSignal(pPos);
-        if (hasSignal != pState.getValue(POWERED)) {
-            if (hasSignal) ((PoolOfProcreationBlockEntity) pLevel.getBlockEntity(pPos)).activate();
-            pLevel.setBlock(pPos, pState.setValue(POWERED, hasSignal), 3);
+        if (hasSignal && !pState.getValue(POWERED)) {
+            if (pLevel.getBlockEntity(pPos) instanceof PoolOfProcreationBlockEntity pBlockEntity) {
+                pBlockEntity.activate();
+            }
+            pLevel.setBlock(pPos, pState.setValue(POWERED, true), 3);
         }
     }
 
     @Override
     public BlockEntity newBlockEntity(BlockPos pPos, BlockState pState) {
-        return new PoolOfProcreationBlockEntity(pPos, pState);
+        return new PoolOfProcreationBlockEntity(pPos, pState, false);
     }
 
     @Override
     public <T extends BlockEntity> BlockEntityTicker<T> getTicker(Level pLevel, BlockState pState, BlockEntityType<T> pBlockEntityType) {
-        return createTickerHelper(pBlockEntityType, ModBlockEntityTypes.POOL_OF_PROCREATION.get(), PoolOfProcreationBlockEntity::tick);
+        if (!pLevel.isClientSide) {
+            return createTickerHelper(pBlockEntityType, ModBlockEntityTypes.POOL_OF_PROCREATION.get(), PoolOfProcreationBlockEntity::serverTick);
+        }
+        return null;
     }
 
     @Override

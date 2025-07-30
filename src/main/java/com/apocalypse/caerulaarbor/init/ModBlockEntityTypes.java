@@ -11,5 +11,6 @@ public class ModBlockEntityTypes {
     public static final DeferredRegister<BlockEntityType<?>> BLOCK_ENTITIES = DeferredRegister.create(ForgeRegistries.BLOCK_ENTITY_TYPES, CaerulaArborMod.MODID);
 
     public static final RegistryObject<BlockEntityType<PoolOfProcreationBlockEntity>> POOL_OF_PROCREATION =
-            BLOCK_ENTITIES.register("pool_of_procreation", () -> BlockEntityType.Builder.of(PoolOfProcreationBlockEntity::new, ModBlocks.POOL_OF_PROCREATION.get(), ModBlocks.NOURISHED_POOL_OF_PROCREATION.get()).build(null));
+            BLOCK_ENTITIES.register("pool_of_procreation",
+                    () -> BlockEntityType.Builder.of(PoolOfProcreationBlockEntity::new, ModBlocks.POOL_OF_PROCREATION.get(), ModBlocks.NOURISHED_POOL_OF_PROCREATION.get()).build(null));
 }

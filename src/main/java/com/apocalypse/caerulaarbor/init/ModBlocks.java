@@ -51,5 +51,5 @@ public class ModBlocks {
 	public static final RegistryObject<Block> TRAIL_TILE = BLOCKS.register("trail_tile", TrailTileBlock::new);
 
 	public static final RegistryObject<Block> POOL_OF_PROCREATION = BLOCKS.register("pool_of_procreation", PoolOfProcreationBlock::new);
-	public static final RegistryObject<Block> NOURISHED_POOL_OF_PROCREATION = BLOCKS.register("nourished_pool_of_procreation", PoolOfProcreationBlock::new);
+	public static final RegistryObject<Block> NOURISHED_POOL_OF_PROCREATION = BLOCKS.register("nourished_pool_of_procreation", NourishedPoolOfProcreationBlock::new);
 }
