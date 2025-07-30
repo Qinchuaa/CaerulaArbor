@@ -65,6 +65,7 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
 
     /**
      * 策略-生长到达3级及以上时，攻击时额外造成魔法伤害
+     * 成功攻击后，获得一定的策略-生长进化点数
      */
     @Override
     public boolean doHurtTarget(Entity pEntity) {
@@ -75,13 +76,28 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
             boolean flag = pEntity.hurt(level.damageSources().indirectMagic(this, this), (float) (damage * 0.2 * (grow - 2)));
             if (flag) {
                 pEntity.invulnerableTime = 0;
+
+                if (level instanceof ServerLevel serverLevel) {
+                    serverLevel.sendParticles(ParticleTypes.ENCHANTED_HIT, pEntity.getX(), pEntity.getY() + 1, pEntity.getZ(), 48, 1.5, 1.5, 1.5, 0.2);
+                }
             }
-            if (level instanceof ServerLevel serverLevel) {
-                serverLevel.sendParticles(ParticleTypes.ENCHANTED_HIT, pEntity.getX(), pEntity.getY() + 1, pEntity.getZ(), 48, 1.5, 1.5, 1.5, 0.2);
+            if (flag && super.doHurtTarget(pEntity)) {
+                if (this.level().getLevelData().getGameRules().getBoolean(ModGameRules.NATURAL_EVOLUTION)) {
+                    MapVariablesHandler.addEvoPoint(MapVariables.StrategyType.GROW, level, damage * 0.025);
+                    MapVariablesHandler.addEvoPoint(MapVariables.StrategyType.SILENCE, level, damage * 0.025);
+                }
+                return true;
             }
-            return flag && super.doHurtTarget(pEntity);
+            return false;
         }
-        return super.doHurtTarget(pEntity);
+        if (super.doHurtTarget(pEntity)) {
+            if (this.level().getLevelData().getGameRules().getBoolean(ModGameRules.NATURAL_EVOLUTION)) {
+                MapVariablesHandler.addEvoPoint(MapVariables.StrategyType.GROW, level, damage * 0.025);
+                MapVariablesHandler.addEvoPoint(MapVariables.StrategyType.SILENCE, level, damage * 0.025);
+            }
+            return true;
+        }
+        return false;
     }
 
     // TODO 目前还没有在其他component渲染的地方实现海嗣文转写，需要完成这个

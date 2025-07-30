@@ -42,18 +42,6 @@
 //// TODO 把这坨铲了
 //@Mod.EventBusSubscriber
 //public class MobHitFuncProcedure {
-//    @SubscribeEvent
-//    public static void onEntityAttacked(LivingAttackEvent event) {
-//        if (event != null && event.getEntity() != null) {
-////            execute(event, event.getEntity().level(), event.getEntity().getX(), event.getEntity().getY(), event.getEntity().getZ(), event.getSource(), event.getEntity(), event.getSource().getDirectEntity(), event.getSource().getEntity(),
-////                    event.getAmount());
-//        }
-//    }
-//
-//    public static void execute(LevelAccessor world, double x, double y, double z, DamageSource damagesource, Entity entity, Entity immediatesourceentity, Entity sourceentity, double amount) {
-//        execute(null, world, x, y, z, damagesource, entity, immediatesourceentity, sourceentity, amount);
-//    }
-//
 //    private static void execute(@Nullable Event event, LevelAccessor world, double x, double y, double z, DamageSource damagesource, Entity entity, Entity immediatesourceentity, Entity sourceentity, double amount) {
 //        if (damagesource == null || entity == null || immediatesourceentity == null || sourceentity == null)
 //            return;
@@ -99,14 +87,6 @@
 //                        }
 //                    }
 //                }
-//            }
-//        }
-//        if (sourceentity.getType().is(ModTags.EntityTypes.SEA_BORN)) {
-//            if (world.getLevelData().getGameRules().getBoolean(ModGameRules.NATURAL_EVOLUTION)) {
-//                MapVariables.get(world).evoPointGrow = MapVariables.get(world).evoPointGrow + amount * 0.025;
-//                MapVariables.get(world).syncData(world);
-//                UpgradeGrowProcedure.execute(world);
-//                UpgradeSilenceProcedure.execute(world, entity, amount * 0.025);
 //            }
 //        }
 //        if (entity.getType().is(ModTags.EntityTypes.SEA_BORN)) {

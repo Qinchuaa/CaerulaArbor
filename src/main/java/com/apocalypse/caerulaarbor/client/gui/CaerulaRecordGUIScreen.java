@@ -5,7 +5,6 @@ import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.menu.CaerulaRecorderMenu;
 import com.apocalypse.caerulaarbor.network.ModNetwork;
 import com.apocalypse.caerulaarbor.network.message.send.CaerulaRecordGUIButtonMessage;
-import com.apocalypse.caerulaarbor.procedures.GetOceanizeStateProcedure;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Checkbox;
@@ -65,8 +64,8 @@ public class CaerulaRecordGUIScreen extends AbstractContainerScreen<CaerulaRecor
 //        if (cap.disoclusion == 4)
 //            if (mouseX > leftPos + 101 && mouseX < leftPos + 173 && mouseY > topPos + 147 && mouseY < topPos + 163)
 //                guiGraphics.renderTooltip(font, Component.translatable("gui.caerula_arbor.caerula_record_gui.tooltip_flesh"), mouseX, mouseY);
-        if (mouseX > leftPos + 136 && mouseX < leftPos + 161 && mouseY > topPos + 7 && mouseY < topPos + 27)
-            guiGraphics.renderTooltip(font, Component.literal(GetOceanizeStateProcedure.execute(entity)), mouseX, mouseY);
+//        if (mouseX > leftPos + 136 && mouseX < leftPos + 161 && mouseY > topPos + 7 && mouseY < topPos + 27)
+//            guiGraphics.renderTooltip(font, Component.literal(GetOceanizeStateProcedure.execute(entity)), mouseX, mouseY);
     }
 
     @Override
