@@ -63,17 +63,6 @@ public class PlayerTickFuncProcedure {
         double enchant;
         var cap = ModCapabilities.getPlayerVariables(entity);
 
-//        if (cap.disoclusion == 2) {
-//            if (!(entity instanceof LivingEntity _livEnt0 && _livEnt0.hasEffect(ModMobEffects.HAEMOPHILIA.get()))) {
-//                if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
-//                    _entity.addEffect(new MobEffectInstance(ModMobEffects.HAEMOPHILIA.get(), 299, 0, false, false));
-//            }
-//        } else {
-//            if (entity instanceof LivingEntity _livEnt2 && _livEnt2.hasEffect(ModMobEffects.HAEMOPHILIA.get())) {
-//                if (entity instanceof LivingEntity _entity)
-//                    _entity.removeEffect(ModMobEffects.HAEMOPHILIA.get());
-//            }
-//        }
 //        if (cap.disoclusion == 4) {
 //            if ((entity instanceof LivingEntity _livEnt && _livEnt.hasEffect(ModMobEffects.FLESHDEFORMITY.get()) ? _livEnt.getEffect(ModMobEffects.FLESHDEFORMITY.get()).getDuration() : 0) < 5) {
 //                if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())

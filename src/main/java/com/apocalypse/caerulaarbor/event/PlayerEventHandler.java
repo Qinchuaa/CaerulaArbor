@@ -90,8 +90,23 @@ public class PlayerEventHandler {
         if (cap.isRejectionInvoked(PlayerVariable.Rejection.HEMOPOIETIC_INHIBITION)) {
             float damage = player.getMaxHealth() * 0.02f;
             if (player.getHealth() <= damage) return;
+
+            // TODO 有没有办法在保留hurt的同时去掉受击音效？
             player.hurt(ModDamageTypes.causeHemopoieticDisorderDamage(player.level().registryAccess(), null), damage);
             player.invulnerableTime = 0;
+
+            if (player.level() instanceof ServerLevel serverLevel) {
+                var random = serverLevel.random;
+                serverLevel.sendParticles(ModParticleTypes.BLOODOOZE.get(),
+                        player.getX(),
+                        player.getY() + 1.33,
+                        player.getZ(),
+                        16,
+                        Mth.nextDouble(random, -1.25, 1.25),
+                        Mth.nextDouble(random, -0.05, 0.05),
+                        Mth.nextDouble(random, -1.25, 1.25),
+                        0.1);
+            }
         }
     }
 
