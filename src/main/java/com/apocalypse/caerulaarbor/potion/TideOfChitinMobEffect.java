@@ -2,15 +2,6 @@
 package com.apocalypse.caerulaarbor.potion;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
-import com.apocalypse.caerulaarbor.capability.ModCapabilities;
-import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
-import com.apocalypse.caerulaarbor.init.ModMobEffects;
-import com.apocalypse.caerulaarbor.init.ModParticleTypes;
-import net.minecraft.server.level.ServerLevel;
-import net.minecraft.sounds.SoundEvents;
-import net.minecraft.sounds.SoundSource;
-import net.minecraft.util.Mth;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeMap;
@@ -40,10 +31,10 @@ public class TideOfChitinMobEffect extends InvisibleMobEffect {
     public void addAttributeModifiers(LivingEntity entity, AttributeMap attributeMap, int amplifier) {
         super.addAttributeModifiers(entity, attributeMap, amplifier);
 
-        entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
-            capability.chitin_knife_selected = entity.getMainHandItem().copy();
-            capability.syncPlayerVariables(entity);
-        });
+//        entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
+//            capability.chitin_knife_selected = entity.getMainHandItem().copy();
+//            capability.syncPlayerVariables(entity);
+//        });
 
         CaerulaArborMod.queueServerWork(5, () -> {
             entity.setHealth(entity.getMaxHealth());
@@ -57,28 +48,28 @@ public class TideOfChitinMobEffect extends InvisibleMobEffect {
         double x = entity.getX();
         double y = entity.getY();
         double z = entity.getZ();
-        if (!(entity.getMainHandItem().getItem() == entity.getCapability(ModCapabilities.PLAYER_VARIABLE)
-                .orElse(new PlayerVariable())
-                .chitin_knife_selected.getItem())
-        ) {
-            if (world instanceof ServerLevel server) {
-                server.playLocalSound(x, y, z, SoundEvents.BEACON_DEACTIVATE, SoundSource.NEUTRAL, 3.2f, 1, false);
-            }
-            entity.removeEffect(ModMobEffects.TIDE_OF_CHITIN.get());
-        }
-        if (entity.getCapability(ModCapabilities.PLAYER_VARIABLE)
-                .orElse(new PlayerVariable())
-                .kingShowPtc
-        ) {
-            world.addParticle(ModParticleTypes.KNIFEPTC.get(),
-                    x + Mth.nextDouble(RandomSource.create(), -0.45, 0.45),
-                    y + Mth.nextDouble(RandomSource.create(), 0, entity.getBbHeight() * 0.8),
-                    z + Mth.nextDouble(RandomSource.create(), -0.45, 0.45),
-                    Math.sin(Mth.nextDouble(RandomSource.create(), 0, 6.283)),
-                    0.1,
-                    Math.cos(Mth.nextDouble(RandomSource.create(), 0, 6.283))
-            );
-        }
+//        if (!(entity.getMainHandItem().getItem() == entity.getCapability(ModCapabilities.PLAYER_VARIABLE)
+//                .orElse(new PlayerVariable())
+//                .chitin_knife_selected.getItem())
+//        ) {
+//            if (world instanceof ServerLevel server) {
+//                server.playLocalSound(x, y, z, SoundEvents.BEACON_DEACTIVATE, SoundSource.NEUTRAL, 3.2f, 1, false);
+//            }
+//            entity.removeEffect(ModMobEffects.TIDE_OF_CHITIN.get());
+//        }
+//        if (entity.getCapability(ModCapabilities.PLAYER_VARIABLE)
+//                .orElse(new PlayerVariable())
+//                .kingShowPtc
+//        ) {
+//            world.addParticle(ModParticleTypes.KNIFEPTC.get(),
+//                    x + Mth.nextDouble(RandomSource.create(), -0.45, 0.45),
+//                    y + Mth.nextDouble(RandomSource.create(), 0, entity.getBbHeight() * 0.8),
+//                    z + Mth.nextDouble(RandomSource.create(), -0.45, 0.45),
+//                    Math.sin(Mth.nextDouble(RandomSource.create(), 0, 6.283)),
+//                    0.1,
+//                    Math.cos(Mth.nextDouble(RandomSource.create(), 0, 6.283))
+//            );
+//        }
     }
 
     @Override

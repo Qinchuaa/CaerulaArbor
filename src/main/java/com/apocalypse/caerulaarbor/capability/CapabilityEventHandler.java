@@ -84,21 +84,12 @@ public class CapabilityEventHandler {
         clone.maxLive = original.maxLive;
         clone.shield = original.shield;
         clone.rejection = original.rejection;
-
-        clone.show_stats = original.show_stats;
-        clone.kingShowPtc = original.kingShowPtc;
+        clone.seabornization = original.seabornization;
 
         for (var relic : Relic.values()) {
             if (relic.gained(original)) {
                 relic.set(clone, relic.get(original));
             }
-        }
-
-        clone.player_king_suit = original.player_king_suit;
-        clone.player_demon_suit = original.player_demon_suit;
-        clone.seabornization = original.seabornization;
-        if (!isWasDeath) {
-            clone.chitin_knife_selected = original.chitin_knife_selected;
         }
     }
 

@@ -1,13 +1,7 @@
 
 package com.apocalypse.caerulaarbor.potion;
 
-import com.apocalypse.caerulaarbor.capability.ModCapabilities;
-import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
-import com.apocalypse.caerulaarbor.init.ModParticleTypes;
-import net.minecraft.util.Mth;
-import net.minecraft.util.RandomSource;
 import net.minecraft.world.effect.MobEffectCategory;
-import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeModifier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -34,27 +28,27 @@ public class KingsBreathMobEffect extends InvisibleMobEffect {
 		double x = entity.getX();
 		double y = entity.getY();
 		double z = entity.getZ();
-		if (((Entity) entity).getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable()).kingShowPtc) {
-			if ((double) amplifier < 1) {
-				world.addParticle(ModParticleTypes.KING_SLAY.get(),
-						x + Mth.nextDouble(RandomSource.create(), -0.55, 0.55),
-						y + Mth.nextDouble(RandomSource.create(), 0, entity.getBbHeight() * 0.6),
-						z + Mth.nextDouble(RandomSource.create(), -0.55, 0.55),
-						Math.sin(Mth.nextDouble(RandomSource.create(), 0, 6.283)),
-						0.05,
-						Math.cos(Mth.nextDouble(RandomSource.create(), 0, 6.283))
-				);
-			} else {
-				world.addParticle(ModParticleTypes.KING_SLAY_RED.get(),
-						x + Mth.nextDouble(RandomSource.create(), -0.55, 0.55),
-						y + Mth.nextDouble(RandomSource.create(), 0, entity.getBbHeight() * 0.6),
-						z + Mth.nextDouble(RandomSource.create(), -0.55, 0.55),
-						Math.sin(Mth.nextDouble(RandomSource.create(), 0, 6.283)),
-						0.05,
-						Math.cos(Mth.nextDouble(RandomSource.create(), 0, 6.283))
-				);
-			}
-		}
+//		if (((Entity) entity).getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable()).kingShowPtc) {
+//			if ((double) amplifier < 1) {
+//				world.addParticle(ModParticleTypes.KING_SLAY.get(),
+//						x + Mth.nextDouble(RandomSource.create(), -0.55, 0.55),
+//						y + Mth.nextDouble(RandomSource.create(), 0, entity.getBbHeight() * 0.6),
+//						z + Mth.nextDouble(RandomSource.create(), -0.55, 0.55),
+//						Math.sin(Mth.nextDouble(RandomSource.create(), 0, 6.283)),
+//						0.05,
+//						Math.cos(Mth.nextDouble(RandomSource.create(), 0, 6.283))
+//				);
+//			} else {
+//				world.addParticle(ModParticleTypes.KING_SLAY_RED.get(),
+//						x + Mth.nextDouble(RandomSource.create(), -0.55, 0.55),
+//						y + Mth.nextDouble(RandomSource.create(), 0, entity.getBbHeight() * 0.6),
+//						z + Mth.nextDouble(RandomSource.create(), -0.55, 0.55),
+//						Math.sin(Mth.nextDouble(RandomSource.create(), 0, 6.283)),
+//						0.05,
+//						Math.cos(Mth.nextDouble(RandomSource.create(), 0, 6.283))
+//				);
+//			}
+//		}
 	}
 
 	@Override

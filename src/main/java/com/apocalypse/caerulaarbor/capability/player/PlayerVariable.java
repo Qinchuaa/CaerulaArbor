@@ -8,7 +8,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
-import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.common.capabilities.AutoRegisterCapability;
 import net.minecraftforge.common.util.INBTSerializable;
 import net.minecraftforge.network.PacketDistributor;
@@ -34,13 +33,7 @@ public class PlayerVariable implements INBTSerializable<CompoundTag> {
     public int rejection = 0;
     // 海嗣化程度
     public int seabornization = 0;
-
-    public boolean show_stats = false;
-    public boolean kingShowPtc = true;
-    public ItemStack chitin_knife_selected = ItemStack.EMPTY;
-    public int player_king_suit = 0;
-    public int player_demon_suit = 0;
-
+    // 已获得的藏品
     public HashMap<Relic, Integer> relics = new HashMap<>();
 
     public void syncPlayerVariables(Entity entity) {
@@ -57,18 +50,12 @@ public class PlayerVariable implements INBTSerializable<CompoundTag> {
         nbt.putInt("Rejection", this.rejection);
         nbt.putInt("Seabornization", this.seabornization);
 
-        nbt.putBoolean("show_stats", this.show_stats);
-        nbt.putBoolean("kingShowPtc", this.kingShowPtc);
-
         for (var relic : Relic.values()) {
             if (relic.gained(this)) {
                 nbt.putInt(relic.name(), relic.get(this));
             }
         }
 
-        nbt.put("chitin_knife_selected", this.chitin_knife_selected.save(new CompoundTag()));
-        nbt.putInt("player_king_suit", this.player_king_suit);
-        nbt.putInt("player_demon_suit", this.player_demon_suit);
         return nbt;
     }
 
@@ -82,18 +69,11 @@ public class PlayerVariable implements INBTSerializable<CompoundTag> {
         this.rejection = tag.getInt("Rejection");
         this.seabornization = tag.getInt("Seabornization");
 
-        this.show_stats = tag.getBoolean("show_stats");
-        this.kingShowPtc = tag.getBoolean("kingShowPtc");
-
         for (var relic : Relic.values()) {
             if (tag.contains(relic.name())) {
                 relic.set(this, tag.getInt(relic.name()));
             }
         }
-
-        this.chitin_knife_selected = ItemStack.of(tag.getCompound("chitin_knife_selected"));
-        this.player_king_suit = tag.getInt("player_king_suit");
-        this.player_demon_suit = tag.getInt("player_demon_suit");
     }
 
     @Override

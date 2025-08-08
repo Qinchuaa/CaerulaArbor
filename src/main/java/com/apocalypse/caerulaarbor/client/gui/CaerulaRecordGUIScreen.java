@@ -3,12 +3,8 @@ package com.apocalypse.caerulaarbor.client.gui;
 import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.menu.CaerulaRecorderMenu;
-import com.apocalypse.caerulaarbor.network.ModNetwork;
-import com.apocalypse.caerulaarbor.network.message.send.CaerulaRecordGUIButtonMessage;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
-import net.minecraft.client.gui.components.Checkbox;
-import net.minecraft.client.gui.components.ImageButton;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.client.gui.screens.inventory.InventoryScreen;
 import net.minecraft.network.chat.Component;
@@ -24,9 +20,6 @@ import java.util.Optional;
 public class CaerulaRecordGUIScreen extends AbstractContainerScreen<CaerulaRecorderMenu> {
 
     private final Player entity;
-    Checkbox show_hud;
-    Checkbox show_ptc;
-    ImageButton imagebutton_relic_icon;
 
     public CaerulaRecordGUIScreen(CaerulaRecorderMenu container, Inventory inventory, Component text) {
         super(container, inventory, text);
@@ -168,22 +161,6 @@ public class CaerulaRecordGUIScreen extends AbstractContainerScreen<CaerulaRecor
     @Override
     public void init() {
         super.init();
-        imagebutton_relic_icon = new ImageButton(this.leftPos + 6, this.topPos + 99, 16, 16, 0, 0, 16, new ResourceLocation("caerula_arbor:textures/screens/atlas/imagebutton_relic_icon.png"), 16, 32, e -> ModNetwork.PACKET_HANDLER.sendToServer(new CaerulaRecordGUIButtonMessage(0)));
-//        guistate.put("button:imagebutton_relic_icon", imagebutton_relic_icon);
-        this.addRenderableWidget(imagebutton_relic_icon);
-        boolean result = false;
-        if (entity != null) {
-            var cap = ModCapabilities.getPlayerVariables(entity);
-            result = cap.show_stats;
-        }
-        show_hud = new Checkbox(this.leftPos + 4, this.topPos + 120, 20, 20, Component.translatable("gui.caerula_arbor.caerula_record_gui.show_hud"), result);
-//        guistate.put("checkbox:show_hud", show_hud);
-        this.addRenderableWidget(show_hud);
-        show_ptc = new Checkbox(this.leftPos + 4, this.topPos + 142, 20, 20, Component.translatable("gui.caerula_arbor.caerula_record_gui.show_ptc"), entity.getCapability(ModCapabilities.PLAYER_VARIABLE)
-                .map(c -> c.kingShowPtc)
-                .orElse(false));
-//        guistate.put("checkbox:show_ptc", show_ptc);
-        this.addRenderableWidget(show_ptc);
     }
 
     /**

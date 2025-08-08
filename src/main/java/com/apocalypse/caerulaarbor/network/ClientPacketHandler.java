@@ -23,18 +23,11 @@ public class ClientPacketHandler {
             variables.maxLive = message.data().maxLive;
             variables.shield = message.data().shield;
             variables.rejection = message.data().rejection;
-
-            variables.show_stats = message.data().show_stats;
-            variables.kingShowPtc = message.data().kingShowPtc;
+            variables.seabornization = message.data().seabornization;
 
             for (var relic : Relic.values()) {
                 relic.set(variables, message.data().relics.getOrDefault(relic, relic.defaultLevel));
             }
-
-            variables.chitin_knife_selected = message.data().chitin_knife_selected;
-            variables.player_king_suit = message.data().player_king_suit;
-            variables.player_demon_suit = message.data().player_demon_suit;
-            variables.seabornization = message.data().seabornization;
         }
     }
 }

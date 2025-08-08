@@ -130,27 +130,27 @@ public class PlayerTickFuncProcedure {
                     if (suitKing < 3) {
                         if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
                             _entity.addEffect(new MobEffectInstance(ModMobEffects.KINGS_BREATH.get(), 30, 0, false, false));
-                        {
-                            double _setval = 1;
-                            entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
-                                capability.player_king_suit = (int) _setval;
-                                capability.syncPlayerVariables(entity);
-                            });
-                        }
+//                        {
+//                            double _setval = 1;
+//                            entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
+//                                capability.player_king_suit = (int) _setval;
+//                                capability.syncPlayerVariables(entity);
+//                            });
+//                        }
                     } else {
                         if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
                             _entity.addEffect(new MobEffectInstance(ModMobEffects.KINGS_BREATH.get(), 3, 2, false, false));
-                        entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
-                            capability.player_king_suit = 2;
-                            capability.syncPlayerVariables(entity);
-                        });
+//                        entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
+//                            capability.player_king_suit = 2;
+//                            capability.syncPlayerVariables(entity);
+//                        });
                     }
                 }
             } else {
-                entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
-                    capability.player_king_suit = 0;
-                    capability.syncPlayerVariables(entity);
-                });
+//                entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
+//                    capability.player_king_suit = 0;
+//                    capability.syncPlayerVariables(entity);
+//                });
             }
         }
         if (Relic.HAND_SPEED.gained(cap)
@@ -209,25 +209,25 @@ public class PlayerTickFuncProcedure {
                         if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
                             _entity.addEffect(new MobEffectInstance(ModMobEffects.SACREFICE.get(), 30, 0, false, false));
 
-                        entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
-                            capability.player_demon_suit = 1;
-                            capability.syncPlayerVariables(entity);
-                        });
+//                        entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
+//                            capability.player_demon_suit = 1;
+//                            capability.syncPlayerVariables(entity);
+//                        });
                     } else {
                         if (entity instanceof LivingEntity _entity && !_entity.level().isClientSide())
                             _entity.addEffect(new MobEffectInstance(ModMobEffects.SACREFICE.get(), 30, 2, false, false));
-
-                        entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
-                            capability.player_demon_suit = 2;
-                            capability.syncPlayerVariables(entity);
-                        });
+//
+//                        entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
+//                            capability.player_demon_suit = 2;
+//                            capability.syncPlayerVariables(entity);
+//                        });
                     }
                 }
             } else {
-                entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
-                    capability.player_demon_suit = 0;
-                    capability.syncPlayerVariables(entity);
-                });
+//                entity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
+//                    capability.player_demon_suit = 0;
+//                    capability.syncPlayerVariables(entity);
+//                });
             }
         }
         if (Relic.HAND_ENGRAVE.get(cap) > 0) {

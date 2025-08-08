@@ -7,7 +7,6 @@ import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -41,9 +40,9 @@ public class CeasedLightOverlay {
 		RenderSystem.blendFuncSeparate(GlStateManager.SourceFactor.SRC_ALPHA, GlStateManager.DestFactor.ONE_MINUS_SRC_ALPHA, GlStateManager.SourceFactor.ONE, GlStateManager.DestFactor.ZERO);
 		RenderSystem.setShaderColor(1, 1, 1, 1);
 		var cap = ((Entity) entity).getCapability(ModCapabilities.PLAYER_VARIABLE).orElse(new PlayerVariable());
-		if (cap.light < 1 && cap.show_stats) {
-			event.getGuiGraphics().blit(new ResourceLocation("caerula_arbor:textures/screens/exting_cover.png"), 0, 0, 0, 0, w, h, w, h);
-		}
+//		if (cap.light < 1 && cap.show_stats) {
+//			event.getGuiGraphics().blit(new ResourceLocation("caerula_arbor:textures/screens/exting_cover.png"), 0, 0, 0, 0, w, h, w, h);
+//		}
 		RenderSystem.depthMask(true);
 		RenderSystem.defaultBlendFunc();
 		RenderSystem.enableDepthTest();

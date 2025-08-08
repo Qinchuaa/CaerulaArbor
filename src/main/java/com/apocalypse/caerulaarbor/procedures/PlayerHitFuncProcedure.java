@@ -248,10 +248,10 @@ public class PlayerHitFuncProcedure {
                 }
             }
             if (Relic.LEGEND_CHITIN.gained(cap1) && Math.random() < 0.05) {
-                sourceentity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
-                    capability.chitin_knife_selected = _livEnt1.getMainHandItem().copy();
-                    capability.syncPlayerVariables(sourceentity);
-                });
+//                sourceentity.getCapability(ModCapabilities.PLAYER_VARIABLE).ifPresent(capability -> {
+//                    capability.chitin_knife_selected = _livEnt1.getMainHandItem().copy();
+//                    capability.syncPlayerVariables(sourceentity);
+//                });
                 if (!_livEnt1.level().isClientSide())
                     _livEnt1.addEffect(new MobEffectInstance(ModMobEffects.TIDE_OF_CHITIN.get(), 500, 0, false, false));
                 if (world instanceof Level _level) {
