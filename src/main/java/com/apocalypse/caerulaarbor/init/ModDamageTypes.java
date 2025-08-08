@@ -16,9 +16,14 @@ import org.jetbrains.annotations.Nullable;
 public class ModDamageTypes {
 
     public static final ResourceKey<DamageType> NERVOUS_IMPAIRMENT = ResourceKey.create(Registries.DAMAGE_TYPE, CaerulaArborMod.loc("nervous_impairment"));
+    public static final ResourceKey<DamageType> HEMOPOIETIC_DISORDER = ResourceKey.create(Registries.DAMAGE_TYPE, CaerulaArborMod.loc("hemopoietic_disorder"));
 
     public static DamageSource causeNervousImpairmentDamage(RegistryAccess registryAccess, @Nullable Entity entity) {
         return new DamageMessages(registryAccess.registry(Registries.DAMAGE_TYPE).get().getHolderOrThrow(NERVOUS_IMPAIRMENT), entity);
+    }
+
+    public static DamageSource causeHemopoieticDisorderDamage(RegistryAccess registryAccess, @Nullable Entity entity) {
+        return new DamageMessages(registryAccess.registry(Registries.DAMAGE_TYPE).get().getHolderOrThrow(HEMOPOIETIC_DISORDER), entity);
     }
 
     private static class DamageMessages extends DamageSource {

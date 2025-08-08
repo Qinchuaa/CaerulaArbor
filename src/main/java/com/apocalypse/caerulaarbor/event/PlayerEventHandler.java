@@ -3,10 +3,7 @@ package com.apocalypse.caerulaarbor.event;
 import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
-import com.apocalypse.caerulaarbor.init.ModGameRules;
-import com.apocalypse.caerulaarbor.init.ModMobEffects;
-import com.apocalypse.caerulaarbor.init.ModParticleTypes;
-import com.apocalypse.caerulaarbor.init.ModSounds;
+import com.apocalypse.caerulaarbor.init.*;
 import com.apocalypse.caerulaarbor.item.relic.IRelic;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
@@ -82,6 +79,20 @@ public class PlayerEventHandler {
                 }
             }
         });
+
+        if (player.tickCount % 20 == 0) {
+            handleRejectionTick(player, cap);
+        }
+    }
+
+    private static void handleRejectionTick(Player player, PlayerVariable cap) {
+        // 排异反应-造血障碍
+        if (cap.isRejectionInvoked(PlayerVariable.Rejection.HEMOPOIETIC_INHIBITION)) {
+            float damage = player.getMaxHealth() * 0.02f;
+            if (player.getHealth() <= damage) return;
+            player.hurt(ModDamageTypes.causeHemopoieticDisorderDamage(player.level().registryAccess(), null), damage);
+            player.invulnerableTime = 0;
+        }
     }
 
     @SubscribeEvent

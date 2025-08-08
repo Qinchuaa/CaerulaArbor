@@ -20,10 +20,11 @@ public class ModDamageTypeTagProvider extends DamageTypeTagsProvider {
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
         this.tag(DamageTypeTags.BYPASSES_RESISTANCE).add(ModDamageTypes.NERVOUS_IMPAIRMENT);
-        this.tag(DamageTypeTags.BYPASSES_ENCHANTMENTS).add(ModDamageTypes.NERVOUS_IMPAIRMENT);
-        this.tag(DamageTypeTags.BYPASSES_EFFECTS).add(ModDamageTypes.NERVOUS_IMPAIRMENT);
-        this.tag(DamageTypeTags.BYPASSES_ARMOR).add(ModDamageTypes.NERVOUS_IMPAIRMENT);
+        this.tag(DamageTypeTags.BYPASSES_ENCHANTMENTS).add(ModDamageTypes.NERVOUS_IMPAIRMENT, ModDamageTypes.HEMOPOIETIC_DISORDER);
+        this.tag(DamageTypeTags.BYPASSES_EFFECTS).add(ModDamageTypes.NERVOUS_IMPAIRMENT, ModDamageTypes.HEMOPOIETIC_DISORDER);
+        this.tag(DamageTypeTags.BYPASSES_ARMOR).add(ModDamageTypes.NERVOUS_IMPAIRMENT, ModDamageTypes.HEMOPOIETIC_DISORDER);
         this.tag(DamageTypeTags.BYPASSES_COOLDOWN).add(ModDamageTypes.NERVOUS_IMPAIRMENT);
         this.tag(DamageTypeTags.BYPASSES_SHIELD).add(ModDamageTypes.NERVOUS_IMPAIRMENT);
+        this.tag(DamageTypeTags.NO_IMPACT).add(ModDamageTypes.HEMOPOIETIC_DISORDER);
     }
 }

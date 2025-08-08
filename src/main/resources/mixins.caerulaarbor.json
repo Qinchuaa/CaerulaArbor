@@ -6,7 +6,8 @@
   "mixins": [
   ],
   "client": [
-    "ChatComponentMixin"
+    "ChatComponentMixin",
+    "GameRendererMixin"
   ],
   "minVersion": "0.8",
   "injectors": {
