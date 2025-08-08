@@ -1,6 +1,8 @@
 package com.apocalypse.caerulaarbor.init;
 
-import com.apocalypse.caerulaarbor.client.gui.*;
+import com.apocalypse.caerulaarbor.client.gui.CaerulaRecordGUIScreen;
+import com.apocalypse.caerulaarbor.client.gui.EvoTreeScreen;
+import com.apocalypse.caerulaarbor.client.gui.RelicShowcaseScreen;
 import net.minecraft.client.gui.screens.MenuScreens;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -15,11 +17,6 @@ public class ModScreens {
         event.enqueueWork(() -> {
             MenuScreens.register(ModMenus.CAERULA_RECORDER.get(), CaerulaRecordGUIScreen::new);
             MenuScreens.register(ModMenus.RELIC_SHOWCASE.get(), RelicShowcaseScreen::new);
-            MenuScreens.register(ModMenus.INFO_STRATEGY_SUBSIS.get(), InfoStrategySubsisScreen::new);
-            MenuScreens.register(ModMenus.INFO_STRATEGY_BREED.get(), InfoStrategyBreedScreen::new);
-            MenuScreens.register(ModMenus.INFO_STRATEGY_MIGRATION.get(), InfoStrategyMigrationScreen::new);
-            MenuScreens.register(ModMenus.INFO_STRATEGY_GROW.get(), InfoStrategyGrowScreen::new);
-            MenuScreens.register(ModMenus.INFO_STRATEGY_ALL.get(), InfoStrategyAllScreen::new);
             MenuScreens.register(ModMenus.EVO_TREE.get(), EvoTreeScreen::new);
         });
     }

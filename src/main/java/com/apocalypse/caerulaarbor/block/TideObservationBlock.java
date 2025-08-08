@@ -2,7 +2,6 @@
 package com.apocalypse.caerulaarbor.block;
 
 import com.apocalypse.caerulaarbor.capability.map.MapVariables;
-import com.apocalypse.caerulaarbor.procedures.OpenStraGUIProcedure;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.server.level.ServerLevel;
@@ -100,7 +99,7 @@ public class TideObservationBlock extends Block {
         int y = pos.getY();
         int z = pos.getZ();
 
-        OpenStraGUIProcedure.execute(world, x, y, z, entity);
+//        OpenStraGUIProcedure.execute(world, x, y, z, entity);
         return InteractionResult.SUCCESS;
     }
 }

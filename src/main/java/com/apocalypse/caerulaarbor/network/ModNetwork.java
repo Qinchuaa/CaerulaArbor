@@ -3,7 +3,8 @@ package com.apocalypse.caerulaarbor.network;
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.network.message.receive.PlayerVariablesSyncMessage;
 import com.apocalypse.caerulaarbor.network.message.receive.SavedDataSyncMessage;
-import com.apocalypse.caerulaarbor.network.message.send.*;
+import com.apocalypse.caerulaarbor.network.message.send.CaerulaRecordGUIButtonMessage;
+import com.apocalypse.caerulaarbor.network.message.send.RelicShowcaseButtonMessage;
 import net.minecraft.network.FriendlyByteBuf;
 import net.minecraftforge.network.NetworkDirection;
 import net.minecraftforge.network.NetworkEvent;
@@ -27,12 +28,6 @@ public class ModNetwork {
         playToClient(SavedDataSyncMessage.class, SavedDataSyncMessage::encode, SavedDataSyncMessage::decode, SavedDataSyncMessage::handler);
 
         playToServer(CaerulaRecordGUIButtonMessage.class, CaerulaRecordGUIButtonMessage::encode, CaerulaRecordGUIButtonMessage::decode, CaerulaRecordGUIButtonMessage::handler);
-        playToServer(EvoTreeButtonMessage.class, EvoTreeButtonMessage::buffer, EvoTreeButtonMessage::new, EvoTreeButtonMessage::handler);
-        playToServer(InfoStrategyAllButtonMessage.class, InfoStrategyAllButtonMessage::buffer, InfoStrategyAllButtonMessage::new, InfoStrategyAllButtonMessage::handler);
-        playToServer(InfoStrategyBreedButtonMessage.class, InfoStrategyBreedButtonMessage::buffer, InfoStrategyBreedButtonMessage::new, InfoStrategyBreedButtonMessage::handler);
-        playToServer(InfoStrategyGrowButtonMessage.class, InfoStrategyGrowButtonMessage::buffer, InfoStrategyGrowButtonMessage::new, InfoStrategyGrowButtonMessage::handler);
-        playToServer(InfoStrategyMigrationButtonMessage.class, InfoStrategyMigrationButtonMessage::buffer, InfoStrategyMigrationButtonMessage::new, InfoStrategyMigrationButtonMessage::handler);
-        playToServer(InfoStrategySubsisButtonMessage.class, InfoStrategySubsisButtonMessage::buffer, InfoStrategySubsisButtonMessage::new, InfoStrategySubsisButtonMessage::handler);
         playToServer(RelicShowcaseButtonMessage.class, RelicShowcaseButtonMessage::buffer, RelicShowcaseButtonMessage::new, RelicShowcaseButtonMessage::handler);
     }
 

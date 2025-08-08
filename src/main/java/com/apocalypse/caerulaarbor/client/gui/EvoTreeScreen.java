@@ -2,12 +2,9 @@ package com.apocalypse.caerulaarbor.client.gui;
 
 import com.apocalypse.caerulaarbor.capability.map.MapVariables;
 import com.apocalypse.caerulaarbor.menu.EvoTreeMenu;
-import com.apocalypse.caerulaarbor.network.ModNetwork;
-import com.apocalypse.caerulaarbor.network.message.send.EvoTreeButtonMessage;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.components.Button;
-import net.minecraft.client.gui.components.PlainTextButton;
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen;
 import net.minecraft.network.chat.Component;
 import net.minecraft.resources.ResourceLocation;
@@ -106,10 +103,10 @@ public class EvoTreeScreen extends AbstractContainerScreen<EvoTreeMenu> {
     @Override
     public void init() {
         super.init();
-        button_return = new PlainTextButton(this.leftPos + 218, this.topPos + 203, 38, 20, Component.translatable("gui.caerula_arbor.evo_tree.button_return"), e -> {
-            ModNetwork.PACKET_HANDLER.sendToServer(new EvoTreeButtonMessage(0, x, y, z));
-            EvoTreeButtonMessage.handleButtonAction(entity, 0, x, y, z);
-        }, this.font);
+//        button_return = new PlainTextButton(this.leftPos + 218, this.topPos + 203, 38, 20, Component.translatable("gui.caerula_arbor.evo_tree.button_return"), e -> {
+//            ModNetwork.PACKET_HANDLER.sendToServer(new EvoTreeButtonMessage(0, x, y, z));
+//            EvoTreeButtonMessage.handleButtonAction(entity, 0, x, y, z);
+//        }, this.font);
         guistate.put("button:button_return", button_return);
         this.addRenderableWidget(button_return);
     }
