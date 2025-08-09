@@ -48,6 +48,7 @@ public class ModTags {
 
     public static class DamageTypes {
         public static final TagKey<DamageType> BYPASS_NEURODEGENERATION = tag("bypass_neurodegeneration");
+        public static final TagKey<DamageType> NO_HURT_EFFECTS = tag("no_hurt_effects");
 
         private static TagKey<DamageType> tag(String name) {
             return TagKey.create(Registries.DAMAGE_TYPE, CaerulaArborMod.loc(name));

@@ -29,5 +29,6 @@ public class ModDamageTypeTagProvider extends DamageTypeTagsProvider {
         this.tag(DamageTypeTags.NO_IMPACT).add(ModDamageTypes.HEMOPOIETIC_DISORDER);
 
         this.tag(ModTags.DamageTypes.BYPASS_NEURODEGENERATION).add(ModDamageTypes.HEMOPOIETIC_DISORDER);
+        this.tag(ModTags.DamageTypes.NO_HURT_EFFECTS).add(ModDamageTypes.HEMOPOIETIC_DISORDER);
     }
 }
