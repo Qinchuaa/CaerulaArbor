@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.potion;
 
-import com.apocalypse.caerulaarbor.procedures.DeductPlayerSanityProcedure;
+import com.apocalypse.caerulaarbor.capability.sanity.SIHelper;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.effect.MobEffectCategory;
@@ -29,7 +29,7 @@ public class DeductOneSanityMobEffect extends InvisibleMobEffect {
 
 	@Override
 	public void applyEffectTick(@NotNull LivingEntity entity, int amplifier) {
-		DeductPlayerSanityProcedure.execute(entity, (double) amplifier + 1);
+		SIHelper.causeSanityInjury(entity, (double) amplifier + 1);
 
 		if (entity.level() instanceof ServerLevel server) {
 			server.sendParticles(ParticleTypes.ELECTRIC_SPARK, entity.getX(), (entity.getY() + 1), entity.getZ(), (int) ((double) amplifier + 1), 0.5, 0.8, 0.5, 0.1);

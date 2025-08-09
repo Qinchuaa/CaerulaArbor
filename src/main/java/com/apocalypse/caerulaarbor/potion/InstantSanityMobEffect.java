@@ -1,7 +1,7 @@
 
 package com.apocalypse.caerulaarbor.potion;
 
-import com.apocalypse.caerulaarbor.procedures.DeductPlayerSanityProcedure;
+import com.apocalypse.caerulaarbor.capability.sanity.SIHelper;
 import net.minecraft.world.effect.MobEffectCategory;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -27,7 +27,7 @@ public class InstantSanityMobEffect extends InvisibleMobEffect {
 
 	@Override
 	public void applyInstantenousEffect(Entity source, Entity indirectSource, LivingEntity entity, int amplifier, double health) {
-		DeductPlayerSanityProcedure.execute(entity, 125 * ((double) amplifier + 1));
+		SIHelper.causeSanityInjury(entity, 125 * ((double) amplifier + 1));
 	}
 
 	@Override

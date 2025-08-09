@@ -1,8 +1,8 @@
 
 package com.apocalypse.caerulaarbor.potion;
 
+import com.apocalypse.caerulaarbor.capability.sanity.SIHelper;
 import com.apocalypse.caerulaarbor.init.ModTags;
-import com.apocalypse.caerulaarbor.procedures.DeductPlayerSanityProcedure;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -45,7 +45,7 @@ public class UmbrellaSettleMobEffect extends InvisibleMobEffect {
             var attribute = entity.getAttribute(Attributes.ATTACK_DAMAGE);
             var attackDamage = attribute != null ? attribute.getValue() : 0;
 
-            DeductPlayerSanityProcedure.execute(target, attackDamage * 4);
+            SIHelper.causeSanityInjury(target, attackDamage * 4);
             target.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.MAGIC)), (float) attackDamage);
         }
 //		if (MapVariables.get(world).strategyGrow >= 3) {
@@ -56,7 +56,7 @@ public class UmbrellaSettleMobEffect extends InvisibleMobEffect {
 //							continue;
 //						}
 //					}
-//					DeductPlayerSanityProcedure.execute(target,
+//					SIHelper.causeSanityInjury(target,
 //							(entity instanceof LivingEntity _livingEntity13 && _livingEntity13.getAttributes().hasAttribute(Attributes.ATTACK_DAMAGE) ? _livingEntity13.getAttribute(Attributes.ATTACK_DAMAGE).getValue() : 0) * 4);
 //					target.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.MAGIC)),
 //							(float) (entity instanceof LivingEntity _livingEntity14 && _livingEntity14.getAttributes().hasAttribute(Attributes.ATTACK_DAMAGE) ? _livingEntity14.getAttribute(Attributes.ATTACK_DAMAGE).getValue() : 0));

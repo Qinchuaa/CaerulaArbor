@@ -3,7 +3,7 @@ package com.apocalypse.caerulaarbor.item.relic.cursed;
 
 import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.capability.Relic;
-import com.apocalypse.caerulaarbor.procedures.DeductPlayerSanityProcedure;
+import com.apocalypse.caerulaarbor.capability.sanity.SIHelper;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
@@ -67,7 +67,7 @@ public class LuminousCorpseItem extends Item {
             level.sendParticles(ParticleTypes.ELECTRIC_SPARK, x, y, z, 72, 1, 2, 1, 0.1);
         }
 
-        DeductPlayerSanityProcedure.execute(entity, 500);
+        SIHelper.causeSanityInjury(entity, 500);
 
         if (entity instanceof Player player) {
             player.getCooldowns().addCooldown(itemstack.getItem(), 200);

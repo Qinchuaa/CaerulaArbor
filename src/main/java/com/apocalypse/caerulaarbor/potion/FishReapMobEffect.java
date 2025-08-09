@@ -1,8 +1,8 @@
 
 package com.apocalypse.caerulaarbor.potion;
 
+import com.apocalypse.caerulaarbor.capability.sanity.SIHelper;
 import com.apocalypse.caerulaarbor.init.ModTags;
-import com.apocalypse.caerulaarbor.procedures.DeductPlayerSanityProcedure;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.server.level.ServerLevel;
@@ -54,7 +54,7 @@ public class FishReapMobEffect extends InvisibleMobEffect {
                         continue;
                     }
                     if (entityiterator != entity) {
-                        DeductPlayerSanityProcedure.execute(entityiterator,
+                        SIHelper.causeSanityInjury(entityiterator,
                                 (mob.getAttributes().hasAttribute(Attributes.ATTACK_DAMAGE) ? mob.getAttribute(Attributes.ATTACK_DAMAGE).getValue() : 0) * 12);
                     }
                 }

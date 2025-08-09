@@ -2,7 +2,7 @@
 package com.apocalypse.caerulaarbor.item;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
-import com.apocalypse.caerulaarbor.procedures.DeductPlayerSanityProcedure;
+import com.apocalypse.caerulaarbor.capability.sanity.SIHelper;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -42,7 +42,7 @@ public class OceanPeduncleItem extends Item {
 
         for (int i = 0; i < 4; i++) {
             CaerulaArborMod.queueServerWork(i * 10, () -> {
-                DeductPlayerSanityProcedure.execute(entity, 20);
+                SIHelper.causeSanityInjury(entity, 20);
 
                 if (world instanceof ServerLevel _level) {
                     _level.sendParticles(ParticleTypes.ELECTRIC_SPARK, x, (y + 0.9), z, 16, 0.55, 1, 0.55, 0.1);

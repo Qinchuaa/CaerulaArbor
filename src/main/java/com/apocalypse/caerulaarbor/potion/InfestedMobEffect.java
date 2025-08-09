@@ -2,8 +2,8 @@
 package com.apocalypse.caerulaarbor.potion;
 
 import com.apocalypse.caerulaarbor.capability.ModCapabilities;
+import com.apocalypse.caerulaarbor.capability.sanity.SIHelper;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
-import com.apocalypse.caerulaarbor.procedures.DeductPlayerSanityProcedure;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.resources.ResourceKey;
@@ -81,7 +81,7 @@ public class InfestedMobEffect extends MobEffect {
                 capability.seabornization = Math.min(amplifier, 2) + 1;
                 capability.syncPlayerVariables(entity);
             });
-            DeductPlayerSanityProcedure.execute(entity, 750 * (amplifier + 1));
+            SIHelper.causeSanityInjury(entity, 750 * (amplifier + 1));
 
             if (!world.isClientSide()) {
                 world.playSound(null, BlockPos.containing(x, y, z), SoundEvents.ZOMBIE_INFECT, SoundSource.PLAYERS, 2, 1);

@@ -2,7 +2,7 @@
 package com.apocalypse.caerulaarbor.item;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
-import com.apocalypse.caerulaarbor.procedures.DeductPlayerSanityProcedure;
+import com.apocalypse.caerulaarbor.capability.sanity.SIHelper;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
 import net.minecraft.server.level.ServerLevel;
@@ -50,7 +50,7 @@ public class TrailedWoodenSwordItem extends SwordItem {
     public boolean hurtEnemy(ItemStack itemstack, LivingEntity entity, @NotNull LivingEntity source) {
         LevelAccessor world = entity.level();
         double dam = 40 + 8 * itemstack.getEnchantmentLevel(Enchantments.SHARPNESS);
-        DeductPlayerSanityProcedure.execute(entity, dam);
+        SIHelper.causeSanityInjury(entity, dam);
 
         for (int i = 0; i < 5; i++) {
             CaerulaArborMod.queueServerWork(i, () -> {

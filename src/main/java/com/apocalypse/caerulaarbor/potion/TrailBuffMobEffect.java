@@ -2,9 +2,9 @@
 package com.apocalypse.caerulaarbor.potion;
 
 import com.apocalypse.caerulaarbor.capability.ModCapabilities;
+import com.apocalypse.caerulaarbor.capability.sanity.SIHelper;
 import com.apocalypse.caerulaarbor.init.ModAttributes;
 import com.apocalypse.caerulaarbor.init.ModTags;
-import com.apocalypse.caerulaarbor.procedures.DeductPlayerSanityProcedure;
 import net.minecraft.core.registries.Registries;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
@@ -37,7 +37,7 @@ public class TrailBuffMobEffect extends InvisibleMobEffect {
 		if (!entity.getType().is(ModTags.EntityTypes.SEA_BORN)) {
 			if (!(entity instanceof Player && (ModCapabilities.getPlayerVariables(entity)).seabornization == 3)) {
 				entity.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.MAGIC)), 2);
-				DeductPlayerSanityProcedure.execute(entity, 20);
+				SIHelper.causeSanityInjury(entity, 20);
 			}
 		}
 	}
