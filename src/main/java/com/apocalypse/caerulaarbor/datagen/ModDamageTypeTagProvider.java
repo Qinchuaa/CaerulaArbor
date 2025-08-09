@@ -2,6 +2,7 @@ package com.apocalypse.caerulaarbor.datagen;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.init.ModDamageTypes;
+import com.apocalypse.caerulaarbor.init.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.DamageTypeTagsProvider;
@@ -26,5 +27,7 @@ public class ModDamageTypeTagProvider extends DamageTypeTagsProvider {
         this.tag(DamageTypeTags.BYPASSES_COOLDOWN).add(ModDamageTypes.NERVOUS_IMPAIRMENT);
         this.tag(DamageTypeTags.BYPASSES_SHIELD).add(ModDamageTypes.NERVOUS_IMPAIRMENT);
         this.tag(DamageTypeTags.NO_IMPACT).add(ModDamageTypes.HEMOPOIETIC_DISORDER);
+
+        this.tag(ModTags.DamageTypes.BYPASS_NEURODEGENERATION).add(ModDamageTypes.HEMOPOIETIC_DISORDER);
     }
 }

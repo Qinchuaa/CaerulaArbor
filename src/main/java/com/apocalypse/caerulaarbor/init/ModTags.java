@@ -5,6 +5,7 @@ import net.minecraft.core.registries.Registries;
 import net.minecraft.tags.BlockTags;
 import net.minecraft.tags.ItemTags;
 import net.minecraft.tags.TagKey;
+import net.minecraft.world.damagesource.DamageType;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -42,6 +43,14 @@ public class ModTags {
 
         private static TagKey<EntityType<?>> tag(String name) {
             return TagKey.create(Registries.ENTITY_TYPE, CaerulaArborMod.loc(name));
+        }
+    }
+
+    public static class DamageTypes {
+        public static final TagKey<DamageType> BYPASS_NEURODEGENERATION = tag("bypass_neurodegeneration");
+
+        private static TagKey<DamageType> tag(String name) {
+            return TagKey.create(Registries.DAMAGE_TYPE, CaerulaArborMod.loc(name));
         }
     }
 }

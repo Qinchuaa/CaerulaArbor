@@ -190,6 +190,7 @@ public class PlayerEventHandler {
 
     @SubscribeEvent
     public static void onPlayerAttacked(LivingAttackEvent event) {
+        if (event.getSource() != null && event.getSource().is(ModTags.DamageTypes.BYPASS_NEURODEGENERATION)) return;
         if (event.getEntity() instanceof Player player) {
             var variables = ModCapabilities.getPlayerVariables(player);
             if (variables.isRejectionInvoked(PlayerVariable.Rejection.NEURODEGENERATION)) {
