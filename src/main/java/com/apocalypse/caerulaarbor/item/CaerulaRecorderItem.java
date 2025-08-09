@@ -1,10 +1,9 @@
 package com.apocalypse.caerulaarbor.item;
 
-import com.apocalypse.caerulaarbor.menu.CaerulaRecorderMenu;
-import net.minecraft.network.chat.Component;
+import com.apocalypse.caerulaarbor.client.screens.EvolutionScreen;
+import net.minecraft.client.Minecraft;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
-import net.minecraft.world.SimpleMenuProvider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -19,11 +18,17 @@ public class CaerulaRecorderItem extends Item {
     @Override
     public InteractionResultHolder<ItemStack> use(Level pLevel, Player pPlayer, InteractionHand pUsedHand) {
         ItemStack stack = pPlayer.getItemInHand(pUsedHand);
+//        if (pLevel.isClientSide) {
+//            return InteractionResultHolder.success(stack);
+//        } else {
+//            pPlayer.openMenu(new SimpleMenuProvider((i, inventory, player) -> new CaerulaRecorderMenu(i, inventory), Component.empty()));
+//            return InteractionResultHolder.consume(stack);
+//        }
+        // TODO 临时开GUI的写法，后面要删
         if (pLevel.isClientSide) {
+            Minecraft.getInstance().setScreen(new EvolutionScreen());
             return InteractionResultHolder.success(stack);
-        } else {
-            pPlayer.openMenu(new SimpleMenuProvider((i, inventory, player) -> new CaerulaRecorderMenu(i, inventory), Component.empty()));
-            return InteractionResultHolder.consume(stack);
         }
+        return InteractionResultHolder.consume(stack);
     }
 }
