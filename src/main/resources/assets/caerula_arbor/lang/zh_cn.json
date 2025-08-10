@@ -139,6 +139,7 @@
 
   "block.caerula_arbor.pool_of_procreation": "育生池",
   "block.caerula_arbor.nourished_pool_of_procreation": "富营养的育生池",
+  "block.caerula_arbor.tide_observation_station": "海潮观测站",
 
   "caerula_arbor.strategy.subsisting": "存续",
   "caerula_arbor.strategy.grow": "生长",
@@ -273,7 +274,6 @@
   "gui.caerula_arbor.info_strategy_subsis.button_return": "返回",
   "item.caerula_arbor.dispatch_stick.description_1": "§6对空气右键以使周围所有海嗣自由搏击",
   "effect.caerula_arbor.rock_break": "裂岩",
-  "gui.caerula_arbor.info_strategy_all.label_tide_observation": "海潮观测站",
   "item.caerula_arbor.sarkaz_kings_regal_rest": "魔王的床榻",
   "effect.caerula_arbor.strength_of_crowd": "群体的力量",
   "item.caerula_arbor.luminous_corpse.description_0": "玩家在击杀生物时损失0.2~0.3灯火",
@@ -431,7 +431,6 @@
   "item.caerula_arbor.bone_shard.description_0": "§7海嗣破碎的骨片。在不断的进化中，海嗣的骨骼逐渐不见踪影",
   "item.caerula_arbor.ocean_crystal.description_0": "§7海嗣身上极为锋利的部分，强度比一些金属还大",
   "gui.caerula_arbor.caerula_record_gui.show_hud": "在HUD中显示",
-  "block.caerula_arbor.tide_observation": "海潮观测站",
   "item.caerula_arbor.wearable_crown_chestplate": "Wearable Crown胸甲",
   "block.caerula_arbor.block_crown": "冠冕的王座",
   "advancements.its_deal.title": "成交！",

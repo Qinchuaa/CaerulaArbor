@@ -139,6 +139,7 @@
 
   "block.caerula_arbor.pool_of_procreation": "Pool of Procreation",
   "block.caerula_arbor.nourished_pool_of_procreation": "Nourished Pool of Procreation",
+  "block.caerula_arbor.tide_observation_station": "Tide Observation Station",
 
   "caerula_arbor.strategy.subsisting": "Subsisting",
   "caerula_arbor.strategy.grow": "Grow",
@@ -273,7 +274,6 @@
   "gui.caerula_arbor.info_strategy_subsis.button_return": "return",
   "item.caerula_arbor.dispatch_stick.description_1": "§6Right click to make all oceanofspr around attack",
   "effect.caerula_arbor.rock_break": "Rock Break",
-  "gui.caerula_arbor.info_strategy_all.label_tide_observation": "Tide Observation",
   "item.caerula_arbor.sarkaz_kings_regal_rest": "Archfiends Bed",
   "effect.caerula_arbor.strength_of_crowd": "Strength Of Crowd",
   "item.caerula_arbor.luminous_corpse.description_0": "Loses 2~3 Lights when kill a mob",
@@ -433,7 +433,6 @@
   "item.caerula_arbor.bone_shard.description_0": "§7Broken bone od oceanoffspring, which was fading in the Evolution",
   "item.caerula_arbor.ocean_crystal.description_0": "§7Sharp pieces from oceanoffspring, which is more hard then some metal",
   "gui.caerula_arbor.caerula_record_gui.show_hud": "show on HUD",
-  "block.caerula_arbor.tide_observation": "Tide Observation",
   "item.caerula_arbor.wearable_crown_chestplate": "Wearable Crown胸甲",
   "block.caerula_arbor.block_crown": "Block Crown",
   "item.caerula_arbor.creeper_fish_spawn_egg": "Creeper Fish Spawn Egg",
