@@ -1,5 +1,6 @@
 package com.apocalypse.caerulaarbor.block;
 
+import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.init.ModBlocks;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
@@ -55,10 +56,11 @@ public abstract class SeaTrailBaseBlock extends Block implements SimpleWaterlogg
     }
 
     public boolean canSurvive(BlockState blockstate, LevelReader levelReader, BlockPos pos) {
-        if (!blockstate.isFaceSturdy(levelReader, pos, Direction.UP)){
+        BlockState stateBelow = levelReader.getBlockState(pos.below());
+        if (!stateBelow.isFaceSturdy(levelReader, pos.below(), Direction.UP)){
             return false;
         }
-        if (levelReader.getBlockState(pos.below()).is(ModBlocks.SEA_TRAIL_SOLID.get())) {
+        if (stateBelow.is(ModBlocks.SEA_TRAIL_SOLID.get())) {
             return false;
         }
         return super.canSurvive(blockstate, levelReader, pos);
@@ -73,7 +75,7 @@ public abstract class SeaTrailBaseBlock extends Block implements SimpleWaterlogg
             world.scheduleTick(currentPos, Fluids.WATER, Fluids.WATER.getTickDelay(world));
         }
 
-        return !state.canSurvive(world, currentPos) ? Blocks.AIR.defaultBlockState() : super.updateShape(state, facing, facingState, world, currentPos, facingPos);
+        return state.canSurvive(world, currentPos) ? super.updateShape(state, facing, facingState, world, currentPos, facingPos) : Blocks.AIR.defaultBlockState();
     }
 
     public void onPlace(BlockState blockstate, Level world, BlockPos pos, BlockState oldState, boolean moving) {
@@ -97,6 +99,7 @@ public abstract class SeaTrailBaseBlock extends Block implements SimpleWaterlogg
     protected abstract void onGrown(ServerLevel level, BlockPos pos, BlockState state);
 
     protected void grow(ServerLevel level, BlockPos pos, BlockState blockstate, int amount) {
+        if (ModCapabilities.getAnchorRecord(level).affectedByAnchor(pos)) return;
         if (blockstate.getValue(GROW_AGE) == MAX_AGE) return;
         int newAge = Math.min(blockstate.getValue(GROW_AGE) + amount, MAX_AGE);
         level.setBlock(pos, blockstate.setValue(GROW_AGE, newAge), 2);

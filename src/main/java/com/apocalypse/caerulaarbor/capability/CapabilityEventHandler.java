@@ -8,11 +8,14 @@ import com.apocalypse.caerulaarbor.network.ModNetwork;
 import com.apocalypse.caerulaarbor.network.message.receive.SavedDataSyncMessage;
 import net.minecraft.core.Direction;
 import net.minecraft.nbt.Tag;
+import net.minecraft.server.level.ServerLevel;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
 import net.minecraftforge.common.capabilities.Capability;
+import net.minecraftforge.common.capabilities.ICapabilityProvider;
 import net.minecraftforge.common.capabilities.ICapabilitySerializable;
 import net.minecraftforge.common.util.FakePlayer;
 import net.minecraftforge.common.util.INBTSerializable;
@@ -27,9 +30,22 @@ import org.jetbrains.annotations.Nullable;
 
 @Mod.EventBusSubscriber(bus = Mod.EventBusSubscriber.Bus.FORGE, modid = CaerulaArborMod.MODID)
 public class CapabilityEventHandler {
+    @SubscribeEvent
+    public static void attachLevelCapabilities(AttachCapabilitiesEvent<Level> event) {
+        if (event.getObject() instanceof ServerLevel) {
+            LazyOptional<AnchorRecord> optional = LazyOptional.of(AnchorRecord::new);
+            ICapabilityProvider provider = new ICapabilityProvider() {
+                @Override
+                public @NotNull <T> LazyOptional<T> getCapability(@NotNull Capability<T> cap, @Nullable Direction side) {
+                    return ModCapabilities.ANCHOR_RECORD.orEmpty(cap, optional.cast());
+                }
+            };
+            event.addCapability(AnchorRecord.ID, provider);
+        }
+    }
 
     @SubscribeEvent
-    public static void registerCapabilities(AttachCapabilitiesEvent<Entity> event) {
+    public static void registerEntityCapabilities(AttachCapabilitiesEvent<Entity> event) {
         if (event.getObject() instanceof LivingEntity livingEntity) {
             event.addCapability(SanityInjuryCapability.ID, createProvider(LazyOptional.of(() -> new SanityInjuryCapability(livingEntity)), ModCapabilities.SANITY_INJURY));
         }
