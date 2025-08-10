@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "caerula_arbor:tide_observation"
+          "name": "caerula_arbor:tide_observation_station"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "caerula_arbor:blocks/tide_observation"
+  "random_sequence": "caerula_arbor:blocks/tide_observation_station"
 }

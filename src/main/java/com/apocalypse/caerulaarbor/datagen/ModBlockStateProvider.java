@@ -26,6 +26,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
     @Override
     protected void registerStatesAndModels() {
         horizontalBlock(ModBlocks.SCREAMING_CHERRY.get(), new ModelFile.UncheckedModelFile(modLoc("block/screaming_cherry")));
+        horizontalBlock(ModBlocks.TIDE_OBSERVATION_STATION.get(), new ModelFile.UncheckedModelFile(modLoc("block/tide_observation_station")));
 
         multiStateBlock(ModBlocks.POOL_OF_PROCREATION.get(), state -> {
             if (state.getValue(PoolOfProcreationBlock.POWERED)) {

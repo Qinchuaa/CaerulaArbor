@@ -11,6 +11,8 @@ public class ModBlocks {
 
 	public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, CaerulaArborMod.MODID);
 
+	public static final RegistryObject<Block> TIDE_OBSERVATION_STATION = BLOCKS.register("tide_observation_station", TideObservationStationBlock::new);
+
 	public static final RegistryObject<Block> EMERGENCY_LIGHT = BLOCKS.register("emergency_light", EmergencyLightBlock::new);
 	public static final RegistryObject<Block> KINGS_ARMOR = BLOCKS.register("kings_armor", KingsArmorBlock::new);
 	public static final RegistryObject<Block> BLOCK_CROWN = BLOCKS.register("block_crown", BlockCrownBlock::new);
@@ -37,7 +39,6 @@ public class ModBlocks {
 	public static final RegistryObject<Block> CARAMEL_CAKE = BLOCKS.register("caramel_cake", CaramelCakeBlock::new);
 	public static final RegistryObject<Block> OCEAN_CRYSTAL_BLOCK = BLOCKS.register("ocean_crystal_block", OceanCrystalBlockBlock::new);
 	public static final RegistryObject<Block> COMPLEX_CHITIN_BLOCK = BLOCKS.register("complex_chitin_block", ComplexChitinBlockBlock::new);
-	public static final RegistryObject<Block> TIDE_OBSERVATION = BLOCKS.register("tide_observation", TideObservationBlock::new);
 	public static final RegistryObject<Block> ANCHOR_LOWER = BLOCKS.register("anchor_lower", AnchorLowerBlock::new);
 	public static final RegistryObject<Block> ANCHOR_MEDIUM = BLOCKS.register("anchor_medium", AnchorMediumBlock::new);
 	public static final RegistryObject<Block> ANCHOR_UPPER = BLOCKS.register("anchor_upper", AnchorUpperBlock::new);

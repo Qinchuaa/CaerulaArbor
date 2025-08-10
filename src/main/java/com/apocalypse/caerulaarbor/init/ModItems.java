@@ -145,7 +145,7 @@ public class ModItems {
     public static final RegistryObject<Item> COMPLEX_CHITIN_BLOCK = block(ModBlocks.COMPLEX_CHITIN_BLOCK);
     public static final RegistryObject<Item> BANSHEE_KISS = ITEMS.register("banshee_kiss", BansheeKissItem::new);
     public static final RegistryObject<Item> HAND_SWORD = ITEMS.register("hand_sword", HandSwordItem::new);
-    public static final RegistryObject<Item> TIDE_OBSERVATION = block(ModBlocks.TIDE_OBSERVATION);
+    public static final RegistryObject<Item> TIDE_OBSERVATION = block(ModBlocks.TIDE_OBSERVATION_STATION);
     public static final RegistryObject<Item> SAMPLE_SUBSISTING = ITEMS.register("sample_subsisting", SampleSubsistingItem::new);
     public static final RegistryObject<Item> SAMPLE_GROW = ITEMS.register("sample_grow", SampleGrowItem::new);
     public static final RegistryObject<Item> SAMPLE_BREED = ITEMS.register("sample_breed", SampleBreedItem::new);

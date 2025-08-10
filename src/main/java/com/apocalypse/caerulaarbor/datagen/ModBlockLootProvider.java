@@ -51,7 +51,7 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.OCEAN_GLASSPANE.get());
         this.dropSelf(ModBlocks.REDSTONE_IRIS.get());
         this.dropSelf(ModBlocks.REDSTONE_IRIS_SEEDING.get());
-        this.dropSelf(ModBlocks.TIDE_OBSERVATION.get());
+        this.dropSelf(ModBlocks.TIDE_OBSERVATION_STATION.get());
         this.dropSelf(ModBlocks.TRAIL_BRICK.get());
         this.dropSelf(ModBlocks.TRAIL_BUTTON.get());
         this.dropSelf(ModBlocks.TRAIL_PRESSURE_PLATE.get());
