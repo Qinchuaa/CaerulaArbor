@@ -9,14 +9,14 @@ import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.api.distmarker.OnlyIn;
 
 @OnlyIn(Dist.CLIENT)
-public class EvolutionScreen extends Screen {
+public class TideObservationScreen extends Screen {
 
     private static final ResourceLocation TEXTURE = CaerulaArborMod.loc("textures/gui/evolution.png");
 
     protected int imageWidth = 200;
     protected int imageHeight = 120;
 
-    public EvolutionScreen() {
+    public TideObservationScreen() {
         super(Component.empty());
     }
 
