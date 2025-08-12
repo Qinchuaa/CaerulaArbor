@@ -94,6 +94,8 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.SMOOTH_SAL_VIENTO_SANDSTONE_STAIRS.get());
         this.add(ModBlocks.SMOOTH_SAL_VIENTO_SANDSTONE_SLAB.get(), block -> createSlabItemTable(ModBlocks.SMOOTH_SAL_VIENTO_SANDSTONE_SLAB.get()));
         this.dropSelf(ModBlocks.SQUARE_PATTERN_SAL_VIENTO_SANDSTONE.get());
+        this.dropSelf(ModBlocks.SQUARE_PATTERN_SAL_VIENTO_SANDSTONE_STAIRS.get());
+        this.add(ModBlocks.SQUARE_PATTERN_SAL_VIENTO_SANDSTONE_SLAB.get(), block -> createSlabItemTable(ModBlocks.SQUARE_PATTERN_SAL_VIENTO_SANDSTONE_SLAB.get()));
     }
 
     @Override

@@ -32,7 +32,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 ModBlocks.SMOOTH_SAL_VIENTO_SANDSTONE.get(),
                 ModBlocks.SMOOTH_SAL_VIENTO_SANDSTONE_STAIRS.get(),
                 ModBlocks.SMOOTH_SAL_VIENTO_SANDSTONE_SLAB.get(),
-                ModBlocks.SQUARE_PATTERN_SAL_VIENTO_SANDSTONE.get()
+                ModBlocks.SQUARE_PATTERN_SAL_VIENTO_SANDSTONE.get(),
+                ModBlocks.SQUARE_PATTERN_SAL_VIENTO_SANDSTONE_STAIRS.get(),
+                ModBlocks.SQUARE_PATTERN_SAL_VIENTO_SANDSTONE_SLAB.get()
         );
 
         this.tag(BlockTags.WALLS).add(
