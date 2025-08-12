@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "caerula_arbor:chiseled_smooth_sal_viento_sandstone"
+          "name": "caerula_arbor:square_pattern_sal_viento_sandstone"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "caerula_arbor:blocks/chiseled_smooth_sal_viento_sandstone"
+  "random_sequence": "caerula_arbor:blocks/square_pattern_sal_viento_sandstone"
 }
