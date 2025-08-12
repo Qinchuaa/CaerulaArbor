@@ -81,6 +81,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         evenSimplerBlockItem(ModBlocks.SAL_VIENTO_SANDSTONE_SLAB);
         wallItem(ModBlocks.SAL_VIENTO_SANDSTONE_WALL, ModBlocks.SAL_VIENTO_SANDSTONE);
         wallItem(ModBlocks.CHISELED_SAL_VIENTO_SANDSTONE_WALL, ModBlocks.CHISELED_SAL_VIENTO_SANDSTONE);
+        evenSimplerBlockItem(ModBlocks.SMOOTH_SAL_VIENTO_SANDSTONE_STAIRS);
+        evenSimplerBlockItem(ModBlocks.SMOOTH_SAL_VIENTO_SANDSTONE_SLAB);
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
