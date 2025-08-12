@@ -141,12 +141,20 @@ public class ModTabs {
                         tabData.accept(ModItems.OCEAN_ARROW.get());
                     }).build());
 
+    public static final RegistryObject<CreativeModeTab> CAERULA_BLOCKS = REGISTRY.register("caerula_blocks",
+            () -> CreativeModeTab.builder()
+                    .title(Component.translatable("item_group.caerula_arbor.caerula_blocks"))
+                    .icon(() -> new ItemStack(ModBlocks.OCEAN_CRYSTAL_BLOCK.get()))
+                    .displayItems((param, output) -> ModItems.BLOCKS.getEntries().forEach(registryObject -> output.accept(registryObject.get())))
+                    .withTabsBefore(CAERULA_ITEMS.getId())
+                    .build());
+
     public static final RegistryObject<CreativeModeTab> CAERULA_RELICS = REGISTRY.register("caerula_relics",
             () -> CreativeModeTab.builder()
                     .title(Component.translatable("item_group.caerula_arbor.caerula_relics"))
                     .icon(() -> new ItemStack(ModItems.LUMINOUS_CORPSE.get()))
                     .displayItems((param, output) -> ModItems.RELICS.getEntries().forEach(registryObject -> output.accept(registryObject.get())))
-                    .withTabsBefore(CAERULA_ITEMS.getId())
+                    .withTabsBefore(CAERULA_BLOCKS.getId())
                     .build());
 
 

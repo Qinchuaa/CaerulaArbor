@@ -1,7 +1,8 @@
 {
-  "item_group.caerula_arbor.caerula_items": "Caerula Items",
-  "item_group.caerula_arbor.caerula_relics": "Caerula Relics",
-  "item_group.caerula_arbor.caerula_livings": "Caerula Livings",
+  "item_group.caerula_arbor.caerula_items": "Tome of Caerula-Memory",
+  "item_group.caerula_arbor.caerula_blocks": "Time-Carved Steleforest",
+  "item_group.caerula_arbor.caerula_relics": "Bio-Product Display",
+  "item_group.caerula_arbor.caerula_livings": "Ecology Pedigree",
 
   "item.caerula_arbor.relics.used": "Already Used",
   "item.caerula_arbor.featured_canned_meat": "Featured Canned Meat",

@@ -1,7 +1,8 @@
 {
   "item_group.caerula_arbor.caerula_items": "深蓝追忆录",
+  "item_group.caerula_arbor.caerula_blocks": "刻时碑林",
   "item_group.caerula_arbor.caerula_relics": "生物制品陈设",
-  "item_group.caerula_arbor.caerula_livings": "进化信息池",
+  "item_group.caerula_arbor.caerula_livings": "生态谱系",
 
   "item.caerula_arbor.relics.used": "已使用",
   "item.caerula_arbor.featured_canned_meat": "精选兽肉罐头",
