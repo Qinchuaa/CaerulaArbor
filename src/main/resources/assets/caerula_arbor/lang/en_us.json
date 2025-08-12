@@ -155,6 +155,10 @@
   "block.caerula_arbor.square_pattern_sal_viento_sandstone": "Square Pattern Sal Viento Sandstone",
   "block.caerula_arbor.square_pattern_sal_viento_sandstone_stairs": "Square Pattern Sal Viento Sandstone Stairs",
   "block.caerula_arbor.square_pattern_sal_viento_sandstone_slab": "Square Pattern Sal Viento Sandstone Slab",
+  "block.caerula_arbor.cut_sal_viento_sandstone": "Cut Sal Viento Sandstone",
+  "block.caerula_arbor.cut_sal_viento_sandstone_stairs": "Cut Sal Viento Sandstone Stairs",
+  "block.caerula_arbor.cut_sal_viento_sandstone_slab": "Cut Sal Viento Sandstone Slab",
+  "block.caerula_arbor.cut_sal_viento_sandstone_wall": "Cut Sal Viento Sandstone Wall",
 
   "caerula_arbor.strategy.subsisting": "Subsisting",
   "caerula_arbor.strategy.grow": "Grow",

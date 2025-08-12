@@ -70,6 +70,13 @@ public class ModBlockStateProvider extends BlockStateProvider {
         simpleBlockWithItem(ModBlocks.SQUARE_PATTERN_SAL_VIENTO_SANDSTONE.get(), models().cubeAll("square_pattern_sal_viento_sandstone", CaerulaArborMod.loc("block/sal_viento_sandstone_top")));
         stairsBlock((StairBlock) ModBlocks.SQUARE_PATTERN_SAL_VIENTO_SANDSTONE_STAIRS.get(), CaerulaArborMod.loc("block/sal_viento_sandstone_top"));
         slabBlock((SlabBlock) ModBlocks.SQUARE_PATTERN_SAL_VIENTO_SANDSTONE_SLAB.get(), blockTexture(ModBlocks.SQUARE_PATTERN_SAL_VIENTO_SANDSTONE.get()), CaerulaArborMod.loc("block/sal_viento_sandstone_top"));
+        simpleBlockWithItem(ModBlocks.CUT_SAL_VIENTO_SANDSTONE.get(), models().cubeColumn("cut_sal_viento_sandstone", CaerulaArborMod.loc("block/cut_sal_viento_sandstone"),
+                CaerulaArborMod.loc("block/sal_viento_sandstone_top")));
+        stairsBlock((StairBlock) ModBlocks.CUT_SAL_VIENTO_SANDSTONE_STAIRS.get(), blockTexture(ModBlocks.CUT_SAL_VIENTO_SANDSTONE.get()), CaerulaArborMod.loc("block/cut_sal_viento_sandstone"),
+                CaerulaArborMod.loc("block/sal_viento_sandstone_top"));
+        slabBlock((SlabBlock) ModBlocks.CUT_SAL_VIENTO_SANDSTONE_SLAB.get(), blockTexture(ModBlocks.CUT_SAL_VIENTO_SANDSTONE.get()), CaerulaArborMod.loc("block/cut_sal_viento_sandstone"),
+                CaerulaArborMod.loc("block/sal_viento_sandstone_bottom"), CaerulaArborMod.loc("block/sal_viento_sandstone_top"));
+        wallBlock((WallBlock) ModBlocks.CUT_SAL_VIENTO_SANDSTONE_WALL.get(), blockTexture(ModBlocks.CUT_SAL_VIENTO_SANDSTONE.get()));
     }
 
     private String name(Block block) {

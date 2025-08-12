@@ -34,12 +34,17 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 ModBlocks.SMOOTH_SAL_VIENTO_SANDSTONE_SLAB.get(),
                 ModBlocks.SQUARE_PATTERN_SAL_VIENTO_SANDSTONE.get(),
                 ModBlocks.SQUARE_PATTERN_SAL_VIENTO_SANDSTONE_STAIRS.get(),
-                ModBlocks.SQUARE_PATTERN_SAL_VIENTO_SANDSTONE_SLAB.get()
+                ModBlocks.SQUARE_PATTERN_SAL_VIENTO_SANDSTONE_SLAB.get(),
+                ModBlocks.CUT_SAL_VIENTO_SANDSTONE.get(),
+                ModBlocks.CUT_SAL_VIENTO_SANDSTONE_STAIRS.get(),
+                ModBlocks.CUT_SAL_VIENTO_SANDSTONE_SLAB.get(),
+                ModBlocks.CUT_SAL_VIENTO_SANDSTONE_WALL.get()
         );
 
         this.tag(BlockTags.WALLS).add(
                 ModBlocks.SAL_VIENTO_SANDSTONE_WALL.get(),
-                ModBlocks.CHISELED_SAL_VIENTO_SANDSTONE_WALL.get()
+                ModBlocks.CHISELED_SAL_VIENTO_SANDSTONE_WALL.get(),
+                ModBlocks.CUT_SAL_VIENTO_SANDSTONE_WALL.get()
         );
     }
 }

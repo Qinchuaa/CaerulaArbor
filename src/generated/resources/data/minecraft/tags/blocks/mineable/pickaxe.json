@@ -11,6 +11,10 @@
     "caerula_arbor:smooth_sal_viento_sandstone_slab",
     "caerula_arbor:square_pattern_sal_viento_sandstone",
     "caerula_arbor:square_pattern_sal_viento_sandstone_stairs",
-    "caerula_arbor:square_pattern_sal_viento_sandstone_slab"
+    "caerula_arbor:square_pattern_sal_viento_sandstone_slab",
+    "caerula_arbor:cut_sal_viento_sandstone",
+    "caerula_arbor:cut_sal_viento_sandstone_stairs",
+    "caerula_arbor:cut_sal_viento_sandstone_slab",
+    "caerula_arbor:cut_sal_viento_sandstone_wall"
   ]
 }
