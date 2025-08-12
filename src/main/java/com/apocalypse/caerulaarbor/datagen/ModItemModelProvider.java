@@ -77,7 +77,8 @@ public class ModItemModelProvider extends ItemModelProvider {
         evenSimplerBlockItem(ModBlocks.NOURISHED_POOL_OF_PROCREATION);
         evenSimplerBlockItem(ModBlocks.TIDE_OBSERVATION_STATION);
 
-
+        evenSimplerBlockItem(ModBlocks.SAL_VIENTO_SANDSTONE_STAIRS);
+        evenSimplerBlockItem(ModBlocks.SAL_VIENTO_SANDSTONE_SLAB);
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
