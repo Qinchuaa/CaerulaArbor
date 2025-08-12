@@ -253,6 +253,7 @@ public class ModItems {
     public static final RegistryObject<Item> RED_OVARY = block(ModBlocks.NOURISHED_POOL_OF_PROCREATION);
 
     public static final RegistryObject<Item> SAL_VIENTO_SAND = block(ModBlocks.SAL_VIENTO_SAND);
+    public static final RegistryObject<Item> SAL_VIENTO_SANDSTONE = block(ModBlocks.SAL_VIENTO_SANDSTONE);
 
     private static RegistryObject<Item> block(RegistryObject<Block> block) {
         return BLOCKS.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties()));

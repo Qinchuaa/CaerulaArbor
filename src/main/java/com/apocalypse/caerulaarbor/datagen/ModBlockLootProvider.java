@@ -84,6 +84,7 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.NOURISHED_POOL_OF_PROCREATION.get());
 
         this.dropSelf(ModBlocks.SAL_VIENTO_SAND.get());
+        this.dropSelf(ModBlocks.SAL_VIENTO_SANDSTONE.get());
     }
 
     @Override

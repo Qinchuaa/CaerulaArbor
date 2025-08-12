@@ -61,4 +61,5 @@ public class ModBlocks {
 
     // Sal Viento Series 盐风方块
     public static final RegistryObject<Block> SAL_VIENTO_SAND = BLOCKS.register("sal_viento_sand", () -> new SandBlock(0xdbdad3, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sound(SoundType.SAND)));
+    public static final RegistryObject<Block> SAL_VIENTO_SANDSTONE = BLOCKS.register("sal_viento_sandstone", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(0.8F)));
 }
