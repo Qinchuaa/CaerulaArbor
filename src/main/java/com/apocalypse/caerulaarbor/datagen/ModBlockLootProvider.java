@@ -82,6 +82,8 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
         // TODO 修改成正确的战利品表
         this.dropSelf(ModBlocks.POOL_OF_PROCREATION.get());
         this.dropSelf(ModBlocks.NOURISHED_POOL_OF_PROCREATION.get());
+
+        this.dropSelf(ModBlocks.SAL_VIENTO_SAND.get());
     }
 
     @Override

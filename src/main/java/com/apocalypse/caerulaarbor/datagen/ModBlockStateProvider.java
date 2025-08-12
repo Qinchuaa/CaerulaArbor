@@ -47,6 +47,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
                         .texture("particle", modLoc("block/nourished_pool_of_procreation"))
                         .renderType("cutout")
         );
+
+        simpleBlock(ModBlocks.SAL_VIENTO_SAND.get());
     }
 
     private String name(Block block) {
