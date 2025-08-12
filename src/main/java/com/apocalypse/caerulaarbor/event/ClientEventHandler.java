@@ -2,6 +2,7 @@ package com.apocalypse.caerulaarbor.event;
 
 import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
+import com.apocalypse.caerulaarbor.client.screens.TideObservationScreen;
 import net.minecraft.client.KeyMapping;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.player.LocalPlayer;
@@ -40,5 +41,9 @@ public class ClientEventHandler {
                 }
             }
         }
+    }
+
+    public static void openTideObservationStation() {
+        Minecraft.getInstance().setScreen(new TideObservationScreen());
     }
 }

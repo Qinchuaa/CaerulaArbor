@@ -1,7 +1,6 @@
 package com.apocalypse.caerulaarbor.block;
 
-import com.apocalypse.caerulaarbor.client.screens.TideObservationScreen;
-import net.minecraft.client.Minecraft;
+import com.apocalypse.caerulaarbor.event.ClientEventHandler;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.Direction;
 import net.minecraft.world.InteractionHand;
@@ -22,6 +21,8 @@ import net.minecraft.world.phys.BlockHitResult;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.Shapes;
 import net.minecraft.world.phys.shapes.VoxelShape;
+import net.minecraftforge.api.distmarker.Dist;
+import net.minecraftforge.fml.DistExecutor;
 import org.jetbrains.annotations.NotNull;
 
 @SuppressWarnings("deprecation")
@@ -127,7 +128,7 @@ public class TideObservationStationBlock extends Block {
     @Override
     public InteractionResult use(BlockState pState, Level pLevel, BlockPos pPos, Player pPlayer, InteractionHand pHand, BlockHitResult pHit) {
         if (pLevel.isClientSide) {
-            Minecraft.getInstance().setScreen(new TideObservationScreen());
+            DistExecutor.unsafeRunWhenOn(Dist.CLIENT, () -> ClientEventHandler::openTideObservationStation);
             return InteractionResult.SUCCESS;
         } else {
             return InteractionResult.CONSUME;
