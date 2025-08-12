@@ -269,6 +269,7 @@ public class ModItems {
     public static final RegistryObject<Item> CUT_SAL_VIENTO_SANDSTONE_STAIRS = block(ModBlocks.CUT_SAL_VIENTO_SANDSTONE_STAIRS);
     public static final RegistryObject<Item> CUT_SAL_VIENTO_SANDSTONE_SLAB = block(ModBlocks.CUT_SAL_VIENTO_SANDSTONE_SLAB);
     public static final RegistryObject<Item> CUT_SAL_VIENTO_SANDSTONE_WALL = block(ModBlocks.CUT_SAL_VIENTO_SANDSTONE_WALL);
+    public static final RegistryObject<Item> SAL_VIENTO_PILLAR = block(ModBlocks.SAL_VIENTO_PILLAR);
 
     private static RegistryObject<Item> block(RegistryObject<Block> block) {
         return BLOCKS.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties()));

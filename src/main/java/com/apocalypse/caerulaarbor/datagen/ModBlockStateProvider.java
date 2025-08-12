@@ -5,10 +5,7 @@ import com.apocalypse.caerulaarbor.block.PoolOfProcreationBlock;
 import com.apocalypse.caerulaarbor.init.ModBlocks;
 import net.minecraft.data.PackOutput;
 import net.minecraft.resources.ResourceLocation;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.SlabBlock;
-import net.minecraft.world.level.block.StairBlock;
-import net.minecraft.world.level.block.WallBlock;
+import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockState;
 import net.minecraftforge.client.model.generators.BlockStateProvider;
 import net.minecraftforge.client.model.generators.ConfiguredModel;
@@ -77,6 +74,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         slabBlock((SlabBlock) ModBlocks.CUT_SAL_VIENTO_SANDSTONE_SLAB.get(), blockTexture(ModBlocks.CUT_SAL_VIENTO_SANDSTONE.get()), CaerulaArborMod.loc("block/cut_sal_viento_sandstone"),
                 CaerulaArborMod.loc("block/sal_viento_sandstone_bottom"), CaerulaArborMod.loc("block/sal_viento_sandstone_top"));
         wallBlock((WallBlock) ModBlocks.CUT_SAL_VIENTO_SANDSTONE_WALL.get(), blockTexture(ModBlocks.CUT_SAL_VIENTO_SANDSTONE.get()));
+        axisBlock((RotatedPillarBlock) ModBlocks.SAL_VIENTO_PILLAR.get(), CaerulaArborMod.loc("block/sal_viento_pillar_side"), CaerulaArborMod.loc("block/sal_viento_pillar_top"));
     }
 
     private String name(Block block) {

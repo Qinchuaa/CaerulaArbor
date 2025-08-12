@@ -38,7 +38,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 ModBlocks.CUT_SAL_VIENTO_SANDSTONE.get(),
                 ModBlocks.CUT_SAL_VIENTO_SANDSTONE_STAIRS.get(),
                 ModBlocks.CUT_SAL_VIENTO_SANDSTONE_SLAB.get(),
-                ModBlocks.CUT_SAL_VIENTO_SANDSTONE_WALL.get()
+                ModBlocks.CUT_SAL_VIENTO_SANDSTONE_WALL.get(),
+                ModBlocks.SAL_VIENTO_PILLAR.get()
         );
 
         this.tag(BlockTags.WALLS).add(
