@@ -1,6 +1,7 @@
 package com.apocalypse.caerulaarbor.client.screens;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
+import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiGraphics;
 import net.minecraft.client.gui.screens.Screen;
 import net.minecraft.network.chat.Component;
@@ -37,5 +38,14 @@ public class TideObservationScreen extends Screen {
         int j = (this.height - this.imageHeight) / 2;
 
         pGuiGraphics.blit(TEXTURE, i, j, 0, 0, this.imageWidth, this.imageHeight, 256, 256);
+    }
+
+    @Override
+    public boolean keyPressed(int pKeyCode, int pScanCode, int pModifiers) {
+        if (pKeyCode == Minecraft.getInstance().options.keyInventory.getKey().getValue()) {
+            this.onClose();
+            return true;
+        }
+        return super.keyPressed(pKeyCode, pScanCode, pModifiers);
     }
 }
