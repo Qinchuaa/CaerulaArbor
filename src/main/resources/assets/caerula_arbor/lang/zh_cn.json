@@ -147,6 +147,9 @@
   "block.caerula_arbor.sal_viento_sandstone_stairs": "盐风砂岩楼梯",
   "block.caerula_arbor.sal_viento_sandstone_slab": "盐风砂岩台阶",
   "block.caerula_arbor.sal_viento_sandstone_wall": "盐风砂岩墙",
+  "block.caerula_arbor.chiseled_sal_viento_sandstone": "雕纹盐风砂岩",
+  "block.caerula_arbor.smooth_sal_viento_sandstone": "平滑盐风砂岩",
+  "block.caerula_arbor.chiseled_smooth_sal_viento_sandstone": "雕纹平滑盐风砂岩",
 
   "caerula_arbor.strategy.subsisting": "存续",
   "caerula_arbor.strategy.grow": "生长",

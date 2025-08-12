@@ -147,6 +147,9 @@
   "block.caerula_arbor.sal_viento_sandstone_stairs": "Sal Viento Sandstone Stairs",
   "block.caerula_arbor.sal_viento_sandstone_slab": "Sal Viento Sandstone Slab",
   "block.caerula_arbor.sal_viento_sandstone_wall": "Sal Viento Sandstone Wall",
+  "block.caerula_arbor.chiseled_sal_viento_sandstone": "Chiseled Sal Viento Sandstone",
+  "block.caerula_arbor.smooth_sal_viento_sandstone": "Smooth Sal Viento Sandstone",
+  "block.caerula_arbor.chiseled_smooth_sal_viento_sandstone": "Chiseled Smooth Sal Viento Sandstone",
 
   "caerula_arbor.strategy.subsisting": "Subsisting",
   "caerula_arbor.strategy.grow": "Grow",

@@ -88,6 +88,9 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.SAL_VIENTO_SANDSTONE_STAIRS.get());
         this.add(ModBlocks.SAL_VIENTO_SANDSTONE_SLAB.get(), block -> createSlabItemTable(ModBlocks.SAL_VIENTO_SANDSTONE_SLAB.get()));
         this.dropSelf(ModBlocks.SAL_VIENTO_SANDSTONE_WALL.get());
+        this.dropSelf(ModBlocks.CHISELED_SAL_VIENTO_SANDSTONE.get());
+        this.dropSelf(ModBlocks.SMOOTH_SAL_VIENTO_SANDSTONE.get());
+        this.dropSelf(ModBlocks.CHISELED_SMOOTH_SAL_VIENTO_SANDSTONE.get());
     }
 
     @Override
