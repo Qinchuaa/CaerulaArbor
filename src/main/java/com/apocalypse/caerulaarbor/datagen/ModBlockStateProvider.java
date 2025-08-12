@@ -61,6 +61,7 @@ public class ModBlockStateProvider extends BlockStateProvider {
         wallBlock((WallBlock) ModBlocks.SAL_VIENTO_SANDSTONE_WALL.get(), blockTexture(ModBlocks.SAL_VIENTO_SANDSTONE.get()));
         simpleBlockWithItem(ModBlocks.CHISELED_SAL_VIENTO_SANDSTONE.get(), models().cubeColumn("chiseled_sal_viento_sandstone", CaerulaArborMod.loc("block/chiseled_sal_viento_sandstone"),
                 CaerulaArborMod.loc("block/sal_viento_sandstone_top")));
+        wallBlock((WallBlock) ModBlocks.CHISELED_SAL_VIENTO_SANDSTONE_WALL.get(), blockTexture(ModBlocks.CHISELED_SAL_VIENTO_SANDSTONE.get()));
         blockWithItem(ModBlocks.SMOOTH_SAL_VIENTO_SANDSTONE);
         simpleBlockWithItem(ModBlocks.SQUARE_PATTERN_SAL_VIENTO_SANDSTONE.get(), models().cubeAll("square_pattern_sal_viento_sandstone", CaerulaArborMod.loc("block/sal_viento_sandstone_top")));
     }

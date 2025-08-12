@@ -258,6 +258,7 @@ public class ModItems {
     public static final RegistryObject<Item> SAL_VIENTO_SANDSTONE_SLAB = block(ModBlocks.SAL_VIENTO_SANDSTONE_SLAB);
     public static final RegistryObject<Item> SAL_VIENTO_SANDSTONE_WALL = block(ModBlocks.SAL_VIENTO_SANDSTONE_WALL);
     public static final RegistryObject<Item> CHISELED_SAL_VIENTO_SANDSTONE = block(ModBlocks.CHISELED_SAL_VIENTO_SANDSTONE);
+    public static final RegistryObject<Item> CHISELED_SAL_VIENTO_SANDSTONE_WALL = block(ModBlocks.CHISELED_SAL_VIENTO_SANDSTONE_WALL);
     public static final RegistryObject<Item> SMOOTH_SAL_VIENTO_SANDSTONE = block(ModBlocks.SMOOTH_SAL_VIENTO_SANDSTONE);
 
     public static final RegistryObject<Item> SQUARE_PATTERN_SAL_VIENTO_SANDSTONE = block(ModBlocks.SQUARE_PATTERN_SAL_VIENTO_SANDSTONE);
