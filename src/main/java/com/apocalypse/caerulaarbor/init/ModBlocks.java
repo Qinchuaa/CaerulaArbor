@@ -62,4 +62,5 @@ public class ModBlocks {
     public static final RegistryObject<Block> SAL_VIENTO_SANDSTONE = BLOCKS.register("sal_viento_sandstone", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(0.8F)));
     public static final RegistryObject<Block> SAL_VIENTO_SANDSTONE_STAIRS = BLOCKS.register("sal_viento_sandstone_stairs", () -> new StairBlock(() -> SAL_VIENTO_SANDSTONE.get().defaultBlockState(), BlockBehaviour.Properties.copy(SAL_VIENTO_SANDSTONE.get())));
     public static final RegistryObject<Block> SAL_VIENTO_SANDSTONE_SLAB = BLOCKS.register("sal_viento_sandstone_slab", () -> new SlabBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(2.0F, 6.0F)));
+    public static final RegistryObject<Block> SAL_VIENTO_SANDSTONE_WALL = BLOCKS.register("sal_viento_sandstone_wall", () -> new WallBlock(BlockBehaviour.Properties.copy(SAL_VIENTO_SANDSTONE.get()).forceSolidOn()));
 }
