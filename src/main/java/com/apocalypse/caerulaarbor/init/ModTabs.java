@@ -90,12 +90,6 @@ public class ModTabs {
                         tabData.accept(ModBlocks.POOL_OF_PROCREATION.get().asItem());
                         tabData.accept(ModBlocks.NOURISHED_POOL_OF_PROCREATION.get().asItem());
                         tabData.accept(ModBlocks.SEA_TRAIL_SOLID.get().asItem());
-                        tabData.accept(ModBlocks.TRAIL_BRICK.get().asItem());
-                        tabData.accept(ModBlocks.TRAIL_TILE.get().asItem());
-                        tabData.accept(ModBlocks.TRAIL_SLAB.get().asItem());
-                        tabData.accept(ModBlocks.TRAIL_STAIR.get().asItem());
-                        tabData.accept(ModBlocks.TRAIL_BUTTON.get().asItem());
-                        tabData.accept(ModBlocks.TRAIL_PRESSURE_PLATE.get().asItem());
                         tabData.accept(ModBlocks.BLOCK_KETTLE.get().asItem());
                         tabData.accept(ModBlocks.ALLAY_BLOCK.get().asItem());
                         tabData.accept(ModBlocks.BLOCK_BATBED.get().asItem());

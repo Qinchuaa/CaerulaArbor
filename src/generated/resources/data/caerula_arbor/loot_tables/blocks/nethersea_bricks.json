@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "caerula_arbor:trail_brick"
+          "name": "caerula_arbor:nethersea_bricks"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "caerula_arbor:blocks/trail_brick"
+  "random_sequence": "caerula_arbor:blocks/nethersea_bricks"
 }

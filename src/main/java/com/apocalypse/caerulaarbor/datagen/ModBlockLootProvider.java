@@ -52,7 +52,6 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.REDSTONE_IRIS.get());
         this.dropSelf(ModBlocks.REDSTONE_IRIS_SEEDING.get());
         this.dropSelf(ModBlocks.TIDE_OBSERVATION_STATION.get());
-        this.dropSelf(ModBlocks.TRAIL_BRICK.get());
         this.dropSelf(ModBlocks.TRAIL_BUTTON.get());
         this.dropSelf(ModBlocks.TRAIL_PRESSURE_PLATE.get());
         this.dropSelf(ModBlocks.TRAIL_STAIR.get());
@@ -82,6 +81,8 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
         // TODO 修改成正确的战利品表
         this.dropSelf(ModBlocks.POOL_OF_PROCREATION.get());
         this.dropSelf(ModBlocks.NOURISHED_POOL_OF_PROCREATION.get());
+
+        this.dropSelf(ModBlocks.NETHERSEA_BRICKS.get());
 
         this.dropSelf(ModBlocks.SAL_VIENTO_SAND.get());
         this.dropSelf(ModBlocks.SAL_VIENTO_SANDSTONE.get());

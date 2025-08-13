@@ -1,8 +1,0 @@
-{
-  "parent": "block/button_inventory",
-  "textures": {
-    "particle": "caerula_arbor:block/trailmove",
-    "texture": "caerula_arbor:block/trailmove"
-  },
-  "render_type": "solid"
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "block/pressure_plate_down",
-  "textures": {
-    "particle": "caerula_arbor:block/trail_plank",
-    "texture": "caerula_arbor:block/trail_plank"
-  },
-  "render_type": "solid"
-}

@@ -1,8 +1,0 @@
-{
-  "parent": "block/template_wall_post",
-  "textures": {
-    "wall": "caerula_arbor:block/trailbrick",
-    "particle": "caerula_arbor:block/trailbrick"
-  },
-  "render_type": "solid"
-}

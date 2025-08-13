@@ -1,8 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "caerula_arbor:block/trail_plank",
-    "particle": "caerula_arbor:block/trail_plank"
-  },
-  "render_type": "solid"
-}

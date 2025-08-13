@@ -2,6 +2,7 @@ package com.apocalypse.caerulaarbor.datagen;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.init.ModBlocks;
+import com.apocalypse.caerulaarbor.init.ModTags;
 import net.minecraft.core.HolderLookup;
 import net.minecraft.data.PackOutput;
 import net.minecraft.tags.BlockTags;
@@ -39,13 +40,18 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 ModBlocks.CUT_SAL_VIENTO_SANDSTONE_STAIRS.get(),
                 ModBlocks.CUT_SAL_VIENTO_SANDSTONE_SLAB.get(),
                 ModBlocks.CUT_SAL_VIENTO_SANDSTONE_WALL.get(),
-                ModBlocks.SAL_VIENTO_PILLAR.get()
+                ModBlocks.SAL_VIENTO_PILLAR.get(),
+                ModBlocks.NETHERSEA_BRICKS.get()
         );
 
         this.tag(BlockTags.WALLS).add(
                 ModBlocks.SAL_VIENTO_SANDSTONE_WALL.get(),
                 ModBlocks.CHISELED_SAL_VIENTO_SANDSTONE_WALL.get(),
                 ModBlocks.CUT_SAL_VIENTO_SANDSTONE_WALL.get()
+        );
+
+        this.tag(ModTags.Blocks.NETHERSEA_BLOCK).add(
+                ModBlocks.NETHERSEA_BRICKS.get()
         );
     }
 }

@@ -47,7 +47,6 @@ public class ModBlocks {
     public static final RegistryObject<Block> ANCHOR_UPPER = BLOCKS.register("anchor_upper", AnchorUpperBlock::new);
     public static final RegistryObject<Block> BLOCK_RECORDER = BLOCKS.register("block_recorder", BlockRecorderBlock::new);
     public static final RegistryObject<Block> SEA_TRAIL_SOLID = BLOCKS.register("sea_trail_solid", SeaTrailSolidBlock::new);
-    public static final RegistryObject<Block> TRAIL_BRICK = BLOCKS.register("trail_brick", TrailBrickBlock::new);
     public static final RegistryObject<Block> TRAIL_SLAB = BLOCKS.register("trail_slab", TrailSlabBlock::new);
     public static final RegistryObject<Block> TRAIL_STAIR = BLOCKS.register("trail_stair", TrailStairBlock::new);
     public static final RegistryObject<Block> TRAIL_BUTTON = BLOCKS.register("trail_button", TrailButtonBlock::new);
@@ -56,6 +55,9 @@ public class ModBlocks {
 
     public static final RegistryObject<Block> POOL_OF_PROCREATION = BLOCKS.register("pool_of_procreation", PoolOfProcreationBlock::new);
     public static final RegistryObject<Block> NOURISHED_POOL_OF_PROCREATION = BLOCKS.register("nourished_pool_of_procreation", NourishedPoolOfProcreationBlock::new);
+
+    // Nethersea Series 深溟方块
+    public static final RegistryObject<Block> NETHERSEA_BRICKS = BLOCKS.register("nethersea_bricks", () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.SCULK_CATALYST).mapColor(MapColor.DEEPSLATE).friction(0.9f).speedFactor(0.9f).requiresCorrectToolForDrops().strength(3f, 12f)));
 
     // Sal Viento Series 盐风方块
     public static final RegistryObject<Block> SAL_VIENTO_SAND = BLOCKS.register("sal_viento_sand", () -> new SandBlock(0xdbdad3, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sound(SoundType.SAND)));

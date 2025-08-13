@@ -48,6 +48,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
                         .renderType("cutout")
         );
 
+        blockWithItem(ModBlocks.NETHERSEA_BRICKS);
+
         blockWithItem(ModBlocks.SAL_VIENTO_SAND);
         simpleBlockWithItem(ModBlocks.SAL_VIENTO_SANDSTONE.get(), models().cubeBottomTop("sal_viento_sandstone", CaerulaArborMod.loc("block/sal_viento_sandstone"),
                 CaerulaArborMod.loc("block/sal_viento_sandstone_bottom"), CaerulaArborMod.loc("block/sal_viento_sandstone_top")));
