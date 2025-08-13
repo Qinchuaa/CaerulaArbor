@@ -40,6 +40,10 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 ModBlocks.CUT_SAL_VIENTO_SANDSTONE_STAIRS.get(),
                 ModBlocks.CUT_SAL_VIENTO_SANDSTONE_SLAB.get(),
                 ModBlocks.CUT_SAL_VIENTO_SANDSTONE_WALL.get(),
+                ModBlocks.CRACKED_SAL_VIENTO_SANDSTONE.get(),
+                ModBlocks.CRACKED_SAL_VIENTO_SANDSTONE_STAIRS.get(),
+                ModBlocks.CRACKED_SAL_VIENTO_SANDSTONE_SLAB.get(),
+                ModBlocks.CRACKED_SAL_VIENTO_SANDSTONE_WALL.get(),
                 ModBlocks.SAL_VIENTO_PILLAR.get(),
                 ModBlocks.NETHERSEA_BRICKS.get(),
                 ModBlocks.NETHERSEA_BRICK_STAIRS.get(),
@@ -57,6 +61,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 ModBlocks.SAL_VIENTO_SANDSTONE_WALL.get(),
                 ModBlocks.CHISELED_SAL_VIENTO_SANDSTONE_WALL.get(),
                 ModBlocks.CUT_SAL_VIENTO_SANDSTONE_WALL.get(),
+                ModBlocks.CRACKED_SAL_VIENTO_SANDSTONE_WALL.get(),
                 ModBlocks.NETHERSEA_BRICK_WALL.get(),
                 ModBlocks.NETHERSEA_TILE_WALL.get()
         );

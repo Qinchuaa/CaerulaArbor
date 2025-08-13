@@ -97,7 +97,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         evenSimplerBlockItem(ModBlocks.CUT_SAL_VIENTO_SANDSTONE_STAIRS);
         evenSimplerBlockItem(ModBlocks.CUT_SAL_VIENTO_SANDSTONE_SLAB);
         wallItem(ModBlocks.CUT_SAL_VIENTO_SANDSTONE_WALL, ModBlocks.CUT_SAL_VIENTO_SANDSTONE);
+        evenSimplerBlockItem(ModBlocks.CRACKED_SAL_VIENTO_SANDSTONE_STAIRS);
+        evenSimplerBlockItem(ModBlocks.CRACKED_SAL_VIENTO_SANDSTONE_SLAB);
         evenSimplerBlockItem(ModBlocks.SAL_VIENTO_PILLAR);
+        wallItem(ModBlocks.CRACKED_SAL_VIENTO_SANDSTONE_WALL, CaerulaArborMod.loc("block/sal_viento_sandstone_bottom"));
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {
@@ -131,6 +134,11 @@ public class ModItemModelProvider extends ItemModelProvider {
     public void wallItem(RegistryObject<Block> block, RegistryObject<Block> baseBlock) {
         this.withExistingParent(ForgeRegistries.BLOCKS.getKey(block.get()).getPath(), mcLoc("block/wall_inventory"))
                 .texture("wall", CaerulaArborMod.loc("block/" + ForgeRegistries.BLOCKS.getKey(baseBlock.get()).getPath()));
+    }
+
+    public void wallItem(RegistryObject<Block> block, ResourceLocation path) {
+        this.withExistingParent(ForgeRegistries.BLOCKS.getKey(block.get()).getPath(), mcLoc("block/wall_inventory"))
+                .texture("wall", path);
     }
 
     public void trapdoorItem(RegistryObject<Block> block) {
