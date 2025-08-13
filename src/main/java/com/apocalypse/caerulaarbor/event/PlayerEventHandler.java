@@ -7,6 +7,7 @@ import com.apocalypse.caerulaarbor.init.*;
 import com.apocalypse.caerulaarbor.item.relic.IRelic;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleOptions;
+import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
@@ -25,6 +26,7 @@ import net.minecraftforge.event.entity.player.AttackEntityEvent;
 import net.minecraftforge.event.entity.player.CriticalHitEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.event.entity.player.PlayerWakeUpEvent;
+import net.minecraftforge.event.level.BlockEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
 
@@ -209,5 +211,22 @@ public class PlayerEventHandler {
         if (variables.isRejectionInvoked(PlayerVariable.Rejection.NEURODEGENERATION)) {
             player.addEffect(new MobEffectInstance(ModMobEffects.FROZEN.get(), 300, 0, false, false, true));
         }
+    }
+
+    @SubscribeEvent
+    public static void onBreakBlock(BlockEvent.BreakEvent event) {
+        var player = event.getPlayer();
+        if (player == null) return;
+        if (player.isCreative() || player.isSpectator()) return;
+        if (!event.getState().is(ModTags.Blocks.NETHERSEA_BLOCK)) return;
+
+        var pos = event.getPos();
+        if (player.level() instanceof ServerLevel serverLevel) {
+            serverLevel.sendParticles(ParticleTypes.ELECTRIC_SPARK, pos.getX() + 0.5, pos.getY() + 0.5, pos.getZ() + 0.5, 6, 0.75, 0.75, 0.75, 0.1);
+        }
+
+        var cap = ModCapabilities.getPlayerVariables(player);
+        if (cap.seabornization > 3) return;
+        ModCapabilities.getSanityInjury(player).hurt(Mth.nextInt(RandomSource.create(), 16, 32));
     }
 }
