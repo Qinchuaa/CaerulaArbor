@@ -12,9 +12,9 @@ import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.util.Mth;
 import net.minecraft.world.DifficultyInstance;
@@ -46,7 +46,6 @@ import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -148,7 +147,9 @@ public class MulticellularHeraldEntity extends Monster implements GeoEntity {
         this.targetSelector.addGoal(1, new HurtByTargetGoal(this).setAlertOthers());
         this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 5, false) {
             @Override
-            protected double getAttackReachSqr(@NotNull LivingEntity entity) {return 1.8 * 1.8;}
+            protected double getAttackReachSqr(@NotNull LivingEntity entity) {
+                return 1.8 * 1.8;
+            }
         });
         this.targetSelector.addGoal(3, new NearestAttackableTargetGoal<>(this, GlowSquid.class, false, false));
         this.targetSelector.addGoal(4, new NearestAttackableTargetGoal<>(this, Squid.class, false, false));
@@ -184,8 +185,7 @@ public class MulticellularHeraldEntity extends Monster implements GeoEntity {
     @Override
     @ParametersAreNonnullByDefault
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
-        SpawnGroupData retval = super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
-        return retval;
+        return super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
     }
 
     @Override
@@ -204,19 +204,20 @@ public class MulticellularHeraldEntity extends Monster implements GeoEntity {
     @Override
     public void baseTick() {
         super.baseTick();
-        if (this.tickCount % 5 == 0 && !shelled){
+        if (this.tickCount % 5 == 0 && !shelled) {
             shelled = detectShells();
-            if(shelled){
+            if (shelled) {
                 this.setAnimation("animation.multicellular_herald.skill");
-                CaerulaArborMod.queueServerWork(17,()->{
+                CaerulaArborMod.queueServerWork(17, () -> {
                     Level level = this.level();
-                    SoundEvent sound = ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("item.armor.equip_leather"));
-                    if (level.isClientSide())level.playLocalSound(this.blockPosition(),sound, SoundSource.HOSTILE,1,1,true);
-                    else level.playSound(this,this.blockPosition(),sound,SoundSource.HOSTILE,1,1);
+                    SoundEvent sound = SoundEvents.ARMOR_EQUIP_LEATHER;
+                    if (level.isClientSide())
+                        level.playLocalSound(this.blockPosition(), sound, SoundSource.HOSTILE, 1, 1, true);
+                    else level.playSound(this, this.blockPosition(), sound, SoundSource.HOSTILE, 1, 1);
                 });
                 this.setTexture("multicellular_herald"); //有没有什么更好的更改外观的方法
                 double perc = this.getHealth() / this.getMaxHealth();
-                if(perc > 0)setAttr(perc);
+                if (perc > 0) setAttr(perc);
             }
         }
         this.refreshDimensions();
@@ -337,14 +338,14 @@ public class MulticellularHeraldEntity extends Monster implements GeoEntity {
         return this.cache;
     }
 
-    private boolean detectShells(){
+    private boolean detectShells() {
         BlockPos center = this.blockPosition();
         Level level = this.level();
-        for(BlockPos pos:BlockPos.betweenClosed(center.offset(-2,-2,-2),center.offset(2,3,2))){
-            if(!level.isLoaded(pos))continue;
+        for (BlockPos pos : BlockPos.betweenClosed(center.offset(-2, -2, -2), center.offset(2, 3, 2))) {
+            if (!level.isLoaded(pos)) continue;
             BlockState homo = level.getBlockState(pos);
-            if (homo.is(Blocks.BONE_BLOCK)){
-                if(level instanceof ServerLevel _sLevel) _sLevel.destroyBlock(pos,false);
+            if (homo.is(Blocks.BONE_BLOCK)) {
+                if (level instanceof ServerLevel _sLevel) _sLevel.destroyBlock(pos, false);
                 this.lookAt(EntityAnchorArgument.Anchor.EYES, pos.getCenter());
                 return true;
             }
@@ -352,11 +353,12 @@ public class MulticellularHeraldEntity extends Monster implements GeoEntity {
         return false;
     }
 
-    private void setAttr(double perc){
+    private void setAttr(double perc) {
         var mapVar = MapVariables.get(this.level());
-        double a1 = 1.6,a2 = 1.4;
-        if(mapVar.strategySubsisting >= 4){
-            a1 = 2.2;a2=1.8;
+        double a1 = 1.6, a2 = 1.4;
+        if (mapVar.strategySubsisting >= 4) {
+            a1 = 2.2;
+            a2 = 1.8;
         }
         AttributeInstance max_h = this.getAttribute(Attributes.MAX_HEALTH);
         if (max_h != null) {
