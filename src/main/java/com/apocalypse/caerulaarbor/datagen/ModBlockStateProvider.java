@@ -51,6 +51,8 @@ public class ModBlockStateProvider extends BlockStateProvider {
         blockWithItem(ModBlocks.NETHERSEA_BRICKS);
         stairsBlock((StairBlock) ModBlocks.NETHERSEA_BRICK_STAIRS.get(), blockTexture(ModBlocks.NETHERSEA_BRICKS.get()));
         slabBlock((SlabBlock) ModBlocks.NETHERSEA_BRICK_SLAB.get(), blockTexture(ModBlocks.NETHERSEA_BRICKS.get()), CaerulaArborMod.loc("block/nethersea_bricks"));
+        wallBlock((WallBlock) ModBlocks.NETHERSEA_BRICK_WALL.get(), blockTexture(ModBlocks.NETHERSEA_BRICKS.get()));
+        blockWithItem(ModBlocks.NETHERSEA_TILES);
 
         blockWithItem(ModBlocks.SAL_VIENTO_SAND);
         simpleBlockWithItem(ModBlocks.SAL_VIENTO_SANDSTONE.get(), models().cubeBottomTop("sal_viento_sandstone", CaerulaArborMod.loc("block/sal_viento_sandstone"),

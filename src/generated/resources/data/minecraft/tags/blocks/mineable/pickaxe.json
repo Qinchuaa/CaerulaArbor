@@ -19,6 +19,8 @@
     "caerula_arbor:sal_viento_pillar",
     "caerula_arbor:nethersea_bricks",
     "caerula_arbor:nethersea_brick_stairs",
-    "caerula_arbor:nethersea_brick_slab"
+    "caerula_arbor:nethersea_brick_slab",
+    "caerula_arbor:nethersea_brick_wall",
+    "caerula_arbor:nethersea_tiles"
   ]
 }

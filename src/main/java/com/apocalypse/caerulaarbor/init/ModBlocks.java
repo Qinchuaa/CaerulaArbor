@@ -49,7 +49,6 @@ public class ModBlocks {
     public static final RegistryObject<Block> SEA_TRAIL_SOLID = BLOCKS.register("sea_trail_solid", SeaTrailSolidBlock::new);
     public static final RegistryObject<Block> TRAIL_BUTTON = BLOCKS.register("trail_button", TrailButtonBlock::new);
     public static final RegistryObject<Block> TRAIL_PRESSURE_PLATE = BLOCKS.register("trail_pressure_plate", TrailPressurePlateBlock::new);
-    public static final RegistryObject<Block> TRAIL_TILE = BLOCKS.register("trail_tile", TrailTileBlock::new);
 
     public static final RegistryObject<Block> POOL_OF_PROCREATION = BLOCKS.register("pool_of_procreation", PoolOfProcreationBlock::new);
     public static final RegistryObject<Block> NOURISHED_POOL_OF_PROCREATION = BLOCKS.register("nourished_pool_of_procreation", NourishedPoolOfProcreationBlock::new);
@@ -58,6 +57,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> NETHERSEA_BRICKS = BLOCKS.register("nethersea_bricks", () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.SCULK_CATALYST).mapColor(MapColor.DEEPSLATE).friction(0.9f).speedFactor(0.9f).requiresCorrectToolForDrops().strength(3f, 12f)));
     public static final RegistryObject<Block> NETHERSEA_BRICK_STAIRS = BLOCKS.register("nethersea_brick_stairs", () -> new StairBlock(() -> NETHERSEA_BRICKS.get().defaultBlockState(), BlockBehaviour.Properties.copy(NETHERSEA_BRICKS.get())));
     public static final RegistryObject<Block> NETHERSEA_BRICK_SLAB = BLOCKS.register("nethersea_brick_slab", () -> new SlabBlock(BlockBehaviour.Properties.of().sound(SoundType.SCULK_CATALYST).mapColor(MapColor.DEEPSLATE).friction(0.9f).speedFactor(0.9f).requiresCorrectToolForDrops().strength(3f, 12f)));
+    public static final RegistryObject<Block> NETHERSEA_BRICK_WALL = BLOCKS.register("nethersea_brick_wall", () -> new WallBlock(BlockBehaviour.Properties.copy(NETHERSEA_BRICKS.get()).forceSolidOn()));
+    public static final RegistryObject<Block> NETHERSEA_TILES = BLOCKS.register("nethersea_tiles", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.DEEPSLATE).sound(SoundType.DEEPSLATE_TILES).friction(0.9f).speedFactor(0.9f).requiresCorrectToolForDrops().strength(3f, 12f)));
 
     // Sal Viento Series 盐风方块
     public static final RegistryObject<Block> SAL_VIENTO_SAND = BLOCKS.register("sal_viento_sand", () -> new SandBlock(0xdbdad3, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sound(SoundType.SAND)));

@@ -79,6 +79,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         evenSimplerBlockItem(ModBlocks.NETHERSEA_BRICK_STAIRS);
         evenSimplerBlockItem(ModBlocks.NETHERSEA_BRICK_SLAB);
+        wallItem(ModBlocks.NETHERSEA_BRICK_WALL, ModBlocks.NETHERSEA_BRICKS);
 
         evenSimplerBlockItem(ModBlocks.SAL_VIENTO_SANDSTONE_STAIRS);
         evenSimplerBlockItem(ModBlocks.SAL_VIENTO_SANDSTONE_SLAB);
