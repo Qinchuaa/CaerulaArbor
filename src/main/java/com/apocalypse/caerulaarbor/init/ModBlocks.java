@@ -59,6 +59,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> NETHERSEA_BRICK_SLAB = BLOCKS.register("nethersea_brick_slab", () -> new SlabBlock(BlockBehaviour.Properties.of().sound(SoundType.SCULK_CATALYST).mapColor(MapColor.DEEPSLATE).friction(0.9f).speedFactor(0.9f).requiresCorrectToolForDrops().strength(3f, 12f)));
     public static final RegistryObject<Block> NETHERSEA_BRICK_WALL = BLOCKS.register("nethersea_brick_wall", () -> new WallBlock(BlockBehaviour.Properties.copy(NETHERSEA_BRICKS.get()).forceSolidOn()));
     public static final RegistryObject<Block> NETHERSEA_TILES = BLOCKS.register("nethersea_tiles", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.DEEPSLATE).sound(SoundType.DEEPSLATE_TILES).friction(0.9f).speedFactor(0.9f).requiresCorrectToolForDrops().strength(3f, 12f)));
+    public static final RegistryObject<Block> NETHERSEA_TILE_STAIRS = BLOCKS.register("nethersea_tile_stairs", () -> new StairBlock(() -> NETHERSEA_TILES.get().defaultBlockState(), BlockBehaviour.Properties.copy(NETHERSEA_TILES.get())));
+    public static final RegistryObject<Block> NETHERSEA_TILE_SLAB = BLOCKS.register("nethersea_tile_slab", () -> new SlabBlock(BlockBehaviour.Properties.of().mapColor(MapColor.DEEPSLATE).sound(SoundType.DEEPSLATE_TILES).friction(0.9f).speedFactor(0.9f).requiresCorrectToolForDrops().strength(3f, 12f)));
+    public static final RegistryObject<Block> NETHERSEA_TILE_WALL = BLOCKS.register("nethersea_tile_wall", () -> new WallBlock(BlockBehaviour.Properties.copy(NETHERSEA_TILES.get()).forceSolidOn()));
 
     // Sal Viento Series 盐风方块
     public static final RegistryObject<Block> SAL_VIENTO_SAND = BLOCKS.register("sal_viento_sand", () -> new SandBlock(0xdbdad3, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sound(SoundType.SAND)));

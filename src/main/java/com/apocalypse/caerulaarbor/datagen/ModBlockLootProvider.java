@@ -84,6 +84,9 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
         this.add(ModBlocks.NETHERSEA_BRICK_SLAB.get(), block -> createSlabItemTable(ModBlocks.NETHERSEA_BRICK_SLAB.get()));
         this.dropSelf(ModBlocks.NETHERSEA_BRICK_WALL.get());
         this.dropSelf(ModBlocks.NETHERSEA_TILES.get());
+        this.dropSelf(ModBlocks.NETHERSEA_TILE_STAIRS.get());
+        this.add(ModBlocks.NETHERSEA_TILE_SLAB.get(), block -> createSlabItemTable(ModBlocks.NETHERSEA_TILE_SLAB.get()));
+        this.dropSelf(ModBlocks.NETHERSEA_TILE_WALL.get());
 
         this.dropSelf(ModBlocks.SAL_VIENTO_SAND.get());
         this.dropSelf(ModBlocks.SAL_VIENTO_SANDSTONE.get());

@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/slab",
+  "textures": {
+    "bottom": "caerula_arbor:block/nethersea_tiles",
+    "side": "caerula_arbor:block/nethersea_tiles",
+    "top": "caerula_arbor:block/nethersea_tiles"
+  }
+}

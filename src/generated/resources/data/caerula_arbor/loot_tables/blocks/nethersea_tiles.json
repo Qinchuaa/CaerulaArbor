@@ -11,7 +11,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "minecraft:air"
+          "name": "caerula_arbor:nethersea_tiles"
         }
       ],
       "rolls": 1.0

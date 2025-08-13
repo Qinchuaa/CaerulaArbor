@@ -253,6 +253,9 @@ public class ModItems {
     public static final RegistryObject<Item> NETHERSEA_BRICK_SLAB = block(ModBlocks.NETHERSEA_BRICK_SLAB);
     public static final RegistryObject<Item> NETHERSEA_BRICK_WALL = block(ModBlocks.NETHERSEA_BRICK_WALL);
     public static final RegistryObject<Item> NETHERSEA_TILES = block(ModBlocks.NETHERSEA_TILES);
+    public static final RegistryObject<Item> NETHERSEA_TILE_STAIRS = block(ModBlocks.NETHERSEA_TILE_STAIRS);
+    public static final RegistryObject<Item> NETHERSEA_TILE_SLAB = block(ModBlocks.NETHERSEA_TILE_SLAB);
+    public static final RegistryObject<Item> NETHERSEA_TILE_WALL = block(ModBlocks.NETHERSEA_TILE_WALL);
 
     public static final RegistryObject<Item> SAL_VIENTO_SAND = block(ModBlocks.SAL_VIENTO_SAND);
     public static final RegistryObject<Item> SAL_VIENTO_SANDSTONE = block(ModBlocks.SAL_VIENTO_SANDSTONE);
