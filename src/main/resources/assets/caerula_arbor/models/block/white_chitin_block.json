@@ -1,8 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "caerula_arbor:block/white_chitin",
-    "particle": "caerula_arbor:block/white_chitin"
-  },
-  "render_type": "cutout"
-}

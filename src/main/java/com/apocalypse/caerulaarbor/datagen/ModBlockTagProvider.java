@@ -24,6 +24,8 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 ModBlocks.SAL_VIENTO_SAND.get()
         );
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
+                ModBlocks.CHITIN_BLOCK.get(),
+                ModBlocks.COMPLEX_CHITIN_BLOCK.get(),
                 ModBlocks.SAL_VIENTO_SANDSTONE.get(),
                 ModBlocks.SAL_VIENTO_SANDSTONE_STAIRS.get(),
                 ModBlocks.SAL_VIENTO_SANDSTONE_SLAB.get(),
@@ -57,6 +59,13 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 ModBlocks.NETHERSEA_BUTTON.get()
         );
 
+        this.tag(BlockTags.NEEDS_STONE_TOOL).add(
+                ModBlocks.CHITIN_BLOCK.get()
+        );
+        this.tag(BlockTags.NEEDS_IRON_TOOL).add(
+                ModBlocks.COMPLEX_CHITIN_BLOCK.get()
+        );
+
         this.tag(BlockTags.WALLS).add(
                 ModBlocks.SAL_VIENTO_SANDSTONE_WALL.get(),
                 ModBlocks.CHISELED_SAL_VIENTO_SANDSTONE_WALL.get(),
@@ -70,6 +79,10 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         );
         this.tag(BlockTags.BUTTONS).add(
                 ModBlocks.NETHERSEA_BUTTON.get()
+        );
+        this.tag(BlockTags.BEACON_BASE_BLOCKS).add(
+                ModBlocks.CHITIN_BLOCK.get(),
+                ModBlocks.COMPLEX_CHITIN_BLOCK.get()
         );
 
         this.tag(ModTags.Blocks.NETHERSEA_BLOCK).add(

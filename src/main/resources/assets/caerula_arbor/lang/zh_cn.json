@@ -138,6 +138,9 @@
   "item.caerula_arbor.path_shaper_spawn_egg": "塑路者刷怪蛋",
   "item.caerula_arbor.pathshaper_fractal_spawn_egg": "塑路者分形刷怪蛋",
 
+  "block.caerula_arbor.chitin_block": "几丁质块",
+  "block.caerula_arbor.complex_chitin_block": "复合几丁质方块",
+
   "block.caerula_arbor.pool_of_procreation": "育生池",
   "block.caerula_arbor.nourished_pool_of_procreation": "富营养的育生池",
   "block.caerula_arbor.tide_observation_station": "海潮观测站",
@@ -660,7 +663,6 @@
   "item.caerula_arbor.canned_lava": "一罐熔岩",
   "item.caerula_arbor.caffeine": "咖啡因",
   "subtitles.target_damaged": "损失目标生命",
-  "block.caerula_arbor.chitin_block": "几丁质块",
   "gui.caerula_arbor.evo_tree.button_return": "返回",
   "gui.caerula_arbor.info_strategy_subsis.label_proceed": "海嗣受伤时累积进化点数。",
   "gui.caerula_arbor.info_strategy_migration.button_return": "返回",
@@ -696,7 +698,6 @@
   "item.caerula_arbor.caramel_mor": "焦糖腐质",
   "gui.caerula_arbor.caerula_record_gui.show_ptc": "收藏品粒子",
   "gui.caerula_arbor.evo_tree.label_strategy_migration": "策略 - 迁徙",
-  "block.caerula_arbor.complex_chitin_block": "复合几丁质方块",
   "advancements.to_burden_catastrophy.title": "剥壳",
   "block.caerula_arbor.kings_armor": "铠甲的礼盒",
   "item.caerula_arbor.real_egg": "海嗣卵",

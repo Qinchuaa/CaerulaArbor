@@ -28,6 +28,9 @@ public class ModBlockStateProvider extends BlockStateProvider {
         horizontalBlock(ModBlocks.SCREAMING_CHERRY.get(), new ModelFile.UncheckedModelFile(modLoc("block/screaming_cherry")));
         horizontalBlock(ModBlocks.TIDE_OBSERVATION_STATION.get(), new ModelFile.UncheckedModelFile(modLoc("block/tide_observation_station")));
 
+        blockWithItem(ModBlocks.CHITIN_BLOCK);
+        blockWithItem(ModBlocks.COMPLEX_CHITIN_BLOCK);
+
         multiStateBlock(ModBlocks.POOL_OF_PROCREATION.get(), state -> {
             if (state.getValue(PoolOfProcreationBlock.POWERED)) {
                 return models().withExistingParent(name(ModBlocks.POOL_OF_PROCREATION.get()), modLoc("block/base/pool_of_procreation"))

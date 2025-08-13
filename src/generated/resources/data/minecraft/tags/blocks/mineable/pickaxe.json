@@ -1,5 +1,7 @@
 {
   "values": [
+    "caerula_arbor:chitin_block",
+    "caerula_arbor:complex_chitin_block",
     "caerula_arbor:sal_viento_sandstone",
     "caerula_arbor:sal_viento_sandstone_stairs",
     "caerula_arbor:sal_viento_sandstone_slab",

@@ -82,9 +82,7 @@ public class ModTabs {
                         tabData.accept(ModBlocks.ANCHOR_LOWER.get().asItem());
                         tabData.accept(ModBlocks.ANCHOR_MEDIUM.get().asItem());
                         tabData.accept(ModBlocks.ANCHOR_UPPER.get().asItem());
-                        tabData.accept(ModBlocks.CHITIN_BLOCK.get().asItem());
                         tabData.accept(ModBlocks.OCEAN_CRYSTAL_BLOCK.get().asItem());
-                        tabData.accept(ModBlocks.COMPLEX_CHITIN_BLOCK.get().asItem());
                         tabData.accept(ModBlocks.OCEAN_GLASS.get().asItem());
                         tabData.accept(ModBlocks.OCEAN_GLASSPANE.get().asItem());
                         tabData.accept(ModBlocks.POOL_OF_PROCREATION.get().asItem());

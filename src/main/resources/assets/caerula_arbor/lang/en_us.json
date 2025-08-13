@@ -138,6 +138,9 @@
   "item.caerula_arbor.path_shaper_spawn_egg": "Path Shaper Spawn Egg",
   "item.caerula_arbor.pathshaper_fractal_spawn_egg": "Pathshaper Fractal Spawn Egg",
 
+  "block.caerula_arbor.chitin_block": "Chitin Block",
+  "block.caerula_arbor.complex_chitin_block": "Complex Chitin Block",
+
   "block.caerula_arbor.pool_of_procreation": "Pool of Procreation",
   "block.caerula_arbor.nourished_pool_of_procreation": "Nourished Pool of Procreation",
   "block.caerula_arbor.tide_observation_station": "Tide Observation Station",
@@ -665,7 +668,6 @@
   "item.caerula_arbor.canned_lava": "Canned Lava",
   "item.caerula_arbor.caffeine": "Caffeine",
   "subtitles.target_damaged": "",
-  "block.caerula_arbor.chitin_block": "Chitin Block",
   "gui.caerula_arbor.evo_tree.button_return": "return",
   "gui.caerula_arbor.info_strategy_subsis.label_proceed": "Proceed when Oceanoffspring get hurt",
   "gui.caerula_arbor.info_strategy_migration.button_return": "return",
@@ -701,7 +703,6 @@
   "item.caerula_arbor.caramel_mor": "Caramel Mor",
   "gui.caerula_arbor.caerula_record_gui.show_ptc": "relic particle",
   "gui.caerula_arbor.evo_tree.label_strategy_migration": "Strategy Migration",
-  "block.caerula_arbor.complex_chitin_block": "Complex Chitin Block",
   "advancements.to_burden_catastrophy.title": "Burden Of Catastrophy",
   "block.caerula_arbor.kings_armor": "Kings Armor",
   "item.caerula_arbor.real_egg": "Real Egg",

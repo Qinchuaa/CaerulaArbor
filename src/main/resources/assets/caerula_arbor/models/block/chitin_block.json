@@ -1,8 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "caerula_arbor:block/chitinblock",
-    "particle": "caerula_arbor:block/chitinblock"
-  },
-  "render_type": "solid"
-}

@@ -18,6 +18,9 @@ public class ModBlocks {
 
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, CaerulaArborMod.MODID);
 
+    public static final RegistryObject<Block> CHITIN_BLOCK = BLOCKS.register("chitin_block", () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.BONE_BLOCK).strength(18f, 75f).requiresCorrectToolForDrops()));
+    public static final RegistryObject<Block> COMPLEX_CHITIN_BLOCK = BLOCKS.register("complex_chitin_block", () -> new Block(BlockBehaviour.Properties.of().sound(SoundType.BONE_BLOCK).strength(24f, 95f).requiresCorrectToolForDrops()));
+
     public static final RegistryObject<Block> TIDE_OBSERVATION_STATION = BLOCKS.register("tide_observation_station", TideObservationStationBlock::new);
 
     public static final RegistryObject<Block> EMERGENCY_LIGHT = BLOCKS.register("emergency_light", EmergencyLightBlock::new);
@@ -36,7 +39,6 @@ public class ModBlocks {
     public static final RegistryObject<Block> BOMB_TRAILER = BLOCKS.register("bomb_trailer", BombTrailerBlock::new);
     public static final RegistryObject<Block> OCEAN_GLASS = BLOCKS.register("ocean_glass", OceanGlassBlock::new);
     public static final RegistryObject<Block> OCEAN_GLASSPANE = BLOCKS.register("ocean_glasspane", OceanGlasspaneBlock::new);
-    public static final RegistryObject<Block> CHITIN_BLOCK = BLOCKS.register("chitin_block", ChitinBlockBlock::new);
     public static final RegistryObject<Block> BLOCK_KETTLE = BLOCKS.register("block_kettle", BlockKettleBlock::new);
     public static final RegistryObject<Block> OCEAN_FARMLAND = BLOCKS.register("ocean_farmland", OceanFarmlandBlock::new);
     public static final RegistryObject<Block> ALLAY_BLOCK = BLOCKS.register("allay_block", AllayBlockBlock::new);
@@ -45,7 +47,6 @@ public class ModBlocks {
     public static final RegistryObject<Block> TRAIL_CAKE = BLOCKS.register("trail_cake", TrailCakeBlock::new);
     public static final RegistryObject<Block> CARAMEL_CAKE = BLOCKS.register("caramel_cake", CaramelCakeBlock::new);
     public static final RegistryObject<Block> OCEAN_CRYSTAL_BLOCK = BLOCKS.register("ocean_crystal_block", OceanCrystalBlockBlock::new);
-    public static final RegistryObject<Block> COMPLEX_CHITIN_BLOCK = BLOCKS.register("complex_chitin_block", ComplexChitinBlockBlock::new);
     public static final RegistryObject<Block> ANCHOR_LOWER = BLOCKS.register("anchor_lower", AnchorLowerBlock::new);
     public static final RegistryObject<Block> ANCHOR_MEDIUM = BLOCKS.register("anchor_medium", AnchorMediumBlock::new);
     public static final RegistryObject<Block> ANCHOR_UPPER = BLOCKS.register("anchor_upper", AnchorUpperBlock::new);

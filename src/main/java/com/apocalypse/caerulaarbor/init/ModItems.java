@@ -212,6 +212,9 @@ public class ModItems {
      */
     public static final DeferredRegister<Item> BLOCKS = DeferredRegister.create(ForgeRegistries.ITEMS, CaerulaArborMod.MODID);
 
+    public static final RegistryObject<Item> CHITIN_BLOCK = block(ModBlocks.CHITIN_BLOCK);
+    public static final RegistryObject<Item> COMPLEX_CHITIN_BLOCK = block(ModBlocks.COMPLEX_CHITIN_BLOCK);
+
     public static final RegistryObject<Item> EMERGENCY_LIGHT = block(ModBlocks.EMERGENCY_LIGHT);
     public static final RegistryObject<Item> KINGS_ARMOR = block(ModBlocks.KINGS_ARMOR);
     public static final RegistryObject<Item> BLOCK_CROWN = block(ModBlocks.BLOCK_CROWN);
@@ -228,9 +231,7 @@ public class ModItems {
     public static final RegistryObject<Item> OCEAN_GLASS = block(ModBlocks.OCEAN_GLASS);
     public static final RegistryObject<Item> OCEAN_GLASSPANE = block(ModBlocks.OCEAN_GLASSPANE);
     public static final RegistryObject<Item> OCEAN_CRYSTAL_BLOCK = block(ModBlocks.OCEAN_CRYSTAL_BLOCK);
-    public static final RegistryObject<Item> COMPLEX_CHITIN_BLOCK = block(ModBlocks.COMPLEX_CHITIN_BLOCK);
     public static final RegistryObject<Item> TIDE_OBSERVATION = block(ModBlocks.TIDE_OBSERVATION_STATION);
-    public static final RegistryObject<Item> CHITIN_BLOCK = block(ModBlocks.CHITIN_BLOCK);
     public static final RegistryObject<Item> BLOCK_KETTLE = block(ModBlocks.BLOCK_KETTLE);
     public static final RegistryObject<Item> OCEAN_FARMLAND = block(ModBlocks.OCEAN_FARMLAND);
     public static final RegistryObject<Item> CARAMEL_CAKE = block(ModBlocks.CARAMEL_CAKE);
