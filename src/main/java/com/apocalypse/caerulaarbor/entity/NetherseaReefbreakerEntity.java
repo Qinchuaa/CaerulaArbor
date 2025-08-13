@@ -73,13 +73,13 @@ public class NetherseaReefbreakerEntity extends SeaMonster {
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundTag pCompound) {
+    public void addAdditionalSaveData(@NotNull CompoundTag pCompound) {
         super.addAdditionalSaveData(pCompound);
         pCompound.putInt("SkillCooldown", this.skillCooldown);
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundTag pCompound) {
+    public void readAdditionalSaveData(@NotNull CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
         if (pCompound.contains("SkillCooldown")) {
             this.skillCooldown = pCompound.getInt("SkillCooldown");
@@ -170,7 +170,7 @@ public class NetherseaReefbreakerEntity extends SeaMonster {
     }
 
     @Override
-    public boolean doHurtTarget(Entity pEntity) {
+    public boolean doHurtTarget(@NotNull Entity pEntity) {
         boolean flag = super.doHurtTarget(pEntity);
         if (flag) {
             this.bonusTime = 70;

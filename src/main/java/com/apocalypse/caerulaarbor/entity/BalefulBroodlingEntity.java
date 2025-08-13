@@ -111,7 +111,7 @@ public class BalefulBroodlingEntity extends SeaMonster {
     }
 
     @Override
-    public boolean hurt(DamageSource source, float amount) {
+    public boolean hurt(@NotNull DamageSource source, float amount) {
         if (source.is(DamageTypes.FALL))
             return false;
         return super.hurt(source, amount);
@@ -234,7 +234,7 @@ public class BalefulBroodlingEntity extends SeaMonster {
     }
 
     @Override
-    public boolean doHurtTarget(Entity pEntity) {
+    public boolean doHurtTarget(@NotNull Entity pEntity) {
         boolean flag = super.doHurtTarget(pEntity);
         if (flag && pEntity instanceof LivingEntity living && !living.level().isClientSide) {
             living.addEffect(new MobEffectInstance(ModMobEffects.ARMOR_BREAKING.get(), 300, 2), this);

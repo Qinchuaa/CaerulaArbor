@@ -13,7 +13,6 @@ import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.syncher.EntityDataAccessor;
 import net.minecraft.network.syncher.EntityDataSerializers;
 import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.util.Mth;
@@ -42,7 +41,6 @@ import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.network.NetworkHooks;
 import net.minecraftforge.network.PlayMessages;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
@@ -82,7 +80,7 @@ public class MatrocellularNurseEntity extends Monster implements GeoEntity {
                     double dx = this.wantedX - MatrocellularNurseEntity.this.getX();
                     double dy = this.wantedY - MatrocellularNurseEntity.this.getY();
                     double dz = this.wantedZ - MatrocellularNurseEntity.this.getZ();
-                    float f = (float) (Mth.atan2(dz, dx) * (double) (180 / Math.PI)) - 90;
+                    float f = (float) (Mth.atan2(dz, dx) * (180 / Math.PI)) - 90;
                     float f1 = (float) (this.speedModifier * MatrocellularNurseEntity.this.getAttribute(Attributes.MOVEMENT_SPEED).getValue());
                     MatrocellularNurseEntity.this.setYRot(this.rotlerp(MatrocellularNurseEntity.this.getYRot(), f, 10));
                     MatrocellularNurseEntity.this.yBodyRot = MatrocellularNurseEntity.this.getYRot();
@@ -124,12 +122,12 @@ public class MatrocellularNurseEntity extends Monster implements GeoEntity {
     }
 
     @Override
-    public Packet<ClientGamePacketListener> getAddEntityPacket() {
+    public @NotNull Packet<ClientGamePacketListener> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
-    protected PathNavigation createNavigation(Level world) {
+    protected @NotNull PathNavigation createNavigation(@NotNull Level world) {
         return new WaterBoundPathNavigation(this, world);
     }
 
@@ -151,18 +149,18 @@ public class MatrocellularNurseEntity extends Monster implements GeoEntity {
     }
 
     @Override
-    public MobType getMobType() {
+    public @NotNull MobType getMobType() {
         return MobType.WATER;
     }
 
     @Override
-    public SoundEvent getHurtSound(DamageSource ds) {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.puffer_fish.hurt"));
+    public @NotNull SoundEvent getHurtSound(@NotNull DamageSource ds) {
+        return SoundEvents.PUFFER_FISH_HURT;
     }
 
     @Override
-    public SoundEvent getDeathSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.puffer_fish.death"));
+    public @NotNull SoundEvent getDeathSound() {
+        return SoundEvents.PUFFER_FISH_DEATH;
     }
 
     @Override
@@ -173,13 +171,13 @@ public class MatrocellularNurseEntity extends Monster implements GeoEntity {
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundTag compound) {
+    public void addAdditionalSaveData(@NotNull CompoundTag compound) {
         super.addAdditionalSaveData(compound);
         compound.putString("Texture", this.getTexture());
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundTag compound) {
+    public void readAdditionalSaveData(@NotNull CompoundTag compound) {
         super.readAdditionalSaveData(compound);
         if (compound.contains("Texture"))
             this.setTexture(compound.getString("Texture"));
@@ -192,7 +190,7 @@ public class MatrocellularNurseEntity extends Monster implements GeoEntity {
     }
 
     @Override
-    public EntityDimensions getDimensions(Pose p_33597_) {
+    public @NotNull EntityDimensions getDimensions(@NotNull Pose p_33597_) {
         return super.getDimensions(p_33597_).scale((float) 1);
     }
 
@@ -223,7 +221,7 @@ public class MatrocellularNurseEntity extends Monster implements GeoEntity {
         return builder;
     }
 
-    private PlayState movementPredicate(AnimationState event) {
+    private PlayState movementPredicate(AnimationState<?> event) {
         if (this.animationprocedure.equals("empty")) {
             if ((event.isMoving() || !(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F))
 
@@ -241,7 +239,7 @@ public class MatrocellularNurseEntity extends Monster implements GeoEntity {
         return PlayState.STOP;
     }
 
-    private PlayState attackingPredicate(AnimationState event) {
+    private PlayState attackingPredicate(AnimationState<?> event) {
         double d1 = this.getX() - this.xOld;
         double d0 = this.getZ() - this.zOld;
         float velocity = (float) Math.sqrt(d1 * d1 + d0 * d0);
@@ -261,7 +259,7 @@ public class MatrocellularNurseEntity extends Monster implements GeoEntity {
 
     String prevAnim = "empty";
 
-    private PlayState procedurePredicate(AnimationState event) {
+    private PlayState procedurePredicate(AnimationState<?> event) {
         if (!animationprocedure.equals("empty") && event.getController().getAnimationState() == AnimationController.State.STOPPED || (!this.animationprocedure.equals(prevAnim) && !this.animationprocedure.equals("empty"))) {
             if (!this.animationprocedure.equals(prevAnim))
                 event.getController().forceAnimationReset();

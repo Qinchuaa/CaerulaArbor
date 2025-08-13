@@ -6,7 +6,6 @@ import com.apocalypse.caerulaarbor.entity.base.SeaMonster;
 import com.apocalypse.caerulaarbor.init.ModEntities;
 import net.minecraft.core.BlockPos;
 import net.minecraft.nbt.CompoundTag;
-import net.minecraft.resources.ResourceLocation;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
@@ -37,13 +36,14 @@ import net.minecraft.world.level.levelgen.Heightmap;
 import net.minecraft.world.level.pathfinder.BlockPathTypes;
 import net.minecraftforge.common.ForgeMod;
 import net.minecraftforge.network.PlayMessages;
-import net.minecraftforge.registries.ForgeRegistries;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.core.animation.AnimatableManager;
 import software.bernie.geckolib.core.animation.AnimationController;
 import software.bernie.geckolib.core.animation.AnimationState;
 import software.bernie.geckolib.core.animation.RawAnimation;
 import software.bernie.geckolib.core.object.PlayState;
+
+import javax.annotation.ParametersAreNonnullByDefault;
 
 public class DivicellularHoarderEntity extends SeaMonster {
 
@@ -94,19 +94,19 @@ public class DivicellularHoarderEntity extends SeaMonster {
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundTag pCompound) {
+    public void addAdditionalSaveData(@NotNull CompoundTag pCompound) {
         super.addAdditionalSaveData(pCompound);
         pCompound.putBoolean("Split", this.split);
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundTag pCompound) {
+    public void readAdditionalSaveData(@NotNull CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
         this.split = pCompound.getBoolean("Split");
     }
 
     @Override
-    protected PathNavigation createNavigation(Level world) {
+    protected @NotNull PathNavigation createNavigation(@NotNull Level world) {
         return new WaterBoundPathNavigation(this, world);
     }
 
@@ -130,17 +130,18 @@ public class DivicellularHoarderEntity extends SeaMonster {
     }
 
     @Override
+    @ParametersAreNonnullByDefault
     public void playStepSound(BlockPos pos, BlockState blockIn) {
         this.playSound(SoundEvents.PUFFER_FISH_FLOP, 0.15f, 1);
     }
 
     @Override
-    public SoundEvent getHurtSound(DamageSource ds) {
+    public @NotNull SoundEvent getHurtSound(@NotNull DamageSource ds) {
         return SoundEvents.PUFFER_FISH_HURT;
     }
 
     @Override
-    public SoundEvent getDeathSound() {
+    public @NotNull SoundEvent getDeathSound() {
         return SoundEvents.PUFFER_FISH_DEATH;
     }
 
@@ -153,7 +154,7 @@ public class DivicellularHoarderEntity extends SeaMonster {
     }
 
     @Override
-    public EntityDimensions getDimensions(Pose p_33597_) {
+    public @NotNull EntityDimensions getDimensions(@NotNull Pose p_33597_) {
         return super.getDimensions(p_33597_).scale((float) 1);
     }
 
@@ -240,17 +241,15 @@ public class DivicellularHoarderEntity extends SeaMonster {
             }
             _ent.setHealth((float) (_ent.getMaxHealth() * 0.5));
             CaerulaArborMod.queueServerWork(10, () -> {
-                        SoundEvent sound = ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.puffer_fish.blow_out"));
-                        if (sound != null) {
-                            if (!level.isClientSide()) {
-                                level.playSound(null, BlockPos.containing(entity.getX(), entity.getY(), entity.getZ()),
-                                        sound,
-                                        SoundSource.HOSTILE, 2, 1);
-                            } else {
-                                level.playLocalSound((entity.getX()), (entity.getY()), (entity.getZ()),
-                                        sound,
-                                        SoundSource.HOSTILE, 2, 1, false);
-                            }
+                SoundEvent sound = SoundEvents.PUFFER_FISH_BLOW_OUT;
+                if (!level.isClientSide()) {
+                    level.playSound(null, BlockPos.containing(entity.getX(), entity.getY(), entity.getZ()),
+                            sound,
+                            SoundSource.HOSTILE, 2, 1);
+                } else {
+                    level.playLocalSound((entity.getX()), (entity.getY()), (entity.getZ()),
+                            sound,
+                            SoundSource.HOSTILE, 2, 1, false);
                         }
                         if (toSpawn instanceof DivicellularHoarderEntity _hoarder) {
                             _hoarder.split = false;

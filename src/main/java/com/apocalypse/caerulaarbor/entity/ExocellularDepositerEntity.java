@@ -1,66 +1,54 @@
 
 package com.apocalypse.caerulaarbor.entity;
 
-import net.minecraft.core.BlockPos;
-import net.minecraft.core.Direction;
-import net.minecraft.world.level.LevelAccessor;
-import net.minecraft.world.level.block.Block;
-import net.minecraft.world.level.block.state.BlockState;
-import software.bernie.geckolib.util.GeckoLibUtil;
-import software.bernie.geckolib.core.object.PlayState;
-import software.bernie.geckolib.core.animation.RawAnimation;
-import software.bernie.geckolib.core.animation.AnimationState;
-import software.bernie.geckolib.core.animation.AnimationController;
-import software.bernie.geckolib.core.animation.AnimatableManager;
-import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
-
-import net.minecraftforge.registries.ForgeRegistries;
-import net.minecraftforge.network.PlayMessages;
-import net.minecraftforge.network.NetworkHooks;
-import net.minecraftforge.common.ForgeMod;
-
-import net.minecraft.world.level.pathfinder.BlockPathTypes;
-import net.minecraft.world.level.block.Blocks;
-import net.minecraft.world.level.LevelReader;
-import net.minecraft.world.level.Level;
-import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.entity.animal.TropicalFish;
-import net.minecraft.world.entity.animal.Squid;
-import net.minecraft.world.entity.animal.Salmon;
-import net.minecraft.world.entity.ai.navigation.WaterBoundPathNavigation;
-import net.minecraft.world.entity.ai.navigation.PathNavigation;
-import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
-import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
-import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
-import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.world.entity.ai.control.MoveControl;
-import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-import net.minecraft.world.entity.Pose;
-import net.minecraft.world.entity.MobType;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.GlowSquid;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EntityDimensions;
-import net.minecraft.world.damagesource.DamageTypes;
-import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.util.Mth;
-import net.minecraft.sounds.SoundEvent;
-import net.minecraft.resources.ResourceLocation;
-import net.minecraft.network.syncher.SynchedEntityData;
-import net.minecraft.network.syncher.EntityDataSerializers;
-import net.minecraft.network.syncher.EntityDataAccessor;
-import net.minecraft.network.protocol.game.ClientGamePacketListener;
-import net.minecraft.network.protocol.Packet;
-import net.minecraft.nbt.CompoundTag;
-
 import com.apocalypse.caerulaarbor.entity.ai.goal.SeaMonsterAttackableTargetGoal;
 import com.apocalypse.caerulaarbor.entity.base.SeaMonster;
 import com.apocalypse.caerulaarbor.init.ModEntities;
-
+import net.minecraft.core.BlockPos;
+import net.minecraft.core.Direction;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.network.protocol.Packet;
+import net.minecraft.network.protocol.game.ClientGamePacketListener;
+import net.minecraft.network.syncher.EntityDataAccessor;
+import net.minecraft.network.syncher.EntityDataSerializers;
+import net.minecraft.network.syncher.SynchedEntityData;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
+import net.minecraft.util.Mth;
+import net.minecraft.world.damagesource.DamageSource;
+import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.entity.*;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.control.MoveControl;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.RandomSwimmingGoal;
+import net.minecraft.world.entity.ai.goal.target.HurtByTargetGoal;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
+import net.minecraft.world.entity.ai.navigation.PathNavigation;
+import net.minecraft.world.entity.ai.navigation.WaterBoundPathNavigation;
+import net.minecraft.world.entity.animal.Salmon;
+import net.minecraft.world.entity.animal.Squid;
+import net.minecraft.world.entity.animal.TropicalFish;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.level.Level;
+import net.minecraft.world.level.LevelAccessor;
+import net.minecraft.world.level.LevelReader;
+import net.minecraft.world.level.block.Block;
+import net.minecraft.world.level.block.Blocks;
+import net.minecraft.world.level.block.state.BlockState;
+import net.minecraft.world.level.pathfinder.BlockPathTypes;
+import net.minecraftforge.common.ForgeMod;
+import net.minecraftforge.network.PlayMessages;
 import org.jetbrains.annotations.NotNull;
+import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
+import software.bernie.geckolib.core.animation.AnimatableManager;
+import software.bernie.geckolib.core.animation.AnimationController;
+import software.bernie.geckolib.core.animation.AnimationState;
+import software.bernie.geckolib.core.animation.RawAnimation;
+import software.bernie.geckolib.core.object.PlayState;
+import software.bernie.geckolib.util.GeckoLibUtil;
 
 //TODO 我的行数怎么是你们的两倍！？
 
@@ -93,7 +81,7 @@ public class ExocellularDepositerEntity extends SeaMonster {
 					double dx = this.wantedX - ExocellularDepositerEntity.this.getX();
 					double dy = this.wantedY - ExocellularDepositerEntity.this.getY();
 					double dz = this.wantedZ - ExocellularDepositerEntity.this.getZ();
-					float f = (float) (Mth.atan2(dz, dx) * (double) (180 / Math.PI)) - 90;
+					float f = (float) (Mth.atan2(dz, dx) * (180 / Math.PI)) - 90;
 					float f1 = (float) (this.speedModifier * ExocellularDepositerEntity.this.getAttribute(Attributes.MOVEMENT_SPEED).getValue());
 					ExocellularDepositerEntity.this.setYRot(this.rotlerp(ExocellularDepositerEntity.this.getYRot(), f, 10));
 					ExocellularDepositerEntity.this.yBodyRot = ExocellularDepositerEntity.this.getYRot();
@@ -136,11 +124,11 @@ public class ExocellularDepositerEntity extends SeaMonster {
 
 	@Override
 	public @NotNull Packet<ClientGamePacketListener> getAddEntityPacket() {
-		return NetworkHooks.getEntitySpawningPacket(this);
+		return super.getAddEntityPacket();
 	}
 
 	@Override
-	protected PathNavigation createNavigation(Level world) {
+	protected @NotNull PathNavigation createNavigation(@NotNull Level world) {
 		return new WaterBoundPathNavigation(this, world);
 	}
 
@@ -165,34 +153,34 @@ public class ExocellularDepositerEntity extends SeaMonster {
 
 	@Override
 	public @NotNull MobType getMobType() {
-		return MobType.WATER;
+		return super.getMobType();
 	}
 
 	@Override
-	public SoundEvent getHurtSound(DamageSource ds) {
-		return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.puffer_fish.hurt"));
+	public @NotNull SoundEvent getHurtSound(@NotNull DamageSource ds) {
+		return SoundEvents.PUFFER_FISH_HURT;
 	}
 
 	@Override
-	public SoundEvent getDeathSound() {
-		return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.puffer_fish.death"));
+	public @NotNull SoundEvent getDeathSound() {
+		return SoundEvents.PUFFER_FISH_DEATH;
 	}
 
 	@Override
-	public boolean hurt(DamageSource source, float amount) {
+	public boolean hurt(@NotNull DamageSource source, float amount) {
 		if (source.is(DamageTypes.DROWN))
 			return false;
 		return super.hurt(source, amount);
 	}
 
 	@Override
-	public void addAdditionalSaveData(CompoundTag compound) {
+	public void addAdditionalSaveData(@NotNull CompoundTag compound) {
 		super.addAdditionalSaveData(compound);
 		compound.putString("Texture", this.getTexture());
 	}
 
 	@Override
-	public void readAdditionalSaveData(CompoundTag compound) {
+	public void readAdditionalSaveData(@NotNull CompoundTag compound) {
 		super.readAdditionalSaveData(compound);
 		if (compound.contains("Texture"))
 			this.setTexture(compound.getString("Texture"));
@@ -205,7 +193,7 @@ public class ExocellularDepositerEntity extends SeaMonster {
 	}
 
 	@Override
-	public EntityDimensions getDimensions(Pose p_33597_) {
+	public @NotNull EntityDimensions getDimensions(@NotNull Pose p_33597_) {
 		return super.getDimensions(p_33597_).scale((float) 1);
 	}
 
@@ -235,7 +223,7 @@ public class ExocellularDepositerEntity extends SeaMonster {
 		return builder;
 	}
 
-	private PlayState movementPredicate(AnimationState event) {
+	private PlayState movementPredicate(AnimationState<?> event) {
 		if (this.animationprocedure.equals("empty")) {
 			if ((event.isMoving() || !(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F))
 
@@ -253,7 +241,7 @@ public class ExocellularDepositerEntity extends SeaMonster {
 		return PlayState.STOP;
 	}
 
-	private PlayState attackingPredicate(AnimationState event) {
+	private PlayState attackingPredicate(AnimationState<?> event) {
 		double d1 = this.getX() - this.xOld;
 		double d0 = this.getZ() - this.zOld;
 		float velocity = (float) Math.sqrt(d1 * d1 + d0 * d0);
@@ -273,7 +261,7 @@ public class ExocellularDepositerEntity extends SeaMonster {
 
 	String prevAnim = "empty";
 
-	private PlayState procedurePredicate(AnimationState event) {
+	private PlayState procedurePredicate(AnimationState<?> event) {
 		if (!animationprocedure.equals("empty") && event.getController().getAnimationState() == AnimationController.State.STOPPED || (!this.animationprocedure.equals(prevAnim) && !this.animationprocedure.equals("empty"))) {
 			if (!this.animationprocedure.equals(prevAnim))
 				event.getController().forceAnimationReset();

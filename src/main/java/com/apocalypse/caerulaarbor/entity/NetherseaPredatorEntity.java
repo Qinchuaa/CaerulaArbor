@@ -57,7 +57,7 @@ public class NetherseaPredatorEntity extends SeaMonster {
     }
 
     @Override
-    public boolean hurt(DamageSource source, float amount) {
+    public boolean hurt(@NotNull DamageSource source, float amount) {
         double rate = 0.8;
         var level = this.level();
         if (MapVariables.get(level).strategySubsisting >= 3) {

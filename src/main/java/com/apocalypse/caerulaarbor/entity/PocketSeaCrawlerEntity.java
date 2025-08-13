@@ -61,7 +61,7 @@ public class PocketSeaCrawlerEntity extends SeaMonster {
     }
 
     @Override
-    public boolean hurt(DamageSource source, float amount) {
+    public boolean hurt(@NotNull DamageSource source, float amount) {
         float damage = this.getEntityData().get(DAMAGE);
         this.getEntityData().set(DAMAGE, damage + amount);
         return super.hurt(source, amount);

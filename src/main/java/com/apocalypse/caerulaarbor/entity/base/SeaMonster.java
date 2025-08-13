@@ -51,19 +51,19 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundTag pCompound) {
+    public void addAdditionalSaveData(@NotNull CompoundTag pCompound) {
         super.addAdditionalSaveData(pCompound);
         pCompound.putInt("MigrationCooldown", this.migrationCooldown);
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundTag pCompound) {
+    public void readAdditionalSaveData(@NotNull CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
         this.migrationCooldown = pCompound.getInt("MigrationCooldown");
     }
 
     @Override
-    public boolean hurt(DamageSource source, float amount) {
+    public boolean hurt(@NotNull DamageSource source, float amount) {
         boolean flag = super.hurt(source, amount);
         if (source.is(DamageTypes.DROWN)) {
             return false;
@@ -153,7 +153,7 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
      * 成功攻击后，获得一定的策略-生长进化点数
      */
     @Override
-    public boolean doHurtTarget(Entity pEntity) {
+    public boolean doHurtTarget(@NotNull Entity pEntity) {
         float damage = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
         var level = this.level();
         double grow = MapVariables.get(level).strategyGrow;
@@ -187,7 +187,7 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
 
     // TODO 目前还没有在其他component渲染的地方实现海嗣文转写，需要完成这个
     @Override
-    public Component getDisplayName() {
+    public @NotNull Component getDisplayName() {
         if (this.hasCustomName()) {
             return super.getDisplayName();
         }
@@ -196,7 +196,7 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
     }
 
     @Override
-    public void die(DamageSource pDamageSource) {
+    public void die(@NotNull DamageSource pDamageSource) {
         // 如果开启自然进化，被玩家击杀后，获得一定的策略-繁育进化点数
         if (this.level().getLevelData().getGameRules().getBoolean(ModGameRules.NATURAL_EVOLUTION)) {
             if (pDamageSource.getEntity() instanceof Player) {

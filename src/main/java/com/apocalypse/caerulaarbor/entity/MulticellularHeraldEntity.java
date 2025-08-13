@@ -58,6 +58,7 @@ import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
 import javax.annotation.Nullable;
+import javax.annotation.ParametersAreNonnullByDefault;
 
 //TODO 兔头海嗣
 public class MulticellularHeraldEntity extends Monster implements GeoEntity {
@@ -90,7 +91,7 @@ public class MulticellularHeraldEntity extends Monster implements GeoEntity {
                     double dx = this.wantedX - MulticellularHeraldEntity.this.getX();
                     double dy = this.wantedY - MulticellularHeraldEntity.this.getY();
                     double dz = this.wantedZ - MulticellularHeraldEntity.this.getZ();
-                    float f = (float) (Mth.atan2(dz, dx) * (double) (180 / Math.PI)) - 90;
+                    float f = (float) (Mth.atan2(dz, dx) * (180 / Math.PI)) - 90;
                     float f1 = (float) (this.speedModifier * MulticellularHeraldEntity.this.getAttribute(Attributes.MOVEMENT_SPEED).getValue());
                     MulticellularHeraldEntity.this.setYRot(this.rotlerp(MulticellularHeraldEntity.this.getYRot(), f, 10));
                     MulticellularHeraldEntity.this.yBodyRot = MulticellularHeraldEntity.this.getYRot();
@@ -132,12 +133,12 @@ public class MulticellularHeraldEntity extends Monster implements GeoEntity {
     }
 
     @Override
-    public Packet<ClientGamePacketListener> getAddEntityPacket() {
+    public @NotNull Packet<ClientGamePacketListener> getAddEntityPacket() {
         return NetworkHooks.getEntitySpawningPacket(this);
     }
 
     @Override
-    protected PathNavigation createNavigation(Level world) {
+    protected @NotNull PathNavigation createNavigation(@NotNull Level world) {
         return new WaterBoundPathNavigation(this, world);
     }
 
@@ -159,18 +160,18 @@ public class MulticellularHeraldEntity extends Monster implements GeoEntity {
     }
 
     @Override
-    public MobType getMobType() {
+    public @NotNull MobType getMobType() {
         return MobType.WATER;
     }
 
     @Override
-    public SoundEvent getHurtSound(DamageSource ds) {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.puffer_fish.hurt"));
+    public @NotNull SoundEvent getHurtSound(@NotNull DamageSource ds) {
+        return SoundEvents.PUFFER_FISH_HURT;
     }
 
     @Override
-    public SoundEvent getDeathSound() {
-        return ForgeRegistries.SOUND_EVENTS.getValue(new ResourceLocation("entity.puffer_fish.death"));
+    public @NotNull SoundEvent getDeathSound() {
+        return SoundEvents.PUFFER_FISH_DEATH;
     }
 
     @Override
@@ -181,19 +182,20 @@ public class MulticellularHeraldEntity extends Monster implements GeoEntity {
     }
 
     @Override
+    @ParametersAreNonnullByDefault
     public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
         SpawnGroupData retval = super.finalizeSpawn(world, difficulty, reason, livingdata, tag);
         return retval;
     }
 
     @Override
-    public void addAdditionalSaveData(CompoundTag compound) {
+    public void addAdditionalSaveData(@NotNull CompoundTag compound) {
         super.addAdditionalSaveData(compound);
         compound.putString("Texture", this.getTexture());
     }
 
     @Override
-    public void readAdditionalSaveData(CompoundTag compound) {
+    public void readAdditionalSaveData(@NotNull CompoundTag compound) {
         super.readAdditionalSaveData(compound);
         if (compound.contains("Texture"))
             this.setTexture(compound.getString("Texture"));
@@ -221,7 +223,7 @@ public class MulticellularHeraldEntity extends Monster implements GeoEntity {
     }
 
     @Override
-    public EntityDimensions getDimensions(Pose p_33597_) {
+    public @NotNull EntityDimensions getDimensions(@NotNull Pose p_33597_) {
         return super.getDimensions(p_33597_).scale((float) 1);
     }
 
@@ -251,7 +253,7 @@ public class MulticellularHeraldEntity extends Monster implements GeoEntity {
         return builder;
     }
 
-    private PlayState movementPredicate(AnimationState event) {
+    private PlayState movementPredicate(AnimationState<?> event) {
         if (this.animationprocedure.equals("empty")) {
             if ((event.isMoving() || !(event.getLimbSwingAmount() > -0.15F && event.getLimbSwingAmount() < 0.15F))
 
@@ -269,7 +271,7 @@ public class MulticellularHeraldEntity extends Monster implements GeoEntity {
         return PlayState.STOP;
     }
 
-    private PlayState attackingPredicate(AnimationState event) {
+    private PlayState attackingPredicate(AnimationState<?> event) {
         double d1 = this.getX() - this.xOld;
         double d0 = this.getZ() - this.zOld;
         float velocity = (float) Math.sqrt(d1 * d1 + d0 * d0);
@@ -289,7 +291,7 @@ public class MulticellularHeraldEntity extends Monster implements GeoEntity {
 
     String prevAnim = "empty";
 
-    private PlayState procedurePredicate(AnimationState event) {
+    private PlayState procedurePredicate(AnimationState<?> event) {
         if (!animationprocedure.equals("empty") && event.getController().getAnimationState() == AnimationController.State.STOPPED || (!this.animationprocedure.equals(prevAnim) && !this.animationprocedure.equals("empty"))) {
             if (!this.animationprocedure.equals(prevAnim))
                 event.getController().forceAnimationReset();
@@ -357,9 +359,13 @@ public class MulticellularHeraldEntity extends Monster implements GeoEntity {
             a1 = 2.2;a2=1.8;
         }
         AttributeInstance max_h = this.getAttribute(Attributes.MAX_HEALTH);
-        max_h.setBaseValue(max_h.getBaseValue() * a1);
+        if (max_h != null) {
+            max_h.setBaseValue(max_h.getBaseValue() * a1);
+        }
         AttributeInstance atk = this.getAttribute(Attributes.ATTACK_DAMAGE);
-        atk.setBaseValue(atk.getBaseValue() * a2);
+        if (atk != null) {
+            atk.setBaseValue(atk.getBaseValue() * a2);
+        }
         this.setHealth((float) (this.getMaxHealth() * perc));
     }
 }

@@ -97,7 +97,7 @@ public class NetherseaFounderEntity extends SeaMonster {
     }
 
     @Override
-    public boolean hurt(DamageSource source, float amount) {
+    public boolean hurt(@NotNull DamageSource source, float amount) {
         if (source.is(DamageTypes.FALL))
             return false;
         return super.hurt(source, amount);
