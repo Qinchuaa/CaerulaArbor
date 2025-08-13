@@ -1,8 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "caerula_arbor:block/saltwind_top",
-    "particle": "caerula_arbor:block/saltwind_top"
-  },
-  "render_type": "solid"
-}
