@@ -1,0 +1,8 @@
+{
+  "parent": "minecraft:block/stairs",
+  "textures": {
+    "bottom": "caerula_arbor:block/nethersea_bricks",
+    "side": "caerula_arbor:block/nethersea_bricks",
+    "top": "caerula_arbor:block/nethersea_bricks"
+  }
+}

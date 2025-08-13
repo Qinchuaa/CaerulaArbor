@@ -54,14 +54,12 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.TIDE_OBSERVATION_STATION.get());
         this.dropSelf(ModBlocks.TRAIL_BUTTON.get());
         this.dropSelf(ModBlocks.TRAIL_PRESSURE_PLATE.get());
-        this.dropSelf(ModBlocks.TRAIL_STAIR.get());
         this.dropSelf(ModBlocks.TRAIL_TILE.get());
         this.dropSelf(ModBlocks.SEA_TRAIL_SOLID.get());
 
         this.add(ModBlocks.BATBED_UPPER.get(), noDrop());
         this.add(ModBlocks.CARAMEL_CAKE.get(), noDrop());
         this.add(ModBlocks.TRAIL_CAKE.get(), noDrop());
-        this.add(ModBlocks.TRAIL_SLAB.get(), block -> createSlabItemTable(ModBlocks.TRAIL_SLAB.get()));
         this.add(ModBlocks.SEA_TRAIL_INIT.get(), noDrop());
         this.add(ModBlocks.SEA_TRAIL_GROWING.get(), block ->
                 LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
@@ -83,6 +81,8 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.NOURISHED_POOL_OF_PROCREATION.get());
 
         this.dropSelf(ModBlocks.NETHERSEA_BRICKS.get());
+        this.dropSelf(ModBlocks.NETHERSEA_BRICK_STAIRS.get());
+        this.add(ModBlocks.NETHERSEA_BRICK_SLAB.get(), block -> createSlabItemTable(ModBlocks.NETHERSEA_BRICK_SLAB.get()));
 
         this.dropSelf(ModBlocks.SAL_VIENTO_SAND.get());
         this.dropSelf(ModBlocks.SAL_VIENTO_SANDSTONE.get());

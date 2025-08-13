@@ -1,5 +1,7 @@
 {
   "values": [
-    "caerula_arbor:nethersea_bricks"
+    "caerula_arbor:nethersea_bricks",
+    "caerula_arbor:nethersea_brick_stairs",
+    "caerula_arbor:nethersea_brick_slab"
   ]
 }

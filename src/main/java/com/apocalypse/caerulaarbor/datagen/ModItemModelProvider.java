@@ -77,6 +77,9 @@ public class ModItemModelProvider extends ItemModelProvider {
         evenSimplerBlockItem(ModBlocks.NOURISHED_POOL_OF_PROCREATION);
         evenSimplerBlockItem(ModBlocks.TIDE_OBSERVATION_STATION);
 
+        evenSimplerBlockItem(ModBlocks.NETHERSEA_BRICK_STAIRS);
+        evenSimplerBlockItem(ModBlocks.NETHERSEA_BRICK_SLAB);
+
         evenSimplerBlockItem(ModBlocks.SAL_VIENTO_SANDSTONE_STAIRS);
         evenSimplerBlockItem(ModBlocks.SAL_VIENTO_SANDSTONE_SLAB);
         wallItem(ModBlocks.SAL_VIENTO_SANDSTONE_WALL, ModBlocks.SAL_VIENTO_SANDSTONE);

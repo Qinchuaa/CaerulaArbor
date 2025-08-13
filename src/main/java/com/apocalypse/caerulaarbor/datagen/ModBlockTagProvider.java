@@ -41,7 +41,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 ModBlocks.CUT_SAL_VIENTO_SANDSTONE_SLAB.get(),
                 ModBlocks.CUT_SAL_VIENTO_SANDSTONE_WALL.get(),
                 ModBlocks.SAL_VIENTO_PILLAR.get(),
-                ModBlocks.NETHERSEA_BRICKS.get()
+                ModBlocks.NETHERSEA_BRICKS.get(),
+                ModBlocks.NETHERSEA_BRICK_STAIRS.get(),
+                ModBlocks.NETHERSEA_BRICK_SLAB.get()
         );
 
         this.tag(BlockTags.WALLS).add(
@@ -51,7 +53,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
         );
 
         this.tag(ModTags.Blocks.NETHERSEA_BLOCK).add(
-                ModBlocks.NETHERSEA_BRICKS.get()
+                ModBlocks.NETHERSEA_BRICKS.get(),
+                ModBlocks.NETHERSEA_BRICK_STAIRS.get(),
+                ModBlocks.NETHERSEA_BRICK_SLAB.get()
         );
     }
 }
