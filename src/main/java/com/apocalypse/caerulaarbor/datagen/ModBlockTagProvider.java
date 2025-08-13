@@ -48,7 +48,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 ModBlocks.NETHERSEA_TILES.get(),
                 ModBlocks.NETHERSEA_TILE_STAIRS.get(),
                 ModBlocks.NETHERSEA_TILE_SLAB.get(),
-                ModBlocks.NETHERSEA_TILE_WALL.get()
+                ModBlocks.NETHERSEA_TILE_WALL.get(),
+                ModBlocks.NETHERSEA_PRESSURE_PLATE.get(),
+                ModBlocks.NETHERSEA_BUTTON.get()
         );
 
         this.tag(BlockTags.WALLS).add(
@@ -57,6 +59,12 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 ModBlocks.CUT_SAL_VIENTO_SANDSTONE_WALL.get(),
                 ModBlocks.NETHERSEA_BRICK_WALL.get(),
                 ModBlocks.NETHERSEA_TILE_WALL.get()
+        );
+        this.tag(BlockTags.PRESSURE_PLATES).add(
+                ModBlocks.NETHERSEA_PRESSURE_PLATE.get()
+        );
+        this.tag(BlockTags.BUTTONS).add(
+                ModBlocks.NETHERSEA_BUTTON.get()
         );
 
         this.tag(ModTags.Blocks.NETHERSEA_BLOCK).add(
@@ -67,7 +75,9 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 ModBlocks.NETHERSEA_TILES.get(),
                 ModBlocks.NETHERSEA_TILE_STAIRS.get(),
                 ModBlocks.NETHERSEA_TILE_SLAB.get(),
-                ModBlocks.NETHERSEA_TILE_WALL.get()
+                ModBlocks.NETHERSEA_TILE_WALL.get(),
+                ModBlocks.NETHERSEA_PRESSURE_PLATE.get(),
+                ModBlocks.NETHERSEA_BUTTON.get()
         );
     }
 }

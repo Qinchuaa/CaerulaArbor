@@ -52,8 +52,6 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.REDSTONE_IRIS.get());
         this.dropSelf(ModBlocks.REDSTONE_IRIS_SEEDING.get());
         this.dropSelf(ModBlocks.TIDE_OBSERVATION_STATION.get());
-        this.dropSelf(ModBlocks.TRAIL_BUTTON.get());
-        this.dropSelf(ModBlocks.TRAIL_PRESSURE_PLATE.get());
         this.dropSelf(ModBlocks.SEA_TRAIL_SOLID.get());
 
         this.add(ModBlocks.BATBED_UPPER.get(), noDrop());
@@ -87,6 +85,8 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.NETHERSEA_TILE_STAIRS.get());
         this.add(ModBlocks.NETHERSEA_TILE_SLAB.get(), block -> createSlabItemTable(ModBlocks.NETHERSEA_TILE_SLAB.get()));
         this.dropSelf(ModBlocks.NETHERSEA_TILE_WALL.get());
+        this.dropSelf(ModBlocks.NETHERSEA_PRESSURE_PLATE.get());
+        this.dropSelf(ModBlocks.NETHERSEA_BUTTON.get());
 
         this.dropSelf(ModBlocks.SAL_VIENTO_SAND.get());
         this.dropSelf(ModBlocks.SAL_VIENTO_SANDSTONE.get());

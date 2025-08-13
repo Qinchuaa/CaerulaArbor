@@ -4,13 +4,17 @@ import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.block.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
+import net.minecraft.world.level.block.state.properties.BlockSetType;
 import net.minecraft.world.level.block.state.properties.NoteBlockInstrument;
 import net.minecraft.world.level.material.MapColor;
+import net.minecraft.world.level.material.PushReaction;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
 
 public class ModBlocks {
+
+    public static final BlockSetType NETHERSEA = BlockSetType.register(new BlockSetType("nethersea"));
 
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, CaerulaArborMod.MODID);
 
@@ -47,8 +51,6 @@ public class ModBlocks {
     public static final RegistryObject<Block> ANCHOR_UPPER = BLOCKS.register("anchor_upper", AnchorUpperBlock::new);
     public static final RegistryObject<Block> BLOCK_RECORDER = BLOCKS.register("block_recorder", BlockRecorderBlock::new);
     public static final RegistryObject<Block> SEA_TRAIL_SOLID = BLOCKS.register("sea_trail_solid", SeaTrailSolidBlock::new);
-    public static final RegistryObject<Block> TRAIL_BUTTON = BLOCKS.register("trail_button", TrailButtonBlock::new);
-    public static final RegistryObject<Block> TRAIL_PRESSURE_PLATE = BLOCKS.register("trail_pressure_plate", TrailPressurePlateBlock::new);
 
     public static final RegistryObject<Block> POOL_OF_PROCREATION = BLOCKS.register("pool_of_procreation", PoolOfProcreationBlock::new);
     public static final RegistryObject<Block> NOURISHED_POOL_OF_PROCREATION = BLOCKS.register("nourished_pool_of_procreation", NourishedPoolOfProcreationBlock::new);
@@ -62,6 +64,8 @@ public class ModBlocks {
     public static final RegistryObject<Block> NETHERSEA_TILE_STAIRS = BLOCKS.register("nethersea_tile_stairs", () -> new StairBlock(() -> NETHERSEA_TILES.get().defaultBlockState(), BlockBehaviour.Properties.copy(NETHERSEA_TILES.get())));
     public static final RegistryObject<Block> NETHERSEA_TILE_SLAB = BLOCKS.register("nethersea_tile_slab", () -> new SlabBlock(BlockBehaviour.Properties.of().mapColor(MapColor.DEEPSLATE).sound(SoundType.DEEPSLATE_TILES).friction(0.9f).speedFactor(0.9f).requiresCorrectToolForDrops().strength(3f, 12f)));
     public static final RegistryObject<Block> NETHERSEA_TILE_WALL = BLOCKS.register("nethersea_tile_wall", () -> new WallBlock(BlockBehaviour.Properties.copy(NETHERSEA_TILES.get()).forceSolidOn()));
+    public static final RegistryObject<Block> NETHERSEA_PRESSURE_PLATE = BLOCKS.register("nethersea_pressure_plate", () -> new PressurePlateBlock(PressurePlateBlock.Sensitivity.MOBS, BlockBehaviour.Properties.of().mapColor(MapColor.DEEPSLATE).sound(SoundType.SCULK_CATALYST).forceSolidOn().friction(0.9f).speedFactor(0.9f).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().noCollission().strength(0.5F).pushReaction(PushReaction.DESTROY), NETHERSEA));
+    public static final RegistryObject<Block> NETHERSEA_BUTTON = BLOCKS.register("nethersea_button", () -> new ButtonBlock(BlockBehaviour.Properties.of().noCollission().strength(0.5F).mapColor(MapColor.DEEPSLATE).sound(SoundType.SCULK_CATALYST).pushReaction(PushReaction.DESTROY), NETHERSEA, 20, false));
 
     // Sal Viento Series 盐风方块
     public static final RegistryObject<Block> SAL_VIENTO_SAND = BLOCKS.register("sal_viento_sand", () -> new SandBlock(0xdbdad3, BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_GRAY).instrument(NoteBlockInstrument.SNARE).strength(0.5F).sound(SoundType.SAND)));

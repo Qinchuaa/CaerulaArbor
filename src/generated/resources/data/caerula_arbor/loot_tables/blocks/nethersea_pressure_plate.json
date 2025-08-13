@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "caerula_arbor:trail_button"
+          "name": "caerula_arbor:nethersea_pressure_plate"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "caerula_arbor:blocks/trail_button"
+  "random_sequence": "caerula_arbor:blocks/nethersea_pressure_plate"
 }

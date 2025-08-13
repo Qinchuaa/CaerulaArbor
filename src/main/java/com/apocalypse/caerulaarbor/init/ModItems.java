@@ -243,8 +243,6 @@ public class ModItems {
     public static final RegistryObject<Item> ANCHOR_UPPER = block(ModBlocks.ANCHOR_UPPER);
     public static final RegistryObject<Item> BLOCK_RECORDER = block(ModBlocks.BLOCK_RECORDER);
     public static final RegistryObject<Item> SEA_TRAIL_SOLID = block(ModBlocks.SEA_TRAIL_SOLID);
-    public static final RegistryObject<Item> TRAIL_BUTTON = block(ModBlocks.TRAIL_BUTTON);
-    public static final RegistryObject<Item> TRAIL_PRESSURE_PLATE = block(ModBlocks.TRAIL_PRESSURE_PLATE);
     public static final RegistryObject<Item> OCEAN_OVARY = block(ModBlocks.POOL_OF_PROCREATION);
     public static final RegistryObject<Item> RED_OVARY = block(ModBlocks.NOURISHED_POOL_OF_PROCREATION);
 
@@ -256,6 +254,8 @@ public class ModItems {
     public static final RegistryObject<Item> NETHERSEA_TILE_STAIRS = block(ModBlocks.NETHERSEA_TILE_STAIRS);
     public static final RegistryObject<Item> NETHERSEA_TILE_SLAB = block(ModBlocks.NETHERSEA_TILE_SLAB);
     public static final RegistryObject<Item> NETHERSEA_TILE_WALL = block(ModBlocks.NETHERSEA_TILE_WALL);
+    public static final RegistryObject<Item> NETHERSEA_PRESSURE_PLATE = block(ModBlocks.NETHERSEA_PRESSURE_PLATE);
+    public static final RegistryObject<Item> NETHERSEA_BUTTON = block(ModBlocks.NETHERSEA_BUTTON);
 
     public static final RegistryObject<Item> SAL_VIENTO_SAND = block(ModBlocks.SAL_VIENTO_SAND);
     public static final RegistryObject<Item> SAL_VIENTO_SANDSTONE = block(ModBlocks.SAL_VIENTO_SANDSTONE);
