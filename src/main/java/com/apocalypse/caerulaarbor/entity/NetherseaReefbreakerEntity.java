@@ -161,12 +161,17 @@ public class NetherseaReefbreakerEntity extends SeaMonster {
                 } else {
                     this.level().playLocalSound(this.getOnPos(), SoundEvents.PLAYER_ATTACK_SWEEP, SoundSource.HOSTILE, 1, 1, false);
                 }
-                var list = this.level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(3), e -> e != this && !e.getType().is(ModTags.EntityTypes.SEA_BORN));
+                var list = this.level().getEntitiesOfClass(LivingEntity.class, this.getBoundingBox().inflate(3), this::isLegalGoal);
                 list.forEach(e -> e.hurt(this.level().damageSources().mobAttack(this), (float) (attr.getValue() * 1.5)));
                 this.skillCooldown = 40;
             }
         }
         return flag;
+    }
+
+    public boolean isLegalGoal(LivingEntity entity){
+        if(entity.getType().is(ModTags.EntityTypes.SEA_BORN) && this.getTarget() != null)return entity.is(this.getTarget());
+        return entity != this;
     }
 
     @Override

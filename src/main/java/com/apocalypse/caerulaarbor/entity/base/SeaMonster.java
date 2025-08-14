@@ -206,4 +206,12 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
         }
         super.die(pDamageSource);
     }
+
+    public boolean isLegalTarget(Entity pEntity){
+        if(pEntity == null || !pEntity.isAlive() || !this.isAlive())return false;
+        if(pEntity.getType().is(ModTags.EntityTypes.SEA_BORN) && this.getTarget() != null){
+            return pEntity.is(this.getTarget());
+        }
+        return !pEntity.is(this);
+    }
 }

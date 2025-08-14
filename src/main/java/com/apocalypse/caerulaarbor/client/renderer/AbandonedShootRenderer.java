@@ -1,5 +1,7 @@
 package com.apocalypse.caerulaarbor.client.renderer;
 
+import com.apocalypse.caerulaarbor.client.model.Modelfishbullet_Converted;
+import com.apocalypse.caerulaarbor.entity.AbandonedShootEntity;
 import net.minecraft.util.Mth;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.client.renderer.texture.OverlayTexture;
@@ -8,24 +10,21 @@ import net.minecraft.client.renderer.entity.EntityRenderer;
 import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.MultiBufferSource;
 
-import com.apocalypse.caerulaarbor.entity.bullets.FleefishBulletEntity;
-import com.apocalypse.caerulaarbor.client.model.Modelfleefish;
-
 import com.mojang.math.Axis;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.blaze3d.vertex.PoseStack;
 
-public class FleefishBulletRenderer extends EntityRenderer<FleefishBulletEntity> {
-	private static final ResourceLocation texture = new ResourceLocation("caerula_arbor:textures/entities/fleefishbullet.png");
-	private final Modelfleefish model;
+public class AbandonedShootRenderer extends EntityRenderer<AbandonedShootEntity> {
+	private static final ResourceLocation texture = new ResourceLocation("caerula_arbor:textures/entitiy/splashbullet.png");
+	private final Modelfishbullet_Converted model;
 
-	public FleefishBulletRenderer(EntityRendererProvider.Context context) {
+	public AbandonedShootRenderer(EntityRendererProvider.Context context) {
 		super(context);
-		model = new Modelfleefish(context.bakeLayer(Modelfleefish.LAYER_LOCATION));
+		model = new Modelfishbullet_Converted(context.bakeLayer(Modelfishbullet_Converted.LAYER_LOCATION));
 	}
 
 	@Override
-	public void render(FleefishBulletEntity entityIn, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferIn, int packedLightIn) {
+	public void render(AbandonedShootEntity entityIn, float entityYaw, float partialTicks, PoseStack poseStack, MultiBufferSource bufferIn, int packedLightIn) {
 		VertexConsumer vb = bufferIn.getBuffer(RenderType.entityCutout(this.getTextureLocation(entityIn)));
 		poseStack.pushPose();
 		poseStack.mulPose(Axis.YP.rotationDegrees(Mth.lerp(partialTicks, entityIn.yRotO, entityIn.getYRot()) - 90));
@@ -36,7 +35,7 @@ public class FleefishBulletRenderer extends EntityRenderer<FleefishBulletEntity>
 	}
 
 	@Override
-	public ResourceLocation getTextureLocation(FleefishBulletEntity entity) {
+	public ResourceLocation getTextureLocation(AbandonedShootEntity entity) {
 		return texture;
 	}
 }

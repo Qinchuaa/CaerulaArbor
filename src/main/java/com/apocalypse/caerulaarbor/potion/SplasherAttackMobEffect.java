@@ -3,7 +3,7 @@ package com.apocalypse.caerulaarbor.potion;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.capability.ModCapabilities;
-import com.apocalypse.caerulaarbor.entity.FishSplashEntity;
+import com.apocalypse.caerulaarbor.entity.bullets.FishSplashEntity;
 import com.apocalypse.caerulaarbor.init.ModBlocks;
 import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.init.ModTags;

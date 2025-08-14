@@ -1,5 +1,5 @@
 
-package com.apocalypse.caerulaarbor.entity;
+package com.apocalypse.caerulaarbor.entity.bullets;
 
 import com.apocalypse.caerulaarbor.init.ModEntities;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;

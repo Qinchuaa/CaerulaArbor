@@ -2,6 +2,10 @@ package com.apocalypse.caerulaarbor.init;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.entity.*;
+import com.apocalypse.caerulaarbor.entity.bullets.FakerggShootEntity;
+import com.apocalypse.caerulaarbor.entity.bullets.FishShootEntity;
+import com.apocalypse.caerulaarbor.entity.bullets.FishSplashEntity;
+import com.apocalypse.caerulaarbor.entity.bullets.FleefishBulletEntity;
 import net.minecraft.world.Difficulty;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.monster.Monster;
@@ -55,7 +59,7 @@ public class ModEntities {
                     .sized(0.6f, 1.4f));
     public static final RegistryObject<EntityType<NetherseaBrandguiderEntity>> NETHERSEA_BRANDGUIDER = register("nethersea_brandguider",
             EntityType.Builder.<NetherseaBrandguiderEntity>of(NetherseaBrandguiderEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(NetherseaBrandguiderEntity::new)
-                    .sized(0.88f, 2.2f));
+                    .sized(1f, 2.5f));
     public static final RegistryObject<EntityType<NetherseaSpewerEntity>> NETHERSEA_SPEWER = register("nethersea_spewer",
             EntityType.Builder.<NetherseaSpewerEntity>of(NetherseaSpewerEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(3).setCustomClientFactory(NetherseaSpewerEntity::new)
                     .sized(0.6f, 1.1f));
@@ -95,10 +99,6 @@ public class ModEntities {
     public static final RegistryObject<EntityType<MatrocellularNurseEntity>> MATROCELLULAR_NURSE = register("matrocellular_nurse",
             EntityType.Builder.<MatrocellularNurseEntity>of(MatrocellularNurseEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(16).setUpdateInterval(3).setCustomClientFactory(MatrocellularNurseEntity::new)
                     .sized(0.8f, 1.1f));
-    // public static final RegistryObject<EntityType<DivicellularCloneEntity>> DIVICELLULAR_CLONE = register("divicellular_clone",
-    //        EntityType.Builder.<DivicellularCloneEntity>of(DivicellularCloneEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(16).setUpdateInterval(3).setCustomClientFactory(DivicellularCloneEntity::new)
-    //                .sized(0.5f, 1f));
-    //这个，不需要了
     public static final RegistryObject<EntityType<ExocellularDepositerEntity>> EXOCELLULAR_DEPOSITER = register("exocellular_depositer",
             EntityType.Builder.<ExocellularDepositerEntity>of(ExocellularDepositerEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(22).setUpdateInterval(3).setCustomClientFactory(ExocellularDepositerEntity::new)
                     .sized(0.625f, 1f));
@@ -108,6 +108,9 @@ public class ModEntities {
     public static final RegistryObject<EntityType<ToxocellularDrifterEntity>> TOXOCELLULAR_DRIFTER = register("toxocellular_drifter",
             EntityType.Builder.<ToxocellularDrifterEntity>of(ToxocellularDrifterEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(16).setUpdateInterval(3).setCustomClientFactory(ToxocellularDrifterEntity::new)
                     .sized(0.6f, 1.5f));
+    public static final RegistryObject<EntityType<TheAbandonedEntity>> THE_ABANDONED = register("the_abandoned",
+            EntityType.Builder.<TheAbandonedEntity>of(TheAbandonedEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(16).setUpdateInterval(3).setCustomClientFactory(TheAbandonedEntity::new)
+                    .sized(0.7f, 2.25f));
 
     // Projectiles
     public static final RegistryObject<EntityType<FishShootEntity>> FISH_SHOOT = register("fish_shoot",
@@ -118,6 +121,8 @@ public class ModEntities {
             EntityType.Builder.<FakerggShootEntity>of(FakerggShootEntity::new, MobCategory.MISC).setCustomClientFactory(FakerggShootEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).sized(0.4f, 0.4f));
     public static final RegistryObject<EntityType<FleefishBulletEntity>> FLEEFISH_BULLET = register("fleefish_bullet",
             EntityType.Builder.<FleefishBulletEntity>of(FleefishBulletEntity::new, MobCategory.MISC).setCustomClientFactory(FleefishBulletEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).sized(0.4f, 0.4f));
+    public static final RegistryObject<EntityType<AbandonedShootEntity>> ABANDONED_SHOOT = register("abandoned_shoot",
+            EntityType.Builder.<AbandonedShootEntity>of(AbandonedShootEntity::new, MobCategory.MISC).setCustomClientFactory(AbandonedShootEntity::new).setShouldReceiveVelocityUpdates(true).setTrackingRange(64).setUpdateInterval(1).sized(0.3f, 0.3f));
 
     private static <T extends Entity> RegistryObject<EntityType<T>> register(String name, EntityType.Builder<T> entityTypeBuilder) {
         return ENTITY_TYPES.register(name, () -> entityTypeBuilder.build(name));
@@ -126,11 +131,11 @@ public class ModEntities {
     @SubscribeEvent
     public static void init(FMLCommonSetupEvent event) {
         event.enqueueWork(() -> {
-            DungeonHooks.addDungeonMob(ModEntities.DEEP_SEA_SLIDER.get(), 50);
-            DungeonHooks.addDungeonMob(ModEntities.NETHERSEA_FOUNDER.get(), 50);
-            DungeonHooks.addDungeonMob(ModEntities.NETHERSEA_SPEWER.get(), 50);
-            DungeonHooks.addDungeonMob(ModEntities.NETHERSEA_SWARMCALLER.get(), 50);
-            DungeonHooks.addDungeonMob(ModEntities.SKIMMING_SEA_DRIFTER.get(), 50);
+            DungeonHooks.addDungeonMob(ModEntities.DEEP_SEA_SLIDER.get(), 25);
+            DungeonHooks.addDungeonMob(ModEntities.NETHERSEA_FOUNDER.get(), 25);
+            DungeonHooks.addDungeonMob(ModEntities.NETHERSEA_SPEWER.get(), 25);
+            DungeonHooks.addDungeonMob(ModEntities.NETHERSEA_SWARMCALLER.get(), 25);
+            DungeonHooks.addDungeonMob(ModEntities.SKIMMING_SEA_DRIFTER.get(), 25);
         });
     }
 
@@ -161,6 +166,7 @@ public class ModEntities {
         registerWaterSeaMonster(ModEntities.TOXOCELLULAR_DRIFTER.get(), event);
         registerWaterSeaMonster(ModEntities.MULTICELLULAR_HERALD.get(), event);
         registerWaterSeaMonster(ModEntities.MATROCELLULAR_NURSE.get(), event);
+        registerBasicSeaMonster(ModEntities.THE_ABANDONED.get(), event);
     }
 
     public static <T extends Mob> void registerBasicSeaMonster(EntityType<T> type, SpawnPlacementRegisterEvent event) {
@@ -205,5 +211,6 @@ public class ModEntities {
         event.put(TOXOCELLULAR_DRIFTER.get(),ToxocellularDrifterEntity.createAttributes().build());
         event.put(MATROCELLULAR_NURSE.get(), MatrocellularNurseEntity.createAttributes().build());
         event.put(MULTICELLULAR_HERALD.get(), MulticellularHeraldEntity.createAttributes().build());
+        event.put(THE_ABANDONED.get(), TheAbandonedEntity.createAttributes().build());
     }
 }

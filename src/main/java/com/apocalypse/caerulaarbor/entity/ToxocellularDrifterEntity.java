@@ -2,6 +2,7 @@
 package com.apocalypse.caerulaarbor.entity;
 
 import com.apocalypse.caerulaarbor.entity.ai.goal.SeaMonsterAttackableTargetGoal;
+import com.apocalypse.caerulaarbor.entity.bullets.FishSplashEntity;
 import com.apocalypse.caerulaarbor.init.ModAttributes;
 import com.apocalypse.caerulaarbor.init.ModEntities;
 import net.minecraft.nbt.CompoundTag;
@@ -356,6 +357,7 @@ public class ToxocellularDrifterEntity extends Monster implements RangedAttackMo
         return builder;
     }
 
+    //TODO 把这坨动画名硬编码的动画控制改成可调的
     private PlayState movementPredicate(AnimationState<?> event) {
         if (this.animationprocedure.equals("empty")) {
             if (this.isDeadOrDying()) {

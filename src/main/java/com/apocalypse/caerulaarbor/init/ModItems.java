@@ -206,6 +206,12 @@ public class ModItems {
     public static final RegistryObject<Item> SKIMMING_SEA_DRIFTER_SPAWN_EGG = SPAWN_EGGS.register("skimming_sea_drifter_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.SKIMMING_SEA_DRIFTER, -16764007, -1, new Item.Properties()));
     public static final RegistryObject<Item> ROUTE_SHAPER_SPAWN_EGG = SPAWN_EGGS.register("path_shaper_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.PATH_SHAPER, -16764007, -10040065, new Item.Properties()));
     public static final RegistryObject<Item> ROUTE_FRACTAL_SPAWN_EGG = SPAWN_EGGS.register("pathshaper_fractal_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.PATHSHAPER_FRACTAL, -16777165, -16764109, new Item.Properties()));
+    public static final RegistryObject<Item> DIVICELLULAR_HOARDER_SPAWN_EGG = SPAWN_EGGS.register("divicellular_hoarder_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.DIVICELLULAR_HOARDER, 0x1a30f6, 0x082a72, new Item.Properties()));
+    public static final RegistryObject<Item> EXOCELLULAR_DEPOSITER_SPAWN_EGG = SPAWN_EGGS.register("exocellular_depositer_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.EXOCELLULAR_DEPOSITER, 0xeaeae2, 0x5f6ad1, new Item.Properties()));
+    public static final RegistryObject<Item> MATROCELLULAR_NURSE_SPAWN_RGG = SPAWN_EGGS.register("matrocellular_nurse_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.MATROCELLULAR_NURSE, 0x3e3bfc, 0x98eff6, new Item.Properties()));
+    public static final RegistryObject<Item> MULTICELLULAR_HERALD_SPAWN_EGG = SPAWN_EGGS.register("multicellular_herald_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.MULTICELLULAR_HERALD, 0x1833ef, 0xc3f9f7, new Item.Properties()));
+    public static final RegistryObject<Item> TOXOCELLULAR_DRIFTER_SPAWN_EGG = SPAWN_EGGS.register("toxocellular_drifter_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.TOXOCELLULAR_DRIFTER, 0x0000cc, 0x7e8de8, new Item.Properties()));
+    public static final RegistryObject<Item> THE_ABANDONED_SPAWN_EGG = SPAWN_EGGS.register("the_abandoned_spawn_egg", () -> new ForgeSpawnEggItem(ModEntities.THE_ABANDONED, 0x0e59d3, 0x464646, new Item.Properties()));
 
     /**
      * Blocks

@@ -20,6 +20,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
@@ -50,6 +51,7 @@ import javax.annotation.ParametersAreNonnullByDefault;
 public class NetherseaBrandguiderEntity extends SeaMonster {
 
     public static final EntityDataAccessor<Integer> DATA_laylimit = SynchedEntityData.defineId(NetherseaBrandguiderEntity.class, EntityDataSerializers.INT);
+    private boolean buffed = false;
 
     public NetherseaBrandguiderEntity(PlayMessages.SpawnEntity packet, Level world) {
         this(ModEntities.NETHERSEA_BRANDGUIDER.get(), world);
@@ -157,6 +159,7 @@ public class NetherseaBrandguiderEntity extends SeaMonster {
     public void addAdditionalSaveData(@NotNull CompoundTag compound) {
         super.addAdditionalSaveData(compound);
         compound.putInt("Datalaylimit", this.entityData.get(DATA_laylimit));
+        compound.putBoolean("buffed",this.buffed);
     }
 
     @Override
@@ -164,6 +167,7 @@ public class NetherseaBrandguiderEntity extends SeaMonster {
         super.readAdditionalSaveData(compound);
         if (compound.contains("Datalaylimit"))
             this.entityData.set(DATA_laylimit, compound.getInt("Datalaylimit"));
+        this.buffed = compound.getBoolean("buffed");
     }
 
     @Override
@@ -180,8 +184,12 @@ public class NetherseaBrandguiderEntity extends SeaMonster {
                 && GameplayConfig.ENABLE_MOB_BREAK.get()
                 && world.getLevelData().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING)
         ) {
-            if (!this.level().isClientSide()) {
-                this.addEffect(new MobEffectInstance(MobEffects.DAMAGE_RESISTANCE, 20, 2));
+            if (!buffed) {
+                AttributeInstance armor = this.getAttribute(Attributes.ARMOR);
+                if (armor != null) {
+                    armor.setBaseValue(armor.getBaseValue() * 2);
+                }
+                buffed = true;
             }
 
             if (this.getEntityData().get(DATA_laylimit) > 0) {

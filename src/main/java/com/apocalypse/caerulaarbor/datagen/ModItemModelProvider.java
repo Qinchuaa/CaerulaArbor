@@ -69,6 +69,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.COMPLEX_CHITIN);
         simpleItem(ModItems.REDSTONE_INGOT);
 
+        simpleItem(ModItems.OCEAN_PEDUNCLE);
+        simpleItem(ModItems.COOKED_PEDUNCLE);
+        simpleItem(ModItems.ELITE_PEDUNCLE);
+
         // spawn eggs
         ModItems.SPAWN_EGGS.getEntries().forEach(this::spawnEggItem);
 

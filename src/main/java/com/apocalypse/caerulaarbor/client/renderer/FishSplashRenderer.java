@@ -1,7 +1,7 @@
 package com.apocalypse.caerulaarbor.client.renderer;
 
 import com.apocalypse.caerulaarbor.client.model.Modelfishbullet_Converted;
-import com.apocalypse.caerulaarbor.entity.FishSplashEntity;
+import com.apocalypse.caerulaarbor.entity.bullets.FishSplashEntity;
 import com.mojang.blaze3d.vertex.PoseStack;
 import com.mojang.blaze3d.vertex.VertexConsumer;
 import com.mojang.math.Axis;
