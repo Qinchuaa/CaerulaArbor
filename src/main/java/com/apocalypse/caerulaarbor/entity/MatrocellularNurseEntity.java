@@ -61,6 +61,7 @@ public class MatrocellularNurseEntity extends Monster implements GeoEntity {
     private boolean lastloop;
     private long lastSwing;
     public String animationprocedure = "empty";
+    private boolean second_breath = false;//二次呼吸？
 
     public MatrocellularNurseEntity(PlayMessages.SpawnEntity packet, Level world) {
         this(ModEntities.MATROCELLULAR_NURSE.get(), world);
@@ -175,11 +176,13 @@ public class MatrocellularNurseEntity extends Monster implements GeoEntity {
     public void addAdditionalSaveData(@NotNull CompoundTag compound) {
         super.addAdditionalSaveData(compound);
         compound.putString("Texture", this.getTexture());
+        compound.putBoolean("secondBreath",this.second_breath);
     }
 
     @Override
     public void readAdditionalSaveData(@NotNull CompoundTag compound) {
         super.readAdditionalSaveData(compound);
+        this.second_breath = compound.getBoolean("secondBreath");
         if (compound.contains("Texture"))
             this.setTexture(compound.getString("Texture"));
     }
@@ -316,6 +319,15 @@ public class MatrocellularNurseEntity extends Monster implements GeoEntity {
         BlockPos pos = this.blockPosition();
         MobSpawnType type = MobSpawnType.CONVERSION;
         var mapVar = MapVariables.get(level);
+        if(!this.second_breath && mapVar.strategyBreed >= 4){
+            Entity clone = ModEntities.MATROCELLULAR_NURSE.get().create(level);
+            if(clone instanceof MatrocellularNurseEntity _nurse){
+                _nurse.second_breath = true;
+                _nurse.setPos(this.position());
+                level.addFreshEntity(_nurse);
+                return _nurse;
+            }
+        }
         RandomSource source = level.getRandom();
         float maxInclusive = (Mth.nextDouble(source,0,1)<=0.33 && mapVar.strategyBreed >= 4) ? 2 : 1;
         float choice = Mth.randomBetween(source,0,maxInclusive);

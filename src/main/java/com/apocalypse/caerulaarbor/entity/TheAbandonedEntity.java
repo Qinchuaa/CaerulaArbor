@@ -1,13 +1,18 @@
 
 package com.apocalypse.caerulaarbor.entity;
 
+import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.entity.ai.goal.SeaMonsterAttackableTargetGoal;
 import com.apocalypse.caerulaarbor.entity.base.SeaMonster;
+import com.apocalypse.caerulaarbor.entity.base.SkillfullSeaMonster;
 import com.apocalypse.caerulaarbor.init.ModEntities;
 import net.minecraft.sounds.SoundEvents;
+import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.animal.IronGolem;
 import net.minecraft.world.entity.animal.SnowGolem;
 import net.minecraft.world.entity.npc.Villager;
+import net.minecraft.world.entity.projectile.Projectile;
+import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.util.GeckoLibUtil;
 import software.bernie.geckolib.core.object.PlayState;
@@ -35,12 +40,6 @@ import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
 import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-import net.minecraft.world.entity.Pose;
-import net.minecraft.world.entity.MobType;
-import net.minecraft.world.entity.Mob;
-import net.minecraft.world.entity.LivingEntity;
-import net.minecraft.world.entity.EntityType;
-import net.minecraft.world.entity.EntityDimensions;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.sounds.SoundEvent;
@@ -51,7 +50,7 @@ import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.nbt.CompoundTag;
 
-public class TheAbandonedEntity extends SeaMonster {
+public class TheAbandonedEntity extends SkillfullSeaMonster {
 	public static final EntityDataAccessor<Boolean> SHOOT = SynchedEntityData.defineId(TheAbandonedEntity.class, EntityDataSerializers.BOOLEAN);
 	public static final EntityDataAccessor<String> ANIMATION = SynchedEntityData.defineId(TheAbandonedEntity.class, EntityDataSerializers.STRING);
 	public static final EntityDataAccessor<String> TEXTURE = SynchedEntityData.defineId(TheAbandonedEntity.class, EntityDataSerializers.STRING);
@@ -69,7 +68,8 @@ public class TheAbandonedEntity extends SeaMonster {
 	public TheAbandonedEntity(EntityType<TheAbandonedEntity> type, Level world) {
 		super(type, world);
 		xpReward = 16;
-		setNoAi(false);
+		skillP[0] = 100;
+        setNoAi(false);
 		setMaxUpStep(0.6f);
 		setPersistenceRequired();
 	}
@@ -121,7 +121,7 @@ public class TheAbandonedEntity extends SeaMonster {
 	}
 
 	@Override
-	public MobType getMobType() {
+	public @NotNull MobType getMobType() {
 		return MobType.UNDEFINED;
 	}
 
@@ -172,6 +172,31 @@ public class TheAbandonedEntity extends SeaMonster {
 	public void baseTick() {
 		super.baseTick();
 		this.refreshDimensions();
+		if(skillReady(0,true,1)){
+			Entity enemy = this.getTarget();
+			if (enemy == null || !enemy.isAlive())return;
+			if(this.distanceToSqr(enemy) > 49)return;
+			skillReset(0,100);
+			this.setAnimation(assembleAnim("shoot"));
+			for(int i=23;i<=27;i++){
+				CaerulaArborMod.queueServerWork(i,()->{
+					if(this.isAlive()) shoot();
+				});
+			}
+		}
+	}
+
+	private void shoot(){
+		Level level = this.level();
+		AbandonedShootEntity bullet = new AbandonedShootEntity(ModEntities.ABANDONED_SHOOT.get(), level);
+		bullet.setOwner(this);
+		bullet.setBaseDamage(this.getAttributeBaseValue(Attributes.ATTACK_DAMAGE)*0.85);
+		bullet.setSilent(true);
+		bullet.setKnockback(0);
+		bullet.setPos(this.getX(),this.getY() + 1.9,this.getZ());
+		Vec3 eye = this.getLookAngle();
+		bullet.shoot(eye.x,eye.y,eye.z,1.25f,2);
+		level.addFreshEntity(bullet);
 	}
 
 	@Override

@@ -14,7 +14,7 @@ public class SkillfullSeaMonster extends SeaMonster {
         super(pEntityType, pLevel);
     }
 
-    float[] skillP = new float[]{114,514};
+    public float[] skillP = new float[]{114,514};
 
     @Override
     public void addAdditionalSaveData(@NotNull CompoundTag pCompound) {
@@ -46,11 +46,6 @@ public class SkillfullSeaMonster extends SeaMonster {
 
     public void skillReset(int index, int point){
         skillP[index] = point;
-    }
-
-    public boolean isLegalGoal(LivingEntity entity){
-        if(entity.getType().is(ModTags.EntityTypes.SEA_BORN) && this.getTarget() != null)return entity.is(this.getTarget());
-        return entity != this;
     }
 
     @Override
