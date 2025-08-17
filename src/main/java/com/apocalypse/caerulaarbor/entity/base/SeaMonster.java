@@ -1,6 +1,5 @@
 package com.apocalypse.caerulaarbor.entity.base;
 
-import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.capability.map.MapVariables;
 import com.apocalypse.caerulaarbor.capability.map.MapVariablesHandler;
@@ -208,21 +207,15 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
         super.die(pDamageSource);
     }
 
-    public boolean isLegalTarget(LivingEntity pEntity){
-        if(pEntity == null || pEntity.isDeadOrDying() || this.isDeadOrDying())return false;
-        if(pEntity.getType().is(ModTags.EntityTypes.SEA_BORN) && this.getTarget() != null){
+    public boolean isLegalTarget(LivingEntity pEntity) {
+        if (pEntity == null || pEntity.isDeadOrDying() || this.isDeadOrDying()) return false;
+        if (pEntity.getType().is(ModTags.EntityTypes.SEA_BORN) && this.getTarget() != null) {
             return pEntity.is(this.getTarget());
         }
         return !pEntity.is(this);
     }
 
-    public String assembleAnim(String name){
-        int len = CaerulaArborMod.MODID.length();
-        String id = this.getEncodeId();
-        if(id != null){
-            id = id.substring(len+1);
-            return "animation.%s.%s".formatted(id,name);
-        }
-        return "";
+    public String animLoc(String name) {
+        return "animation." + this.getType().getDescriptionId().split("\\.")[2] + "." + name;
     }
 }
