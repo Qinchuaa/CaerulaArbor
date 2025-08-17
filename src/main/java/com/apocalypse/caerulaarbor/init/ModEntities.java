@@ -111,6 +111,9 @@ public class ModEntities {
     public static final RegistryObject<EntityType<TheAbandonedEntity>> THE_ABANDONED = register("the_abandoned",
             EntityType.Builder.<TheAbandonedEntity>of(TheAbandonedEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(16).setUpdateInterval(3).setCustomClientFactory(TheAbandonedEntity::new)
                     .sized(0.7f, 2.25f));
+    public static final RegistryObject<EntityType<QuintusEntity>> QUINTUS = register("quintus",
+            EntityType.Builder.<QuintusEntity>of(QuintusEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(16).setUpdateInterval(3).setCustomClientFactory(QuintusEntity::new)
+                    .sized(7f, 11f));
 
     // Projectiles
     public static final RegistryObject<EntityType<FishShootEntity>> FISH_SHOOT = register("fish_shoot",

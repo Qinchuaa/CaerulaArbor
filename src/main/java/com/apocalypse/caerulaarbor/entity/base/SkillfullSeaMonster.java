@@ -38,13 +38,13 @@ public class SkillfullSeaMonster extends SeaMonster {
      * @param scale 技力恢复系数
      * @return 技力恢复是否完成
      */
-    public boolean skillReady(int index,boolean isNatural,float scale){
+    protected boolean skillReady(int index,boolean isNatural,float scale){
         boolean flag = skillP[index] <= 0;
         if (isNatural) skillP[index] -= scale;
         return flag;
     }
 
-    public void skillReset(int index, int point){
+    protected void skillReset(int index, int point){
         skillP[index] = point;
     }
 

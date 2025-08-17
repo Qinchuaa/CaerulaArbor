@@ -295,6 +295,8 @@ public class NetherseaReefbreakerEntity extends SeaMonster {
         data.add(new AnimationController<>(this, "movement", 0, this::movementPredicate));
         data.add(new AnimationController<>(this, "attacking", 0, this::attackingPredicate));
         data.add(new AnimationController<>(this, "spin", 0, event -> PlayState.STOP)
-                .triggerableAnim("spin", RawAnimation.begin().thenPlay("animation.nethersea_reefbreaker.spin").thenLoop("animation.nethersea_reefbreaker.idle")));
+                .triggerableAnim("spin", RawAnimation.begin()
+                        .thenPlay("animation.nethersea_reefbreaker.spin")
+                        .thenLoop("animation.nethersea_reefbreaker.idle")));
     }
 }

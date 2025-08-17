@@ -14,6 +14,7 @@ import net.minecraft.world.entity.npc.Villager;
 import net.minecraft.world.entity.projectile.Projectile;
 import net.minecraft.world.phys.Vec3;
 import org.jetbrains.annotations.NotNull;
+import software.bernie.geckolib.core.animatable.GeoAnimatable;
 import software.bernie.geckolib.util.GeckoLibUtil;
 import software.bernie.geckolib.core.object.PlayState;
 import software.bernie.geckolib.core.animation.RawAnimation;
@@ -177,7 +178,7 @@ public class TheAbandonedEntity extends SkillfullSeaMonster {
 			if (enemy == null || !enemy.isAlive())return;
 			if(this.distanceToSqr(enemy) > 49)return;
 			skillReset(0,100);
-			this.setAnimation(assembleAnim("shoot"));
+			this.triggerAnim("shoot","shoot");
 			for(int i=23;i<=27;i++){
 				CaerulaArborMod.queueServerWork(i,()->{
 					if(this.isAlive()) shoot();
@@ -293,6 +294,10 @@ public class TheAbandonedEntity extends SkillfullSeaMonster {
 		data.add(new AnimationController<>(this, "movement", 0, this::movementPredicate));
 		data.add(new AnimationController<>(this, "attacking", 0, this::attackingPredicate));
 		data.add(new AnimationController<>(this, "procedure", 0, this::procedurePredicate));
+		data.add(new AnimationController<>(this,"shoot",0,event->PlayState.STOP)
+				.triggerableAnim("shoot", RawAnimation.begin()
+						.thenPlay(assembleAnim("shoot")).thenLoop(assembleAnim("idle")))
+        );
 	}
 
 	@Override
