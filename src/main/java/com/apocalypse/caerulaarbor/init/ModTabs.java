@@ -56,9 +56,9 @@ public class ModTabs {
                         tabData.accept(ModItems.CARAMEL_CAKE_PIECE.get());
                         tabData.accept(ModBlocks.REDSTONE_IRIS.get().asItem());
                         tabData.accept(ModBlocks.REDSTONE_IRIS_SEEDING.get().asItem());
-                        tabData.accept(ModBlocks.SEA_TRAIL_INIT.get().asItem());
-                        tabData.accept(ModBlocks.SEA_TRAIL_GROWING.get().asItem());
-                        tabData.accept(ModBlocks.SEA_TRAIL_GROWN.get().asItem());
+                        tabData.accept(ModBlocks.NETHERSEA_BRAND_INIT.get().asItem());
+                        tabData.accept(ModBlocks.NETHERSEA_BRAND_GROWING.get().asItem());
+                        tabData.accept(ModBlocks.NETHERSEA_BRAND_GROWN.get().asItem());
                         tabData.accept(ModItems.WEARABLE_CROWN_HELMET.get());
                         tabData.accept(ModItems.WEARABLE_CHEST_CHESTPLATE.get());
                         tabData.accept(ModItems.CHITIN_HELMET.get());
@@ -87,7 +87,7 @@ public class ModTabs {
                         tabData.accept(ModBlocks.OCEAN_GLASSPANE.get().asItem());
                         tabData.accept(ModBlocks.POOL_OF_PROCREATION.get().asItem());
                         tabData.accept(ModBlocks.NOURISHED_POOL_OF_PROCREATION.get().asItem());
-                        tabData.accept(ModBlocks.SEA_TRAIL_SOLID.get().asItem());
+                        tabData.accept(ModBlocks.NETHERSEA_BLOCK.get().asItem());
                         tabData.accept(ModBlocks.BLOCK_KETTLE.get().asItem());
                         tabData.accept(ModBlocks.ALLAY_BLOCK.get().asItem());
                         tabData.accept(ModBlocks.BLOCK_BATBED.get().asItem());

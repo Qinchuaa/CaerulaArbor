@@ -13,6 +13,8 @@ import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
 import net.minecraft.world.entity.Entity;
@@ -24,12 +26,14 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
+import net.minecraft.world.phys.Vec3;
 import net.minecraftforge.network.NetworkHooks;
 import org.jetbrains.annotations.NotNull;
 import software.bernie.geckolib.animatable.GeoEntity;
 import software.bernie.geckolib.core.animatable.instance.AnimatableInstanceCache;
 import software.bernie.geckolib.util.GeckoLibUtil;
 
+import java.util.List;
 import java.util.Random;
 
 public abstract class SeaMonster extends Monster implements GeoEntity {
@@ -40,6 +44,8 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
     protected long lastSwing;
     // 策略-迁徙的摇人冷却
     public int migrationCooldown;
+
+    private int permanentTime = 0;
 
     protected SeaMonster(EntityType<? extends Monster> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -54,16 +60,19 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
     public void addAdditionalSaveData(@NotNull CompoundTag pCompound) {
         super.addAdditionalSaveData(pCompound);
         pCompound.putInt("MigrationCooldown", this.migrationCooldown);
+        pCompound.putInt("permanentTime", this.permanentTime);
     }
 
     @Override
     public void readAdditionalSaveData(@NotNull CompoundTag pCompound) {
         super.readAdditionalSaveData(pCompound);
         this.migrationCooldown = pCompound.getInt("MigrationCooldown");
+        this.permanentTime = pCompound.getInt("permanentTime");
     }
 
     @Override
     public boolean hurt(@NotNull DamageSource source, float amount) {
+
         boolean flag = super.hurt(source, amount);
         if (source.is(DamageTypes.DROWN)) {
             return false;
@@ -100,7 +109,7 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
     @Override
     public void tick() {
         super.tick();
-
+        this.permanentTime--;
         this.naturalRegeneration();
         if (this.tickCount % 10 == 0) {
             this.addMigrationEvoPoint();
@@ -127,10 +136,10 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
     }
 
     /**
-     * 静谧-存续，在没有受击的情况下，快速恢复生命值
+     * 静谧-存续，在一段时间没有受击的情况下，快速恢复生命值
      */
     private void naturalRegeneration() {
-        if (this.getLastAttacker() != null) return;
+        if(this.getLastHurtByMobTimestamp() - this.tickCount <= 60)return;
 
         var mapVariables = MapVariables.get(this.level());
         if (mapVariables.enabledStrategySilence && mapVariables.strategySilence > 0) {
@@ -207,12 +216,50 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
         super.die(pDamageSource);
     }
 
+    @Override
+    public void setHealth(float pHealth){
+        if(pHealth < this.getHealth() && this.isPermanent())return;
+        super.setHealth(pHealth);
+    }
+
+    @Override
+    public void remove(@NotNull RemovalReason pReason){
+        if(this.isPermanent() && pReason.shouldDestroy())return;
+        super.remove(pReason);
+    }
+
     public boolean isLegalTarget(LivingEntity pEntity) {
         if (pEntity == null || pEntity.isDeadOrDying() || this.isDeadOrDying()) return false;
         if (pEntity.getType().is(ModTags.EntityTypes.SEA_BORN) && this.getTarget() != null) {
             return pEntity.is(this.getTarget());
         }
         return !pEntity.is(this);
+    }
+
+    public int countSeabornsAround(){
+        Vec3 pos = this.position(),offset = new Vec3(32,32,32);
+        AABB aabb = new AABB(pos.add(offset),pos.add(offset.scale(-1)));
+        List<LivingEntity> ents = this.level().getEntitiesOfClass(LivingEntity.class,aabb,e->{
+            return e.getType().is(ModTags.EntityTypes.SEA_BORN) && e.isAlive() && !e.is(this);
+        });
+        return ents.size();
+    }
+
+    public boolean isCrowded(){
+        return countSeabornsAround() >= this.level().getGameRules().getInt(ModGameRules.REPRODUCE_UPPER_LIMIT);
+    }
+
+    public boolean isPermanent(){
+        return this.permanentTime > 0;
+    }
+
+    public void triggerSound(SoundEvent sound) {
+        Level level = this.level();
+        if (level.isClientSide()) {
+            level.playLocalSound(this.blockPosition(), sound, SoundSource.HOSTILE, 4, 1, false);
+        } else {
+            level.playSound(this, this.blockPosition(), sound, SoundSource.HOSTILE, 4, 1);
+        }
     }
 
     public String animLoc(String name) {

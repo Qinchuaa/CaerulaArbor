@@ -20,7 +20,7 @@ public class DetectForTrailProcedure {
                 for (int index2 = 0; index2 < 4; index2++) {
                     var pos = BlockPos.containing(x + dx, y + dy, z + dz);
 
-                    if (world.getBlockState(pos).getBlock() == ModBlocks.SEA_TRAIL_GROWN.get()) {
+                    if (world.getBlockState(pos).getBlock() == ModBlocks.NETHERSEA_BRAND_GROWN.get()) {
                         world.destroyBlock(pos, false);
                         breaked = true;
                         break loop;

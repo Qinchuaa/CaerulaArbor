@@ -52,18 +52,18 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.REDSTONE_IRIS.get());
         this.dropSelf(ModBlocks.REDSTONE_IRIS_SEEDING.get());
         this.dropSelf(ModBlocks.TIDE_OBSERVATION_STATION.get());
-        this.dropSelf(ModBlocks.SEA_TRAIL_SOLID.get());
+        this.dropSelf(ModBlocks.NETHERSEA_BLOCK.get());
 
         this.add(ModBlocks.BATBED_UPPER.get(), noDrop());
         this.add(ModBlocks.CARAMEL_CAKE.get(), noDrop());
         this.add(ModBlocks.TRAIL_CAKE.get(), noDrop());
-        this.add(ModBlocks.SEA_TRAIL_INIT.get(), noDrop());
-        this.add(ModBlocks.SEA_TRAIL_GROWING.get(), block ->
+        this.add(ModBlocks.NETHERSEA_BRAND_INIT.get(), noDrop());
+        this.add(ModBlocks.NETHERSEA_BRAND_GROWING.get(), block ->
                 LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
                         .add(LootItem.lootTableItem(ModItems.SEA_TRAIL_MOR.get())
                                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(1.0F, 2.0F)))
                                 .apply(ApplyExplosionDecay.explosionDecay()))));
-        this.add(ModBlocks.SEA_TRAIL_GROWN.get(), block ->
+        this.add(ModBlocks.NETHERSEA_BRAND_GROWN.get(), block ->
                 LootTable.lootTable().withPool(LootPool.lootPool().setRolls(ConstantValue.exactly(1.0F))
                         .add(LootItem.lootTableItem(ModItems.SEA_TRAIL_MOR.get())
                                 .apply(SetItemCountFunction.setCount(UniformGenerator.between(2.0F, 3.0F)))

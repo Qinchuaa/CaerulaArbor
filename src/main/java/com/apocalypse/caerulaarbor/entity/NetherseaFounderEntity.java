@@ -170,7 +170,7 @@ public class NetherseaFounderEntity extends SeaMonster {
         double y = this.getY();
         double z = this.getZ();
 
-        if (ModBlocks.SEA_TRAIL_GROWN.get().defaultBlockState().canSurvive(world, pos)
+        if (ModBlocks.NETHERSEA_BRAND_GROWN.get().defaultBlockState().canSurvive(world, pos)
                 && world.getBlockState(pos).canBeReplaced()
                 && GameplayConfig.ENABLE_MOB_BREAK.get()
                 && world.getLevelData().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING)
@@ -181,8 +181,8 @@ public class NetherseaFounderEntity extends SeaMonster {
                 world.playLocalSound(x, y, z, SoundEvents.SCULK_VEIN_PLACE, SoundSource.NEUTRAL, 2, 1, false);
             }
 
-            world.setBlock(pos, ModBlocks.SEA_TRAIL_GROWN.get().defaultBlockState(), 3);
-            world.levelEvent(2001, pos, Block.getId(ModBlocks.SEA_TRAIL_GROWN.get().defaultBlockState()));
+            world.setBlock(pos, ModBlocks.NETHERSEA_BRAND_GROWN.get().defaultBlockState(), 3);
+            world.levelEvent(2001, pos, Block.getId(ModBlocks.NETHERSEA_BRAND_GROWN.get().defaultBlockState()));
         }
     }
 

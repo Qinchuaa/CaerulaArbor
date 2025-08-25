@@ -25,8 +25,8 @@ import net.minecraftforge.common.IPlantable;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-public class SeaTrailSolidBlock extends Block {
-	public SeaTrailSolidBlock() {
+public class NetherseaBlockBlock extends Block {
+	public NetherseaBlockBlock() {
 		super(BlockBehaviour.Properties.of().sound(SoundType.SCULK).strength(4f, 6f).lightLevel(s -> 1).friction(0.7f).speedFactor(0.7f).jumpFactor(0.7f));
 	}
 

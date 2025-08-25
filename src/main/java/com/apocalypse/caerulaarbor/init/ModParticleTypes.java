@@ -23,4 +23,8 @@ public class ModParticleTypes {
     public static final RegistryObject<SimpleParticleType> MISS = REGISTRY.register("miss", () -> new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> CRACKER_BUFF_0 = REGISTRY.register("cracker_buff_0", () -> new SimpleParticleType(false));
     public static final RegistryObject<SimpleParticleType> CRACKER_BUFF_1 = REGISTRY.register("cracker_buff_1", () -> new SimpleParticleType(false));
+
+    public static final RegistryObject<SimpleParticleType> PERMANENT_YELLOW = REGISTRY.register("permanent_yellow", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> PERMANENT_BLUE = REGISTRY.register("permanent_blue", () -> new SimpleParticleType(false));
+    public static final RegistryObject<SimpleParticleType> PERMANENT_VIOLET = REGISTRY.register("permanent_violet", () -> new SimpleParticleType(false));
 }

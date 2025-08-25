@@ -26,13 +26,13 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 
-public abstract class SeaTrailBaseBlock extends Block implements SimpleWaterloggedBlock, BonemealableBlock {
+public abstract class NetherseaBrandBlock extends Block implements SimpleWaterloggedBlock, BonemealableBlock {
     private static final VoxelShape SHAPE = box(0, 0, 0, 16, 0.625, 16);
     protected static final int MAX_AGE = 30;
     protected static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
     protected static final IntegerProperty GROW_AGE = IntegerProperty.create("grow_age", 0, MAX_AGE);
 
-    public SeaTrailBaseBlock(BlockBehaviour.Properties properties) {
+    public NetherseaBrandBlock(BlockBehaviour.Properties properties) {
         super(properties);
     }
 
@@ -60,7 +60,7 @@ public abstract class SeaTrailBaseBlock extends Block implements SimpleWaterlogg
         if (!stateBelow.isFaceSturdy(levelReader, pos.below(), Direction.UP)){
             return false;
         }
-        if (stateBelow.is(ModBlocks.SEA_TRAIL_SOLID.get())) {
+        if (stateBelow.is(ModBlocks.NETHERSEA_BLOCK.get())) {
             return false;
         }
         return super.canSurvive(blockstate, levelReader, pos);

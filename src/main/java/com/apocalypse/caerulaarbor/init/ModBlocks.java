@@ -33,9 +33,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> SCREAMING_CHERRY = BLOCKS.register("screaming_cherry", ScreamingCherryBlock::new);
     public static final RegistryObject<Block> REDSTONE_IRIS = BLOCKS.register("redstone_iris", RedstoneIrisBlock::new);
     public static final RegistryObject<Block> REDSTONE_IRIS_SEEDING = BLOCKS.register("redstone_iris_seeding", RedstoneIrisSeedingBlock::new);
-    public static final RegistryObject<Block> SEA_TRAIL_INIT = BLOCKS.register("sea_trail_init", SeaTrailInitBlock::new);
-    public static final RegistryObject<Block> SEA_TRAIL_GROWING = BLOCKS.register("sea_trail_growing", SeaTrailGrowingBlock::new);
-    public static final RegistryObject<Block> SEA_TRAIL_GROWN = BLOCKS.register("sea_trail_grown", SeaTrailGrownBlock::new);
+    public static final RegistryObject<Block> NETHERSEA_BRAND_INIT = BLOCKS.register("nethersea_brand_init", NetherseaBrandInitInitBlock::new);
+    public static final RegistryObject<Block> NETHERSEA_BRAND_GROWING = BLOCKS.register("nethersea_brand_growing", NetherseaBrandGrowingBlock::new);
+    public static final RegistryObject<Block> NETHERSEA_BRAND_GROWN = BLOCKS.register("nethersea_brand_grown", NetherseaBrandGrownBlock::new);
     public static final RegistryObject<Block> BOMB_TRAILER = BLOCKS.register("bomb_trailer", BombTrailerBlock::new);
     public static final RegistryObject<Block> OCEAN_GLASS = BLOCKS.register("ocean_glass", OceanGlassBlock::new);
     public static final RegistryObject<Block> OCEAN_GLASSPANE = BLOCKS.register("ocean_glasspane", OceanGlasspaneBlock::new);
@@ -51,7 +51,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> ANCHOR_MEDIUM = BLOCKS.register("anchor_medium", AnchorMediumBlock::new);
     public static final RegistryObject<Block> ANCHOR_UPPER = BLOCKS.register("anchor_upper", AnchorUpperBlock::new);
     public static final RegistryObject<Block> BLOCK_RECORDER = BLOCKS.register("block_recorder", BlockRecorderBlock::new);
-    public static final RegistryObject<Block> SEA_TRAIL_SOLID = BLOCKS.register("sea_trail_solid", SeaTrailSolidBlock::new);
+    public static final RegistryObject<Block> NETHERSEA_BLOCK = BLOCKS.register("nethersea_block", NetherseaBlockBlock::new);
 
     public static final RegistryObject<Block> POOL_OF_PROCREATION = BLOCKS.register("pool_of_procreation", PoolOfProcreationBlock::new);
     public static final RegistryObject<Block> NOURISHED_POOL_OF_PROCREATION = BLOCKS.register("nourished_pool_of_procreation", NourishedPoolOfProcreationBlock::new);

@@ -230,9 +230,9 @@ public class ModItems {
     public static final RegistryObject<Item> BLOCK_FATE = block(ModBlocks.BLOCK_FATE);
     public static final RegistryObject<Item> REDSTONE_IRIS = block(ModBlocks.REDSTONE_IRIS);
     public static final RegistryObject<Item> REDSTONEIRIS_SEEDING = block(ModBlocks.REDSTONE_IRIS_SEEDING);
-    public static final RegistryObject<Item> SEA_TRAIL_INIT = block(ModBlocks.SEA_TRAIL_INIT);
-    public static final RegistryObject<Item> SEA_TRAIL_GROWING = block(ModBlocks.SEA_TRAIL_GROWING);
-    public static final RegistryObject<Item> SEA_TRAIL_GROWN = block(ModBlocks.SEA_TRAIL_GROWN);
+    public static final RegistryObject<Item> NETHERSEA_BRAND_INIT = block(ModBlocks.NETHERSEA_BRAND_INIT);
+    public static final RegistryObject<Item> NETHERSEA_BRAND_GROWING = block(ModBlocks.NETHERSEA_BRAND_GROWING);
+    public static final RegistryObject<Item> NETHERSEA_BRAND_GROWN = block(ModBlocks.NETHERSEA_BRAND_GROWN);
     public static final RegistryObject<Item> BOMB_TRAILER = block(ModBlocks.BOMB_TRAILER);
     public static final RegistryObject<Item> OCEAN_GLASS = block(ModBlocks.OCEAN_GLASS);
     public static final RegistryObject<Item> OCEAN_GLASSPANE = block(ModBlocks.OCEAN_GLASSPANE);
@@ -249,7 +249,7 @@ public class ModItems {
     public static final RegistryObject<Item> ANCHOR_MEDIUM = block(ModBlocks.ANCHOR_MEDIUM);
     public static final RegistryObject<Item> ANCHOR_UPPER = block(ModBlocks.ANCHOR_UPPER);
     public static final RegistryObject<Item> BLOCK_RECORDER = block(ModBlocks.BLOCK_RECORDER);
-    public static final RegistryObject<Item> SEA_TRAIL_SOLID = block(ModBlocks.SEA_TRAIL_SOLID);
+    public static final RegistryObject<Item> NETHERSEA_BLOCK = block(ModBlocks.NETHERSEA_BLOCK);
     public static final RegistryObject<Item> OCEAN_OVARY = block(ModBlocks.POOL_OF_PROCREATION);
     public static final RegistryObject<Item> RED_OVARY = block(ModBlocks.NOURISHED_POOL_OF_PROCREATION);
 

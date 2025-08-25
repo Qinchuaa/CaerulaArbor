@@ -21,8 +21,8 @@ import net.minecraft.world.level.material.PushReaction;
 
 import java.util.Objects;
 
-public class SeaTrailGrowingBlock extends SeaTrailBaseBlock {
-    public SeaTrailGrowingBlock() {
+public class NetherseaBrandGrowingBlock extends NetherseaBrandBlock {
+    public NetherseaBrandGrowingBlock() {
         super(BlockBehaviour.Properties.of()
                 .sound(SoundType.SCULK_VEIN)
                 .strength(1f, 2f)
@@ -45,7 +45,7 @@ public class SeaTrailGrowingBlock extends SeaTrailBaseBlock {
     @Override
     protected void onGrown(ServerLevel level, BlockPos pos, BlockState state) {
         boolean waterlogged = getFluidState(state).getType() == Fluids.WATER;
-        level.setBlock(pos, ModBlocks.SEA_TRAIL_GROWN.get().defaultBlockState().setValue(WATERLOGGED, waterlogged), 3);
+        level.setBlock(pos, ModBlocks.NETHERSEA_BRAND_GROWN.get().defaultBlockState().setValue(WATERLOGGED, waterlogged), 3);
         level.playSound(null, pos, SoundEvents.SCULK_VEIN_STEP, SoundSource.BLOCKS, 1, 1);
     }
 

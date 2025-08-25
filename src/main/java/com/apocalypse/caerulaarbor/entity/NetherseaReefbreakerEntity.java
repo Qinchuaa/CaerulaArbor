@@ -238,7 +238,7 @@ public class NetherseaReefbreakerEntity extends SeaMonster {
         double y = this.getY();
         double z = this.getZ();
 
-        if (world.getBlockState(this.blockPosition()).getBlock() == ModBlocks.SEA_TRAIL_GROWN.get() && world instanceof ServerLevel server) {
+        if (world.getBlockState(this.blockPosition()).getBlock() == ModBlocks.NETHERSEA_BRAND_GROWN.get() && world instanceof ServerLevel server) {
             var effect = this.getEffect(MobEffects.INVISIBILITY);
             if (effect != null && effect.getDuration() <= 5) {
                 this.addEffect(new MobEffectInstance(MobEffects.INVISIBILITY, 20, 0));

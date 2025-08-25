@@ -21,9 +21,9 @@ import net.minecraft.world.phys.shapes.CollisionContext;
 import net.minecraft.world.phys.shapes.VoxelShape;
 import org.jetbrains.annotations.NotNull;
 
-public class SeaTrailInitBlock extends SeaTrailBaseBlock {
+public class NetherseaBrandInitInitBlock extends NetherseaBrandBlock {
 	private static final VoxelShape SHAPE = box(2, 0, 2, 14, 1, 14);
-	public SeaTrailInitBlock() {
+	public NetherseaBrandInitInitBlock() {
 		super(BlockBehaviour.Properties.of()
 				.sound(SoundType.SCULK_VEIN)
 				.strength(0.5f, 0f)
@@ -45,7 +45,7 @@ public class SeaTrailInitBlock extends SeaTrailBaseBlock {
 	@Override
 	protected void onGrown(ServerLevel level, BlockPos pos, BlockState state) {
 		boolean waterlogged = getFluidState(state).getType() == Fluids.WATER;
-		level.setBlock(pos, ModBlocks.SEA_TRAIL_GROWING.get().defaultBlockState()
+		level.setBlock(pos, ModBlocks.NETHERSEA_BRAND_GROWING.get().defaultBlockState()
 				.setValue(WATERLOGGED, waterlogged), 3);
 		level.playSound(null, pos, SoundEvents.SCULK_VEIN_STEP, SoundSource.BLOCKS, 1, 1);
 	}

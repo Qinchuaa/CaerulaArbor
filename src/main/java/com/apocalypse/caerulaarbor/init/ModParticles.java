@@ -23,5 +23,9 @@ public class ModParticles {
         event.registerSpriteSet(ModParticleTypes.MISS.get(), MissParticle::provider);
         event.registerSpriteSet(ModParticleTypes.CRACKER_BUFF_0.get(), CrackerBuff0Particle::provider);
         event.registerSpriteSet(ModParticleTypes.CRACKER_BUFF_1.get(), CrackerBuff1Particle::provider);
+
+        event.registerSpriteSet(ModParticleTypes.PERMANENT_YELLOW.get(), PermanentYellowParticle::provider);
+        event.registerSpriteSet(ModParticleTypes.PERMANENT_BLUE.get(), PermanentBlueParticle::provider);
+        event.registerSpriteSet(ModParticleTypes.PERMANENT_VIOLET.get(), PermanentVioletParticle::provider);
     }
 }

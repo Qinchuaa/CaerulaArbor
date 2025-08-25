@@ -57,7 +57,7 @@ public class SplasherAttackMobEffect extends InvisibleMobEffect {
                 }
             }
             rand = Mth.nextDouble(RandomSource.create(), 7, 11);
-            if (world.getBlockState(entityiterator.blockPosition()).getBlock() == ModBlocks.SEA_TRAIL_GROWN.get()) {
+            if (world.getBlockState(entityiterator.blockPosition()).getBlock() == ModBlocks.NETHERSEA_BRAND_GROWN.get()) {
                 if (world instanceof ServerLevel projectileLevel) {
                     Projectile _entityToSpawn = new Object() {
                         public Projectile getArrow(Level level, Entity shooter, float damage, int knockback) {

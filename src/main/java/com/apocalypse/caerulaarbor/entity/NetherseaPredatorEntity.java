@@ -136,7 +136,7 @@ public class NetherseaPredatorEntity extends SeaMonster {
     public void baseTick() {
         super.baseTick();
 
-        if (this.level().getBlockState(this.blockPosition()).getBlock() == ModBlocks.SEA_TRAIL_GROWN.get()
+        if (this.level().getBlockState(this.blockPosition()).getBlock() == ModBlocks.NETHERSEA_BRAND_GROWN.get()
                 && !this.level().isClientSide()
         ) {
             this.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SPEED, 40, 1));

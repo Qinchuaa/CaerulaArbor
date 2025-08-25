@@ -29,11 +29,11 @@ import net.minecraft.world.level.material.Fluids;
 import net.minecraft.world.level.material.PushReaction;
 import net.minecraft.world.phys.AABB;
 
-public class SeaTrailGrownBlock extends SeaTrailBaseBlock {
+public class NetherseaBrandGrownBlock extends NetherseaBrandBlock {
     private static final int MAX_LONGEVITY = 64;
     private static final IntegerProperty LONGEVITY = IntegerProperty.create("longevity", 0, MAX_LONGEVITY);
 
-    public SeaTrailGrownBlock() {
+    public NetherseaBrandGrownBlock() {
         super(BlockBehaviour.Properties.of()
                 .sound(SoundType.SCULK_VEIN)
                 .strength(4f, 8f)
@@ -111,7 +111,7 @@ public class SeaTrailGrownBlock extends SeaTrailBaseBlock {
         } else {
             world.setBlock(pos, blockstate.getFluidState().createLegacyBlock(), 3);
             if (world.getBlockState(pos.below()).is(ModTags.Blocks.ERRODABLE)) {
-                world.setBlock(pos.below(), ModBlocks.SEA_TRAIL_SOLID.get().defaultBlockState(), 3);
+                world.setBlock(pos.below(), ModBlocks.NETHERSEA_BLOCK.get().defaultBlockState(), 3);
                 world.playSound(null, pos, SoundEvents.SCULK_BLOCK_BREAK, SoundSource.BLOCKS, 1, 1);
             }
         }
@@ -134,7 +134,7 @@ public class SeaTrailGrownBlock extends SeaTrailBaseBlock {
         if (posToCheck != null && !level.getBlockState(posToCheck).isAir()) return false;
         if (!level.getBlockState(posToPlace).canBeReplaced()) return false;
         BlockState blockToPlace =
-                ModBlocks.SEA_TRAIL_INIT.get().defaultBlockState()
+                ModBlocks.NETHERSEA_BRAND_INIT.get().defaultBlockState()
                         .setValue(WATERLOGGED, level.getFluidState(posToPlace).getType() == Fluids.WATER);
         if (!blockToPlace.canSurvive(level, posToPlace)) return false;
         level.setBlock(posToPlace, blockToPlace, 3);

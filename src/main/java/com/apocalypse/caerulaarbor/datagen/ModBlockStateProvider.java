@@ -30,6 +30,14 @@ public class ModBlockStateProvider extends BlockStateProvider {
 
         blockWithItem(ModBlocks.CHITIN_BLOCK);
         blockWithItem(ModBlocks.COMPLEX_CHITIN_BLOCK);
+        blockWithItem(ModBlocks.NETHERSEA_BLOCK);
+
+        simpleBlockWithItem(ModBlocks.NETHERSEA_BRAND_INIT.get(),
+                new ModelFile.UncheckedModelFile(modLoc("block/base/nethersea_brand")));
+        simpleBlockWithItem(ModBlocks.NETHERSEA_BRAND_GROWING.get(),
+                new ModelFile.UncheckedModelFile(modLoc("block/base/nethersea_brand")));
+        simpleBlockWithItem(ModBlocks.NETHERSEA_BRAND_GROWN.get(),
+                new ModelFile.UncheckedModelFile(modLoc("block/base/nethersea_brand")));
 
         multiStateBlock(ModBlocks.POOL_OF_PROCREATION.get(), state -> {
             if (state.getValue(PoolOfProcreationBlock.POWERED)) {

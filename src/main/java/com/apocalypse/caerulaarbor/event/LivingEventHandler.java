@@ -2,11 +2,11 @@ package com.apocalypse.caerulaarbor.event;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.api.event.RelicEvent;
-import com.apocalypse.caerulaarbor.block.SeaTrailBaseBlock;
+import com.apocalypse.caerulaarbor.block.NetherseaBrandBlock;
 import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.capability.map.MapVariables;
 import com.apocalypse.caerulaarbor.capability.sanity.ISanityInjuryCapability;
-import com.apocalypse.caerulaarbor.capability.sanity.SanityInjuryCapability;
+import com.apocalypse.caerulaarbor.entity.base.SeaMonster;
 import com.apocalypse.caerulaarbor.init.ModAttributes;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.init.ModTags;
@@ -100,8 +100,14 @@ public class LivingEventHandler {
 
     @SubscribeEvent
     public static void onLivingDeath(LivingDeathEvent event) {
+        if(event.isCanceled()) return;
+
         LivingEntity entity = event.getEntity();
         Level level = entity.level();
+        if(entity.hasEffect(ModMobEffects.PERMANENCE.get())){
+            event.setCanceled(true);
+            return;
+        }
         if (!(level instanceof ServerLevel serverLevel)) return;
         BlockPos entityPos = entity.blockPosition();
         Iterable<BlockPos> iter = BlockPos.betweenClosed(
@@ -110,8 +116,8 @@ public class LivingEventHandler {
         for (BlockPos pos : iter) {
             if (!level.isInWorldBounds(pos)) continue;
             BlockState state = level.getBlockState(pos);
-            if (state.getBlock() instanceof SeaTrailBaseBlock seaTrailBaseBlock) {
-                seaTrailBaseBlock.onEntityDeathNearby(serverLevel, pos, state);
+            if (state.getBlock() instanceof NetherseaBrandBlock netherseaBrandBlock) {
+                netherseaBrandBlock.onEntityDeathNearby(serverLevel, pos, state);
             }
         }
     }
@@ -154,6 +160,17 @@ public class LivingEventHandler {
             double sanity_rate = _enemy.getAttributeValue(ModAttributes.SANITY_RATE.get());
             if(sanity_rate > 0 && event.getAmount() > 0) ModCapabilities.getSanityInjury(entity).hurt(sanity_rate * event.getAmount());
         }
+    }
+
+    /**
+     * 比 invulnerableTime 更权威的无敌（并不
+     */
+    @SubscribeEvent
+    public void onEntityAttacked(LivingAttackEvent event){
+        if(event == null) return;
+        LivingEntity entity = event.getEntity();
+        if(entity.hasEffect(ModMobEffects.PERMANENCE.get())){event.setCanceled(true);return;}
+        if((entity instanceof SeaMonster seaMonster) && seaMonster.isPermanent())event.setCanceled(true);
     }
 
     /**

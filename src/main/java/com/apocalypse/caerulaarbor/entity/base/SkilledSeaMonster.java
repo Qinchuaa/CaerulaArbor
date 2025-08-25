@@ -20,6 +20,7 @@ public abstract class SkilledSeaMonster extends SeaMonster {
     }
 
     public void addSkill(Skill skill) {
+        skill.init();
         this.skills.add(skill);
     }
 
@@ -46,6 +47,13 @@ public abstract class SkilledSeaMonster extends SeaMonster {
         }
     }
 
+    @Override
+    public void baseTick() {
+        super.baseTick();
+        this.refreshDimensions();
+        this.regenerateSkill();
+    }
+
     /**
      * 判断技能是否准本完成
      *
@@ -65,5 +73,11 @@ public abstract class SkilledSeaMonster extends SeaMonster {
     public void resetSkill(int index, int maxPoint) {
         if (index >= this.skills.size()) return;
         this.skills.get(index).resetAndSetMaxPoint(maxPoint);
+    }
+
+    public void regenerateSkill(){
+        for(var skill:this.skills){
+            if(skill.canRegenerate())skill.regenerate();
+        }
     }
 }

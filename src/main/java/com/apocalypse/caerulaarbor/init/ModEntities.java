@@ -215,5 +215,6 @@ public class ModEntities {
         event.put(MATROCELLULAR_NURSE.get(), MatrocellularNurseEntity.createAttributes().build());
         event.put(MULTICELLULAR_HERALD.get(), MulticellularHeraldEntity.createAttributes().build());
         event.put(THE_ABANDONED.get(), TheAbandonedEntity.createAttributes().build());
+        event.put(QUINTUS.get(), QuintusEntity.createAttributes().build());
     }
 }

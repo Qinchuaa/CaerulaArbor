@@ -15,8 +15,6 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundEvents;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
-import net.minecraft.world.effect.MobEffectInstance;
-import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.Mob;
@@ -195,10 +193,10 @@ public class NetherseaBrandguiderEntity extends SeaMonster {
             if (this.getEntityData().get(DATA_laylimit) > 0) {
                 var state = world.getBlockState(pos);
                 if (state.canBeReplaced()
-                        && state.getBlock() != ModBlocks.SEA_TRAIL_GROWN.get()
-                        && ModBlocks.SEA_TRAIL_GROWN.get().defaultBlockState().canSurvive(world, pos)
+                        && state.getBlock() != ModBlocks.NETHERSEA_BRAND_GROWN.get()
+                        && ModBlocks.NETHERSEA_BRAND_GROWN.get().defaultBlockState().canSurvive(world, pos)
                 ) {
-                    world.setBlock(pos, ModBlocks.SEA_TRAIL_GROWN.get().defaultBlockState(), 3);
+                    world.setBlock(pos, ModBlocks.NETHERSEA_BRAND_GROWN.get().defaultBlockState(), 3);
 
                     if (world instanceof ServerLevel server) {
                         server.playLocalSound(x, y, z, SoundEvents.SCULK_VEIN_STEP, SoundSource.NEUTRAL, 2, 1, false);

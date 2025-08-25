@@ -94,7 +94,7 @@ public class BombTrailerBlock extends Block {
                 dy = -2;
                 for (int index3 = 0; index3 < 5; index3++) {
                     target = world.getBlockState(BlockPos.containing(x + dx, y + dy, z + dz));
-                    if (ModBlocks.SEA_TRAIL_GROWN.get() == target.getBlock()) {
+                    if (ModBlocks.NETHERSEA_BRAND_GROWN.get() == target.getBlock()) {
                         world.destroyBlock(BlockPos.containing(x + dx, y + dy, z + dz), false);
                         if (world instanceof ServerLevel level) {
                             for (int index4 = 0; index4 < 3; index4++) {
@@ -105,7 +105,7 @@ public class BombTrailerBlock extends Block {
                             }
                             level.sendParticles(ParticleTypes.EXPLOSION_EMITTER, (x + dx), (y + dy), (z + dz), 6, 0.5, 0.5, 0.5, 0.1);
                         }
-                    } else if (ModBlocks.SEA_TRAIL_GROWING.get() == target.getBlock() || ModBlocks.SEA_TRAIL_INIT.get() == target.getBlock()) {
+                    } else if (ModBlocks.NETHERSEA_BRAND_GROWING.get() == target.getBlock() || ModBlocks.NETHERSEA_BRAND_INIT.get() == target.getBlock()) {
                         world.destroyBlock(BlockPos.containing(x + dx, y + dy, z + dz), false);
 
                         if (world instanceof ServerLevel level) {
@@ -117,7 +117,7 @@ public class BombTrailerBlock extends Block {
                             }
                             level.sendParticles(ParticleTypes.EXPLOSION_EMITTER, (x + dx), (y + dy), (z + dz), 6, 0.5, 0.5, 0.5, 0.1);
                         }
-                    } else if (ModBlocks.SEA_TRAIL_SOLID.get() == target.getBlock()) {
+                    } else if (ModBlocks.NETHERSEA_BLOCK.get() == target.getBlock()) {
                         world.destroyBlock(BlockPos.containing(x + dx, y + dy, z + dz), false);
                         if (world instanceof ServerLevel _level)
                             _level.sendParticles(ParticleTypes.EXPLOSION_EMITTER, (x + dx), (y + dy), (z + dz), 6, 0.5, 0.5, 0.5, 0.1);
