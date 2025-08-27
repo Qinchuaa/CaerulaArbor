@@ -6,6 +6,7 @@ import com.apocalypse.caerulaarbor.capability.map.MapVariablesHandler;
 import com.apocalypse.caerulaarbor.client.font.ModFontHelper;
 import com.apocalypse.caerulaarbor.config.server.MiscConfig;
 import com.apocalypse.caerulaarbor.init.ModGameRules;
+import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.init.ModTags;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -45,7 +46,7 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
     // 策略-迁徙的摇人冷却
     public int migrationCooldown;
 
-    private int permanentTime = 0;
+    protected int permanentTime = 0;
 
     protected SeaMonster(EntityType<? extends Monster> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -109,10 +110,12 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
     @Override
     public void tick() {
         super.tick();
-        this.permanentTime--;
         this.naturalRegeneration();
         if (this.tickCount % 10 == 0) {
             this.addMigrationEvoPoint();
+        }
+        if(this.permanentTime > 0){
+            this.permanentTime--;
         }
         if (this.migrationCooldown > 0) {
             this.migrationCooldown--;
@@ -250,7 +253,11 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
     }
 
     public boolean isPermanent(){
-        return this.permanentTime > 0;
+        return this.permanentTime > 0 || this.hasEffect(ModMobEffects.PERMANENCE.get());
+    }
+
+    protected void setPermanent(int time){
+        if(time>0)this.permanentTime = time;
     }
 
     public void triggerSound(SoundEvent sound) {

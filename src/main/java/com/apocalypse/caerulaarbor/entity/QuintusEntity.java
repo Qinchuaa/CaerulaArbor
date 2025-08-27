@@ -6,10 +6,7 @@ import com.apocalypse.caerulaarbor.config.common.GameplayConfig;
 import com.apocalypse.caerulaarbor.entity.ai.Skill;
 import com.apocalypse.caerulaarbor.entity.ai.goal.SeaMonsterAttackableTargetGoal;
 import com.apocalypse.caerulaarbor.entity.base.SkilledSeaMonster;
-import com.apocalypse.caerulaarbor.init.ModAttributes;
-import com.apocalypse.caerulaarbor.init.ModBlocks;
-import com.apocalypse.caerulaarbor.init.ModEntities;
-import com.apocalypse.caerulaarbor.init.ModTags;
+import com.apocalypse.caerulaarbor.init.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -28,6 +25,7 @@ import net.minecraft.util.RandomSource;
 import net.minecraft.world.DifficultyInstance;
 import net.minecraft.world.damagesource.DamageSource;
 import net.minecraft.world.damagesource.DamageTypes;
+import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.*;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
@@ -84,8 +82,8 @@ public class QuintusEntity extends SkilledSeaMonster {
     public QuintusEntity(EntityType<QuintusEntity> type, Level world) {
         super(type, world);
         xpReward = 64;
-        this.addSkill(Skill.Builder.of().init(200).max(200).build());
-        this.addSkill(Skill.Builder.of().init(1200).max(2400).build());
+        this.addSkill(Skill.Builder.of().init(200).max(200).durative(20).build());
+        this.addSkill(Skill.Builder.of().init(1200).max(2400).durative(40).build());
         initUnderTidesEntities();
         setNoAi(false);
         setMaxUpStep(2f);
@@ -271,6 +269,7 @@ public class QuintusEntity extends SkilledSeaMonster {
         if (perc < 0.33) p = 15;
         else if (perc < 0.67) p = 5;
         resetSkill(0,p * 20);
+        setDuration(0);
         triggerSound(SoundEvents.AMBIENT_UNDERWATER_EXIT);
         triggerAnim("skill", "skill");
         for (int i = 1; i <= 10; i++) {
@@ -285,6 +284,8 @@ public class QuintusEntity extends SkilledSeaMonster {
 
     private void speciedOutbreak(){
         resetSkill(1);
+        setDuration(1);
+        setPermanent(40);
         triggerAnim("end","end");
         Vec3 pos = this.position();
         AABB aabb = new AABB(pos.add(-18, -18, -18), pos.add(18, 18, 18));
@@ -314,6 +315,8 @@ public class QuintusEntity extends SkilledSeaMonster {
         if (vec.x != 0) dx = 1.5 / vec.x;
         if (vec.z != 0) dz = 1.5 / vec.z;
         ent.push(dx, dy, dz);
+        MobEffectInstance dizzy = new MobEffectInstance(ModMobEffects.DIZZY.get(),60,0,false,false);
+        ent.addEffect(dizzy);
         float damage = (float) (this.getAttributeValue(Attributes.ATTACK_DAMAGE) * 1.5);
         double rate = this.getAttributeValue(ModAttributes.SANITY_RATE.get());
         ent.hurt(this.level().damageSources().magic(), damage);

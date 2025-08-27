@@ -4,8 +4,6 @@ import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.util.Mth;
 
-import java.awt.*;
-
 public class Skill {
 
     public int initialPoint;
@@ -14,6 +12,7 @@ public class Skill {
     public int regenerateSpeed;
     public boolean canRegenerate;
     public String name;
+    public int duration;
 
     public Skill(Builder builder) {
         this.initialPoint = builder.initialPoint;
@@ -22,15 +21,17 @@ public class Skill {
         this.regenerateSpeed = builder.regenerateSpeed;
         this.canRegenerate = builder.canRegenerate;
         this.name = builder.name;
+        this.duration = builder.duration;
     }
 
-    public Skill(int initialPoint, int skillPoint, int maxPoint, int regenerateSpeed, boolean canRegenerate, String name) {
+    public Skill(int initialPoint, int skillPoint, int maxPoint, int regenerateSpeed, boolean canRegenerate, String name, int duration) {
         this.initialPoint = initialPoint;
         this.skillPoint = skillPoint;
         this.maxPoint = maxPoint;
         this.regenerateSpeed = regenerateSpeed;
         this.canRegenerate = canRegenerate;
         this.name = name;
+        this.duration = duration;
     }
 
     public void init() {
@@ -58,6 +59,8 @@ public class Skill {
         return this.canRegenerate && this.skillPoint < this.maxPoint;
     }
 
+    public boolean isDurative(){return this.duration > 0;}
+
     public boolean isReady() {
         return this.skillPoint >= this.maxPoint;
     }
@@ -69,6 +72,7 @@ public class Skill {
         tag.putInt("RegenerateSpeed", this.regenerateSpeed);
         tag.putBoolean("CanRegenerate", this.canRegenerate);
         tag.putString("skillName",this.name);
+        tag.putInt("skillDuration",this.duration);
     }
 
     public static Skill deserialize(CompoundTag tag) {
@@ -78,7 +82,8 @@ public class Skill {
                 tag.getInt("MaxPoint"),
                 tag.getInt("RegenerateSpeed"),
                 tag.getBoolean("CanRegenerate"),
-                tag.getString("skillName"));
+                tag.getString("skillName"),
+                tag.getInt("skillDuration"));
     }
 
     public String deconstruct(String name){
@@ -93,6 +98,7 @@ public class Skill {
         private int regenerateSpeed = 1;
         private boolean canRegenerate = true;
         private String name = "爆裂黎明";
+        private int duration = 0;
 
         public static Builder of() {
             return new Builder();
@@ -111,6 +117,17 @@ public class Skill {
         public Builder init(int initialPoint) {
             this.initialPoint = initialPoint;
             this.skillPoint = initialPoint;
+            return this;
+        }
+
+        /**
+         * 设置技能的持续时间（刻）
+         *
+         * @param dura 持续时间
+         * @return 技能构造器
+         */
+        public Builder durative(int dura) {
+            this.duration = dura;
             return this;
         }
 

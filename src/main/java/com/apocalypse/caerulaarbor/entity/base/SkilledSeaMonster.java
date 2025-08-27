@@ -14,6 +14,7 @@ import java.util.List;
 public abstract class SkilledSeaMonster extends SeaMonster {
 
     public final List<Skill> skills = new ArrayList<>();
+    private int durationTime = 0;
 
     public SkilledSeaMonster(EntityType<? extends Monster> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -27,6 +28,7 @@ public abstract class SkilledSeaMonster extends SeaMonster {
     @Override
     public void addAdditionalSaveData(@NotNull CompoundTag pCompound) {
         super.addAdditionalSaveData(pCompound);
+        pCompound.putInt("durationTime",this.durationTime);
         ListTag list = new ListTag();
         for (var skill : this.skills) {
             CompoundTag tag = new CompoundTag();
@@ -52,6 +54,7 @@ public abstract class SkilledSeaMonster extends SeaMonster {
         super.baseTick();
         this.refreshDimensions();
         this.regenerateSkill();
+        this.durationTime --;
     }
 
     /**
@@ -62,7 +65,16 @@ public abstract class SkilledSeaMonster extends SeaMonster {
      */
     public boolean skillReady(int index) {
         if (index >= this.skills.size()) return false;
-        return this.skills.get(index).isReady();
+        return this.skills.get(index).isReady() && !this.skillOccupied();
+    }
+
+    public boolean skillOccupied(){
+        return this.durationTime > 0;
+    }
+
+    public void setDuration(int index){
+        if (index >= this.skills.size()) return;
+        this.durationTime = this.skills.get(index).duration;
     }
 
     public void resetSkill(int index) {
