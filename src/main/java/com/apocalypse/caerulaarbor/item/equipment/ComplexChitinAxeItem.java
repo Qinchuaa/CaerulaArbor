@@ -18,7 +18,7 @@ public class ComplexChitinAxeItem extends AxeItem {
 
     @Override
     public boolean hurtEnemy(ItemStack itemstack, LivingEntity entity, LivingEntity pAttacker) {
-        SIHelper.causeSanityInjuryWithParticles(entity, 120);
+        SIHelper.causeSanityInjuryWithParticles(entity, pAttacker, 120);
         return super.hurtEnemy(itemstack, entity, pAttacker);
     }
 

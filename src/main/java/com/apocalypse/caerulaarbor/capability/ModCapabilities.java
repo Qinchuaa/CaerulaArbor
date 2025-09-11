@@ -21,7 +21,7 @@ public class ModCapabilities {
     });
 
     public static SanityInjuryCapability getSanityInjury(LivingEntity entity) {
-        return entity.getCapability(SANITY_INJURY).orElseGet(
+        return entity.getCapability(SANITY_INJURY, null).orElseGet(
                 () -> {
                     CaerulaArborMod.LOGGER.warn("Failed to get capability {} for entity {} ", SANITY_INJURY, entity);
                     return new SanityInjuryCapability(entity);
@@ -30,7 +30,7 @@ public class ModCapabilities {
     }
 
     public static PlayerVariable getPlayerVariables(Entity entity) {
-        return entity.getCapability(PLAYER_VARIABLE).orElseGet(
+        return entity.getCapability(PLAYER_VARIABLE, null).orElseGet(
                 () -> {
                     CaerulaArborMod.LOGGER.warn("Failed to get capability {} for entity {} ", PLAYER_VARIABLE, entity);
                     return new PlayerVariable();
@@ -39,7 +39,7 @@ public class ModCapabilities {
     }
 
     public static AnchorRecord getAnchorRecord(ServerLevel level) {
-        return level.getCapability(ANCHOR_RECORD).orElseGet(
+        return level.getCapability(ANCHOR_RECORD, null).orElseGet(
                 () -> {
                     CaerulaArborMod.LOGGER.warn("Failed to get anchor record for level {} ", level.dimension().location());
                     return new AnchorRecord();

@@ -18,7 +18,7 @@ public class ComplexChitinShovelItem extends ShovelItem {
 
     @Override
     public boolean hurtEnemy(ItemStack itemstack, LivingEntity entity, LivingEntity pAttacker) {
-        SIHelper.causeSanityInjuryWithParticles(entity, 80);
+        SIHelper.causeSanityInjuryWithParticles(entity, pAttacker, 80);
         return super.hurtEnemy(itemstack, entity, pAttacker);
     }
 

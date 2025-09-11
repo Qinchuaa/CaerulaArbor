@@ -36,7 +36,7 @@ public class SanityInjuryCapability implements ISanityInjuryCapability {
         if (owner.hasEffect(ModMobEffects.SANITY_IMMUNE.get())) return false;
         var sanityResistanceAttr = Optional.ofNullable(owner.getAttribute(ModAttributes.SANITY_INJURY_RESISTANCE.get()));
         double sanityResistance = sanityResistanceAttr.map(AttributeInstance::getValue).orElse(0D);
-        damage *= 1 - (sanityResistance / 100);
+        damage *= 1 - sanityResistance / 100;
         if (damage <= 0) return false;
         if (value < damage) {
             sanityBreak();
