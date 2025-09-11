@@ -229,10 +229,12 @@
   "tip.caerula_arbor.strategy.migration_2": "[迁徙] 我们不需要界限",
   "tip.caerula_arbor.strategy.migration_3": "[迁徙] 威胁我们的便要驱逐",
   "tip.caerula_arbor.strategy.migration_4": "[迁徙] 威胁我们的便要驱逐",
-  "tip.caerula_arbor.strategy.silence_1": "[静谧] 那么，就请听听这远海的歌吧......",
+  "tip.caerula_arbor.strategy.silence_1": "[静谧] 那么，就请听听这远海的歌吧……",
   "tip.caerula_arbor.strategy.silence_2": "[静谧] 随我走吧，随我回去我们永恒的故乡",
-  "tip.caerula_arbor.strategy.silence_3": "[静谧] 歌声会沁入你们的心灵。",
-  "tip.caerula_arbor.strategy.silence_4": "[静谧] 别害怕，我的同胞们......很快就要到了。",
+  "tip.caerula_arbor.strategy.silence_3": "[静谧] 歌声，会沁入你们的心灵",
+  "tip.caerula_arbor.strategy.silence_4": "[静谧] 别害怕，我的同胞们……很快就要到了",
+
+  "skill.caerula_arbor.empty": "爆裂黎明",
 
   "subtitles.grow1": "拥纳愈广",
   "item.caerula_arbor.fluore_berries": "荧光浆果",

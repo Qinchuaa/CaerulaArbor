@@ -59,7 +59,9 @@ public class Skill {
         return this.canRegenerate && this.skillPoint < this.maxPoint;
     }
 
-    public boolean isDurative(){return this.duration > 0;}
+    public boolean isUsing() {
+        return this.duration > 0;
+    }
 
     public boolean isReady() {
         return this.skillPoint >= this.maxPoint;
@@ -71,8 +73,8 @@ public class Skill {
         tag.putInt("MaxPoint", this.maxPoint);
         tag.putInt("RegenerateSpeed", this.regenerateSpeed);
         tag.putBoolean("CanRegenerate", this.canRegenerate);
-        tag.putString("skillName",this.name);
-        tag.putInt("skillDuration",this.duration);
+        tag.putString("SkillName", this.name);
+        tag.putInt("SkillDuration", this.duration);
     }
 
     public static Skill deserialize(CompoundTag tag) {
@@ -82,12 +84,12 @@ public class Skill {
                 tag.getInt("MaxPoint"),
                 tag.getInt("RegenerateSpeed"),
                 tag.getBoolean("CanRegenerate"),
-                tag.getString("skillName"),
-                tag.getInt("skillDuration"));
+                tag.getString("SkillName"),
+                tag.getInt("SkillDuration"));
     }
 
-    public String deconstruct(String name){
-        return Component.translatable("skill.caerula_arbor."+name).toString();
+    public Component getDescriptionName(String name) {
+        return Component.translatable("skill.caerula_arbor." + name);
     }
 
     public static class Builder {
@@ -97,7 +99,7 @@ public class Skill {
         private int maxPoint;
         private int regenerateSpeed = 1;
         private boolean canRegenerate = true;
-        private String name = "爆裂黎明";
+        private String name = "empty";
         private int duration = 0;
 
         public static Builder of() {
@@ -123,11 +125,11 @@ public class Skill {
         /**
          * 设置技能的持续时间（刻）
          *
-         * @param dura 持续时间
+         * @param duration 持续时间
          * @return 技能构造器
          */
-        public Builder durative(int dura) {
-            this.duration = dura;
+        public Builder duration(int duration) {
+            this.duration = duration;
             return this;
         }
 
@@ -165,10 +167,11 @@ public class Skill {
 
         /**
          * 发挥中二病的时候到了
+         *
          * @param name 技能在lang里的条目，不填的话默认值为爆裂黎明（什
          * @return 技能构造器
          */
-        public Builder withName(String name){
+        public Builder name(String name) {
             this.name = name;
             return this;
         }

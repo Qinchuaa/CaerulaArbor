@@ -229,10 +229,12 @@
   "tip.caerula_arbor.strategy.migration_2": "[Migration] Every trench we fill in",
   "tip.caerula_arbor.strategy.migration_3": "[Migration] In predation we proliferate",
   "tip.caerula_arbor.strategy.migration_4": "[Migration] In predation we proliferate",
-  "tip.caerula_arbor.strategy.silence_1": "[Silence] Back to our eternal hometown",
-  "tip.caerula_arbor.strategy.silence_2": "[Silence] Back to our eternal hometown",
-  "tip.caerula_arbor.strategy.silence_3": "[Silence] Rest in silence",
-  "tip.caerula_arbor.strategy.silence_4": "[Silence] Rest in silence",
+  "tip.caerula_arbor.strategy.silence_1": "[Silence] Listen to, Songs...",
+  "tip.caerula_arbor.strategy.silence_2": "[Silence] Back, the Eternal Hometown",
+  "tip.caerula_arbor.strategy.silence_3": "[Silence] Songs, in your mind",
+  "tip.caerula_arbor.strategy.silence_4": "[Silence] We, the Fearless",
+
+  "skill.caerula_arbor.empty": "爆裂黎明",
 
   "item.caerula_arbor.fluore_berries": "Fluore Berries",
   "subtitles.grow1": "EMBRACE MORE",
