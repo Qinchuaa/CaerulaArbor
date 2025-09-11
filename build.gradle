@@ -145,7 +145,7 @@ dependencies {
     compileOnly fg.deobf("top.theillusivec4.curios:curios-forge:5.4.2+1.20.1:api")
 
     // 其他mod
-    implementation fg.deobf("curse.maven:superb-warfare-1218165:6874738")
+    implementation fg.deobf("curse.maven:superb-warfare-1218165:6982132")
 }
 
 mixin {
