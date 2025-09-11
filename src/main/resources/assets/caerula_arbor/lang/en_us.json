@@ -86,6 +86,10 @@
   "death.attack.nervous_impairment.player": "%1$s fell into nether sea",
 
   "attribute.caerula_arbor.sanity_injury_resistance": "Sanity Injury Resistance",
+  "attribute.caerula_arbor.sanity_regenerate": "Sanity Regenerate",
+  "attribute.caerula_arbor.sanity_injury_damage": "Sanity Injury Damage",
+  "attribute.caerula_arbor.sanity_injury_damage_rate": "Sanity Injury Damage Rate",
+  "attribute.caerula_arbor.global_sanity_injury_rate": "Global Sanity Injury Rate",
 
   "entity.caerula_arbor.shell_sea_runner": "Shell Sea Runner",
   "entity.caerula_arbor.deep_sea_slider": "Deep Sea Slider",
