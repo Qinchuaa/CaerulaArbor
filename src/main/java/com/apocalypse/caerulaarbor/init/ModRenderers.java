@@ -44,5 +44,6 @@ public class ModRenderers {
         event.registerEntityRenderer(ModEntities.MATROCELLULAR_NURSE.get(), MatrocellularNurseRenderer::new);
         event.registerEntityRenderer(ModEntities.THE_ABANDONED.get(), TheAbandonedRenderer::new);
         event.registerEntityRenderer(ModEntities.QUINTUS.get(), QuintusRenderer::new);
+        event.registerEntityRenderer(ModEntities.FILIAL_GENERATION.get(), FilialGenerationRenderer::new);
     }
 }

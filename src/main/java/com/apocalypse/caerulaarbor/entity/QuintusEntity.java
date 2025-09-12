@@ -6,10 +6,7 @@ import com.apocalypse.caerulaarbor.config.common.GameplayConfig;
 import com.apocalypse.caerulaarbor.entity.ai.Skill;
 import com.apocalypse.caerulaarbor.entity.ai.goal.SeaMonsterAttackableTargetGoal;
 import com.apocalypse.caerulaarbor.entity.base.SkilledSeaMonster;
-import com.apocalypse.caerulaarbor.init.ModAttributes;
-import com.apocalypse.caerulaarbor.init.ModBlocks;
-import com.apocalypse.caerulaarbor.init.ModEntities;
-import com.apocalypse.caerulaarbor.init.ModMobEffects;
+import com.apocalypse.caerulaarbor.init.*;
 import net.minecraft.core.BlockPos;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
@@ -87,6 +84,7 @@ public class QuintusEntity extends SkilledSeaMonster {
         xpReward = 64;
         this.addSkill(Skill.Builder.of().init(200).max(200).duration(20).build());
         this.addSkill(Skill.Builder.of().init(1200).max(2400).duration(40).build());
+        this.addSkill(Skill.Builder.of().max(600).initCooldown(280).build());
         initUnderTidesEntities();
         setNoAi(false);
         setMaxUpStep(2f);
@@ -161,6 +159,7 @@ public class QuintusEntity extends SkilledSeaMonster {
     public void baseTick() {
         super.baseTick();
         if(this.skillReady(1)) this.speciedOutbreak();
+        if(this.skillReady(2)) this.fragmentation();
         if(this.tickCount <= 2) this.anchorPos = this.position();
         else if(this.distanceToSqr(this.anchorPos) >= 16) this.setPos(this.anchorPos);
     }
@@ -300,6 +299,15 @@ public class QuintusEntity extends SkilledSeaMonster {
         });
     }
 
+    private void fragmentation(){
+        double perc = this.getHealth() / this.getMaxHealth();
+        if(perc < 0.67) resetSkill(2,360);
+        else resetSkill(2,600);
+        for(int i=0;i<8;i++){
+            distributeOffspring();
+        }
+    }
+
     private void rim(double R) {
         if (this.level() instanceof ServerLevel sLevel) {
             for (int i = 0; i < 360; i += 3) {
@@ -380,6 +388,32 @@ public class QuintusEntity extends SkilledSeaMonster {
     private EntityType<?> choseUnderTidesEntity(){
         int index = Mth.nextInt(this.level().random,0,6);
         return this.candidate.get(index);
+    }
+
+    public int countSonsAround(){
+        Vec3 pos = this.position(),offset = new Vec3(32,32,32);
+        AABB aabb = new AABB(pos.add(offset),pos.add(offset.scale(-1)));
+        List<LivingEntity> ents = this.level().getEntitiesOfClass(LivingEntity.class,aabb,e->{
+            return e instanceof FilialGenerationEntity && e.isAlive();
+        });
+        return ents.size();
+    }
+
+    private void distributeOffspring(){
+        if(countSonsAround() > 32)return;
+        RandomSource rand = this.random;
+        double dist = Mth.nextDouble(rand,10,24);
+        double rad = Mth.nextDouble(rand,0,Mth.TWO_PI);
+        BlockPos pos = this.blockPosition();
+        int tgtX = Math.toIntExact(Math.round(pos.getX() + dist * Math.cos(rad))),
+                tgtZ = Math.toIntExact(Math.round(pos.getZ() + dist * Math.sin(rad)));
+        BlockPos validPos = findValidY(tgtX,pos.getY(),tgtZ);
+        if(this.level() instanceof ServerLevel sLevel){
+            FilialGenerationEntity son = ModEntities.FILIAL_GENERATION.get().spawn(sLevel,validPos,MobSpawnType.MOB_SUMMONED);
+            if (son != null) {
+                son.owner = this;
+            }
+        }
     }
 
     @SubscribeEvent

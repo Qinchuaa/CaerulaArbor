@@ -17,7 +17,7 @@ public class SIHelper {
     }
 
     public static void causeSanityInjuryWithParticles(LivingEntity target, double value) {
-        causeSanityInjuryWithParticles(target, null, value);
+        causeSanityInjury(target, null, value);
     }
 
     public static void causeSanityInjuryWithParticles(LivingEntity target, @Nullable LivingEntity attacker, double value) {

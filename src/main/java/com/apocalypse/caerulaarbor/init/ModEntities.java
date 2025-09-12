@@ -114,6 +114,9 @@ public class ModEntities {
     public static final RegistryObject<EntityType<QuintusEntity>> QUINTUS = register("quintus",
             EntityType.Builder.<QuintusEntity>of(QuintusEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(16).setUpdateInterval(3).setCustomClientFactory(QuintusEntity::new)
                     .sized(7f, 11f));
+    public static final RegistryObject<EntityType<FilialGenerationEntity>> FILIAL_GENERATION = register("filial_generation",
+            EntityType.Builder.<FilialGenerationEntity>of(FilialGenerationEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(16).setUpdateInterval(3).setCustomClientFactory(FilialGenerationEntity::new)
+                    .sized(0.5f, 0.5f));
 
     // Projectiles
     public static final RegistryObject<EntityType<FishShootEntity>> FISH_SHOOT = register("fish_shoot",
@@ -163,13 +166,11 @@ public class ModEntities {
         registerBasicSeaMonster(ModEntities.RETCHING_BROODMOTHER.get(), event);
         registerBasicSeaMonster(ModEntities.SKIMMING_SEA_DRIFTER.get(), event);
         registerBasicSeaMonster(ModEntities.PATHSHAPER_FRACTAL.get(), event);
-        //registerWaterSeaMonster(ModEntities.DIVICELLULAR_CLONE.get(), event);
         registerWaterSeaMonster(ModEntities.EXOCELLULAR_DEPOSITER.get(), event);
         registerWaterSeaMonster(ModEntities.DIVICELLULAR_HOARDER.get(), event);
         registerWaterSeaMonster(ModEntities.TOXOCELLULAR_DRIFTER.get(), event);
         registerWaterSeaMonster(ModEntities.MULTICELLULAR_HERALD.get(), event);
         registerWaterSeaMonster(ModEntities.MATROCELLULAR_NURSE.get(), event);
-        registerBasicSeaMonster(ModEntities.THE_ABANDONED.get(), event);
     }
 
     public static <T extends Mob> void registerBasicSeaMonster(EntityType<T> type, SpawnPlacementRegisterEvent event) {
@@ -216,5 +217,6 @@ public class ModEntities {
         event.put(MULTICELLULAR_HERALD.get(), MulticellularHeraldEntity.createAttributes().build());
         event.put(THE_ABANDONED.get(), TheAbandonedEntity.createAttributes().build());
         event.put(QUINTUS.get(), QuintusEntity.createAttributes().build());
+        event.put(FILIAL_GENERATION.get(), FilialGenerationEntity.createAttributes().build());
     }
 }

@@ -123,6 +123,16 @@ public class Skill {
         }
 
         /**
+         * 设置技能的初始冷却，以转化冷却制和技力制的技能
+         * 需要在设置好最大技力后使用
+         * @param initialCooldown 初始冷却
+         * @return 技能构造器
+         */
+        public Builder initCooldown(int initialCooldown){
+            return init(maxPoint - initialCooldown);
+        }
+
+        /**
          * 设置技能的持续时间（刻）
          *
          * @param duration 持续时间
