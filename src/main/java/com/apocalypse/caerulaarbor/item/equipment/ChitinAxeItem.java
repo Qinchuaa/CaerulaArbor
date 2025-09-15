@@ -4,6 +4,7 @@ import com.apocalypse.caerulaarbor.tiers.ModItemTier;
 import net.minecraft.world.item.AxeItem;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
+import net.minecraft.world.item.Items;
 
 public class ChitinAxeItem extends AxeItem {
 

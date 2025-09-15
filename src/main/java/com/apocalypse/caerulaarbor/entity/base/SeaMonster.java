@@ -80,7 +80,7 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
     public boolean hurt(@NotNull DamageSource source, float amount) {
 
         boolean flag = super.hurt(source, amount);
-        if (source.is(DamageTypes.DROWN)) {
+        if (source.is(DamageTypes.DROWN) || isPermanent()) {
             return false;
         }
         if (this.level().getLevelData().getGameRules().getBoolean(ModGameRules.NATURAL_EVOLUTION) && source.getEntity() != null) {
