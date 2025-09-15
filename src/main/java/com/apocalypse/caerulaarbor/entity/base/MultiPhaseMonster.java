@@ -12,7 +12,7 @@ public abstract class MultiPhaseMonster extends SkilledSeaMonster{
 
     private int curPhase = 0; //当前阶段序号
     protected int finalPhase = 1;//最终阶段序号
-    protected boolean isInfinitePhase;//是否无限转阶段！！！
+    protected boolean isInfinitePhase = false;//是否无限转阶段！！！
     protected int rebornTime = 200; //复活用时
     private int rebornElapse = 0;//复活状态剩余时间
     protected int invulnerableTimeAfterReborn = 0;//转阶段后无敌时间，默认0致敬杰斯顿（喜）
@@ -34,7 +34,7 @@ public abstract class MultiPhaseMonster extends SkilledSeaMonster{
     public boolean isReborning() {return rebornElapse > 0;}
 
     protected void setReborning(){
-        curPhase ++;
+        if(!isInfinitePhase) curPhase ++;
         startReborn();
         this.setPermanent(rebornTime + invulnerableTimeAfterReborn);
         rebornElapse = rebornTime;
