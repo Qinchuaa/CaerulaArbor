@@ -182,6 +182,12 @@
   "block.caerula_arbor.cracked_sal_viento_sandstone_slab": "裂纹盐风砂岩台阶",
   "block.caerula_arbor.cracked_sal_viento_sandstone_wall": "裂纹盐风砂岩墙",
   "block.caerula_arbor.sal_viento_pillar": "盐风石柱",
+  "block.caerula_arbor.sea_viento_sand": "海蓝沙",
+  "block.caerula_arbor.sea_viento_sandstone": "海蓝砂岩",
+  "block.caerula_arbor.chiseled_sea_viento_sandstone": "雕纹海蓝砂岩",
+  "block.caerula_arbor.smooth_sea_viento_sandstone": "平滑海蓝砂岩",
+  "block.caerula_arbor.cut_sea_viento_sandstone": "切制海蓝砂岩",
+  "block.caerula_arbor.sea_viento_pillar": "海蓝石柱",
 
   "caerula_arbor.strategy.subsisting": "存续",
   "caerula_arbor.strategy.grow": "生长",
