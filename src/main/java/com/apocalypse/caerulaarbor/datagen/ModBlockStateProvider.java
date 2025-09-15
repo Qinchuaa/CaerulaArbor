@@ -101,6 +101,17 @@ public class ModBlockStateProvider extends BlockStateProvider {
         slabBlock((SlabBlock) ModBlocks.CRACKED_SAL_VIENTO_SANDSTONE_SLAB.get(), blockTexture(ModBlocks.CRACKED_SAL_VIENTO_SANDSTONE.get()), CaerulaArborMod.loc("block/sal_viento_sandstone_bottom"));
         wallBlock((WallBlock) ModBlocks.CRACKED_SAL_VIENTO_SANDSTONE_WALL.get(), CaerulaArborMod.loc("block/sal_viento_sandstone_bottom"));
         axisBlock((RotatedPillarBlock) ModBlocks.SAL_VIENTO_PILLAR.get(), CaerulaArborMod.loc("block/sal_viento_pillar_side"), CaerulaArborMod.loc("block/sal_viento_pillar_top"));
+
+        // Sea Viento Series 海蓝方块
+        blockWithItem(ModBlocks.SEA_VIENTO_SAND);
+        simpleBlockWithItem(ModBlocks.SEA_VIENTO_SANDSTONE.get(), models().cubeBottomTop("sea_viento_sandstone", CaerulaArborMod.loc("block/sea_viento_sandstone"),
+                CaerulaArborMod.loc("block/sea_viento_sandstone_bottom"), CaerulaArborMod.loc("block/sea_viento_sandstone_top")));
+        simpleBlockWithItem(ModBlocks.CHISELED_SEA_VIENTO_SANDSTONE.get(), models().cubeColumn("chiseled_sea_viento_sandstone", CaerulaArborMod.loc("block/chiseled_sea_viento_sandstone"),
+                CaerulaArborMod.loc("block/sea_viento_sandstone_top")));
+        blockWithItem(ModBlocks.SMOOTH_SEA_VIENTO_SANDSTONE);
+        simpleBlockWithItem(ModBlocks.CUT_SEA_VIENTO_SANDSTONE.get(), models().cubeColumn("cut_sea_viento_sandstone", CaerulaArborMod.loc("block/cut_sea_viento_sandstone"),
+                CaerulaArborMod.loc("block/sea_viento_sandstone_top")));
+        axisBlock((RotatedPillarBlock) ModBlocks.SEA_VIENTO_PILLAR.get(), CaerulaArborMod.loc("block/sea_viento_pillar_side"), CaerulaArborMod.loc("block/sea_viento_pillar_top"));
     }
 
     private String name(Block block) {

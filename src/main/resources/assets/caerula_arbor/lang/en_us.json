@@ -182,6 +182,12 @@
   "block.caerula_arbor.cracked_sal_viento_sandstone_slab": "Cracked Sal Viento Sandstone Slab",
   "block.caerula_arbor.cracked_sal_viento_sandstone_wall": "Cracked Sal Viento Sandstone Wall",
   "block.caerula_arbor.sal_viento_pillar": "Sal Viento Pillar",
+  "block.caerula_arbor.sea_viento_sand": "Sea Viento Sand",
+  "block.caerula_arbor.sea_viento_sandstone": "Sea Viento Sandstone",
+  "block.caerula_arbor.chiseled_sea_viento_sandstone": "Chiseled Sea Viento Sandstone",
+  "block.caerula_arbor.smooth_sea_viento_sandstone": "Smooth Sea Viento Sandstone",
+  "block.caerula_arbor.cut_sea_viento_sandstone": "Cut Sea Viento Sandstone",
+  "block.caerula_arbor.sea_viento_pillar": "Sea Viento Pillar",
 
   "caerula_arbor.strategy.subsisting": "Subsisting",
   "caerula_arbor.strategy.grow": "Grow",

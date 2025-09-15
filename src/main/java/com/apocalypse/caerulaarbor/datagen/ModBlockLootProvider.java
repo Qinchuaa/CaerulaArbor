@@ -110,6 +110,14 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
         this.add(ModBlocks.CRACKED_SAL_VIENTO_SANDSTONE_SLAB.get(), block -> createSlabItemTable(ModBlocks.CRACKED_SAL_VIENTO_SANDSTONE_SLAB.get()));
         this.dropSelf(ModBlocks.CRACKED_SAL_VIENTO_SANDSTONE_WALL.get());
         this.dropSelf(ModBlocks.SAL_VIENTO_PILLAR.get());
+
+        // Sea Viento Series 海蓝方块
+        this.dropSelf(ModBlocks.SEA_VIENTO_SAND.get());
+        this.dropSelf(ModBlocks.SEA_VIENTO_SANDSTONE.get());
+        this.dropSelf(ModBlocks.CHISELED_SEA_VIENTO_SANDSTONE.get());
+        this.dropSelf(ModBlocks.SMOOTH_SEA_VIENTO_SANDSTONE.get());
+        this.dropSelf(ModBlocks.CUT_SEA_VIENTO_SANDSTONE.get());
+        this.dropSelf(ModBlocks.SEA_VIENTO_PILLAR.get());
     }
 
     @Override
