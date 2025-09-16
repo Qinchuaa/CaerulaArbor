@@ -435,6 +435,9 @@ public class ModEntityLootProvider extends EntityLootSubProvider {
         this.add(ModEntities.EXOCELLULAR_DEPOSITER.get(), LootTable.lootTable());
         this.add(ModEntities.DIVICELLULAR_HOARDER.get(), LootTable.lootTable());
         this.add(ModEntities.TOXOCELLULAR_DRIFTER.get(), LootTable.lootTable());
+        this.add(ModEntities.THE_ABANDONED.get(), LootTable.lootTable());
+        this.add(ModEntities.QUINTUS.get(), LootTable.lootTable());
+        this.add(ModEntities.FILIAL_GENERATION.get(), LootTable.lootTable());
     }
 
     @Override

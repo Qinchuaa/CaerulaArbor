@@ -22,7 +22,7 @@ public class ModBlockTagProvider extends BlockTagsProvider {
     protected void addTags(HolderLookup.Provider pProvider) {
         this.tag(BlockTags.MINEABLE_WITH_SHOVEL).add(
                 ModBlocks.SAL_VIENTO_SAND.get(),
-                ModBlocks.SEA_VIENTO_SAND.get()
+                ModBlocks.MAR_VIENTO_SAND.get()
         );
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
                 ModBlocks.CHITIN_BLOCK.get(),
@@ -62,11 +62,11 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         // Sea Viento Series 海风方块（可用镐挖掘）
         this.tag(BlockTags.MINEABLE_WITH_PICKAXE).add(
-                ModBlocks.SEA_VIENTO_SANDSTONE.get(),
-                ModBlocks.CHISELED_SEA_VIENTO_SANDSTONE.get(),
-                ModBlocks.SMOOTH_SEA_VIENTO_SANDSTONE.get(),
-                ModBlocks.CUT_SEA_VIENTO_SANDSTONE.get(),
-                ModBlocks.SEA_VIENTO_PILLAR.get()
+                ModBlocks.MAR_VIENTO_SANDSTONE.get(),
+                ModBlocks.CHISELED_MAR_VIENTO_SANDSTONE.get(),
+                ModBlocks.SMOOTH_MAR_VIENTO_SANDSTONE.get(),
+                ModBlocks.CUT_MAR_VIENTO_SANDSTONE.get(),
+                ModBlocks.MAR_VIENTO_PILLAR.get()
         );
 
         this.tag(BlockTags.NEEDS_STONE_TOOL).add(

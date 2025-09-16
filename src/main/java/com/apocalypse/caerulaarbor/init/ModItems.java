@@ -288,12 +288,12 @@ public class ModItems {
     public static final RegistryObject<Item> SAL_VIENTO_PILLAR = block(ModBlocks.SAL_VIENTO_PILLAR);
 
     // Sea Viento Series 海蓝方块物品
-    public static final RegistryObject<Item> SEA_VIENTO_SAND = block(ModBlocks.SEA_VIENTO_SAND);
-    public static final RegistryObject<Item> SEA_VIENTO_SANDSTONE = block(ModBlocks.SEA_VIENTO_SANDSTONE);
-    public static final RegistryObject<Item> CHISELED_SEA_VIENTO_SANDSTONE = block(ModBlocks.CHISELED_SEA_VIENTO_SANDSTONE);
-    public static final RegistryObject<Item> SMOOTH_SEA_VIENTO_SANDSTONE = block(ModBlocks.SMOOTH_SEA_VIENTO_SANDSTONE);
-    public static final RegistryObject<Item> CUT_SEA_VIENTO_SANDSTONE = block(ModBlocks.CUT_SEA_VIENTO_SANDSTONE);
-    public static final RegistryObject<Item> SEA_VIENTO_PILLAR = block(ModBlocks.SEA_VIENTO_PILLAR);
+    public static final RegistryObject<Item> SEA_VIENTO_SAND = block(ModBlocks.MAR_VIENTO_SAND);
+    public static final RegistryObject<Item> SEA_VIENTO_SANDSTONE = block(ModBlocks.MAR_VIENTO_SANDSTONE);
+    public static final RegistryObject<Item> CHISELED_SEA_VIENTO_SANDSTONE = block(ModBlocks.CHISELED_MAR_VIENTO_SANDSTONE);
+    public static final RegistryObject<Item> SMOOTH_SEA_VIENTO_SANDSTONE = block(ModBlocks.SMOOTH_MAR_VIENTO_SANDSTONE);
+    public static final RegistryObject<Item> CUT_SEA_VIENTO_SANDSTONE = block(ModBlocks.CUT_MAR_VIENTO_SANDSTONE);
+    public static final RegistryObject<Item> SEA_VIENTO_PILLAR = block(ModBlocks.MAR_VIENTO_PILLAR);
 
     private static RegistryObject<Item> block(RegistryObject<Block> block) {
         return BLOCKS.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties()));

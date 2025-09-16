@@ -1,5 +1,6 @@
 package com.apocalypse.caerulaarbor.datagen;
 
+import com.apocalypse.caerulaarbor.init.ModBlocks;
 import com.apocalypse.caerulaarbor.init.ModItems;
 import net.minecraft.data.PackOutput;
 import net.minecraft.data.recipes.*;
@@ -34,46 +35,44 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
 
         // SEA_VIENTO 基础方块配方
         // 2x2 海蓝沙 -> 海风砂岩
-        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, com.apocalypse.caerulaarbor.init.ModBlocks.SEA_VIENTO_SANDSTONE.get())
+        ShapedRecipeBuilder.shaped(RecipeCategory.BUILDING_BLOCKS, ModBlocks.MAR_VIENTO_SANDSTONE.get())
                 .pattern("SS")
                 .pattern("SS")
-                .define('S', com.apocalypse.caerulaarbor.init.ModBlocks.SEA_VIENTO_SAND.get())
-                .unlockedBy(getHasName(com.apocalypse.caerulaarbor.init.ModBlocks.SEA_VIENTO_SAND.get()), has(com.apocalypse.caerulaarbor.init.ModBlocks.SEA_VIENTO_SAND.get()))
+                .define('S', ModBlocks.MAR_VIENTO_SAND.get())
+                .unlockedBy(getHasName(ModBlocks.MAR_VIENTO_SAND.get()), has(ModBlocks.MAR_VIENTO_SAND.get()))
                 .save(writer);
-    
+
         // 砂岩 -> 平滑砂岩（熔炉）
-        SimpleCookingRecipeBuilder.smelting(Ingredient.of(com.apocalypse.caerulaarbor.init.ModBlocks.SEA_VIENTO_SANDSTONE.get()),
-                    RecipeCategory.BUILDING_BLOCKS,
-                    com.apocalypse.caerulaarbor.init.ModBlocks.SMOOTH_SEA_VIENTO_SANDSTONE.get(),
-                    0.1f, 200)
-                .unlockedBy(getHasName(com.apocalypse.caerulaarbor.init.ModBlocks.SEA_VIENTO_SANDSTONE.get()), has(com.apocalypse.caerulaarbor.init.ModBlocks.SEA_VIENTO_SANDSTONE.get()))
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModBlocks.MAR_VIENTO_SANDSTONE.get()),
+                        RecipeCategory.BUILDING_BLOCKS,
+                        ModBlocks.SMOOTH_MAR_VIENTO_SANDSTONE.get(),
+                        0.1f, 200)
+                .unlockedBy(getHasName(ModBlocks.MAR_VIENTO_SANDSTONE.get()), has(ModBlocks.MAR_VIENTO_SANDSTONE.get()))
                 .save(writer);
-    
+
         // 砂岩 -> 平滑砂岩（高炉）
-        SimpleCookingRecipeBuilder.blasting(Ingredient.of(com.apocalypse.caerulaarbor.init.ModBlocks.SEA_VIENTO_SANDSTONE.get()),
-                    RecipeCategory.BUILDING_BLOCKS,
-                    com.apocalypse.caerulaarbor.init.ModBlocks.SMOOTH_SEA_VIENTO_SANDSTONE.get(),
-                    0.1f, 100)
-                .unlockedBy(getHasName(com.apocalypse.caerulaarbor.init.ModBlocks.SEA_VIENTO_SANDSTONE.get()), has(com.apocalypse.caerulaarbor.init.ModBlocks.SEA_VIENTO_SANDSTONE.get()))
-                .save(writer);
-    
+        SimpleCookingRecipeBuilder.blasting(Ingredient.of(ModBlocks.MAR_VIENTO_SANDSTONE.get()),
+                        RecipeCategory.BUILDING_BLOCKS,
+                        ModBlocks.SMOOTH_MAR_VIENTO_SANDSTONE.get(),
+                        0.1f, 100)
+                .unlockedBy(getHasName(ModBlocks.MAR_VIENTO_SANDSTONE.get()), has(ModBlocks.MAR_VIENTO_SANDSTONE.get()))
+                .save(writer, RecipeBuilder.getDefaultRecipeId(ModBlocks.SMOOTH_MAR_VIENTO_SANDSTONE.get()) + "_blasting");
+
         // 切石：砂岩 -> 切制/雕纹/柱子
-        SingleItemRecipeBuilder.stonecutting(Ingredient.of(com.apocalypse.caerulaarbor.init.ModBlocks.SEA_VIENTO_SANDSTONE.get()),
-                    RecipeCategory.BUILDING_BLOCKS,
-                    com.apocalypse.caerulaarbor.init.ModBlocks.CUT_SEA_VIENTO_SANDSTONE.get())
-                .unlockedBy(getHasName(com.apocalypse.caerulaarbor.init.ModBlocks.SEA_VIENTO_SANDSTONE.get()), has(com.apocalypse.caerulaarbor.init.ModBlocks.SEA_VIENTO_SANDSTONE.get()))
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(ModBlocks.MAR_VIENTO_SANDSTONE.get()),
+                        RecipeCategory.BUILDING_BLOCKS,
+                        ModBlocks.CUT_MAR_VIENTO_SANDSTONE.get())
+                .unlockedBy(getHasName(ModBlocks.MAR_VIENTO_SANDSTONE.get()), has(ModBlocks.MAR_VIENTO_SANDSTONE.get()))
                 .save(writer);
-    
-        SingleItemRecipeBuilder.stonecutting(Ingredient.of(com.apocalypse.caerulaarbor.init.ModBlocks.SEA_VIENTO_SANDSTONE.get()),
-                    RecipeCategory.BUILDING_BLOCKS,
-                    com.apocalypse.caerulaarbor.init.ModBlocks.CHISELED_SEA_VIENTO_SANDSTONE.get())
-                .unlockedBy(getHasName(com.apocalypse.caerulaarbor.init.ModBlocks.SEA_VIENTO_SANDSTONE.get()), has(com.apocalypse.caerulaarbor.init.ModBlocks.SEA_VIENTO_SANDSTONE.get()))
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(ModBlocks.MAR_VIENTO_SANDSTONE.get()),
+                        RecipeCategory.BUILDING_BLOCKS,
+                        ModBlocks.CHISELED_MAR_VIENTO_SANDSTONE.get())
+                .unlockedBy(getHasName(ModBlocks.MAR_VIENTO_SANDSTONE.get()), has(ModBlocks.MAR_VIENTO_SANDSTONE.get()))
                 .save(writer);
-    
-        SingleItemRecipeBuilder.stonecutting(Ingredient.of(com.apocalypse.caerulaarbor.init.ModBlocks.SEA_VIENTO_SANDSTONE.get()),
-                    RecipeCategory.BUILDING_BLOCKS,
-                    com.apocalypse.caerulaarbor.init.ModBlocks.SEA_VIENTO_PILLAR.get())
-                .unlockedBy(getHasName(com.apocalypse.caerulaarbor.init.ModBlocks.SEA_VIENTO_SANDSTONE.get()), has(com.apocalypse.caerulaarbor.init.ModBlocks.SEA_VIENTO_SANDSTONE.get()))
+        SingleItemRecipeBuilder.stonecutting(Ingredient.of(ModBlocks.MAR_VIENTO_SANDSTONE.get()),
+                        RecipeCategory.BUILDING_BLOCKS,
+                        ModBlocks.MAR_VIENTO_PILLAR.get())
+                .unlockedBy(getHasName(ModBlocks.MAR_VIENTO_SANDSTONE.get()), has(ModBlocks.MAR_VIENTO_SANDSTONE.get()))
                 .save(writer);
     }
 
