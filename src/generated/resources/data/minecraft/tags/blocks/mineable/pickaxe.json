@@ -32,6 +32,11 @@
     "caerula_arbor:nethersea_tile_slab",
     "caerula_arbor:nethersea_tile_wall",
     "caerula_arbor:nethersea_pressure_plate",
-    "caerula_arbor:nethersea_button"
+    "caerula_arbor:nethersea_button",
+    "caerula_arbor:mar_viento_sandstone",
+    "caerula_arbor:chiseled_mar_viento_sandstone",
+    "caerula_arbor:smooth_mar_viento_sandstone",
+    "caerula_arbor:cut_mar_viento_sandstone",
+    "caerula_arbor:mar_viento_pillar"
   ]
 }

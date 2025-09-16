@@ -11,11 +11,11 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "caerula_arbor:sea_trail_solid"
+          "name": "caerula_arbor:chiseled_mar_viento_sandstone"
         }
       ],
       "rolls": 1.0
     }
   ],
-  "random_sequence": "caerula_arbor:blocks/sea_trail_solid"
+  "random_sequence": "caerula_arbor:blocks/chiseled_mar_viento_sandstone"
 }
