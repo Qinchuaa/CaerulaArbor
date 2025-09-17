@@ -74,6 +74,52 @@ public class ModRecipeProvider extends RecipeProvider implements IConditionBuild
                         ModBlocks.MAR_VIENTO_PILLAR.get())
                 .unlockedBy(getHasName(ModBlocks.MAR_VIENTO_SANDSTONE.get()), has(ModBlocks.MAR_VIENTO_SANDSTONE.get()))
                 .save(writer);
+
+        // Ocean：原木 -> 木板 x4
+        ShapelessRecipeBuilder.shapeless(RecipeCategory.BUILDING_BLOCKS, ModBlocks.OCEAN_PLANKS.get(), 4)
+                .requires(ModBlocks.OCEAN_LOG.get())
+                .unlockedBy(getHasName(ModBlocks.OCEAN_LOG.get()), has(ModBlocks.OCEAN_LOG.get()))
+                .save(writer);
+
+        // 原木烧木炭（熔炉）：Ocean 原木 -> 木炭
+        SimpleCookingRecipeBuilder.smelting(Ingredient.of(ModBlocks.OCEAN_LOG.get()),
+                        RecipeCategory.MISC,
+                        net.minecraft.world.item.Items.CHARCOAL,
+                        0.15f, 200)
+                .unlockedBy(getHasName(ModBlocks.OCEAN_LOG.get()), has(ModBlocks.OCEAN_LOG.get()))
+                .save(writer, "charcoal_from_smelting_ocean_log");
+
+        // 篝火（通用，可燃原木 + 木棍 + 木炭/煤）
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, net.minecraft.world.level.block.Blocks.CAMPFIRE)
+                .pattern(" S ")
+                .pattern("SCS")
+                .pattern("LLL")
+                .define('S', net.minecraft.world.item.Items.STICK)
+                .define('L', net.minecraft.tags.ItemTags.LOGS_THAT_BURN)
+                .define('C', net.minecraft.world.item.Items.CHARCOAL)
+                .unlockedBy("has_logs_that_burn", has(net.minecraft.tags.ItemTags.LOGS_THAT_BURN))
+                .save(writer, "campfire_charcoal_from_logs_that_burn");
+
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, net.minecraft.world.level.block.Blocks.CAMPFIRE)
+                .pattern(" S ")
+                .pattern("SCS")
+                .pattern("LLL")
+                .define('S', net.minecraft.world.item.Items.STICK)
+                .define('L', net.minecraft.tags.ItemTags.LOGS_THAT_BURN)
+                .define('C', net.minecraft.world.item.Items.COAL)
+                .unlockedBy("has_logs_that_burn", has(net.minecraft.tags.ItemTags.LOGS_THAT_BURN))
+                .save(writer, "campfire_coal_from_logs_that_burn");
+
+        // 篝火（显式：Ocean 原木 + 木炭）
+        ShapedRecipeBuilder.shaped(RecipeCategory.DECORATIONS, net.minecraft.world.level.block.Blocks.CAMPFIRE)
+                .pattern(" S ")
+                .pattern("SCS")
+                .pattern("LLL")
+                .define('S', net.minecraft.world.item.Items.STICK)
+                .define('L', ModBlocks.OCEAN_LOG.get())
+                .define('C', net.minecraft.world.item.Items.CHARCOAL)
+                .unlockedBy(getHasName(ModBlocks.OCEAN_LOG.get()), has(ModBlocks.OCEAN_LOG.get()))
+                .save(writer, "campfire_charcoal_from_ocean_log");
     }
 
     private static void simpleHelmetRecipe(Consumer<FinishedRecipe> writer, ItemLike result, ItemLike ingredient) {

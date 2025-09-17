@@ -27,6 +27,10 @@ public class ModItemTagProvider extends ItemTagsProvider {
     @SuppressWarnings("unchecked")
     @Override
     protected void addTags(HolderLookup.@NotNull Provider pProvider) {
+        // 复制方块标签到物品标签，保证原版配方识别 Mod 木材
+        this.copy(net.minecraft.tags.BlockTags.LOGS, net.minecraft.tags.ItemTags.LOGS);
+        this.copy(net.minecraft.tags.BlockTags.LOGS_THAT_BURN, net.minecraft.tags.ItemTags.LOGS_THAT_BURN);
+
         this.tag(ModTags.Items.RELICS)
                 .addTags(ModTags.Items.ARCHFIEND_RELICS, ModTags.Items.KING_RELICS, ModTags.Items.CURSED_RELICS, ModTags.Items.HAND_RELICS);
 
