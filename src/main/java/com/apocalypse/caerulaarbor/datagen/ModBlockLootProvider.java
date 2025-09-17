@@ -118,6 +118,11 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.SMOOTH_MAR_VIENTO_SANDSTONE.get());
         this.dropSelf(ModBlocks.CUT_MAR_VIENTO_SANDSTONE.get());
         this.dropSelf(ModBlocks.MAR_VIENTO_PILLAR.get());
+
+        // Ocean wood series 海洋木系列
+        this.dropSelf(ModBlocks.OCEAN_LOG.get());
+        this.dropSelf(ModBlocks.OCEAN_PLANKS.get());
+        this.dropSelf(ModBlocks.OCEAN_LEAVES.get());
     }
 
     @Override

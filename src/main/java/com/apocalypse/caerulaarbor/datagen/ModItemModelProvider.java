@@ -107,6 +107,11 @@ public class ModItemModelProvider extends ItemModelProvider {
         wallItem(ModBlocks.CRACKED_SAL_VIENTO_SANDSTONE_WALL, CaerulaArborMod.loc("block/sal_viento_sandstone_bottom"));
 
         evenSimplerBlockItem(ModBlocks.MAR_VIENTO_PILLAR);
+        
+        // Ocean wood series 海洋木系列 - 物品模型
+        evenSimplerBlockItem(ModBlocks.OCEAN_LOG);
+        evenSimplerBlockItem(ModBlocks.OCEAN_PLANKS);
+        evenSimplerBlockItem(ModBlocks.OCEAN_LEAVES);
     }
 
     private ItemModelBuilder simpleItem(RegistryObject<Item> item) {

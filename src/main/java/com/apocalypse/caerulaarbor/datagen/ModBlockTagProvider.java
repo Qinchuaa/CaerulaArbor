@@ -76,6 +76,27 @@ public class ModBlockTagProvider extends BlockTagsProvider {
                 ModBlocks.COMPLEX_CHITIN_BLOCK.get()
         );
 
+        // Ocean wood set 海洋木系列
+        this.tag(BlockTags.MINEABLE_WITH_AXE).add(
+                ModBlocks.OCEAN_LOG.get(),
+                ModBlocks.OCEAN_PLANKS.get()
+        );
+        this.tag(BlockTags.MINEABLE_WITH_HOE).add(
+                ModBlocks.OCEAN_LEAVES.get()
+        );
+        this.tag(BlockTags.LOGS).add(
+                ModBlocks.OCEAN_LOG.get()
+        );
+        this.tag(BlockTags.LOGS_THAT_BURN).add(
+                ModBlocks.OCEAN_LOG.get()
+        );
+        this.tag(BlockTags.LEAVES).add(
+                ModBlocks.OCEAN_LEAVES.get()
+        );
+        this.tag(BlockTags.PLANKS).add(
+                ModBlocks.OCEAN_PLANKS.get()
+        );
+
         this.tag(BlockTags.WALLS).add(
                 ModBlocks.SAL_VIENTO_SANDSTONE_WALL.get(),
                 ModBlocks.CHISELED_SAL_VIENTO_SANDSTONE_WALL.get(),

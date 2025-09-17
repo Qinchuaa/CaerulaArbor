@@ -100,3 +100,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> CUT_MAR_VIENTO_SANDSTONE = BLOCKS.register("cut_mar_viento_sandstone", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(0.8F)));
     public static final RegistryObject<Block> MAR_VIENTO_PILLAR = BLOCKS.register("mar_viento_pillar", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(0.8F)));
 }
+
+    // Ocean wood set 海洋木系列
+    public static final RegistryObject<Block> OCEAN_LOG = BLOCKS.register("ocean_log", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(2.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> OCEAN_PLANKS = BLOCKS.register("ocean_planks", () -> new Block(BlockBehaviour.Properties.of().mapColor(MapColor.WOOD).instrument(NoteBlockInstrument.BASS).strength(2.0F, 3.0F).sound(SoundType.WOOD)));
+    public static final RegistryObject<Block> OCEAN_LEAVES = BLOCKS.register("ocean_leaves", () -> new LeavesBlock(BlockBehaviour.Properties.of().mapColor(MapColor.PLANT).strength(0.2F).randomTicks().sound(SoundType.GRASS).noOcclusion()));
+}
