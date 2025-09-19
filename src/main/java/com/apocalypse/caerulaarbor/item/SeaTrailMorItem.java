@@ -1,6 +1,7 @@
 
 package com.apocalypse.caerulaarbor.item;
 
+import com.apocalypse.caerulaarbor.api.event.SanityEvent;
 import com.apocalypse.caerulaarbor.capability.sanity.SIHelper;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
@@ -39,7 +40,7 @@ public class SeaTrailMorItem extends Item {
         double x = entity.getX();
         double y = entity.getY();
         double z = entity.getZ();
-        SIHelper.causeSanityInjury(entity, 160, );
+        SIHelper.causeSanityInjury(entity, 160, SanityEvent.Hurt.Type.FOOD);
 
         if (world instanceof ServerLevel server) {
             server.sendParticles(ParticleTypes.ELECTRIC_SPARK, x, (y + 0.8), z, 48, 0.5, 1, 0.5, 0.1);

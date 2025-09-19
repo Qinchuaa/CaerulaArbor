@@ -46,6 +46,6 @@ public class OceanFarmlandBlock extends Block {
 
         if (!(entity instanceof LivingEntity livingEntity)) return;
         if (livingEntity.level().isClientSide()) return;
-        livingEntity.addEffect(new MobEffectInstance(ModMobEffects.TRAIL_BUFF.get(), 40, 0, false, false));
+        //livingEntity.addEffect(new MobEffectInstance(ModMobEffects.TRAIL_BUFF.get(), 40, 0, false, false));
     }
 }

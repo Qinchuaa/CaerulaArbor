@@ -149,8 +149,8 @@ public class NetherseaBrandGrownBlock extends NetherseaBrandBlock {
     public void stepOn(Level pLevel, BlockPos pPos, BlockState pState, Entity pEntity) {
         if (!(pEntity instanceof LivingEntity livingEntity)) return;
         if (pLevel.isClientSide()) return;
-        if (livingEntity.hasEffect(ModMobEffects.TRAIL_BUFF.get())) return;
-        livingEntity.addEffect(new MobEffectInstance(ModMobEffects.TRAIL_BUFF.get(), 40, 0, false, false));
+        //if (livingEntity.hasEffect(ModMobEffects.TRAIL_BUFF.get())) return;
+        //livingEntity.addEffect(new MobEffectInstance(ModMobEffects.TRAIL_BUFF.get(), 40, 0, false, false));
         super.stepOn(pLevel, pPos, pState, pEntity);
     }
 }

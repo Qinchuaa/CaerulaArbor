@@ -1,6 +1,7 @@
 
 package com.apocalypse.caerulaarbor.item;
 
+import com.apocalypse.caerulaarbor.api.event.SanityEvent;
 import com.apocalypse.caerulaarbor.capability.sanity.SIHelper;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.server.level.ServerLevel;
@@ -25,7 +26,7 @@ public class TrailCakePieceItem extends Item {
         double x = entity.getX();
         double y = entity.getY();
         double z = entity.getZ();
-        SIHelper.causeSanityInjury(entity, 150, );
+        SIHelper.causeSanityInjury(entity, 150, SanityEvent.Hurt.Type.FOOD);
 
         if (world instanceof ServerLevel server) {
             server.sendParticles(ParticleTypes.ELECTRIC_SPARK, x, (y + 0.7), z, 32, 0.5, 1.5, 0.5, 1);

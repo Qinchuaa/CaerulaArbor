@@ -37,7 +37,7 @@ public class BrokenCellClusterItem extends Item {
         double y = entity.getY();
         double z = entity.getZ();
 
-        SIHelper.causeSanityInjury(entity, 75, );
+        SIHelper.causeSanityInjury(entity, 75);
 
         if (world instanceof ServerLevel server) {
             entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 80, 0));

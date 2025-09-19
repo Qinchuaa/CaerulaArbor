@@ -1,6 +1,7 @@
 
 package com.apocalypse.caerulaarbor.potion;
 
+import com.apocalypse.caerulaarbor.api.event.SanityEvent;
 import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.capability.sanity.SIHelper;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
@@ -81,7 +82,7 @@ public class InfestedMobEffect extends MobEffect {
                 capability.seabornization = Math.min(amplifier, 2) + 1;
                 capability.syncPlayerVariables(entity);
             });
-            SIHelper.causeSanityInjury(entity, 750 * (amplifier + 1), );
+            SIHelper.causeSanityInjury(entity, 750 * (amplifier + 1), SanityEvent.Hurt.Type.POTION);
 
             if (!world.isClientSide()) {
                 world.playSound(null, BlockPos.containing(x, y, z), SoundEvents.ZOMBIE_INFECT, SoundSource.PLAYERS, 2, 1);

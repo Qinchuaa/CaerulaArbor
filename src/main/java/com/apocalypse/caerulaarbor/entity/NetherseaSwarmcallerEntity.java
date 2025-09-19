@@ -129,9 +129,7 @@ public class NetherseaSwarmcallerEntity extends SeaMonster {
                 }
             }
 
-            if (!this.hasEffect(ModMobEffects.UMBRELLA_SETTLE.get())) {
-                this.addEffect(new MobEffectInstance(ModMobEffects.UMBRELLA_SETTLE.get(), 120, 0, false, false));
-            }
+            //TODO 补全生物能力
         }
 
         this.refreshDimensions();

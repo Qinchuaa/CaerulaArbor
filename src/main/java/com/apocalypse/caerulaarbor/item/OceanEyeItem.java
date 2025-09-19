@@ -1,6 +1,7 @@
 
 package com.apocalypse.caerulaarbor.item;
 
+import com.apocalypse.caerulaarbor.api.event.SanityEvent;
 import com.apocalypse.caerulaarbor.capability.sanity.SIHelper;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.network.chat.Component;
@@ -40,7 +41,7 @@ public class OceanEyeItem extends Item {
         double y = entity.getY();
         double z = entity.getZ();
 
-        SIHelper.causeSanityInjury(entity, 325, );
+        SIHelper.causeSanityInjury(entity, 325, SanityEvent.Hurt.Type.FOOD);
         if (world instanceof ServerLevel server) {
             server.sendParticles(ParticleTypes.ELECTRIC_SPARK, x, y, z, 72, 1, 2, 1, 0.1);
         }

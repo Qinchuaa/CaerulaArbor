@@ -186,10 +186,10 @@ public class BasinSeaReaperEntity extends SeaMonster {
         super.baseTick();
 
         if (this.isAggressive()
-                && !this.hasEffect(ModMobEffects.FISH_REAP.get())
                 && !this.level().isClientSide()
         ) {
-            this.addEffect(new MobEffectInstance(ModMobEffects.FISH_REAP.get(), 100, 0, false, false));
+            //this.addEffect(new MobEffectInstance(ModMobEffects.FISH_REAP.get(), 100, 0, false, false));
+            //TODO 补全生物能力
         }
 
         this.refreshDimensions();

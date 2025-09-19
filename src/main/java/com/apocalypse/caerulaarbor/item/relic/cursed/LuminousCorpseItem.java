@@ -1,6 +1,7 @@
 
 package com.apocalypse.caerulaarbor.item.relic.cursed;
 
+import com.apocalypse.caerulaarbor.api.event.SanityEvent;
 import com.apocalypse.caerulaarbor.capability.ModCapabilities;
 import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.capability.sanity.SIHelper;
@@ -67,7 +68,7 @@ public class LuminousCorpseItem extends Item {
             level.sendParticles(ParticleTypes.ELECTRIC_SPARK, x, y, z, 72, 1, 2, 1, 0.1);
         }
 
-        SIHelper.causeSanityInjury(entity, 500, );
+        SIHelper.causeSanityInjury(entity, 500, SanityEvent.Hurt.Type.FOOD);
 
         if (entity instanceof Player player) {
             player.getCooldowns().addCooldown(itemstack.getItem(), 200);
