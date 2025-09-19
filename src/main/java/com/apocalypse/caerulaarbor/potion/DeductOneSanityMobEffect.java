@@ -29,7 +29,7 @@ public class DeductOneSanityMobEffect extends InvisibleMobEffect {
 
 	@Override
 	public void applyEffectTick(@NotNull LivingEntity entity, int amplifier) {
-		SIHelper.causeSanityInjury(entity, (double) amplifier + 1);
+		SIHelper.causeSanityInjury(entity, (double) amplifier + 1, );
 
 		if (entity.level() instanceof ServerLevel server) {
 			server.sendParticles(ParticleTypes.ELECTRIC_SPARK, entity.getX(), (entity.getY() + 1), entity.getZ(), (int) ((double) amplifier + 1), 0.5, 0.8, 0.5, 0.1);

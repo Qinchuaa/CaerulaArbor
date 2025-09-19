@@ -67,7 +67,7 @@ public class LuminousCorpseItem extends Item {
             level.sendParticles(ParticleTypes.ELECTRIC_SPARK, x, y, z, 72, 1, 2, 1, 0.1);
         }
 
-        SIHelper.causeSanityInjury(entity, 500);
+        SIHelper.causeSanityInjury(entity, 500, );
 
         if (entity instanceof Player player) {
             player.getCooldowns().addCooldown(itemstack.getItem(), 200);

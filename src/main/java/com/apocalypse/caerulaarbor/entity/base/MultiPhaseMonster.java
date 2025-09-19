@@ -1,5 +1,8 @@
 package com.apocalypse.caerulaarbor.entity.base;
 
+import com.apocalypse.caerulaarbor.entity.ai.Skill;
+import net.minecraft.nbt.CompoundTag;
+import net.minecraft.nbt.ListTag;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.Level;
@@ -11,11 +14,27 @@ public abstract class MultiPhaseMonster extends SkilledSeaMonster{
     }
 
     private int curPhase = 0; //当前阶段序号
-    protected int finalPhase = 1;//最终阶段序号
-    protected boolean isInfinitePhase = false;//是否无限转阶段！！！
+    public int finalPhase = 1;//最终阶段序号
+    protected boolean infinitePhase = false;//是否无限转阶段！！！
     protected int rebornTime = 200; //复活用时
     private int rebornElapse = 0;//复活状态剩余时间
     protected int invulnerableTimeAfterReborn = 0;//转阶段后无敌时间，默认0致敬杰斯顿（喜）
+
+    @Override
+    public void addAdditionalSaveData(@NotNull CompoundTag pCompound) {
+        super.addAdditionalSaveData(pCompound);
+        pCompound.putInt("phase",curPhase);
+        pCompound.putInt("rebornElapse",rebornElapse);
+        pCompound.putInt("invTimePostReborn",invulnerableTimeAfterReborn);
+    }
+
+    @Override
+    public void readAdditionalSaveData(@NotNull CompoundTag pCompound) {
+        super.readAdditionalSaveData(pCompound);
+        curPhase = pCompound.getInt("phase");
+        rebornElapse = pCompound.getInt("rebornElapse");
+        invulnerableTimeAfterReborn = pCompound.getInt("invTimePostReborn");
+    }
 
     public int getPhase() {return curPhase;}
 
@@ -24,7 +43,7 @@ public abstract class MultiPhaseMonster extends SkilledSeaMonster{
     /**
      * 能否转阶段
      */
-    public boolean canReborn() {return (curPhase < finalPhase || isInfinitePhase) && !isPermanent() && !isReborning() && extraRebornCondition();}
+    public boolean canReborn() {return (curPhase < finalPhase || infinitePhase) && !isPermanent() && !isReborning() && extraRebornCondition();}
 
     /**
     * 额外转阶段条件，用来Override
@@ -34,7 +53,7 @@ public abstract class MultiPhaseMonster extends SkilledSeaMonster{
     public boolean isReborning() {return rebornElapse > 0;}
 
     protected void setReborning(){
-        if(!isInfinitePhase) curPhase ++;
+        if(!infinitePhase) curPhase ++;
         startReborn();
         this.setPermanent(rebornTime + invulnerableTimeAfterReborn);
         rebornElapse = rebornTime;

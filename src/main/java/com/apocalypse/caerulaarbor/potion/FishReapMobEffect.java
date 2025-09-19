@@ -55,7 +55,7 @@ public class FishReapMobEffect extends InvisibleMobEffect {
                     }
                     if (entityiterator != entity) {
                         SIHelper.causeSanityInjury(entityiterator,
-                                (mob.getAttributes().hasAttribute(Attributes.ATTACK_DAMAGE) ? mob.getAttribute(Attributes.ATTACK_DAMAGE).getValue() : 0) * 12);
+                                (mob.getAttributes().hasAttribute(Attributes.ATTACK_DAMAGE) ? mob.getAttribute(Attributes.ATTACK_DAMAGE).getValue() : 0) * 12, );
                     }
                 }
             }

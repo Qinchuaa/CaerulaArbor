@@ -38,7 +38,7 @@ public class CellClusterItem extends Item {
         double y = entity.getY();
         double z = entity.getZ();
 
-        SIHelper.causeSanityInjury(entity, 225);
+        SIHelper.causeSanityInjury(entity, 225, );
 
         if (world instanceof ServerLevel server) {
             entity.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 80, 1));

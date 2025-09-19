@@ -60,7 +60,7 @@ public class NetherseaBlockBlock extends Block {
         double z = pos.getZ();
         if (entity != null) {
             if ((ModCapabilities.getPlayerVariables(entity)).seabornization < 2.85) {
-                SIHelper.causeSanityInjury(entity, Mth.nextInt(RandomSource.create(), 32, 96));
+                SIHelper.causeSanityInjury(entity, Mth.nextInt(RandomSource.create(), 32, 96), );
             }
             if ((LevelAccessor) world instanceof ServerLevel _level)
                 _level.sendParticles(ParticleTypes.ELECTRIC_SPARK, (x + 0.5), (y + 0.5), (z + 0.5), 16, 0.75, 0.75, 0.75, 0.1);

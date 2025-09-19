@@ -50,7 +50,7 @@ public class TrailedDiamondSwordItem extends SwordItem {
     public boolean hurtEnemy(ItemStack itemstack, LivingEntity entity, LivingEntity source) {
 
         double dam = 70 + 14 * itemstack.getEnchantmentLevel(Enchantments.SHARPNESS);
-        SIHelper.causeSanityInjury(entity, dam);
+        SIHelper.causeSanityInjury(entity, dam, );
 
         for (int i = 0; i < 5; i++) {
             CaerulaArborMod.queueServerWork(i, () -> {

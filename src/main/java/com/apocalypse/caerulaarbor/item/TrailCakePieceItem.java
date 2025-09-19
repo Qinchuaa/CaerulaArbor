@@ -25,7 +25,7 @@ public class TrailCakePieceItem extends Item {
         double x = entity.getX();
         double y = entity.getY();
         double z = entity.getZ();
-        SIHelper.causeSanityInjury(entity, 150);
+        SIHelper.causeSanityInjury(entity, 150, );
 
         if (world instanceof ServerLevel server) {
             server.sendParticles(ParticleTypes.ELECTRIC_SPARK, x, (y + 0.7), z, 32, 0.5, 1.5, 0.5, 1);

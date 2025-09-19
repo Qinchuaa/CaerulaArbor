@@ -127,11 +127,11 @@ public class BasinSeaReaperEntity extends SeaMonster {
         limithard = -1;
         double migrationStrategy = MapVariables.get(world).strategyMigration;
 
-        if (migrationStrategy >= 2) {
-            limithard = 3.5;
-        } else if (migrationStrategy >= 4) {
-            // TODO 什么数可以既小于2又大于等于4？
+        if (migrationStrategy >= 4) {
             limithard = 5;
+        } else if (migrationStrategy >= 2) {
+            // TODO 什么数可以既小于2又大于等于4？
+            limithard = 3.5;
         }
         if (GameplayConfig.ENABLE_MOB_BREAK.get()
                 && world.getLevelData().getGameRules().getBoolean(GameRules.RULE_MOBGRIEFING)

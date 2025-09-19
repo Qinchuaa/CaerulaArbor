@@ -239,15 +239,7 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
     public boolean isLegalTarget(LivingEntity pEntity) {
         if (pEntity == null || pEntity.isDeadOrDying() || this.isDeadOrDying()) return false;
         if(pEntity instanceof Player player){
-            if(player instanceof ServerPlayer sPlayer){
-                if(sPlayer.gameMode.getGameModeForPlayer() == GameType.CREATIVE) return false;
-            }else if(player.level().isClientSide){
-                ClientPacketListener packet = Minecraft.getInstance().getConnection();
-                if(packet != null) {
-                    PlayerInfo info = packet.getPlayerInfo(player.getGameProfile().getId());
-                    if (info != null && info.getGameMode() == GameType.CREATIVE) return false;
-                }
-            }
+            if(player.isCreative())return false;
         }
         if (pEntity.getType().is(ModTags.EntityTypes.SEA_BORN) && this.getTarget() != null) {
             return pEntity.is(this.getTarget());

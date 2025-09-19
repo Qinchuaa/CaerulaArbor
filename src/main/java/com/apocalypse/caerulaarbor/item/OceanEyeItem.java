@@ -40,7 +40,7 @@ public class OceanEyeItem extends Item {
         double y = entity.getY();
         double z = entity.getZ();
 
-        SIHelper.causeSanityInjury(entity, 325);
+        SIHelper.causeSanityInjury(entity, 325, );
         if (world instanceof ServerLevel server) {
             server.sendParticles(ParticleTypes.ELECTRIC_SPARK, x, y, z, 72, 1, 2, 1, 0.1);
         }

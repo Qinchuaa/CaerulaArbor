@@ -81,7 +81,7 @@ public class InfestedMobEffect extends MobEffect {
                 capability.seabornization = Math.min(amplifier, 2) + 1;
                 capability.syncPlayerVariables(entity);
             });
-            SIHelper.causeSanityInjury(entity, 750 * (amplifier + 1));
+            SIHelper.causeSanityInjury(entity, 750 * (amplifier + 1), );
 
             if (!world.isClientSide()) {
                 world.playSound(null, BlockPos.containing(x, y, z), SoundEvents.ZOMBIE_INFECT, SoundSource.PLAYERS, 2, 1);

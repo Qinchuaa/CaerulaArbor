@@ -1,6 +1,7 @@
 package com.apocalypse.caerulaarbor.capability.sanity;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
+import com.apocalypse.caerulaarbor.api.event.SanityEvent;
 import com.apocalypse.caerulaarbor.init.ModAttributes;
 import com.apocalypse.caerulaarbor.init.ModDamageTypes;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
@@ -13,6 +14,7 @@ import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.ai.attributes.AttributeInstance;
 import net.minecraft.world.entity.player.Player;
+import net.minecraftforge.common.MinecraftForge;
 
 import java.util.Optional;
 
@@ -47,6 +49,8 @@ public class SanityInjuryCapability implements ISanityInjuryCapability {
     }
 
     private void sanityBreak() {
+        SanityEvent.Break event = new SanityEvent.Break(owner);
+        if(!MinecraftForge.EVENT_BUS.post(event)) return;
         if (owner.level().isClientSide) {
             owner.level().playLocalSound(owner.getX(), owner.getY(), owner.getZ(), SoundEvents.ELDER_GUARDIAN_CURSE,
                     owner.getSoundSource(), 2.2f, 1, false);
@@ -97,7 +101,10 @@ public class SanityInjuryCapability implements ISanityInjuryCapability {
 
     @Override
     public void heal(double value) {
-        this.value = Math.min(this.value + value, 1000);
+        SanityEvent event = new SanityEvent.Heal(this.owner,value);
+        if(MinecraftForge.EVENT_BUS.post(event)) {
+            this.value = Math.min(this.value + event.getAmount(), 1000);
+        }
     }
 
     @Override

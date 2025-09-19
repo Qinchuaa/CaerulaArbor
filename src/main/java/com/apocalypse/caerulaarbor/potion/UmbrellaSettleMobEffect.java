@@ -45,7 +45,7 @@ public class UmbrellaSettleMobEffect extends InvisibleMobEffect {
             var attribute = entity.getAttribute(Attributes.ATTACK_DAMAGE);
             var attackDamage = attribute != null ? attribute.getValue() : 0;
 
-            SIHelper.causeSanityInjury(target, attackDamage * 4);
+            SIHelper.causeSanityInjury(target, attackDamage * 4, );
             target.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.MAGIC)), (float) attackDamage);
         }
 //		if (MapVariables.get(world).strategyGrow >= 3) {

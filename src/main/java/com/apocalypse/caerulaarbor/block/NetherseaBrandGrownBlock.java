@@ -1,6 +1,8 @@
 package com.apocalypse.caerulaarbor.block;
 
+import com.apocalypse.caerulaarbor.api.event.SanityEvent;
 import com.apocalypse.caerulaarbor.capability.ModCapabilities;
+import com.apocalypse.caerulaarbor.capability.sanity.SIHelper;
 import com.apocalypse.caerulaarbor.init.ModBlocks;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.init.ModTags;
@@ -98,7 +100,8 @@ public class NetherseaBrandGrownBlock extends NetherseaBrandBlock {
 
     private void tryCauseSanityDamage(Player player) {
         if (ModCapabilities.getPlayerVariables(player).seabornization >= 3) return;
-        ModCapabilities.getSanityInjury(player).hurt(player.getRandom().nextInt(32, 96));
+        int amount = player.getRandom().nextInt(32, 96);
+        SIHelper.causeSanityInjury(player,amount, SanityEvent.Hurt.Type.BLOCK);
     }
 
     private static void expandOrDie(ServerLevel world, BlockPos pos, BlockState blockstate, RandomSource random) {

@@ -8,6 +8,7 @@ import net.minecraft.data.PackOutput;
 import net.minecraft.data.tags.DamageTypeTagsProvider;
 import net.minecraft.tags.DamageTypeTags;
 import net.minecraftforge.common.data.ExistingFileHelper;
+import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.concurrent.CompletableFuture;
@@ -19,7 +20,7 @@ public class ModDamageTypeTagProvider extends DamageTypeTagsProvider {
     }
 
     @Override
-    protected void addTags(HolderLookup.Provider pProvider) {
+    protected void addTags(HolderLookup.@NotNull Provider pProvider) {
         this.tag(DamageTypeTags.BYPASSES_RESISTANCE).add(ModDamageTypes.NERVOUS_IMPAIRMENT);
         this.tag(DamageTypeTags.BYPASSES_ENCHANTMENTS).add(ModDamageTypes.NERVOUS_IMPAIRMENT, ModDamageTypes.HEMOPOIETIC_DISORDER);
         this.tag(DamageTypeTags.BYPASSES_EFFECTS).add(ModDamageTypes.NERVOUS_IMPAIRMENT, ModDamageTypes.HEMOPOIETIC_DISORDER);

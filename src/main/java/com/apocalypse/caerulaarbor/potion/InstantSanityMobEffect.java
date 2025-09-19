@@ -27,7 +27,7 @@ public class InstantSanityMobEffect extends InvisibleMobEffect {
 
 	@Override
 	public void applyInstantenousEffect(Entity source, Entity indirectSource, LivingEntity entity, int amplifier, double health) {
-		SIHelper.causeSanityInjury(entity, 125 * ((double) amplifier + 1));
+		SIHelper.causeSanityInjury(entity, 125 * ((double) amplifier + 1), );
 	}
 
 	@Override

@@ -37,7 +37,7 @@ public class TrailBuffMobEffect extends InvisibleMobEffect {
 		if (!entity.getType().is(ModTags.EntityTypes.SEA_BORN)) {
 			if (!(entity instanceof Player && (ModCapabilities.getPlayerVariables(entity)).seabornization == 3)) {
 				entity.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.MAGIC)), 2);
-				SIHelper.causeSanityInjury(entity, 20);
+				SIHelper.causeSanityInjury(entity, 20, );
 			}
 		}
 	}

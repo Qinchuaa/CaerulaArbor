@@ -49,7 +49,7 @@ public class TrailedNetheriteSwordItem extends SwordItem {
         var world = entity.level();
         double dam = 80 + 16 * itemstack.getEnchantmentLevel(Enchantments.SHARPNESS);
 
-        SIHelper.causeSanityInjury(entity, dam);
+        SIHelper.causeSanityInjury(entity, dam, );
 
         for (int i = 0; i < 5; i++) {
             CaerulaArborMod.queueServerWork(i, () -> {
