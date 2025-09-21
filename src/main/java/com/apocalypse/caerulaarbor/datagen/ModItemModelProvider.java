@@ -110,7 +110,6 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         // Sea Log Series 海原木系列方块
         evenSimplerBlockItem(ModBlocks.SEA_LOG);
-        evenSimplerBlockItem(ModBlocks.SEA_PLANKS);
         evenSimplerBlockItem(ModBlocks.SEA_LOG_LEAVES);
     }
 
