@@ -32,7 +32,7 @@ public class AngerOfTideMobEffect extends InvisibleMobEffect {
                 entity.level().getEntitiesOfClass(
                                 Mob.class,
                                 new AABB(_center, _center).inflate(64 / 2d),
-                                e -> e.getMaxHealth() >= 7 && !e.getType().is(ModTags.EntityTypes.SEA_BORN)
+                                e -> e.getMaxHealth() >= 7 && !e.getType().is(ModTags.EntityTypes.SEABORN)
                         )
                         .stream()
                         .findFirst()

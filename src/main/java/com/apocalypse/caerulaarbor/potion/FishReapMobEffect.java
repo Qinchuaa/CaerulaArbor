@@ -50,7 +50,7 @@
 //            {
 //                final Vec3 _center = new Vec3(x, y, z);
 //                for (var entityiterator : world.getEntitiesOfClass(Mob.class, new AABB(_center, _center).inflate(8 / 2d), e -> true)) {
-//                    if (entityiterator.getType().is(ModTags.EntityTypes.SEA_BORN) && !(entityiterator == mob.getTarget())) {
+//                    if (entityiterator.getType().is(ModTags.EntityTypes.SEABORN) && !(entityiterator == mob.getTarget())) {
 //                        continue;
 //                    }
 //                    if (entityiterator != entity) {

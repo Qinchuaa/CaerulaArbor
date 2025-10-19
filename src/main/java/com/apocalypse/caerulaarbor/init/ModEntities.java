@@ -117,6 +117,12 @@ public class ModEntities {
     public static final RegistryObject<EntityType<FilialGenerationEntity>> FILIAL_GENERATION = register("filial_generation",
             EntityType.Builder.<FilialGenerationEntity>of(FilialGenerationEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(16).setUpdateInterval(3).setCustomClientFactory(FilialGenerationEntity::new)
                     .sized(0.5f, 0.5f));
+    public static final RegistryObject<EntityType<TidelinkedBishopEntity>> TIDELINKED_BISHOP = register("tidelinked_bishop",
+            EntityType.Builder.<TidelinkedBishopEntity>of(TidelinkedBishopEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(16).setUpdateInterval(3).setCustomClientFactory(TidelinkedBishopEntity::new)
+                    .sized(1.1f, 2.2f));
+    public static final RegistryObject<EntityType<TidelinkedImmortalEntity>> TIDELINKED_IMMORTAL = register("tidelinked_immortal",
+            EntityType.Builder.<TidelinkedImmortalEntity>of(TidelinkedImmortalEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(16).setUpdateInterval(3).setCustomClientFactory(TidelinkedImmortalEntity::new)
+                    .sized(1.5f, 2f));
 
     // Projectiles
     public static final RegistryObject<EntityType<FishShootEntity>> FISH_SHOOT = register("fish_shoot",
@@ -218,5 +224,7 @@ public class ModEntities {
         event.put(THE_ABANDONED.get(), TheAbandonedEntity.createAttributes().build());
         event.put(QUINTUS.get(), QuintusEntity.createAttributes().build());
         event.put(FILIAL_GENERATION.get(), FilialGenerationEntity.createAttributes().build());
+        event.put(TIDELINKED_BISHOP.get(), TidelinkedBishopEntity.createAttributes().build());
+        event.put(TIDELINKED_IMMORTAL.get(), TidelinkedImmortalEntity.createAttributes().build());
     }
 }

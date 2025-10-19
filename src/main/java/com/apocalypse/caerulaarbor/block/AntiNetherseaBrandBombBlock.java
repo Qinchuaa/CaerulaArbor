@@ -23,10 +23,10 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-public class BombTrailerBlock extends Block {
+public class AntiNetherseaBrandBombBlock extends Block {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
-    public BombTrailerBlock() {
+    public AntiNetherseaBrandBombBlock() {
         super(BlockBehaviour.Properties.of().sound(SoundType.METAL).strength(4f, 32f).requiresCorrectToolForDrops());
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }

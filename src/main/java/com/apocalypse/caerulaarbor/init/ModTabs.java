@@ -78,7 +78,7 @@ public class ModTabs {
                         tabData.accept(ModBlocks.SCREAMING_CHERRY.get().asItem());
                         tabData.accept(ModBlocks.BLOCK_RECORDER.get().asItem());
                         tabData.accept(ModBlocks.TIDE_OBSERVATION_STATION.get().asItem());
-                        tabData.accept(ModBlocks.BOMB_TRAILER.get().asItem());
+                        tabData.accept(ModBlocks.ANTI_NETHERSEA_BRAND_BOMB.get().asItem());
                         tabData.accept(ModBlocks.ANCHOR_LOWER.get().asItem());
                         tabData.accept(ModBlocks.ANCHOR_MEDIUM.get().asItem());
                         tabData.accept(ModBlocks.ANCHOR_UPPER.get().asItem());

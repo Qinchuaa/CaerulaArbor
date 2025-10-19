@@ -97,17 +97,17 @@ public class ModBlockTagProvider extends BlockTagsProvider {
 
         // Sea Log Series 海原木系列方块标签
         this.tag(BlockTags.MINEABLE_WITH_AXE).add(
-                ModBlocks.SEA_LOG.get(),
-                ModBlocks.SEA_PLANKS.get()
+                ModBlocks.NETHERSEA_LOG.get(),
+                ModBlocks.NETHERSEA_PLANKS.get()
         );
         this.tag(BlockTags.LOGS).add(
-                ModBlocks.SEA_LOG.get()
+                ModBlocks.NETHERSEA_LOG.get()
         );
         this.tag(BlockTags.PLANKS).add(
-                ModBlocks.SEA_PLANKS.get()
+                ModBlocks.NETHERSEA_PLANKS.get()
         );
         this.tag(BlockTags.LEAVES).add(
-                ModBlocks.SEA_LOG_LEAVES.get()
+                ModBlocks.NETHERSEA_LEAVES.get()
         );
 
         this.tag(ModTags.Blocks.NETHERSEA_BLOCK).add(

@@ -170,7 +170,7 @@ public class NetherseaReefbreakerEntity extends SeaMonster {
     }
 
     public boolean isLegalGoal(LivingEntity entity){
-        if(entity.getType().is(ModTags.EntityTypes.SEA_BORN) && this.getTarget() != null)return entity.is(this.getTarget());
+        if(entity.getType().is(ModTags.EntityTypes.SEABORN) && this.getTarget() != null)return entity.is(this.getTarget());
         return entity != this;
     }
 

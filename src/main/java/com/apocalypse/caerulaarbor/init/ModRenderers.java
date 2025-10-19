@@ -45,5 +45,7 @@ public class ModRenderers {
         event.registerEntityRenderer(ModEntities.THE_ABANDONED.get(), TheAbandonedRenderer::new);
         event.registerEntityRenderer(ModEntities.QUINTUS.get(), QuintusRenderer::new);
         event.registerEntityRenderer(ModEntities.FILIAL_GENERATION.get(), FilialGenerationRenderer::new);
+        event.registerEntityRenderer(ModEntities.TIDELINKED_BISHOP.get(), TidelinkedBishopRenderer::new);
+        event.registerEntityRenderer(ModEntities.TIDELINKED_IMMORTAL.get(), TidelinkedImmortalRenderer::new);
     }
 }

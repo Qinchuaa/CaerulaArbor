@@ -2,7 +2,7 @@ package com.apocalypse.caerulaarbor.init;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.block.*;
-import com.apocalypse.caerulaarbor.init.ModTabs;
+import com.apocalypse.caerulaarbor.block.relic_about.*;
 import net.minecraft.world.level.block.*;
 import net.minecraft.world.level.block.state.BlockBehaviour;
 import net.minecraft.world.level.block.state.properties.BlockSetType;
@@ -37,7 +37,7 @@ public class ModBlocks {
     public static final RegistryObject<Block> NETHERSEA_BRAND_INIT = BLOCKS.register("nethersea_brand_init", NetherseaBrandInitInitBlock::new);
     public static final RegistryObject<Block> NETHERSEA_BRAND_GROWING = BLOCKS.register("nethersea_brand_growing", NetherseaBrandGrowingBlock::new);
     public static final RegistryObject<Block> NETHERSEA_BRAND_GROWN = BLOCKS.register("nethersea_brand_grown", NetherseaBrandGrownBlock::new);
-    public static final RegistryObject<Block> BOMB_TRAILER = BLOCKS.register("bomb_trailer", BombTrailerBlock::new);
+    public static final RegistryObject<Block> ANTI_NETHERSEA_BRAND_BOMB = BLOCKS.register("anti_nethersea_brand_bomb", AntiNetherseaBrandBombBlock::new);
     public static final RegistryObject<Block> OCEAN_GLASS = BLOCKS.register("ocean_glass", OceanGlassBlock::new);
     public static final RegistryObject<Block> OCEAN_GLASSPANE = BLOCKS.register("ocean_glasspane", OceanGlasspaneBlock::new);
     public static final RegistryObject<Block> BLOCK_KETTLE = BLOCKS.register("block_kettle", BlockKettleBlock::new);
@@ -102,10 +102,9 @@ public class ModBlocks {
     public static final RegistryObject<Block> MAR_VIENTO_PILLAR = BLOCKS.register("mar_viento_pillar", () -> new RotatedPillarBlock(BlockBehaviour.Properties.of().mapColor(MapColor.COLOR_LIGHT_BLUE).instrument(NoteBlockInstrument.BASEDRUM).requiresCorrectToolForDrops().strength(0.8F)));
 
     // Sea Log Series 海原木系列
-    public static final RegistryObject<Block> SEA_LOG = BLOCKS.register("sea_log",
-            () -> new RotatedPillarBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LOG)));
-    public static final RegistryObject<Block> SEA_PLANKS = BLOCKS.register("sea_planks",
+    public static final RegistryObject<Block> NETHERSEA_LOG = BLOCKS.register("nethersea_log", NetherseaLogBlock::new);
+    public static final RegistryObject<Block> NETHERSEA_PLANKS = BLOCKS.register("nethersea_planks",
             () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
-    public static final RegistryObject<Block> SEA_LOG_LEAVES = BLOCKS.register("sea_log_leaves",
+    public static final RegistryObject<Block> NETHERSEA_LEAVES = BLOCKS.register("nethersea_leaves",
             () -> new LeavesBlock(BlockBehaviour.Properties.copy(Blocks.OAK_LEAVES)));
 }

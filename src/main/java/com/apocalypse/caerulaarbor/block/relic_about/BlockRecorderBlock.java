@@ -1,4 +1,4 @@
-package com.apocalypse.caerulaarbor.block;
+package com.apocalypse.caerulaarbor.block.relic_about;
 
 import com.apocalypse.caerulaarbor.menu.CaerulaRecorderMenu;
 import net.minecraft.core.BlockPos;

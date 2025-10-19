@@ -8,16 +8,12 @@ import com.apocalypse.caerulaarbor.config.server.MiscConfig;
 import com.apocalypse.caerulaarbor.init.ModGameRules;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.init.ModTags;
-import net.minecraft.client.Minecraft;
-import net.minecraft.client.multiplayer.ClientPacketListener;
-import net.minecraft.client.multiplayer.PlayerInfo;
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.protocol.Packet;
 import net.minecraft.network.protocol.game.ClientGamePacketListener;
 import net.minecraft.server.level.ServerLevel;
-import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.damagesource.DamageSource;
@@ -29,7 +25,6 @@ import net.minecraft.world.entity.MobType;
 import net.minecraft.world.entity.ai.attributes.Attributes;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.player.Player;
-import net.minecraft.world.level.GameType;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.AABB;
 import net.minecraft.world.phys.Vec3;
@@ -100,7 +95,7 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
                             this.getX() - radius, this.getY() - 16, this.getZ() - radius,
                             this.getX() + radius, this.getY() + 16, this.getZ() + radius
                     ),
-                    entity -> entity.getType().is(ModTags.EntityTypes.SEA_BORN) && entity != this
+                    entity -> entity.getType().is(ModTags.EntityTypes.SEABORN) && entity != this
             ).forEach(entity -> {
                 if (entity instanceof SeaMonster seaMonster) {
                     seaMonster.getNavigation().moveTo(this, 1 + 0.1 * migrationLevel);
@@ -125,6 +120,10 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
         if (this.migrationCooldown > 0) {
             this.migrationCooldown--;
         }
+    }
+
+    protected void stopPermanent(){
+        this.permanentTime = 0;
     }
 
     /**
@@ -239,10 +238,13 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
     public boolean isLegalTarget(LivingEntity pEntity) {
         if (pEntity == null || pEntity.isDeadOrDying() || this.isDeadOrDying()) return false;
         if(pEntity instanceof Player player){
-            if(player.isCreative())return false;
+            if(player.isCreative()) return false;
         }
-        if (pEntity.getType().is(ModTags.EntityTypes.SEA_BORN) && this.getTarget() != null) {
-            return pEntity.is(this.getTarget());
+        if (pEntity.getType().is(ModTags.EntityTypes.SEABORN)) {
+            if (this.getTarget() != null) {
+                return pEntity.is(this.getTarget());
+            }
+            return false;
         }
         return !pEntity.is(this);
     }
@@ -250,8 +252,8 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
     public int countSeabornsAround(){
         Vec3 pos = this.position(),offset = new Vec3(32,32,32);
         AABB aabb = new AABB(pos.add(offset),pos.add(offset.scale(-1)));
-        List<LivingEntity> ents = this.level().getEntitiesOfClass(LivingEntity.class,aabb,e->{
-            return e.getType().is(ModTags.EntityTypes.SEA_BORN) && e.isAlive() && !e.is(this);
+        List<SeaMonster> ents = this.level().getEntitiesOfClass(SeaMonster.class,aabb,e->{
+            return e.getType().is(ModTags.EntityTypes.SEABORN_BOSS) && e.isAlive() && !e.is(this);
         });
         return ents.size();
     }
@@ -265,7 +267,7 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
     }
 
     protected void setPermanent(int time){
-        if(time>0)this.permanentTime = time;
+        if(time>0) this.permanentTime = time;
     }
 
     public void triggerSound(SoundEvent sound) {

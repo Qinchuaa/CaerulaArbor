@@ -1,5 +1,5 @@
 
-package com.apocalypse.caerulaarbor.block;
+package com.apocalypse.caerulaarbor.block.relic_about;
 
 import com.apocalypse.caerulaarbor.init.ModBlocks;
 import com.apocalypse.caerulaarbor.init.ModItems;
@@ -33,11 +33,11 @@ import org.jetbrains.annotations.NotNull;
 
 import javax.annotation.ParametersAreNonnullByDefault;
 
-public class BlockExtensionBlock extends Block implements SimpleWaterloggedBlock {
+public class BlockSpearBlock extends Block implements SimpleWaterloggedBlock {
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
     public static final BooleanProperty WATERLOGGED = BlockStateProperties.WATERLOGGED;
 
-    public BlockExtensionBlock() {
+    public BlockSpearBlock() {
         super(BlockBehaviour.Properties.of().sound(SoundType.DEEPSLATE_BRICKS).strength(8f, 256f).lightLevel(s -> 12).noOcclusion().pushReaction(PushReaction.BLOCK).hasPostProcess((bs, br, bp) -> true).emissiveRendering((bs, br, bp) -> true)
                 .isRedstoneConductor((bs, br, bp) -> false));
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH).setValue(WATERLOGGED, false));
@@ -65,10 +65,8 @@ public class BlockExtensionBlock extends Block implements SimpleWaterloggedBlock
     @ParametersAreNonnullByDefault
     public @NotNull VoxelShape getShape(BlockState state, BlockGetter world, BlockPos pos, CollisionContext context) {
         return switch (state.getValue(FACING)) {
-            default -> box(1, 1, 0, 9, 5, 16);
-            case NORTH -> box(7, 1, 0, 15, 5, 16);
-            case EAST -> box(0, 1, 7, 16, 5, 15);
-            case WEST -> box(0, 1, 1, 16, 5, 9);
+            case EAST, WEST -> box(0, 0, 4, 16, 4, 12);
+            default -> box(4, 0, 0, 12, 4, 16);
         };
     }
 
@@ -115,11 +113,11 @@ public class BlockExtensionBlock extends Block implements SimpleWaterloggedBlock
         int z = pos.getZ();
 
         if (world instanceof ServerLevel serverLevel) {
-            ItemEntity entityToSpawn = new ItemEntity(serverLevel, (x + 0.5), (y + 0.75), (z + 0.5), new ItemStack(ModItems.KINGS_LEGACY.get()));
+            ItemEntity entityToSpawn = new ItemEntity(serverLevel, (x + 0.5), (y + 0.75), (z + 0.5), new ItemStack(ModItems.KINGS_NEW_LANCE.get()));
             entityToSpawn.setPickUpDelay(10);
             serverLevel.addFreshEntity(entityToSpawn);
         }
-        world.levelEvent(2001, BlockPos.containing(x, y, z), Block.getId(ModBlocks.BLOCK_EXTENSION.get().defaultBlockState()));
+        world.levelEvent(2001, BlockPos.containing(x, y, z), Block.getId(ModBlocks.BLOCK_SPEAR.get().defaultBlockState()));
         world.setBlock(BlockPos.containing(x, y, z), Blocks.DEEPSLATE_BRICK_SLAB.defaultBlockState(), 3);
         return InteractionResult.SUCCESS;
     }

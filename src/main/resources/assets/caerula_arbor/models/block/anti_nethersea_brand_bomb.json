@@ -3,9 +3,9 @@
   "textures": {
     "down": "minecraft:block/iron_block",
     "up": "minecraft:block/iron_block",
-    "north": "caerula_arbor:block/bomb_trail_blue",
+    "north": "caerula_arbor:block/anti_nethersea_brand_blue",
     "east": "minecraft:block/iron_block",
-    "south": "caerula_arbor:block/bomb_trail_black",
+    "south": "caerula_arbor:block/anti_nethersea_brand_black",
     "west": "minecraft:block/iron_block",
     "particle": "minecraft:block/iron_block"
   },

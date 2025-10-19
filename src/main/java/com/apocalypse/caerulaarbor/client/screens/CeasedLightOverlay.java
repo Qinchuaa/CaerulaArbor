@@ -7,6 +7,7 @@ import com.mojang.blaze3d.platform.GlStateManager;
 import com.mojang.blaze3d.systems.RenderSystem;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.renderer.GameRenderer;
+import net.minecraft.commands.Commands;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
@@ -32,6 +33,7 @@ public class CeasedLightOverlay {
 			x = entity.getX();
 			y = entity.getY();
 			z = entity.getZ();
+			entity.kill();
 		}
 		RenderSystem.disableDepthTest();
 		RenderSystem.depthMask(false);

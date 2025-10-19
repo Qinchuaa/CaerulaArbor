@@ -189,9 +189,9 @@ public class LivingEventHandler {
     private static void handleSanityInjuryResistance(LivingEntity entity) {
         var attribute = entity.getAttribute(ModAttributes.SANITY_INJURY_RESISTANCE.get());
         if (attribute == null) return;
-        if (entity.getType().is(ModTags.EntityTypes.SEA_BORN_BOSS)) {
+        if (entity.getType().is(ModTags.EntityTypes.SEABORN_BOSS)) {
             attribute.addPermanentModifier(new AttributeModifier(CaerulaArborMod.ATTRIBUTE_MODIFIER, 85, AttributeModifier.Operation.ADDITION));
-        } else if (entity.getType().is(ModTags.EntityTypes.SEA_BORN)) {
+        } else if (entity.getType().is(ModTags.EntityTypes.SEABORN)) {
             attribute.addPermanentModifier(new AttributeModifier(CaerulaArborMod.ATTRIBUTE_MODIFIER, 60, AttributeModifier.Operation.ADDITION));
         }
         if (entity instanceof IronGolem) {
@@ -209,7 +209,7 @@ public class LivingEventHandler {
      * 在海嗣刷新时，根据当前的策略，给予不同的属性加成
      */
     private static void handleSeaBornSpawn(LivingEntity entity, MobSpawnType type) {
-        if (!entity.getType().is(ModTags.EntityTypes.SEA_BORN)) return;
+        if (!entity.getType().is(ModTags.EntityTypes.SEABORN)) return;
         var level = entity.level();
         var mapVariables = MapVariables.get(level);
         int subsisting = mapVariables.strategySubsisting;
@@ -247,7 +247,7 @@ public class LivingEventHandler {
 
         // 策略-繁育
         if (type != MobSpawnType.SPAWN_EGG && type != MobSpawnType.COMMAND && type != MobSpawnType.DISPENSER && type != MobSpawnType.BUCKET) {
-            if (breed > 0 && !entity.getType().is(ModTags.EntityTypes.SEA_BORN_CREATURE) && !entity.getType().is(ModTags.EntityTypes.SEA_BORN_BOSS)) {
+            if (breed > 0 && !entity.getType().is(ModTags.EntityTypes.SEABORN_CREATURE) && !entity.getType().is(ModTags.EntityTypes.SEABORN_BOSS)) {
                 double random = Math.random();
                 if (random < 0.05 + 0.05 * breed) {
                     var copyEntity = entity.getType().create(level);

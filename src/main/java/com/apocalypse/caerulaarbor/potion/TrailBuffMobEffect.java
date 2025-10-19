@@ -34,7 +34,7 @@
 //	public void applyEffectTick(@NotNull LivingEntity entity, int amplifier) {
 //		LevelAccessor world = entity.level();
 //
-//		if (!entity.getType().is(ModTags.EntityTypes.SEA_BORN)) {
+//		if (!entity.getType().is(ModTags.EntityTypes.SEABORN)) {
 //			if (!(entity instanceof Player && (ModCapabilities.getPlayerVariables(entity)).seabornization == 3)) {
 //				entity.hurt(new DamageSource(world.registryAccess().registryOrThrow(Registries.DAMAGE_TYPE).getHolderOrThrow(DamageTypes.MAGIC)), 2);
 //				SIHelper.causeSanityInjury(entity, 20, );

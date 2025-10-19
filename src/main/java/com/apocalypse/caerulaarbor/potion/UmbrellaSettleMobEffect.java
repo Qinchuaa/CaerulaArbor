@@ -39,7 +39,7 @@
 //                new AABB(x - 4, y - 0.5, z - 4, x + 4, y + 2, z + 4),
 //                e -> e != entity
 //                        && e.distanceTo(entity) <= 4
-//                        && !e.getType().is(ModTags.EntityTypes.SEA_BORN)
+//                        && !e.getType().is(ModTags.EntityTypes.SEABORN)
 //                        && (e == (entity instanceof Mob _mobEnt ? _mobEnt.getTarget() : null))
 //        )) {
 //            var attribute = entity.getAttribute(Attributes.ATTACK_DAMAGE);
@@ -51,7 +51,7 @@
 ////		if (MapVariables.get(world).strategyGrow >= 3) {
 ////			for (Entity target : world.getEntities(entity, new AABB((x - 7), (y - 1), (z - 7), (x + 7), (y + 3), (z + 7)))) {
 ////				if ((target != null ? entity.distanceTo(target) : -1) <= 7) {
-////					if (target.getType().is(ModTags.EntityTypes.SEA_BORN)) {
+////					if (target.getType().is(ModTags.EntityTypes.SEABORN)) {
 ////						if (!(target == (entity instanceof Mob _mobEnt ? (Entity) _mobEnt.getTarget() : null))) {
 ////							continue;
 ////						}

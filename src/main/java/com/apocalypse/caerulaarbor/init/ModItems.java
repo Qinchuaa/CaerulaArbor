@@ -233,7 +233,7 @@ public class ModItems {
     public static final RegistryObject<Item> NETHERSEA_BRAND_INIT = block(ModBlocks.NETHERSEA_BRAND_INIT);
     public static final RegistryObject<Item> NETHERSEA_BRAND_GROWING = block(ModBlocks.NETHERSEA_BRAND_GROWING);
     public static final RegistryObject<Item> NETHERSEA_BRAND_GROWN = block(ModBlocks.NETHERSEA_BRAND_GROWN);
-    public static final RegistryObject<Item> BOMB_TRAILER = block(ModBlocks.BOMB_TRAILER);
+    public static final RegistryObject<Item> BOMB_TRAILER = block(ModBlocks.ANTI_NETHERSEA_BRAND_BOMB);
     public static final RegistryObject<Item> OCEAN_GLASS = block(ModBlocks.OCEAN_GLASS);
     public static final RegistryObject<Item> OCEAN_GLASSPANE = block(ModBlocks.OCEAN_GLASSPANE);
     public static final RegistryObject<Item> OCEAN_CRYSTAL_BLOCK = block(ModBlocks.OCEAN_CRYSTAL_BLOCK);
@@ -296,9 +296,9 @@ public class ModItems {
     public static final RegistryObject<Item> SEA_VIENTO_PILLAR = block(ModBlocks.MAR_VIENTO_PILLAR);
 
     // Sea Log Series 海原木系列物品
-    public static final RegistryObject<Item> SEA_LOG = block(ModBlocks.SEA_LOG);
-    public static final RegistryObject<Item> SEA_PLANKS = block(ModBlocks.SEA_PLANKS);
-    public static final RegistryObject<Item> SEA_LOG_LEAVES = block(ModBlocks.SEA_LOG_LEAVES);
+    public static final RegistryObject<Item> SEA_LOG = block(ModBlocks.NETHERSEA_LOG);
+    public static final RegistryObject<Item> SEA_PLANKS = block(ModBlocks.NETHERSEA_PLANKS);
+    public static final RegistryObject<Item> SEA_LOG_LEAVES = block(ModBlocks.NETHERSEA_LEAVES);
 
     private static RegistryObject<Item> block(RegistryObject<Block> block) {
         return BLOCKS.register(block.getId().getPath(), () -> new BlockItem(block.get(), new Item.Properties()));

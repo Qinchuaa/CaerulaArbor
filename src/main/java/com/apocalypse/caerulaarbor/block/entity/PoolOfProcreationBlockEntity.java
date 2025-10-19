@@ -76,7 +76,7 @@ public class PoolOfProcreationBlockEntity extends BlockEntity {
     private static boolean spawnMob(ServerLevel level, BlockPos posToSpawn, boolean isRed) {
         boolean spawnElite = level.random.nextFloat() < getEliteChance(level, isRed);
         TagKey<EntityType<?>> entityTagToSpawn =
-                spawnElite ? ModTags.EntityTypes.SEA_BORN : ModTags.EntityTypes.SEABORN_ELITE;
+                spawnElite ? ModTags.EntityTypes.SEABORN : ModTags.EntityTypes.SEABORN_ELITE;
         Optional<EntityType<?>> optionalEntityType = randomEntityTypeInTag(level, entityTagToSpawn);
         if (optionalEntityType.isEmpty()) return false;
         EntityType<?> entityType = optionalEntityType.get();

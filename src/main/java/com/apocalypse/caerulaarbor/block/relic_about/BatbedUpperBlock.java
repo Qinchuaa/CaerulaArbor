@@ -1,5 +1,5 @@
 
-package com.apocalypse.caerulaarbor.block;
+package com.apocalypse.caerulaarbor.block.relic_about;
 
 import com.apocalypse.caerulaarbor.init.ModBlocks;
 import net.minecraft.core.BlockPos;

@@ -19,7 +19,7 @@ public class ModEntityTypeTagProvider extends EntityTypeTagsProvider {
 
     @Override
     protected void addTags(HolderLookup.Provider pProvider) {
-        this.tag(ModTags.EntityTypes.SEA_BORN).add(
+        this.tag(ModTags.EntityTypes.SEABORN).add(
                 ModEntities.SHELL_SEA_RUNNER.get(),
                 ModEntities.DEEP_SEA_SLIDER.get(),
                 ModEntities.RIDGE_SEA_SPITTER.get(),
@@ -38,16 +38,21 @@ public class ModEntityTypeTagProvider extends EntityTypeTagsProvider {
                 ModEntities.OCEAN_STONECUTTER.get(),
                 ModEntities.RETCHING_BROODMOTHER.get(),
                 ModEntities.SKIMMING_SEA_DRIFTER.get()
-        ).addTag(ModTags.EntityTypes.SEA_BORN_BOSS).addTag(ModTags.EntityTypes.SEA_BORN_CREATURE);
+        ).addTag(ModTags.EntityTypes.SEABORN_BOSS).addTag(ModTags.EntityTypes.SEABORN_CREATURE).addTag(ModTags.EntityTypes.SEABORN_ELITE);
 
-        this.tag(ModTags.EntityTypes.SEA_BORN_CREATURE).add(
+        this.tag(ModTags.EntityTypes.SEABORN_CREATURE).add(
                 ModEntities.BALEFUL_BROODLING.get(),
                 ModEntities.PATHSHAPER_FRACTAL.get()
         );
 
-        this.tag(ModTags.EntityTypes.SEA_BORN_BOSS).add(
+        this.tag(ModTags.EntityTypes.SEABORN_BOSS).add(
                 ModEntities.SUPER_SLIDER.get(),
-                ModEntities.PATH_SHAPER.get()
+                ModEntities.PATH_SHAPER.get(),
+                ModEntities.QUINTUS.get()
+        );
+
+        this.tag(ModTags.EntityTypes.SEABORN_ELITE).add(
+                ModEntities.BALEFUL_BROODLING.get()
         );
     }
 }

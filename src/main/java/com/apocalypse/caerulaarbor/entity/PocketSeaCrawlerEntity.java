@@ -228,7 +228,7 @@ public class PocketSeaCrawlerEntity extends SeaMonster {
 
         List<LivingEntity> entities = level.getEntitiesOfClass(LivingEntity.class, new AABB(this.getOnPos()).inflate(4), e -> true);
         for (var e : entities) {
-            if (e == this || e.getType().is(ModTags.EntityTypes.SEA_BORN)) {
+            if (e == this || e.getType().is(ModTags.EntityTypes.SEABORN)) {
                 continue;
             }
             e.hurt(level().damageSources().magic(), (float) (damage * 3));

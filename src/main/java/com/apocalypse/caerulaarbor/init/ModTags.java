@@ -38,9 +38,9 @@ public class ModTags {
     }
 
     public static class EntityTypes {
-        public static final TagKey<EntityType<?>> SEA_BORN = tag("sea_born");
-        public static final TagKey<EntityType<?>> SEA_BORN_CREATURE = tag("sea_born_creature");
-        public static final TagKey<EntityType<?>> SEA_BORN_BOSS = tag("sea_born_boss");
+        public static final TagKey<EntityType<?>> SEABORN = tag("seaborn");
+        public static final TagKey<EntityType<?>> SEABORN_CREATURE = tag("seaborn_creature");
+        public static final TagKey<EntityType<?>> SEABORN_BOSS = tag("seaborn_boss");
         public static final TagKey<EntityType<?>> SEABORN_ELITE = tag("seaborn_elite"); // TODO 改名+添加TagProvider
 
         private static TagKey<EntityType<?>> tag(String name) {

@@ -42,7 +42,7 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.BLOCK_KETTLE.get());
         this.dropSelf(ModBlocks.BLOCK_RECORDER.get());
         this.dropSelf(ModBlocks.BLOCK_SPEAR.get());
-        this.dropSelf(ModBlocks.BOMB_TRAILER.get());
+        this.dropSelf(ModBlocks.ANTI_NETHERSEA_BRAND_BOMB.get());
         this.dropSelf(ModBlocks.CHITIN_BLOCK.get());
         this.dropSelf(ModBlocks.COMPLEX_CHITIN_BLOCK.get());
         this.dropSelf(ModBlocks.KINGS_ARMOR.get());
@@ -120,9 +120,9 @@ public class ModBlockLootProvider extends BlockLootSubProvider {
         this.dropSelf(ModBlocks.MAR_VIENTO_PILLAR.get());
 
         // Sea Log Series 海原木系列方块
-        this.dropSelf(ModBlocks.SEA_LOG.get());
-        this.dropSelf(ModBlocks.SEA_PLANKS.get());
-        this.dropSelf(ModBlocks.SEA_LOG_LEAVES.get());
+        this.dropSelf(ModBlocks.NETHERSEA_LOG.get());
+        this.dropSelf(ModBlocks.NETHERSEA_PLANKS.get());
+        this.dropSelf(ModBlocks.NETHERSEA_LEAVES.get());
     }
 
     @Override

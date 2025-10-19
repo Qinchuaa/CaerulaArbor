@@ -17,8 +17,8 @@ public abstract class LinkedMonster extends MultiPhaseMonster{
 
     public LinkedMonster(EntityType<? extends Monster> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
-        this.finalPhase = 114514;
-        this.infinitePhase = true;
+        this.finalPhase = 64;
+        this.setInfinitePhase();
     }
 
     public void linkWith(LinkedMonster another){
@@ -41,7 +41,7 @@ public abstract class LinkedMonster extends MultiPhaseMonster{
         Level level = this.level();
         if(!isValidLink())return;
         Vec3 thisWaist = this.position().add(0,this.getBbHeight()/2,0);
-        Vec3 line = thisWaist.add(another.position().add(0,another.getBbHeight()/2,0).reverse());
+        Vec3 line = thisWaist.add(another.position().add(0,another.getBbHeight()/2,0).reverse()).reverse();
         double dist = line.length();
         if(dist >= 64) return;
         if(level instanceof ServerLevel sLevel){

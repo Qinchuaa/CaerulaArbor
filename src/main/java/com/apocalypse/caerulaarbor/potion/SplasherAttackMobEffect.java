@@ -48,7 +48,7 @@ public class SplasherAttackMobEffect extends InvisibleMobEffect {
             if ((entityiterator instanceof LivingEntity _livEnt ? _livEnt.getMaxHealth() : -1) < 5) {
                 continue;
             }
-            if (entityiterator.getType().is(ModTags.EntityTypes.SEA_BORN)) {
+            if (entityiterator.getType().is(ModTags.EntityTypes.SEABORN)) {
                 continue;
             }
             if (entityiterator instanceof Player) {

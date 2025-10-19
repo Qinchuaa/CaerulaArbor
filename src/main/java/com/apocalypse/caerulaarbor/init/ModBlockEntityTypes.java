@@ -17,4 +17,7 @@ public class ModBlockEntityTypes {
     public static final RegistryObject<BlockEntityType<AnchorBlockEntity>> ANCHOR =
             BLOCK_ENTITIES.register("anchor",
                     () -> BlockEntityType.Builder.of(AnchorBlockEntity::new, ModBlocks.ANCHOR_MEDIUM.get()).build(null));
+    public static final RegistryObject<BlockEntityType<AnchorBlockEntity>> NETHERSEA_LOG =
+            BLOCK_ENTITIES.register("nethersea_log",
+                    () -> BlockEntityType.Builder.of(AnchorBlockEntity::new, ModBlocks.NETHERSEA_LOG.get()).build(null));
 }
