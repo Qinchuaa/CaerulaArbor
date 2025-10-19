@@ -7,6 +7,7 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
+import com.apocalypse.caerulaarbor.entity.MediatorEntity;
 
 public abstract class LinkedMonster extends MultiPhaseMonster{
 
@@ -14,6 +15,8 @@ public abstract class LinkedMonster extends MultiPhaseMonster{
     public SimpleParticleType linkedParticleType = ParticleTypes.FIREWORK;
 
     public boolean isParticleStarter = true;
+    // 添加：中介通知抑制标记，防止递归通知导致栈溢出
+    private boolean suppressMediatorNotification = false;
 
     public LinkedMonster(EntityType<? extends Monster> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -52,8 +55,31 @@ public abstract class LinkedMonster extends MultiPhaseMonster{
         }
     }
 
+    // 添加：抑制标记访问器
+    public void setSuppressMediatorNotification(boolean suppress) {
+        this.suppressMediatorNotification = suppress;
+    }
+
+    public boolean isSuppressMediatorNotification() {
+        return this.suppressMediatorNotification;
+    }
+
+    protected boolean mediatorAllowsReborn(){
+        Level level = this.level();
+        if (level instanceof ServerLevel sLevel) {
+            var mediators = sLevel.getEntitiesOfClass(MediatorEntity.class, this.getBoundingBox().inflate(64));
+            for (var mediator : mediators) {
+
+                if (mediator.allowsReborn(this)) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
+
     @Override
-    public boolean extraRebornCondition(){return isValidLink();}
+    public boolean extraRebornCondition(){return mediatorAllowsReborn();}
 
     @Override
     public void baseTick(){

@@ -73,7 +73,13 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
 
     @Override
     public boolean hurt(@NotNull DamageSource source, float amount) {
-
+        // 复活期间不可被攻击：直接拒绝伤害与击退等效果
+        if (this instanceof com.apocalypse.caerulaarbor.entity.base.MultiPhaseMonster mm && mm.isReborning()) {
+            return false;
+        }
+        if (source.is(DamageTypes.DROWN) || isPermanent()) {
+            return false;
+        }
         boolean flag = super.hurt(source, amount);
         if (source.is(DamageTypes.DROWN) || isPermanent()) {
             return false;
@@ -170,6 +176,10 @@ public abstract class SeaMonster extends Monster implements GeoEntity {
      */
     @Override
     public boolean doHurtTarget(@NotNull Entity pEntity) {
+        // 复活期间不可攻击 防止递归攻击
+        if (this instanceof com.apocalypse.caerulaarbor.entity.base.MultiPhaseMonster mm && mm.isReborning()) {
+            return false;
+        }
         float damage = (float) this.getAttributeValue(Attributes.ATTACK_DAMAGE);
         var level = this.level();
         double grow = MapVariables.get(level).strategyGrow;

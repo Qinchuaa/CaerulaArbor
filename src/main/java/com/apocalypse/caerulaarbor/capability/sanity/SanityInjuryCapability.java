@@ -56,7 +56,7 @@ public class SanityInjuryCapability implements ISanityInjuryCapability {
                     owner.getSoundSource(), 2.2f, 1, false);
         } else {
             owner.addEffect(new MobEffectInstance(ModMobEffects.SANITY_IMMUNE.get(), 200, 0, false, false));
-            // 创造模式玩家不受影响，可以考虑是否使用配置来开启?
+            // 创造模式玩家不受影响，可以考虑是否使用配置来开启? <-不行 创造在我的世界里就是无敌的 除了虚空之外 其他伤害都无效
             if (owner instanceof Player player) {
                 if (!player.isCreative()) {
                     player.addEffect(new MobEffectInstance(ModMobEffects.DIZZY.get(), 200, 0, false, false));
