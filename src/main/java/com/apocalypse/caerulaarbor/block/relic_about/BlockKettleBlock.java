@@ -173,7 +173,7 @@ public class BlockKettleBlock extends Block {
                 return InteractionResult.SUCCESS;
             } else {
                 if (entity.getMainHandItem().getItem() == ModItems.EMPTY_CAN.get()
-                        // TODO 这条件对吗？
+                        // TODO 这条件对吗？ 只有在水和水_BOILING状态下，才能煮水？？ 没看懂
                         && !blockstate.getValue(NOODLED)
                 ) {
                     world.setBlock(pos, state.setValue(WATERED, false), 3);

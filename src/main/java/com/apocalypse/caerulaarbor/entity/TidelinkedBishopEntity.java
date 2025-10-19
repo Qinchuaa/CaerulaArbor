@@ -120,16 +120,6 @@ public class TidelinkedBishopEntity extends LinkedMonster implements RangedAttac
 		return super.hurt(source, amount);
 	}
 
-	@Override
-	public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
-		LinkedMonster immortal = ModEntities.TIDELINKED_IMMORTAL.get().create(this.level());
-        if (immortal != null) {
-            immortal.setPos(this.position());
-			this.linkWith(immortal);
-			this.level().addFreshEntity(immortal);
-        }
-        return livingdata;
-	}
 
 	@Override
 	public void baseTick() {
@@ -170,29 +160,48 @@ public class TidelinkedBishopEntity extends LinkedMonster implements RangedAttac
 		this.bossInfo.setProgress(this.getHealth() / this.getMaxHealth());
 	}
 
-	public void startReborn(){
-		this.triggerAnim("start_reborn","start_reborn");
-	}
+	@Override
+	public void setHealth(float pHealth) {
+        /*
+		写这一块的时候，触发了一个极其常见的问题，就是在设置健康值的时候，会触发中介的通知
+         但是，在中介通知中，会再次触发设置健康值的方法，导致无限循环 游戏直接崩溃.....
+		 没ai我真不知道怎么办吧....哎
+		 */
+        if (this.isSuppressMediatorNotification()) {
+            super.setHealth(pHealth);
+            return;
+        }
+        if (pHealth <= 0) {
+            boolean killBoth = notifyMediatorAndCheckKill(true);
+            if (!killBoth) {
+                super.setHealth(1);
+                this.setReborning();
+                return;
+            }
+        }
+        super.setHealth(pHealth);
+    }
 
+	@Override
 	public void endReborn(){
-		this.triggerAnim("end_reborn","end_reborn");
+	    // 复活结束后，告知中介当前实体的情况
+	    notifyMediatorAndCheckKill(false);
 	}
 
-	public static AttributeSupplier.Builder createAttributes() {
-		AttributeSupplier.Builder builder = Mob.createMobAttributes();
-		builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3);
-		builder = builder.add(Attributes.MAX_HEALTH, 160);
-		builder = builder.add(Attributes.ARMOR, 6);
-		builder = builder.add(Attributes.ATTACK_DAMAGE, 9);
-		builder = builder.add(Attributes.FOLLOW_RANGE, 16);
-		builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 0.5);
-		return builder;
-	}
+
+
+public static AttributeSupplier.Builder createAttributes() {
+    AttributeSupplier.Builder builder = Mob.createMobAttributes();
+    builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3);
+    builder = builder.add(Attributes.MAX_HEALTH, 160);
+    builder = builder.add(Attributes.ARMOR, 6);
+    builder = builder.add(Attributes.ATTACK_DAMAGE, 9);
+    builder = builder.add(Attributes.FOLLOW_RANGE, 16);
+    builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 0.5);
+    return builder;
+}
 
 	private PlayState movementPredicate(AnimationState event) {
-		if(this.isReborning()){
-			return event.setAndContinue(RawAnimation.begin().thenLoop(animLoc("die_loop")));
-		}
 		if (event.isMoving()) {
 			return event.setAndContinue(RawAnimation.begin().thenLoop(animLoc("move")));
 		}
@@ -222,11 +231,7 @@ public class TidelinkedBishopEntity extends LinkedMonster implements RangedAttac
 
 	@Override
 	protected void tickDeath() {
-		++this.deathTime;
-		if (this.deathTime == 20) {
-			this.remove(RemovalReason.KILLED);
-			this.dropExperience();
-		}
+		super.tickDeath();
 	}
 
 	@Override
@@ -234,12 +239,29 @@ public class TidelinkedBishopEntity extends LinkedMonster implements RangedAttac
 		data.add(new AnimationController<>(this, "movement", 2, this::movementPredicate));
 		data.add(new AnimationController<>(this, "attacking", 2, this::attackingPredicate));
 		data.add(new AnimationController<>(this, "start_reborn", 0, event -> PlayState.STOP)
-				.triggerableAnim("start_reborn", RawAnimation.begin()
-						.thenPlay(animLoc("die"))
-						.thenLoop(animLoc("die_loop"))));
-		data.add(new AnimationController<>(this, "stop_reborn", 0, event -> PlayState.STOP)
-				.triggerableAnim("stop_reborn", RawAnimation.begin()
-						.thenPlay(animLoc("die_idle"))
-						.thenLoop(animLoc("idle"))));
+		            .triggerableAnim("start_reborn", RawAnimation.begin()
+		                    .thenPlay(animLoc("die"))
+		                    .thenLoop(animLoc("die_loop"))));
+	}
+
+	private boolean notifyMediatorAndCheckKill(boolean isDying) {
+        
+        if (this.isSuppressMediatorNotification()) {
+            return false;
+        }
+        var level = this.level();
+        if (level instanceof net.minecraft.server.level.ServerLevel sLevel) {
+            var mediators = sLevel.getEntitiesOfClass(com.apocalypse.caerulaarbor.entity.BishopAndImmortalMediatorEntity.class, this.getBoundingBox().inflate(64));
+            boolean both = false;
+            for (var mediator : mediators) {
+                both |= mediator.updateDyingState(this, isDying);
+            }
+            return both;
+        }
+        return false;
+    }
+
+	public void startReborn(){
+	    this.triggerAnim("start_reborn","start_reborn");
 	}
 }

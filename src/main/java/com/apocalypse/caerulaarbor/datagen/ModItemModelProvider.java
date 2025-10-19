@@ -23,7 +23,7 @@ public class ModItemModelProvider extends ItemModelProvider {
     @Override
     protected void registerModels() {
 
-        // relics
+        // 藏品
         simpleItem(ModItems.FEATURED_CANNED_MEAT);
         simpleItem(ModItems.SEAWEED_SALAD);
         simpleItem(ModItems.ORANGE_STORM);
@@ -43,7 +43,7 @@ public class ModItemModelProvider extends ItemModelProvider {
 
         simpleItem(ModItems.SURVIVOR_CONTRACT);
 
-        // equipments
+        // 装备
         handheldItem(ModItems.CHITIN_AXE);
         handheldItem(ModItems.CHITIN_HOE);
         handheldItem(ModItems.CHITIN_PICKAXE);
@@ -63,7 +63,7 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.COMPLEX_CHITIN_LEGGINGS);
         simpleItem(ModItems.COMPLEX_CHITIN_BOOTS);
 
-        // misc
+        // 杂项 我猜之后要改为原材料吧...
         simpleItem(ModItems.OBSIDIAN_BALL);
         simpleItem(ModItems.OCEAN_CHITIN);
         simpleItem(ModItems.COMPLEX_CHITIN);
@@ -73,10 +73,10 @@ public class ModItemModelProvider extends ItemModelProvider {
         simpleItem(ModItems.COOKED_PEDUNCLE);
         simpleItem(ModItems.ELITE_PEDUNCLE);
 
-        // spawn eggs
+        // 刷怪蛋
         ModItems.SPAWN_EGGS.getEntries().forEach(this::spawnEggItem);
 
-        // blocks
+        // 方块
         evenSimplerBlockItem(ModBlocks.POOL_OF_PROCREATION);
         evenSimplerBlockItem(ModBlocks.NOURISHED_POOL_OF_PROCREATION);
         evenSimplerBlockItem(ModBlocks.TIDE_OBSERVATION_STATION);

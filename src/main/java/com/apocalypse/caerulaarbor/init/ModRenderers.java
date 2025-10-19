@@ -1,6 +1,8 @@
 package com.apocalypse.caerulaarbor.init;
 
 import com.apocalypse.caerulaarbor.client.renderer.*;
+import com.apocalypse.caerulaarbor.client.renderer.TidelinkedImmortalRenderer;
+import com.apocalypse.caerulaarbor.client.renderer.MediatorRenderer;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
@@ -47,5 +49,7 @@ public class ModRenderers {
         event.registerEntityRenderer(ModEntities.FILIAL_GENERATION.get(), FilialGenerationRenderer::new);
         event.registerEntityRenderer(ModEntities.TIDELINKED_BISHOP.get(), TidelinkedBishopRenderer::new);
         event.registerEntityRenderer(ModEntities.TIDELINKED_IMMORTAL.get(), TidelinkedImmortalRenderer::new);
+        event.registerEntityRenderer(ModEntities.MEDIATOR.get(), ctx -> new MediatorRenderer<>(ctx));
+        event.registerEntityRenderer(ModEntities.BISHOP_IMMORTAL.get(), ctx -> new MediatorRenderer<>(ctx));
     }
 }

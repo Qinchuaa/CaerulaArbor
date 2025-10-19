@@ -18,7 +18,7 @@ public abstract class MultiPhaseMonster extends SkilledSeaMonster{
     protected boolean infinitePhase = false;//是否无限转阶段！！！
     protected int rebornTime = 200; //复活用时
     private int rebornElapse = 0;//复活状态剩余时间
-    protected int invulnerableTimeAfterReborn = 0;//转阶段后无敌时间，默认0致敬杰斯顿（喜）
+    protected int invulnerableTimeAfterReborn = 0;//转阶段后无敌时间，默认0致敬杰斯顿（喜） 
 
     @Override
     public void addAdditionalSaveData(@NotNull CompoundTag pCompound) {
@@ -114,5 +114,20 @@ public abstract class MultiPhaseMonster extends SkilledSeaMonster{
         }else if(this.isNoAi())
             this.setNoAi(false);
         super.baseTick();
+    }
+
+    @Override
+    public void heal(float amount){
+        if(isReborning()) return;
+        super.heal(amount);
+    }
+
+    @Override
+    public void travel(net.minecraft.world.phys.Vec3 vec){
+        if(isReborning()){
+            super.travel(net.minecraft.world.phys.Vec3.ZERO);
+            return;
+        }
+        super.travel(vec);
     }
 }
