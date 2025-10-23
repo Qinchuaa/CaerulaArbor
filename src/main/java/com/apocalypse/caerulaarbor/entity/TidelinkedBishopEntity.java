@@ -52,6 +52,7 @@ import javax.annotation.Nullable;
 
 public class TidelinkedBishopEntity extends LinkedMonster implements RangedAttackMob, GeoEntity {
 	public static final EntityDataAccessor<Boolean> SHOOT = SynchedEntityData.defineId(TidelinkedBishopEntity.class, EntityDataSerializers.BOOLEAN);
+	// Boss 血条
 	private final ServerBossEvent bossInfo = new ServerBossEvent(this.getDisplayName(), ServerBossEvent.BossBarColor.GREEN, ServerBossEvent.BossBarOverlay.NOTCHED_6);
 
 	public TidelinkedBishopEntity(PlayMessages.SpawnEntity packet, Level world) {
@@ -121,10 +122,14 @@ public class TidelinkedBishopEntity extends LinkedMonster implements RangedAttac
 	}
 
 
+	// 每个 tick 都会调一次：刷新体型，并在服务器端同步 Boss 血条进度（复活时也能跟上）
 	@Override
 	public void baseTick() {
 		super.baseTick();
 		this.refreshDimensions();
+		if (!this.level().isClientSide()) {
+			this.bossInfo.setProgress(this.getHealth() / this.getMaxHealth());
+		}
 	}
 
 	@Override
@@ -154,12 +159,16 @@ public class TidelinkedBishopEntity extends LinkedMonster implements RangedAttac
 		this.bossInfo.removePlayer(player);
 	}
 
+	// AI 循环里也会同步一次 Boss 血条（复活阶段 NoAI 时这段不会跑）
 	@Override
 	public void customServerAiStep() {
 		super.customServerAiStep();
 		this.bossInfo.setProgress(this.getHealth() / this.getMaxHealth());
 	}
 
+	// 重写血量设置：
+	// 这里踩过坑——设置血量会触发中介通知，中介里又会设置血量，形成无限循环（直接崩）。
+	// 解决：加一个“抑制中介通知”的开关，必要时只改血量不通知。
 	@Override
 	public void setHealth(float pHealth) {
         /*
@@ -182,11 +191,12 @@ public class TidelinkedBishopEntity extends LinkedMonster implements RangedAttac
         super.setHealth(pHealth);
     }
 
+	// 复活结束
 	@Override
-	public void endReborn(){
-	    // 复活结束后，告知中介当前实体的情况
-	    notifyMediatorAndCheckKill(false);
-	}
+    public void endReborn(){
+        this.triggerAnim("start_reborn","die_idle");
+        notifyMediatorAndCheckKill(false);
+    }
 
 
 
@@ -239,14 +249,18 @@ public static AttributeSupplier.Builder createAttributes() {
 		data.add(new AnimationController<>(this, "movement", 2, this::movementPredicate));
 		data.add(new AnimationController<>(this, "attacking", 2, this::attackingPredicate));
 		data.add(new AnimationController<>(this, "start_reborn", 0, event -> PlayState.STOP)
-		            .triggerableAnim("start_reborn", RawAnimation.begin()
-		                    .thenPlay(animLoc("die"))
-		                    .thenLoop(animLoc("die_loop"))));
+                    .triggerableAnim("start_reborn", RawAnimation.begin()
+                            .thenPlay(animLoc("die"))
+                            .thenLoop(animLoc("die_loop")))
+                    .triggerableAnim("die_idle", RawAnimation.begin()
+                            .thenPlay(animLoc("die_idle"))));
 	}
 
+	// 告诉中介“我在濒死/复活结束”的状态；返回值表示是否两人一起死
 	private boolean notifyMediatorAndCheckKill(boolean isDying) {
         
-        if (this.isSuppressMediatorNotification()) {
+        // 说明：只在上报濒死(true)时允许抑制通知；复活结束(false)一定要通知
+        if (isDying && this.isSuppressMediatorNotification()) {
             return false;
         }
         var level = this.level();
@@ -261,6 +275,7 @@ public static AttributeSupplier.Builder createAttributes() {
         return false;
     }
 
+	// 开始复活：触发复活动画（先播放“死”，再循环“死”）
 	public void startReborn(){
 	    this.triggerAnim("start_reborn","start_reborn");
 	}

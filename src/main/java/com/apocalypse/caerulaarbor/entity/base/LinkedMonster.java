@@ -17,6 +17,8 @@ public abstract class LinkedMonster extends MultiPhaseMonster{
     public boolean isParticleStarter = true;
     // 添加：中介通知抑制标记，防止递归通知导致栈溢出
     private boolean suppressMediatorNotification = false;
+    // 添加：一次性禁止复活锁，确保被中介强杀时不触发复活
+    private boolean forbidRebornOnce = false;
 
     public LinkedMonster(EntityType<? extends Monster> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -64,6 +66,11 @@ public abstract class LinkedMonster extends MultiPhaseMonster{
         return this.suppressMediatorNotification;
     }
 
+    // 新增：一次性禁止复活锁的访问器
+    public void setForbidRebornOnce(boolean forbid) {
+        this.forbidRebornOnce = forbid;
+    }
+
     protected boolean mediatorAllowsReborn(){
         Level level = this.level();
         if (level instanceof ServerLevel sLevel) {
@@ -79,7 +86,13 @@ public abstract class LinkedMonster extends MultiPhaseMonster{
     }
 
     @Override
-    public boolean extraRebornCondition(){return mediatorAllowsReborn();}
+    public boolean extraRebornCondition(){
+        // 当存在一次性禁止复活锁时，拒绝复活（不消耗，直至实体移除）
+        if (this.forbidRebornOnce) {
+            return false;
+        }
+        return mediatorAllowsReborn();
+    }
 
     @Override
     public void baseTick(){

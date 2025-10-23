@@ -48,6 +48,7 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.level.ServerBossEvent;
 
 public class TidelinkedImmortalEntity extends LinkedMonster implements GeoEntity {
+	// Boss 血条（蓝色）：显示当前名字和血量进度
 	private final ServerBossEvent bossInfo = new ServerBossEvent(this.getDisplayName(), ServerBossEvent.BossBarColor.BLUE, ServerBossEvent.BossBarOverlay.PROGRESS);
 
 	public TidelinkedImmortalEntity(PlayMessages.SpawnEntity packet, Level world) {
@@ -111,10 +112,14 @@ public class TidelinkedImmortalEntity extends LinkedMonster implements GeoEntity
 		return super.hurt(source, amount);
 	}
 
+	// 每个 tick 都会调一次：刷新体型并在服务器端同步 Boss 血条进度
 	@Override
 	public void baseTick() {
 		super.baseTick();
 		this.refreshDimensions();
+		if (!this.level().isClientSide()) {
+			this.bossInfo.setProgress(this.getHealth() / this.getMaxHealth());
+		}
 	}
 
 	@Override
@@ -139,12 +144,16 @@ public class TidelinkedImmortalEntity extends LinkedMonster implements GeoEntity
 		this.bossInfo.removePlayer(player);
 	}
 
+	// AI 循环里也会同步一次 Boss 血条（复活阶段 NoAI 时这段不会跑）
 	@Override
 	public void customServerAiStep() {
 		super.customServerAiStep();
 		this.bossInfo.setProgress(this.getHealth() / this.getMaxHealth());
 	}
 
+	// 重写血量设置：
+	// - 若正在“抑制中介通知”，直接改血量，避免循环通知
+	// - 血量到 0 时先问中介：是否两人同时死亡；否则把血量拉到 1 并进入复活
 	@Override
 	public void setHealth(float pHealth) {
 		
@@ -157,7 +166,7 @@ public class TidelinkedImmortalEntity extends LinkedMonster implements GeoEntity
 			boolean killBoth = notifyMediatorAndCheckKill(true);
 			if (!killBoth) {
 				super.setHealth(1);
-	
+		
 				this.setReborning();
 				return;
 			}
@@ -165,11 +174,12 @@ public class TidelinkedImmortalEntity extends LinkedMonster implements GeoEntity
 		super.setHealth(pHealth);
 	}
 
+	// 复活结束：先切到“躺尸闲置”动画
 	@Override
-	public void endReborn(){
-	   
-	    notifyMediatorAndCheckKill(false);
-	}
+    public void endReborn(){
+        this.triggerAnim("start_reborn","die_idle");
+        notifyMediatorAndCheckKill(false);
+    }
 
 
 
@@ -224,14 +234,18 @@ public class TidelinkedImmortalEntity extends LinkedMonster implements GeoEntity
 		data.add(new AnimationController<>(this, "start_reborn", 0, event -> PlayState.STOP)
 				.triggerableAnim("start_reborn", RawAnimation.begin()
 					.thenPlay(animLoc("die"))
-					.thenLoop(animLoc("die_loop"))));
+					.thenLoop(animLoc("die_loop")))
+				.triggerableAnim("die_idle", RawAnimation.begin()
+					.thenPlay(animLoc("die_idle"))));
 	}
 
+	// 通知中介当前“濒死/复活结束”的状态；返回值表示是否需要两人一起死
 	private boolean notifyMediatorAndCheckKill(boolean isDying) {
 		
-		if (this.isSuppressMediatorNotification()) {
-			return false;
-		}
+        // 说明：只在上报濒死(true)时允许抑制通知；复活结束(false)一定要通知
+        if (isDying && this.isSuppressMediatorNotification()) {
+            return false;
+        }
 		var level = this.level();
 		if (level instanceof net.minecraft.server.level.ServerLevel sLevel) {
 			var mediators = sLevel.getEntitiesOfClass(com.apocalypse.caerulaarbor.entity.BishopAndImmortalMediatorEntity.class, this.getBoundingBox().inflate(64));
@@ -244,7 +258,9 @@ public class TidelinkedImmortalEntity extends LinkedMonster implements GeoEntity
 		return false;
 	}
 
+	// 开始复活！！！
 	public void startReborn(){
 		this.triggerAnim("start_reborn","start_reborn");
 	}
+
 }
