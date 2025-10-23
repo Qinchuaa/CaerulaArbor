@@ -145,34 +145,13 @@ public class TidelinkedImmortalEntity extends LinkedMonster implements GeoEntity
 		this.bossInfo.setProgress(this.getHealth() / this.getMaxHealth());
 	}
 
-	@Override
-	public void setHealth(float pHealth) {
-		
-		if (this.isSuppressMediatorNotification()) {
-			super.setHealth(pHealth);
-			return;
-		}
-		if (pHealth <= 0) {
-	
-			boolean killBoth = notifyMediatorAndCheckKill(true);
-			if (!killBoth) {
-				super.setHealth(1);
-	
-				this.setReborning();
-				return;
-			}
-		}
-		super.setHealth(pHealth);
+	public void startReborn(){
+		this.triggerAnim("start_reborn","start_reborn");
 	}
 
-	@Override
 	public void endReborn(){
-	   
-	    notifyMediatorAndCheckKill(false);
+		this.triggerAnim("stop_reborn","stop_reborn");
 	}
-
-
-
 
 	public static AttributeSupplier.Builder createAttributes() {
 		AttributeSupplier.Builder builder = Mob.createMobAttributes();
@@ -186,6 +165,9 @@ public class TidelinkedImmortalEntity extends LinkedMonster implements GeoEntity
 	}
 
 	private PlayState movementPredicate(AnimationState event) {
+		if (this.isReborning()){
+			return event.setAndContinue(RawAnimation.begin().thenLoop(animLoc("die_loop")));
+		}
 		if (event.isMoving()){
 			return event.setAndContinue(RawAnimation.begin().thenLoop(animLoc("move")));
 		}
@@ -214,7 +196,11 @@ public class TidelinkedImmortalEntity extends LinkedMonster implements GeoEntity
 
 	@Override
 	protected void tickDeath() {
-		super.tickDeath();
+		++this.deathTime;
+		if (this.deathTime == 23) {
+			this.remove(RemovalReason.KILLED);
+			this.dropExperience();
+		}
 	}
 
 	@Override
@@ -223,28 +209,11 @@ public class TidelinkedImmortalEntity extends LinkedMonster implements GeoEntity
 		data.add(new AnimationController<>(this, "attacking", 2, this::attackingPredicate));
 		data.add(new AnimationController<>(this, "start_reborn", 0, event -> PlayState.STOP)
 				.triggerableAnim("start_reborn", RawAnimation.begin()
-					.thenPlay(animLoc("die"))
-					.thenLoop(animLoc("die_loop"))));
-	}
-
-	private boolean notifyMediatorAndCheckKill(boolean isDying) {
-		
-		if (this.isSuppressMediatorNotification()) {
-			return false;
-		}
-		var level = this.level();
-		if (level instanceof net.minecraft.server.level.ServerLevel sLevel) {
-			var mediators = sLevel.getEntitiesOfClass(com.apocalypse.caerulaarbor.entity.BishopAndImmortalMediatorEntity.class, this.getBoundingBox().inflate(64));
-			boolean both = false;
-			for (var mediator : mediators) {
-				both |= mediator.updateDyingState(this, isDying);
-			}
-			return both;
-		}
-		return false;
-	}
-
-	public void startReborn(){
-		this.triggerAnim("start_reborn","start_reborn");
+						.thenPlay(animLoc("die"))
+						.thenLoop(animLoc("die_loop"))));
+		data.add(new AnimationController<>(this, "stop_reborn", 0, event -> PlayState.STOP)
+				.triggerableAnim("stop_reborn", RawAnimation.begin()
+						.thenPlay(animLoc("die_idle"))
+						.thenLoop(animLoc("idle"))));
 	}
 }

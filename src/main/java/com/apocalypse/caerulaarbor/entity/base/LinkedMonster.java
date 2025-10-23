@@ -2,12 +2,16 @@ package com.apocalypse.caerulaarbor.entity.base;
 
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import com.apocalypse.caerulaarbor.entity.MediatorEntity;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.UUID;
 
 public abstract class LinkedMonster extends MultiPhaseMonster{
 
@@ -15,13 +19,26 @@ public abstract class LinkedMonster extends MultiPhaseMonster{
     public SimpleParticleType linkedParticleType = ParticleTypes.FIREWORK;
 
     public boolean isParticleStarter = true;
-    // 添加：中介通知抑制标记，防止递归通知导致栈溢出
-    private boolean suppressMediatorNotification = false;
 
     public LinkedMonster(EntityType<? extends Monster> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
         this.finalPhase = 64;
         this.setInfinitePhase();
+    }
+
+    @Override
+    public void addAdditionalSaveData(@NotNull CompoundTag pCompound) {
+        super.addAdditionalSaveData(pCompound);
+        pCompound.putString("linkedAnother", another.getUUID().toString());
+    }
+
+    @Override
+    public void readAdditionalSaveData(@NotNull CompoundTag pCompound) {
+        super.readAdditionalSaveData(pCompound);
+        if(pCompound.contains("linkedAnother") && this.level() instanceof ServerLevel sLevel){
+            Entity entity = sLevel.getEntity(UUID.fromString(pCompound.getString("linkedAnother")));
+            if(entity instanceof LinkedMonster _lkd) another = _lkd;
+        }
     }
 
     public void linkWith(LinkedMonster another){
@@ -55,31 +72,8 @@ public abstract class LinkedMonster extends MultiPhaseMonster{
         }
     }
 
-    // 添加：抑制标记访问器
-    public void setSuppressMediatorNotification(boolean suppress) {
-        this.suppressMediatorNotification = suppress;
-    }
-
-    public boolean isSuppressMediatorNotification() {
-        return this.suppressMediatorNotification;
-    }
-
-    protected boolean mediatorAllowsReborn(){
-        Level level = this.level();
-        if (level instanceof ServerLevel sLevel) {
-            var mediators = sLevel.getEntitiesOfClass(MediatorEntity.class, this.getBoundingBox().inflate(64));
-            for (var mediator : mediators) {
-
-                if (mediator.allowsReborn(this)) {
-                    return true;
-                }
-            }
-        }
-        return false;
-    }
-
     @Override
-    public boolean extraRebornCondition(){return mediatorAllowsReborn();}
+    public boolean extraRebornCondition(){return isValidLink();}
 
     @Override
     public void baseTick(){

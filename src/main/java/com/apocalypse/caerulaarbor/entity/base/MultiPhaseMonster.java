@@ -46,7 +46,7 @@ public abstract class MultiPhaseMonster extends SkilledSeaMonster{
      * 能否转阶段
      */
     public boolean canReborn() {
-        return (curPhase < finalPhase || infinitePhase) && !isPermanent() && !isReborning() && extraRebornCondition();
+        return (curPhase < finalPhase || infinitePhase) && extraRebornCondition();
     }
 
     private void forceStopReborning(){
@@ -82,6 +82,7 @@ public abstract class MultiPhaseMonster extends SkilledSeaMonster{
 
     @Override
     public void setHealth(float pHealth){
+        if(pHealth < this.getHealth() && isReborning()) return;
         if(pHealth <= 0 && canReborn()){
             this.setHealth(1);
             this.setReborning();
@@ -104,7 +105,7 @@ public abstract class MultiPhaseMonster extends SkilledSeaMonster{
         if(isReborning()){
             double healPerc = 1- (double) rebornElapse / rebornTime;
             this.setHealth((float) Math.max(1,this.getMaxHealth() * healPerc));
-            if(rebornElapse-- == 0) {
+            if(--rebornElapse == 0) {
                 endReborn();
                 this.setNoAi(false);
             }
