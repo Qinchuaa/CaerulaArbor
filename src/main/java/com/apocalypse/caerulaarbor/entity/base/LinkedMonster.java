@@ -30,20 +30,6 @@ public abstract class LinkedMonster extends MultiPhaseMonster{
         this.setInfinitePhase();
     }
 
-    @Override
-    public void addAdditionalSaveData(@NotNull CompoundTag pCompound) {
-        super.addAdditionalSaveData(pCompound);
-        pCompound.putString("linkedAnother", another.getUUID().toString());
-    }
-
-    @Override
-    public void readAdditionalSaveData(@NotNull CompoundTag pCompound) {
-        super.readAdditionalSaveData(pCompound);
-        if(pCompound.contains("linkedAnother") && this.level() instanceof ServerLevel sLevel){
-            Entity entity = sLevel.getEntity(UUID.fromString(pCompound.getString("linkedAnother")));
-            if(entity instanceof LinkedMonster _lkd) another = _lkd;
-        }
-    }
 
     public void linkWith(LinkedMonster another){
         if(another == null || !another.isAlive()) return;

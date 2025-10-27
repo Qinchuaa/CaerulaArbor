@@ -228,9 +228,6 @@ public class TidelinkedBishopEntity extends LinkedMonster implements RangedAttac
         notifyPartnerAndCheckKill(false);
     }
 
-	public void endReborn(){
-		this.triggerAnim("stop_reborn","stop_reborn");
-	}
 
 	public static AttributeSupplier.Builder createAttributes() {
 		AttributeSupplier.Builder builder = Mob.createMobAttributes();
@@ -289,14 +286,6 @@ public class TidelinkedBishopEntity extends LinkedMonster implements RangedAttac
 	// 开始复活 ！！
 	public void startReborn(){
 	    this.triggerAnim("start_reborn","start_reborn");
-				.triggerableAnim("start_reborn", RawAnimation.begin()
-						.thenPlay(animLoc("die"))
-						.thenLoop(animLoc("die_loop"))));
-		data.add(new AnimationController<>(this, "stop_reborn", 0, event -> PlayState.STOP)
-				.triggerableAnim("stop_reborn", RawAnimation.begin()
-						.thenPlay(animLoc("die_idle"))
-						.thenLoop(animLoc("idle"))));
->>>>>>> 8461298f5aab4ed3f6587036830f4bc55f65c9e8
 	}
 
 }

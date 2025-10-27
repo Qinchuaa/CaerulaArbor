@@ -218,13 +218,16 @@ public class TidelinkedImmortalEntity extends LinkedMonster implements GeoEntity
 	}
 
 	private PlayState movementPredicate(AnimationState event) {
-		if (event.isMoving()){
-			return event.setAndContinue(RawAnimation.begin().thenLoop(animLoc("move")));
-		}
-		if (this.isDeadOrDying()) {
-			return event.setAndContinue(RawAnimation.begin().thenPlay(animLoc("die")));
-		}
-		return event.setAndContinue(RawAnimation.begin().thenLoop(animLoc("idle")));
+	    if (this.isReborning()) {
+	        return event.setAndContinue(RawAnimation.begin().thenLoop(animLoc("die_loop")));
+	    }
+	    if (event.isMoving()){
+	        return event.setAndContinue(RawAnimation.begin().thenLoop(animLoc("move")));
+	    }
+	    if (this.isDeadOrDying()) {
+	        return event.setAndContinue(RawAnimation.begin().thenPlay(animLoc("die")));
+	    }
+	    return event.setAndContinue(RawAnimation.begin().thenLoop(animLoc("idle")));
 	}
 
 	private PlayState attackingPredicate(AnimationState event) {
