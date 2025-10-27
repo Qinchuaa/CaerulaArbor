@@ -23,6 +23,10 @@ public abstract class LinkedMonster extends MultiPhaseMonster{
     public boolean isParticleStarter = true;
     // 新增：持久化链接的 UUID，用于跨存档重建连接
     private UUID anotherUUID = null;
+    // 新增：强制死亡流程中的保护标记，避免递归双杀导致的重复伤害/健康设置
+    protected boolean forceDyingInProgress = false;
+    public boolean isForceDyingInProgress(){ return this.forceDyingInProgress; }
+    public void markForceDying(boolean v){ this.forceDyingInProgress = v; }
 
     public LinkedMonster(EntityType<? extends Monster> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);

@@ -130,13 +130,16 @@ public class TidelinkedBishopEntity extends LinkedMonster implements RangedAttac
 
 	@Override
 	public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
-		LinkedMonster immortal = ModEntities.TIDELINKED_IMMORTAL.get().create(this.level());
-        if (immortal != null) {
-            immortal.setPos(this.position());
-			this.linkWith(immortal);
-			this.level().addFreshEntity(immortal);
-        }
-        return livingdata;
+	 
+	    if (reason != MobSpawnType.MOB_SUMMONED && this.another == null) {
+	        LinkedMonster immortal = ModEntities.TIDELINKED_IMMORTAL.get().create(this.level());
+	        if (immortal != null) {
+	            immortal.setPos(this.position());
+	            this.linkWith(immortal);
+	            this.level().addFreshEntity(immortal);
+	        }
+	    }
+	    return livingdata;
 	}
 
 	// 每个 tick 都会调一次：刷新体型，并在服务器端同步 Boss 血条进度
@@ -188,6 +191,11 @@ public class TidelinkedBishopEntity extends LinkedMonster implements RangedAttac
 	// - 否则若允许复活，则阻止死亡转入复活
 	@Override
 	public void setHealth(float pHealth){
+	  
+	    if (this.isForceDyingInProgress()) {
+	        super.setHealth(pHealth);
+	        return;
+	    }
 	    if(pHealth <= 0){
 	        boolean killBoth = notifyPartnerAndCheckKill(true);
 	        if(!killBoth){
@@ -208,9 +216,11 @@ public class TidelinkedBishopEntity extends LinkedMonster implements RangedAttac
 	    this.isDyingFlag = isDying;
 	    if(this.another instanceof TidelinkedImmortalEntity immortal){
 	        if(this.isDyingFlag && immortal.isDyingFlag() && isValidPairForKill()){
-	            // 双方禁用复活并强制死亡
+	            // 双方禁用复活并强制死亡，设置保护标记避免重复触发
 	            this.disableRebirth();
 	            immortal.disableRebirth();
+	            this.markForceDying(true);
+	            immortal.markForceDying(true);
 	            this.forceDieWithAnimation();
 	            immortal.forceDieWithAnimation();
 	            return true;

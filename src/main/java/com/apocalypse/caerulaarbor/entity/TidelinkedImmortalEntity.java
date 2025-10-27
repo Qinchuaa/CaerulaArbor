@@ -163,6 +163,11 @@ public class TidelinkedImmortalEntity extends LinkedMonster implements GeoEntity
 	// - 否则若允许复活，则阻止死亡转入复活
 	@Override
 	public void setHealth(float pHealth){
+	    // 强制死亡流程中直接沿用父类健康设置，避免重复通知与递归
+	    if (this.isForceDyingInProgress()) {
+	        super.setHealth(pHealth);
+	        return;
+	    }
 	    if(pHealth <= 0){
 	        boolean killBoth = notifyPartnerAndCheckKill(true);
 	        if(!killBoth){
@@ -183,9 +188,11 @@ public class TidelinkedImmortalEntity extends LinkedMonster implements GeoEntity
 	    this.isDyingFlag = isDying;
 	    if(this.another instanceof TidelinkedBishopEntity bishop){
 	        if(this.isDyingFlag && bishop.isDyingFlag() && isValidPairForKill()){
-	            // 双方禁用复活并强制死亡
+	            // 双方禁用复活并强制死亡，设置保护标记避免重复触发
 	            this.disableRebirth();
 	            bishop.disableRebirth();
+	            this.markForceDying(true);
+	            bishop.markForceDying(true);
 	            this.forceDieWithAnimation();
 	            bishop.forceDieWithAnimation();
 	            return true;
