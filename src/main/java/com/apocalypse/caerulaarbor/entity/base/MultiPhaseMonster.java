@@ -57,20 +57,22 @@ public abstract class MultiPhaseMonster extends SkilledSeaMonster{
     /**
      * 对外：强制以动画方式死亡，避免 remove/kill 的瞬移除
      * - 清除复活与无敌状态
-     * - 在中介场景下抑制递归通知
      * - 通过伤害通道触发标准死亡动画
      */
     public void forceDieWithAnimation(){
-        if (this instanceof LinkedMonster lm) {
-            lm.setSuppressMediatorNotification(true);
-            // 标记：本次不可复活，避免被自动复活逻辑绕过
-            lm.setForbidRebornOnce(true);
-        }
         // 结束复活与无敌，确保伤害生效
         this.rebornElapse = 0;
         this.stopPermanent();
-     //嘿嘿史山来咯
+        // 通过伤害通道触发标准死亡动画
         this.hurt(this.level().damageSources().generic(), this.getMaxHealth() * 1000f);
+    }
+
+
+    public void disableRebirth(){
+        this.rebornElapse = 0;
+        this.stopPermanent();
+        this.infinitePhase = false;
+        this.curPhase = this.finalPhase;
     }
 
     /**

@@ -54,6 +54,13 @@ public class TidelinkedBishopEntity extends LinkedMonster implements RangedAttac
 	public static final EntityDataAccessor<Boolean> SHOOT = SynchedEntityData.defineId(TidelinkedBishopEntity.class, EntityDataSerializers.BOOLEAN);
 	// Boss 血条
 	private final ServerBossEvent bossInfo = new ServerBossEvent(this.getDisplayName(), ServerBossEvent.BossBarColor.GREEN, ServerBossEvent.BossBarOverlay.NOTCHED_6);
+	// 是否处于“濒死”状态
+	private boolean isDyingFlag = false;
+	public boolean isDyingFlag() { return this.isDyingFlag; }
+	// 双杀的配对合法性（双方互相链接且均存活）
+	private boolean isValidPairForKill(){
+	    return this.another != null && this.another.isAlive() && this.isAlive() && this.another.another == this;
+	}
 
 	public TidelinkedBishopEntity(PlayMessages.SpawnEntity packet, Level world) {
 		this(ModEntities.TIDELINKED_BISHOP.get(), world);
@@ -122,7 +129,7 @@ public class TidelinkedBishopEntity extends LinkedMonster implements RangedAttac
 	}
 
 
-	// 每个 tick 都会调一次：刷新体型，并在服务器端同步 Boss 血条进度（复活时也能跟上）
+	// 每个 tick 都会调一次：刷新体型，并在服务器端同步 Boss 血条进度
 	@Override
 	public void baseTick() {
 		super.baseTick();
@@ -159,43 +166,56 @@ public class TidelinkedBishopEntity extends LinkedMonster implements RangedAttac
 		this.bossInfo.removePlayer(player);
 	}
 
-	// AI 循环里也会同步一次 Boss 血条（复活阶段 NoAI 时这段不会跑）
+	// AI 循环里也会同步一次 Boss 血条（复活阶段 NoAI 时这段不跑）
 	@Override
 	public void customServerAiStep() {
 		super.customServerAiStep();
 		this.bossInfo.setProgress(this.getHealth() / this.getMaxHealth());
 	}
 
-	// 重写血量设置：
-	// 这里踩过坑——设置血量会触发中介通知，中介里又会设置血量，形成无限循环（直接崩）。
-	// 解决：加一个“抑制中介通知”的开关，必要时只改血量不通知。
+	// 当生命降至 0 或以下时：
+	// - 若对方也“濒死”，则触发：双方禁用复活并死亡
+	// - 否则若允许复活，则阻止死亡转入复活
 	@Override
-	public void setHealth(float pHealth) {
-        /*
-		写这一块的时候，触发了一个极其常见的问题，就是在设置健康值的时候，会触发中介的通知
-         但是，在中介通知中，会再次触发设置健康值的方法，导致无限循环 游戏直接崩溃.....
-		 没ai我真不知道怎么办吧....哎
-		 */
-        if (this.isSuppressMediatorNotification()) {
-            super.setHealth(pHealth);
-            return;
-        }
-        if (pHealth <= 0) {
-            boolean killBoth = notifyMediatorAndCheckKill(true);
-            if (!killBoth) {
-                super.setHealth(1);
-                this.setReborning();
-                return;
-            }
-        }
-        super.setHealth(pHealth);
-    }
+	public void setHealth(float pHealth){
+	    if(pHealth <= 0){
+	        boolean killBoth = notifyPartnerAndCheckKill(true);
+	        if(!killBoth){
+	            if(canReborn()){
+	                super.setHealth(1);
+	                this.setReborning();
+	                return;
+	            }
+	        }else{
+	            return; 
+	        }
+	    }
+	    super.setHealth(pHealth);
+	}
+	
+	// 直接通知对方并评估是否需要“双杀”
+	private boolean notifyPartnerAndCheckKill(boolean isDying){
+	    this.isDyingFlag = isDying;
+	    if(this.another instanceof TidelinkedImmortalEntity immortal){
+	        if(this.isDyingFlag && immortal.isDyingFlag() && isValidPairForKill()){
+	            // 双方禁用复活并强制死亡
+	            this.disableRebirth();
+	            immortal.disableRebirth();
+	            this.forceDieWithAnimation();
+	            immortal.forceDieWithAnimation();
+	            return true;
+	        }
+	    }
+	    return false;
+	}
+
 
 	// 复活结束
 	@Override
     public void endReborn(){
         this.triggerAnim("start_reborn","die_idle");
-        notifyMediatorAndCheckKill(false);
+        // 复活结束，清除“濒死”标记
+        notifyPartnerAndCheckKill(false);
     }
 
 
@@ -222,9 +242,6 @@ public static AttributeSupplier.Builder createAttributes() {
 	}
 
 	private PlayState attackingPredicate(AnimationState event) {
-		double d1 = this.getX() - this.xOld;
-		double d0 = this.getZ() - this.zOld;
-		float velocity = (float) Math.sqrt(d1 * d1 + d0 * d0);
 		if (getAttackAnim(event.getPartialTick()) > 0f && !this.swinging) {
 			this.swinging = true;
 			this.lastSwing = level().getGameTime();
@@ -239,10 +256,7 @@ public static AttributeSupplier.Builder createAttributes() {
 		return PlayState.CONTINUE;
 	}
 
-	@Override
-	protected void tickDeath() {
-		super.tickDeath();
-	}
+
 
 	@Override
 	public void registerControllers(AnimatableManager.ControllerRegistrar data) {
@@ -256,27 +270,10 @@ public static AttributeSupplier.Builder createAttributes() {
                             .thenPlay(animLoc("die_idle"))));
 	}
 
-	// 告诉中介“我在濒死/复活结束”的状态；返回值表示是否两人一起死
-	private boolean notifyMediatorAndCheckKill(boolean isDying) {
-        
-        // 说明：只在上报濒死(true)时允许抑制通知；复活结束(false)一定要通知
-        if (isDying && this.isSuppressMediatorNotification()) {
-            return false;
-        }
-        var level = this.level();
-        if (level instanceof net.minecraft.server.level.ServerLevel sLevel) {
-            var mediators = sLevel.getEntitiesOfClass(com.apocalypse.caerulaarbor.entity.BishopAndImmortalMediatorEntity.class, this.getBoundingBox().inflate(64));
-            boolean both = false;
-            for (var mediator : mediators) {
-                both |= mediator.updateDyingState(this, isDying);
-            }
-            return both;
-        }
-        return false;
-    }
 
-	// 开始复活：触发复活动画（先播放“死”，再循环“死”）
+	// 开始复活 ！！
 	public void startReborn(){
 	    this.triggerAnim("start_reborn","start_reborn");
 	}
+
 }

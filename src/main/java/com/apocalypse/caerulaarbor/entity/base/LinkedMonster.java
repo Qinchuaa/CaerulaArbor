@@ -7,7 +7,11 @@ import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.phys.Vec3;
-import com.apocalypse.caerulaarbor.entity.MediatorEntity;
+
+import net.minecraft.nbt.CompoundTag;
+import org.jetbrains.annotations.NotNull;
+
+import java.util.UUID;
 
 public abstract class LinkedMonster extends MultiPhaseMonster{
 
@@ -15,10 +19,8 @@ public abstract class LinkedMonster extends MultiPhaseMonster{
     public SimpleParticleType linkedParticleType = ParticleTypes.FIREWORK;
 
     public boolean isParticleStarter = true;
-    // 添加：中介通知抑制标记，防止递归通知导致栈溢出
-    private boolean suppressMediatorNotification = false;
-    // 添加：一次性禁止复活锁，确保被中介强杀时不触发复活
-    private boolean forbidRebornOnce = false;
+    // 新增：持久化链接的 UUID，用于跨存档重建连接
+    private UUID anotherUUID = null;
 
     public LinkedMonster(EntityType<? extends Monster> pEntityType, Level pLevel) {
         super(pEntityType, pLevel);
@@ -30,6 +32,9 @@ public abstract class LinkedMonster extends MultiPhaseMonster{
         if(another == null || !another.isAlive()) return;
         this.another = another;
         another.another = this;
+        // 持久化记录对方 UUID，用于重载后重建链接
+        this.anotherUUID = another.getUUID();
+        another.anotherUUID = this.getUUID();
         if(this.isParticleStarter != this.another.isParticleStarter){
             this.isParticleStarter = true;
             this.another.isParticleStarter = false;
@@ -57,45 +62,50 @@ public abstract class LinkedMonster extends MultiPhaseMonster{
         }
     }
 
-    // 添加：抑制标记访问器
-    public void setSuppressMediatorNotification(boolean suppress) {
-        this.suppressMediatorNotification = suppress;
-    }
 
-    public boolean isSuppressMediatorNotification() {
-        return this.suppressMediatorNotification;
-    }
-
-    // 新增：一次性禁止复活锁的访问器
-    public void setForbidRebornOnce(boolean forbid) {
-        this.forbidRebornOnce = forbid;
-    }
-
-    protected boolean mediatorAllowsReborn(){
-        Level level = this.level();
-        if (level instanceof ServerLevel sLevel) {
-            var mediators = sLevel.getEntitiesOfClass(MediatorEntity.class, this.getBoundingBox().inflate(64));
-            for (var mediator : mediators) {
-
-                if (mediator.allowsReborn(this)) {
-                    return true;
-                }
-            }
+    @Override
+    public void addAdditionalSaveData(@NotNull CompoundTag tag) {
+        super.addAdditionalSaveData(tag);
+        if (this.anotherUUID != null) {
+            tag.putUUID("linkedPartnerUUID", this.anotherUUID);
         }
-        return false;
     }
 
     @Override
-    public boolean extraRebornCondition(){
-        // 当存在一次性禁止复活锁时，拒绝复活（不消耗，直至实体移除）
-        if (this.forbidRebornOnce) {
-            return false;
+    public void readAdditionalSaveData(@NotNull CompoundTag tag) {
+        super.readAdditionalSaveData(tag);
+        if (tag.hasUUID("linkedPartnerUUID")) {
+            this.anotherUUID = tag.getUUID("linkedPartnerUUID");
         }
-        return mediatorAllowsReborn();
+    }
+
+
+    @Override
+    public boolean extraRebornCondition(){
+        // 只有存在有效链接时才允许进入复活流程
+        return this.isValidLink();
     }
 
     @Override
     public void baseTick(){
+        // 尝试在服务端重建链接（跨存档/重进世界）
+        if (!this.level().isClientSide() && this.another == null && this.anotherUUID != null && this.level() instanceof ServerLevel sLevel) {
+            // 优先使用服务端通过 UUID 获取实体（如可用）
+            var partner = sLevel.getEntity(this.anotherUUID);
+            if (partner instanceof LinkedMonster lm && lm.isAlive()) {
+                this.linkWith(lm);
+            } else {
+                // 兼容：若直接获取失败，在附近扫描匹配 UUID 的 LinkedMonster
+                var candidates = sLevel.getEntitiesOfClass(LinkedMonster.class, this.getBoundingBox().inflate(128));
+                for (var c : candidates) {
+                    if (this.anotherUUID.equals(c.getUUID())) {
+                        this.linkWith(c);
+                        break;
+                    }
+                }
+            }
+        }
+
         if(this.isParticleStarter && this.tickCount % 5 == 0) linkedParticle(linkedParticleType);
         super.baseTick();
     }
