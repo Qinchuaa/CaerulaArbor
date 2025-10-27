@@ -50,9 +50,29 @@ public abstract class MultiPhaseMonster extends SkilledSeaMonster{
     }
 
     private void forceStopReborning(){
+        // 改为带动画的安全击杀，避免直接 kill() 导致瞬移除
+        this.forceDieWithAnimation();
+    }
+
+    /**
+     * 对外：强制以动画方式死亡，避免 remove/kill 的瞬移除
+     * - 清除复活与无敌状态
+     * - 通过伤害通道触发标准死亡动画
+     */
+    public void forceDieWithAnimation(){
+        // 结束复活与无敌，确保伤害生效
         this.rebornElapse = 0;
         this.stopPermanent();
-        this.kill();
+        // 通过伤害通道触发标准死亡动画
+        this.hurt(this.level().damageSources().generic(), this.getMaxHealth() * 1000f);
+    }
+
+
+    public void disableRebirth(){
+        this.rebornElapse = 0;
+        this.stopPermanent();
+        this.infinitePhase = false;
+        this.curPhase = this.finalPhase;
     }
 
     /**
@@ -105,13 +125,12 @@ public abstract class MultiPhaseMonster extends SkilledSeaMonster{
         if(isReborning()){
             double healPerc = 1- (double) rebornElapse / rebornTime;
             this.setHealth((float) Math.max(1,this.getMaxHealth() * healPerc));
+            
             if(--rebornElapse == 0) {
                 endReborn();
                 this.setNoAi(false);
             }
-            if (!canReborn()){
-                this.forceStopReborning();
-            }
+            
         }else if(this.isNoAi())
             this.setNoAi(false);
         super.baseTick();

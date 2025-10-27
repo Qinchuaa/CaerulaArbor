@@ -48,7 +48,15 @@ import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.server.level.ServerBossEvent;
 
 public class TidelinkedImmortalEntity extends LinkedMonster implements GeoEntity {
+	// Boss 血条（蓝色）：显示当前名字和血量进度
 	private final ServerBossEvent bossInfo = new ServerBossEvent(this.getDisplayName(), ServerBossEvent.BossBarColor.BLUE, ServerBossEvent.BossBarOverlay.PROGRESS);
+	// 是否处于“濒死”状态
+	private boolean isDyingFlag = false;
+	public boolean isDyingFlag(){ return this.isDyingFlag; }
+	// 双杀的配对合法性（双方互相链接且均存活）
+	private boolean isValidPairForKill(){
+	    return this.another != null && this.another.isAlive() && this.isAlive() && this.another.another == this;
+	}
 
 	public TidelinkedImmortalEntity(PlayMessages.SpawnEntity packet, Level world) {
 		this(ModEntities.TIDELINKED_IMMORTAL.get(), world);
@@ -111,10 +119,14 @@ public class TidelinkedImmortalEntity extends LinkedMonster implements GeoEntity
 		return super.hurt(source, amount);
 	}
 
+	// 每个 tick 都会调一次：刷新体型并在服务器端同步 Boss 血条进度
 	@Override
 	public void baseTick() {
 		super.baseTick();
 		this.refreshDimensions();
+		if (!this.level().isClientSide()) {
+			this.bossInfo.setProgress(this.getHealth() / this.getMaxHealth());
+		}
 	}
 
 	@Override
@@ -139,19 +151,67 @@ public class TidelinkedImmortalEntity extends LinkedMonster implements GeoEntity
 		this.bossInfo.removePlayer(player);
 	}
 
+	// AI 循环里也会同步一次 Boss 血条（复活阶段 NoAI 时这段不会跑）
 	@Override
 	public void customServerAiStep() {
 		super.customServerAiStep();
 		this.bossInfo.setProgress(this.getHealth() / this.getMaxHealth());
 	}
 
-	public void startReborn(){
-		this.triggerAnim("start_reborn","start_reborn");
+	// 当生命降至 0 或以下时：
+	// - 若对方也“濒死”，则触发：双方禁用复活并以动画方式死亡
+	// - 否则若允许复活，则阻止死亡转入复活
+	@Override
+	public void setHealth(float pHealth){
+	    // 强制死亡流程中直接沿用父类健康设置，避免重复通知与递归
+	    if (this.isForceDyingInProgress()) {
+	        super.setHealth(pHealth);
+	        return;
+	    }
+	    if(pHealth <= 0){
+	        boolean killBoth = notifyPartnerAndCheckKill(true);
+	        if(!killBoth){
+	            if(canReborn()){
+	                super.setHealth(1);
+	                this.setReborning();
+	                return;
+	            }
+	        }else{
+	            return; // 已触发双杀，直接返回避免重复流程
+	        }
+	    }
+	    super.setHealth(pHealth);
+	}
+	
+	// 直接通知对方并评估是否需要“双杀”
+	private boolean notifyPartnerAndCheckKill(boolean isDying){
+	    this.isDyingFlag = isDying;
+	    if(this.another instanceof TidelinkedBishopEntity bishop){
+	        if(this.isDyingFlag && bishop.isDyingFlag() && isValidPairForKill()){
+	            // 双方禁用复活并强制死亡，设置保护标记避免重复触发
+	            this.disableRebirth();
+	            bishop.disableRebirth();
+	            this.markForceDying(true);
+	            bishop.markForceDying(true);
+	            this.forceDieWithAnimation();
+	            bishop.forceDieWithAnimation();
+	            return true;
+	        }
+	    }
+	    return false;
 	}
 
-	public void endReborn(){
-		this.triggerAnim("stop_reborn","stop_reborn");
-	}
+	// 复活结束：先切到“躺尸闲置”动画
+	@Override
+    public void endReborn(){
+        this.triggerAnim("start_reborn","die_idle");
+        // 复活结束，清除“濒死”标记
+        notifyPartnerAndCheckKill(false);
+    }
+
+
+
+
 
 	public static AttributeSupplier.Builder createAttributes() {
 		AttributeSupplier.Builder builder = Mob.createMobAttributes();
@@ -165,43 +225,34 @@ public class TidelinkedImmortalEntity extends LinkedMonster implements GeoEntity
 	}
 
 	private PlayState movementPredicate(AnimationState event) {
-		if (this.isReborning()){
-			return event.setAndContinue(RawAnimation.begin().thenLoop(animLoc("die_loop")));
-		}
-		if (event.isMoving()){
-			return event.setAndContinue(RawAnimation.begin().thenLoop(animLoc("move")));
-		}
-		if (this.isDeadOrDying()) {
-			return event.setAndContinue(RawAnimation.begin().thenPlay(animLoc("die")));
-		}
-		return event.setAndContinue(RawAnimation.begin().thenLoop(animLoc("idle")));
+	    if (this.isReborning()) {
+	        return event.setAndContinue(RawAnimation.begin().thenLoop(animLoc("die_loop")));
+	    }
+	    if (event.isMoving()){
+	        return event.setAndContinue(RawAnimation.begin().thenLoop(animLoc("move")));
+	    }
+	    if (this.isDeadOrDying()) {
+	        return event.setAndContinue(RawAnimation.begin().thenPlay(animLoc("die")));
+	    }
+	    return event.setAndContinue(RawAnimation.begin().thenLoop(animLoc("idle")));
 	}
 
 	private PlayState attackingPredicate(AnimationState event) {
-		double d1 = this.getX() - this.xOld;
-		double d0 = this.getZ() - this.zOld;
-		if (getAttackAnim(event.getPartialTick()) > 0f && !this.swinging) {
-			this.swinging = true;
-			this.lastSwing = level().getGameTime();
-		}
-		if (this.swinging && this.lastSwing + 7L <= level().getGameTime()) {
-			this.swinging = false;
-		}
-		if (this.swinging && event.getController().getAnimationState() == AnimationController.State.STOPPED) {
-			event.getController().forceAnimationReset();
-			return event.setAndContinue(RawAnimation.begin().thenPlay(animLoc("attack")));
-		}
-		return PlayState.CONTINUE;
-	}
+        if (getAttackAnim(event.getPartialTick()) > 0f && !this.swinging) {
+            this.swinging = true;
+            this.lastSwing = level().getGameTime();
+        }
+        if (this.swinging && this.lastSwing + 7L <= level().getGameTime()) {
+            this.swinging = false;
+        }
+        if (this.swinging && event.getController().getAnimationState() == AnimationController.State.STOPPED) {
+            event.getController().forceAnimationReset();
+            return event.setAndContinue(RawAnimation.begin().thenPlay(animLoc("attack")));
+        }
+        return PlayState.CONTINUE;
+    }
 
-	@Override
-	protected void tickDeath() {
-		++this.deathTime;
-		if (this.deathTime == 23) {
-			this.remove(RemovalReason.KILLED);
-			this.dropExperience();
-		}
-	}
+
 
 	@Override
 	public void registerControllers(AnimatableManager.ControllerRegistrar data) {
@@ -209,11 +260,16 @@ public class TidelinkedImmortalEntity extends LinkedMonster implements GeoEntity
 		data.add(new AnimationController<>(this, "attacking", 2, this::attackingPredicate));
 		data.add(new AnimationController<>(this, "start_reborn", 0, event -> PlayState.STOP)
 				.triggerableAnim("start_reborn", RawAnimation.begin()
-						.thenPlay(animLoc("die"))
-						.thenLoop(animLoc("die_loop"))));
-		data.add(new AnimationController<>(this, "stop_reborn", 0, event -> PlayState.STOP)
-				.triggerableAnim("stop_reborn", RawAnimation.begin()
-						.thenPlay(animLoc("die_idle"))
-						.thenLoop(animLoc("idle"))));
+					.thenPlay(animLoc("die"))
+					.thenLoop(animLoc("die_loop")))
+				.triggerableAnim("die_idle", RawAnimation.begin()
+					.thenPlay(animLoc("die_idle"))));
 	}
+
+
+	// 开始复活！！！
+	public void startReborn(){
+		this.triggerAnim("start_reborn","start_reborn");
+	}
+
 }

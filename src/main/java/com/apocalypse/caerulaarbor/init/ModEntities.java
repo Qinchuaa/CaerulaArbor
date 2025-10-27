@@ -124,11 +124,9 @@ public class ModEntities {
     public static final RegistryObject<EntityType<TidelinkedImmortalEntity>> TIDELINKED_IMMORTAL = register("tidelinked_immortal",
             EntityType.Builder.<TidelinkedImmortalEntity>of(TidelinkedImmortalEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(16).setUpdateInterval(3).setCustomClientFactory(TidelinkedImmortalEntity::new)
                     .sized(1.5f, 2f));
-    public static final RegistryObject<EntityType<MediatorEntity>> MEDIATOR = register("mediator",
-            EntityType.Builder.<MediatorEntity>of(MediatorEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(16).setUpdateInterval(3).setCustomClientFactory(MediatorEntity::new)
-                    .sized(0.1f, 0.1f));
-    public static final RegistryObject<EntityType<BishopAndImmortalMediatorEntity>> BISHOP_IMMORTAL = register("bishop_immortal",
-            EntityType.Builder.<BishopAndImmortalMediatorEntity>of(BishopAndImmortalMediatorEntity::new, MobCategory.MONSTER).setShouldReceiveVelocityUpdates(true).setTrackingRange(16).setUpdateInterval(3).setCustomClientFactory(BishopAndImmortalMediatorEntity::new)
+
+    public static final RegistryObject<EntityType<BishopImmortalSpawnerEntity>> BISHOP_IMMORTAL = register("bishop_immortal",
+            EntityType.Builder.<BishopImmortalSpawnerEntity>of(BishopImmortalSpawnerEntity::new, MobCategory.MISC).setShouldReceiveVelocityUpdates(true).setTrackingRange(16).setUpdateInterval(1).setCustomClientFactory(BishopImmortalSpawnerEntity::new)
                     .sized(0.1f, 0.1f));
 
     // Projectiles
@@ -233,7 +231,5 @@ public class ModEntities {
         event.put(FILIAL_GENERATION.get(), FilialGenerationEntity.createAttributes().build());
         event.put(TIDELINKED_BISHOP.get(), TidelinkedBishopEntity.createAttributes().build());
         event.put(TIDELINKED_IMMORTAL.get(), TidelinkedImmortalEntity.createAttributes().build());
-        event.put(MEDIATOR.get(), MediatorEntity.createAttributes().build());
-        event.put(BISHOP_IMMORTAL.get(), BishopAndImmortalMediatorEntity.createAttributes().build());
     }
 }
