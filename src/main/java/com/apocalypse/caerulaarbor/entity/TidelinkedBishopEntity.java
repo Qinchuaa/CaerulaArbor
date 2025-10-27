@@ -128,6 +128,16 @@ public class TidelinkedBishopEntity extends LinkedMonster implements RangedAttac
 		return super.hurt(source, amount);
 	}
 
+	@Override
+	public SpawnGroupData finalizeSpawn(ServerLevelAccessor world, DifficultyInstance difficulty, MobSpawnType reason, @Nullable SpawnGroupData livingdata, @Nullable CompoundTag tag) {
+		LinkedMonster immortal = ModEntities.TIDELINKED_IMMORTAL.get().create(this.level());
+        if (immortal != null) {
+            immortal.setPos(this.position());
+			this.linkWith(immortal);
+			this.level().addFreshEntity(immortal);
+        }
+        return livingdata;
+	}
 
 	// 每个 tick 都会调一次：刷新体型，并在服务器端同步 Boss 血条进度
 	@Override
@@ -218,20 +228,25 @@ public class TidelinkedBishopEntity extends LinkedMonster implements RangedAttac
         notifyPartnerAndCheckKill(false);
     }
 
+	public void endReborn(){
+		this.triggerAnim("stop_reborn","stop_reborn");
+	}
 
-
-public static AttributeSupplier.Builder createAttributes() {
-    AttributeSupplier.Builder builder = Mob.createMobAttributes();
-    builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3);
-    builder = builder.add(Attributes.MAX_HEALTH, 160);
-    builder = builder.add(Attributes.ARMOR, 6);
-    builder = builder.add(Attributes.ATTACK_DAMAGE, 9);
-    builder = builder.add(Attributes.FOLLOW_RANGE, 16);
-    builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 0.5);
-    return builder;
-}
+	public static AttributeSupplier.Builder createAttributes() {
+		AttributeSupplier.Builder builder = Mob.createMobAttributes();
+		builder = builder.add(Attributes.MOVEMENT_SPEED, 0.3);
+		builder = builder.add(Attributes.MAX_HEALTH, 160);
+		builder = builder.add(Attributes.ARMOR, 6);
+		builder = builder.add(Attributes.ATTACK_DAMAGE, 9);
+		builder = builder.add(Attributes.FOLLOW_RANGE, 16);
+		builder = builder.add(Attributes.KNOCKBACK_RESISTANCE, 0.5);
+		return builder;
+	}
 
 	private PlayState movementPredicate(AnimationState event) {
+		if(this.isReborning()){
+			return event.setAndContinue(RawAnimation.begin().thenLoop(animLoc("die_loop")));
+		}
 		if (event.isMoving()) {
 			return event.setAndContinue(RawAnimation.begin().thenLoop(animLoc("move")));
 		}
@@ -257,12 +272,12 @@ public static AttributeSupplier.Builder createAttributes() {
 	}
 
 
-
 	@Override
 	public void registerControllers(AnimatableManager.ControllerRegistrar data) {
 		data.add(new AnimationController<>(this, "movement", 2, this::movementPredicate));
 		data.add(new AnimationController<>(this, "attacking", 2, this::attackingPredicate));
 		data.add(new AnimationController<>(this, "start_reborn", 0, event -> PlayState.STOP)
+
                     .triggerableAnim("start_reborn", RawAnimation.begin()
                             .thenPlay(animLoc("die"))
                             .thenLoop(animLoc("die_loop")))
@@ -274,6 +289,14 @@ public static AttributeSupplier.Builder createAttributes() {
 	// 开始复活 ！！
 	public void startReborn(){
 	    this.triggerAnim("start_reborn","start_reborn");
+				.triggerableAnim("start_reborn", RawAnimation.begin()
+						.thenPlay(animLoc("die"))
+						.thenLoop(animLoc("die_loop"))));
+		data.add(new AnimationController<>(this, "stop_reborn", 0, event -> PlayState.STOP)
+				.triggerableAnim("stop_reborn", RawAnimation.begin()
+						.thenPlay(animLoc("die_idle"))
+						.thenLoop(animLoc("idle"))));
+>>>>>>> 8461298f5aab4ed3f6587036830f4bc55f65c9e8
 	}
 
 }

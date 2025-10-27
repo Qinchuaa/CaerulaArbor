@@ -2,7 +2,9 @@ package com.apocalypse.caerulaarbor.entity.base;
 
 import net.minecraft.core.particles.ParticleTypes;
 import net.minecraft.core.particles.SimpleParticleType;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.level.Level;
@@ -26,6 +28,21 @@ public abstract class LinkedMonster extends MultiPhaseMonster{
         super(pEntityType, pLevel);
         this.finalPhase = 64;
         this.setInfinitePhase();
+    }
+
+    @Override
+    public void addAdditionalSaveData(@NotNull CompoundTag pCompound) {
+        super.addAdditionalSaveData(pCompound);
+        pCompound.putString("linkedAnother", another.getUUID().toString());
+    }
+
+    @Override
+    public void readAdditionalSaveData(@NotNull CompoundTag pCompound) {
+        super.readAdditionalSaveData(pCompound);
+        if(pCompound.contains("linkedAnother") && this.level() instanceof ServerLevel sLevel){
+            Entity entity = sLevel.getEntity(UUID.fromString(pCompound.getString("linkedAnother")));
+            if(entity instanceof LinkedMonster _lkd) another = _lkd;
+        }
     }
 
     public void linkWith(LinkedMonster another){
