@@ -2,6 +2,7 @@ package com.apocalypse.caerulaarbor.capability.sanity;
 
 import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.api.event.SanityEvent;
+import com.apocalypse.caerulaarbor.config.server.SanityConfig;
 import com.apocalypse.caerulaarbor.init.ModAttributes;
 import com.apocalypse.caerulaarbor.init.ModDamageTypes;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
@@ -23,6 +24,7 @@ public class SanityInjuryCapability implements ISanityInjuryCapability {
 
     private final LivingEntity owner;
     private double value;
+    private boolean recovering;
 
     public SanityInjuryCapability(LivingEntity owner) {
         this(owner, 1000);
@@ -31,35 +33,40 @@ public class SanityInjuryCapability implements ISanityInjuryCapability {
     public SanityInjuryCapability(LivingEntity owner, double value) {
         this.owner = owner;
         this.value = Mth.clamp(value, 0, 1000);
+        this.recovering = false;
     }
 
     @Override
     public boolean hurt(double damage) {
-        if (owner.hasEffect(ModMobEffects.SANITY_IMMUNE.get())) return false;
+        if (recovering) return false;
         var sanityResistanceAttr = Optional.ofNullable(owner.getAttribute(ModAttributes.SANITY_INJURY_RESISTANCE.get()));
         double sanityResistance = sanityResistanceAttr.map(AttributeInstance::getValue).orElse(0D);
         damage *= 1 - sanityResistance / 100;
         if (damage <= 0) return false;
-        if (value < damage) {
-            sanityBreak();
-            this.value = 1000;
-        }
         this.value -= damage;
+        if (this.value <= 0) {
+            sanityBreak();
+            this.value = 0;
+            this.recovering = true;
+        }
         return true;
     }
 
     private void sanityBreak() {
         SanityEvent.Break event = new SanityEvent.Break(owner);
-        if(!MinecraftForge.EVENT_BUS.post(event)) return;
+        if (MinecraftForge.EVENT_BUS.post(event)) return;
         if (owner.level().isClientSide) {
             owner.level().playLocalSound(owner.getX(), owner.getY(), owner.getZ(), SoundEvents.ELDER_GUARDIAN_CURSE,
                     owner.getSoundSource(), 2.2f, 1, false);
         } else {
-            owner.addEffect(new MobEffectInstance(ModMobEffects.SANITY_IMMUNE.get(), 200, 0, false, false));
-            // 创造模式玩家不受影响，可以考虑是否使用配置来开启? <-不行 创造在我的世界里就是无敌的 除了虚空之外 其他伤害都无效
             if (owner instanceof Player player) {
-                if (!player.isCreative()) {
-                    player.addEffect(new MobEffectInstance(ModMobEffects.DIZZY.get(), 200, 0, false, false));
+                boolean creativeAffected = SanityConfig.CREATIVE_RECEIVE_SANITY_INJURY.get();
+                if (!player.isCreative() || creativeAffected) {
+                    int dizzyDuration = 200;
+                    if (player.hasEffect(ModMobEffects.ESSENCE_RESISTANCE.get())) {
+                        dizzyDuration = Math.max(1, dizzyDuration / 2);
+                    }
+                    player.addEffect(new MobEffectInstance(ModMobEffects.DIZZY.get(), dizzyDuration, 0, false, false));
                     player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 200, 0, false, true));
                     player.hurt(ModDamageTypes.causeNervousImpairmentDamage(player.level().registryAccess(), null), 12);
                 }
@@ -86,13 +93,17 @@ public class SanityInjuryCapability implements ISanityInjuryCapability {
         }
     }
 
-    // 不要用requireNonNull，一旦后面是空的直接崩游戏
     @Override
     public void tick() {
-        var attr = this.owner.getAttribute(ModAttributes.SANITY_REGENERATE.get());
-        if (attr == null) return;
-        double regenerateRate = attr.getValue();
-        if (regenerateRate > 0) this.heal(regenerateRate);
+        if (recovering) {
+            boolean fast = owner.hasEffect(ModMobEffects.ESSENCE_RESISTANCE.get());
+            double step = 1000.0 / (fast ? 100.0 : 200.0);
+            this.value = Math.min(1000.0, this.value + step);
+            if (this.value >= 1000.0) {
+                this.value = 1000.0;
+                this.recovering = false;
+            }
+        }
     }
 
     public double getValue() {
@@ -101,8 +112,9 @@ public class SanityInjuryCapability implements ISanityInjuryCapability {
 
     @Override
     public void heal(double value) {
-        SanityEvent event = new SanityEvent.Heal(this.owner,value);
-        if(MinecraftForge.EVENT_BUS.post(event)) {
+        if (recovering) return;
+        SanityEvent event = new SanityEvent.Heal(this.owner, value);
+        if (!MinecraftForge.EVENT_BUS.post(event)) {
             this.value = Math.min(this.value + event.getAmount(), 1000);
         }
     }
@@ -111,11 +123,13 @@ public class SanityInjuryCapability implements ISanityInjuryCapability {
     public CompoundTag serializeNBT() {
         CompoundTag tag = new CompoundTag();
         tag.putDouble("SanityInjury", this.value);
+        tag.putBoolean("SanityRecovering", this.recovering);
         return tag;
     }
 
     @Override
     public void deserializeNBT(CompoundTag nbt) {
         this.value = nbt.getDouble("SanityInjury");
+        this.recovering = nbt.getBoolean("SanityRecovering");
     }
 }

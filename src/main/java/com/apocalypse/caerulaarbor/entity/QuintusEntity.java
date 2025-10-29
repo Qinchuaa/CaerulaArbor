@@ -326,7 +326,11 @@ public class QuintusEntity extends SkilledSeaMonster {
         if (vec.x != 0) dx = 1.5 / vec.x;
         if (vec.z != 0) dz = 1.5 / vec.z;
         ent.push(dx, dy, dz);
-        MobEffectInstance dizzy = new MobEffectInstance(ModMobEffects.DIZZY.get(),60,0,false,false);
+        int duration = 60;
+        if (ent instanceof net.minecraft.world.entity.player.Player && ent.hasEffect(ModMobEffects.ESSENCE_RESISTANCE.get())) {
+            duration = Math.max(1, duration / 2);
+        }
+        MobEffectInstance dizzy = new MobEffectInstance(ModMobEffects.DIZZY.get(), duration, 0, false, false);
         ent.addEffect(dizzy);
         float damage = (float) (this.getAttributeValue(Attributes.ATTACK_DAMAGE) * 1.5);
         double rate = this.getAttributeValue(ModAttributes.SANITY_INJURY_DAMAGE.get());

@@ -267,6 +267,9 @@
   "advancements.enthusiast_of_chitin.descr": "合成复合几丁质。",
   "item.caerula_arbor.relic_cursed_research": "§4主教的研究",
   "advancements.to_observe_evolution.title": "我见进化之姿",
+  "gui.caerula_arbor.settings.title": "方块与深蓝之树-模组配置",
+  "gui.caerula_arbor.settings.exit": "退出",
+  "gui.caerula_arbor.settings.creative_sanity_injury": "创造模式是否收到神经损伤",
   "subtitles.silence4": "",
   "block.caerula_arbor.originium_iris": "红石鸢尾",
   "gui.caerula_arbor.caerula_record_gui.label_attack": "攻击力：",
@@ -744,8 +747,15 @@
 
   "effect.caerula_arbor.palsy": "麻痹",
   "effect.caerula_arbor.palsying": "麻痹震颤",
+  "effect.caerula_arbor.essenceresistance": "元素抵抗",
+  "effect.caerula_arbor.essenceresistance.description": "持有效果时，负面效果持续时间减半",
   
   "block.caerula_arbor.sea_log": "深蓝原木",
   "block.caerula_arbor.sea_planks": "深蓝木板",
-  "block.caerula_arbor.sea_log_leaves": "深蓝树叶"
+  "block.caerula_arbor.sea_log_leaves": "深蓝树叶",
+  
+  "gui.caerula_arbor.settings.title": "设置",
+  "gui.caerula_arbor.settings.exit": "退出",
+  "gui.caerula_arbor.settings.creative_sanity_injury": "创造模式是否受到神经损伤",
+  "gui.caerula_arbor.settings.save": "保存"
 }
