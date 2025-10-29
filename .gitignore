@@ -124,3 +124,6 @@ run/
 *.bbmodel
 /run/
 /src/generated/resources/.cache/
+# Ignore possible local server config files written by the mod
+/config/caerula_arbor-server.toml
+**/serverconfig/caerula_arbor-server.toml
