@@ -24,7 +24,8 @@ public class SIHelper {
 
     public static void causeSanityInjury(LivingEntity target, @Nullable LivingEntity attacker, double value, SanityEvent.Hurt.Type type) {
         SanityEvent.Hurt event = new SanityEvent.Hurt(attacker,target, (float) value,type);
-        if(MinecraftForge.EVENT_BUS.post(event)){
+        // 事件未被取消时才应用神经损伤
+        if(!MinecraftForge.EVENT_BUS.post(event)){
             ModCapabilities.getSanityInjury(target).hurt(event.getAmount());
         }
     }

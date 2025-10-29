@@ -170,6 +170,9 @@ public class CaerulaRecordGUIScreen extends AbstractContainerScreen<CaerulaRecor
      */
     private static int getSanityIndex(Player player) {
         var effect = Optional.ofNullable(player.getEffect(ModMobEffects.SANITY_IMMUNE.get()));
-        return effect.map(mobEffectInstance -> Math.min(mobEffectInstance.getDuration() / 10, 19)).orElseGet(() -> Math.min((int) ModCapabilities.getSanityInjury(player).getValue() / 50, 19));
+        if (effect.isPresent()) {
+            return 19;
+        }
+        return Math.min((int) ModCapabilities.getSanityInjury(player).getValue() / 50, 19);
     }
 }

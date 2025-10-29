@@ -268,6 +268,9 @@
   "item.caerula_arbor.relic_cursed_research": "§cResearch of a Archbishop",
   "advancements.to_observe_evolution.title": "To Observe Evolution",
   "subtitles.silence4": "",
+  "gui.caerula_arbor.settings.title": "Caerula Arbor Settings",
+  "gui.caerula_arbor.settings.exit": "Exit",
+  "gui.caerula_arbor.settings.creative_sanity_injury": "doCreativePlayerGetSanityInjury",
   "block.caerula_arbor.originium_iris": "Redstone Iris",
   "gui.caerula_arbor.caerula_record_gui.label_attack": "Attack:",
   "item.caerula_arbor.ocean_cell": "Ocean Cell",
@@ -744,7 +747,14 @@
 
   "effect.caerula_arbor.palsy": "Paralysis",
   "effect.caerula_arbor.palsying": "Paralysis Stun",
+  "effect.caerula_arbor.essenceresistance": "Essence Resistance",
+  "effect.caerula_arbor.essenceresistance.description": "Halves durations of harmful effects while active",
   "block.caerula_arbor.sea_log": "Ocean Log",
   "block.caerula_arbor.sea_planks": "Ocean Planks",
-  "block.caerula_arbor.sea_log_leaves": "Ocean Leaves"
+  "block.caerula_arbor.sea_log_leaves": "Ocean Leaves",
+  
+  "gui.caerula_arbor.settings.title": "Settings",
+  "gui.caerula_arbor.settings.exit": "Exit",
+  "gui.caerula_arbor.settings.creative_sanity_injury": "Creative receives sanity injury",
+  "gui.caerula_arbor.settings.save": "Save"
 }

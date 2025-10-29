@@ -62,7 +62,12 @@ public class InfestedMobEffect extends MobEffect {
                 };
 
                 if (!entity.level().isClientSide) {
-                    entity.addEffect(new MobEffectInstance(effect, 160, (int) (double) amplifier));
+                    int duration = 160;
+                    // 玩家拥有元素抵抗时，晕眩时长减半
+                    if (effect == ModMobEffects.DIZZY.get() && entity instanceof net.minecraft.world.entity.player.Player && entity.hasEffect(ModMobEffects.ESSENCE_RESISTANCE.get())) {
+                        duration = Math.max(1, duration / 2);
+                    }
+                    entity.addEffect(new MobEffectInstance(effect, duration, (int) (double) amplifier));
                 }
             }
         }

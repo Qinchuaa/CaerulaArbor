@@ -11,6 +11,7 @@ import com.apocalypse.caerulaarbor.init.ModAttributes;
 import com.apocalypse.caerulaarbor.init.ModMobEffects;
 import com.apocalypse.caerulaarbor.init.ModTags;
 import com.apocalypse.caerulaarbor.item.relic.IRelic;
+import net.minecraft.world.effect.MobEffect;
 import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.util.Mth;
@@ -41,6 +42,9 @@ public class LivingEventHandler {
     public static void onEntityTick(LivingEvent.LivingTickEvent event) {
         // 这个不能改成ModCapabilities.getSanityInjury，重生时候需要重新复制一遍cap
         event.getEntity().getCapability(ModCapabilities.SANITY_INJURY).ifPresent(ISanityInjuryCapability::tick);
+
+        // 元素抵抗：持有效果时，负面效果持续时间减半（一次性调整，不会恢复）
+        handleEssenceResistance(event.getEntity());
     }
 
     @SubscribeEvent
@@ -180,6 +184,60 @@ public class LivingEventHandler {
         }
         if (entity instanceof SeaMonster seaMonster && seaMonster.isPermanent()) {
             event.setCanceled(true);
+        }
+    }
+
+    private static void handleEssenceResistance(LivingEntity entity) {
+        var regEffect = ModMobEffects.ESSENCE_RESISTANCE.get();
+        var data = entity.getPersistentData();
+        var processed = data.getCompound("essenceresistance_processed");
+
+        // 当未持有效果时，清理标记并返回
+        if (!entity.hasEffect(regEffect)) {
+            if (!processed.isEmpty()) {
+                data.remove("essenceresistance_processed");
+            }
+            return;
+        }
+
+        java.util.Set<String> presentKeys = new java.util.HashSet<>();
+
+        // 使用快照避免异常
+        java.util.List<MobEffectInstance> snapshot = new java.util.ArrayList<>(entity.getActiveEffects());
+        for (MobEffectInstance inst : snapshot) {
+            MobEffect effect = inst.getEffect();
+            if (effect.getCategory() != net.minecraft.world.effect.MobEffectCategory.HARMFUL) continue;
+
+            String key = effect.getDescriptionId();
+            presentKeys.add(key);
+
+            // 仅对尚未处理的负面效果执行一次性减半
+            if (!processed.getBoolean(key)) {
+                int current = inst.getDuration();
+                //tick至少 1
+                int halved = current < 0 ? 1 : Math.max(1, current / 2);
+
+                if (!entity.level().isClientSide) {
+                    entity.removeEffect(effect);
+                    entity.addEffect(new MobEffectInstance(effect, halved, inst.getAmplifier(), inst.isAmbient(), inst.isVisible()));
+                }
+
+                processed.putBoolean(key, true);
+            }
+        }
+
+        // 清除已不存在的效果标记，确保重复施加时可再次处理
+        for (String key : new java.util.HashSet<>(processed.getAllKeys())) {
+            if (!presentKeys.contains(key)) {
+                processed.remove(key);
+            }
+        }
+
+        // 回写持久化数据
+        if (!processed.isEmpty()) {
+            data.put("essenceresistance_processed", processed);
+        } else if (data.contains("essenceresistance_processed")) {
+            data.remove("essenceresistance_processed");
         }
     }
 

@@ -1,5 +1,6 @@
 package com.apocalypse.caerulaarbor;
 
+import com.apocalypse.caerulaarbor.client.gui.CaerulaArborSettings;
 import com.apocalypse.caerulaarbor.capability.Relic;
 import com.apocalypse.caerulaarbor.config.CommonConfig;
 import com.apocalypse.caerulaarbor.config.ServerConfig;
@@ -11,6 +12,7 @@ import net.minecraft.world.item.Items;
 import net.minecraft.world.item.alchemy.PotionUtils;
 import net.minecraft.world.item.alchemy.Potions;
 import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraftforge.client.ConfigScreenHandler;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.brewing.BrewingRecipeRegistry;
 import net.minecraftforge.event.TickEvent;
@@ -41,6 +43,10 @@ public class CaerulaArborMod {
     public CaerulaArborMod() {
         ModLoadingContext.get().registerConfig(ModConfig.Type.COMMON, CommonConfig.init());
         ModLoadingContext.get().registerConfig(ModConfig.Type.SERVER, ServerConfig.init());
+
+        // Register an empty config screen to appear under Mods list
+        ModLoadingContext.get().registerExtensionPoint(ConfigScreenHandler.ConfigScreenFactory.class,
+                () -> new ConfigScreenHandler.ConfigScreenFactory((mc, parent) -> new CaerulaArborSettings(parent)));
 
         IEventBus bus = FMLJavaModLoadingContext.get().getModEventBus();
 

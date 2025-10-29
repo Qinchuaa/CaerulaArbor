@@ -14,6 +14,7 @@ public class ModMobEffects {
 	public static final RegistryObject<MobEffect> SANITY_IMMUNE = REGISTRY.register("sanity_immune", SanityImmuneMobEffect::new);
 	public static final RegistryObject<MobEffect> DIZZY = REGISTRY.register("dizzy", DizzyMobEffect::new);
 	public static final RegistryObject<MobEffect> ARMOR_BREAKING = REGISTRY.register("armor_breaking", ArmorBreakingEffect::new);
+	public static final RegistryObject<MobEffect> ESSENCE_RESISTANCE = REGISTRY.register("essenceresistance", EssenceResistanceMobEffect::new);
 
 	public static final RegistryObject<MobEffect> PERMANENCE = REGISTRY.register("permanence",PermanenceMobEffect::new);
 
