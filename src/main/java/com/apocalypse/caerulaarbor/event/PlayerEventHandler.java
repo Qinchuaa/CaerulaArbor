@@ -19,6 +19,7 @@ import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.entity.LivingEntity;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.GameRules;
+import net.minecraft.world.item.Items;
 import net.minecraft.world.level.Level;
 import net.minecraftforge.event.TickEvent;
 import net.minecraftforge.event.entity.living.LivingAttackEvent;
@@ -175,6 +176,11 @@ public class PlayerEventHandler {
     public static void onPlayerWakeUp(PlayerWakeUpEvent event) {
         var player = event.getEntity();
         if (event.wakeImmediately() || event.updateLevel()) return;
+
+        //睡觉养神经~ 多睡觉对大脑好
+        if (!player.level().isClientSide) {
+            ModCapabilities.getSanityInjury(player).heal(500);
+        }
         var cap = ModCapabilities.getPlayerVariables(player);
         cap.light = Mth.clamp(cap.light + Mth.nextInt(RandomSource.create(), 1, 3), 0, 100);
         cap.syncPlayerVariables(player);
@@ -240,6 +246,16 @@ public class PlayerEventHandler {
     public static void onUseItemFinish(LivingEntityUseItemEvent.Finish event) {
         var entity = event.getEntity();
         if (!(entity instanceof Player player)) return;
+
+        // 金苹果与附魔金苹果赋予元素抵抗
+        if (!player.level().isClientSide) {
+            var consumed = event.getItem().getItem();
+            if (consumed == Items.GOLDEN_APPLE) {
+                player.addEffect(new MobEffectInstance(ModMobEffects.ESSENCE_RESISTANCE.get(), 900, 0, false, false));
+            } else if (consumed == Items.ENCHANTED_GOLDEN_APPLE) {
+                player.addEffect(new MobEffectInstance(ModMobEffects.ESSENCE_RESISTANCE.get(), 6000, 0, false, false));
+            }
+        }
 
         var cap = ModCapabilities.getPlayerVariables(player);
         var list = GameplayConfig.LIGHTS_RECOVERY_FOOD_LIST.get();

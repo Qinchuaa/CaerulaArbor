@@ -756,5 +756,6 @@
   "gui.caerula_arbor.settings.title": "Settings",
   "gui.caerula_arbor.settings.exit": "Exit",
   "gui.caerula_arbor.settings.creative_sanity_injury": "Creative receives sanity injury",
+  "gui.caerula_arbor.settings.player_break_uses_palsy": "Use Palsy on player sanity break",
   "gui.caerula_arbor.settings.save": "Save"
 }
