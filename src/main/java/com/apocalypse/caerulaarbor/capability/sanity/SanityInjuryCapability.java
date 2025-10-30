@@ -62,16 +62,21 @@ public class SanityInjuryCapability implements ISanityInjuryCapability {
             if (owner instanceof Player player) {
                 boolean creativeAffected = SanityConfig.CREATIVE_RECEIVE_SANITY_INJURY.get();
                 if (!player.isCreative() || creativeAffected) {
-                    int dizzyDuration = 200;
-                    if (player.hasEffect(ModMobEffects.ESSENCE_RESISTANCE.get())) {
-                        dizzyDuration = Math.max(1, dizzyDuration / 2);
+                    // 配置：选择麻痹或眩晕
+                    if (SanityConfig.PLAYER_BREAK_USES_PALSY.get()) {
+                        player.addEffect(new MobEffectInstance(ModMobEffects.PALSY.get(), -1, 2, false, false, true));
+                    } else {
+                        int dizzyDuration = 200;
+                        if (player.hasEffect(ModMobEffects.ESSENCE_RESISTANCE.get())) {
+                            dizzyDuration = Math.max(1, dizzyDuration / 2);
+                        }
+                        player.addEffect(new MobEffectInstance(ModMobEffects.DIZZY.get(), dizzyDuration, 0, false, false));
+                        player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 200, 0, false, true));
                     }
-                    player.addEffect(new MobEffectInstance(ModMobEffects.DIZZY.get(), dizzyDuration, 0, false, false));
-                    player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 200, 0, false, true));
                     player.hurt(ModDamageTypes.causeNervousImpairmentDamage(player.level().registryAccess(), null), 12);
                 }
             } else {
-                // TODO 改为麻痹（以下是具体实现）
+                // 非玩家分支：麻痹效果（已实现，具体逻辑由事件处理器承担）
                 /*
                 状态效果：麻痹，麻痹震颤
                 爆条时给3级无限持续时间麻痹
