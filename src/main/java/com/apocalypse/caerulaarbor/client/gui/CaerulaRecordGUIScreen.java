@@ -86,7 +86,10 @@ public class CaerulaRecordGUIScreen extends AbstractContainerScreen<CaerulaRecor
             guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/light_extinguish.png"), this.leftPos + 36, this.topPos - 37, 0, 0, 64, 32, 64, 32);
         }
 
-        guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/sanity.png"), this.leftPos + 106, this.topPos + 43, Mth.clamp(getSanityIndex(entity) * 16, 0, 304), 0, 16, 16, 320, 16);
+        int sanityIdx = getSanityIndex(entity);
+        int apopIdx = getApoptosisIndex(entity);
+        int chosenIdx = ModCapabilities.getApoptosisInjury(entity).getValue() < ModCapabilities.getSanityInjury(entity).getValue() ? apopIdx : sanityIdx;
+        guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/sanity.png"), this.leftPos + 106, this.topPos + 43, Mth.clamp(chosenIdx * 16, 0, 304), 0, 16, 16, 320, 16);
 //        switch (cap.disoclusion) {
 //            case 1 ->
 //                    guiGraphics.blit(new ResourceLocation("caerula_arbor:textures/screens/disoclution_attention.png"), this.leftPos + 96, this.topPos + 91, 0, 0, 64, 64, 64, 64);
@@ -153,10 +156,12 @@ public class CaerulaRecordGUIScreen extends AbstractContainerScreen<CaerulaRecor
 //                    guiGraphics.drawString(this.font, Component.translatable("gui.caerula_arbor.caerula_record_gui.label_deformity"), 101, 147, -3368449, false);
 //        }
 
-        guiGraphics.drawString(this.font, "" + Math.round(ModCapabilities.getSanityInjury(entity).getValue()), 124, 50, -16737895, false);
-        guiGraphics.drawString(this.font, "" + Math.round(ModCapabilities.getSanityInjury(entity).getValue()), 123, 50, -1, false);
-        guiGraphics.drawString(this.font, Component.translatable("gui.caerula_arbor.caerula_record_gui.label_sanity1"), 124, 41, -16737895, false);
-        guiGraphics.drawString(this.font, Component.translatable("gui.caerula_arbor.caerula_record_gui.label_sanity"), 123, 41, -1, false);
+        boolean showApop = ModCapabilities.getApoptosisInjury(entity).getValue() < ModCapabilities.getSanityInjury(entity).getValue();
+        double val = showApop ? ModCapabilities.getApoptosisInjury(entity).getValue() : ModCapabilities.getSanityInjury(entity).getValue();
+        guiGraphics.drawString(this.font, "" + Math.round(val), 124, 50, -16737895, false);
+        guiGraphics.drawString(this.font, "" + Math.round(val), 123, 50, -1, false);
+        guiGraphics.drawString(this.font, Component.translatable(showApop ? "gui.caerula_arbor.caerula_record_gui.label_apoptosis1" : "gui.caerula_arbor.caerula_record_gui.label_sanity1"), 124, 41, -16737895, false);
+        guiGraphics.drawString(this.font, Component.translatable(showApop ? "gui.caerula_arbor.caerula_record_gui.label_apoptosis" : "gui.caerula_arbor.caerula_record_gui.label_sanity"), 123, 41, -1, false);
     }
 
     @Override
@@ -174,5 +179,9 @@ public class CaerulaRecordGUIScreen extends AbstractContainerScreen<CaerulaRecor
             return 19;
         }
         return Math.min((int) ModCapabilities.getSanityInjury(player).getValue() / 50, 19);
+    }
+
+    private static int getApoptosisIndex(Player player) {
+        return Math.min((int) ModCapabilities.getApoptosisInjury(player).getValue() / 50, 19);
     }
 }

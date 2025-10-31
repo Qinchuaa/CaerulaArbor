@@ -251,9 +251,9 @@ public class PlayerEventHandler {
         if (!player.level().isClientSide) {
             var consumed = event.getItem().getItem();
             if (consumed == Items.GOLDEN_APPLE) {
-                player.addEffect(new MobEffectInstance(ModMobEffects.ESSENCE_RESISTANCE.get(), 900, 0, false, false));
+                player.addEffect(new MobEffectInstance(ModMobEffects.ESSENCE_RESISTANCE.get(), 900, 2, false, false));
             } else if (consumed == Items.ENCHANTED_GOLDEN_APPLE) {
-                player.addEffect(new MobEffectInstance(ModMobEffects.ESSENCE_RESISTANCE.get(), 6000, 0, false, false));
+                player.addEffect(new MobEffectInstance(ModMobEffects.ESSENCE_RESISTANCE.get(), 6000, 4, false, false));
             }
         }
 

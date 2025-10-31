@@ -25,6 +25,7 @@ public class SanityInjuryCapability implements ISanityInjuryCapability {
     private final LivingEntity owner;
     private double value;
     private boolean recovering;
+    private boolean locked;
 
     public SanityInjuryCapability(LivingEntity owner) {
         this(owner, 1000);
@@ -34,10 +35,12 @@ public class SanityInjuryCapability implements ISanityInjuryCapability {
         this.owner = owner;
         this.value = Mth.clamp(value, 0, 1000);
         this.recovering = false;
+        this.locked = false;
     }
 
     @Override
     public boolean hurt(double damage) {
+        if (locked) return false;
         if (recovering) return false;
         var sanityResistanceAttr = Optional.ofNullable(owner.getAttribute(ModAttributes.SANITY_INJURY_RESISTANCE.get()));
         double sanityResistance = sanityResistanceAttr.map(AttributeInstance::getValue).orElse(0D);
@@ -67,13 +70,21 @@ public class SanityInjuryCapability implements ISanityInjuryCapability {
                         player.addEffect(new MobEffectInstance(ModMobEffects.PALSY.get(), -1, 2, false, false, true));
                     } else {
                         int dizzyDuration = 200;
-                        if (player.hasEffect(ModMobEffects.ESSENCE_RESISTANCE.get())) {
-                            dizzyDuration = Math.max(1, dizzyDuration / 2);
+                        var essence = player.getEffect(ModMobEffects.ESSENCE_RESISTANCE.get());
+                        if (essence != null) {
+                            int level = Math.min(5, essence.getAmplifier() + 1);
+                            double rate = level * 0.10;
+                            dizzyDuration = Math.max(1, (int) Math.ceil(dizzyDuration * (1.0 - rate)));
                         }
                         player.addEffect(new MobEffectInstance(ModMobEffects.DIZZY.get(), dizzyDuration, 0, false, false));
                         player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 200, 0, false, true));
                     }
                     player.hurt(ModDamageTypes.causeNervousImpairmentDamage(player.level().registryAccess(), null), 12);
+                    // 抢条来咯~
+                    try {
+                        var apop = com.apocalypse.caerulaarbor.capability.ModCapabilities.getApoptosisInjury(player);
+                        apop.lockToMax();
+                    } catch (Throwable ignored) {}
                 }
             } else {
                 // 非玩家分支：麻痹效果（已实现，具体逻辑由事件处理器承担）
@@ -91,6 +102,11 @@ public class SanityInjuryCapability implements ISanityInjuryCapability {
                 owner.addEffect(new MobEffectInstance(ModMobEffects.PALSY.get(), -1, 2, false, false, true));
                 owner.hurt(ModDamageTypes.causeNervousImpairmentDamage(owner.level().registryAccess(), null),
                         Mth.clamp(owner.getMaxHealth() * 0.8f, 12, 72));
+                // 非玩家：同样锁定凋亡损伤至最大
+                try {
+                    var apop = com.apocalypse.caerulaarbor.capability.ModCapabilities.getApoptosisInjury(owner);
+                    apop.lockToMax();
+                } catch (Throwable ignored) {}
             }
             owner.level().playSound(owner instanceof Player player ? player : null,
                     owner.getX(), owner.getY(), owner.getZ(),
@@ -107,6 +123,11 @@ public class SanityInjuryCapability implements ISanityInjuryCapability {
             if (this.value >= 1000.0) {
                 this.value = 1000.0;
                 this.recovering = false;
+                // 恢复完成：解除对凋亡损伤的锁定
+                try {
+                    var apop = com.apocalypse.caerulaarbor.capability.ModCapabilities.getApoptosisInjury(owner);
+                    apop.unlock();
+                } catch (Throwable ignored) {}
             }
         }
     }
@@ -117,6 +138,7 @@ public class SanityInjuryCapability implements ISanityInjuryCapability {
 
     @Override
     public void heal(double value) {
+        if (locked) return;
         if (recovering) return;
         SanityEvent event = new SanityEvent.Heal(this.owner, value);
         if (!MinecraftForge.EVENT_BUS.post(event)) {
@@ -129,6 +151,7 @@ public class SanityInjuryCapability implements ISanityInjuryCapability {
         CompoundTag tag = new CompoundTag();
         tag.putDouble("SanityInjury", this.value);
         tag.putBoolean("SanityRecovering", this.recovering);
+        tag.putBoolean("SanityLocked", this.locked);
         return tag;
     }
 
@@ -136,5 +159,15 @@ public class SanityInjuryCapability implements ISanityInjuryCapability {
     public void deserializeNBT(CompoundTag nbt) {
         this.value = nbt.getDouble("SanityInjury");
         this.recovering = nbt.getBoolean("SanityRecovering");
+        this.locked = nbt.getBoolean("SanityLocked");
+    }
+
+    public void lockToMax() {
+        this.value = 1000;
+        this.locked = true;
+    }
+
+    public void unlock() {
+        this.locked = false;
     }
 }

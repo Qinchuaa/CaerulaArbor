@@ -759,4 +759,7 @@
   "gui.caerula_arbor.settings.creative_sanity_injury": "创造模式是否受到神经损伤",
   "gui.caerula_arbor.settings.player_break_uses_palsy": "玩家爆条是否受到麻痹效果",
   "gui.caerula_arbor.settings.save": "保存"
+  ,
+  "gui.caerula_arbor.caerula_record_gui.label_apoptosis1": "凋亡损伤",
+  "gui.caerula_arbor.caerula_record_gui.label_apoptosis": "凋亡损伤"
 }
