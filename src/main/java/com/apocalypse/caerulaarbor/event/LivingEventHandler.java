@@ -204,22 +204,36 @@ public class LivingEventHandler {
 
         // 使用快照避免异常
         java.util.List<MobEffectInstance> snapshot = new java.util.ArrayList<>(entity.getActiveEffects());
+        MobEffectInstance essence = entity.getEffect(regEffect);
+        int essenceLevel = essence == null ? 1 : Math.min(5, essence.getAmplifier() + 1);
+        double resistRate = essenceLevel * 0.10; // 每级 10%，最高 50%
         for (MobEffectInstance inst : snapshot) {
             MobEffect effect = inst.getEffect();
             if (effect.getCategory() != net.minecraft.world.effect.MobEffectCategory.HARMFUL) continue;
+            if (effect == ModMobEffects.PALSYING.get()) continue;
 
             String key = effect.getDescriptionId();
             presentKeys.add(key);
 
-            // 仅对尚未处理的负面效果执行一次性减半
+            // 仅对尚未处理的负面效果执行一次性按等级减免
             if (!processed.getBoolean(key)) {
                 int current = inst.getDuration();
-                //tick至少 1
-                int halved = current < 0 ? 1 : Math.max(1, current / 2);
-
-                if (!entity.level().isClientSide) {
-                    entity.removeEffect(effect);
-                    entity.addEffect(new MobEffectInstance(effect, halved, inst.getAmplifier(), inst.isAmbient(), inst.isVisible()));
+                if (current < 0) {
+                    int dec = essenceLevel >= 5 ? 2 : 1;
+                    int newAmp = inst.getAmplifier() - dec;
+                    if (!entity.level().isClientSide) {
+                        entity.removeEffect(effect);
+                        if (newAmp >= 0) {
+                            entity.addEffect(new MobEffectInstance(effect, -1, newAmp, inst.isAmbient(), inst.isVisible()));
+                        }
+                    }
+                } else {
+                    double factor = Math.max(0.0, 1.0 - resistRate);
+                    int reduced = Math.max(1, (int) Math.ceil(current * factor));
+                    if (!entity.level().isClientSide) {
+                        entity.removeEffect(effect);
+                        entity.addEffect(new MobEffectInstance(effect, reduced, inst.getAmplifier(), inst.isAmbient(), inst.isVisible()));
+                    }
                 }
 
                 processed.putBoolean(key, true);

@@ -4,6 +4,7 @@ import com.apocalypse.caerulaarbor.CaerulaArborMod;
 import com.apocalypse.caerulaarbor.capability.anchor.AnchorRecord;
 import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
 import com.apocalypse.caerulaarbor.capability.sanity.SanityInjuryCapability;
+import com.apocalypse.caerulaarbor.capability.apoptosis.ApoptosisInjuryCapability;
 import net.minecraft.server.level.ServerLevel;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.LivingEntity;
@@ -18,6 +19,8 @@ public class ModCapabilities {
     public static final Capability<PlayerVariable> PLAYER_VARIABLE = CapabilityManager.get(new CapabilityToken<>() {
     });
     public static final Capability<AnchorRecord> ANCHOR_RECORD = CapabilityManager.get(new CapabilityToken<>() {
+    });
+    public static final Capability<ApoptosisInjuryCapability> APOPTOSIS_INJURY = CapabilityManager.get(new CapabilityToken<>() {
     });
 
     public static SanityInjuryCapability getSanityInjury(LivingEntity entity) {
@@ -43,6 +46,15 @@ public class ModCapabilities {
                 () -> {
                     CaerulaArborMod.LOGGER.warn("Failed to get anchor record for level {} ", level.dimension().location());
                     return new AnchorRecord();
+                }
+        );
+    }
+
+    public static ApoptosisInjuryCapability getApoptosisInjury(LivingEntity entity) {
+        return entity.getCapability(APOPTOSIS_INJURY, null).orElseGet(
+                () -> {
+                    CaerulaArborMod.LOGGER.warn("Failed to get capability {} for entity {} ", APOPTOSIS_INJURY, entity);
+                    return new ApoptosisInjuryCapability(entity);
                 }
         );
     }

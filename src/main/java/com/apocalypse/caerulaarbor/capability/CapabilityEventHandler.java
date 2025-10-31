@@ -5,6 +5,7 @@ import com.apocalypse.caerulaarbor.capability.anchor.AnchorRecord;
 import com.apocalypse.caerulaarbor.capability.map.MapVariables;
 import com.apocalypse.caerulaarbor.capability.player.PlayerVariable;
 import com.apocalypse.caerulaarbor.capability.sanity.SanityInjuryCapability;
+import com.apocalypse.caerulaarbor.capability.apoptosis.ApoptosisInjuryCapability;
 import com.apocalypse.caerulaarbor.network.ModNetwork;
 import com.apocalypse.caerulaarbor.network.message.receive.SavedDataSyncMessage;
 import net.minecraft.core.Direction;
@@ -49,6 +50,7 @@ public class CapabilityEventHandler {
     public static void registerEntityCapabilities(AttachCapabilitiesEvent<Entity> event) {
         if (event.getObject() instanceof LivingEntity livingEntity) {
             event.addCapability(SanityInjuryCapability.ID, createProvider(LazyOptional.of(() -> new SanityInjuryCapability(livingEntity)), ModCapabilities.SANITY_INJURY));
+            event.addCapability(ApoptosisInjuryCapability.ID, createProvider(LazyOptional.of(() -> new ApoptosisInjuryCapability(livingEntity)), ModCapabilities.APOPTOSIS_INJURY));
         }
         if (event.getObject() instanceof Player && !(event.getObject() instanceof FakePlayer)) {
             event.addCapability(PlayerVariable.ID, createProvider(LazyOptional.of(PlayerVariable::new), ModCapabilities.PLAYER_VARIABLE));
@@ -84,6 +86,7 @@ public class CapabilityEventHandler {
         oldPlayer.revive();
 
         handleSanityCap(player, oldPlayer);
+        handleApoptosisCap(player, oldPlayer);
         handlePlayerVariables(player, oldPlayer, event.isWasDeath());
     }
 
@@ -91,6 +94,12 @@ public class CapabilityEventHandler {
         var oldInjury = ModCapabilities.getSanityInjury(oldPlayer);
         var newInjury = ModCapabilities.getSanityInjury(player);
         newInjury.deserializeNBT(oldInjury.serializeNBT());
+    }
+
+    private static void handleApoptosisCap(Player player, Player oldPlayer) {
+        var oldApop = ModCapabilities.getApoptosisInjury(oldPlayer);
+        var newApop = ModCapabilities.getApoptosisInjury(player);
+        newApop.deserializeNBT(oldApop.serializeNBT());
     }
 
     private static void handlePlayerVariables(Player player, Player oldPlayer, boolean isWasDeath) {
